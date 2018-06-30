@@ -2,9 +2,9 @@ language: ruby
 jobs:
   include:
     - stage: common
-      git remote add -f b git@github.com:w3c/json-ld-wg.git
-      git remote update
-      git diff --exit-code remotes/b/master -- common
+      script: git remote add -f b git@github.com:w3c/json-ld-wg.git
+      script: git remote update
+      script: git diff --exit-code remotes/b/master -- common
     - stage: examples
       rvm: 2.5
       bundler_args: --without debug
