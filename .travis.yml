@@ -1,0 +1,12 @@
+jobs:
+  include:
+    - stage: common
+      script:
+        - git remote add -f b https://github.com/w3c/json-ld-wg.git
+        - git remote update
+        - git diff --exit-code remotes/b/master -- common
+    - stage: examples
+      language: ruby
+      rvm: 2.5
+      bundler_args: --without debug
+      script: "rake test"
