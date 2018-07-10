@@ -2538,7 +2538,7 @@ specified. The full <a>IRI</a> for
       "name": "http://xmlns.com/foaf/0.1/name",
       "knows": "http://xmlns.com/foaf/0.1/knows"
     },
-    ****"@id": "_:graph",
+    ****"@id": "http://example.org/foaf-graph",
     "generatedAt": "2012-04-09",
     "@graph":**** [
       {
@@ -2558,7 +2558,7 @@ specified. The full <a>IRI</a> for
   </pre>
 
   <p>The example above expresses a <a>named graph</a> that is identified
-    by the <a>Blank Node identifier</a> <code>_:graph</code>. That
+    by the <a>IRI</a> <code>http://example.org/foaf-graph</code>. That
     graph is composed of the statements about Manu and Gregg. Metadata about
     the graph itself is expressed via the <code>generatedAt</code> property,
     which specifies when the graph was generated. An alternative view of the
@@ -2575,48 +2575,48 @@ specified. The full <a>IRI</a> for
   <tbody>
   <tr>
     <td>&nbsp;</td>
-    <td>_:graph</td>
+    <td>http://example.org/foaf-graph</td>
     <td>prov:generatedAtTime</td>
     <td>2012-04-09</td>
     <td>xsd:date</td>
   </tr>
   <tr>
-    <td>_:graph</td>
+    <td>http://example.org/foaf-graph</td>
     <td>http://manu.sporny.org/about#manu</td>
     <td>xsd:type</td>
     <td>foaf:Person</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:graph</td>
+    <td>http://example.org/foaf-graph</td>
     <td>http://manu.sporny.org/about#manu</td>
     <td>foaf:name</td>
     <td>Manu Sporny</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:graph</td>
+    <td>http://example.org/foaf-graph</td>
     <td>http://manu.sporny.org/about#manu</td>
     <td>foaf:knows</td>
     <td>http://greggkellogg.net/foaf#me</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:graph</td>
+    <td>http://example.org/foaf-graph</td>
     <td>http://greggkellogg.net/foaf#me</td>
     <td>xsd:type</td>
     <td>foaf:Person</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:graph</td>
+    <td>http://example.org/foaf-graph</td>
     <td>http://greggkellogg.net/foaf#me</td>
     <td>foaf:name</td>
     <td>Gregg Kellogg</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:graph</td>
+    <td>http://example.org/foaf-graph</td>
     <td>http://greggkellogg.net/foaf#me</td>
     <td>foaf:knows</td>
     <td>http://manu.sporny.org/about#manu</td>
@@ -2724,8 +2724,9 @@ specified. The full <a>IRI</a> for
           "@container": "@graph"
         }****
       },
-      ****"generatedAt": "2012-04-09",
-      "claim": [****
+      "@id": "http://example.org/foaf-graph",
+      "generatedAt": "2012-04-09",
+      ****"claim": [****
         {
           "@id": "http://manu.sporny.org/about#manu",
           "@type": "Person",
@@ -2743,7 +2744,7 @@ specified. The full <a>IRI</a> for
     </pre>
 
     <p>The example above expresses a <a>named graph</a> that is identified
-      by the <a>blank node identifier</a> <code>_:claim</code>. That
+      by the <a>blank node identifier</a> <code>_:b0</code>. That
       graph is composed of the statements about Manu and Gregg. Metadata about
       the graph itself is expressed via the <code>generatedAt</code> property,
       which specifies when the graph was generated. An alternative view of the
@@ -2760,55 +2761,55 @@ specified. The full <a>IRI</a> for
     <tbody>
     <tr>
       <td>&nbsp;</td>
-      <td>_:metadata</td>
+      <td>http://example.org/foaf-graph</td>
       <td>prov:generatedAtTime</td>
       <td>2012-04-09</td>
       <td>xsd:date</td>
     </tr>
     <tr>
       <td>&nbsp;</td>
-      <td>_:metadata</td>
+      <td>http://example.org/foaf-graph</td>
       <td>cred:claim</td>
-      <td>_:claim</td>
+      <td>_:b0</td>
       <td></td>
     </tr>
     <tr>
-      <td>_:claim</td>
+      <td>_:b0</td>
       <td>http://manu.sporny.org/about#manu</td>
       <td>xsd:type</td>
       <td>foaf:Person</td>
       <td></td>
     </tr>
     <tr>
-      <td>_:claim</td>
+      <td>_:b0</td>
       <td>http://manu.sporny.org/about#manu</td>
       <td>foaf:name</td>
       <td>Manu Sporny</td>
       <td></td>
     </tr>
     <tr>
-      <td>_:claim</td>
+      <td>_:b0</td>
       <td>http://manu.sporny.org/about#manu</td>
       <td>foaf:knows</td>
       <td>http://greggkellogg.net/foaf#me</td>
       <td></td>
     </tr>
     <tr>
-      <td>_:claim</td>
+      <td>_:b0</td>
       <td>http://greggkellogg.net/foaf#me</td>
       <td>xsd:type</td>
       <td>foaf:Person</td>
       <td></td>
     </tr>
     <tr>
-      <td>_:claim</td>
+      <td>_:b0</td>
       <td>http://greggkellogg.net/foaf#me</td>
       <td>foaf:name</td>
       <td>Gregg Kellogg</td>
       <td></td>
     </tr>
     <tr>
-      <td>_:claim</td>
+      <td>_:b0</td>
       <td>http://greggkellogg.net/foaf#me</td>
       <td>foaf:knows</td>
       <td>http://manu.sporny.org/about#manu</td>
@@ -2827,6 +2828,7 @@ specified. The full <a>IRI</a> for
         "@value": "2012-04-09",
         "@type": "http://www.w3.org/2001/XMLSchema#date"
       }],
+      "@id": "http://example.org/foaf-graph",
       "https://w3id.org/credentials#claim": [{****
         "@graph": [{
           "@id": "http://manu.sporny.org/about#manu",
@@ -3619,16 +3621,16 @@ specified. The full <a>IRI</a> for
         "@container": ["@graph", "@id"]
       }****
     },
-    "@id": "_:graph",
+    "@id": "http://example.org/foaf-graph",
     "generatedAt": "2012-04-09",
     ****"graphMap": {
-      "_:manu":**** {
+      "http://manu.sporny.org/about#manu":**** {
         "@id": "http://manu.sporny.org/about#manu",
         "@type": "Person",
         "name": "Manu Sporny",
         "knows": "http://greggkellogg.net/foaf#me"
       },
-      ****"_:gregg"****: {
+      ****"http://greggkellogg.net/foaf#me"****: {
         "@id": "http://greggkellogg.net/foaf#me",
         "@type": "Person",
         "name": "Gregg Kellogg",
@@ -3645,9 +3647,9 @@ specified. The full <a>IRI</a> for
        title="Referencing named graphs after expansion">
   <!--
   [{
-    "@id": "_:graph",
+    "@id": "http://example.org/foaf-graph",
     "http://example.org/graphMap": [{
-      "@id": "_:gregg",
+      "@id": "http://greggkellogg.net/foaf#me",
       "@graph": [{
         "@id": "http://greggkellogg.net/foaf#me",
         "@type": ["http://xmlns.com/foaf/0.1/Person"],
@@ -3655,7 +3657,7 @@ specified. The full <a>IRI</a> for
         "http://xmlns.com/foaf/0.1/name": [{"@value": "Gregg Kellogg"}]
       }]
     }, {
-      "@id": "_:manu",
+      "@id": "http://manu.sporny.org/about#manu",
       "@graph": [{
         "@id": "http://manu.sporny.org/about#manu",
         "@type": [
@@ -3694,62 +3696,62 @@ specified. The full <a>IRI</a> for
   <tbody>
   <tr>
     <td>&nbsp;</td>
-    <td>_:graph</td>
+    <td>http://example.org/foaf-graph</td>
     <td>prov:generatedAtTime</td>
     <td>2012-04-09</td>
     <td>xsd:date</td>
   </tr>
   <tr>
     <td>&nbsp;</td>
-    <td>_:graph</td>
+    <td>http://example.org/foaf-graph</td>
     <td>http://example.org/graphMap</td>
     <td>http://manu.sporny.org/about#manu</td>
     <td></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
-    <td>_:graph</td>
+    <td>http://example.org/foaf-graph</td>
     <td>http://example.org/graphMap</td>
     <td>http://greggkellogg.net/foaf#me</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:manu</td>
+    <td>http://manu.sporny.org/about#manu</td>
     <td>http://manu.sporny.org/about#manu</td>
     <td>xsd:type</td>
     <td>foaf:Person</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:manu</td>
+    <td>http://manu.sporny.org/about#manu</td>
     <td>http://manu.sporny.org/about#manu</td>
     <td>foaf:name</td>
     <td>Manu Sporny</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:manu</td>
+    <td>http://manu.sporny.org/about#manu</td>
     <td>http://manu.sporny.org/about#manu</td>
     <td>foaf:knows</td>
     <td>http://greggkellogg.net/foaf#me</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:gregg</td>
+    <td>http://greggkellogg.net/foaf#me</td>
     <td>http://greggkellogg.net/foaf#me</td>
     <td>xsd:type</td>
     <td>foaf:Person</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:gregg</td>
+    <td>http://greggkellogg.net/foaf#me</td>
     <td>http://greggkellogg.net/foaf#me</td>
     <td>foaf:name</td>
     <td>Gregg Kellogg</td>
     <td></td>
   </tr>
   <tr>
-    <td>_:gregg</td>
+    <td>http://greggkellogg.net/foaf#me</td>
     <td>http://greggkellogg.net/foaf#me</td>
     <td>foaf:knows</td>
     <td>http://manu.sporny.org/about#manu</td>
@@ -3788,7 +3790,7 @@ specified. The full <a>IRI</a> for
         "@container": ["@graph", "@id"]
       }
     },
-    "@id": "_:graph",
+    "@id": "http://example.org/foaf-graph",
     "generatedAt": "2012-04-09",
     "graphMap": {
       ****"@none"****: [{
