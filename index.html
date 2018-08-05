@@ -2299,7 +2299,11 @@ specified. The full <a>IRI</a> for
 -->
 </pre>
 
-<p>The implementation of <a>lists</a> in RDF depends on linking anonymous nodes together using the properties <code>rdf:first</code> and <code>rdf:rest</code>, with the end of the list defined as the resource <code>rdf:nil</code>. This can be represented as triples, as the following example shows, but the results are somewhat unwieldy.</p>
+<p>The implementation of <a>lists</a> in RDF depends on linking anonymous nodes
+  together using the properties <code>rdf:first</code> and
+  <code>rdf:rest</code>, with the end of the list defined as the resource
+  <code>rdf:nil</code>. This can be represented as triples, as the following
+  example shows:</p>
 
 <table class="example">
 <thead><tr>
@@ -2346,7 +2350,7 @@ specified. The full <a>IRI</a> for
 </tbody>
 </table>
 
-<p>Consequently, most RDF serializations (including JSON-LD) provide a syntactic shortcut for these lists. In Turtle, the graph would be expressed as follows:</p>
+<p>JSON-LD provides a syntactic shortcut for these lists. In Turtle, the graph would be expressed as follows:</p>
 
 <pre class="example" data-transform="updateExample"
      data-content-type="text/turtle"
@@ -2358,7 +2362,11 @@ specified. The full <a>IRI</a> for
 -->
 </pre>
 
-<p class="changed">In JSON-LD 1.1, lists of lists, where the value of a <a>list object</a>, may itself be a <a>list object</a> recusively, are fully supported. For example, in <em>GeoJSON</em> (see [[RFC7946]]), <em>coordinates</em> are an ordered list of <em>positions</em>, which are represented as an array of two or more numbers. For example:</p>
+<p class="changed">In JSON-LD 1.1, lists of lists, where the value of
+  a <a>list object</a>, may itself be a <a>list object</a> recusively, are
+  fully supported. For example, in <em>GeoJSON</em> (see [[RFC7946]]),
+  <em>coordinates</em> are an ordered list of <em>positions</em>, which are
+  represented as an array of two or more numbers. For example:</p>
 
 <pre class="example changed"
      data-content-type="application/json"
@@ -2381,7 +2389,10 @@ specified. The full <a>IRI</a> for
 }
 </pre>
 
-<p class="changed">For this example, it's important that the values expressed within coordinates maintain their order, which requires the use of embedded list structures. In JSON-LD 1.1, we can express this using recursive lists, by simply adding the appropriate context definion:</p>
+<p class="changed">For this example, it's important that the values
+  expressed within coordinates maintain their order, which requires the use of
+  embedded list structures. In JSON-LD 1.1, we can express this using recursive
+  lists, by simply adding the appropriate context definion:</p>
 
 <pre class="example changed"
      data-content-type="application/json"
@@ -2411,7 +2422,40 @@ specified. The full <a>IRI</a> for
 }
 </pre>
 
-<p class="changed">Note that coordinates includes three levels of lists. When expressed in Turtle, this would be the following:</p>
+<p>This is equivalent to the expanded form, which uses <a>list objects</a>:</p>
+
+<pre class="example changed"
+     data-content-type="application/json"
+     data-transform="updateExample"
+     title="Coordinates expressed in JSON-LD (expanded)">
+[{
+  "@type": ["https://purl.org/geojson/vocab#Feature"],
+  "https://purl.org/geojson/vocab#bbox": [{
+    "@list": [
+      {"@value": -10.0},
+      {"@value": -10.0},
+      {"@value": 10.0},
+      {"@value": 10.0}
+    ]
+  }],
+  "https://purl.org/geojson/vocab#geometry": [{
+    "@type": ["https://purl.org/geojson/vocab#Polygon"],
+    "https://purl.org/geojson/vocab#coordinates": [{
+      "@list": [{
+        "@list": [
+          {"@list": [{"@value": -10.0}, {"@value": -10.0}]},
+          {"@list": [{"@value": 10.0}, {"@value": -10.0}]},
+          {"@list": [{"@value": 10.0}, {"@value": 10.0}]},
+          {"@list": [{"@value": -10.0}, {"@value": -10.0}]}
+        ]
+      }]
+    }]
+  }]
+}]
+</pre>
+
+<p class="changed">Note that coordinates includes three levels of lists.
+  When expressed in Turtle, this would be the following:</p>
 
 <pre class="example changed"
      data-content-type="text/turtle"
