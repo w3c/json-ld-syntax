@@ -26,13 +26,13 @@
       prevVersion:            "https://www.w3.org/TR/2014/REC-json-ld-20140116/",
       previousPublishDate:    "2014-01-16",
       previousMaturity:       "REC",
+      github:                 "https://github.com/w3c/json-ld-syntax/",
 
       // if there a publicly available Editor's Draft, this is the link
       edDraftURI:             "https://w3c.github.io/json-ld/",
 
       includePermalinks:      true,
       doJsonLd:               true,
-      testSuiteURIkey:        "https://json-ld.org/test-suite/",
       postProcess:            [internalizeTermListReferences],
 
       // if you want to have extra CSS, append them to this list
@@ -94,8 +94,6 @@
           url:        "http://neverspace.net/",
           note:       "v1.0" }
       ],
-
-      github:    "https://github.com/w3c/json-ld-syntax/",
 
       // name of the WG
       wg:           "JSON-LD Working Group",
@@ -2301,9 +2299,141 @@ specified. The full <a>IRI</a> for
 -->
 </pre>
 
-<p class="note">List of lists in the form of <a>list objects</a>
-  are not allowed in this version of JSON-LD. This decision was made due to the
-  extreme amount of added complexity when processing lists of lists.</p>
+<p>The implementation of <a>lists</a> in RDF depends on linking anonymous nodes together using the properties <code>rdf:first</code> and <code>rdf:rest</code>, with the end of the list defined as the resource <code>rdf:nil</code>. This can be represented as triples, as the following example shows, but the results are somewhat unwieldy.</p>
+
+<table class="example">
+<thead><tr>
+  <th>Subject</th>
+  <th>Property</th>
+  <th>Value</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td>http://example.org/people#joebob</td>
+  <td>foaf:nick</td>
+  <td>_:b0</td>
+</tr>
+<tr>
+  <td>_:b0</td>
+  <td>rdf:first</td>
+  <td>joe</td>
+</tr>
+<tr>
+  <td>_:b0</td>
+  <td>rdf:rest</td>
+  <td>_:b1</td>
+</tr>
+<tr>
+  <td>_:b1</td>
+  <td>rdf:first</td>
+  <td>bob</td>
+</tr>
+<tr>
+  <td>_:b1</td>
+  <td>rdf:rest</td>
+  <td>_:b2</td>
+</tr>
+<tr>
+  <td>_:b2</td>
+  <td>rdf:first</td>
+  <td>jaybee</td>
+</tr>
+<tr>
+  <td>_:b2</td>
+  <td>rdf:rest</td>
+  <td>rdf:nil</td>
+</tr>
+</tbody>
+</table>
+
+<p>Consequently, most RDF serializations (including JSON-LD) provide a syntactic shortcut for these lists. In Turtle, the graph would be expressed as follows:</p>
+
+<pre class="example" data-transform="updateExample"
+     data-content-type="text/turtle"
+     title="An ordered collection of values in Turtle">
+<!--
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<http://example.org/people#joebob> foaf:nick ("joe", "bob", "jaybe") .
+-->
+</pre>
+
+<p class="changed">In JSON-LD 1.1, lists of lists, where the value of a <a>list object</a>, may itself be a <a>list object</a> recusively, are fully supported. For example, in <em>GeoJSON</em> (see [[RFC7946]]), <em>coordinates</em> are an ordered list of <em>positions</em>, which are represented as an array of two or more numbers. For example:</p>
+
+<pre class="example changed"
+     data-content-type="application/json"
+     title="Coordinates expressed in GeoJSON">
+{
+  "type": "Feature",
+  "bbox": [-10.0, -10.0, 10.0, 10.0],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+        [
+            [-10.0, -10.0],
+            [10.0, -10.0],
+            [10.0, 10.0],
+            [-10.0, -10.0]
+        ]
+    ]
+  }
+  //...
+}
+</pre>
+
+<p class="changed">For this example, it's important that the values expressed within coordinates maintain their order, which requires the use of embedded list structures. In JSON-LD 1.1, we can express this using recursive lists, by simply adding the appropriate context definion:</p>
+
+<pre class="example changed"
+     data-content-type="application/json"
+     data-transform="updateExample"
+     title="Coordinates expressed in JSON-LD">
+{
+  "@context": {
+    "@vocab": "https://purl.org/geojson/vocab#",
+    "type": "@type",
+    "bbox": {"@container": "@list"},
+    "coordinates": {"@container": "@list"}
+  },
+  "type": "Feature",
+  "bbox": [-10.0, -10.0, 10.0, 10.0],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+        [
+            [-10.0, -10.0],
+            [10.0, -10.0],
+            [10.0, 10.0],
+            [-10.0, -10.0]
+        ]
+    ]
+  }
+  ####//...####
+}
+</pre>
+
+<p class="changed">Note that coordinates includes three levels of lists. When expressed in Turtle, this would be the following:</p>
+
+<pre class="example changed"
+     data-content-type="text/turtle"
+     title="Coordinates expressed in Turtle">
+@prefix geojson: <https://purl.org/geojson/vocab#>.
+
+[
+  a geojson:Feature ;
+  geojson:bbox (-10.0 -10.0 10.0 10.0) ;
+  geojson:geometry [
+    a geojson:Polygon ;
+    geojson:coordinates (
+      (
+        (-10.0 -10.0)
+        (10.0 -10.0)
+        (10.0 10.0)
+        (-10.0 -10.0)
+      )
+    )
+  ]
+] .
+</pre>
 
 <p>While <code>@list</code> is used to describe <em>ordered lists</em>,
   the <code>@set</code> keyword is used to describe <em>unordered sets</em>.
@@ -5118,6 +5248,7 @@ specified. The full <a>IRI</a> for
       a context. When this is set, vocabulary-relative IRIs, such as the
       keys of <a>node objects</a>, are expanded or compacted relative
       to the <a>base IRI</a> using string concatenation.</li>
+    <li><a>Lists</a> may now have members which are themselves <a>lists</a>.</li>
   </ul>
 </section>
 
