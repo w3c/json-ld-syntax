@@ -1586,6 +1586,38 @@ the data type to be specified with each piece of data.</p>
     any value position in the body of a JSON-LD document. Note that <a
     href="#type-coercion">type coercion</a> of the <code>knows</code> property
     is not required, as the value is not a string.</p>
+
+
+  <p>While it is considered a best practice to identify nodes in a graph,
+    at times this is impractical. In the data model, nodes without an explicit
+    identifier are called <a>blank nodes</a>, which can be represented in a
+    serialization such as JSON-LD using a <a>blank node identifier</a>. In the
+    previous example, the top-level node for Manu does not have an identifier,
+    and does not need one to describe it within the data model. However, if we
+    were to want to describe a <em>knows</em> relationship from Gregg to Manu,
+    we would need to introduce a <a>blank node identifier</a>
+    (here <code>_:b0</code>).</p>
+
+  <pre class="example nohighlight" data-transform="updateExample"
+       title="Referencing an unidentified node">
+  <!--
+  {
+    "@context": {
+      "@vocab": "http://schema.org/"
+    },
+    ****"@id": "_:b0",****
+    "name": "Manu Sporny",
+    "knows": {
+      "@id": "http://foaf.me/gkellogg#me",
+      "@type": "Person",
+      "name": "Gregg Kellogg",
+      ****"knows": {"@id": "_:b0"}****
+    }
+  }
+  -->
+  </pre>
+
+  <p><a>Blank node identifiers</a> may be automatically introduced by algorithms such as <a>flattening</a>, but they are also useful for authors to describe such relationships directly.</p>
 </section>
 
 <section class="informative">
@@ -2817,6 +2849,12 @@ specified. The full <a>IRI</a> for
     </tr>
     </tbody>
     </table>
+
+    <p class="note">The <a>blank node identifier</a> <code>_:b0</code>
+      is automatically created to allow the default graph to reference the
+      <a>named graph</a> as the definition of the <em>claim</em>. These are
+      necessary for serialization, where nodes without explicit identifiers,
+      such as the named graph in this case, can be represented.</p>
 
     <p>Expanding this graph results in the following:</p>
 
