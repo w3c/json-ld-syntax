@@ -2363,10 +2363,10 @@ specified. The full <a>IRI</a> for
 </pre>
 
 <p class="changed">In JSON-LD 1.1, lists of lists, where the value of
-  a <a>list object</a>, may itself be a <a>list object</a> recusively, are
+  a <a>list object</a>, may itself be a <a>list object</a>, are
   fully supported. For example, in <em>GeoJSON</em> (see [[RFC7946]]),
   <em>coordinates</em> are an ordered list of <em>positions</em>, which are
-  represented as an array of two or more numbers. For example:</p>
+  represented as an array of two or more numbers:</p>
 
 <pre class="example changed"
      data-content-type="application/json"
@@ -2389,10 +2389,11 @@ specified. The full <a>IRI</a> for
 }
 </pre>
 
-<p class="changed">For this example, it's important that the values
-  expressed within coordinates maintain their order, which requires the use of
-  embedded list structures. In JSON-LD 1.1, we can express this using recursive
-  lists, by simply adding the appropriate context definion:</p>
+<p class="changed">For these examples, it's important that values
+  expressed within <em>bbox</em> and <em>coordinates</em> maintain their order,
+  which requires the use of embedded list structures. In JSON-LD 1.1, we can
+  express this using recursive lists, by simply adding the appropriate context
+  definion:</p>
 
 <pre class="example changed"
      data-content-type="application/json"
@@ -2454,7 +2455,7 @@ specified. The full <a>IRI</a> for
 }]
 </pre>
 
-<p class="changed">Note that coordinates includes three levels of lists.
+<p class="changed">Note that <em>coordinates</em> includes three levels of lists.
   When expressed in Turtle, this would be the following:</p>
 
 <pre class="example changed"
