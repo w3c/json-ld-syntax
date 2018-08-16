@@ -237,7 +237,7 @@
       <li>Software developers who want to implement processors and APIs for
         JSON-LD</li>
       <li>Software developers who want to generate or consume Linked Data,
-        an RDF <a>graph</a>, or an <a>Dataset</a> in a JSON syntax</li>
+        an RDF <a>graph</a>, or an <a>RDF Dataset</a> in a JSON syntax</li>
     </ul>
 
     <p>A companion document, the JSON-LD 1.1 Processing Algorithms and API specification
@@ -270,8 +270,11 @@
       <li>Technical discussion typically occurs on the working group mailing list:
         <a href="https://lists.w3.org/Archives/Public/public-json-ld-wg/">public-json-ld-wg@w3.org</a></li>
 
+      <li>The working group uses <em>#json-ld</em>
+        IRC channel is available for real-time discussion on <a href="http://irc.w3.org">irc.w3.org</a>.</li>
+
       <li>The <a href="https://webchat.freenode.net/?channels=json-ld">#json-ld</a>
-        IRC channel is available for real-time discussion on irc.freenode.net.</li>
+        IRC channel is also available for real-time discussion on irc.freenode.net.</li>
     </ul>
 
   </section>
@@ -351,7 +354,7 @@
       or an <a>IRI</a>.</p>
     <p class="changed">Within a directed graph, nodes with may
       be <em>unnamed</em>, i.e., not identified by an <a>IRI</a> or representing
-      a data such as <a>strings</a> or <a>numbers</a>. Such nodes are called <a>blank nodes</a>,
+      data such as <a>strings</a> or <a>numbers</a>. Such nodes are called <a>blank nodes</a>,
       and may be identified using a <a>blank node identifier</a>.
       These identifiers may be required to represent a fully connected graph
       using a tree structure, such as JSON, but otherwise have no
@@ -453,7 +456,7 @@
       <dt class="changed"><code>@nest</code></dt><dd class="changed">Collects a set of <a>nested properties</a> within
         a <a>node object</a>.</dd>
       <dt class="changed"><code>@none</code></dt><dd class="changed">Used as an index value
-        in an <a>id map</a>, <a>language map</a>, <a>type map</a> or elsewhere where a dictionary is
+        in an <a>id map</a>, <a>language map</a>, <a>type map</a>, or elsewhere where a dictionary is
         used to index into other values.</dd>
       <dt class="changed"><code>@prefix</code></dt><dd class="changed">
         With the value <a>true</a>, allows this <a>term</a> to be used to construct a <a>compact IRI</a>
@@ -690,13 +693,13 @@
     -->
     </pre>
 
-    <p>This section only covers the most basic features of the JSON-LD
-      Context. The Context can also be used to help interpret other more
-      complext JSON datastructures as Linked Data and to specify a context
-      as part of an <a>expanded term definition</a>, to apply for values associated with that term.
-      More advanced features
-      related to the JSON-LD Context are covered in section <a
-      href="#advanced-concepts" class="sectionRef"></a>.</p>
+    <p>This section only covers the most basic features of the JSON-LD Context.
+      The Context can also be used to help interpret other more
+      complex JSON data structures, such as <a href="#indexed-values">indexed values</a>,
+      <a href="#sets-and-lists">ordered values</a>, and
+      <a href="#nested-properties">nested properties</a>.
+      More advanced features related to the JSON-LD Context are covered in
+      section <a href="#advanced-concepts" class="sectionRef"></a>.</p>
   </section>
 
 <section class="informative">
@@ -887,8 +890,8 @@
   example, in the <em>schema.org</em> vocabulary, the <em>givenName</em>
   property is associated with a <em>Person</em>. Therefore, one may reason that
   if a <a>node object</a> contains the property <em>firstName</em>, that the
-  type is a <em>Person</em>; making this explicity with an explicit type helps
-  to clarify.</p>
+  type is a <em>Person</em>; making this explicit with <code>@type</code> helps
+  to clarify the association.</p>
   
 <p>The type of a particular node can be specified using the <code>@type</code>
   <a>keyword</a>. In Linked Data, types are uniquely
@@ -964,10 +967,10 @@
 
 <p>JSON-LD has a number of features that provide functionality above and beyond
   the core functionality described above. JSON can be used to express data
-  using a variety of different stuctures, and the features described in this
-  section can be used to interpret a variety of different JSON structures into
+  using such structures, and the features described in this
+  section can be used to interpret a variety of different JSON structures as
   Linked Data. A JSON-LD processor will make use of provided and embedded
-  contexts to interpret property values in a number of different ideomatic
+  contexts to interpret property values in a number of different idiomatic
   ways.</p>
 
 <dl>
@@ -984,14 +987,14 @@
     definition. See <a href="#sets-and-lists" class="sectionRef"></a> for a
     further discussion.</p></dd>
   <dt>Property nesting</dt>
-  <dd><p>Another JSON idium often found in APIs is to use an
+  <dd><p>Another JSON idiom often found in APIs is to use an
       intermediate object to represent the properties of an object; in JSON-LD
       these are refered to as <a>nested properties</a> and are described in <a
       href="#nested-properties" class="sectionRef"></a>.</p></dd>
   <dt>Referencing objects</dt>
   <dd>
-    <p>Linked data is all about describing the relationships between different objects.
-      Sometimes these relationships are between objects defined in different
+    <p>Linked Data is all about describing the relationships between different resources.
+      Sometimes these relationships are between resources defined in different
       documents described on the web, sometimes the resources are described
       within the same document.</p>
 
@@ -1016,7 +1019,7 @@
       <code>http://greggkellogg.net/foaf</code> which could include a similar
       representation.</p>
 
-    <p>A common idium found in JSON usage is objects being specified as the
+    <p>A common idiom found in JSON usage is objects being specified as the
       value of other objects, called object <a>embedding</a> in JSON-LD;
       for example, a friend specified as an
       object value of a <em>Person</em>:</p>
@@ -1032,7 +1035,7 @@
       "@type": "Person",
       "name": "Manu Sporny",
       ****"knows": {****
-      "@id": "http://greggkellogg.net/foaf#me",
+        "@id": "http://greggkellogg.net/foaf#me",
         "@type": "Person",
         "name": "Gregg Kellogg"
       ****}****
@@ -1043,7 +1046,7 @@
     <p>See <a href="#embedding" class="sectionRef"></a> details these relationships.</p>
   </dd>
   <dt>Indexed values</dt>
-  <dd><p>Another common idium in JSON is to use an intermediate object to represent property values via indexing. JSON-LD allows data to be indexed
+  <dd><p>Another common idiom in JSON is to use an intermediate object to represent property values via indexing. JSON-LD allows data to be indexed
     in a number of different ways, as detailed in <a href="#indexed-values" class="sectionRef"></a>.</p></dd>
   <dt>Reverse Properties</dt>
   <dd><p>JSON-LD serializes directed <a>graphs</a>. That means that
@@ -1060,9 +1063,9 @@
   <p>Section <a href="#the-context"></a> introduced the basics of what makes
   JSON-LD work. This section expands on the basic principles of the
   <a>context</a> and demonstrates how more advanced use cases can
-  be achieved using JSON-LD. </p>
+  be achieved using JSON-LD.</p>
 
-  <p>In general, contexts may be used at any time a
+  <p>In general, contexts may be used any time a
     <a>JSON object</a> is defined.
     The only time that one cannot express a context is as a direct child of another context definition (other than as part of an <a>expanded term definition</a>).
     For example, a <a>JSON-LD document</a> may use more than one context at different
@@ -1329,7 +1332,7 @@
   </pre>
 
   <p>Setting <code>@base</code> to <a>null</a> will prevent
-    <a>relative IRIs</a> to be expanded to
+    <a>relative IRIs</a> from being expanded to
     <a>absolute IRIs</a>.</p>
 
   <p>Please note that the <code>@base</code> will be ignored if used in
@@ -1956,7 +1959,7 @@ the data type to be specified with each piece of data.</p>
 -->
 </pre>
 
-<p>The example shown above would generate the following data.</p>
+<p>The example shown above would generate the following data:</p>
 
 <table class="example">
 <thead><tr>
@@ -2763,19 +2766,21 @@ the data type to be specified with each piece of data.</p>
   <pre class="example nohighlight" data-transform="updateExample"
        title="Referencing node objects">
   <!--
-  [{
+  {
     "@context": {
       "@vocab": "http://schema.org/",
       ****"knows": {"@type": "@id"}****
     },
-    "name": "Manu Sporny",
-    "@type": "Person",
-    ****"knows": "http://greggkellogg.net/foaf#me"****
-  }, {
-    "@id": "http://greggkellogg.net/foaf#me",
-    "@type": "Person",
-    "name": "Gregg Kellogg"
-  }]
+    "@graph": [{
+      "name": "Manu Sporny",
+      "@type": "Person",
+      ****"knows": "http://greggkellogg.net/foaf#me"****
+    }, {
+      "@id": "http://greggkellogg.net/foaf#me",
+      "@type": "Person",
+      "name": "Gregg Kellogg"
+    }]
+  }
   -->
   </pre>
 
@@ -2851,7 +2856,7 @@ the data type to be specified with each piece of data.</p>
     which look like <a>IRIs</a> using an underscore (<code>_</code>)
     as scheme. This allows one to reference the node locally within the document, but
     makes it impossible to reference the node from an external document. The
-    <a>blank node identifier</a> is scoped  to the document in which it is used.</p>
+    <a>blank node identifier</a> is scoped to the document in which it is used.</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        title="Specifying a local blank node identifier">
@@ -4332,13 +4337,41 @@ the data type to be specified with each piece of data.</p>
     <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
 </section>
 </section>
+</section>
+
+<section class="informative"><h2>Forms of JSON-LD</h2>
+<p>As with many data formats, there is no single correct way to describe data in JSON-LD.
+  However, as JSON-LD is used for describing graphs, certain transformations can be used
+  to change the shape of the data, without changing its meaning as Linked Data.</p>
+
+<dl>
+<dt>Expanded Document Form</dt>
+<dd><a>Expansion</a> is the process of taking a JSON-LD document and applying a
+    <a>context</a> so that the <code>@context</code> is no longer necessary.
+    This process is described further in <a href="#expanded-document-form" class="sectionRef"></a>.</dd>
+<dt>Compacted Document Form</dt>
+<dd><a>Compaction</a> is the process
+  of applying a provided <a>context</a> to an existing JSON-LD document. This process
+  is described further in <a href="#compacted-document-form" class="sectionRef"></a>.</dd>
+<dt>Flattened Document Form</dt>
+<dd><a>Flattening</a> is the process of extracting
+  embedded nodes to the top level of the JSON tree, and replacing the embedded
+  node with a reference, creating blank node identifiers as necessary. This
+  process is described further in <a href="#flattened-document-form" class="sectionRef"></a>.</dd>
+<dt>Framed Document Form</dt>
+<dd><a>Framing</a> is used to shape
+  the data in a JSON-LD document, using an example <a>frame</a> document
+  which is used to both match the <a>flattened</a> data and show an example
+  of how the resulting data should be shaped. This
+  process is described further in <a href="#framed-document-form" class="sectionRef"></a>.</dd>
+</dl>
 
 <section class="informative"><h3>Expanded Document Form</h3>
 
   <p>The JSON-LD 1.1 Processing Algorithms and API specification [[JSON-LD11-API]]
     defines a method for <em>expanding</em> a JSON-LD document.
     <dfn data-cite="JSON-LD11-API#dfn-expansion">Expansion</dfn> is the process of taking a JSON-LD document and applying a
-    <code>@context</code> such that all IRIs, types, and values
+    <a>context</a> such that all IRIs, types, and values
     are expanded so that the <code>@context</code> is no longer necessary.</p>
 
   <p>For example, assume the following JSON-LD input document:</p>
@@ -4389,7 +4422,7 @@ the data type to be specified with each piece of data.</p>
 
   <p>The JSON-LD 1.1 Processing Algorithms and API specification [[JSON-LD11-API]] defines
     a method for <em>compacting</em> a JSON-LD document. <dfn data-cite="JSON-LD11-API#dfn-compaction">Compaction</dfn> is the process
-    of applying a developer-supplied context to shorten <a>IRIs</a>
+    of applying a developer-supplied <a>context</a> to shorten <a>IRIs</a>
     to <a>terms</a> or <a>compact IRIs</a>
     and JSON-LD values expressed in expanded form to simple values such as
     <a>strings</a> or <a>numbers</a>.
@@ -4432,7 +4465,7 @@ the data type to be specified with each piece of data.</p>
   -->
   </pre>
 
-  <p>Running the JSON-LD <a data-cite="JSON-LD11-API#compaction-algorithm">Compaction algorithm</a> given the context supplied above
+  <p>Running the JSON-LD <a data-cite="JSON-LD11-API#compaction-algorithm">Compaction algorithm</a> given the <a>context</a> supplied above
     against the JSON-LD input document provided above would result in the following
     output:</p>
 
@@ -4462,7 +4495,8 @@ the data type to be specified with each piece of data.</p>
 <section class="informative"><h3>Flattened Document Form</h3>
 
   <p>The JSON-LD 1.1 Processing Algorithms and API specification [[JSON-LD11-API]] defines
-    a method for <em>flattening</em> a JSON-LD document. <dfn data-cite="JSON-LD11-API#dfn-flattening">Flattening</dfn> collects all
+    a method for <em>flattening</em> a JSON-LD document.
+    <dfn data-cite="JSON-LD11-API#dfn-flattening" data-lt="flattened">Flattening</dfn> collects all
     properties of a <a>node</a> in a single <a>JSON object</a> and labels
     all <a>blank nodes</a> with
     <a>blank node identifiers</a>.
@@ -4532,6 +4566,96 @@ the data type to be specified with each piece of data.</p>
     combined with the profile URI identifying
     <a href="#expanded-document-form">expanded document form</a> or
     <a href="#compacted-document-form">compacted document from</a>.</p>
+</section>
+
+<section class="informative"><h3>Framed Document Form</h3>
+
+  <p>The JSON-LD 1.1 Framing specification [[JSON-LD11-FRAMING]] defines
+    a method for <em>framing</em> a JSON-LD document. <dfn
+    data-cite="JSON-LD11-FRAMING#dfn-framing">Framing</dfn> is used to shape
+    the data in a JSON-LD document, using an example <a>frame</a> document
+    which is used to both match the <a>flattened</a> data and show an example
+    of how the resulting data should be shaped.</p>
+
+  <p>For example, assume the following JSON-LD frame:</p>
+
+  <pre class="example" data-transform="updateExample"
+       title="Sample library frame">
+  <!--
+  {
+    "@context": {"@vocab": "http://example.org/"},
+    "@type": "Library",
+    "contains": {
+      "@type": "Book",
+      "contains": {
+        "@type": "Chapter"
+      }
+    }
+  }
+  -->
+  </pre>
+
+  <p>This <a>frame</a> document describes an embedding structure that would place
+    objects with type <em>Library</em> at the top, with objects of
+    type <em>Book</em> that were linked to the library object using
+    the <em>contains</em> property embedded as property values. It also
+    places objects of type <em>Chapter</em> within the referencing <em>Book</em> object
+    as embedded values of the <em>Book</em> object.</p>
+
+  <p>When using a flattened set of objects that match the frame components:</p>
+  <pre class="example" data-transform="updateExample"
+       title="Flattened library objects">
+  <!--
+  {
+    "@context": {
+      "@vocab": "http://example.org/",
+      "contains": {"@type": "@id"}
+    },
+    "@graph": [{
+      "@id": "http://example.org/library",
+      "@type": "Library",
+      "contains": "http://example.org/library/the-republic"
+    }, {
+      "@id": "http://example.org/library/the-republic",
+      "@type": "Book",
+      "creator": "Plato",
+      "title": "The Republic",
+      "contains": "http://example.org/library/the-republic#introduction"
+    }, {
+      "@id": "http://example.org/library/the-republic#introduction",
+      "@type": "Chapter",
+      "description": "An introductory chapter on The Republic.",
+      "title": "The Introduction"
+    }]
+  }
+  -->
+  </pre>
+
+  <p>The Frame Algorithm can create a new document which follows the structure
+    of the frame:</p>
+  <pre class="example nohighlight" data-transform="updateExample"
+       title="Framed library objects">
+  <!--
+  {
+    "@context": {"@vocab": "http://example.org/"},
+    "@id": "http://example.org/library",
+    "@type": "Library",
+    "contains": {
+      "@id": "http://example.org/library/the-republic",
+      "@type": "Book",
+      "contains": {
+        "@id": "http://example.org/library/the-republic#introduction",
+        "@type": "Chapter",
+        "description": "An introductory chapter on The Republic.",
+        "title": "The Introduction"
+      },
+      "creator": "Plato",
+      "title": "The Republic"
+    }
+  }
+  -->
+  </pre>
+</section>
 </section>
 
 <section class="normative"><h2>Interpreting JSON as JSON-LD</h2>
@@ -4643,8 +4767,6 @@ the data type to be specified with each piece of data.</p>
     <a>RDF Dataset</a> using the
     <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
     [[JSON-LD11-API]].</p>
-</section>
-
 </section>
 
 <section class="normative">
@@ -5458,7 +5580,7 @@ the data type to be specified with each piece of data.</p>
       for those triples also having a common predicate. The result may
       then be framed by using the
       <a data-cite="JSON-LD11-FRAMING#framing-algorithm">Framing Algorithm</a>
-      described in [JSON-LD11-FRAMING] to create the desired object embedding.</p>
+      described in [[JSON-LD11-FRAMING]] to create the desired object embedding.</p>
   </section>
 </section>
 
