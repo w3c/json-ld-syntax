@@ -1,0 +1,11 @@
+{
+  "@context": {
+    "@vocab": "http://schema.org/"
+  },
+  "name": "Manu Sporny",
+  "knows": {
+    "@id": "http://greggkellogg.net/foaf#me",
+    "@type": "Person",
+    "name": "Gregg Kellogg"
+  }
+}

@@ -1,0 +1,11 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ [
+   a <https://purl.org/geojson/vocab#Feature>;
+   <https://purl.org/geojson/vocab#bbox> (-1.0e1 -1.0e1 1.0e1 1.0e1);
+   <https://purl.org/geojson/vocab#geometry> [
+   a <https://purl.org/geojson/vocab#Polygon>;
+   <https://purl.org/geojson/vocab#coordinates> (((-1.0e1 -1.0e1) (1.0e1 -1.0e1) (1.0e1 1.0e1) (-1.0e1 -1.0e1)))
+ ]
+ ] .

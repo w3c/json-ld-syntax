@@ -1,0 +1,11 @@
+Example 062: Specifying that a collection is unordered in the context
+---
+"@context":
+  nick:
+    "@id": http://xmlns.com/foaf/0.1/nick
+    "@container": "@set"
+"@id": http://example.org/people#joebob
+nick:
+- joe
+- bob
+- jaybee

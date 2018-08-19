@@ -1,0 +1,6 @@
+@prefix ex: <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/places#BrewEats> a <http://example/document#Restaurant>;
+   <http://example/document#name> "Brew Eats" .

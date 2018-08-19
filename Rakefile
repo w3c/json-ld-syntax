@@ -7,5 +7,6 @@ end
 
 desc "Extract Examples"
 task :examples  do
-  sh %(bundle exec common/extract-examples.rb --example-dir examples index.html)
+  sh %(rm -rf examples yaml trig)
+  sh %(bundle exec common/extract-examples.rb --example-dir examples --yaml-dir yaml --trig-dir trig index.html)
 end

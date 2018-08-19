@@ -1,0 +1,11 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://www.w3.org/TR/json-ld/> schema:name "JSON-LD";
+   foaf:topic "Linking Data" .
+
+ [
+   schema:name "Manu Sporny";
+   foaf:interest <https://www.w3.org/TR/json-ld/>
+ ] .

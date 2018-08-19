@@ -1,0 +1,6 @@
+@prefix ex: <http://example.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/people#joebob> <foaf:nick> "bob",
+     "joe",
+     "jaybee" .

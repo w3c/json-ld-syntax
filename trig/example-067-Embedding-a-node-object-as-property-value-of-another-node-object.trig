@@ -1,0 +1,11 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://greggkellogg.net/foaf#me> a schema:Person;
+   schema:name "Gregg Kellogg" .
+
+ [
+   schema:knows <http://greggkellogg.net/foaf#me>;
+   schema:name "Manu Sporny"
+ ] .
