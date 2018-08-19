@@ -1,0 +1,13 @@
+Example 084: Using @reverse to define reverse properties
+---
+"@context":
+  name: http://example.com/vocab#name
+  children:
+    "@reverse": http://example.com/vocab#parent
+"@id": "#homer"
+name: Homer
+children:
+- "@id": "#bart"
+  name: Bart
+- "@id": "#lisa"
+  name: Lisa

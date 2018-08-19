@@ -1,0 +1,6 @@
+Example 026: Use a relative IRI as node identifier
+---
+"@context":
+  label: http://www.w3.org/2000/01/rdf-schema#label
+"@id": ''
+label: Just a simple document

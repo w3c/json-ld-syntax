@@ -1,0 +1,12 @@
+Example 068: Referencing an unidentified node
+---
+"@context":
+  "@vocab": http://schema.org/
+"@id": _:b0
+name: Manu Sporny
+knows:
+  "@id": http://greggkellogg.net/foaf#me
+  "@type": Person
+  name: Gregg Kellogg
+  knows:
+    "@id": _:b0

@@ -1,0 +1,9 @@
+Example 024: Using "" as the vocabulary mapping
+---
+"@context":
+  "@version": 1.1
+  "@base": http://example/document
+  "@vocab": ''
+"@id": http://example.org/places#BrewEats
+"@type": "#Restaurant"
+"#name": Brew Eats

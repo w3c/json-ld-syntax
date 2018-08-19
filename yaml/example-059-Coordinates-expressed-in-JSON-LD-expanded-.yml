@@ -1,0 +1,28 @@
+Example 059: Coordinates expressed in JSON-LD (expanded)
+---
+- "@type":
+  - https://purl.org/geojson/vocab#Feature
+  https://purl.org/geojson/vocab#bbox:
+  - "@list":
+    - "@value": -10.0
+    - "@value": -10.0
+    - "@value": 10.0
+    - "@value": 10.0
+  https://purl.org/geojson/vocab#geometry:
+  - "@type":
+    - https://purl.org/geojson/vocab#Polygon
+    https://purl.org/geojson/vocab#coordinates:
+    - "@list":
+      - "@list":
+        - "@list":
+          - "@value": -10.0
+          - "@value": -10.0
+        - "@list":
+          - "@value": 10.0
+          - "@value": -10.0
+        - "@list":
+          - "@value": 10.0
+          - "@value": 10.0
+        - "@list":
+          - "@value": -10.0
+          - "@value": -10.0

@@ -1,0 +1,8 @@
+Example 069: Specifying a local blank node identifier
+---
+"@id": _:n1
+name: Secret Agent 1
+knows:
+  name: Secret Agent 2
+  knows:
+    "@id": _:n1

@@ -1,0 +1,8 @@
+Example 054: An ordered collection of values in JSON-LD
+---
+"@id": http://example.org/people#joebob
+foaf:nick:
+  "@list":
+  - joe
+  - bob
+  - jaybee

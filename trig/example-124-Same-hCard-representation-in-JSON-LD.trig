@@ -1,0 +1,8 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ [
+   a <http://microformats.org/profile/hcard#vcard>;
+   <http://microformats.org/profile/hcard#fn> "Tantek Çelik";
+   <http://microformats.org/profile/hcard#url> <http://tantek.com/>
+ ] .
