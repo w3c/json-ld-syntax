@@ -488,23 +488,48 @@
     <a class="sectionRef" href="#interpreting-json-as-json-ld"></a>. For convenience, normative
     statements for documents are often phrased as statements on the properties of the document.</p>
 
-  <p>This specification makes use of the following namespaces:</p>
-  <dl>
-    <dt><code>dc</code>:</dt>
-    <dd><code>http://purl.org/dc/terms/</code></dd>
-    <dt><code>cred</code>:</dt>
-    <dd><code>https://w3id.org/credentials#</code></dd>
-    <dt><code>foaf</code>:</dt>
-    <dd><code>http://xmlns.com/foaf/0.1/</code></dd>
-    <dt><code>prov</code></dt>
-    <dd><code>http://www.w3.org/ns/prov#</code></dd>
-    <dt><code>rdf</code>:</dt>
-    <dd><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></dd>
-    <dt><code>schema</code>:</dt>
-    <dd><code>http://schema.org/</code></dd>
-    <dt><code>xsd</code>:</dt>
-    <dd><code>http://www.w3.org/2001/XMLSchema#</code></dd>
-  </dl>
+  <p>This specification makes use of the following namespace prefixes:</p>
+  <table class="simple">
+    <thead><tr>
+      <th>Prefix</th>
+      <th>IRI</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>dc</td>
+        <td>http://purl.org/dc/terms/</td>
+      </tr>
+      <tr>
+        <td>cred</td>
+        <td>https://w3id.org/credentials#</td>
+      </tr>
+      <tr>
+        <td>foaf</td>
+        <td>http://xmlns.com/foaf/0.1/</td>
+      </tr>
+      <tr>
+        <td>geojson</td>
+        <td>https://purl.org/geojson/vocab#</td>
+      </tr>
+      <tr>
+        <td>prov</td>
+        <td>http://www.w3.org/ns/prov#</td>
+      </tr>
+      <tr>
+        <td>rdf</td>
+        <td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td>
+      </tr>
+      <tr>
+        <td>schema</td>
+        <td>http://schema.org/</td>
+      </tr>
+      <tr>
+        <td>xsd</td>
+        <td>http://www.w3.org/2001/XMLSchema#</td>
+      </tr>
+    </tbody>
+  </table>
+
   <p>These are used within this document as part of a <a>compact IRI</a>
     as a shorthand for the resulting <a>absolute IRI</a>, such as <code>dc:title</code>
     used to represent <code>http://purl.org/dc/terms/title</code>.</p>
@@ -593,6 +618,7 @@
       look something like this:</p>
 
     <pre class="example nohighlight" data-transform="updateExample"
+         data-context-for="Sample JSON document"
          title="Context for the sample document in the previous section">
     <!--
     {
@@ -1076,13 +1102,13 @@
   <!--
   [
     {
-      ****"@context": "http://example.org/contexts/person.jsonld",****
+      ****"@context": "https://json-ld.org/contexts/person.jsonld",****
       "name": "Manu Sporny",
       "homepage": "http://manu.sporny.org/",
       "depiction": "http://twitter.com/account/profile_image/manusporny"
     },
     {
-      ****"@context": "http://example.org/contexts/place.jsonld",****
+      ****"@context": "https://json-ld.org/contexts/place.jsonld",****
       "name": "The Empire State Building",
       "description": "The Empire State Building is a 102-story landmark in New York City.",
       "geo": {
@@ -1275,6 +1301,7 @@
   </pre>
   <p>If this document were located at <code>http://example/document</code>, it would expand as follows:</p>
   <pre class="example nohighlight" data-transform="updateExample"
+       data-result-for="Using &quot;&quot; as the vocabulary mapping"
        title="Using &quot;&quot; as the vocabulary mapping (expanded)">
   <!--
     [{
@@ -1629,7 +1656,8 @@ specified. The full <a>IRI</a> for
   definition of <em>term2</em> if <em>term2</em> also depends on
   <em>term1</em>. For example, the following <a>context</a> definition
   is illegal:</p>
-<pre class="example nohighlight" data-transform="updateExample"
+<pre class="illegal-example nohighlight" data-transform="updateExample"
+     data-ignore
      title="Illegal circular definition of terms within a context">
 <!--
 {
@@ -1680,6 +1708,7 @@ specified. The full <a>IRI</a> for
   <p>Expanding this document, uses a combination of terms defined in the outer context, and those defined specifically for that term in an <a>embedded context</a>.</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
+       data-result-for="Defining an @context within a term definition"
        title="Expanded document using a scoped context">
   <!--
   [{
@@ -1805,12 +1834,23 @@ type with a particular <a>term</a> in the <code>@context</code>:</p>
 <tbody>
 <tr>
   <td>http://example.com/docs/1</td>
-  <td>http://purl.org/dc/terms/modified</td>
+  <td>dc:modified</td>
   <td>2010-05-29T14:17:39+02:00</td>
   <td>xsd:dateTime</td>
 </tr>
 </tbody>
 </table>
+
+<script class="example" data-content-type="text/turtle"
+        title="term definition with type coercion Turtle"
+        data-result-for="Expanded term definition with type coercion"
+        data-to-rdf>
+  <!--
+  @prefix dc: <http://purl.org/dc/terms/> .
+  @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+  <http://example.com/docs/1> dc:modified "2010-05-29T14:17:39+02:00"^^xsd:dateTime .
+  -->
+</script>
 
 <p>The second example uses the expanded form of setting the type information
 in the body of a JSON-LD document:</p>
@@ -1864,6 +1904,19 @@ in the body of a JSON-LD document:</p>
 }
 -->
 </pre>
+
+<script class="example" data-content-type="text/turtle"
+        title="Example demonstrating the context-sensitivity for @type Turtle"
+        data-result-for="Example demonstrating the context-sensitivity for @type"
+        data-to-rdf>
+  <!--
+  @prefix dc: <http://purl.org/dc/terms/> .
+  @prefix schema: <http://schema.org/> .
+  @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+  <http://example.org/posts#TripToWestVirginia> a schema:BlogPosting;
+    dc:modified "2010-05-29T14:17:39+02:00"^^xsd:dateTime .
+  -->
+</script>
 
 <p>The first use of <code>@type</code> associates a <a>node type</a>
   (<code>http://schema.org/BlogPosting</code>) with the <a>node</a>,
@@ -1960,6 +2013,21 @@ the data type to be specified with each piece of data.</p>
 </pre>
 
 <p>The example shown above would generate the following data:</p>
+
+<script class="example" data-content-type="text/turtle"
+        title="Expanded term definition with types Turtle"
+        data-result-for="Expanded term definition with types"
+        data-to-rdf>
+  <!--
+  @prefix dc: <http://purl.org/dc/terms/> .
+  @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+  <http://example.com/people#john> foaf:name "John Smith";
+    foaf:age 41;
+    foaf:homepage <http://personal.example.org/>,
+      <http://work.example.com/jsmith/>
+  .
+  -->
+</script>
 
 <table class="example">
 <thead><tr>
@@ -2277,7 +2345,8 @@ the data type to be specified with each piece of data.</p>
       "@language": "en"
     }
   ]****
-}-->
+}
+-->
 </pre>
 
 <p>The example shown above would generate the following data, again with
@@ -2474,11 +2543,13 @@ the data type to be specified with each piece of data.</p>
 
 <pre class="example" data-transform="updateExample"
      data-content-type="text/turtle"
+     data-result-for="Specifying that a collection is ordered in the context"
+     data-to-rdf
      title="An ordered collection of values in Turtle">
 <!--
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
-<http://example.org/people#joebob> foaf:nick ("joe" "bob" "jaybe") .
+<http://example.org/people#joebob> foaf:nick ("joe" "bob" "jaybee") .
 -->
 </pre>
 
@@ -2488,7 +2559,7 @@ the data type to be specified with each piece of data.</p>
   <em>coordinates</em> are an ordered list of <em>positions</em>, which are
   represented as an array of two or more numbers:</p>
 
-<pre class="example changed"
+<pre class="example changed nohighlight" data-transform="updateExample"
      data-content-type="application/json"
      title="Coordinates expressed in GeoJSON">
 {
@@ -2505,7 +2576,7 @@ the data type to be specified with each piece of data.</p>
         ]
     ]
   }
-  //...
+  ####//...####
 }
 </pre>
 
@@ -2580,21 +2651,24 @@ the data type to be specified with each piece of data.</p>
 
 <pre class="example changed"
      data-content-type="text/turtle"
+     data-transform="updateExample"
+     data-to-rdf
+     data-result-for="Coordinates expressed in JSON-LD"
      title="Coordinates expressed in Turtle">
 <!--
 @prefix geojson: <https://purl.org/geojson/vocab#>.
 
 [
   a geojson:Feature ;
-  geojson:bbox (-10.0 -10.0 10.0 10.0) ;
+  geojson:bbox (-1.0e1 -1.0e1 1.0e1 1.0e1) ;
   geojson:geometry [
     a geojson:Polygon ;
     geojson:coordinates (
       (
-        (-10.0 -10.0)
-        (10.0 -10.0)
-        (10.0 10.0)
-        (-10.0 -10.0)
+        (-1.0e1 -1.0e1)
+        (1.0e1 -1.0e1)
+        (1.0e1 1.0e1)
+        (-1.0e1 -1.0e1)
       )
     )
   ]
@@ -3151,6 +3225,7 @@ the data type to be specified with each piece of data.</p>
   <!--
   {
     "@context": {
+      ****"@version": 1.1,****
       "vocab": "http://example.com/vocab/",
       "label": {
         "@id": "vocab:label",
@@ -4704,6 +4779,7 @@ the data type to be specified with each piece of data.</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        data-content-type="http"
+       data-ignore
        title="Referencing a JSON-LD context from a JSON document via an HTTP Link Header">
   <!--
   GET /ordinary-json-document.json HTTP/1.1
@@ -4742,6 +4818,7 @@ the data type to be specified with each piece of data.</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        data-content-type="text/html"
+       data-ignore
        title="Embedding JSON-LD in HTML">
   <!--
   ****<script type="application/ld+json">****
@@ -4809,6 +4886,7 @@ the data type to be specified with each piece of data.</p>
       i.e., nodes which are not connected by an <a>edge</a> to any other <a>node</a>.
       <pre class="illegal-example"
           data-transform="updateExample"
+          data-ignore
           title="Illegal Unconnected Node">
       <!--
       {
@@ -5560,6 +5638,8 @@ the data type to be specified with each piece of data.</p>
 
     <pre class="example" data-transform="updateExample"
          data-content-type="text/turtle"
+         data-result-for="Flattened and expanded form for the previous example"
+         data-to-rdf
          title="Turtle representation of expanded/flattened document">
     <!--
     @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -5663,6 +5743,8 @@ the data type to be specified with each piece of data.</p>
 
       <pre class="example" data-transform="updateExample"
            data-content-type="text/turtle"
+           data-result-for="The same set of statements serialized in JSON-LD"
+           data-to-rdf
            title="A set of statements serialized in Turtle">
       <!--
       @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -5697,6 +5779,8 @@ the data type to be specified with each piece of data.</p>
 
       <pre class="example" data-transform="updateExample"
            data-content-type="text/turtle"
+           data-to-rdf
+           data-result-for="Same embedding example in JSON-LD"
            title="Embedding in Turtle">
       <!--
       @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -5757,6 +5841,8 @@ the data type to be specified with each piece of data.</p>
 
       <pre class="example" data-transform="updateExample"
            data-content-type="text/turtle"
+           data-result-for="JSON-LD using native data types for numbers and boolean values"
+           data-to-rdf
            title="Same example in Turtle using typed literals">
       <!--
       @prefix ex: <http://example.com/vocab#> .
@@ -5776,6 +5862,8 @@ the data type to be specified with each piece of data.</p>
 
       <pre class="example" data-transform="updateExample"
            data-content-type="text/turtle"
+           data-to-rdf
+           data-result-for="Same example with a list of values in JSON-LD"
            title="A list of values in Turtle">
       <!--
       @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -5812,7 +5900,9 @@ the data type to be specified with each piece of data.</p>
       homepages in RDFa [[RDFA-CORE]].</p>
 
     <pre class="example nohighlight" data-transform="updateExample"
-           data-content-type="text/html"
+         data-content-type="text/html"
+         data-to-rdf
+         data-result-for="Same description in JSON-LD (context shared among node objects)"
          title="RDFa fragment that describes three people">
     <!--
     <div ****prefix="foaf: http://xmlns.com/foaf/0.1/"****>
@@ -5874,7 +5964,8 @@ the data type to be specified with each piece of data.</p>
       how Microformats [[MICROFORMATS]] are represented in JSON-LD.</p>
 
     <pre class="example" data-transform="updateExample"
-           data-content-type="text/html"
+         data-content-type="text/html"
+         data-ignore
          title="HTML fragment with a simple Microformats hCard">
     <!--
     <div class="vcard">
@@ -5915,8 +6006,10 @@ the data type to be specified with each piece of data.</p>
       a Microdata Work item.</p>
 
     <pre class="example" data-transform="updateExample"
-           data-content-type="text/html"
-         title="HTML fragments that describes a book using microdata">
+         data-content-type="text/html"
+         data-result-for="Same book description in JSON-LD (avoiding contexts)"
+         data-to-rdf
+         title="HTML that describes a book using microdata">
     <!--
     <dl itemscope
         itemtype="http://purl.org/vocab/frbr/core#Work"
