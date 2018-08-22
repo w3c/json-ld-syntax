@@ -4948,8 +4948,20 @@ the data type to be specified with each piece of data.</p>
 
   <figure id="fig-linked-data-graph" style="text-align:center">
     <!-- Source for this file is at https://docs.google.com/drawings/d/1_bRm1d9hTTqAqv5q8KEBzI47HxAUrbceA0EE5APh8hA/edit?usp=sharing -->
-    <img src="linked-data-graph.svg" style="width: 75%" alt="An illustration of the data model" longdesc="linked-data-graph.html#imageDescription" />
-    <figcaption>An illustration of the data model. (see the diagram in <a href="linked-data-graph.svg">SVG</a> or <a href="linked-data-graph.png">PNG</a> formats)</figcaption>
+    <object data="linked-data-graph.svg" style="width: 75%" type="image/svg+xml" aria-describedby="fig-linked-data-graph-alt">
+      <p id="fig-linked-data-graph-alt">The image depicts a linked data dataset with a default graph
+        and two named graphs.</p>
+    </object>
+    <figcaption>An illustration of a linked data dataset.<br/>
+      A <a href="#fig-linked-data-graph-descr">description of the linked data dataset
+      diagram</a> is available in the Appendix. Image available in
+      <a href="linked-data-graph.svg" title="SVG image of a linked data dataset">
+        <abbr title="Scalable Vector Graphics">SVG</abbr>
+      </a> and
+      <a title="PNG image of a linked data dataset" href="linked-data-graph.png">
+        <abbr title="Portable Network Graphics">PNG</abbr>
+      </a>
+      formats.</figcaption>
   </figure>
 </section>
 
@@ -5665,6 +5677,62 @@ the data type to be specified with each piece of data.</p>
       then be framed by using the
       <a data-cite="JSON-LD11-FRAMING#framing-algorithm">Framing Algorithm</a>
       described in [[JSON-LD11-FRAMING]] to create the desired object embedding.</p>
+  </section>
+</section>
+
+<section class="appendix informative"><h2>Image Desciptions</h2>
+  <section id="fig-linked-data-graph-descr"><h3>Linked Data Dataset</h3>
+      <h1>Description of the <a href="#fig-linked-data-graph">Linked Data Dataset figure</a> in <a href="#data-model" class="sectionRef"></a></h1>
+      <p>The image consists of three dashed boxes, each describing a different
+        linked data graph. Each box consists of shapes linked with arrows describing
+        the linked data relationships.</p>
+      <p>The first box is titled "default graph: &lt;no name&gt;" describes two
+        resources: <code>http://example.com/people/alice</code> and <code>http://example.com/people/bob</code>
+        (denoting "Alice" and "Bob" respectively), which are
+        connected by an arrow labeled <code>http://schema.org/knows</code> which describes
+        the knows relationship between the two resources. Additionally, the "Alice" resource is related
+        to three different literals:</p>
+      <dl>
+        <dt>Alice</dt>
+        <dd>an RDF literal with no datatype or language.</dd>
+        <dt>weiblich | de</dt>
+        <dd>an language-tagged string with the value "weiblich" and language-tag "de".</dd>
+        <dt>female | en</dt>
+        <dd>an language-tagged string with the value "female" and language-tag "en".</dd>
+      </dl>
+      <p>This describes the RDF graph which can be represented in Turtle as follows:</p>
+      <pre>
+        @prefix schema: "http://schema.org" .
+
+        &lt;http://example.com/people/alice&gt; schema:knows &lt;http://example.com/people/bob&gt;;
+          schema:name "Alice";
+          schema:gender "weiblich"@de, "female"@en .
+      </pre>
+      <p>The second and third boxes describe two named graphs, with the graph names
+        &lt;http://example.com/graphs/1&gt; and &lt;http://example.com/graphs/1&gt;, respectively.</p>
+      <p>The second box consists of two resources related by an unnamed IRI with the second
+        resource having an unnamed literal property.</p>
+      <p>The third box consists of three resources related to each other by unnamed IRIs with the third
+        resource having an unnamed literal property.</p>
+      <p>The entire dataset can be represented in TriG as follows:</p>
+      <pre>
+        @prefix schema: "http://schema.org" .
+
+        &lt;http://example.com/people/alice&gt; schema:knows &lt;http://example.com/people/bob&gt;;
+          schema:name "Alice";
+          schema:gender "weiblich"@de, "female"@en .
+
+        &lt;http://example.com/graphs/1&gt; {
+          [ &lt;unnamed1&gt; [&lt;unnamed2&gt; ""]]
+        }
+
+        &lt;http://example.com/graphs/2&gt; {
+          _:node1  &lt;unnamed1&gt; [
+            &lt;unnamed1&gt; [
+              &lt;unnamed1&gt; _:node1
+              &lt;unnamed2&gt; ""]] .
+        }
+      </pre>
   </section>
 </section>
 
