@@ -183,7 +183,7 @@
    different sites across the Web.</p>
 
   <p>JSON-LD is a lightweight syntax to serialize Linked Data in
-    JSON [[!RFC7159]]. Its design allows existing JSON to be interpreted as
+    JSON [[!RFC8259]]. Its design allows existing JSON to be interpreted as
     Linked Data with minimal changes. JSON-LD is primarily intended to be a
     way to use Linked Data in Web-based programming environments, to build
     interoperable Web services, and to store Linked Data in JSON-based storage engines. Since
@@ -245,7 +245,7 @@
       providing a standard library interface for common JSON-LD operations.</p>
 
     <p>To understand the basics in this specification you must first be familiar with
-      <a data-cite="RFC7159">JSON</a>, which is detailed in [[!RFC7159]].</p>
+      <a data-cite="RFC8259">JSON</a>, which is detailed in [[!RFC8259]].</p>
 
     <p>This document almost exclusively uses the term IRI
     (<a data-cite="ld-glossary#internationalized-resource-identifier">Internationalized Resource Indicator</a>)
@@ -282,8 +282,8 @@
   <section class="normative">
     <h2>Terminology</h2>
 
-    <p>This document uses the following terms as defined in JSON [[!RFC7159]]. Refer
-      to the <a data-cite="RFC7159#section-2">JSON Grammar section</a> in [[!RFC7159]] for formal definitions.</p>
+    <p>This document uses the following terms as defined in JSON [[!RFC8259]]. Refer
+      to the <a data-cite="RFC8259#section-2">JSON Grammar section</a> in [[!RFC8259]] for formal definitions.</p>
 
     <div data-include="common/terms.html"
          data-oninclude="restrictReferences">
@@ -370,7 +370,7 @@
       section <a href="#relationship-to-rdf"></a>.</p>
 
     <p>At the surface level, a <a>JSON-LD document</a> is simply
-      <a data-cite="RFC7159">JSON</a>, detailed in [[!RFC7159]].
+      <a data-cite="RFC8259">JSON</a>, detailed in [[!RFC8259]].
       For the purpose of describing the core data structures,
       this is limited to <a>arrays</a>, <a>dictionaries</a> (the parsed version of a <a>JSON Object</a>),
       <a>strings</a>, <a>numbers</a>, <a>booleans</a>, and <a>null</a>,
@@ -538,7 +538,7 @@
 <section class="informative">
   <h1>Basic Concepts</h1>
 
-  <p>JSON [[RFC7159]] is a lightweight, language-independent data interchange format.
+  <p>JSON [[RFC8259]] is a lightweight, language-independent data interchange format.
     It is easy to parse and easy to generate. However, it is difficult to integrate JSON
     from different sources as the data may contain keys that conflict with other
     data sources. Furthermore, JSON has no
@@ -687,7 +687,7 @@
       is ignored when the document is used as an external JSON-LD context document.</p>
 
     <p>JSON documents can be interpreted as JSON-LD without having to be modified by
-      referencing a <a>context</a> via an <a data-cite="RFC5988#section-5">HTTP Link Header</a>
+      referencing a <a>context</a> via an <a data-cite="RFC8288#section-3">HTTP Link Header</a>
       as described in <a class="sectionRef" href="#interpreting-json-as-json-ld"></a>. It is also
       possible to apply a custom context using the JSON-LD 1.1 API [[JSON-LD11-API]].</p>
 
@@ -2555,7 +2555,7 @@ the data type to be specified with each piece of data.</p>
 
 <p class="changed">In JSON-LD 1.1, lists of lists, where the value of
   a <a>list object</a>, may itself be a <a>list object</a>, are
-  fully supported. For example, in <em>GeoJSON</em> (see [[RFC7946]]),
+  fully supported. For example, in <a data-cite="RFC7946">GeoJSON</a> (see [[RFC7946]]),
   <em>coordinates</em> are an ordered list of <em>positions</em>, which are
   represented as an array of two or more numbers:</p>
 
@@ -4738,17 +4738,17 @@ the data type to be specified with each piece of data.</p>
   <p>Ordinary JSON documents can be interpreted as JSON-LD
     by providing an explicit JSON-LD <a>context</a> document. One way
     to provide this is by using referencing a JSON-LD
-    <a>context</a> document in an <a data-cite="RFC5988#section-5">HTTP Link Header</a>.
+    <a>context</a> document in an <a data-cite="RFC8288#section-3">HTTP Link Header</a>.
     Doing so allows JSON to be unambiguously machine-readable without requiring developers to drastically
     change their documents and provides an upgrade path for existing infrastructure
     without breaking existing clients that rely on the <code>application/json</code>
     media type or a media type with a <code>+json</code> suffix as defined in
-    [[RFC6839]].</p>
+    [[!RFC6839]].</p>
 
   <p>In order to use an external context with an ordinary JSON document,
     when retrieving an ordinary JSON document via HTTP, processors MUST
     retrieve any <a>JSON-LD document</a> referenced by a
-    <a data-cite="RFC5988#section-5">Link Header</a> with:</p>
+    <a data-cite="RFC8288#section-3">Link Header</a> with:</p>
 
   <ul>
     <li><code>rel="http://www.w3.org/ns/json-ld#context"</code>, and</li>
@@ -4764,7 +4764,7 @@ the data type to be specified with each piece of data.</p>
     of the <code>@context</code> subtree in the referenced document MUST be
     discarded. Effectively this means that the <a>active context</a> is
     initialized with the referenced external <a>context</a>. A response MUST NOT
-    contain more than one <a data-cite="RFC5988#section-5">HTTP Link Header</a> [[!RFC5988]] using the
+    contain more than one <a data-cite="RFC8288#section-3">HTTP Link Header</a> [[!RFC8288]] using the
     <code>http://www.w3.org/ns/json-ld#context</code> link relation.</p>
 
   <p>Other mechanisms for providing a JSON-LD Context MAY be described for other
@@ -4805,14 +4805,14 @@ the data type to be specified with each piece of data.</p>
     served with the <code>application/ld+json</code>
     media type MUST have all context information, including references to external
     contexts, within the body of the document. Contexts linked via a
-    <code>http://www.w3.org/ns/json-ld#context</code> <a data-cite="RFC5988#section-5">HTTP Link Header</a> MUST be
+    <code>http://www.w3.org/ns/json-ld#context</code> <a data-cite="RFC8288#section-3">HTTP Link Header</a> MUST be
     ignored for such documents.</p>
 </section>
 
 <section class="informative"><h2>Embedding JSON-LD in HTML Documents</h2>
 
-  <p>HTML script tags can be used to embed blocks of data in documents.
-    This way, JSON-LD content can be easily embedded in HTML by placing
+  <p>HTML <a data-cite="HTML52/semantics-scripting.html#the-script-element">script elements</a> can be used to embed blocks of data in documents.
+    This way, JSON-LD content can be easily embedded in HTML [[HTML52]] by placing
     it in a script element with the <code>type</code> attribute set to
     <code>application/ld+json</code>.</p>
 
@@ -4851,7 +4851,7 @@ the data type to be specified with each piece of data.</p>
 
   <p>JSON-LD is a serialization format for Linked Data based on JSON.
     It is therefore important to distinguish between the syntax, which is
-    defined by JSON in [[!RFC7159]], and the <dfn>data model</dfn> which is
+    defined by JSON in [[!RFC8259]], and the <dfn>data model</dfn> which is
     an extension of the <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a> [[!RDF11-CONCEPTS]]. The precise
     details of how JSON-LD relates to the RDF data model are given in
     <a class="sectionRef" href="#relationship-to-rdf"></a>.</p>
@@ -4930,7 +4930,7 @@ the data type to be specified with each piece of data.</p>
     <li>A <a>list</a> is a sequence of zero or more <a>IRIs</a>,
       <a>blank nodes</a>, and <a>JSON-LD values</a>.
       <a>Lists</a> are interpreted as
-      <dfn data-cite="RDF11-MT#rdf-collections">RDF list structures</dfn> [[RDF11-MT]].</li>
+      <dfn data-cite="RDF11-MT#rdf-collections">RDF list structures</dfn> [[!RDF11-MT]].</li>
   </ul>
 
   <p><a>JSON-LD documents</a> MAY contain data
@@ -4948,8 +4948,20 @@ the data type to be specified with each piece of data.</p>
 
   <figure id="fig-linked-data-graph" style="text-align:center">
     <!-- Source for this file is at https://docs.google.com/drawings/d/1_bRm1d9hTTqAqv5q8KEBzI47HxAUrbceA0EE5APh8hA/edit?usp=sharing -->
-    <img src="linked-data-graph.svg" style="width: 75%" alt="An illustration of the data model" longdesc="linked-data-graph.html#imageDescription" />
-    <figcaption>An illustration of the data model. (see the diagram in <a href="linked-data-graph.svg">SVG</a> or <a href="linked-data-graph.png">PNG</a> formats)</figcaption>
+    <object data="linked-data-graph.svg" style="width: 75%" type="image/svg+xml" aria-describedby="fig-linked-data-graph-alt">
+      <p id="fig-linked-data-graph-alt">The image depicts a linked data dataset with a default graph
+        and two named graphs.</p>
+    </object>
+    <figcaption>An illustration of a linked data dataset.<br/>
+      A <a href="#fig-linked-data-graph-descr">description of the linked data dataset
+      diagram</a> is available in the Appendix. Image available in
+      <a href="linked-data-graph.svg" title="SVG image of a linked data dataset">
+        <abbr title="Scalable Vector Graphics">SVG</abbr>
+      </a> and
+      <a title="PNG image of a linked data dataset" href="linked-data-graph.png">
+        <abbr title="Portable Network Graphics">PNG</abbr>
+      </a>
+      formats.</figcaption>
   </figure>
 </section>
 
@@ -4959,10 +4971,10 @@ the data type to be specified with each piece of data.</p>
   <p>This appendix restates the syntactic conventions described in the
     previous sections more formally.</p>
 
-  <p>A <a>JSON-LD document</a> MUST be valid <a data-cite="RFC7159#section-2">JSON text</a> as described
-    in [[!RFC7159]], <span class="changed">or some format that can be represented
+  <p>A <a>JSON-LD document</a> MUST be valid <a data-cite="RFC8259#section-2">JSON text</a> as described
+    in [[!RFC8259]], <span class="changed">or some format that can be represented
       in the <a>JSON-LD internal representation</a> that is equivalent to
-      valid <a data-cite="RFC7159#section-2">JSON text</a></span>.</p>
+      valid <a data-cite="RFC8259#section-2">JSON text</a></span>.</p>
 
   <p>A <a>JSON-LD document</a> MUST be a single <a>node object</a>,
     a <a>JSON object</a> consisting of only
@@ -5505,7 +5517,7 @@ the data type to be specified with each piece of data.</p>
     <li>In JSON-LD <a>lists</a> use native JSON syntax, either contained in a
       list object, or described as such within a context. Consequently, developers
       using the JSON representation can access list elements directly rather than
-      using the vocabulary for collections described in [[RDF-SCHEMA]]..</li>
+      using the vocabulary for collections described in [[!RDF-SCHEMA]]..</li>
     <li>RDF values are either typed <em>literals</em>
       (<a>typed values</a>) or
       <a>language-tagged strings</a> whereas
@@ -5665,6 +5677,62 @@ the data type to be specified with each piece of data.</p>
       then be framed by using the
       <a data-cite="JSON-LD11-FRAMING#framing-algorithm">Framing Algorithm</a>
       described in [[JSON-LD11-FRAMING]] to create the desired object embedding.</p>
+  </section>
+</section>
+
+<section class="appendix informative"><h2>Image Desciptions</h2>
+  <section id="fig-linked-data-graph-descr"><h3>Linked Data Dataset</h3>
+      <h1>Description of the <a href="#fig-linked-data-graph">Linked Data Dataset figure</a> in <a href="#data-model" class="sectionRef"></a></h1>
+      <p>The image consists of three dashed boxes, each describing a different
+        linked data graph. Each box consists of shapes linked with arrows describing
+        the linked data relationships.</p>
+      <p>The first box is titled "default graph: &lt;no name&gt;" describes two
+        resources: <code>http://example.com/people/alice</code> and <code>http://example.com/people/bob</code>
+        (denoting "Alice" and "Bob" respectively), which are
+        connected by an arrow labeled <code>http://schema.org/knows</code> which describes
+        the knows relationship between the two resources. Additionally, the "Alice" resource is related
+        to three different literals:</p>
+      <dl>
+        <dt>Alice</dt>
+        <dd>an RDF literal with no datatype or language.</dd>
+        <dt>weiblich | de</dt>
+        <dd>an language-tagged string with the value "weiblich" and language-tag "de".</dd>
+        <dt>female | en</dt>
+        <dd>an language-tagged string with the value "female" and language-tag "en".</dd>
+      </dl>
+      <p>This describes the RDF graph which can be represented in Turtle as follows:</p>
+      <pre>
+        @prefix schema: "http://schema.org" .
+
+        &lt;http://example.com/people/alice&gt; schema:knows &lt;http://example.com/people/bob&gt;;
+          schema:name "Alice";
+          schema:gender "weiblich"@de, "female"@en .
+      </pre>
+      <p>The second and third boxes describe two named graphs, with the graph names
+        &lt;http://example.com/graphs/1&gt; and &lt;http://example.com/graphs/1&gt;, respectively.</p>
+      <p>The second box consists of two resources related by an unnamed IRI with the second
+        resource having an unnamed literal property.</p>
+      <p>The third box consists of three resources related to each other by unnamed IRIs with the third
+        resource having an unnamed literal property.</p>
+      <p>The entire dataset can be represented in TriG as follows:</p>
+      <pre>
+        @prefix schema: "http://schema.org" .
+
+        &lt;http://example.com/people/alice&gt; schema:knows &lt;http://example.com/people/bob&gt;;
+          schema:name "Alice";
+          schema:gender "weiblich"@de, "female"@en .
+
+        &lt;http://example.com/graphs/1&gt; {
+          [ &lt;unnamed1&gt; [&lt;unnamed2&gt; ""]]
+        }
+
+        &lt;http://example.com/graphs/2&gt; {
+          _:node1  &lt;unnamed1&gt; [
+            &lt;unnamed1&gt; [
+              &lt;unnamed1&gt; _:node1
+              &lt;unnamed2&gt; ""]] .
+        }
+      </pre>
   </section>
 </section>
 
@@ -6094,7 +6162,7 @@ the data type to be specified with each piece of data.</p>
         <dt><code>profile</code></dt>
         <dd>
           <p>A non-empty list of space-separated URIs identifying specific
-            constraints or conventions that apply to a JSON-LD document according to [[RFC6906]].
+            constraints or conventions that apply to a JSON-LD document according to [[!RFC6906]].
             A profile does not change the semantics of the resource representation
             when processed without profile knowledge, so that clients both with
             and without knowledge of a profiled resource can safely use the same
@@ -6104,7 +6172,7 @@ the data type to be specified with each piece of data.</p>
             honors the profiles in the list which are recognized by the server.
             It is RECOMMENDED that profile URIs are dereferenceable and provide
             useful documentation at that URI. For more information and background
-            please refer to [[RFC6906]].</p>
+            please refer to [[!RFC6906]].</p>
           <p>This specification defines three values for the <code>profile</code> parameter.
             To request or specify <a href="#expanded-document-form">expanded JSON-LD document form</a>,
             the URI <code>http://www.w3.org/ns/json-ld#expanded</code> SHOULD be used.
@@ -6126,7 +6194,7 @@ the data type to be specified with each piece of data.</p>
     <dt>Encoding considerations:</dt>
     <dd>See <a data-cite="RFC6839#section-3.1">RFC&nbsp;6839, section 3.1</a>.</dd>
     <dt>Security considerations:</dt>
-    <dd>See [[!RFC7159]]
+    <dd>See [[!RFC8259]]
       <p>Since JSON-LD is intended to be a pure data exchange format for
         directed graphs, the serialization SHOULD NOT be passed through a
         code execution mechanism such as JavaScript's <code>eval()</code>

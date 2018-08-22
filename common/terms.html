@@ -10,19 +10,19 @@
     <a data-cite="JSON-LD11#sets-and-lists" class="externalDFN">Sets and Lists</a> in
     the JSON-LD Syntax specification [[JSON-LD11]]).</dd>
   <dt><dfn data-lt="JSON objects">JSON object</dfn></dt><dd>
-    In the JSON serialization, an <a data-cite="RFC7159#section-4" class="externalDFN">object</a> structure is represented as a pair of curly brackets surrounding zero or
+    In the JSON serialization, an <a data-cite="RFC8259#section-4" class="externalDFN">object</a> structure is represented as a pair of curly brackets surrounding zero or
     more key-value pairs. A key is a <a>string</a>. A single colon comes after
     each key, separating the key from the value. A single comma separates a value
     from a following key. In JSON-LD the keys in an object MUST be unique.
     In the <a>internal representation</a> a <a>JSON object</a> is equivalent to a
-    <dfn data-cite="WEBIDL#dfn-dictionary" data-lt="dictionaries" class="preserve">dictionary</dfn> (see [[WEBIDL]]).</dd>
+    <dfn data-cite="WEBIDL#dfn-dictionary" data-lt="dictionaries" class="preserve">dictionary</dfn> (see [[!WEBIDL]]).</dd>
   <dt class="changed"><dfn data-lt="internal representation">JSON-LD internal representation</dfn></dt><dd class="changed">The JSON-LD
     internal representation is the result of transforming a JSON syntactic structure
     into the core data structures suitable for direct processing:
     <a>arrays</a>, <a>dictionaries</a>,
     <a>strings</a>, <a>numbers</a>, <a>booleans</a>, and <a>null</a>.</dd>
   <dt><dfn>null</dfn></dt><dd>
-    The use of the <a data-cite="RFC7159#section-3" class="externalDFN">null</a> value within JSON-LD is used to
+    The use of the <a data-cite="RFC8259#section-3" class="externalDFN">null</a> value within JSON-LD is used to
     ignore or reset values. A key-value pair in the <code>@context</code> where
     the value, or the <code>@id</code> of the value, is <code>null</code>
     explicitly decouples a term's association with an IRI. A key-value pair in
@@ -32,22 +32,22 @@
     <code>null</code> in expanded form, then the entire <a>JSON
     object</a> is ignored.</dd>
   <dt><dfn data-lt="numbers|JSON number|JSON numbers">number</dfn></dt><dd>
-    In the JSON serialization, a <a data-cite="RFC7159#section-6" class="externalDFN">number</a> is similar to that used in most programming languages, except
+    In the JSON serialization, a <a data-cite="RFC8259#section-6" class="externalDFN">number</a> is similar to that used in most programming languages, except
     that the octal and hexadecimal formats are not used and that leading
     zeros are not allowed.
     In the <a>internal representation</a>, a <a>number</a> is equivalent to either
     a <dfn data-cite="WEBIDL#idl-long" class="preserve">long</dfn>
     or <dfn data-cite="WEBIDL#idl-double" class="preserve">double</dfn>, depending
-    on if the number has a non-zero fractional part (see [[WEBIDL]]).</dd>
+    on if the number has a non-zero fractional part (see [[!WEBIDL]]).</dd>
   <dt><dfn>scalar</dfn></dt><dd>
     A scalar is either a JSON <a>string</a>, <a>number</a>, <a>true</a>,
     or <a>false</a>.</dd>
   <dt><dfn data-lt="strings">string</dfn></dt><dd>
-    A <a data-cite="RFC7159#section-7" class="externalDFN">string</a> is a sequence of zero or more Unicode (UTF-8) characters,
+    A <a data-cite="RFC8259#section-7" class="externalDFN">string</a> is a sequence of zero or more Unicode (UTF-8) characters,
     wrapped in double quotes, using backslash escapes (if necessary). A
     character is represented as a single character string.</dd>
   <dt><dfn>true</dfn> and <dfn>false</dfn></dt><dd>
-    <a data-cite="RFC7159#section-3" class="externalDFN">Values</a> that are used to express one of two possible
+    <a data-cite="RFC8259#section-3" class="externalDFN">Values</a> that are used to express one of two possible
     <dfn data-cite="WEBIDL#idl-boolean" data-lt="booleans" class="preserve">boolean</dfn> states.</dd>
 </dl>
 
@@ -182,12 +182,12 @@
     section of the JSON-LD specification [[JSON-LD11]].
     A <a>linked data graph</a> is a generalized representation of an
     <a data-cite="RDF11-CONCEPTS#dfn-rdf-graph">RDF graph</a>
-    as defined in [[!RDF-CONCEPTS]].</dd>
+    as defined in [[!RDF11-CONCEPTS]].</dd>
   <dt><dfn data-lt="lists">list</dfn></dt><dd>
     A <a>list</a> is an ordered sequence of <a>IRIs</a>,
     <a>blank nodes</a>, and <a>JSON-LD values</a>.
     See <dfn data-cite="RDF-SCHEMA#ch_collectionvocab" data-lt="collection" class="preserve">RDF collection</dfn>
-    in [[RDF-SCHEMA]].</dd>
+    in [[!RDF-SCHEMA]].</dd>
   <dt><dfn data-lt="list objects">list object</dfn></dt><dd>
     A <a>list object</a> is a <a>JSON object</a> that has an <code>@list</code>
     member.</dd>
@@ -282,7 +282,7 @@
   <dt><dfn>typed literal</dfn></dt><dd>
     A <a data-cite="RDF11-CONCEPTS#dfn-typed-literal" class="externalDFN">typed literal</a> is a <a>literal</a> with an associated <a>IRI</a>
     which indicates the literal's datatype.
-    See <dfn data-cite="RDF11-CONCEPTS#dfn-literal" data-lt="RDF literals" class="preserve">RDF literal</dfn> in [[!RDF-CONCEPTS]].</dd>
+    See <dfn data-cite="RDF11-CONCEPTS#dfn-literal" data-lt="RDF literals" class="preserve">RDF literal</dfn> in [[!RDF11-CONCEPTS]].</dd>
   <dt><dfn data-lt="typed values">typed value</dfn></dt><dd>
     A <a>typed value</a> consists of a value, which is a <a>string</a>, and a type,
     which is an <a>IRI</a>.</dd>
