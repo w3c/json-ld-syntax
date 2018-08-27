@@ -5791,7 +5791,7 @@ the data type to be specified with each piece of data.</p>
 
   <p>The JSON-LD examples below demonstrate how JSON-LD can be used to
     express semantic data marked up in other linked data formats such as Turtle,
-    RDFa, Microformats, and Microdata. These sections are merely provided as
+    RDFa, and Microdata. These sections are merely provided as
     evidence that JSON-LD is very flexible in what it can express across different
     Linked Data approaches.</p>
 
@@ -6024,48 +6024,6 @@ the data type to be specified with each piece of data.</p>
   </section>
 
   <section class="informative">
-    <h3>Microformats</h3>
-
-    <p>The following example uses a simple Microformats hCard example to express
-      how Microformats [[MICROFORMATS]] are represented in JSON-LD.</p>
-
-    <pre class="example" data-transform="updateExample"
-         data-content-type="text/html"
-         data-ignore
-         title="HTML fragment with a simple Microformats hCard">
-    <!--
-    <div class="vcard">
-     <a class="url fn" href="http://tantek.com/">Tantek Çelik</a>
-    </div>
-    -->
-    </pre>
-
-    <p>The representation of the hCard expresses the Microformat terms in the
-      <a>context</a> and uses them directly for the <code>url</code> and <code>fn</code>
-      properties. Also note that the Microformat to JSON-LD processor has
-      generated the proper URL type for <code>http://tantek.com/</code>.</p>
-
-    <pre class="example" data-transform="updateExample"
-         title="Same hCard representation in JSON-LD">
-    <!--
-    {
-      "@context": {
-        "vcard": "http://microformats.org/profile/hcard#vcard",
-        "url": {
-          "@id": "http://microformats.org/profile/hcard#url",
-          "@type": "@id"
-        },
-        "fn": "http://microformats.org/profile/hcard#fn"
-      },
-      "@type": "vcard",
-      "url": "http://tantek.com/",
-      "fn": "Tantek Çelik"
-    }
-    -->
-    </pre>
-  </section>
-
-  <section class="informative">
     <h3>Microdata</h3>
 
     <p>The HTML Microdata [[MICRODATA]] example below expresses book information as
@@ -6265,7 +6223,6 @@ the data type to be specified with each piece of data.</p>
   <p class="issue defer" data-number="7"></p>
   <p class="issue defer" data-number="8"></p>
   <p class="issue defer" data-number="9"></p>
-  <p class="issue defer" data-number="12"></p>
   <p class="issue defer" data-number="15"></p>
   <p class="issue defer" data-number="16"></p>
   <p class="issue defer" data-number="17"></p>
@@ -6282,10 +6239,8 @@ the data type to be specified with each piece of data.</p>
   <p class="issue defer" data-number="34"></p>
   <p class="issue defer" data-number="37"></p>
   <p class="issue defer" data-number="38"></p>
-  <p class="issue defer" data-number="44"></p>
   <p class="issue defer" data-number="46"></p>
   <p class="issue defer" data-number="48"></p>
-  <p class="issue defer" data-number="54"></p>
   <p class="issue defer" data-number="55"></p>
   <p class="issue defer" data-number="56"></p>
   <p class="issue defer" data-number="57"></p>
