@@ -150,19 +150,19 @@ function internalizeTermListReferences() {
   }
 
   // delete any terms that were not referenced.
-  for (const term of Object.keys(termNames)) {
+  Object.keys(termNames).forEach(function(term) {
     const $p = $("#"+term) ;
-    if ($p && !$p.empty()) {
+    if ($p) {
       const tList = $p.getDfnTitles();
       $p.parent().next().remove();
       $p.remove() ;
-      for (const item of tList) {
+      tList.forEach(function( item ) {
         if (respecConfig.definitionMap[item]) {
-            delete respecConfig.definitionMap[item];
+          delete respecConfig.definitionMap[item];
         }
-      }
+      });
     }
-  }
+  });
 }
 
 function _esc(s) {
