@@ -146,14 +146,16 @@ require(["core/pubsubhub"], function(respecEvents) {
   "use strict";
   respecEvents.sub('beforesave', function(documentElement) {
     $("a[href]", documentElement).each( function(index) {
-      const href = $(this).attr("href");
+      // Don't rewrite these.
+      if ($(this, documentElement).closest('dd').prev().text().match(/Latest editor|Test suite|Implementation report/)) return;
+      const href = $(this, documentElement).attr("href");
       for (const toReplace in jsonld.conversions) {
         if (href.indexOf(toReplace) !== -1) {
           const replacement = jsonld.conversions[toReplace];
           const newHref = href.replace(toReplace, replacement);
-          $(this).attr("href", newHref);
-          if( $(this).text().indexOf(toReplace) !== -1 ) {
-            $(this).text($(this).text().replace(toReplace, replacement));
+          $(this, documentElement).attr("href", newHref);
+          if( $(this, documentElement).text().indexOf(toReplace) !== -1 ) {
+            $(this, documentElement).text($(this, documentElement).text().replace(toReplace, replacement));
           }
         }
       }

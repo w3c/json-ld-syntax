@@ -7,27 +7,21 @@ const jsonld = {
       href: "https://w3c.github.io/json-ld-syntax/",
       authors: ["Gregg Kellogg"],
       publisher: "W3C",
-      status: 'ED'
+      status: 'FPWD'
     },
     "JSON-LD11-API": {
       title: "JSON-LD 1.1 Processing Algorithms and API",
       href: "https://w3c.github.io/json-ld-api/",
       authors: ["Gregg Kellogg"],
       publisher: "W3C",
-      status: 'ED'
+      status: 'FPWD'
     },
     "JSON-LD11-FRAMING": {
       title: "JSON-LD 1.1 Framing",
       href: "https://w3c.github.io/json-ld-framing/",
       authors: ["Gregg Kellogg"],
       publisher: "W3C",
-      status: 'ED'
-    },
-    "JSON-LD-TESTS": {
-      title: "JSON-LD 1.1 Test Suite",
-      href: "https://json-ld.org/test-suite/",
-      authors: ["Gregg Kellogg"],
-      publisher: "Linking Data in JSON Community Group"
+      status: 'FPWD'
     },
     // aliases to known references
     "IEEE-754-2008": {
@@ -42,10 +36,6 @@ const jsonld = {
       authors: ['Domenic Denicola'],
       status: 'unofficial',
       date: 'January 2014'
-    },
-    "MICROFORMATS": {
-      title: "Microformats",
-      href: "http://microformats.org"
     }
   },
   conversions: {
