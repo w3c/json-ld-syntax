@@ -197,7 +197,7 @@
     <li>a way to disambiguate keys shared among different JSON documents by mapping
       them to <a>IRIs</a> via a <a>context</a>,</li>
     <li>a mechanism in which a value in a <a>JSON object</a> may refer
-      to a <a>JSON object</a> on a different site on the Web,</li>
+      to a <a>resource</a> on a different site on the Web,</li>
     <li>the ability to annotate <a>strings</a> with their language,</li>
     <li>a way to associate datatypes with values such as dates and times,</li>
     <li>and a facility to express one or more directed graphs, such as a social
@@ -639,9 +639,9 @@
 
     <p>As the <a>context</a> above shows, the value of a <a>term definition</a> can
       either be a simple string, mapping the <a>term</a> to an <a>IRI</a>,
-      or a <a>JSON object</a>.</p>
+      or a <a>dictionary</a>.</p>
 
-    <p>When a <a>JSON object</a> is associated with a term, it is called
+    <p>When a when a <a>member</a> with a <a>term</a> key has a <a>dictionary</a> value, the <a>dictionary</a> is called
       an <a>expanded term definition</a>. The example above specifies that
       the values of <code>image</code> and <code>homepage</code>, if they are
       strings, are to be interpreted as
@@ -750,7 +750,7 @@
     <a>vocabulary mapping</a>, and not the <a>base IRI</a>.</p>
 
   <p>A <a>string</a> is interpreted as an <a>IRI</a> when it is the
-    value of an <code>@id</code> member:</p>
+    value of an <a>dictionary member</a> with the key<code>@id</code>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        title="Values of @id are interpreted as IRI">
@@ -850,7 +850,7 @@
     different ways in JSON-LD:</p>
 
   <ol>
-    <li><a>JSON object</a> keys that have a <a>term</a> mapping in
+    <li><a>Dictionary members</a> that have a key mapping to a <a>term</a> in
       the <a>active context</a> expand to an <a>IRI</a>
       (only applies outside of the <a>context definition</a>).</li>
     <li>An <a>IRI</a> is generated for the <a>string</a> value specified using
@@ -1092,7 +1092,7 @@
   be achieved using JSON-LD.</p>
 
   <p>In general, contexts may be used any time a
-    <a>JSON object</a> is defined.
+    <a>dictionary</a> is defined.
     The only time that one cannot express a context is as a direct child of another context definition (other than as part of an <a>expanded term definition</a>).
     For example, a <a>JSON-LD document</a> may use more than one context at different
     points in a document:</p>
@@ -1147,14 +1147,14 @@
     in the more deeply nested <code>details</code> structure. Note that this is
     rarely a good authoring practice and is typically used when working with
     legacy applications that depend on a specific structure of the
-    <a>JSON object</a>. If a <a>term</a> is redefined within a
+    <a>dictionary</a>. If a <a>term</a> is redefined within a
     context, all previous rules associated with the previous definition are
     removed. If a <a>term</a> is redefined to <code>null</code>,
     the <a>term</a> is effectively removed from the list of
     <a>terms</a> defined in the <a>active context</a>.</p>
 
   <p>Multiple contexts may be combined using an <a>array</a>, which is processed
-    in order. The set of contexts defined within a specific <a>JSON object</a> are
+    in order. The set of contexts defined within a specific <a>dictionary</a> are
     referred to as <a>local contexts</a>. The
     <a>active context</a> refers to the accumulation of
     <a>local contexts</a> that are in scope at a
@@ -1200,7 +1200,7 @@
 
   <p>New features defined in JSON-LD 1.1 are available
     when the <a>processing mode</a> is set to <code>json-ld-1.1</code>.
-    This may be set using the <code>@version</code> member in a <code>context</code>
+    This may be set using the <code>@version</code> <a>member</a> in a <code>context</code>
     set to the value <code>1.1</code> as a <a>number</a>, or through an API option.</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
@@ -1251,10 +1251,10 @@
   </pre>
 
   <p>If <code>@vocab</code> is used but certain keys in an
-    <a data-lt="JSON object">object</a> should not be expanded using
+    <a>dictionary</a> should not be expanded using
     the vocabulary <a>IRI</a>, a <a>term</a> can be explicitly set
     to <a>null</a> in the <a>context</a>. For instance, in the
-    example below the <code>databaseId</code> member would not expand to an
+    example below the <code>databaseId</code> <a>member</a> would not expand to an
     <a>IRI</a> causing the property to be dropped when expanding.</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
@@ -1446,7 +1446,7 @@
     when compacting only if
     a <a>simple term definition</a> is used where the value ends with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character,
     or if their <a>expanded term definition</a> contains
-    a <code>@prefix</code> member with the value <a>true</a>.</p>
+    a <code>@prefix</code> <a>member</a> with the value <a>true</a>.</p>
 
   <p class="note">This represents a small change to the 1.0 algorithm to prevent IRIs
     that are not really intended to be used as prefixes from being used for creating
@@ -1454,7 +1454,7 @@
 
   <p class="changed">When <a>processing mode</a> is set to <code>json-ld-1.1</code>, terms will be used as <a>compact IRI</a> prefixes
     when compacting only if their <a>expanded term definition</a> contains
-    a <code>@prefix</code> member with the value <a>true</a>, or if it has a
+    a <code>@prefix</code> <a>member</a> with the value <a>true</a>, or if it has a
     a <a>simple term definition</a>  where the value ends with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character
     (e.g, <code>/</code>, <code>#</code> and others, see [[!RFC3986]]).</p>
 
@@ -1925,7 +1925,7 @@ in the body of a JSON-LD document:</p>
   (<code>http://www.w3.org/2001/XMLSchema#dateTime</code>) with the
   value expressed using the <code>@value</code> <a>keyword</a>. As a
   general rule, when <code>@value</code> and <code>@type</code> are used in
-  the same <a>JSON object</a>, the <code>@type</code>
+  the same <a>dictionary</a>, the <code>@type</code>
   <a>keyword</a> is expressing a <a>value type</a>.
   Otherwise, the <code>@type</code> <a>keyword</a> is expressing a
   <a>node type</a>. The example above expresses the following data:</p>
@@ -3720,8 +3720,8 @@ the data type to be specified with each piece of data.</p>
   </table>
 
   <p>When a JSON-LD document's top-level structure is an
-    <a data-lt="JSON object">object</a> that contains no other
-    <a>properties</a> than <code>@graph</code> and
+    <a>dictionary</a> that contains no other
+    keys than <code>@graph</code> and
     optionally <code>@context</code> (properties that are not mapped to an
     <a>IRI</a> or a <a>keyword</a> are ignored),
     <code>@graph</code> is considered to express the otherwise implicit
@@ -4572,7 +4572,7 @@ the data type to be specified with each piece of data.</p>
   <p>The JSON-LD 1.1 Processing Algorithms and API specification [[JSON-LD11-API]] defines
     a method for <em>flattening</em> a JSON-LD document.
     <dfn data-cite="JSON-LD11-API#dfn-flattening" data-lt="flattened">Flattening</dfn> collects all
-    properties of a <a>node</a> in a single <a>JSON object</a> and labels
+    properties of a <a>node</a> in a single <a>dictionary</a> and labels
     all <a>blank nodes</a> with
     <a>blank node identifiers</a>.
     This ensures a shape of the data and consequently may drastically simplify the code
@@ -4756,7 +4756,7 @@ the data type to be specified with each piece of data.</p>
   </ul>
 
   <p>The referenced document MUST have a top-level <a>JSON object</a>.
-    The <code>@context</code> subtree within that object is added to the top-level
+    The <code>@context</code> <a>member</a> within that object is added to the top-level
     <a>JSON object</a> of the referencing document. If an <a>array</a>
     is at the top-level of the referencing document and its items are
     <a>JSON objects</a>, the <code>@context</code>
@@ -4977,8 +4977,8 @@ the data type to be specified with each piece of data.</p>
       valid <a data-cite="RFC8259#section-2">JSON text</a></span>.</p>
 
   <p>A <a>JSON-LD document</a> MUST be a single <a>node object</a>,
-    a <a>JSON object</a> consisting of only
-    the members <code>@context</code> and/or <code>@graph</code>,
+    a <a>dictionary</a> consisting of only
+    the <a>members</a> <code>@context</code> and/or <code>@graph</code>,
     or an <a>array</a> or zero or more <a>node objects</a>.</p>
 
   <p>In contrast to JSON, in JSON-LD the keys in <a data-lt="JSON object">objects</a>
@@ -5027,13 +5027,13 @@ the data type to be specified with each piece of data.</p>
 
     <p>A <a>node object</a> represents zero or more properties of a
       <a>node</a> in the <a>graph</a> serialized by the
-      <a>JSON-LD document</a>. A <a>JSON object</a> is a
+      <a>JSON-LD document</a>. A <a>dictionary</a> is a
       <a>node object</a> if it exists outside of a JSON-LD
       <a>context</a> and:</p>
 
     <ul>
-      <li>it is not the top-most <a>JSON object</a> in the JSON-LD document consisting
-        of no other members than <code>@graph</code> and <code>@context</code>,</li>
+      <li>it is not the top-most <a>dictionary</a> in the JSON-LD document consisting
+        of no other <a>members</a> than <code>@graph</code> and <code>@context</code>,</li>
       <li>it does not contain the <code>@value</code>, <code>@list</code>,
         or <code>@set</code> keywords, and</li>
       <li class="changed">it is not a <a>graph object</a>.</li>
@@ -5046,7 +5046,7 @@ the data type to be specified with each piece of data.</p>
       <a>node objects</a> need to be merged to create the
       properties of the resulting <a>node</a>.</p>
 
-    <p>A <a>node object</a> MUST be a <a>JSON object</a>. All keys
+    <p>A <a>node object</a> MUST be a <a>dictionary</a>. All keys
       which are not <a>IRIs</a>, <a>compact IRIs</a>, <a>terms</a> valid in the
       <a>active context</a>, or one of the following <a>keywords</a>
       <span class="changed">(or alias of such a keyword)</span>
@@ -5083,10 +5083,10 @@ the data type to be specified with each piece of data.</p>
       If the <a>node object</a> contains an <code>@id</code> keyword,
       its value is used as the <a>graph name</a> of a <a>named graph</a>.
       See <a class="sectionRef" href="#named-graphs"></a> for further discussion on
-      <code>@graph</code> values. As a special case, if a <a>JSON object</a>
+      <code>@graph</code> values. As a special case, if a <a>dictionary</a>
       contains no keys other than <code>@graph</code> and <code>@context</code>, and the
-      <a>JSON object</a> is the root of the JSON-LD document, the
-      <a>JSON object</a> is not treated as a <a>node object</a>; this
+      <a>dictionary</a> is the root of the JSON-LD document, the
+      <a>dictionary</a> is not treated as a <a>node object</a>; this
       is used as a way of defining <a>node objects</a>
       that may not form a connected graph. This allows a
       <a>context</a> to be defined which is shared by all of the constituent
@@ -5102,7 +5102,7 @@ the data type to be specified with each piece of data.</p>
       <code>@type</code> values.</p>
 
     <p>If the <a>node object</a> contains the <code>@reverse</code> key,
-      its value MUST be a <a>JSON object</a> containing members representing reverse
+      its value MUST be a <a>dictionary</a> containing <a>members</a> representing reverse
       properties. Each value of such a reverse property MUST be an <a>absolute IRI</a>,
       a <a>relative IRI</a>, a <a>compact IRI</a>, a <a>blank node identifier</a>,
       a <a>node object</a> or an <a>array</a> containing a combination of these.</p>
@@ -5113,7 +5113,7 @@ the data type to be specified with each piece of data.</p>
       on <code>@index</code> values.</p>
 
     <p class="changed">If the <a>node object</a> contains the <code>@nest</code> key,
-      its value MUST be an <a>JSON object</a> or an <a>array</a> of <a>JSON objects</a>
+      its value MUST be an <a>dictionary</a> or an <a>array</a> of <a>dictionaries</a>
       which MUST NOT include a <a>value object</a>. See
       <a class="sectionRef" href="#property-nesting"></a> for further discussion
       on <code>@nest</code> values.</p>
@@ -5147,11 +5147,11 @@ the data type to be specified with each piece of data.</p>
 
     <p>A <a>graph object</a> represents a <a>named graph</a>, which MAY include
       include an explicit <a>graph name</a>.
-      A <a>JSON object</a> is a <a>graph object</a> if
+      A <a>dictionary</a> is a <a>graph object</a> if
       it exists outside of a JSON-LD <a>context</a>,
       it is not a <a>node object</a>,
-      it is not the top-most <a>JSON object</a> in the JSON-LD document, and
-      it consists of no members other than <code>@graph</code>,
+      it is not the top-most <a>dictionary</a> in the JSON-LD document, and
+      it consists of no <a>members</a> other than <code>@graph</code>,
       <code>@index</code>, <code>@id</code>
       and <code>@context</code>, or an alias of one of these <a>keywords</a>.</p>
 
@@ -5170,7 +5170,7 @@ the data type to be specified with each piece of data.</p>
       <a class="sectionRef" href="#identifying-blank-nodes"></a> for further discussion on
       <code>@id</code> values.</p>
 
-    <p>A <a>graph object</a> without an <code>@id</code> member is also a
+    <p>A <a>graph object</a> without an <code>@id</code> <a>member</a> is also a
       <a>simple graph object</a> and represents a <a>named graph</a> without an
       explicit identifier, although in the data model it still has a
       <a>graph name</a>, which is an implicitly allocated
@@ -5190,7 +5190,7 @@ the data type to be specified with each piece of data.</p>
       language with a value to create a <a>typed value</a> or a <a>language-tagged
       string</a>.</p>
 
-    <p>A <a>value object</a> MUST be a <a>JSON object</a> containing the
+    <p>A <a>value object</a> MUST be a <a>dictionary</a> containing the
       <code>@value</code> key. It MAY also contain an <code>@type</code>,
       an <code>@language</code>, an <code>@index</code>, or an <code>@context</code> key but MUST NOT contain
       both an <code>@type</code> and an <code>@language</code> key at the same time.
@@ -5233,11 +5233,11 @@ the data type to be specified with each piece of data.</p>
       This simplifies post-processing of the data as the data is always in a
       deterministic form.</p>
 
-    <p>A <a>list object</a> MUST be a <a>JSON object</a> that contains no
+    <p>A <a>list object</a> MUST be a <a>dictionary</a> that contains no
       keys that expand to an <a>absolute IRI</a> or <a>keyword</a> other
       than <code>@list</code>, <code>@context</code>, and <code>@index</code>.</p>
 
-    <p>A <a>set object</a> MUST be a <a>JSON object</a> that contains no
+    <p>A <a>set object</a> MUST be a <a>dictionary</a> that contains no
       keys that expand to an <a>absolute IRI</a> or <a>keyword</a> other
       than <code>@set</code>, <code>@context</code>, and <code>@index</code>.
       Please note that the <code>@index</code> key will be ignored when being processed.</p>
@@ -5294,7 +5294,7 @@ the data type to be specified with each piece of data.</p>
       <span class="changed">
         or an array containing both <code>@index</code> and <code>@set</code>
       </span>.
-      The values of the members of an <a>index map</a> MUST be one
+      The values of the <a>members</a> of an <a>index map</a> MUST be one
       of the following types:</p>
 
     <ul>
@@ -5369,7 +5369,7 @@ the data type to be specified with each piece of data.</p>
     <h2>Property Nesting</h2>
 
     <p>A <a>nested property</a> is used to gather <a>properties</a> of a <a>node object</a> in a separate
-      <a>JSON object</a>, or <a>array</a> of <a>JSON objects</a> which are not
+      <a>dictionary</a>, or <a>array</a> of <a>dictionaries</a> which are not
       <a>value objects</a>. It is semantically transparent and is removed
       during the process of <a>expansion</a>. Property nesting is recursive, and
       collections of nested properties may contain further nesting.</p>
@@ -5384,7 +5384,7 @@ the data type to be specified with each piece of data.</p>
   <p>A <dfn>context definition</dfn> defines a <a>local context</a> in a
     <a>node object</a>.</p>
 
-  <p>A <a>context definition</a> MUST be a <a>JSON object</a> whose
+  <p>A <a>context definition</a> MUST be a <a>dictionary</a> whose
     keys MUST be either <a>terms</a>, <a>compact IRIs</a>, <a>absolute IRIs</a>,
     or one of the <a>keywords</a> <code>@language</code>, <code>@base</code>,
     <code>@vocab</code>, or <code class="changed">@version</code>.</p>
@@ -5415,7 +5415,7 @@ the data type to be specified with each piece of data.</p>
     properties of the value associated with the <a>term</a> when it is
     used as key in a <a>node object</a>.</p>
 
-  <p>An <a>expanded term definition</a> MUST be a <a>JSON object</a>
+  <p>An <a>expanded term definition</a> MUST be a <a>dictionary</a>
     composed of zero or more keys from
     <code>@id</code>,
     <code>@reverse</code>,
@@ -5436,11 +5436,11 @@ the data type to be specified with each piece of data.</p>
     a <a>blank node identifier</a>, a <a>compact IRI</a>, a <a>term</a>,
     or a <a>keyword</a>.</p>
 
-  <p>If an <a>expanded term definition</a> has an <code>@reverse</code> member,
-    it MUST NOT have <code>@id</code> or <code>@nest</code> members at the same time,
+  <p>If an <a>expanded term definition</a> has an <code>@reverse</code> <a>member</a>,
+    it MUST NOT have <code>@id</code> or <code>@nest</code> <a>members</a> at the same time,
     its value MUST be an <a>absolute IRI</a>,
     a <a>blank node identifier</a>, a <a>compact IRI</a>, or a <a>term</a>. If an
-    <code>@container</code> member exists, its value MUST be <a>null</a>,
+    <code>@container</code> <a>member</a> exists, its value MUST be <a>null</a>,
     <code>@set</code>, or <code>@index</code>.</p>
 
   <p>If the <a>expanded term definition</a> contains the <code>@type</code>
@@ -5477,7 +5477,7 @@ the data type to be specified with each piece of data.</p>
     the <code>@context</code>, the associated value MUST be an
     <a>index map</a>.</p>
 
-  <p class="changed">If an <a>expanded term definition</a> has an <code>@context</code> member,
+  <p class="changed">If an <a>expanded term definition</a> has an <code>@context</code> <a>member</a>,
     it MUST be a valid <code>context definition</code>.</p>
 
   <p class="changed">If the <a>expanded term definition</a> contains the <code>@nest</code>
@@ -5739,7 +5739,7 @@ the data type to be specified with each piece of data.</p>
 <section class="appendix informative">
   <h2>Changes since 1.0 Recommendation of 16 January 2014</h2>
   <ul>
-    <li>A context may contain a <code>@version</code> member which is used to set the <a>processing mode</a>.</li>
+    <li>A context may contain a <code>@version</code> <a>member</a> which is used to set the <a>processing mode</a>.</li>
     <li>An <a>expanded term definition</a> can now have an
       <code>@context</code> property, which defines a <a>context</a> used for values of
       a <a>property</a> identified with such a <a>term</a>.</li>
@@ -5755,9 +5755,9 @@ the data type to be specified with each piece of data.</p>
       to allow for other serializations that are functionally equivalent
       to JSON.</li>
     <li>Added <a href="#node-identifier-indexing" class="sectionRef"></a> and <a href="#node-type-indexing" class="sectionRef"></a>.</li>
-    <li>Both <a>language maps</a> and <a>index maps</a> may legitimately have an <code>@none</code> value, but
-      JSON-LD 1.0 only allowed <a>string</a> values. This has been updated
-      to allow (and ignore) <code>@null</code> values.</li>
+    <li>Both <a>language maps</a> and <a>index maps</a> may legitimately have an <code>@none</code> key, but
+      JSON-LD 1.0 only allowed <a>string</a> keys. This has been updated
+      to allow <code>@none</code> keys.</li>
     <li>The value for <code>@container</code> in an <a>expanded term definition</a>
       can also be an <a>array</a> containing any appropriate container
       keyword along with <code>@set</code> (other than <code>@list</code>).
@@ -5767,7 +5767,7 @@ the data type to be specified with each piece of data.</p>
       when compacting only if
       a <a>simple term definition</a> is used where the value ends with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character,
       or if their <a>expanded term definition</a> contains
-      a <code>@prefix</code> member with the value <a>true</a>. The 1.0 algorithm has
+      a <code>@prefix</code> <a>member</a> with the value <a>true</a>. The 1.0 algorithm has
       been updated to only consider terms that map to a value that ends with a URI
       <a data-cite="RFC3986#section-2.2">gen-delim</a> character.</li>
     <li>Values of properties where the associated <a>term definition</a>
@@ -5782,7 +5782,7 @@ the data type to be specified with each piece of data.</p>
       a context. When this is set, vocabulary-relative IRIs, such as the
       keys of <a>node objects</a>, are expanded or compacted relative
       to the <a>base IRI</a> using string concatenation.</li>
-    <li><a>Lists</a> may now have members which are themselves <a>lists</a>.</li>
+    <li><a>Lists</a> may now have items which are themselves <a>lists</a>.</li>
   </ul>
 </section>
 
@@ -6229,7 +6229,6 @@ the data type to be specified with each piece of data.</p>
   <p class="issue defer" data-number="18"></p>
   <p class="issue defer" data-number="19"></p>
   <p class="issue defer" data-number="20"></p>
-  <p class="issue defer" data-number="22"></p>
   <p class="issue defer" data-number="23"></p>
   <p class="issue defer" data-number="25"></p>
   <p class="issue defer" data-number="26"></p>
@@ -6241,7 +6240,6 @@ the data type to be specified with each piece of data.</p>
   <p class="issue defer" data-number="38"></p>
   <p class="issue defer" data-number="46"></p>
   <p class="issue defer" data-number="48"></p>
-  <p class="issue defer" data-number="55"></p>
   <p class="issue defer" data-number="56"></p>
   <p class="issue defer" data-number="57"></p>
 </section>

@@ -11,11 +11,12 @@
     the JSON-LD Syntax specification [[JSON-LD11]]).</dd>
   <dt><dfn data-lt="JSON objects">JSON object</dfn></dt><dd>
     In the JSON serialization, an <a data-cite="RFC8259#section-4" class="externalDFN">object</a> structure is represented as a pair of curly brackets surrounding zero or
-    more key-value pairs. A key is a <a>string</a>. A single colon comes after
-    each key, separating the key from the value. A single comma separates a value
-    from a following key. In JSON-LD the keys in an object MUST be unique.
+    more members composed of name-value pairs. A name is a <a>string</a>. A single colon comes after
+    each name, separating the name from the value. A single comma separates a value
+    from a following name. In JSON-LD the names in an object MUST be unique.
     In the <a>internal representation</a> a <a>JSON object</a> is equivalent to a
-    <dfn data-cite="WEBIDL#dfn-dictionary" data-lt="dictionaries" class="preserve">dictionary</dfn> (see [[!WEBIDL]]).</dd>
+    <dfn data-cite="WEBIDL#dfn-dictionary" data-lt="dictionaries" class="preserve">dictionary</dfn> (see [[!WEBIDL]]),
+    composed of <dfn data-cite="WEBIDL#dfn-dictionary=members" data-lt="dictionary member|member|members">dictionary members</dfn> with key-value pairs.</dd>
   <dt class="changed"><dfn data-lt="internal representation">JSON-LD internal representation</dfn></dt><dd class="changed">The JSON-LD
     internal representation is the result of transforming a JSON syntactic structure
     into the core data structures suitable for direct processing:
@@ -23,11 +24,11 @@
     <a>strings</a>, <a>numbers</a>, <a>booleans</a>, and <a>null</a>.</dd>
   <dt><dfn>null</dfn></dt><dd>
     The use of the <a data-cite="RFC8259#section-3" class="externalDFN">null</a> value within JSON-LD is used to
-    ignore or reset values. A key-value pair in the <code>@context</code> where
+    ignore or reset values. A <a>dictionary member</a> in the <code>@context</code> where
     the value, or the <code>@id</code> of the value, is <code>null</code>
-    explicitly decouples a term's association with an IRI. A key-value pair in
+    explicitly decouples a term's association with an IRI. A <a>dictionary member</a> in
     the body of a <a>JSON-LD document</a> whose value is <code>null</code> has the
-    same meaning as if the key-value pair was not defined. If
+    same meaning as if the <a>dictionary member</a> was not defined. If
     <code>@value</code>, <code>@list</code>, or <code>@set</code> is set to
     <code>null</code> in expanded form, then the entire <a>JSON
     object</a> is ignored.</dd>
@@ -93,20 +94,20 @@
     The default language is set in the <a>context</a> using the <code>@language</code> key whose
     value MUST be a <a>string</a> representing a [[!BCP47]] language code or <code>null</code>.</dd>
   <dt><dfn>default object</dfn></dt><dd>
-    A <a>default object</a> is a <a>JSON object</a> that has a <code>@default</code> member.</dd>
+    A <a>default object</a> is a <a>dictionary</a> that has a <code>@default</code> key.</dd>
   <dt><dfn data-lt="edges">edge</dfn></dt><dd>
     Every <a>edge</a> has a direction associated with it and is labeled with
     an <a>IRI</a> or a <a>blank node identifier</a>. Within the JSON-LD syntax
     these edge labels are called <a>properties</a>. Whenever possible, an
     <a>edge</a> should be labeled with an <a>IRI</a>.</dd>
   <dt><dfn data-lt="expanded term definitions">expanded term definition</dfn></dt><dd>
-    An expanded term definition, is a <a>term definition</a> where the value is a <a>JSON object</a>
-    containing one or more <a>keyword</a> <a>properties</a> to define the associated <a>absolute IRI</a>,
+    An expanded term definition, is a <a>term definition</a> where the value is a <a>dictionary</a>
+    containing one or more <a>keyword</a> keys to define the associated <a>absolute IRI</a>,
     if this is a reverse property, the type associated with string values, and a container mapping.</dd>
   <dt><dfn data-lt="JSON-LD frame|frames">Frame</dfn></dt><dd>
     A <a>JSON-LD document</a>, which describes the form for transforming
     another <a>JSON-LD document</a> using matching and embedding rules.
-    A frame document allows additional keywords and certain property values
+    A frame document allows additional keywords and certain <a>dictionary members</a>
     to describe the matching and transforming process.</dd>
   <dt><dfn data-lt="JSON-LD Processors|Processors">JSON-LD Processor</dfn></dt><dd>
     A <a>JSON-LD Processor</a> is a system which can perform the algorithms defined in [[JSON-LD11-API]].</dd>
@@ -117,24 +118,24 @@
   <dt><dfn data-lt="graph names">graph name</dfn></dt><dd>
     The <a>IRI</a> identifying a <a data-cite="RDF11-CONCEPTS#dfn-graph-name" class="externalDFN">named graph</a>.</dd>
   <dt class="changed"><dfn data-lt="id maps">id map</dfn></dt><dd class="changed">
-    An <a>id map</a> is a <a>JSON object</a> value of a <a>term</a> defined with
+    An <a>id map</a> is a <a>dictionary</a> value of a <a>term</a> defined with
     <code>@container</code> set to <code>@id</code>, whose keys are
     interpreted as <a>IRIs</a> representing the <code>@id</code>
     of the associated <a>node object</a>; value MUST be a <a>node object</a>.
-    If the value contains a property expanding to <code>@id</code>, it's value MUST
+    If the value contains a key expanding to <code>@id</code>, it's value MUST
     be equivalent to the referencing key.</dd>
   <dt class="changed"><dfn data-lt="graph objects">graph object</dfn></dt><dd class="changed">
     A <a>graph object</a> represents a <a>named graph</a> represented as the
-    value of a <a>property</a> within a <a>node object</a>. When expanded, a
-    graph object MUST have an <code>@graph</code> member, and may also have
-    <code>@id</code>, and <code>@index</code> members.
+    value of a <a>dictionary member</a> within a <a>node object</a>. When expanded, a
+    graph object MUST have an <code>@graph</code> <a>member</a>, and may also have
+    <code>@id</code>, and <code>@index</code> <a>members</a>.
     A <dfn class="preserve" data-lt="simple graph objects">simple graph object</dfn> is a
-    <a>graph object</a> which does not have an <code>@id</code> member. Note
+    <a>graph object</a> which does not have an <code>@id</code> <a>member</a>. Note
     that <a>node objects</a> may have a <code>@graph</code> member, but are
-    not considered <a>graph objects</a> if they include any other properties.
+    not considered <a>graph objects</a> if they include any other <a>members</a>.
     A top-level object consisting of <code>@graph</code> is also not a <a>graph object</a>.</dd>
  <dt><dfn data-lt="index maps">index map</dfn></dt><dd>
-  An <a>index map</a> is a <a>JSON object</a> value of a <a>term</a> defined with
+  An <a>index map</a> is a <a>dictionary</a> value of a <a>term</a> defined with
   <code>@container</code> set to <code>@index</code>, whose values MUST be any of the following types:
     <a>string</a>,
     <a>number</a>,
@@ -158,10 +159,10 @@
     <a>true</a> or <a>false</a>, a <a>typed value</a>, or a
     <a>language-tagged string</a>.</dd>
   <dt><dfn data-lt="keywords">keyword</dfn></dt><dd>
-    A JSON key that is specific to JSON-LD, specified in the JSON-LD Syntax specification [[JSON-LD11]]
+    A <a>string</a> that is specific to JSON-LD, specified in the JSON-LD Syntax specification [[JSON-LD11]]
     in the section titled <a data-cite="JSON-LD11#syntax-tokens-and-keywords">Syntax Tokens and Keywords</a>.</dd>
   <dt><dfn data-lt="language maps">language map</dfn></dt><dd>
-    An <a>language map</a> is a <a>JSON object</a> value of a <a>term</a> defined with
+    An <a>language map</a> is a <a>dictionary</a> value of a <a>term</a> defined with
     <code>@container</code> set to <code>@language</code>, whose keys MUST be <a>strings</a> representing
     [[!BCP47]] language codes and the values MUST be any of the following types:
       <a>null</a>,
@@ -189,21 +190,23 @@
     See <dfn data-cite="RDF-SCHEMA#ch_collectionvocab" data-lt="collection" class="preserve">RDF collection</dfn>
     in [[!RDF-SCHEMA]].</dd>
   <dt><dfn data-lt="list objects">list object</dfn></dt><dd>
-    A <a>list object</a> is a <a>JSON object</a> that has an <code>@list</code>
-    member.</dd>
+    A <a>list object</a> is a <a>dictionary</a> that has a <code>@list</code>
+    key.</dd>
   <dt><dfn data-lt="literals">literal</dfn></dt><dd>
     An <a>object</a> expressed as a value such as a string, number or in expanded form.</dd>
   <dt><dfn data-lt="local contexts">local context</dfn></dt><dd>
-    A <a>context</a> that is specified within a <a>JSON object</a>,
+    A <a>context</a> that is specified with a <a>dictionary</a>,
     specified via the <code>@context</code> <a>keyword</a>.</dd>
   <dt><dfn data-lt="named graphs">named graph</dfn></dt><dd>
     A <a data-cite="RDF11-CONCEPTS#dfn-named-graph" class="externalDFN">named graph</a> is a <a>linked data graph</a> that is identified by an <a>IRI</a> or <a>blank node</a>.</dd>
   <dt><dfn data-lt="implicitly named graphs">implicitly named graph</dfn></dt><dd>
-    A <a>named graph</a> created from the value of a property having an
+    A <a>named graph</a> created from the value of a <a>dictionary member</a> having an
     <a>expanded term definition</a> where <code>@container</code> is set to  <code>@graph</code>.</dd>
   <dt><dfn data-lt="nested properties">nested property</dfn></dt><dd>
-    A <a>nested property</a> is a <a>property</a> which is contained within an object referenced by
-    a semantically meaningless <em>nesting property</em>.
+    A <a>nested property</a> is a key in a <a>node object</a> whose value is a
+    <a>dictionary</a> containing <a>members</a> which are treated as if they were values of the <a>node object</a>.
+    The <a>nested property</a> itself is semantically meaningless used only to create a sub-structure within
+    a <a>node object</a>.
   </dd>
   <dt><dfn data-lt="nodes">node</dfn></dt><dd>
     Every <a data-cite="RDF11-CONCEPTS#dfn-node" class="externalDFN">node</a> is an <a>IRI</a>, a <a>blank node</a>,
@@ -212,21 +215,22 @@
   <dt><dfn data-lt="node objects">node object</dfn></dt><dd>
     A <a>node object</a> represents zero or more <a>properties</a> of a
     <a>node</a> in the <a>graph</a> serialized by the
-    <a>JSON-LD document</a>. A <a>JSON object</a> is a <a>node object</a>
+    <a>JSON-LD document</a>. A <a>dictionary</a> is a <a>node object</a>
     if it exists outside of the JSON-LD <a>context</a> and:
     <ul>
       <li>it does not contain the <code>@value</code>, <code>@list</code>,
         or <code>@set</code> keywords, or</li>
-      <li>it is not the top-most <a>JSON object</a> in the JSON-LD document consisting
-        of no other members than <code>@graph</code> and <code>@context</code>.</li>
+      <li>it is not the top-most <a>dictionary</a> in the JSON-LD document consisting
+        of no other <a>members</a> than <code>@graph</code> and <code>@context</code>.</li>
     </ul>
+    The <a>members</a> of a <a>node object</a> whose keys are not keywords are also called <a>properties</a> of the <a>node object</a>.
   </dd>
   <dt><dfn data-lt="node references">node reference</dfn></dt><dd>
     A <a>node object</a> used to reference a node having only the
     <code>@id</code> key.</dd>
   <dt><dfn data-lt="objects">object</dfn></dt><dd>
     An <a data-cite="RDF11-CONCEPTS#dfn-object" class="externalDFN">object</a> is a <a>node</a> in a <a>linked data graph</a> with at least one incoming edge.
-    See <dfn data-cite="RDF11-CONCEPTS#dfn-object" class="preserve">RDF object</dfn>in [[RDF11-CONCEPTS]].</dd>
+    See <dfn data-cite="RDF11-CONCEPTS#dfn-object" class="preserve">RDF object</dfn> in [[RDF11-CONCEPTS]].</dd>
   <dt><dfn data-lt="prefixes">prefix</dfn></dt><dd>
     A <a>prefix</a> is the first component of a <a>compact IRI</a> which comes from a
     <a>term</a> that maps to a string that, when prepended to the suffix of the <a>compact IRI</a>
@@ -235,7 +239,7 @@
     The processing mode defines how a JSON-LD document is processed.
     By default, all documents are assumed to be conformant with
     <a data-cite="JSON-LD">JSON-LD 1.0</a> [[!JSON-LD]]. By defining
-    a different version using the <code>@version</code> member in a
+    a different version using the <code>@version</code> <a>member</a> in a
     <a>context</a>, or via explicit API option, other processing modes
     can be accessed. This specification defines extensions for the
     <code>json-ld-1.1</code> <a>processing mode</a>.</dd>
@@ -258,8 +262,7 @@
     <a>properties</a>, values of <code>@type</code>, and values of <a>terms</a> defined to be <em>vocabulary relative</em>
     are resolved relative to the <a>vocabulary mapping</a>, not the <a>base IRI</a>.</dd>
   <dt><dfn>set object</dfn></dt><dd>
-    A <a>set object</a> is a <a>JSON object</a> that has an <code>@set</code>
-    member.</dd>
+    A <a>set object</a> is a <a>dictionary</a> that has an <code>@set</code> <a>member</a>.</dd>
   <dt><dfn data-lt="subjects">subject</dfn></dt><dd>
     A <a data-cite="RDF11-CONCEPTS#dfn-subject" class="externalDFN">subject</a> is a<a>node</a> in a <a>linked data graph</a> with at least one outgoing edge, related to an <a>object</a> node through a <a>property</a>.
     See <dfn data-cite="RDF11-CONCEPTS#dfn-subject" class="preserve">RDF subject</dfn> in [[RDF11-CONCEPTS]].</dd>
@@ -268,16 +271,16 @@
   </dd>
   <dt><dfn data-lt="term definitions">term definition</dfn></dt><dd>
     A term definition is an entry in a <a>context</a>, where the key defines a <a>term</a> which may be used within
-    a <a>JSON object</a> as a <a>property</a>, type, or elsewhere that a string is interpreted as a vocabulary item.
+    a <a>dictionary</a> as a key, type, or elsewhere that a string is interpreted as a vocabulary item.
     Its value is either a string (<dfn data-lt="simple terms|simple term|simple term definitions">simple term definition</dfn>), expanding to an absolute IRI, or an <a>expanded term definition</a>.
   </dd>
   <dt class="changed"><dfn data-lt="type maps">type map</dfn></dt><dd class="changed">
-    An <a>type map</a> is a <a>JSON object</a> value of a <a>term</a> defined with
+    An <a>type map</a> is a <a>dictionary</a> value of a <a>term</a> defined with
     <code>@container</code> set to <code>@type</code>, whose keys are
     interpreted as <a>IRIs</a> representing the <code>@type</code>
     of the associated <a>node object</a>;
     value MUST be a <a>node object</a>, or <a>array</a> of node objects.
-    If the value contains a property expanding to <code>@type</code>, it's values
+    If the value contains a <a>term</a> expanding to <code>@type</code>, it's values
     are merged with the map value when expanding.</dd>
   <dt><dfn>typed literal</dfn></dt><dd>
     A <a data-cite="RDF11-CONCEPTS#dfn-typed-literal" class="externalDFN">typed literal</a> is a <a>literal</a> with an associated <a>IRI</a>
@@ -287,9 +290,8 @@
     A <a>typed value</a> consists of a value, which is a <a>string</a>, and a type,
     which is an <a>IRI</a>.</dd>
   <dt><dfn data-lt="value objects">value object</dfn></dt><dd>
-    A <a>value object</a> is a <a>JSON object</a> that has an <code>@value</code>
-    member.</dd>
+    A <a>value object</a> is a <a>dictionary</a> that has an <code>@value</code> <a>member</a>.</dd>
   <dt><dfn>vocabulary mapping</dfn></dt><dd>
     The vocabulary mapping is set in the <a>context</a> using the <code>@vocab</code> key whose
-    value MUST be an <a>absolute IRI</a> <code>null</code>.</dd>
+    value MUST be an <a>absolute IRI</a> or <code>null</code>.</dd>
 </dl>
