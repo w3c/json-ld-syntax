@@ -98,8 +98,8 @@ require(["core/pubsubhub"], function(respecEvents) {
 
       // delete any terms that were not referenced.
       for (const term in termNames) {
-        const $p = $("#"+term) ;
-        if ($p) {
+        const $p = $("#"+term);
+        if ($p.length > 0) {
           const tList = $p.getDfnTitles();
           $p.parent().next().remove(); // remove dd
           $p.remove();                 // remove dt
