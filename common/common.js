@@ -1,56 +1,5 @@
-/* Web Payments Community Group common spec JavaScript */
-const jsonld = {
-  // Add as the respecConfig localBiblio variable
-  // Extend or override global respec references
-  localBiblio: {
-    "JSON-LD11": {
-      title: "JSON-LD 1.1",
-      href: "https://w3c.github.io/json-ld-syntax/",
-      authors: ["Gregg Kellogg"],
-      publisher: "W3C",
-      status: 'ED'
-    },
-    "JSON-LD11-API": {
-      title: "JSON-LD 1.1 Processing Algorithms and API",
-      href: "https://w3c.github.io/json-ld-api/",
-      authors: ["Gregg Kellogg"],
-      publisher: "W3C",
-      status: 'ED'
-    },
-    "JSON-LD11-FRAMING": {
-      title: "JSON-LD 1.1 Framing",
-      href: "https://w3c.github.io/json-ld-framing/",
-      authors: ["Gregg Kellogg"],
-      publisher: "W3C",
-      status: 'ED'
-    },
-    "JSON-LD-TESTS": {
-      title: "JSON-LD 1.1 Test Suite",
-      href: "https://json-ld.org/test-suite/",
-      authors: ["Gregg Kellogg"],
-      publisher: "Linking Data in JSON Community Group"
-    },
-    // aliases to known references
-    "IEEE-754-2008": {
-      title: "IEEE 754-2008 Standard for Floating-Point Arithmetic",
-      href: "http://standards.ieee.org/findstds/standard/754-2008.html",
-      publisher: "Institute of Electrical and Electronics Engineers",
-      date: "2008"
-    },
-    "PROMISES": {
-      title: 'Promise Objects',
-      href: 'https://github.com/domenic/promises-unwrapping',
-      authors: ['Domenic Denicola'],
-      status: 'unofficial',
-      date: 'January 2014'
-    },
-    "MICROFORMATS": {
-      title: "Microformats",
-      href: "http://microformats.org"
-    }
-  }
-};
-
+/* globals omitTerms, respecConfig, $, require */
+/* JSON-LD Working Group common spec JavaScript */
 // We should be able to remove terms that are not actually
 // referenced from the common definitions
 //
@@ -94,76 +43,123 @@ function restrictReferences(utils, content) {
 // class 'termlist', and if the target of that reference is
 // also within a 'dl' element of class 'termlist', then
 // consider it an internal reference and ignore it.
+require(["core/pubsubhub"], function(respecEvents) {
+  "use strict";
+  respecEvents.sub('end', function(message) {
+    if (message === 'core/link-to-dfn') {
+      // all definitions are linked; find any internal references
+      const internalTerms = document.querySelectorAll(".termlist a.internalDFN");
+      for (const item of internalTerms) {
+        const idref = item.getAttribute('href').replace(/^#/,"") ;
+        if (termNames[idref]) {
+          // this is a reference to another term
+          // what is the idref of THIS term?
+          const def = item.closest('dd');
+          if (def) {
+            const tid = def.previousElementSibling
+              .querySelector('dfn')
+              .getAttribute('id');
+            if (tid) {
+              if (termsReferencedByTerms[tid] === undefined) termsReferencedByTerms[tid] = [];
+              termsReferencedByTerms[tid].push(idref);
+            }
+          }
+        }
+      }
 
-function internalizeTermListReferences() {
-  // all definitions are linked; find any internal references
-  const internalTerms = document.querySelectorAll(".termlist a.internalDFN");
-  for (const item of internalTerms) {
-    const idref = item.getAttribute('href').replace(/^#/,"") ;
-    if (termNames[idref]) {
-      // this is a reference to another term
-      // what is the idref of THIS term?
-      const def = item.closest('dd');
-      if (def) {
-        const tid = def.previousElementSibling
-          .querySelector('dfn')
-          .getAttribute('id');
-        if (tid) {
-          if (termsReferencedByTerms[tid]) {
-            termsReferencedByTerms[tid].push(idref);
-          } else {
-            termsReferencedByTerms[tid] = [] ;
-            termsReferencedByTerms[tid].push(idref);
+      // clearRefs is recursive.  Walk down the tree of
+      // references to ensure that all references are resolved.
+      const clearRefs = function(theTerm) {
+        if (termsReferencedByTerms[theTerm] ) {
+          for (const item of termsReferencedByTerms[theTerm]) {
+            if (termNames[item]) {
+                delete termNames[item];
+                clearRefs(item);
+            }
+          }
+        };
+        // make sure this term doesn't get removed
+        if (termNames[theTerm]) {
+          delete termNames[theTerm];
+        }
+      };
+
+      // now termsReferencedByTerms has ALL terms that
+      // reference other terms, and a list of the
+      // terms that they reference
+      const internalRefs = document.querySelectorAll("a.internalDFN");
+      for (const item of internalRefs) {
+        const idref = item.getAttribute('href').replace(/^#/,"") ;
+        // if the item is outside the term list
+        if (!item.closest('dl.termlist')) {
+          clearRefs(idref);
+        }
+      }
+
+      // delete any terms that were not referenced.
+      for (const term in termNames) {
+        const $p = $("#"+term) ;
+        if ($p) {
+          const tList = $p.getDfnTitles();
+          $p.parent().next().remove(); // remove dd
+          $p.remove();                 // remove dt
+          for (const item of tList) {
+            if (respecConfig.definitionMap[item]) {
+              delete respecConfig.definitionMap[item];
+            }
           }
         }
       }
     }
-  }
+  });
+});
 
-  // clearRefs is recursive.  Walk down the tree of
-  // references to ensure that all references are resolved.
-  const clearRefs = function(theTerm) {
-    if ( termsReferencedByTerms[theTerm] ) {
-      for (const item of termsReferencedByTerms[theTerm]) {
-        if (termNames[item]) {
-            delete termNames[item];
-            clearRefs(item);
+/*
+*
+* Replace github.io references to /TR references.
+* The issue is as follows: when several specs are developed in parallel, it is a good idea
+* to use, for mutual references, the github.io URI-s. That ensures that the editors' drafts are always
+* correct in terms of mutual references.
+*
+* However, when publishing the documents, all those references must be exchanged against the final, /TR
+* URI-s. That process, when done manually, is boring and error prone. This script solves the issue:
+*
+* * Create a separate file with the 'conversions' array. See, e.g., https://github.com/w3c/csvw/blob/gh-pages/local-biblio.js
+*   for an example.
+* * Include a reference to that file and this to the respec code, after the inclusion of respec. E.g.:
+* ```
+*  <script class="remove" src="../local-biblio.js"></script>
+*  <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
+*  <script class="remove" src="../replace-ed-uris.js"></script>
+* ```
+*
+* This function will be automatically executed when the respec source is saved in an (X)HTML file.
+* Note that
+*
+* * Links in the header part will *not* be changed. That part is usually generated automatically, and the reference to the
+*   editor's draft must stay unchanged
+* * The text content of an <a> element will also be converted (if needed). This means that the reference list may also
+*   use include the github.io address (as it should...)
+*
+*/
+require(["core/pubsubhub"], function(respecEvents) {
+  "use strict";
+  respecEvents.sub('beforesave', function(documentElement) {
+    $("a[href]", documentElement).not( $("div.head a") ).each( function(index) {
+      const href = $(this).attr("href");
+      for (const toReplace in jsonld.conversions) {
+        if (href.indexOf(toReplace) !== -1) {
+          const replacement = jsonld.conversions[toReplace];
+          const newHref = href.replace(toReplace, replacement);
+          $(this).attr("href", newHref);
+          if( $(this).text().indexOf(toReplace) !== -1 ) {
+            $(this).text($(this).text().replace(toReplace, replacement));
+          }
         }
       }
-    };
-    // make sure this term doesn't get removed
-    if (termNames[theTerm]) {
-      delete termNames[theTerm];
-    }
-  };
-
-  // now termsReferencedByTerms has ALL terms that
-  // reference other terms, and a list of the
-  // terms that they reference
-  const internalRefs = document.querySelectorAll("a.internalDFN");
-  for (const item of internalRefs) {
-    const idref = item.getAttribute('href').replace(/^#/,"") ;
-    // if the item is outside the term list
-    if ( !item.closest('dl.termlist') ) {
-      clearRefs(idref);
-    }
-  }
-
-  // delete any terms that were not referenced.
-  Object.keys(termNames).forEach(function(term) {
-    const $p = $("#"+term) ;
-    if ($p) {
-      const tList = $p.getDfnTitles();
-      $p.parent().next().remove();
-      $p.remove() ;
-      tList.forEach(function( item ) {
-        if (respecConfig.definitionMap[item]) {
-          delete respecConfig.definitionMap[item];
-        }
-      });
-    }
+    });
   });
-}
+});
 
 function _esc(s) {
   return s.replace(/&/g,'&amp;')

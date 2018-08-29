@@ -16,7 +16,7 @@
     from a following name. In JSON-LD the names in an object MUST be unique.
     In the <a>internal representation</a> a <a>JSON object</a> is equivalent to a
     <dfn data-cite="WEBIDL#dfn-dictionary" data-lt="dictionaries" class="preserve">dictionary</dfn> (see [[!WEBIDL]]),
-    composed of <dfn data-cite="WEBIDL#dfn-dictionary=members" data-lt="dictionary member|member|members">dictionary members</dfn> with key-value pairs.</dd>
+    composed of <dfn data-cite="WEBIDL#dfn-dictionary=members" data-lt="dictionary member|member|members" class="preserve">dictionary members</dfn> with key-value pairs.</dd>
   <dt class="changed"><dfn data-lt="internal representation">JSON-LD internal representation</dfn></dt><dd class="changed">The JSON-LD
     internal representation is the result of transforming a JSON syntactic structure
     into the core data structures suitable for direct processing:
@@ -104,7 +104,7 @@
     An expanded term definition, is a <a>term definition</a> where the value is a <a>dictionary</a>
     containing one or more <a>keyword</a> keys to define the associated <a>absolute IRI</a>,
     if this is a reverse property, the type associated with string values, and a container mapping.</dd>
-  <dt><dfn data-lt="JSON-LD frame|frames">Frame</dfn></dt><dd>
+  <dt><dfn data-lt="JSON-LD frame|frames">frame</dfn></dt><dd>
     A <a>JSON-LD document</a>, which describes the form for transforming
     another <a>JSON-LD document</a> using matching and embedding rules.
     A frame document allows additional keywords and certain <a>dictionary members</a>
@@ -283,7 +283,7 @@
     If the value contains a <a>term</a> expanding to <code>@type</code>, it's values
     are merged with the map value when expanding.</dd>
   <dt><dfn>typed literal</dfn></dt><dd>
-    A <a data-cite="RDF11-CONCEPTS#dfn-typed-literal" class="externalDFN">typed literal</a> is a <a>literal</a> with an associated <a>IRI</a>
+    A <a>typed literal</a> is a <a>literal</a> with an associated <a>IRI</a>
     which indicates the literal's datatype.
     See <dfn data-cite="RDF11-CONCEPTS#dfn-literal" data-lt="RDF literals" class="preserve">RDF literal</dfn> in [[!RDF11-CONCEPTS]].</dd>
   <dt><dfn data-lt="typed values">typed value</dfn></dt><dd>
