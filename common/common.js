@@ -145,7 +145,7 @@ require(["core/pubsubhub"], function(respecEvents) {
 require(["core/pubsubhub"], function(respecEvents) {
   "use strict";
   respecEvents.sub('beforesave', function(documentElement) {
-    $("a[href]", documentElement).not( $("div.head a") ).each( function(index) {
+    $("a[href]", documentElement).each( function(index) {
       const href = $(this).attr("href");
       for (const toReplace in jsonld.conversions) {
         if (href.indexOf(toReplace) !== -1) {
