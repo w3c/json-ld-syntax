@@ -7,21 +7,24 @@ const jsonld = {
       href: "https://w3c.github.io/json-ld-syntax/",
       authors: ["Gregg Kellogg"],
       publisher: "W3C",
-      status: 'FPWD'
+      status: 'FPWD',
+      date: '06 September 2018'
     },
     "JSON-LD11-API": {
       title: "JSON-LD 1.1 Processing Algorithms and API",
       href: "https://w3c.github.io/json-ld-api/",
       authors: ["Gregg Kellogg"],
       publisher: "W3C",
-      status: 'FPWD'
+      status: 'FPWD',
+      date: '06 September 2018'
     },
     "JSON-LD11-FRAMING": {
       title: "JSON-LD 1.1 Framing",
       href: "https://w3c.github.io/json-ld-framing/",
       authors: ["Gregg Kellogg"],
       publisher: "W3C",
-      status: 'FPWD'
+      status: 'FPWD',
+      date: '06 September 2018'
     },
     // aliases to known references
     "IEEE-754-2008": {
@@ -39,8 +42,8 @@ const jsonld = {
     }
   },
   conversions: {
-    "https://w3c.github.io/json-ld-syntax/": "http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180903/",
-    "https://w3c.github.io/json-ld-api/": "http://www.w3.org/TR/2018/WD-json-ld11-api-20180903/",
-    "https://w3c.github.io/json-ld-framing/": "http://www.w3.org/TR/2018/WD-json-ld11-framing-20180903/"
+    "https://w3c.github.io/json-ld-syntax/": "http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180906/",
+    "https://w3c.github.io/json-ld-api/": "http://www.w3.org/TR/2018/WD-json-ld11-api-20180906/",
+    "https://w3c.github.io/json-ld-framing/": "http://www.w3.org/TR/2018/WD-json-ld11-framing-20180906/"
   }
 };
