@@ -39,8 +39,8 @@ const jsonld = {
     }
   },
   conversions: {
-    "https://w3c.github.io/json-ld-syntax/": "http://www.w3.org/TR/2018/WD-json-ld-syntax-20180903/",
-    "https://w3c.github.io/json-ld-api/": "http://www.w3.org/TR/2018/WD-json-ld-api-20180903/",
-    "https://w3c.github.io/json-ld-framing/": "http://www.w3.org/TR/2018/WD-json-ld-syntax-framing/"
+    "https://w3c.github.io/json-ld-syntax/": "http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180903/",
+    "https://w3c.github.io/json-ld-api/": "http://www.w3.org/TR/2018/WD-json-ld11-api-20180903/",
+    "https://w3c.github.io/json-ld-framing/": "http://www.w3.org/TR/2018/WD-json-ld11-framing-20180903/"
   }
 };
