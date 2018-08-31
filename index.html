@@ -6196,7 +6196,9 @@ the data type to be specified with each piece of data.</p>
   <p class="issue" data-number="48"></p>
   <p class="issue" data-number="56">Consider issues surrounding confusion of differing expansion rules for <code>@id</code>, <code>@type</code>, and <a>dictionary members</a>.</p>
   <p class="issue" data-number="57">Require JSON-LD processors to be able to identify and extract JSON-LD from a script tag with type <code>application/ld+json</code> within an HTML document.</p>
-  <p class="issue" data-number="59"></p>
+  <p class="issue" data-number="59">
+    Instead of normatively requiring an initial context, such as RDFa does, instead JSON-LD has the ability to import contexts. This approach means that the existing context rules are followed, and the best practice context can be updated over time as new norms emerge in the community. If the best practice context is not useful to a particular community, then they don't need to import it.
+  </p>
 </section>
 
 <section class="appendix informative" id="changes-from-10">
