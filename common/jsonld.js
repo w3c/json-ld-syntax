@@ -8,7 +8,7 @@ const jsonld = {
       authors: ["Gregg Kellogg"],
       publisher: "W3C",
       status: 'FPWD',
-      date: '06 September 2018'
+      date: '11 September 2018'
     },
     "JSON-LD11-API": {
       title: "JSON-LD 1.1 Processing Algorithms and API",
@@ -16,7 +16,7 @@ const jsonld = {
       authors: ["Gregg Kellogg"],
       publisher: "W3C",
       status: 'FPWD',
-      date: '06 September 2018'
+      date: '11 September 2018'
     },
     "JSON-LD11-FRAMING": {
       title: "JSON-LD 1.1 Framing",
@@ -24,7 +24,7 @@ const jsonld = {
       authors: ["Gregg Kellogg"],
       publisher: "W3C",
       status: 'FPWD',
-      date: '06 September 2018'
+      date: '11 September 2018'
     },
     // aliases to known references
     "IEEE-754-2008": {
