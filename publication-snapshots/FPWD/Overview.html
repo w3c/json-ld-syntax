@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="generator" content="ReSpec 22.6.0"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- EXAMPLES --- */
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="generator" content="ReSpec 22.7.1"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- EXAMPLES --- */
 span.example-title {
     text-transform: none;
 }
@@ -1049,7 +1049,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <dd>Sections or phrases changed from the previous Recommendation are <span class="changed">highlighted</span>.</dd>
 </dl>
 
-<div class="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="4"><span>Note</span></div><p class="">Notes are in light green boxes with a green left border and with a "Note" header in green. Notes are normative or informative depending on the whether they are in a normative or informative section, respectively.</p></div>
+<div class="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="4"><span>Note</span></div><p class="">Notes are in light green boxes with a green left border and with a "Note" header in green. Notes are always informative.</p></div>
 
 <div class="example" id="ex-1-example-1-examples-are-in-light-khaki-boxes-with-khaki-left-border-and-with-a-numbered-example-header-in-khaki-examples-are-always-informative-the-content-of-the-example-is-in-monospace-font-and-may-be-syntax-colored">
           <div class="marker"><span>Example 1</span></div>
@@ -4635,8 +4635,8 @@ the data type to be specified with each piece of data.</p>
 ]</pre>
         </div>
 
-  <section class="changed" id="graph-containers">
-    <h4 id="x4-8-1-graph-containers"><span class="secno">4.8.1 </span>Graph Containers&nbsp;<span class="permalink"><a href="#graph-containers" aria-label="Permalink for 4.8.1 Graph Containers" title="Permalink for 4.8.1 Graph Containers"><span>§</span></a></span></h4>
+  <section class="informative changed" id="graph-containers">
+    <h4 id="x4-8-1-graph-containers"><span class="secno">4.8.1 </span>Graph Containers&nbsp;<span class="permalink"><a href="#graph-containers" aria-label="Permalink for 4.8.1 Graph Containers" title="Permalink for 4.8.1 Graph Containers"><span>§</span></a></span></h4><p><em>This section is non-normative.</em></p>
     <p>In some cases, it is useful to logically partition data into separate
       graphs, without making this explicit within the JSON expression. For
       example, a JSON document may contain data against which other metadata is
@@ -4813,7 +4813,7 @@ the data type to be specified with each piece of data.</p>
       <a href="#dfn-processing-mode" class="internalDFN" data-link-type="dfn">processing mode</a> set to <code>json-ld-1.1</code>.</p></div>
   </section>
 
-<section class="changed" id="named-graph-data-indexing"><h4 id="x4-8-2-named-graph-data-indexing"><span class="secno">4.8.2 </span>Named Graph Data Indexing&nbsp;<span class="permalink"><a href="#named-graph-data-indexing" aria-label="Permalink for 4.8.2 Named Graph Data Indexing" title="Permalink for 4.8.2 Named Graph Data Indexing"><span>§</span></a></span></h4>
+<section class="informative changed" id="named-graph-data-indexing"><h4 id="x4-8-2-named-graph-data-indexing"><span class="secno">4.8.2 </span>Named Graph Data Indexing&nbsp;<span class="permalink"><a href="#named-graph-data-indexing" aria-label="Permalink for 4.8.2 Named Graph Data Indexing" title="Permalink for 4.8.2 Named Graph Data Indexing"><span>§</span></a></span></h4><p><em>This section is non-normative.</em></p>
 
   <p>In addition to indexing <a href="#dfn-node-objects" class="internalDFN" data-link-type="dfn">node objects</a> by index, <a href="#dfn-graph-objects" class="internalDFN" data-link-type="dfn">graph objects</a> may
     also be indexed by an index. By using the <code>@graph</code>
@@ -5032,7 +5032,7 @@ the data type to be specified with each piece of data.</p>
         </div>
 </section>
 
-<section class="changed" id="named-graph-indexing"><h4 id="x4-8-3-named-graph-indexing"><span class="secno">4.8.3 </span>Named Graph Indexing&nbsp;<span class="permalink"><a href="#named-graph-indexing" aria-label="Permalink for 4.8.3 Named Graph Indexing" title="Permalink for 4.8.3 Named Graph Indexing"><span>§</span></a></span></h4>
+<section class="informative changed" id="named-graph-indexing"><h4 id="x4-8-3-named-graph-indexing"><span class="secno">4.8.3 </span>Named Graph Indexing&nbsp;<span class="permalink"><a href="#named-graph-indexing" aria-label="Permalink for 4.8.3 Named Graph Indexing" title="Permalink for 4.8.3 Named Graph Indexing"><span>§</span></a></span></h4><p><em>This section is non-normative.</em></p>
 
   <p>In addition to indexing <a href="#dfn-node-objects" class="internalDFN" data-link-type="dfn">node objects</a> by identifier, <a href="#dfn-graph-objects" class="internalDFN" data-link-type="dfn">graph objects</a> may
     also be indexed by their <a href="#dfn-graph-names" class="internalDFN" data-link-type="dfn">graph name</a>. By using the <code>@graph</code>
@@ -5787,10 +5787,11 @@ Content-Type: <span class="hl-bold">application/json</span>
   <p>In contrast to JSON, in JSON-LD the keys in <a data-lt="JSON object" href="#dfn-json-objects" class="internalDFN" data-link-type="dfn">objects</a>
     <em class="rfc2119" title="MUST">MUST</em> be unique.</p>
 
+  <p>Whenever a <a href="#dfn-keywords" class="internalDFN" data-link-type="dfn">keyword</a> is discussed in this grammar,
+    the statements also apply to an alias for that <a href="#dfn-keywords" class="internalDFN" data-link-type="dfn">keyword</a>.</p>
+
   <div class="note" id="issue-container-generatedID-23"><div role="heading" class="note-title marker" id="h-note-23" aria-level="3"><span>Note</span></div><p class="">JSON-LD allows <a href="#dfn-keywords" class="internalDFN" data-link-type="dfn">keywords</a> to be aliased
-    (see <a class="sectionRef sec-ref" href="#aliasing-keywords">section <span class="secno">4.1.5</span> <span class="sec-title">Aliasing Keywords</span></a> for details). Whenever a <a href="#dfn-keywords" class="internalDFN" data-link-type="dfn">keyword</a> is
-    discussed in this grammar, the statements also apply to an alias for
-    that <a href="#dfn-keywords" class="internalDFN" data-link-type="dfn">keyword</a>. For example, if the <a href="#dfn-active-context" class="internalDFN" data-link-type="dfn">active context</a>
+    (see <a class="sectionRef sec-ref" href="#aliasing-keywords">section <span class="secno">4.1.5</span> <span class="sec-title">Aliasing Keywords</span></a> for details). For example, if the <a href="#dfn-active-context" class="internalDFN" data-link-type="dfn">active context</a>
     defines the <a href="#dfn-terms" class="internalDFN" data-link-type="dfn">term</a> <code>id</code> as an alias for <code>@id</code>,
     that alias may be legitimately used as a substitution for <code>@id</code>.
     Note that <a href="#dfn-keywords" class="internalDFN" data-link-type="dfn">keyword</a> aliases are not expanded during context

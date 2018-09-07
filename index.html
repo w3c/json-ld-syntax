@@ -3779,7 +3779,7 @@ the data type to be specified with each piece of data.</p>
   -->
   </pre>
 
-  <section class="changed">
+  <section class="informative changed">
     <h3>Graph Containers</h3>
     <p>In some cases, it is useful to logically partition data into separate
       graphs, without making this explicit within the JSON expression. For
@@ -3961,7 +3961,7 @@ the data type to be specified with each piece of data.</p>
       <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
   </section>
 
-<section class="changed"><h3>Named Graph Data Indexing</h3>
+<section class="informative changed"><h3>Named Graph Data Indexing</h3>
 
   <p>In addition to indexing <a>node objects</a> by index, <a>graph objects</a> may
     also be indexed by an index. By using the <code>@graph</code>
@@ -4188,7 +4188,7 @@ the data type to be specified with each piece of data.</p>
   </pre>
 </section>
 
-<section class="changed"><h3>Named Graph Indexing</h3>
+<section class="informative changed"><h3>Named Graph Indexing</h3>
 
   <p>In addition to indexing <a>node objects</a> by identifier, <a>graph objects</a> may
     also be indexed by their <a>graph name</a>. By using the <code>@graph</code>
@@ -4982,10 +4982,11 @@ the data type to be specified with each piece of data.</p>
   <p>In contrast to JSON, in JSON-LD the keys in <a data-lt="JSON object">objects</a>
     MUST be unique.</p>
 
+  <p>Whenever a <a>keyword</a> is discussed in this grammar,
+    the statements also apply to an alias for that <a>keyword</a>.</p>
+
   <p class="note">JSON-LD allows <a>keywords</a> to be aliased
-    (see <a class="sectionRef" href="#aliasing-keywords"></a> for details). Whenever a <a>keyword</a> is
-    discussed in this grammar, the statements also apply to an alias for
-    that <a>keyword</a>. For example, if the <a>active context</a>
+    (see <a class="sectionRef" href="#aliasing-keywords"></a> for details). For example, if the <a>active context</a>
     defines the <a>term</a> <code>id</code> as an alias for <code>@id</code>,
     that alias may be legitimately used as a substitution for <code>@id</code>.
     Note that <a>keyword</a> aliases are not expanded during context
