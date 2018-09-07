@@ -148,6 +148,8 @@ require(["core/pubsubhub"], function(respecEvents) {
     $("a[href]", documentElement).each( function(index) {
       // Don't rewrite these.
       if ($(this, documentElement).closest('dd').prev().text().match(/Latest editor|Test suite|Implementation report/)) return;
+      if ($(this, documentElement).closest('section.preserve').length > 0) return;
+
       const href = $(this, documentElement).attr("href");
       for (const toReplace in jsonld.conversions) {
         if (href.indexOf(toReplace) !== -1) {
