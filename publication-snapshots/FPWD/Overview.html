@@ -910,7 +910,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a href="https://www.w3.org/2018/json-ld-wg/">JSON-LD Working Group</a>:</p>
 
     <ul>
-      <li><a href="http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180911/">JSON-LD 1.1</a></li>
+      <li><a href="http://www.w3.org/TR/2018/WD-json-ld11-20180911/">JSON-LD 1.1</a></li>
       <li><a href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/">JSON-LD 1.1 Processing Algorithms and API</a></li>
       <li><a href="http://www.w3.org/TR/2018/WD-json-ld11-framing-20180911/">JSON-LD 1.1 Framing</a></li>
     </ul>
@@ -1075,7 +1075,7 @@ The content <span class="hljs-keyword">of</span> the example is <span class="hlj
     the collection is <em>unordered</em> by default. While order is
     preserved in regular JSON arrays, it is not in regular JSON-LD arrays
     unless specifically defined (see
-    <a class="externalDFN" href="http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180911/#sets-and-lists">Sets and Lists</a> in
+    <a class="externalDFN" href="http://www.w3.org/TR/2018/WD-json-ld11-20180911/#sets-and-lists">Sets and Lists</a> in
     the JSON-LD Syntax specification [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>]).</dd>
   <dt><dfn data-lt="json objects|json object" id="dfn-json-objects" data-dfn-type="dfn">JSON object</dfn></dt><dd>
     In the JSON serialization, an <a class="externalDFN" href="https://tools.ietf.org/html/rfc8259#section-4">object</a> structure is represented as a pair of curly brackets surrounding zero or
@@ -1155,7 +1155,7 @@ The content <span class="hljs-keyword">of</span> the example is <span class="hlj
     each <abbr title="Internationalized Resource Identifier">IRI</abbr> contained within a common vocabulary identified by <a href="#dfn-prefixes" class="internalDFN" data-link-type="dfn">prefix</a>.</dd>
   <dt><dfn data-lt="contexts|context" id="dfn-contexts" data-dfn-type="dfn">context</dfn></dt><dd>
     A set of rules for interpreting a <a href="#dfn-json-ld-documents" class="internalDFN" data-link-type="dfn">JSON-LD document</a> as specified in
-    <a href="http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180911/#the-context">The Context</a> of the JSON-LD Syntax specification [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].</dd>
+    <a href="http://www.w3.org/TR/2018/WD-json-ld11-20180911/#the-context">The Context</a> of the JSON-LD Syntax specification [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].</dd>
   <dt><dfn id="dfn-default-graph" data-dfn-type="dfn">default graph</dfn></dt><dd>
     The <a class="externalDFN" href="https://www.w3.org/TR/rdf11-concepts/#dfn-default-graph">default graph</a> is the only graph in a JSON-LD document which has no <a href="#dfn-graph-names" class="internalDFN" data-link-type="dfn">graph name</a>.
     When executing an algorithm, the graph where data should be placed
@@ -1227,7 +1227,7 @@ The content <span class="hljs-keyword">of</span> the example is <span class="hlj
     <a href="#dfn-language-tagged-strings" class="internalDFN" data-link-type="dfn">language-tagged string</a>.</dd>
   <dt><dfn data-lt="keywords|keyword" id="dfn-keywords" data-dfn-type="dfn">keyword</dfn></dt><dd>
     A <a href="#dfn-strings" class="internalDFN" data-link-type="dfn">string</a> that is specific to JSON-LD, specified in the JSON-LD Syntax specification [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>]
-    in the section titled <a href="http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180911/#syntax-tokens-and-keywords">Syntax Tokens and Keywords</a>.</dd>
+    in the section titled <a href="http://www.w3.org/TR/2018/WD-json-ld11-20180911/#syntax-tokens-and-keywords">Syntax Tokens and Keywords</a>.</dd>
   <dt><dfn data-lt="language maps|language map" id="dfn-language-maps" data-dfn-type="dfn">language map</dfn></dt><dd>
     An <a href="#dfn-language-maps" class="internalDFN" data-link-type="dfn">language map</a> is a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary">dictionary</a> value of a <a href="#dfn-terms" class="internalDFN" data-link-type="dfn">term</a> defined with
     <code>@container</code> set to <code>@language</code>, whose keys <em class="rfc2119" title="MUST">MUST</em> be <a href="#dfn-strings" class="internalDFN" data-link-type="dfn">strings</a> representing
@@ -1244,7 +1244,7 @@ The content <span class="hljs-keyword">of</span> the example is <span class="hlj
   <dt><dfn data-lt="graph|graphs|linked data graph" id="dfn-graph" data-dfn-type="dfn">linked data graph</dfn></dt><dd>
     A labeled directed <a class="externalDFN" href="https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-graph">graph</a>, i.e., a set of <a href="#dfn-nodes" class="internalDFN" data-link-type="dfn">nodes</a>
     connected by <a href="#dfn-edges" class="internalDFN" data-link-type="dfn">edges</a>,
-    as specified in the <a href="http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180911/#data-model">Data Model</a>
+    as specified in the <a href="http://www.w3.org/TR/2018/WD-json-ld11-20180911/#data-model">Data Model</a>
     section of the JSON-LD specification [<cite><a class="bibref" href="#bib-json-ld11">JSON-LD11</a></cite>].
     A <a href="#dfn-graph" class="internalDFN" data-link-type="dfn">linked data graph</a> is a generalized representation of an
     <a href="https://www.w3.org/TR/rdf11-concepts/#dfn-rdf-graph">RDF graph</a>
@@ -3807,7 +3807,7 @@ the data type to be specified with each piece of data.</p>
 }</pre>
         </div>
 
-  <p><a href="#dfn-blank-node-identifiers" class="internalDFN" data-link-type="dfn">Blank node identifiers</a> may be automatically introduced by algorithms such as <a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-flattening">flattening</a>, but they are also useful for authors to describe such relationships directly.</p>
+  <p><a href="#dfn-blank-node-identifiers" class="internalDFN" data-link-type="dfn">Blank node identifiers</a> may be automatically introduced by algorithms such as <a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-flattened">flattening</a>, but they are also useful for authors to describe such relationships directly.</p>
 
 
 <section class="informative" id="identifying-blank-nodes"><h4 id="x4-5-1-identifying-blank-nodes"><span class="secno">4.5.1 </span>Identifying Blank Nodes&nbsp;<span class="permalink"><a href="#identifying-blank-nodes" aria-label="Permalink for 4.5.1 Identifying Blank Nodes" title="Permalink for 4.5.1 Identifying Blank Nodes"><span>§</span></a></span></h4><p><em>This section is non-normative.</em></p>
@@ -5257,22 +5257,22 @@ the data type to be specified with each piece of data.</p>
 
 <dl>
 <dt>Expanded Document Form</dt>
-<dd><a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-expansion">Expansion</a> is the process of taking a JSON-LD document and applying a
+<dd><a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-expanded">Expansion</a> is the process of taking a JSON-LD document and applying a
     <a href="#dfn-contexts" class="internalDFN" data-link-type="dfn">context</a> so that the <code>@context</code> is no longer necessary.
     This process is described further in <a href="#expanded-document-form" class="sectionRef sec-ref">section <span class="secno">5.1</span> <span class="sec-title">Expanded Document Form</span></a>.</dd>
 <dt>Compacted Document Form</dt>
-<dd><a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-compaction">Compaction</a> is the process
+<dd><a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-compact">Compaction</a> is the process
   of applying a provided <a href="#dfn-contexts" class="internalDFN" data-link-type="dfn">context</a> to an existing JSON-LD document. This process
   is described further in <a href="#compacted-document-form" class="sectionRef sec-ref">section <span class="secno">5.2</span> <span class="sec-title">Compacted Document Form</span></a>.</dd>
 <dt>Flattened Document Form</dt>
-<dd><a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-flattening">Flattening</a> is the process of extracting
+<dd><a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-flattened">Flattening</a> is the process of extracting
   embedded nodes to the top level of the JSON tree, and replacing the embedded
   node with a reference, creating blank node identifiers as necessary. This
   process is described further in <a href="#flattened-document-form" class="sectionRef sec-ref">section <span class="secno">5.3</span> <span class="sec-title">Flattened Document Form</span></a>.</dd>
 <dt>Framed Document Form</dt>
 <dd><a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-framing-20180911/#dfn-framing">Framing</a> is used to shape
   the data in a JSON-LD document, using an example <a href="#dfn-json-ld-frame" class="internalDFN" data-link-type="dfn">frame</a> document
-  which is used to both match the <a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-flattening">flattened</a> data and show an example
+  which is used to both match the <a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-flattened">flattened</a> data and show an example
   of how the resulting data should be shaped. This
   process is described further in <a href="#framed-document-form" class="sectionRef sec-ref">section <span class="secno">5.4</span> <span class="sec-title">Framed Document Form</span></a>.</dd>
 </dl>
@@ -5281,7 +5281,7 @@ the data type to be specified with each piece of data.</p>
 
   <p>The JSON-LD 1.1 Processing Algorithms and API specification [<cite><a class="bibref" href="#bib-json-ld11-api">JSON-LD11-API</a></cite>]
     defines a method for <em>expanding</em> a JSON-LD document.
-    <dfn data-dfn-type="dfn" id="dfn-expansion"><a href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-expansion">Expansion</a></dfn> is the process of taking a JSON-LD document and applying a
+    <dfn data-dfn-type="dfn" id="dfn-expansion"><a href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-expanded">Expansion</a></dfn> is the process of taking a JSON-LD document and applying a
     <a href="#dfn-contexts" class="internalDFN" data-link-type="dfn">context</a> such that all IRIs, types, and values
     are expanded so that the <code>@context</code> is no longer necessary.</p>
 
@@ -5328,7 +5328,7 @@ the data type to be specified with each piece of data.</p>
 <section class="informative" id="compacted-document-form"><h3 id="x5-2-compacted-document-form"><span class="secno">5.2 </span>Compacted Document Form&nbsp;<span class="permalink"><a href="#compacted-document-form" aria-label="Permalink for 5.2 Compacted Document Form" title="Permalink for 5.2 Compacted Document Form"><span>§</span></a></span></h3><p><em>This section is non-normative.</em></p>
 
   <p>The JSON-LD 1.1 Processing Algorithms and API specification [<cite><a class="bibref" href="#bib-json-ld11-api">JSON-LD11-API</a></cite>] defines
-    a method for <em>compacting</em> a JSON-LD document. <dfn data-dfn-type="dfn" id="dfn-compaction"><a href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-compaction">Compaction</a></dfn> is the process
+    a method for <em>compacting</em> a JSON-LD document. <dfn data-dfn-type="dfn" id="dfn-compaction"><a href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-compact">Compaction</a></dfn> is the process
     of applying a developer-supplied <a href="#dfn-contexts" class="internalDFN" data-link-type="dfn">context</a> to shorten <a href="#dfn-iris" class="internalDFN" data-link-type="dfn">IRIs</a>
     to <a href="#dfn-terms" class="internalDFN" data-link-type="dfn">terms</a> or <a href="#dfn-compact-iris" class="internalDFN" data-link-type="dfn">compact IRIs</a>
     and JSON-LD values expressed in expanded form to simple values such as
@@ -5397,7 +5397,7 @@ the data type to be specified with each piece of data.</p>
 
   <p>The JSON-LD 1.1 Processing Algorithms and API specification [<cite><a class="bibref" href="#bib-json-ld11-api">JSON-LD11-API</a></cite>] defines
     a method for <em>flattening</em> a JSON-LD document.
-    <dfn data-lt="flattened|flattening" data-dfn-type="dfn" id="dfn-flattened"><a href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-flattening">Flattening</a></dfn> collects all
+    <dfn data-lt="flattened|flattening" data-dfn-type="dfn" id="dfn-flattened"><a href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-flattened">Flattening</a></dfn> collects all
     properties of a <a href="#dfn-nodes" class="internalDFN" data-link-type="dfn">node</a> in a single <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary">dictionary</a> and labels
     all <a href="#dfn-blank-nodes" class="internalDFN" data-link-type="dfn">blank nodes</a> with
     <a href="#dfn-blank-node-identifiers" class="internalDFN" data-link-type="dfn">blank node identifiers</a>.
@@ -5470,7 +5470,7 @@ the data type to be specified with each piece of data.</p>
   <p>The JSON-LD 1.1 Framing specification [<cite><a class="bibref" href="#bib-json-ld11-framing">JSON-LD11-FRAMING</a></cite>] defines
     a method for <em>framing</em> a JSON-LD document. <dfn data-dfn-type="dfn" id="dfn-framing"><a href="http://www.w3.org/TR/2018/WD-json-ld11-framing-20180911/#dfn-framing">Framing</a></dfn> is used to shape
     the data in a JSON-LD document, using an example <a href="#dfn-json-ld-frame" class="internalDFN" data-link-type="dfn">frame</a> document
-    which is used to both match the <a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-flattening">flattened</a> data and show an example
+    which is used to both match the <a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-flattened">flattened</a> data and show an example
     of how the resulting data should be shaped.</p>
 
   <p>For example, assume the following JSON-LD frame:</p>
@@ -6175,7 +6175,7 @@ Content-Type: <span class="hl-bold">application/json</span>
     <p>A <a href="#dfn-nested-properties" class="internalDFN" data-link-type="dfn">nested property</a> is used to gather <a href="#dfn-properties" class="internalDFN" data-link-type="dfn">properties</a> of a <a href="#dfn-node-objects" class="internalDFN" data-link-type="dfn">node object</a> in a separate
       <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary">dictionary</a>, or <a href="#dfn-arrays" class="internalDFN" data-link-type="dfn">array</a> of <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-dictionary">dictionaries</a> which are not
       <a href="#dfn-value-objects" class="internalDFN" data-link-type="dfn">value objects</a>. It is semantically transparent and is removed
-      during the process of <a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-expansion">expansion</a>. Property nesting is recursive, and
+      during the process of <a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-expanded">expansion</a>. Property nesting is recursive, and
       collections of nested properties may contain further nesting.</p>
 
     <p>Semantically, nesting is treated as if the properties and values were declared directly
@@ -6394,7 +6394,7 @@ Content-Type: <span class="hl-bold">application/json</span>
     <ol>
       <li>Expand the JSON-LD document, removing any context; this ensures
         that properties, types, and values are given their full representation
-        as <a href="#dfn-iris" class="internalDFN" data-link-type="dfn">IRIs</a> and expanded values. <a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-expansion">Expansion</a>
+        as <a href="#dfn-iris" class="internalDFN" data-link-type="dfn">IRIs</a> and expanded values. <a data-link-type="dfn" href="http://www.w3.org/TR/2018/WD-json-ld11-api-20180911/#dfn-expanded">Expansion</a>
         is discussed further in <a class="sectionRef sec-ref" href="#expanded-document-form">section <span class="secno">5.1</span> <span class="sec-title">Expanded Document Form</span></a>.</li>
       <li>Flatten the document, which turns the document into an array of
         <a href="#dfn-node-objects" class="internalDFN" data-link-type="dfn">node objects</a>. Flattening is discussed
@@ -7122,5 +7122,5 @@ _:b0 foaf:name <span class="hljs-string">"Dave Longley"</span> .
       </dl></section><section id="informative-references">
         <h3 id="i-2-informative-references"><span class="secno">I.2 </span>Informative references&nbsp;<span class="permalink"><a href="#informative-references" aria-label="Permalink for I.2 Informative references" title="Permalink for I.2 Informative references"><span>§</span></a></span></h3>
       <dl class="bibliography">
-        <dt id="bib-html52">[HTML52]</dt><dd><a href="https://www.w3.org/TR/html52/"><cite>HTML 5.2</cite></a>. Steve Faulkner; Arron Eicholz; Travis Leithead; Alex Danilo; Sangwhan Moon. W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/html52/">https://www.w3.org/TR/html52/</a></dd><dt id="bib-http11">[HTTP11]</dt><dd><a href="https://tools.ietf.org/html/rfc7230"><cite>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</cite></a>. R. Fielding, Ed.; J. Reschke, Ed.. IETF. June 2014. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7230">https://tools.ietf.org/html/rfc7230</a></dd><dt id="bib-json-ld11">[JSON-LD11]</dt><dd><a href="http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180911/"><cite>JSON-LD 1.1</cite></a>. Gregg Kellogg. W3C. 11 September 2018. W3C First Public Working Draft. URL: <a href="http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180911/">http://www.w3.org/TR/2018/WD-json-ld11-syntax-20180911/</a></dd><dt id="bib-json-ld11-framing">[JSON-LD11-FRAMING]</dt><dd><a href="http://www.w3.org/TR/2018/WD-json-ld11-framing-20180911/"><cite>JSON-LD 1.1 Framing</cite></a>. Gregg Kellogg. W3C. 11 September 2018. W3C First Public Working Draft. URL: <a href="http://www.w3.org/TR/2018/WD-json-ld11-framing-20180911/">http://www.w3.org/TR/2018/WD-json-ld11-framing-20180911/</a></dd><dt id="bib-ld-glossary">[ld-glossary]</dt><dd><a href="https://www.w3.org/TR/ld-glossary/"><cite>Linked Data Glossary</cite></a>. Bernadette Hyland; Ghislain Auguste Atemezing; Michael Pendleton; Biplav Srivastava. W3C. 27 June 2013. W3C Note. URL: <a href="https://www.w3.org/TR/ld-glossary/">https://www.w3.org/TR/ld-glossary/</a></dd><dt id="bib-linked-data">[LINKED-DATA]</dt><dd><a href="https://www.w3.org/DesignIssues/LinkedData.html"><cite>Linked Data Design Issues</cite></a>. Tim Berners-Lee. W3C. 27 July 2006. W3C-Internal Document. URL: <a href="https://www.w3.org/DesignIssues/LinkedData.html">https://www.w3.org/DesignIssues/LinkedData.html</a></dd><dt id="bib-microdata">[MICRODATA]</dt><dd><a href="https://www.w3.org/TR/microdata/"><cite>HTML Microdata</cite></a>. Charles McCathie Nevile; Dan Brickley; Ian Hickson. W3C. 26 April 2018. W3C Working Draft. URL: <a href="https://www.w3.org/TR/microdata/">https://www.w3.org/TR/microdata/</a></dd><dt id="bib-rdfa-core">[RDFA-CORE]</dt><dd><a href="https://www.w3.org/TR/rdfa-core/"><cite>RDFa Core 1.1 - Third Edition</cite></a>. Ben Adida; Mark Birbeck; Shane McCarron; Ivan Herman et al. W3C. 17 March 2015. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdfa-core/">https://www.w3.org/TR/rdfa-core/</a></dd><dt id="bib-rfc7049">[RFC7049]</dt><dd><a href="https://tools.ietf.org/html/rfc7049"><cite>Concise Binary Object Representation (CBOR)</cite></a>. C. Bormann; P. Hoffman. IETF. October 2013. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7049">https://tools.ietf.org/html/rfc7049</a></dd><dt id="bib-rfc7946">[RFC7946]</dt><dd><a href="https://tools.ietf.org/html/rfc7946"><cite>The GeoJSON Format</cite></a>. H. Butler; M. Daly; A. Doyle; S. Gillies; S. Hagen; T. Schaub. IETF. August 2016. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7946">https://tools.ietf.org/html/rfc7946</a></dd><dt id="bib-turtle">[TURTLE]</dt><dd><a href="https://www.w3.org/TR/turtle/"><cite>RDF 1.1 Turtle</cite></a>. Eric Prud'hommeaux; Gavin Carothers. W3C. 25 February 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/turtle/">https://www.w3.org/TR/turtle/</a></dd><dt id="bib-yaml">[YAML]</dt><dd><a href="http://yaml.org/spec/1.2/spec.html"><cite>YAML Ain’t Markup Language (YAML™) Version 1.2</cite></a>. Oren Ben-Kiki; Clark Evans; Ingy döt Net.1 October 2009. URL: <a href="http://yaml.org/spec/1.2/spec.html">http://yaml.org/spec/1.2/spec.html</a></dd>
+        <dt id="bib-html52">[HTML52]</dt><dd><a href="https://www.w3.org/TR/html52/"><cite>HTML 5.2</cite></a>. Steve Faulkner; Arron Eicholz; Travis Leithead; Alex Danilo; Sangwhan Moon. W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/html52/">https://www.w3.org/TR/html52/</a></dd><dt id="bib-http11">[HTTP11]</dt><dd><a href="https://tools.ietf.org/html/rfc7230"><cite>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</cite></a>. R. Fielding, Ed.; J. Reschke, Ed.. IETF. June 2014. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7230">https://tools.ietf.org/html/rfc7230</a></dd><dt id="bib-json-ld11">[JSON-LD11]</dt><dd><a href="http://www.w3.org/TR/2018/WD-json-ld11-20180911/"><cite>JSON-LD 1.1</cite></a>. Gregg Kellogg. W3C. 11 September 2018. W3C First Public Working Draft. URL: <a href="http://www.w3.org/TR/2018/WD-json-ld11-20180911/">http://www.w3.org/TR/2018/WD-json-ld11-20180911/</a></dd><dt id="bib-json-ld11-framing">[JSON-LD11-FRAMING]</dt><dd><a href="http://www.w3.org/TR/2018/WD-json-ld11-framing-20180911/"><cite>JSON-LD 1.1 Framing</cite></a>. Gregg Kellogg. W3C. 11 September 2018. W3C First Public Working Draft. URL: <a href="http://www.w3.org/TR/2018/WD-json-ld11-framing-20180911/">http://www.w3.org/TR/2018/WD-json-ld11-framing-20180911/</a></dd><dt id="bib-ld-glossary">[ld-glossary]</dt><dd><a href="https://www.w3.org/TR/ld-glossary/"><cite>Linked Data Glossary</cite></a>. Bernadette Hyland; Ghislain Auguste Atemezing; Michael Pendleton; Biplav Srivastava. W3C. 27 June 2013. W3C Note. URL: <a href="https://www.w3.org/TR/ld-glossary/">https://www.w3.org/TR/ld-glossary/</a></dd><dt id="bib-linked-data">[LINKED-DATA]</dt><dd><a href="https://www.w3.org/DesignIssues/LinkedData.html"><cite>Linked Data Design Issues</cite></a>. Tim Berners-Lee. W3C. 27 July 2006. W3C-Internal Document. URL: <a href="https://www.w3.org/DesignIssues/LinkedData.html">https://www.w3.org/DesignIssues/LinkedData.html</a></dd><dt id="bib-microdata">[MICRODATA]</dt><dd><a href="https://www.w3.org/TR/microdata/"><cite>HTML Microdata</cite></a>. Charles McCathie Nevile; Dan Brickley; Ian Hickson. W3C. 26 April 2018. W3C Working Draft. URL: <a href="https://www.w3.org/TR/microdata/">https://www.w3.org/TR/microdata/</a></dd><dt id="bib-rdfa-core">[RDFA-CORE]</dt><dd><a href="https://www.w3.org/TR/rdfa-core/"><cite>RDFa Core 1.1 - Third Edition</cite></a>. Ben Adida; Mark Birbeck; Shane McCarron; Ivan Herman et al. W3C. 17 March 2015. W3C Recommendation. URL: <a href="https://www.w3.org/TR/rdfa-core/">https://www.w3.org/TR/rdfa-core/</a></dd><dt id="bib-rfc7049">[RFC7049]</dt><dd><a href="https://tools.ietf.org/html/rfc7049"><cite>Concise Binary Object Representation (CBOR)</cite></a>. C. Bormann; P. Hoffman. IETF. October 2013. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7049">https://tools.ietf.org/html/rfc7049</a></dd><dt id="bib-rfc7946">[RFC7946]</dt><dd><a href="https://tools.ietf.org/html/rfc7946"><cite>The GeoJSON Format</cite></a>. H. Butler; M. Daly; A. Doyle; S. Gillies; S. Hagen; T. Schaub. IETF. August 2016. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7946">https://tools.ietf.org/html/rfc7946</a></dd><dt id="bib-turtle">[TURTLE]</dt><dd><a href="https://www.w3.org/TR/turtle/"><cite>RDF 1.1 Turtle</cite></a>. Eric Prud'hommeaux; Gavin Carothers. W3C. 25 February 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/turtle/">https://www.w3.org/TR/turtle/</a></dd><dt id="bib-yaml">[YAML]</dt><dd><a href="http://yaml.org/spec/1.2/spec.html"><cite>YAML Ain’t Markup Language (YAML™) Version 1.2</cite></a>. Oren Ben-Kiki; Clark Evans; Ingy döt Net.1 October 2009. URL: <a href="http://yaml.org/spec/1.2/spec.html">http://yaml.org/spec/1.2/spec.html</a></dd>
       </dl></section></section><p role="navigation" id="back-to-top"><a href="#title"><abbr title="Back to Top">↑</abbr></a></p><script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>
