@@ -1,12 +1,25 @@
 jobs:
   include:
     - stage: common
+      name: "Verify common files are consistent"
       script:
         - git remote add -f b https://github.com/w3c/json-ld-wg.git
         - git remote update
         - git diff --exit-code remotes/b/master -- common
     - stage: examples
+      name: "Verify examples are consistent"
       language: ruby
       rvm: 2.5
       bundler_args: --without debug
       script: "rake test"
+    - stage: echidna
+      name: "Enchidna Publication"
+      if: branch = publications
+      env:
+        - URL="http://w3c.github.io/manifest/ECHIDNA"
+        - DECISION="<URL to WG decision to do continuous publishing>"
+        - secure: "<encryped token>"
+      script:
+        - echo "ok"
+      after_success:
+        - test $TRAVIS_PULL_REQUEST = false && curl "https://labs.w3.org/echidna/api/request" --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN"
