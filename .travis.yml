@@ -1,3 +1,7 @@
+sudo: required
+dist: trusty
+services:
+  - docker
 jobs:
   include:
     - stage: common
@@ -12,6 +16,11 @@ jobs:
       rvm: 2.5
       bundler_args: --without debug
       script: "rake test"
+    - stage: links
+      name: "Check internal links"
+      script:
+        - docker pull stupchiy/checklink
+        - docker run stupchiy/checklink -b -X "http(s)?:" https://labs.w3.org/spec-generator/?type=respec&url=https://w3c.github.io/json-ld-syntax/?specStatus=WD;shortName=json-ld11
     - stage: echidna
       name: "Enchidna Publication"
       if: branch = publications
