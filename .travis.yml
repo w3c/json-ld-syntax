@@ -20,7 +20,7 @@ jobs:
       name: "Check internal links"
       script:
         - docker pull stupchiy/checklink
-        - docker run -it stupchiy/checklink -b -X 'http(s)?:' 'https://labs.w3.org/spec-generator/?type=respec&url=https://w3c.github.io/json-ld-syntax/?specStatus=WD;shortName=json-ld11'
+        - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://rawgit.com/w3c/json-ld-syntax/${TRAVIS_BRANCH}/index.html?specStatus=WD;shortName=json-ld11"
     - stage: echidna
       name: "Enchidna Publication"
       if: branch = publications
