@@ -1,0 +1,4 @@
+Example 011: Type coercion-expanded
+---
+- http://schema.org/url:
+  - "@id": http://manu.sporny.org/

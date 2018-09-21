@@ -1,0 +1,39 @@
+<table class="statements" data-result-for="Context needs to be duplicated if @graph is not used-expanded">
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>http://manu.sporny.org/about#manu</td>
+<td>rdf:type</td>
+<td>schema:Person</td>
+</tr>
+        <tr>
+<td>http://manu.sporny.org/about#manu</td>
+<td>schema:name</td>
+<td>Manu Sporny</td>
+</tr>
+        <tr>
+<td>http://manu.sporny.org/about#manu</td>
+<td>schema:knows</td>
+<td>http://greggkellogg.net/foaf#me</td>
+</tr>
+        <tr>
+<td>http://greggkellogg.net/foaf#me</td>
+<td>rdf:type</td>
+<td>schema:Person</td>
+</tr>
+        <tr>
+<td>http://greggkellogg.net/foaf#me</td>
+<td>schema:name</td>
+<td>Gregg Kellogg</td>
+</tr>
+        <tr>
+<td>http://greggkellogg.net/foaf#me</td>
+<td>schema:knows</td>
+<td>http://manu.sporny.org/about#manu</td>
+</tr>
+      </tbody>
+    </table>

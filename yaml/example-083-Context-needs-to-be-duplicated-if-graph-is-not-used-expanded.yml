@@ -1,0 +1,16 @@
+Example 083: Context needs to be duplicated if @graph is not used-expanded
+---
+- "@id": http://manu.sporny.org/about#manu
+  "@type":
+  - http://schema.org/Person
+  http://schema.org/name:
+  - "@value": Manu Sporny
+  http://schema.org/knows:
+  - "@id": http://greggkellogg.net/foaf#me
+- "@id": http://greggkellogg.net/foaf#me
+  "@type":
+  - http://schema.org/Person
+  http://schema.org/name:
+  - "@value": Gregg Kellogg
+  http://schema.org/knows:
+  - "@id": http://manu.sporny.org/about#manu

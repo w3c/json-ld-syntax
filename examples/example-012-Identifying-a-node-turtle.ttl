@@ -1,0 +1,3 @@
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+<http://me.markus-lanthaler.com/> schema:name "Markus Lanthaler" .

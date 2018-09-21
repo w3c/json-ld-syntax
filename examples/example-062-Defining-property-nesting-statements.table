@@ -1,0 +1,24 @@
+<table class="statements" data-result-for="Defining property nesting-expanded">
+    <thead><tr>
+      <th>Subject</th>
+      <th>Property</th>
+      <th>Value</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td>http://example.org/myresource</td>
+      <td>foaf:homepage</td>
+      <td>http://example.org</td>
+    </tr>
+    <tr>
+      <td>http://example.org/myresource</td>
+      <td>skos:prefLabel</td>
+      <td>This is the main label for my resource</td>
+    </tr>
+    <tr>
+      <td>http://example.org/myresource</td>
+      <td>skos:altLabel</td>
+      <td>This is the other label</td>
+    </tr>
+    </tbody>
+    </table>

@@ -1,4 +1,0 @@
-{
-  "@id": "http://example.org/people#joebob",
-  "foaf:nick": [ "joe", "bob", "JB" ]
-}

@@ -1,0 +1,14 @@
+<table class="statements" data-result-for="Setting the document base in a document-expanded">
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>http://example.com/document.jsonld</td>
+<td>rdfs:label</td>
+<td>Just a simple document</td>
+</tr>
+      </tbody>
+    </table>

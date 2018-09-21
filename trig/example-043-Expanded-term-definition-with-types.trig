@@ -1,7 +1,0 @@
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-<http://example.com/people#john> foaf:age 41;
-   foaf:homepage <http://work.example.com/jsmith/>,
-     <http://personal.example.org/>;
-   foaf:name "John Smith" .

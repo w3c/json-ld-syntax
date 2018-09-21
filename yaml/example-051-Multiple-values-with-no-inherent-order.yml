@@ -1,7 +1,0 @@
-Example 051: Multiple values with no inherent order
----
-"@id": http://example.org/people#joebob
-foaf:nick:
-- joe
-- bob
-- JB

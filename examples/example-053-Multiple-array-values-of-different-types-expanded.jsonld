@@ -1,0 +1,10 @@
+[{
+  "@id": "http://example.org/people#michael",
+  "http://schema.org/name": [
+    {"@value": "Michael"},
+    {"@value": "Mike"},
+    {"@value": "Miguel", "@language": "es"},
+    {"@id": "https://www.wikidata.org/wiki/Q4927524" },
+    {"@value": 42}
+  ]
+}]

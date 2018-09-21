@@ -1,0 +1,5 @@
+[{
+  "@type": ["http://xmlns.com/foaf/0.1/Person"],
+  "http://xmlns.com/foaf/0.1/name": [{"@value": "Gregg Kellogg"}],
+  "@id": "http://example.com/about#gregg"
+}]

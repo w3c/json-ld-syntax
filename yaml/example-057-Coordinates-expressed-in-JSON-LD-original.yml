@@ -1,0 +1,26 @@
+Example 057: Coordinates expressed in JSON-LD-original
+---
+"@context":
+  "@vocab": https://purl.org/geojson/vocab#
+  type: "@type"
+  bbox:
+    "@container": "@list"
+  coordinates:
+    "@container": "@list"
+type: Feature
+bbox:
+- -10.0
+- -10.0
+- 10.0
+- 10.0
+geometry:
+  type: Polygon
+  coordinates:
+  - - - -10.0
+      - -10.0
+    - - 10.0
+      - -10.0
+    - - 10.0
+      - 10.0
+    - - -10.0
+      - -10.0

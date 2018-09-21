@@ -1,6 +1,0 @@
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
- [
-   <http://example.com/person#details> [ <http://example.com/organization#name> "Graz University of Technology"];
-   <http://example.com/person#name> "Markus Lanthaler"
- ] .

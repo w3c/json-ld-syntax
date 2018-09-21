@@ -1,8 +1,0 @@
-Example 061: An unordered collection of values in JSON-LD
----
-"@id": http://example.org/people#joebob
-foaf:nick:
-  "@set":
-  - joe
-  - bob
-  - jaybee

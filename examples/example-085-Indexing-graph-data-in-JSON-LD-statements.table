@@ -1,0 +1,67 @@
+<table class="statements" data-result-for="Indexing graph data in JSON-LD-expanded">
+      <thead><tr>
+<th>Graph</th>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+<th>Value Type</th>
+</tr></thead>
+      <tbody>
+      <tr>
+<td> </td>
+<td>http://example.com/</td>
+<td>rdf:type</td>
+<td>schema:Blog</td>
+<td></td>
+</tr>
+      <tr>
+<td> </td>
+<td>http://example.com/</td>
+<td>schema:name</td>
+<td>World Financial News</td>
+<td></td>
+</tr>
+      <tr>
+<td> </td>
+<td>http://example.com/</td>
+<td>schema:blogPost</td>
+<td>_:b1</td>
+<td></td>
+</tr>
+      <tr>
+<td> </td>
+<td>http://example.com/</td>
+<td>schema:blogPost</td>
+<td>_:b2</td>
+<td></td>
+</tr>
+      <tr>
+<td>_:b1</td>
+<td>http://example.com/posts/1/de</td>
+<td>schema:articleBody</td>
+<td>Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...</td>
+<td></td>
+</tr>
+      <tr>
+<td>_:b1</td>
+<td>http://example.com/posts/1/de</td>
+<td>schema:wordCount</td>
+<td>1204</td>
+<td>xsd:integer</td>
+</tr>
+      <tr>
+<td>_:b2</td>
+<td>http://example.com/posts/1/en</td>
+<td>schema:articleBody</td>
+<td>World commodities were up today with heavy trading of crude oil...</td>
+<td></td>
+</tr>
+      <tr>
+<td>_:b2</td>
+<td>http://example.com/posts/1/en</td>
+<td>schema:wordCount</td>
+<td>1539</td>
+<td>xsd:integer</td>
+</tr>
+      </tbody>
+    </table>

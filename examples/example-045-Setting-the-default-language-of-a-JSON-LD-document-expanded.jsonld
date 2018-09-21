@@ -1,0 +1,4 @@
+[{
+  "http://example.org/name": [{"@value": "花澄", "@language": "ja"}],
+  "http://example.org/occupation": [{"@value": "科学者", "@language": "ja"}]
+}]

@@ -1,0 +1,14 @@
+[{
+  "http://schema.org/name": [{"@value": "Manu Sporny"}],
+  "http://schema.org/affiliation": [
+    {
+      "@id": "https://digitalbazaar.com/",
+      "@type": ["http://schema.org/Corporation"],
+      "http://schema.org/name": [{"@value": "Digital Bazaar"}]
+    }, {
+      "@id": "https://spec-ops.io",
+      "@type": ["http://schema.org/ProfessionalService"],
+      "http://schema.org/name": [{"@value": "Spec-Ops"}]
+    }
+  ]
+}]

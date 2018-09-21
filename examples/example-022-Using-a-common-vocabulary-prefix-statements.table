@@ -1,0 +1,19 @@
+<table class="statements" data-result-for="Using a common vocabulary prefix-expanded">
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>http://example.org/places#BrewEats</td>
+<td>rdf:type</td>
+<td>schema:Restaurant</td>
+</tr>
+        <tr>
+<td>http://example.org/places#BrewEats</td>
+<td>schema:name</td>
+<td>Brew Eats</td>
+</tr>
+      </tbody>
+    </table>

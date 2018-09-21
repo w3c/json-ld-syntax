@@ -1,0 +1,29 @@
+<table class="statements" data-result-for="Specifying a local blank node identifier-expanded">
+    <thead><tr>
+      <th>Subject</th>
+      <th>Property</th>
+      <th>Value</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+      <td>_:b0</td>
+      <td>schema:name</td>
+      <td>Secret Agent 1</td>
+    </tr>
+    <tr>
+      <td>_:b0</td>
+      <td>schema:knows</td>
+      <td>_:b1</td>
+    </tr>
+    <tr>
+      <td>_:b1</td>
+      <td>schema:name</td>
+      <td>Secret Agent 2</td>
+    </tr>
+    <tr>
+      <td>_:b1</td>
+      <td>schema:knows</td>
+      <td>_:b0</td>
+    </tr>
+    </tbody>
+    </table>

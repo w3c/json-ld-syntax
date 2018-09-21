@@ -1,6 +1,0 @@
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-<http://example.com/> <http://example.com/vocab#booleans> false,
-     true;
-   <http://example.com/vocab#numbers> 14,
-     2.78e0 .

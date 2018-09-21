@@ -1,0 +1,5 @@
+Example 015: Using a term to specify the type-expanded
+---
+- "@id": http://example.org/places#BrewEats
+  "@type":
+  - http://schema.org/Person

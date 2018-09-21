@@ -1,0 +1,4 @@
+Example 010: Term expansion from context definition-expanded
+---
+- http://schema.org/name:
+  - "@value": Manu Sporny

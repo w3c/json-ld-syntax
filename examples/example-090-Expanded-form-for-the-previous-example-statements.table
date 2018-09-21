@@ -1,0 +1,19 @@
+<table class="statements" data-result-for="Expanded form for the previous example-expanded">
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>_:b0</td>
+<td>foaf:name</td>
+<td>Manu Sporny</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>foaf:homepage</td>
+<td>http://manu.sporny.org/</td>
+</tr>
+      </tbody>
+    </table>

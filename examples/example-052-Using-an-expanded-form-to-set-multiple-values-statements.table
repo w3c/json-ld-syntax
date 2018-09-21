@@ -1,0 +1,22 @@
+<table class="statements" data-result-for="Using an expanded form to set multiple values-expanded">
+  <thead><tr>
+    <th>Subject</th>
+    <th>Property</th>
+    <th>Value</th>
+    <th>Language</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+    <td>http://example.org/articles/8</td>
+    <td>dc:title</td>
+    <td>Das Kapital</td>
+    <td>de</td>
+  </tr>
+  <tr>
+    <td>http://example.org/articles/8</td>
+    <td>dc:title</td>
+    <td>Capital</td>
+    <td>en</td>
+  </tr>
+  </tbody>
+  </table>

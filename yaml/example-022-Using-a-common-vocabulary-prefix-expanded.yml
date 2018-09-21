@@ -1,0 +1,7 @@
+Example 022: Using a common vocabulary prefix-expanded
+---
+- "@id": http://example.org/places#BrewEats
+  "@type":
+  - http://schema.org/Restaurant
+  http://schema.org/name:
+  - "@value": Brew Eats

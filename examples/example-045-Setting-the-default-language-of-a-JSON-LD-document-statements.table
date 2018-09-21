@@ -1,0 +1,22 @@
+<table class="statements" data-result-for="Setting the default language of a JSON-LD document-expanded">
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+<th>Language</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>_:b0</td>
+<td>http://example.org/name</td>
+<td>花澄</td>
+<td>ja</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>http://example.org/occupation</td>
+<td>科学者</td>
+<td>ja</td>
+</tr>
+      </tbody>
+    </table>

@@ -1,3 +1,0 @@
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-<http://example.com/document.jsonld> <http://www.w3.org/2000/01/rdf-schema#label> "Just a simple document" .

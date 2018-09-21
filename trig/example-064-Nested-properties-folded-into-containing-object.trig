@@ -1,7 +1,0 @@
-@prefix ex: <http://example.org/> .
-@prefix schema: <http://schema.org/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-ex:myresource schema:description <http://example.org>;
-   <http://www.w3.org/2004/02/skos/core#altLabel> "This is the other label";
-   <http://www.w3.org/2004/02/skos/core#prefLabel> "This is the main label for my resource" .

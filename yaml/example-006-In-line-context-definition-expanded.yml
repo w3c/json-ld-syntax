@@ -1,0 +1,8 @@
+Example 006: In-line context definition-expanded
+---
+- http://schema.org/name:
+  - "@value": Manu Sporny
+  http://schema.org/url:
+  - "@id": http://manu.sporny.org/
+  http://schema.org/image:
+  - "@id": http://manu.sporny.org/images/manu.png

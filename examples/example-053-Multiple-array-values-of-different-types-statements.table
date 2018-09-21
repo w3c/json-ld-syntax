@@ -1,0 +1,46 @@
+<table class="statements" data-result-for="Multiple array values of different types-expanded">
+  <thead><tr>
+    <th>Subject</th>
+    <th>Property</th>
+    <th>Value</th>
+    <th>Language</th>
+    <th>Value Type</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+    <td>http://example.org/people#michael</td>
+    <td>schema:name</td>
+    <td>Michael</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>http://example.org/people#michael</td>
+    <td>schema:name</td>
+    <td>Mike</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>http://example.org/people#michael</td>
+    <td>schema:name</td>
+    <td>Miguel</td>
+    <td>es</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>http://example.org/people#michael</td>
+    <td>schema:name</td>
+    <td>https://www.wikidata.org/wiki/Q4927524</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>http://example.org/people#michael</td>
+    <td>schema:name</td>
+    <td>42</td>
+    <td> </td>
+    <td>xsd:integer</td>
+  </tr>
+  </tbody>
+  </table>
