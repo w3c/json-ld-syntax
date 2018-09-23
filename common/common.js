@@ -211,6 +211,9 @@ function updateExample(doc, content) {
 
 function unComment(doc, content) {
   // perform transformations to make it render and prettier
-  return content.replace(/<!--/, '')
-    .replace(/-->/, '');
+  return content
+    .replace(/<!--/, '')
+    .replace(/-->/, '')
+    .replace(/< !--/g, '<!--')
+    .replace(/-- >/g, '-->');
 }

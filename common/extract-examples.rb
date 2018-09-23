@@ -238,6 +238,7 @@ ARGV.each do |input|
           frame: element.attr('data-frame'),
           result_for: element.attr('data-result-for'),
           options: element.attr('data-options'),
+          target: element.attr('data-target'),
           element: element.name,
           line: element.line,
           warn: warn,
@@ -273,6 +274,8 @@ ARGV.each do |input|
   examples.values.sort_by {|ex| ex[:number]}.each do |ex|
     next if number && number != ex[:number]
 
+    xpath = '//script[@type="application/ld+json"]'
+    xpath += %([@id="#{ex[:target][1..-1]}"]) if ex[:target]
     args = []
     content = ex[:content]
 
@@ -316,6 +319,16 @@ ARGV.each do |input|
           $stdout.write "F".colorize(:red)
           next
         end
+        script_content = doc.at_xpath(xpath)
+        if script_content
+          # Remove (faked) XML comments and unescape sequences
+          content = script_content
+            .inner_html
+            .sub(/^\s*< !--/, '')
+            .sub(/-- >\s*$/, '')
+            .gsub(/&lt;/, '<')
+        end
+          
       rescue Nokogiri::XML::SyntaxError => exception
         errors << "Example #{ex[:number]} at line #{ex[:line]} parse error: #{exception.message}"
         $stdout.write "F".colorize(:red)
@@ -359,13 +372,13 @@ ARGV.each do |input|
 
     # Set API to use
     method = case
-    when ex[:compact] then :compact
-    when ex[:flatten] then :flatten
-    when ex[:fromRdf] then :fromRdf
-    when ex[:toRdf]   then :toRdf
-    when ex[:ext] == 'table' then :fromTable
-    when ex[:ext] == 'json' then nil
-    else                   :expand
+    when ex[:compact]        then :compact
+    when ex[:flatten]        then :flatten
+    when ex[:fromRdf]        then :fromRdf
+    when ex[:toRdf]          then :toRdf
+    when ex[:ext] == 'table' then :toRdf
+    when ex[:ext] == 'json'  then nil
+    else                          :expand
     end
 
     # Set args to parse example content
@@ -395,7 +408,7 @@ ARGV.each do |input|
         options[:base] = ex[:base] if ex[:base]
         args = [StringIO.new(examples[ex[:context_for]][:content]), StringIO.new(content), options]
       end
-    elsif ex[:ext] == 'jsonld'
+    elsif %w(jsonld html).include?(ex[:ext])
       # Either exapand with this external context, or compact using it
       case method
       when :expand, :toRdf, :fromRdf
@@ -418,7 +431,40 @@ ARGV.each do |input|
         next
       end
 
-      args[0] = StringIO.new(examples[ex[:result_for]][:content])
+      # Set argument to referenced content to be parsed
+      args[0] = if examples[ex[:result_for]][:ext] == 'html' && method == :expand
+        # If we are expanding, and the reference is HTML, find the first script element.
+        doc = Nokogiri::HTML.parse(examples[ex[:result_for]][:content])
+        script_content = doc.at_xpath(xpath)
+        unless script_content
+          errors << "Example #{ex[:number]} at line #{ex[:line]} references example #{ex[:result_for].inspect} with no JSON-LD script element"
+          $stdout.write "F".colorize(:red)
+          next
+        end
+        StringIO.new(script_content
+          .inner_html
+          .sub(/^\s*< !--/, '')
+          .sub(/-- >\s*$/, '')
+          .gsub(/&lt;/, '<'))
+      elsif examples[ex[:result_for]][:ext] == 'html' && ex[:target]
+        # Only use the targeted script
+        doc = Nokogiri::HTML.parse(examples[ex[:result_for]][:content])
+        script_content = doc.at_xpath(xpath)
+        unless script_content
+          errors << "Example #{ex[:number]} at line #{ex[:line]} references example #{ex[:result_for].inspect} with no JSON-LD script element"
+          $stdout.write "F".colorize(:red)
+          next
+        end
+        StringIO.new(script_content
+          .to_html
+          .sub(/^\s*< !--/, '')
+          .sub(/-- >\s*$/, '')
+          .gsub(/&lt;/, '<'))
+      else
+        StringIO.new(examples[ex[:result_for]][:content])
+      end
+
+      # :frame option indicates the frame to use on the referenced content
       if ex[:frame] && !examples[ex[:frame]]
         errors << "Example #{ex[:number]} at line #{ex[:line]} references unknown frame #{ex[:frame].inspect}"
         $stdout.write "F".colorize(:red)
@@ -428,6 +474,7 @@ ARGV.each do |input|
         args = [args[0], StringIO.new(examples[ex[:frame]][:content]), options]
       end
 
+      # :context option indicates the context to use on the referenced content
       if ex[:context] && !examples[ex[:context]]
         errors << "Example #{ex[:number]} at line #{ex[:line]} references unknown context #{ex[:context].inspect}"
         $stdout.write "F".colorize(:red)
@@ -458,21 +505,22 @@ ARGV.each do |input|
     end
 
     # Generate result
+    # * If result_for is set, this is for the referenced example
+    # * otherwise, this is for this example
     begin
+      ext = ex[:result_for] ? examples[ex[:result_for]][:ext] : ex[:ext]
       result = case method
       when nil then nil
       when :fromRdf
-        ext = ex[:result_for] ? examples[ex[:result_for]][:ext] : ex[:ext]
         args[0] = RDF::Reader.for(file_extension: ext).new(args[0])
         JSON::LD::API.fromRdf(*args)
       when :toRdf
-        RDF::Dataset.new statements: JSON::LD::API.toRdf(*args)
-      when :fromTable
-        begin
-          table_to_dataset(content)
-        rescue
-          errors << "Example #{ex[:number]} at line #{ex[:line]} raised error reading table: #{$!}"
-          RDF::Dataset.new
+        if ext == 'html'
+          # If the referenced example is HTML, read it using the RDFa reader
+          # FIXME: the API may be updated to provide a native mechanism for this
+          RDF::Dataset.new statements: RDF::RDFa::Reader.new(*args)
+        else
+          RDF::Dataset.new statements: JSON::LD::API.toRdf(*args)
         end
       else
         JSON::LD::API.method(method).call(*args)
@@ -500,8 +548,12 @@ ARGV.each do |input|
           expected = RDF::Dataset.new(statements: reader)
           $stderr.puts "expected:\n" + expected.to_trig if verbose
         when 'table'
-          reader = RDF::Reader.for(file_extension: examples[ex[:result_for]][:ext]).new(args[0])
-          expected = RDF::Dataset.new(statements: reader)
+          expected = begin
+            table_to_dataset(content)
+          rescue
+            errors << "Example #{ex[:number]} at line #{ex[:line]} raised error reading table: #{$!}"
+            RDF::Dataset.new
+          end
             
           if verbose
             $stderr.puts "expected:\n" + expected.to_trig
