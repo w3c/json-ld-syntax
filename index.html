@@ -8329,41 +8329,308 @@ the data type to be specified explicitly with each piece of data.</p>
     ignored for such documents.</p>
 </section>
 
-<section class="informative"><h2>Embedding JSON-LD in HTML Documents</h2>
+<section class="changed"><h2>Embedding JSON-LD in HTML Documents</h2>
 
   <p>HTML <a data-cite="HTML52/semantics-scripting.html#the-script-element">script elements</a> can be used to embed blocks of data in documents.
     This way, JSON-LD content can be easily embedded in HTML [[HTML52]] by placing
     it in a script element with the <code>type</code> attribute set to
     <code>application/ld+json</code>.</p>
 
-  <pre class="example nohighlight" data-transform="updateExample"
-       data-content-type="text/html"
-       data-ignore
-       title="Embedding JSON-LD in HTML">
-  <!--
-  ****<script type="application/ld+json">****
-  {
-    "@context": "https://json-ld.org/contexts/person.jsonld",
-    "@id": "http://dbpedia.org/resource/John_Lennon",
-    "name": "John Lennon",
-    "born": "1940-10-09",
-    "spouse": "http://dbpedia.org/resource/Cynthia_Lennon"
-  }
-  ****</script>****
-  -->
-  </pre>
+   <aside class="example ds-selector-tabs"
+           title="Embedding JSON-LD in HTML">
+    <div class="selectors">
+      <button class="selected" data-selects="original">Original</button>
+      <button data-selects="expanded">Expanded</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+    </div>
+    <pre class="original selected nohighlight" data-transform="updateExample"
+         data-content-type="text/html">
+    <!--
+    ****<script type="application/ld+json">****
+    {
+      "@context": "https://json-ld.org/contexts/person.jsonld",
+      "@id": "http://dbpedia.org/resource/John_Lennon",
+      "name": "John Lennon",
+      "born": "1940-10-09",
+      "spouse": "http://dbpedia.org/resource/Cynthia_Lennon"
+    }
+    ****</script>****
+    -->
+    </pre>
+    <pre class="expanded"
+         data-transform="updateExample"
+         data-result-for="Embedding JSON-LD in HTML-original">
+    <!--
+    [{
+      "@id": "http://dbpedia.org/resource/John_Lennon",
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "John Lennon"}],
+      "http://schema.org/birthDate": [
+        {"@value": "1940-10-09", "@type": "http://www.w3.org/2001/XMLSchema#date"}
+      ],
+      "http://schema.org/spouse": [
+        {"@id": "http://dbpedia.org/resource/Cynthia_Lennon"}
+      ]
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Embedding JSON-LD in HTML-expanded"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
+      <tbody>
+        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>foaf:name</td><td>John Lennon</td><td>&nbsp;</td></tr>
+        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:birthDate</td><td>1940-10-09</td><td>xsd:date</td></tr>
+        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:spouse</td><td>http://dbpedia.org/resource/Cynthia_Lennon</td><td>&nbsp;</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-transform="updateExample"
+         data-result-for="Embedding JSON-LD in HTML-expanded"
+         data-to-rdf>
+    <!--
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+    @prefix schema: <http://schema.org/> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+    <http://dbpedia.org/resource/John_Lennon> foaf:name "John Lennon";
+       schema:birthDate "1940-10-09"^^xsd:date;
+       schema:spouse <http://dbpedia.org/resource/Cynthia_Lennon> .
+    -->
+    </pre>
+  </aside>
 
   <p>Depending on how the HTML document is served, certain strings may need
-    to be escaped.</p>
+    to be escaped. See
+    <a href="https://www.w3.org/TR/html52/semantics-scripting.html#restrictions-for-contents-of-script-elements">
+      Restrictions for contents of <code>script</code> elements
+    </a> in [[!HTML52]] for details. In particular, the content MAY be enclosed
+    in the HTML comment open (<code>&lt;!--</code>) and comment close (<code>--&gt;</code>) text sequences</p>
+
+   <aside class="example ds-selector-tabs"
+           title="Embedding JSON-LD in HTML with comments">
+    <div class="selectors">
+      <button class="selected" data-selects="original">Original</button>
+      <button data-selects="expanded">Expanded</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+    </div>
+    <pre class="original selected" data-transform="updateExample"
+         data-content-type="text/html">
+    <!--
+    <script type="application/ld+json">
+    < !--
+    {
+      "@context": "https://json-ld.org/contexts/person.jsonld",
+      "@id": "http://dbpedia.org/resource/John_Lennon",
+      "name": "John Lennon",
+      "born": "1940-10-09",
+      "spouse": "http://dbpedia.org/resource/Cynthia_Lennon"
+    }
+    -- >
+    </script>
+    -->
+    </pre>
+    <pre class="expanded"
+         data-transform="updateExample"
+         data-result-for="Embedding JSON-LD in HTML with comments-original">
+    <!--
+    [{
+      "@id": "http://dbpedia.org/resource/John_Lennon",
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "John Lennon"}],
+      "http://schema.org/birthDate": [
+        {"@value": "1940-10-09", "@type": "http://www.w3.org/2001/XMLSchema#date"}
+      ],
+      "http://schema.org/spouse": [
+        {"@id": "http://dbpedia.org/resource/Cynthia_Lennon"}
+      ]
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Embedding JSON-LD in HTML with comments-expanded"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
+      <tbody>
+        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>foaf:name</td><td>John Lennon</td><td>&nbsp;</td></tr>
+        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:birthDate</td><td>1940-10-09</td><td>xsd:date</td></tr>
+        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:spouse</td><td>http://dbpedia.org/resource/Cynthia_Lennon</td><td>&nbsp;</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-transform="updateExample"
+         data-result-for="Embedding JSON-LD in HTML with comments-expanded"
+         data-to-rdf>
+    <!--
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+    @prefix schema: <http://schema.org/> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+    <http://dbpedia.org/resource/John_Lennon> foaf:name "John Lennon";
+       schema:birthDate "1940-10-09"^^xsd:date;
+       schema:spouse <http://dbpedia.org/resource/Cynthia_Lennon> .
+    -->
+    </pre>
+  </aside>
 
   <p>Defining how such data may be used is beyond the scope of this specification.
     The embedded JSON-LD document might be extracted as is or, e.g., be
     interpreted as RDF.</p>
 
-  <p>If JSON-LD content is extracted as RDF [[RDF11-CONCEPTS]], it should be expanded into an
+  <p>If JSON-LD content is extracted as RDF [[RDF11-CONCEPTS]], it MUST be expanded into an
     <a>RDF Dataset</a> using the
     <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
-    [[JSON-LD11-API]].</p>
+    [[JSON-LD11-API]]. All <a data-cite="HTML52/semantics-scripting.html#the-script-element">script elements</a>
+    with <code>type</code> <code>application/ld+json</code> MUST be processed and merged
+    into a single <a>dataset</a> with equivalent <a>blank node identifiers</a> contained in
+    separate script elements treated as if they were in a single document (i.e.,
+    blank nodes are shared between different JSON-LD script elements).</p>
+
+   <aside class="example ds-selector-tabs"
+           title="Combining multiple JSON-LD script elements into a single dataset">
+    <div class="selectors">
+      <button class="selected" data-selects="original">Original</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+    </div>
+    <pre class="original selected" data-transform="updateExample"
+         data-content-type="text/html">
+    <!--
+    <p>Data described using FOAF</p>
+    <script type="application/ld+json">
+    {
+      "@context": {
+        "@vocab": "http://xmlns.com/foaf/0.1/"
+      },
+      "@id": "http://greggkellogg.net/foaf#me",
+      "@type": "Person",
+      "name": "Gregg Kellogg"
+    }
+    </script>
+
+    <p>Data described using schema.org</p>
+    <script type="application/ld+json">
+    {
+      "@context": {
+        "@vocab": "http://schema.org/"
+      },
+      "@id": "http://greggkellogg.net/foaf#me",
+      "@type": "Person",
+      "name": "Gregg Kellogg"
+    }
+    </script>
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Combining multiple JSON-LD script elements into a single dataset-original"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>foaf:Person</td></tr>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>schema:Person</td></tr>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>foaf:name</td><td>Gregg Kellogg</td></tr>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>schema:name</td><td>Gregg Kellogg</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-transform="updateExample"
+         data-result-for="Combining multiple JSON-LD script elements into a single dataset-original"
+         data-to-rdf>
+    <!--
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+    @prefix schema: <http://schema.org/> .
+
+    <http://greggkellogg.net/foaf#me> a foaf:Person, schema:Person;
+       foaf:name "Gregg Kellogg";
+       schema:name "Gregg Kellogg" .
+    -->
+    </pre>
+  </aside>
+
+  <p>Otherwise, unless a specific script is targeted
+    (see <a href="#locating-a-specific-json-ld-script-element" class="sectionRef"></a>),
+    only the first script element of <code>type</code> <code>application/ld+json</code> is used.</p>
+
+  <p>When processing a JSON-LD
+    <a data-cite="HTML52/semantics-scripting.html#the-script-element">script element</a>,
+    only the resolved document location of the
+    containing HTML document is used to establish the default <a>base IRI</a> of the enclosed
+    JSON-LD content.</p>
+
+  <section><h3>Locating a Specific JSON-LD Script Element</h3>
+    <p>A specific
+      <a data-cite="HTML52/semantics-scripting.html#the-script-element">script element</a>
+      within an HTML document may be located using
+      a fragment identifier matching the <a data-cite="DOM#concept-id">unique identifier</a>
+      of the script element within the HTML document located by a URL (see [[!DOM]]).</p>
+    <p>For example, given an HTML document located at h<code>ttp://example.com/document</code>,
+      a script element identified by "schema" can be targeted using the URL
+      <code>http://example.com/document#schema</code>.</p>
+
+   <aside class="example ds-selector-tabs"
+           title="Targeting a specific script element by id">
+    <div class="selectors">
+      <button class="selected" data-selects="original">Original</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+    </div>
+    <p>Targeting a script element with id "schema"</p>
+    <pre class="original selected nohighlight" data-transform="updateExample"
+         data-content-type="text/html">
+    <!--
+    <p>Data described using FOAF</p>
+    <script ****id="foaf"**** type="application/ld+json">
+    {
+      "@context": {
+        "@vocab": "http://xmlns.com/foaf/0.1/"
+      },
+      "@id": "http://greggkellogg.net/foaf#me",
+      "@type": "Person",
+      "name": "Gregg Kellogg"
+    }
+    </script>
+
+    <p>Data described using schema.org</p>
+    <script ****id="schema"**** type="application/ld+json">
+    {
+      "@context": {
+        "@vocab": "http://schema.org/"
+      },
+      "@id": "http://greggkellogg.net/foaf#me",
+      "@type": "Person",
+      "name": "Gregg Kellogg"
+    }
+    </script>
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Targeting a specific script element by id-original"
+           data-to-rdf
+           data-target="#schema">
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>schema:Person</td></tr>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>schema:name</td><td>Gregg Kellogg</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-transform="updateExample"
+         data-result-for="Targeting a specific script element by id-original"
+         data-to-rdf
+         data-target="#schema">
+    <!--
+    @prefix schema: <http://schema.org/> .
+
+    <http://greggkellogg.net/foaf#me> a schema:Person;
+       schema:name "Gregg Kellogg" .
+    -->
+    </pre>
+  </aside>
+  </section>
 </section>
 
 <section class="normative">
