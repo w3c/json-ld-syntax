@@ -145,23 +145,29 @@ require(["core/pubsubhub"], (respecEvents) => {
 require(["core/pubsubhub"], (respecEvents) => {
   "use strict";
   respecEvents.sub('beforesave', (documentElement) => {
-    $("a[href]", documentElement).each((index) => {
-      // Don't rewrite these.
-      if ($(this, documentElement).closest('dd').prev().text().match(/Latest editor|Test suite|Implementation report/)) return;
-      if ($(this, documentElement).closest('section.preserve').length > 0) return;
+    for (const anchor of document.querySelectorAll("a[href]")) {
+      const dd = anchor.closest('dd');
 
-      const href = $(this, documentElement).attr("href");
+      // Don't replace specific anchors
+      if (dd) {
+        const dt = dd.previousElementSibling;
+        if (dt.textContent.match(/Latest editor|Test suite|Implementation report/)) return;
+      }
+      if (anchor.closest('section.preserve')) return;
+
+      if (anchor.href === undefined) return;
+
       for (const toReplace in jsonld.conversions) {
-        if (href.indexOf(toReplace) !== -1) {
+        if (anchor.href.indexOf(toReplace) !== -1) {
           const replacement = jsonld.conversions[toReplace];
-          const newHref = href.replace(toReplace, replacement);
-          $(this, documentElement).attr("href", newHref);
-          if( $(this, documentElement).text().indexOf(toReplace) !== -1 ) {
-            $(this, documentElement).text($(this, documentElement).text().replace(toReplace, replacement));
+          const newHref = anchor.href.replace(toReplace, replacement);
+          anchor.setAttribute('href', newHref);
+          if (anchor.textContent().indexOf(toReplace) !== -1) {
+            anchor.innerText = anchor.textContent().replace(toReplace, replacement);
           }
         }
       }
-    });
+    }
   });
 });
 
