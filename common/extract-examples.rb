@@ -339,7 +339,7 @@ ARGV.each do |input|
     when 'ttl', 'trig'
       begin
         reader_errors = []
-        RDF::TriG::Reader.new(content, logger: reader_errors) {|r| r.validate!}
+        RDF::Repository.new << RDF::TriG::Reader.new(content, validate: true, logger: reader_errors)
       rescue
         reader_errors.each do |er|
           errors << "Example #{ex[:number]} at line #{ex[:line]} parse error: #{er}"
@@ -350,7 +350,7 @@ ARGV.each do |input|
     when 'nq'
       begin
         reader_errors = []
-        RDF::NQuads::Reader.new(content, logger: reader_errors) {|r| r.validate!}
+        RDF::Repository.new << RDF::NQuads::Reader.new(content, validate: true, logger: reader_errors)
       rescue
         reader_errors.each do |er|
           errors << "Example #{ex[:number]} at line #{ex[:line]} parse error: #{er}"
@@ -377,8 +377,10 @@ ARGV.each do |input|
     when ex[:fromRdf]        then :fromRdf
     when ex[:toRdf]          then :toRdf
     when ex[:ext] == 'table' then :toRdf
-    when ex[:ext] == 'json'  then nil
-    else                          :expand
+    when %w(json ttl trig).include?(ex[:ext] )
+      nil
+    else
+      :expand
     end
 
     # Set args to parse example content
@@ -420,6 +422,8 @@ ARGV.each do |input|
         options[:base] = ex[:base] if ex[:base]
         args = [StringIO.new(content), (StringIO.new(ex[:context]) if ex[:context]), options]
       end
+    else
+      args = [StringIO.new(content), options]
     end
 
     if ex[:result_for]
@@ -557,8 +561,8 @@ ARGV.each do |input|
             
           if verbose
             $stderr.puts "expected:\n" + expected.to_trig
-            $stderr.puts "expected table:\n" + begin
-              dataset_to_table(expected)
+            $stderr.puts "result table:\n" + begin
+              dataset_to_table(result)
             rescue
               errors << "Example #{ex[:number]} at line #{ex[:line]} raised error turning into table: #{$!}"
               ""
