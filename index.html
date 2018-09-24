@@ -181,6 +181,18 @@
   .ds-selector-tabs pre.selected, .ds-selector-tabs table.selected {
     display: block;
   }
+  a.playground {
+    border-bottom: none;
+    text-decoration: none;
+    background: url("json-ld-data-16.png");
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+  }
+  a[href].playground {
+    border-bottom: none;
+    text-decoration: none;
+  }
 </style>
 </head>
 
@@ -201,7 +213,7 @@
     <a href="https://www.w3.org/2018/json-ld-wg/">JSON-LD Working Group</a> and was derived from the <a href="https://www.w3.org/community/json-ld/">JSON-LD Community Group's</a> <a href="https://www.w3.org/2018/jsonld-cg-reports/json-ld/">Final Report</a>.</p>
 
   <p>There is a
-    <a href="https://json-ld.org/playground/">live JSON-LD playground</a> that is capable
+    <a href="https://json-ld.org/playground-dev/">live JSON-LD playground</a> that is capable
     of demonstrating the features described in this document.</p>
 
   <section>
@@ -633,6 +645,7 @@
       <button class="selected" data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="expanded selected nohighlight" data-transform="updateExample">
     <!--
@@ -749,6 +762,7 @@
         <button data-selects="expanded">Expanded</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
       </div>
       <pre class="original selected nohighlight" data-transform="updateExample">
       <!--
@@ -830,6 +844,7 @@
         <button data-selects="expanded">Expanded</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
+        <a class="playground" target="_blank"></a>
       </div>
       <pre class="original selected nohighlight" data-transform="updateExample">
       <!--
@@ -979,6 +994,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -1036,6 +1052,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -1135,6 +1152,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -1213,6 +1231,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -1276,6 +1295,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -1332,6 +1352,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -1434,6 +1455,7 @@
         <button data-selects="expanded">Expanded</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
+        <a class="playground" target="_blank"></a>
       </div>
       <pre class="original selected nohighlight" data-transform="updateExample">
       <!--
@@ -1503,6 +1525,7 @@
         <button data-selects="expanded">Expanded</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
+        <a class="playground" target="_blank"></a>
       </div>
       <pre class="original selected nohighlight" data-transform="updateExample"
            title="Embedding Objects">
@@ -1602,6 +1625,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -1704,6 +1728,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -1792,6 +1817,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -1907,6 +1933,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -1968,6 +1995,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -2052,6 +2080,7 @@
       <button class="selected" data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="expanded selected nohighlight" data-transform="updateExample">
     <!--
@@ -2122,6 +2151,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -2196,6 +2226,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -2272,6 +2303,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -2368,6 +2400,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -2447,6 +2480,7 @@
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -2677,6 +2711,7 @@ specified. The full <a>IRI</a> for
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -2756,6 +2791,7 @@ specified. The full <a>IRI</a> for
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -2892,6 +2928,7 @@ type with a particular <a>term</a> in the <code>@context</code>:</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -2960,6 +2997,7 @@ in the body of a JSON-LD document:</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -3142,6 +3180,7 @@ the data type to be specified with each piece of data.</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -3253,6 +3292,7 @@ the data type to be specified with each piece of data.</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -3356,6 +3396,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -3569,6 +3610,7 @@ the data type to be specified with each piece of data.</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -3644,6 +3686,7 @@ the data type to be specified with each piece of data.</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -3728,6 +3771,7 @@ the data type to be specified with each piece of data.</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -3841,6 +3885,7 @@ the data type to be specified with each piece of data.</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -3914,6 +3959,7 @@ the data type to be specified with each piece of data.</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -4024,6 +4070,7 @@ the data type to be specified with each piece of data.</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected changed"
        data-content-type="application/json"
@@ -4189,6 +4236,7 @@ the data type to be specified with each piece of data.</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -4268,6 +4316,7 @@ the data type to be specified with each piece of data.</p>
     <button data-selects="expanded">Expanded</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
   </div>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
@@ -4362,6 +4411,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -4459,6 +4509,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -4548,6 +4599,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -4651,6 +4703,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -4760,6 +4813,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -4875,6 +4929,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -5000,6 +5055,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -5137,6 +5193,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -5314,6 +5371,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -5518,6 +5576,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected" data-transform="updateExample">
     <!--
@@ -5596,6 +5655,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -5668,6 +5728,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -5749,6 +5810,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -5866,6 +5928,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -5975,6 +6038,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -6108,6 +6172,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -6210,6 +6275,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -6308,6 +6374,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -6437,6 +6504,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight"
          data-transform="updateExample"
@@ -6520,6 +6588,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="flattened">Flattened</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight"
          data-base="http://example.org/"
@@ -6627,6 +6696,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="flattened">Flattened</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample"
          data-base="http://example.org/">
@@ -6738,6 +6808,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -6863,6 +6934,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -6953,6 +7025,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -7060,6 +7133,7 @@ the data type to be specified with each piece of data.</p>
         <button data-selects="expanded">Expanded</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="trig">TriG</button>
+      <a class="playground" target="_blank"></a>
       </div>
       <pre class="original selected nohighlight" data-transform="updateExample">
       <!--
@@ -7213,6 +7287,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -7340,6 +7415,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -7467,6 +7543,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
@@ -7612,6 +7689,7 @@ the data type to be specified with each piece of data.</p>
       <button data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
+      <a class="playground" target="_blank"></a>
     </div>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
