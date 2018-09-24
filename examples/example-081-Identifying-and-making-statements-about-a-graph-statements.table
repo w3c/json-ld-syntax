@@ -1,0 +1,60 @@
+<table class="statements" data-result-for="Identifying and making statements about a graph-expanded">
+      <thead><tr>
+<th>Graph</th>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+<th>Value Type</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td> </td>
+<td>http://example.org/foaf-graph</td>
+<td>prov:generatedAtTime</td>
+<td>2012-04-09</td>
+<td>xsd:date</td>
+</tr>
+        <tr>
+<td>http://example.org/foaf-graph</td>
+<td>http://manu.sporny.org/about#manu</td>
+<td>rdf:type</td>
+<td>foaf:Person</td>
+<td> </td>
+</tr>
+        <tr>
+<td>http://example.org/foaf-graph</td>
+<td>http://manu.sporny.org/about#manu</td>
+<td>foaf:name</td>
+<td>Manu Sporny</td>
+<td> </td>
+</tr>
+        <tr>
+<td>http://example.org/foaf-graph</td>
+<td>http://manu.sporny.org/about#manu</td>
+<td>foaf:knows</td>
+<td>http://greggkellogg.net/foaf#me</td>
+<td> </td>
+</tr>
+        <tr>
+<td>http://example.org/foaf-graph</td>
+<td>http://greggkellogg.net/foaf#me</td>
+<td>rdf:type</td>
+<td>foaf:Person</td>
+<td> </td>
+</tr>
+        <tr>
+<td>http://example.org/foaf-graph</td>
+<td>http://greggkellogg.net/foaf#me</td>
+<td>foaf:name</td>
+<td>Gregg Kellogg</td>
+<td> </td>
+</tr>
+        <tr>
+<td>http://example.org/foaf-graph</td>
+<td>http://greggkellogg.net/foaf#me</td>
+<td>foaf:knows</td>
+<td>http://manu.sporny.org/about#manu</td>
+<td> </td>
+</tr>
+      </tbody>
+    </table>

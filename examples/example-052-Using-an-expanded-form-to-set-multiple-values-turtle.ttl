@@ -1,0 +1,3 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+<http://example.org/articles/8> dc:title
+  "Das Kapital"@de, "Capital"@en .

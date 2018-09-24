@@ -1,0 +1,19 @@
+<table class="statements" data-result-for="Aliasing keywords-expanded">
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>http://example.com/about#gregg</td>
+<td>rdf:type</td>
+<td>foaf:Person</td>
+</tr>
+        <tr>
+<td>http://example.com/about#gregg</td>
+<td>foaf:name</td>
+<td>Gregg Kellogg</td>
+</tr>
+      </tbody>
+    </table>

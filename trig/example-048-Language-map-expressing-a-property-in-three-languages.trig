@@ -1,5 +1,0 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-
- [ <ex:occupation> "忍者"@ja,
-     "Ninja"@en,
-     "Nindža"@cs] .

@@ -1,0 +1,7 @@
+Example 059: Specifying that a collection is unordered in the context-expanded
+---
+- "@id": http://example.org/people#joebob
+  http://xmlns.com/foaf/0.1/nick:
+  - "@value": joe
+  - "@value": bob
+  - "@value": jaybee

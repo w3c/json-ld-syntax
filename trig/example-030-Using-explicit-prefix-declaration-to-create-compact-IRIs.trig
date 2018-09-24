@@ -1,5 +1,0 @@
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-<http://example.com/compact-iris-are-considered> <http://example.com/property> "@prefix does not require a gen-delim" .
-
- [ <http://example.com/property> <http://example.com/compact-iris-are-considered>] .

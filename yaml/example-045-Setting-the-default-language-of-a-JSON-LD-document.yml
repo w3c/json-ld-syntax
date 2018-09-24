@@ -1,6 +1,0 @@
-Example 045: Setting the default language of a JSON-LD document
----
-"@context":
-  "@language": ja
-name: 花澄
-occupation: 科学者

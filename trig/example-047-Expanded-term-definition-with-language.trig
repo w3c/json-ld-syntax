@@ -1,9 +1,0 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
- [
-   <http://example.com/vocab/name> "Yagyū Muneyoshi";
-   <http://example.com/vocab/occupation> "忍者"@ja,
-     "Ninja"@en,
-     "Nindža"@cs
- ] .

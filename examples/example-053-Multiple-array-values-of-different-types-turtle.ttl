@@ -1,0 +1,7 @@
+@prefix schema: <http://schema.org/> .
+<http://example.org/people#michael> schema:name
+  "Michael",
+  "Mike",
+  "Miguel"@es,
+  <https://www.wikidata.org/wiki/Q4927524>,
+  42 .

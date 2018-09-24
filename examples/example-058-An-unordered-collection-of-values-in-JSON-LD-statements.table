@@ -1,0 +1,24 @@
+<table class="statements" data-result-for="An unordered collection of values in JSON-LD-expanded">
+  <thead><tr>
+    <th>Subject</th>
+    <th>Property</th>
+    <th>Value</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+    <td>http://example.org/people#joebob</td>
+    <td>foaf:nick</td>
+    <td>joe</td>
+  </tr>
+  <tr>
+    <td>http://example.org/people#joebob</td>
+    <td>foaf:nick</td>
+    <td>bob</td>
+  </tr>
+  <tr>
+    <td>http://example.org/people#joebob</td>
+    <td>foaf:nick</td>
+    <td>jaybee</td>
+  </tr>
+  </tbody>
+  </table>

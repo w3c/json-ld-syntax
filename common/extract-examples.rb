@@ -26,12 +26,11 @@ PREFIXES = {
   schema: "http://schema.org/",
   xsd:    "http://www.w3.org/2001/XMLSchema#"
 }
-example_dir = yaml_dir = trig_dir = verbose = number = nil
+example_dir = yaml_dir = verbose = number = nil
 
 opts = GetoptLong.new(
   ["--example-dir",   GetoptLong::REQUIRED_ARGUMENT],
   ["--yaml-dir",      GetoptLong::REQUIRED_ARGUMENT],
-  ["--trig-dir",      GetoptLong::REQUIRED_ARGUMENT],
   ["--verbose", '-v', GetoptLong::NO_ARGUMENT],
   ["--number", '-n',  GetoptLong::REQUIRED_ARGUMENT],
 )
@@ -39,7 +38,6 @@ opts.each do |opt, arg|
   case opt
   when '--example-dir'  then example_dir = arg && FileUtils::mkdir_p(arg)
   when '--yaml-dir'     then yaml_dir = arg && FileUtils::mkdir_p(arg)
-  when '--trig-dir'     then trig_dir = arg && FileUtils::mkdir_p(arg)
   when '--verbose'      then verbose = true
   when '--number'       then number = arg.to_i
   end
@@ -66,6 +64,119 @@ def justify(str)
   lines.map {|s| s[leading..-1]}.join("\n")
 end
 
+def table_to_dataset(table)
+  repo = RDF::Repository.new
+  titles = table.xpath('thead/tr/th/text()').map(&:to_s)
+
+  table.xpath('tbody/tr').each do |row|
+    gname, subject, predicate, object = nil
+    row.xpath('td/text()').map(&:to_s).each_with_index do |cell, ndx|
+      case titles[ndx]
+      when 'Graph'
+        gname = case cell
+        when nil, '', " " then nil
+        when /^_:/ then RDF::Node.intern(cell[2..-1])
+        else RDF::Vocabulary.expand_pname(cell)
+        end
+      when 'Subject'
+        subject = case cell
+        when /^_:/ then RDF::Node.intern(cell[2..-1])
+        else RDF::Vocabulary.expand_pname(cell)
+        end
+      when 'Property'
+        predicate = RDF::Vocabulary.expand_pname(cell)
+      when 'Value'
+        object = case cell
+        when /^_:/ then RDF::Node.intern(cell[2..-1])
+        when /^\w+:/ then RDF::Vocabulary.expand_pname(cell)
+        else RDF::Literal(cell)
+        end
+      when 'Value Type'
+        case cell
+        when /IRI/, '-', /^\s*$/, " "
+        else
+          # We might think something was an IRI, but determine that it's not
+          object = RDF::Literal(object.to_s) unless object.literal?
+          object.datatype = RDF::Vocabulary.expand_pname(cell)
+        end
+      when 'Language' 
+        case cell
+        when '-', /^\s*$/
+        else
+          # We might think something was an IRI, but determine that it's not
+          object = RDF::Literal(object.to_s) unless object.literal?
+          object.datatype = RDF.langString
+          object.language = cell.to_sym
+        end
+      end
+    end
+    repo << RDF::Statement.new(subject, predicate, object, graph_name: gname)
+  end
+
+  repo
+end
+
+def dataset_to_table(repo)
+  has_graph = !repo.graph_names.empty?
+  litereals = repo.objects.select(&:literal?)
+  has_datatype = litereals.any?(&:datatype?)
+  has_language = litereals.any?(&:language?)
+  positions = {}
+
+  head = []
+  head << "Graph" if has_graph
+  head += %w(Subject Property Value)
+
+  if has_datatype && has_language
+    head += ["Value Type", "Language"]
+    positions = {datatype: (has_graph ? 4 : 3), language: (has_graph ? 5 : 4)}
+  elsif has_datatype
+    positions = {datatype: (has_graph ? 4 : 3)}
+    head << "Value Type"
+  elsif has_language
+    positions = {language: (has_graph ? 4 : 3)}
+    head << "Language"
+  end
+
+  rows = []
+  repo.each_statement do |statement|
+    row = []
+    row << (statement.graph_name || "&nbsp;").to_s if has_graph
+    row += statement.to_triple.map do |term|
+      if term.uri? && RDF::Vocabulary.find_term(term)
+        RDF::Vocabulary.find_term(term).pname
+      else
+        term.to_s
+      end
+    end
+
+    if has_datatype
+      if statement.object.literal? && statement.object.datatype?
+        row[positions[:datatype]] = RDF::Vocabulary.find_term(statement.object.datatype).pname
+      else
+        row[positions[:datatype]] = "&nbsp;"
+      end
+    end
+
+    if has_language
+      if statement.object.literal? && statement.object.language?
+        row[positions[:language]] = statement.object.language.to_s
+      else
+        row[positions[:language]] = "&nbsp;"
+      end
+    end
+
+    rows << row
+  end
+
+  "<table>\n  <thead><tr>" +
+  head.map {|cell| "<th>#{cell}</th>"}.join("") +
+  "</tr></thead>\n  <tbody>\n    " +
+  rows.map do |row|
+    "<tr>" + row.map  {|cell| "<td>#{cell}</td>"}.join("") + "</tr>"
+  end.join("\n    ") + "\n  </tbody>\n</table>"
+end
+
 ARGV.each do |input|
   $stderr.puts "\ninput: #{input}"
   example_number = 1 # Account for imported Example 1 in typographical conventions
@@ -82,51 +193,80 @@ ARGV.each do |input|
 
       if (title = element.attr('title').to_s).empty?
         error = "Example #{example_number} at line #{element.line} has no title"
-        next
       end
 
       if examples[title]
         warn = "Example #{example_number} at line #{element.line} uses duplicate title: #{title}"
       end
 
-      content = justify(element.inner_html)
+      def save_example(examples:, element:, title:, example_number:, error:, warn:)
+        content = justify(element.inner_html)
 
-      ext = case element.attr('data-content-type')
-      when nil, '', 'application/ld+json' then "jsonld"
-      when 'application/json' then 'json'
-      when 'application/ld-frame+json' then 'jsonldf'
-      when 'application/n-quads', 'nq' then 'nq'
-      when 'text/html', 'html' then 'html'
-      when 'text/turtle', 'ttl' then 'ttl'
-      when 'application/trig', 'trig' then 'trig'
-      else 'txt'
+        ext = case element.attr('data-content-type')
+        when nil, '', 'application/ld+json' then "jsonld"
+        when 'application/json' then 'json'
+        when 'application/ld-frame+json' then 'jsonldf'
+        when 'application/n-quads', 'nq' then 'nq'
+        when 'text/html', 'html' then 'html'
+        when 'text/turtle', 'ttl' then 'ttl'
+        when 'application/trig', 'trig' then 'trig'
+        else 'txt'
+        end
+
+        # Capture HTML table
+        if element.name == 'table'
+          ext, content = 'table', element
+        end
+
+        fn = "example-#{"%03d" % example_number}-#{title.gsub(/[^\w]+/, '-')}.#{ext}"
+        examples[title] = {
+          title: title,
+          filename: fn,
+          content: content,
+          content_type: element.attr('data-content-type'),
+          number: example_number,
+          ext: ext,
+          context_for: element.attr('data-context-for'),
+          context: element.attr('data-context'),
+          base: element.attr('data-base'),
+          ignore: element.attr('data-ignore'),
+          flatten: element.attr('data-flatten'),
+          compact: element.attr('data-compact'),
+          fromRdf: element.attr('data-from-rdf'),
+          toRdf: element.attr('data-to-rdf'),
+          frame_for: element.attr('data-frame-for'),
+          frame: element.attr('data-frame'),
+          result_for: element.attr('data-result-for'),
+          options: element.attr('data-options'),
+          target: element.attr('data-target'),
+          element: element.name,
+          line: element.line,
+          warn: warn,
+          error: error,
+        }
+        #puts "example #{example_number}: #{content}"
       end
 
-      fn = "example-#{"%03d" % example_number}-#{title.gsub(/[^\w]+/, '-')}.#{ext}"
-      examples[title] = {
-        title: title,
-        filename: fn,
-        content: content,
-        content_type: element.attr('data-content-type'),
-        number: example_number,
-        ext: ext,
-        context_for: element.attr('data-context-for'),
-        context: element.attr('data-context'),
-        ignore: element.attr('data-ignore'),
-        flatten: element.attr('data-flatten'),
-        compact: element.attr('data-compact'),
-        fromRdf: element.attr('data-from-rdf'),
-        toRdf: element.attr('data-to-rdf'),
-        frame_for: element.attr('data-frame-for'),
-        frame: element.attr('data-frame'),
-        result_for: element.attr('data-result-for'),
-        options: element.attr('data-options'),
-        element: element.name,
-        line: element.line,
-        warn: warn,
-        error: error,
-      }
-      #puts "example #{example_number}: #{content}"
+      if element.name == 'aside'
+        # If element is aside, look for sub elements with titles
+        element.css('.original, .compacted, .expanded, .flattened, .turtle, .trig, .statements, .graph, .context, .frame').each do |sub|
+          cls = (%w(original compacted expanded flattened turtle trig statements graph context frame) & sub.classes).first
+          save_example(examples: examples,
+                       element: sub,
+                       title: "#{title}-#{cls}",
+                       example_number: example_number,
+                       error: error,
+                       warn: warn)
+        end
+      else
+        # otherwise, this is the example
+        save_example(examples: examples,
+                     element: element,
+                     title: title,
+                     example_number: example_number,
+                     error: error,
+                     warn: warn)
+      end
     end
   end
 
@@ -134,13 +274,15 @@ ARGV.each do |input|
   examples.values.sort_by {|ex| ex[:number]}.each do |ex|
     next if number && number != ex[:number]
 
+    xpath = '//script[@type="application/ld+json"]'
+    xpath += %([@id="#{ex[:target][1..-1]}"]) if ex[:target]
     args = []
     content = ex[:content]
 
     $stderr.puts "example #{ex[:number]}: #{ex.select{|k,v| k != :content}.to_json(JSON::LD::JSON_STATE)}" if verbose
     $stderr.puts "content: #{ex[:content]}" if verbose
 
-    if ex[:ignore] || ex[:element] == 'table'
+    if ex[:ignore]
       $stdout.write "i".colorize(:yellow)
       next
     end
@@ -151,7 +293,7 @@ ARGV.each do |input|
       next
     end
 
-    if !%w(pre script aside).include?(ex[:element])
+    if !%w(pre script table).include?(ex[:element])
       errors << "Example #{ex[:number]} at line #{ex[:line]} has unknown element type #{ex[:element]}"
       $stdout.write "F".colorize(:red)
       next
@@ -177,11 +319,23 @@ ARGV.each do |input|
           $stdout.write "F".colorize(:red)
           next
         end
+        script_content = doc.at_xpath(xpath)
+        if script_content
+          # Remove (faked) XML comments and unescape sequences
+          content = script_content
+            .inner_html
+            .sub(/^\s*< !--/, '')
+            .sub(/-- >\s*$/, '')
+            .gsub(/&lt;/, '<')
+        end
+          
       rescue Nokogiri::XML::SyntaxError => exception
         errors << "Example #{ex[:number]} at line #{ex[:line]} parse error: #{exception.message}"
         $stdout.write "F".colorize(:red)
         next
       end
+    when 'table'
+      # already in parsed form
     when 'ttl', 'trig'
       begin
         reader_errors = []
@@ -218,17 +372,19 @@ ARGV.each do |input|
 
     # Set API to use
     method = case
-    when ex[:compact] then :compact
-    when ex[:flatten] then :flatten
-    when ex[:fromRdf] then :fromRdf
-    when ex[:toRdf]   then :toRdf
-    when ex[:ext] == 'json' then nil
-    else                   :expand
+    when ex[:compact]        then :compact
+    when ex[:flatten]        then :flatten
+    when ex[:fromRdf]        then :fromRdf
+    when ex[:toRdf]          then :toRdf
+    when ex[:ext] == 'table' then :toRdf
+    when ex[:ext] == 'json'  then nil
+    else                          :expand
     end
 
+    # Set args to parse example content
     if ex[:frame_for]
       unless examples[ex[:frame_for]]
-        errors << "Example Frame #{ex[:number]} at line #{ex[:line]} references unknown example ex[:frame_for].inspect"
+        errors << "Example Frame #{ex[:number]} at line #{ex[:line]} references unknown example #{ex[:frame_for].inspect}"
         $stdout.write "F".colorize(:red)
         next
       end
@@ -237,7 +393,7 @@ ARGV.each do |input|
       args = [StringIO.new(examples[ex[:frame_for]][:content]), StringIO.new(content), options]
     elsif ex[:context_for]
       unless examples[ex[:context_for]]
-        errors << "Example Context #{ex[:number]} at line #{ex[:line]} references unknown example ex[:context_for].inspect"
+        errors << "Example Context #{ex[:number]} at line #{ex[:line]} references unknown example #{ex[:context_for].inspect}"
         $stdout.write "F".colorize(:red)
         next
       end
@@ -246,27 +402,71 @@ ARGV.each do |input|
       case method
       when :expand
         options[:externalContext] = StringIO.new(content)
+        options[:base] = ex[:base] if ex[:base]
         args = [StringIO.new(examples[ex[:context_for]][:content]), options]
       when :compact, :flatten, nil
+        options[:base] = ex[:base] if ex[:base]
         args = [StringIO.new(examples[ex[:context_for]][:content]), StringIO.new(content), options]
       end
-    elsif ex[:ext] == 'jsonld'
+    elsif %w(jsonld html).include?(ex[:ext])
       # Either exapand with this external context, or compact using it
       case method
       when :expand, :toRdf, :fromRdf
         options[:externalContext] = StringIO.new(ex[:context]) if ex[:context]
+        options[:base] = ex[:base] if ex[:base]
         args = [StringIO.new(content), options]
       when :compact, :flatten
         # Fixme how to find context?
+        options[:base] = ex[:base] if ex[:base]
         args = [StringIO.new(content), (StringIO.new(ex[:context]) if ex[:context]), options]
       end
     end
 
     if ex[:result_for]
       # Source is referenced
-      args[0] = StringIO.new(examples[ex[:result_for]][:content])
+      # Instead of parsing this example content, parse that which is referenced
+      unless examples[ex[:result_for]]
+        errors << "Example #{ex[:number]} at line #{ex[:line]} references unknown example #{ex[:result_for].inspect}"
+        $stdout.write "F".colorize(:red)
+        next
+      end
+
+      # Set argument to referenced content to be parsed
+      args[0] = if examples[ex[:result_for]][:ext] == 'html' && method == :expand
+        # If we are expanding, and the reference is HTML, find the first script element.
+        doc = Nokogiri::HTML.parse(examples[ex[:result_for]][:content])
+        script_content = doc.at_xpath(xpath)
+        unless script_content
+          errors << "Example #{ex[:number]} at line #{ex[:line]} references example #{ex[:result_for].inspect} with no JSON-LD script element"
+          $stdout.write "F".colorize(:red)
+          next
+        end
+        StringIO.new(script_content
+          .inner_html
+          .sub(/^\s*< !--/, '')
+          .sub(/-- >\s*$/, '')
+          .gsub(/&lt;/, '<'))
+      elsif examples[ex[:result_for]][:ext] == 'html' && ex[:target]
+        # Only use the targeted script
+        doc = Nokogiri::HTML.parse(examples[ex[:result_for]][:content])
+        script_content = doc.at_xpath(xpath)
+        unless script_content
+          errors << "Example #{ex[:number]} at line #{ex[:line]} references example #{ex[:result_for].inspect} with no JSON-LD script element"
+          $stdout.write "F".colorize(:red)
+          next
+        end
+        StringIO.new(script_content
+          .to_html
+          .sub(/^\s*< !--/, '')
+          .sub(/-- >\s*$/, '')
+          .gsub(/&lt;/, '<'))
+      else
+        StringIO.new(examples[ex[:result_for]][:content])
+      end
+
+      # :frame option indicates the frame to use on the referenced content
       if ex[:frame] && !examples[ex[:frame]]
-        errors << "Example #{ex[:number]} at line #{ex[:line]} references unknown frame ex[:frame].inspect"
+        errors << "Example #{ex[:number]} at line #{ex[:line]} references unknown frame #{ex[:frame].inspect}"
         $stdout.write "F".colorize(:red)
         next
       elsif ex[:frame]
@@ -274,8 +474,9 @@ ARGV.each do |input|
         args = [args[0], StringIO.new(examples[ex[:frame]][:content]), options]
       end
 
+      # :context option indicates the context to use on the referenced content
       if ex[:context] && !examples[ex[:context]]
-        errors << "Example #{ex[:number]} at line #{ex[:line]} references unknown context ex[:context].inspect"
+        errors << "Example #{ex[:number]} at line #{ex[:line]} references unknown context #{ex[:context].inspect}"
         $stdout.write "F".colorize(:red)
         next
       else
@@ -304,15 +505,23 @@ ARGV.each do |input|
     end
 
     # Generate result
+    # * If result_for is set, this is for the referenced example
+    # * otherwise, this is for this example
     begin
+      ext = ex[:result_for] ? examples[ex[:result_for]][:ext] : ex[:ext]
       result = case method
       when nil then nil
       when :fromRdf
-        ext = ex[:result_for] ? examples[ex[:result_for]][:ext] : ex[:ext]
         args[0] = RDF::Reader.for(file_extension: ext).new(args[0])
         JSON::LD::API.fromRdf(*args)
       when :toRdf
-        RDF::Dataset.new statements: JSON::LD::API.toRdf(*args)
+        if ext == 'html'
+          # If the referenced example is HTML, read it using the RDFa reader
+          # FIXME: the API may be updated to provide a native mechanism for this
+          RDF::Dataset.new statements: RDF::RDFa::Reader.new(*args)
+        else
+          RDF::Dataset.new statements: JSON::LD::API.toRdf(*args)
+        end
       else
         JSON::LD::API.method(method).call(*args)
       end
@@ -324,30 +533,56 @@ ARGV.each do |input|
 
     if verbose
       if result.is_a?(RDF::Dataset)
-        $stderr.puts "result: " + result.to_trig
+        $stderr.puts "result:\n" + result.to_trig
       else
-        $stderr.puts "result: " + result.to_json(JSON::LD::JSON_STATE)
+        $stderr.puts "result:\n" + result.to_json(JSON::LD::JSON_STATE)
       end
     end
 
     begin
       if ex[:result_for]
-        # Compare to expected result
+        # Compare to expected to result
         case ex[:ext]
         when 'ttl', 'trig', 'nq', 'html'
           reader = RDF::Reader.for(file_extension: ex[:ext]).new(StringIO.new(content))
           expected = RDF::Dataset.new(statements: reader)
-          $stderr.puts "expected: " + expected.to_trig if verbose
+          $stderr.puts "expected:\n" + expected.to_trig if verbose
+        when 'table'
+          expected = begin
+            table_to_dataset(content)
+          rescue
+            errors << "Example #{ex[:number]} at line #{ex[:line]} raised error reading table: #{$!}"
+            RDF::Dataset.new
+          end
+            
+          if verbose
+            $stderr.puts "expected:\n" + expected.to_trig
+            $stderr.puts "expected table:\n" + begin
+              dataset_to_table(expected)
+            rescue
+              errors << "Example #{ex[:number]} at line #{ex[:line]} raised error turning into table: #{$!}"
+              ""
+            end
+          end
+        else
+          expected = ::JSON.parse(content)
+          $stderr.puts "expected: " + expected.to_json(JSON::LD::JSON_STATE) if verbose
+        end
+
+        # Perform appropriate comparsion
+        if expected.is_a?(RDF::Dataset)
           expected_norm = RDF::Normalize.new(expected).map(&:to_nquads)
           result_norm = RDF::Normalize.new(result).map(&:to_nquads)
-          unless expected_norm == expected_norm
+          unless expected_norm.sort == result_norm.sort
+            if verbose
+              $stderr.puts "expected_norm:\n" + expected_norm.sort.join("")
+              $stderr.puts "result_norm:\n" + result_norm.sort.join("")
+            end
             errors << "Example #{ex[:number]} at line #{ex[:line]} not isomorphic with #{examples[ex[:result_for]][:number]}"
             $stdout.write "F".colorize(:red)
             next
           end
         else
-          expected = ::JSON.parse(content)
-          $stderr.puts "expected: " + expected.to_json(JSON::LD::JSON_STATE) if verbose
           unless result == expected
             errors << "Example #{ex[:number]} at line #{ex[:line]} not equivalent to #{examples[ex[:result_for]][:number]}"
             $stdout.write "F".colorize(:red)
@@ -359,20 +594,6 @@ ARGV.each do |input|
       errors << "Example #{ex[:number]} at line #{ex[:line]} parse error comparing result: #{$!}"
       $stdout.write "F".colorize(:red)
       next
-    end
-
-    # Save example as TriG
-    if trig_dir && (ex[:filename].match?(/\.json.*$/) || result.is_a?(RDF::Enumerable))
-      # Make examples directory
-      FileUtils::mkdir_p(trig_dir)
-      fn = ex[:filename].sub(/\.json.*$/, '.trig')
-      unless result.is_a?(RDF::Enumerable)
-        result = RDF::Dataset.new(statements: JSON::LD::API.toRdf(result))
-      end
-
-      File.open(File.join(trig_dir, fn), 'w') do |f|
-        RDF::TriG::Writer.dump(result,  f, prefixes: PREFIXES)
-      end
     end
 
     if ex[:warn]

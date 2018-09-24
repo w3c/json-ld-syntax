@@ -1,9 +1,0 @@
-Example 114: The same set of statements serialized in JSON-LD
----
-"@context":
-  foaf: http://xmlns.com/foaf/0.1/
-"@id": http://manu.sporny.org/about#manu
-"@type": foaf:Person
-foaf:name: Manu Sporny
-foaf:homepage:
-  "@id": http://manu.sporny.org/

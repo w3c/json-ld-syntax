@@ -1,0 +1,24 @@
+<table class="statements" data-result-for="Referencing Objects on the Web-expanded">
+        <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+        <tbody>
+          <tr>
+<td>http://manu.sporny.org/about#manu</td>
+<td>rdf:type</td>
+<td>schema:Person</td>
+</tr>
+          <tr>
+<td>http://manu.sporny.org/about#manu</td>
+<td>schema:name</td>
+<td>Manu Sporny</td>
+</tr>
+          <tr>
+<td>http://manu.sporny.org/about#manu</td>
+<td>schema:knows</td>
+<td>http://greggkellogg.net/foaf#me</td>
+</tr>
+        </tbody>
+      </table>

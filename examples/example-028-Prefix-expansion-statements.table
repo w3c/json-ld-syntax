@@ -1,0 +1,19 @@
+<table class="statements" data-result-for="Prefix expansion-expanded">
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>_:b0</td>
+<td>rdf:type</td>
+<td>foaf:Person</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>foaf:name</td>
+<td>Dave Longley</td>
+</tr>
+      </tbody>
+    </table>

@@ -1,0 +1,5 @@
+Example 040: Expanded value with type-expanded
+---
+- http://purl.org/dc/terms/modified:
+  - "@type": http://www.w3.org/2001/XMLSchema#dateTime
+    "@value": '2010-05-29T14:17:39+02:00'

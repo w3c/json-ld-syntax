@@ -1,7 +1,0 @@
-Example 022: Using a common vocabulary prefix
----
-"@context":
-  "@vocab": http://schema.org/
-"@id": http://example.org/places#BrewEats
-"@type": Restaurant
-name: Brew Eats

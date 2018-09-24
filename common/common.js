@@ -43,9 +43,9 @@ function restrictReferences(utils, content) {
 // class 'termlist', and if the target of that reference is
 // also within a 'dl' element of class 'termlist', then
 // consider it an internal reference and ignore it.
-require(["core/pubsubhub"], function(respecEvents) {
+require(["core/pubsubhub"], (respecEvents) => {
   "use strict";
-  respecEvents.sub('end', function(message) {
+  respecEvents.sub('end', (message) => {
     if (message === 'core/link-to-dfn') {
       // all definitions are linked; find any internal references
       const internalTerms = document.querySelectorAll(".termlist a.internalDFN");
@@ -69,7 +69,7 @@ require(["core/pubsubhub"], function(respecEvents) {
 
       // clearRefs is recursive.  Walk down the tree of
       // references to ensure that all references are resolved.
-      const clearRefs = function(theTerm) {
+      const clearRefs = (theTerm) => {
         if (termsReferencedByTerms[theTerm] ) {
           for (const item of termsReferencedByTerms[theTerm]) {
             if (termNames[item]) {
@@ -142,10 +142,10 @@ require(["core/pubsubhub"], function(respecEvents) {
 *   use include the github.io address (as it should...)
 *
 */
-require(["core/pubsubhub"], function(respecEvents) {
+require(["core/pubsubhub"], (respecEvents) => {
   "use strict";
-  respecEvents.sub('beforesave', function(documentElement) {
-    $("a[href]", documentElement).each( function(index) {
+  respecEvents.sub('beforesave', (documentElement) => {
+    $("a[href]", documentElement).each((index) => {
       // Don't rewrite these.
       if ($(this, documentElement).closest('dd').prev().text().match(/Latest editor|Test suite|Implementation report/)) return;
       if ($(this, documentElement).closest('section.preserve').length > 0) return;
@@ -165,6 +165,24 @@ require(["core/pubsubhub"], function(respecEvents) {
   });
 });
 
+/*
+* Implement tabbed examples.
+*/
+require(["core/pubsubhub"], (respecEvents) => {
+  "use strict";
+  respecEvents.sub('end-all', (documentElement) => {
+    for (const button of document.querySelectorAll(".ds-selector-tabs .selectors button")) {
+      button.onclick = () => {
+        const ex = button.closest(".ds-selector-tabs");
+        ex.querySelector("button.selected").classList.remove("selected");
+        ex.querySelector(".selected").classList.remove("selected");
+        button.classList.add('selected');
+        ex.querySelector("." + button.dataset.selects).classList.add("selected");
+      }
+    }
+  });
+});
+
 function _esc(s) {
   return s.replace(/&/g,'&amp;')
     .replace(/>/g,'&gt;')
@@ -172,9 +190,20 @@ function _esc(s) {
     .replace(/</g,'&lt;');
 }
 
+function reindent(text) {
+  // TODO: use trimEnd when Edge supports it
+  const lines = text.trimRight().split("\n");
+  while (lines.length && !lines[0].trim()) {
+    lines.shift();
+  }
+  const indents = lines.filter(s => s.trim()).map(s => s.search(/[^\s]/));
+  const leastIndent = Math.min(...indents);
+  return lines.map(s => s.slice(leastIndent)).join("\n");
+}
+
 function updateExample(doc, content) {
   // perform transformations to make it render and prettier
-  return _esc(unComment(doc, content))
+  return _esc(reindent(unComment(doc, content)))
     .replace(/\*\*\*\*([^*]*)\*\*\*\*/g, '<span class="hl-bold">$1</span>')
     .replace(/####([^#]*)####/g, '<span class="comment">$1</span>');
 }
@@ -182,6 +211,9 @@ function updateExample(doc, content) {
 
 function unComment(doc, content) {
   // perform transformations to make it render and prettier
-  return content.replace(/<!--/, '')
-    .replace(/-->/, '');
+  return content
+    .replace(/<!--/, '')
+    .replace(/-->/, '')
+    .replace(/< !--/g, '<!--')
+    .replace(/-- >/g, '-->');
 }

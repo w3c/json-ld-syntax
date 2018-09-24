@@ -1,3 +1,0 @@
-@prefix schema: <http://schema.org/> .
-
- [ schema:url <http://manu.sporny.org/>] .

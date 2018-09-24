@@ -1,9 +1,0 @@
-@prefix ex: <http://example.org/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-<http://example.org/people#michael> <dc:name> "Miguel"@es,
-     42,
-     "Mike",
-     "Michael",
-     <https://www.wikidata.org/wiki/Q4927524> .

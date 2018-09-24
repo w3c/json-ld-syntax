@@ -1,9 +1,0 @@
-Example 104: Sample library frame
----
-"@context":
-  "@vocab": http://example.org/
-"@type": Library
-contains:
-  "@type": Book
-  contains:
-    "@type": Chapter

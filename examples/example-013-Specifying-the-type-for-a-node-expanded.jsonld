@@ -1,0 +1,6 @@
+[{
+  "@id": "http://me.markus-lanthaler.com/",
+  "@type": ["http://schema.org/Person"],
+  "http://schema.org/givenName": [{"@value": "Markus"}],
+  "http://schema.org/familyName": [{"@value": "Lanthaler"}]
+}]

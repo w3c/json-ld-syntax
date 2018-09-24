@@ -1,0 +1,44 @@
+<table class="statements" data-result-for="Indexing data in JSON-LD by type with @set representation-expanded">
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>https://digitalbazaar.com/</td>
+<td>rdf:type</td>
+<td>schema:Corporation</td>
+</tr>
+        <tr>
+<td>https://digitalbazaar.com/</td>
+<td>schema:name</td>
+<td>Digital Bazaar</td>
+</tr>
+        <tr>
+<td>https://spec-ops.io</td>
+<td>rdf:type</td>
+<td>schema:ProfessionalService</td>
+</tr>
+        <tr>
+<td>https://spec-ops.io</td>
+<td>schema:name</td>
+<td>Spec-Ops</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>schema:name</td>
+<td>Manu Sporny</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>schema:affiliation</td>
+<td>https://digitalbazaar.com/</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>schema:affiliation</td>
+<td>https://spec-ops.io</td>
+</tr>
+      </tbody>
+    </table>

@@ -1,0 +1,244 @@
+<table class="statements" data-result-for="Coordinates expressed in JSON-LD-expanded">
+  <thead><tr>
+    <th>Subject</th>
+    <th>Property</th>
+    <th>Value</th>
+    <th>Value Type</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+<td>_:b0</td>
+<td>rdf:type</td>
+<td>geojson:Feature</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b0</td>
+<td>geojson:bbox</td>
+<td>_:b1</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b0</td>
+<td>geojson:geometry</td>
+<td>_:b5</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b1</td>
+<td>rdf:first</td>
+<td>-1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b1</td>
+<td>rdf:rest</td>
+<td>_:b2</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b2</td>
+<td>rdf:first</td>
+<td>-1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b2</td>
+<td>rdf:rest</td>
+<td>_:b3</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b3</td>
+<td>rdf:first</td>
+<td>1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b3</td>
+<td>rdf:rest</td>
+<td>_:b4</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b4</td>
+<td>rdf:first</td>
+<td>1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b4</td>
+<td>rdf:rest</td>
+<td>rdf:nil</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b5</td>
+<td>rdf:type</td>
+<td>geojson:Polygon</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b5</td>
+<td>geojson:coordinates</td>
+<td>_:b6</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b6</td>
+<td>rdf:first</td>
+<td>_:b7</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b6</td>
+<td>rdf:rest</td>
+<td>rdf:nil</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b7</td>
+<td>rdf:first</td>
+<td>_:b8</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b7</td>
+<td>rdf:rest</td>
+<td>_:b10</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b8</td>
+<td>rdf:first</td>
+<td>-1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b8</td>
+<td>rdf:rest</td>
+<td>_:b9</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b9</td>
+<td>rdf:first</td>
+<td>-1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b9</td>
+<td>rdf:rest</td>
+<td>rdf:nil</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b10</td>
+<td>rdf:first</td>
+<td>_:b11</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b10</td>
+<td>rdf:rest</td>
+<td>_:b13</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b11</td>
+<td>rdf:first</td>
+<td>1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b11</td>
+<td>rdf:rest</td>
+<td>_:b12</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b12</td>
+<td>rdf:first</td>
+<td>-1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b12</td>
+<td>rdf:rest</td>
+<td>rdf:nil</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b13</td>
+<td>rdf:first</td>
+<td>_:b14</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b13</td>
+<td>rdf:rest</td>
+<td>_:b16</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b14</td>
+<td>rdf:first</td>
+<td>1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b14</td>
+<td>rdf:rest</td>
+<td>_:b15</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b15</td>
+<td>rdf:first</td>
+<td>1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b15</td>
+<td>rdf:rest</td>
+<td>rdf:nil</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b16</td>
+<td>rdf:first</td>
+<td>_:b17</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b16</td>
+<td>rdf:rest</td>
+<td>rdf:nil</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b17</td>
+<td>rdf:first</td>
+<td>-1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b17</td>
+<td>rdf:rest</td>
+<td>_:b18</td>
+<td></td>
+</tr>
+  <tr>
+<td>_:b18</td>
+<td>rdf:first</td>
+<td>-1.0E1</td>
+<td>xsd:double</td>
+</tr>
+  <tr>
+<td>_:b18</td>
+<td>rdf:rest</td>
+<td>rdf:nil</td>
+<td></td>
+</tr>
+  </tbody>
+  </table>

@@ -1,0 +1,10 @@
+Example 019: Scoped contexts within node objects-original
+---
+"@context":
+  name: http://example.com/person#name
+  details: http://example.com/person#details
+name: Markus Lanthaler
+details:
+  "@context":
+    name: http://example.com/organization#name
+  name: Graz University of Technology
