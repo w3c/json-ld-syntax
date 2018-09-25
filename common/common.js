@@ -177,6 +177,7 @@ require(["core/pubsubhub"], (respecEvents) => {
 require(["core/pubsubhub"], (respecEvents) => {
   "use strict";
   respecEvents.sub('end-all', (documentElement) => {
+    // Add example button selection logic
     for (const button of document.querySelectorAll(".ds-selector-tabs .selectors button")) {
       button.onclick = () => {
         const ex = button.closest(".ds-selector-tabs");
@@ -185,6 +186,18 @@ require(["core/pubsubhub"], (respecEvents) => {
         button.classList.add('selected');
         ex.querySelector("." + button.dataset.selects).classList.add("selected");
       }
+    }
+
+    // Add playground links
+    for (const link of document.querySelectorAll("a.playground")) {
+      // First pre element of aside
+      const pre = link.closest("aside").querySelector("pre");
+      const content = unComment(document, pre.textContent)
+        .replace(/(\*\*\*\*|####)/g, '');
+      link.setAttribute('aria-label', 'playground link');
+      link.setAttribute('href',
+        'https://json-ld.org/playground-dev/#startTab=tab-expanded&json-ld=' +
+        encodeURI(content));
     }
   });
 });
