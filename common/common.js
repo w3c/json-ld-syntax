@@ -255,6 +255,15 @@ require(["core/pubsubhub"], (respecEvents) => {
         .replace(/####([^#]*)####/g, '<span class="comment">$1</span>');
       pre.innerHTML = content;
     }
+
+    // Add highlighting and remove comment from pre elements
+    for (const pre of document.querySelectorAll("pre")) {
+      // First pre element of aside
+      const content = pre.innerHTML
+        .replace(/\*\*\*\*([^*]*)\*\*\*\*/g, '<span class="hl-bold">$1</span>')
+        .replace(/####([^#]*)####/g, '<span class="comment">$1</span>');
+      pre.innerHTML = content;
+    }
   });
 });
 
