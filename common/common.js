@@ -190,14 +190,70 @@ require(["core/pubsubhub"], (respecEvents) => {
 
     // Add playground links
     for (const link of document.querySelectorAll("a.playground")) {
-      // First pre element of aside
-      const pre = link.closest("aside").querySelector("pre");
+      let pre;
+      if (link.dataset.resultFor) {
+        // Referenced pre element
+        pre = document.querySelector(link.dataset.resultFor + ' > pre');
+      } else {
+        // First pre element of aside
+        pre = link.closest("aside").querySelector("pre");
+      }
       const content = unComment(document, pre.textContent)
-        .replace(/(\*\*\*\*|####)/g, '');
+        .replace(/\*\*\*\*/g, '')
+        .replace(/####([^#]*)####/g, '');
       link.setAttribute('aria-label', 'playground link');
+      link.innerText = "Open in playground";
+
+      // startTab defaults to "expand"
+      const linkQueryParams = {
+        startTab: "tab-expand",
+        "json-ld": content
+      }
+
+      if (link.dataset.compact !== undefined) {
+        linkQueryParams.startTab = "tab-" + "compacted";
+        linkQueryParams.context = '{}';
+      }
+
+      if (link.dataset.flatten !== undefined) {
+        linkQueryParams.startTab = "tab-" + "flattened";
+        linkQueryParams.context = '{}';
+      }
+
+      if (link.dataset.frame !== undefined) {
+        linkQueryParams.startTab = "tab-" + "framed";
+        const frameContent = unComment(document, document.querySelector(link.dataset.frame + ' > pre').innerText)
+          .replace(/\*\*\*\*/g, '')
+          .replace(/####([^#]*)####/g, '');
+        linkQueryParams.frame = frameContent;
+      }
+
+      // Set context
+      if (link.dataset.context) {
+        const contextContent = unComment(document, document.querySelector(link.dataset.context + ' > pre').innerText)
+          .replace(/\*\*\*\*/g, '')
+          .replace(/####([^#]*)####/g, '');
+        linkQueryParams.context = contextContent;
+      }
+
       link.setAttribute('href',
-        'https://json-ld.org/playground-dev/#startTab=tab-expanded&json-ld=' +
-        encodeURI(content));
+        'https://json-ld.org/playground-dev/#' +
+        Object.keys(linkQueryParams).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(linkQueryParams[k])}`)
+              .join('&'));
+
+      // Wrap in a button
+      const button = document.createElement('button');
+      link.parentNode.insertBefore(button, link);
+      button.appendChild(link);
+    }
+
+    // Add highlighting and remove comment from pre elements
+    for (const pre of document.querySelectorAll("pre")) {
+      // First pre element of aside
+      const content = pre.innerHTML
+        .replace(/\*\*\*\*([^*]*)\*\*\*\*/g, '<span class="hl-bold">$1</span>')
+        .replace(/####([^#]*)####/g, '<span class="comment">$1</span>');
+      pre.innerHTML = content;
     }
   });
 });
@@ -222,9 +278,7 @@ function reindent(text) {
 
 function updateExample(doc, content) {
   // perform transformations to make it render and prettier
-  return _esc(reindent(unComment(doc, content)))
-    .replace(/\*\*\*\*([^*]*)\*\*\*\*/g, '<span class="hl-bold">$1</span>')
-    .replace(/####([^#]*)####/g, '<span class="comment">$1</span>');
+  return _esc(reindent(unComment(doc, content)));
 }
 
 
