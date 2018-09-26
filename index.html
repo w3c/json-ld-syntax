@@ -7845,7 +7845,8 @@ the data type to be specified with each piece of data.</p>
 
   <p>For example, assume the following JSON-LD input document:</p>
 
-  <pre class="example" data-transform="updateExample"
+  <pre id="sample-json-ld-document-to-be-expanded"
+       class="example" data-transform="updateExample"
        title="Sample JSON-LD document to be expanded">
   <!--
   {
@@ -7871,6 +7872,8 @@ the data type to be specified with each piece of data.</p>
       <button class="selected" data-selects="expanded">Expanded</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"
+         data-result-for="#sample-json-ld-document-to-be-expanded"></a>
     </div>
     <pre class="expanded selected" data-transform="updateExample"
          data-result-for="Sample JSON-LD document to be expanded">
@@ -7932,7 +7935,8 @@ the data type to be specified with each piece of data.</p>
 
   <p>For example, assume the following JSON-LD input document:</p>
 
-  <pre class="example" data-transform="updateExample"
+  <pre id="sample-expanded-json-ld-document"
+       class="example" data-transform="updateExample"
        title="Sample expanded JSON-LD document">
   <!--
   [
@@ -7950,7 +7954,8 @@ the data type to be specified with each piece of data.</p>
 
   <p>Additionally, assume the following developer-supplied JSON-LD context:</p>
 
-  <pre class="example" data-transform="updateExample"
+  <pre id="sample-context"
+       class="example" data-transform="updateExample"
        title="Sample context"
        data-context-for="Sample expanded JSON-LD document">
   <!--
@@ -7970,25 +7975,33 @@ the data type to be specified with each piece of data.</p>
     against the JSON-LD input document provided above would result in the following
     output:</p>
 
-  <pre class="example" data-transform="updateExample"
-       title="Compact form of the sample document once sample context has been applied"
-       data-result-for="Sample expanded JSON-LD document"
-       data-compact
-       data-context="Sample context">
-  <!--
-  {
-    "@context": {
-      "name": "http://xmlns.com/foaf/0.1/name",
-      "homepage": {
-        "@id": "http://xmlns.com/foaf/0.1/homepage",
-        "@type": "@id"
-      }
-    },
-    "name": "Manu Sporny",
-    "homepage": "http://manu.sporny.org/"
-  }
-  -->
-  </pre>
+  <aside class="example ds-selector-tabs changed"
+         title="Compact form of the sample document once sample context has been applied">
+    <div class="selectors">
+      <a class="playground" target="_blank"
+         data-result-for="#sample-expanded-json-ld-document"
+         data-context="#sample-context"
+         data-compact></a>
+    </div>
+    <pre class="selected original" data-transform="updateExample"
+         data-result-for="Sample expanded JSON-LD document"
+         data-compact
+         data-context="Sample context">
+    <!--
+    {
+      "@context": {
+        "name": "http://xmlns.com/foaf/0.1/name",
+        "homepage": {
+          "@id": "http://xmlns.com/foaf/0.1/homepage",
+          "@type": "@id"
+        }
+      },
+      "name": "Manu Sporny",
+      "homepage": "http://manu.sporny.org/"
+    }
+    -->
+    </pre>
+  </aside>
 
   <p><a href="#application-ld-json">JSON-LD's media type</a> defines a
     <code>profile</code> parameter which can be used to signal or request
@@ -8009,7 +8022,8 @@ the data type to be specified with each piece of data.</p>
 
   <p>For example, assume the following JSON-LD input document:</p>
 
-  <pre class="example" data-transform="updateExample"
+  <pre id="sample-expanded-json-ld-document-to-be-flattened"
+       class="example" data-transform="updateExample"
        title="Sample JSON-LD document to be flattened">
   <!--
   {
@@ -8035,34 +8049,42 @@ the data type to be specified with each piece of data.</p>
     the example above and using the same context would result in the following
     output:</p>
 
-  <pre class="example" data-transform="updateExample"
-       title="Flattened and compacted form for the previous example"
-       data-flatten
-       data-context="Sample JSON-LD document to be flattened"
-       data-result-for="Sample JSON-LD document to be flattened">
-  <!--
-  {
-    "@context": {
-      "name": "http://xmlns.com/foaf/0.1/name",
-      "knows": "http://xmlns.com/foaf/0.1/knows"
-    },
-    "@graph": [{
-      "@id": "http://me.markus-lanthaler.com/",
-      "name": "Markus Lanthaler",
-      "knows": [
-        { "@id": "http://manu.sporny.org/about#manu" },
-        { "@id": "_:b0" }
-      ]
-    }, {
-      "@id": "http://manu.sporny.org/about#manu",
-      "name": "Manu Sporny"
-    }, {
-      "@id": "_:b0",
-      "name": "Dave Longley"
-    }]
-  }
-  -->
-  </pre>
+  <aside class="example ds-selector-tabs changed"
+         title="Flattened and compacted form for the previous example">
+    <div class="selectors">
+      <a class="playground" target="_blank"
+         data-result-for="#sample-expanded-json-ld-document-to-be-flattened"
+         data-context="#sample-expanded-json-ld-document-to-be-flattened"
+         data-flatten></a>
+    </div>
+    <pre class="selected original" data-transform="updateExample"
+         data-flatten
+         data-context="Sample JSON-LD document to be flattened"
+         data-result-for="Sample JSON-LD document to be flattened">
+    <!--
+    {
+      "@context": {
+        "name": "http://xmlns.com/foaf/0.1/name",
+        "knows": "http://xmlns.com/foaf/0.1/knows"
+      },
+      "@graph": [{
+        "@id": "http://me.markus-lanthaler.com/",
+        "name": "Markus Lanthaler",
+        "knows": [
+          { "@id": "http://manu.sporny.org/about#manu" },
+          { "@id": "_:b0" }
+        ]
+      }, {
+        "@id": "http://manu.sporny.org/about#manu",
+        "name": "Manu Sporny"
+      }, {
+        "@id": "_:b0",
+        "name": "Dave Longley"
+      }]
+    }
+    -->
+    </pre>
+  </aside>
 
   <p><a href="#application-ld-json">JSON-LD's media type</a> defines a
     <code>profile</code> parameter which can be used to signal or request
@@ -8084,7 +8106,8 @@ the data type to be specified with each piece of data.</p>
 
   <p>For example, assume the following JSON-LD frame:</p>
 
-  <pre class="example" data-transform="updateExample"
+  <pre id="sample-library-frame"
+       class="example" data-transform="updateExample"
        title="Sample library frame">
   <!--
   {
@@ -8111,7 +8134,9 @@ the data type to be specified with each piece of data.</p>
     as embedded values of the <em>Book</em> object.</p>
 
   <p>When using a flattened set of objects that match the frame components:</p>
-  <pre class="example" data-transform="updateExample"
+
+  <pre id="sample-flattened-library-objects"
+       class="example" data-transform="updateExample"
        title="Flattened library objects">
   <!--
   {
@@ -8141,33 +8166,43 @@ the data type to be specified with each piece of data.</p>
 
   <p>The Frame Algorithm can create a new document which follows the structure
     of the frame:</p>
-  <pre class="example nohighlight" data-transform="updateExample"
-       title="Framed library objects"
-       data-frame="Sample library frame"
-       data-result-for="Flattened library objects">
-  <!--
-  {
-    "@context": {
-      "@version": 1.1,
-      "@vocab": "http://example.org/"
-    },
-    "@id": "http://example.org/library",
-    "@type": "Library",
-    "contains": {
-      "@id": "http://example.org/library/the-republic",
-      "@type": "Book",
-      "contains": {
-        "@id": "http://example.org/library/the-republic#introduction",
-        "@type": "Chapter",
-        "description": "An introductory chapter on The Republic.",
-        "title": "The Introduction"
+
+  <aside class="example ds-selector-tabs changed"
+         title="Framed library objects">
+    <div class="selectors">
+      <a class="playground" target="_blank"
+         data-result-for="#sample-flattened-library-objects"
+         data-frame="#sample-library-frame"
+         data-flatten></a>
+    </div>
+    <pre class="selected original nohighlight" data-transform="updateExample"
+         title="Framed library objects"
+         data-frame="Sample library frame"
+         data-result-for="Flattened library objects">
+    <!--
+    {
+      "@context": {
+        "@version": 1.1,
+        "@vocab": "http://example.org/"
       },
-      "creator": "Plato",
-      "title": "The Republic"
+      "@id": "http://example.org/library",
+      "@type": "Library",
+      "contains": {
+        "@id": "http://example.org/library/the-republic",
+        "@type": "Book",
+        "contains": {
+          "@id": "http://example.org/library/the-republic#introduction",
+          "@type": "Chapter",
+          "description": "An introductory chapter on The Republic.",
+          "title": "The Introduction"
+        },
+        "creator": "Plato",
+        "title": "The Republic"
+      }
     }
-  }
-  -->
-  </pre>
+    -->
+    </pre>
+  </aside>
 </section>
 </section>
 
