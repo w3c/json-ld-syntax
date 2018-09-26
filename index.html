@@ -8366,10 +8366,8 @@ the data type to be specified with each piece of data.</p>
         "@graph": {
           "@id": "people/bob",
           "sibling": {
-            "sibling": {
-              "name": "Mary",
-              "sibling": {"@id": "people/bob"}
-            }
+            "name": "Mary",
+            "sibling": {"@id": "people/bob"}
           }
         }
       }]
@@ -8403,12 +8401,10 @@ the data type to be specified with each piece of data.</p>
       "@graph": [{
         "@id": "http://example.com/people/bob",
         "http://schema.org/sibling": [{
-          "http://schema.org/sibling": [{
-            "http://schema.org/name": [{"@value": "Mary"}],
-            "http://schema.org/sibling": [
-              {"@id": "http://example.com/people/bob"}
-            ]
-          }]
+          "http://schema.org/name": [{"@value": "Mary"}],
+          "http://schema.org/sibling": [
+            {"@id": "http://example.com/people/bob"}
+          ]
         }]
       }]
     }]
@@ -8425,10 +8421,9 @@ the data type to be specified with each piece of data.</p>
         <tr><td>&nbsp;</td><td>http://example.com/people/alice</td><td>schema:knows</td><td>http://example.com/people/bob</td><td></td></tr>
         <tr><td>http://example.com/graphs/1</td><td>http://example.com/people/bob</td><td>schema:name</td><td>Bob</td><td></td></tr>
         <tr><td>http://example.com/graphs/1</td><td>http://example.com/people/alice</td><td>schema:parent</td><td>http://example.com/people/bob</td><td></td></tr>
-        <tr><td>http://example.com/graphs/2</td><td>_:b1</td><td>schema:name</td><td>Mary</td><td></td></tr>
-        <tr><td>http://example.com/graphs/2</td><td>_:b1</td><td>schema:sibling</td><td>http://example.com/people/bob</td><td></td></tr>
-        <tr><td>http://example.com/graphs/2</td><td>_:b0</td><td>schema:sibling</td><td>_:b1</td><td></td></tr>
         <tr><td>http://example.com/graphs/2</td><td>http://example.com/people/bob</td><td>schema:sibling</td><td>_:b0</td><td></td></tr>
+        <tr><td>http://example.com/graphs/2</td><td>_:b0</td><td>schema:name</td><td>Mary</td><td></td></tr>
+        <tr><td>http://example.com/graphs/2</td><td>_:b0</td><td>schema:sibling</td><td>http://example.com/people/bob</td><td></td></tr>
       </tbody>
     </table>
     <pre class="trig"
@@ -8450,10 +8445,8 @@ the data type to be specified with each piece of data.</p>
 
     <http://example.com/graphs/2> {
       <http://example.com/people/bob> schema:sibling [
-        schema:sibling [
-          schema:name "Mary";
-          schema:sibling <http://example.com/people/bob>
-        ]
+        schema:name "Mary";
+        schema:sibling <http://example.com/people/bob>
       ] .
     }
     -->
@@ -9208,10 +9201,10 @@ the data type to be specified with each piece of data.</p>
         <code>http://example.com/people/alice</code> and <code>http://example.com/people/bob</code>
         related by the <code>schema:parent</code> relationship, and names the
         <code>http://example.com/people/bob</code> "Bob".</p>
-      <p>The third box consists of three resources, one
-        named <code>http://example.com/people/bob</code> and the other two unnamed.
-        The three resources related to each other using <code>schema:sibling</code> relationship
-        with the third named "Mary".</p>
+      <p>The third box consists of two resources, one
+        named <code>http://example.com/people/bob</code> and the other unnamed.
+        The two resources related to each other using <code>schema:sibling</code> relationship
+        with the second named "Mary".</p>
   </section>
 </section>
 
