@@ -25,10 +25,10 @@ jobs:
       name: "Enchidna Publication"
       if: branch = publications
       env:
-        - URL="http://w3c.github.io/manifest/ECHIDNA"
+        - URL="http://w3c.github.io/json-ld-syntax/ECHIDNA"
         - DECISION="<URL to WG decision to do continuous publishing>"
         - secure: "<encryped token>"
       script:
         - echo "ok"
       after_success:
-        - test $TRAVIS_PULL_REQUEST = false && curl "https://labs.w3.org/echidna/api/request" --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN"
+        - test $TRAVIS_PULL_REQUEST = false && curl "https://labs.w3.org/echidna/api/request" --data 'dry-run=true' --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN"
