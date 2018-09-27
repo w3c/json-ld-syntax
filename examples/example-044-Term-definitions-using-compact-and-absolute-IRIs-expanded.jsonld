@@ -1,9 +1,0 @@
-[{
-  "http://xmlns.com/foaf/0.1/age": [{"@type": "http://www.w3.org/2001/XMLSchema#integer", "@value": "41"}],
-  "http://xmlns.com/foaf/0.1/name": [{"@value": "John Smith"}],
-  "http://xmlns.com/foaf/0.1/homepage": [
-    {"@id": "http://personal.example.org/"},
-    {"@id": "http://work.example.com/jsmith/"}
-  ]
-}
-]

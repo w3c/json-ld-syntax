@@ -1,4 +1,0 @@
-Example 007: Values of @id are interpreted as IRI
----
-homepage:
-  "@id": http://example.com/

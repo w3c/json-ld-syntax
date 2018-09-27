@@ -1,7 +1,0 @@
-@prefix dc: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-<http://example.com/people#john> foaf:name "John Smith";
-  foaf:age 41;
-  foaf:homepage <http://personal.example.org/>,
-    <http://work.example.com/jsmith/>
-.

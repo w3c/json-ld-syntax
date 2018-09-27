@@ -1,7 +1,0 @@
-Example 025: Using "" as the vocabulary mapping (expanded)-expanded
----
-- "@id": http://example.org/places#BrewEats
-  "@type":
-  - http://example/document#Restaurant
-  http://example/document#name:
-  - "@value": Brew Eats
