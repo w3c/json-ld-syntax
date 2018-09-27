@@ -501,7 +501,7 @@ ARGV.each do |input|
 
     # Save example as YAML
     if yaml_dir && ex[:filename].match?(/\.json.*$/)
-      fn = ex[:filename].sub(/\.json.*$/, '.yml')
+      fn = ex[:filename].sub(/\.json.*$/, '.yaml')
       File.open(File.join(yaml_dir, fn), 'w') do |f|
         f.puts "Example #{"%03d" % ex[:number]}: #{ex[:title]}"
         f.write(::JSON.parse(ex[:content]).to_yaml)
