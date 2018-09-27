@@ -243,6 +243,7 @@ require(["core/pubsubhub"], (respecEvents) => {
 
       // Wrap in a button
       const button = document.createElement('button');
+      button.className = 'playground';
       link.parentNode.insertBefore(button, link);
       button.appendChild(link);
     }
