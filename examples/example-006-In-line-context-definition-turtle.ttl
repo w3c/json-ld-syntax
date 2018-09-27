@@ -1,7 +1,0 @@
-@prefix schema: <http://schema.org/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
- [
-   schema:image <http://manu.sporny.org/images/manu.png>;
-   schema:name "Manu Sporny";
-   schema:url <http://manu.sporny.org/>
- ] .

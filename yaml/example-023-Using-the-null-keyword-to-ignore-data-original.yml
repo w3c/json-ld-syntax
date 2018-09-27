@@ -1,9 +1,0 @@
-Example 023: Using the null keyword to ignore data-original
----
-"@context":
-  "@vocab": http://schema.org/
-  databaseId: 
-"@id": http://example.org/places#BrewEats
-"@type": Restaurant
-name: Brew Eats
-databaseId: '23987520'

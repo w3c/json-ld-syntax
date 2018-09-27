@@ -1,7 +1,0 @@
-Example 011: Type coercion-original
----
-"@context":
-  homepage:
-    "@id": http://schema.org/url
-    "@type": "@id"
-homepage: http://manu.sporny.org/

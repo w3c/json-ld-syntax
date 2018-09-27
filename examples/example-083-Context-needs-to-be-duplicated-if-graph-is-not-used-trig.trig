@@ -1,7 +1,0 @@
-@prefix schema: <http://schema.org/> .
-<http://greggkellogg.net/foaf#me> a schema:Person;
-   schema:knows <http://manu.sporny.org/about#manu>;
-   schema:name "Gregg Kellogg" .
-<http://manu.sporny.org/about#manu> a schema:Person;
-   schema:knows <http://greggkellogg.net/foaf#me>;
-   schema:name "Manu Sporny" .

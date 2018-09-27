@@ -1,6 +1,0 @@
-Example 014: Specifying multiple types for a node-expanded
----
-- "@id": http://me.markus-lanthaler.com/
-  "@type":
-  - http://schema.org/Person
-  - http://xmlns.com/foaf/0.1/Person

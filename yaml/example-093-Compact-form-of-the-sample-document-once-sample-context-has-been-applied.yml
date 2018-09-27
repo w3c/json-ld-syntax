@@ -1,9 +1,0 @@
-Example 093: Compact form of the sample document once sample context has been applied
----
-"@context":
-  name: http://xmlns.com/foaf/0.1/name
-  homepage:
-    "@id": http://xmlns.com/foaf/0.1/homepage
-    "@type": "@id"
-name: Manu Sporny
-homepage: http://manu.sporny.org/
