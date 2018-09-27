@@ -1,4 +1,4 @@
-<table class="statements" data-result-for="Implicitly named graph-expanded">
+<table class="statements" data-result-for="Implicitly named graph-expanded" data-to-rdf>
         <thead><tr>
 <th>Graph</th>
 <th>Subject</th>

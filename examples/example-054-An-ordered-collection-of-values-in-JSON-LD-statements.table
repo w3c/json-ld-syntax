@@ -1,4 +1,4 @@
-<table class="statements" data-result-for="An ordered collection of values in JSON-LD-expanded">
+<table class="statements" data-result-for="An ordered collection of values in JSON-LD-expanded" data-to-rdf>
   <thead><tr>
     <th>Subject</th>
     <th>Property</th>
