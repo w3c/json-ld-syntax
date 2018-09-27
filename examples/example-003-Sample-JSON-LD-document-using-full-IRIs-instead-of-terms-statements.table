@@ -1,4 +1,4 @@
-<table class="statements" data-result-for="Sample JSON-LD document using full IRIs instead of terms-expanded">
+<table class="statements" data-result-for="Sample JSON-LD document using full IRIs instead of terms-expanded" data-to-rdf>
       <thead><tr>
 <th>Subject</th>
 <th>Property</th>

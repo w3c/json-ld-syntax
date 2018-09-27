@@ -1,4 +1,4 @@
-<table class="statements" data-result-for="Expanded value with type-expanded">
+<table class="statements" data-result-for="Expanded value with type-expanded" data-to-rdf>
     <thead><tr>
 <th>Subject</th>
 <th>Property</th>

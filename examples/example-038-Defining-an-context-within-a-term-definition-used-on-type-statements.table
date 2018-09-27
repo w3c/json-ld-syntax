@@ -1,4 +1,4 @@
-<table class="statements" data-result-for="Defining an @context within a term definition used on @type-expanded">
+<table class="statements" data-result-for="Defining an @context within a term definition used on @type-expanded" data-to-rdf>
       <thead><tr>
 <th>Subject</th>
 <th>Property</th>

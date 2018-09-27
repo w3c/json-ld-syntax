@@ -1,4 +1,4 @@
-<table class="statements" data-result-for="Indexing graph data in JSON-LD-expanded">
+<table class="statements" data-result-for="Indexing graph data in JSON-LD-expanded" data-to-rdf>
       <thead><tr>
 <th>Graph</th>
 <th>Subject</th>

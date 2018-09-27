@@ -1,4 +1,4 @@
-<table class="original selected">
+<table class="original selected" data-result-for="Example demonstrating the context-sensitivity for @type" data-to-rdf>
   <thead><tr>
     <th>Subject</th>
     <th>Property</th>

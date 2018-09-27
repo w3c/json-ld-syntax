@@ -1,4 +1,4 @@
-<table class="statements" data-result-for="A person and its children using a reverse property-expanded">
+<table class="statements" data-result-for="A person and its children using a reverse property-expanded" data-to-rdf>
       <thead><tr>
 <th>Subject</th>
 <th>Property</th>
