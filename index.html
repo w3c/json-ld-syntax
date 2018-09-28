@@ -3068,7 +3068,8 @@ in the body of a JSON-LD document:</p>
   <dfn>value type</dfn> specifies the data type of a particular value, such
   as an integer, a floating point number, or a date.</p>
 
-<pre class="example nohighlight" data-transform="updateExample"
+<pre id="context-sensitivity-for-type"
+     class="example nohighlight" data-transform="updateExample"
      title="Example demonstrating the context-sensitivity for @type">
 <!--
 {
@@ -3101,6 +3102,8 @@ in the body of a JSON-LD document:</p>
   <div class="selectors">
     <button class="selected" data-selects="original">Original</button>
     <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"
+       data-result-for="#context-sensitivity-for-type"></a>
   </div>
   <table class="original selected"
        data-result-for="Example demonstrating the context-sensitivity for @type"
@@ -3145,11 +3148,12 @@ in the body of a JSON-LD document:</p>
 
 <section class="informative"><h2>Type Coercion</h2>
 
-<p>JSON-LD supports the coercion of values to particular data types.
-Type <dfn>coercion</dfn> allows someone deploying JSON-LD to coerce the incoming or
-outgoing values to the proper data type based on a mapping of data type <a>IRIs</a> to
-<a>terms</a>. Using type coercion, value representation is preserved without requiring
-the data type to be specified with each piece of data.</p>
+<p>JSON-LD supports the coercion of <a>string</a> values to particular data types.
+Type <dfn>coercion</dfn> allows someone deploying JSON-LD to use <a>string</a> property values
+and have those values be interpreted as <a>typed values</a>
+by associating an <a>IRI</a> with the value in the expanded <a>value object</a> representation.
+Using type coercion, <a>string</a> value representation can be used without requiring
+the data type to be specified explicitly with each piece of data.</p>
 
 <p>Type coercion is specified within an <a>expanded term definition</a>
   using the <code>@type</code> key. The value of this key expands to an <a>IRI</a>.
