@@ -1,0 +1,10 @@
+Example 065: Embedding a node object as property value of another node object-original
+---
+"@context":
+  "@vocab": http://schema.org/
+"@type": Person
+name: Manu Sporny
+knows:
+  "@id": http://greggkellogg.net/foaf#me
+  "@type": Person
+  name: Gregg Kellogg

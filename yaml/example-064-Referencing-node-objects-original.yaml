@@ -1,0 +1,13 @@
+Example 064: Referencing node objects-original
+---
+"@context":
+  "@vocab": http://schema.org/
+  knows:
+    "@type": "@id"
+"@graph":
+- name: Manu Sporny
+  "@type": Person
+  knows: http://greggkellogg.net/foaf#me
+- "@id": http://greggkellogg.net/foaf#me
+  "@type": Person
+  name: Gregg Kellogg

@@ -1,0 +1,6 @@
+Example 040: Expanded term definition with type coercion-expanded
+---
+- "@id": http://example.com/docs/1
+  http://purl.org/dc/terms/modified:
+  - "@type": http://www.w3.org/2001/XMLSchema#dateTime
+    "@value": '2010-05-29T14:17:39+02:00'

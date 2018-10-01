@@ -1,0 +1,8 @@
+Example 046: Setting the default language of a JSON-LD document-expanded
+---
+- http://example.org/name:
+  - "@value": 花澄
+    "@language": ja
+  http://example.org/occupation:
+  - "@value": 科学者
+    "@language": ja

@@ -1,0 +1,9 @@
+Example 052: Multiple values with no inherent order-original
+---
+"@context":
+  foaf: http://xmlns.com/foaf/0.1/
+"@id": http://example.org/people#joebob
+foaf:nick:
+- joe
+- bob
+- JB

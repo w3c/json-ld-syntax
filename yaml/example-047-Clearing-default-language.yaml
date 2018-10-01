@@ -1,0 +1,9 @@
+Example 047: Clearing default language
+---
+"@context":
+  "@language": ja
+name: 花澄
+details:
+  "@context":
+    "@language": 
+  occupation: Ninja

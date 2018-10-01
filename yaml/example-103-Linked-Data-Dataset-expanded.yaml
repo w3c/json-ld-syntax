@@ -1,0 +1,27 @@
+Example 103: Linked Data Dataset-expanded
+---
+- "@id": http://example.com/people/alice
+  http://schema.org/name:
+  - "@value": Alice
+  http://schema.org/gender:
+  - "@value": weiblich
+    "@language": de
+  - "@value": female
+    "@language": en
+  http://schema.org/knows:
+  - "@id": http://example.com/people/bob
+- "@id": http://example.com/graphs/1
+  "@graph":
+  - "@id": http://example.com/people/alice
+    http://schema.org/parent:
+    - "@id": http://example.com/people/bob
+      http://schema.org/name:
+      - "@value": Bob
+- "@id": http://example.com/graphs/2
+  "@graph":
+  - "@id": http://example.com/people/bob
+    http://schema.org/sibling:
+    - http://schema.org/name:
+      - "@value": Mary
+      http://schema.org/sibling:
+      - "@id": http://example.com/people/bob

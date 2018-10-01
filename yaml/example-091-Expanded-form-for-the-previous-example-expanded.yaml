@@ -1,0 +1,6 @@
+Example 091: Expanded form for the previous example-expanded
+---
+- http://xmlns.com/foaf/0.1/name:
+  - "@value": Manu Sporny
+  http://xmlns.com/foaf/0.1/homepage:
+  - "@id": http://manu.sporny.org/

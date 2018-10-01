@@ -1,0 +1,7 @@
+Example 059: An unordered collection of values in JSON-LD-expanded
+---
+- "@id": http://example.org/people#joebob
+  http://xmlns.com/foaf/0.1/nick:
+  - "@value": joe
+  - "@value": bob
+  - "@value": jaybee

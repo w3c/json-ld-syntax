@@ -1,0 +1,74 @@
+<table class="statements" data-result-for="Linked Data Dataset-expanded" data-to-rdf>
+      <thead><tr>
+<th>Graph</th>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+<th>Language</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td> </td>
+<td>http://example.com/people/alice</td>
+<td>schema:name</td>
+<td>Alice</td>
+<td></td>
+</tr>
+        <tr>
+<td> </td>
+<td>http://example.com/people/alice</td>
+<td>schema:gender</td>
+<td>weiblich</td>
+<td>de</td>
+</tr>
+        <tr>
+<td> </td>
+<td>http://example.com/people/alice</td>
+<td>schema:gender</td>
+<td>female</td>
+<td>en</td>
+</tr>
+        <tr>
+<td> </td>
+<td>http://example.com/people/alice</td>
+<td>schema:knows</td>
+<td>http://example.com/people/bob</td>
+<td></td>
+</tr>
+        <tr>
+<td>http://example.com/graphs/1</td>
+<td>http://example.com/people/bob</td>
+<td>schema:name</td>
+<td>Bob</td>
+<td></td>
+</tr>
+        <tr>
+<td>http://example.com/graphs/1</td>
+<td>http://example.com/people/alice</td>
+<td>schema:parent</td>
+<td>http://example.com/people/bob</td>
+<td></td>
+</tr>
+        <tr>
+<td>http://example.com/graphs/2</td>
+<td>http://example.com/people/bob</td>
+<td>schema:sibling</td>
+<td>_:b0</td>
+<td></td>
+</tr>
+        <tr>
+<td>http://example.com/graphs/2</td>
+<td>_:b0</td>
+<td>schema:name</td>
+<td>Mary</td>
+<td></td>
+</tr>
+        <tr>
+<td>http://example.com/graphs/2</td>
+<td>_:b0</td>
+<td>schema:sibling</td>
+<td>http://example.com/people/bob</td>
+<td></td>
+</tr>
+      </tbody>
+    </table>

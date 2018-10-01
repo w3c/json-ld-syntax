@@ -1,0 +1,8 @@
+Example 032: Setting @container: @set on @type
+---
+"@context":
+  "@version": 1.1
+  "@type":
+    "@container": "@set"
+"@type":
+- http:/example.org/type
