@@ -1,0 +1,19 @@
+Example 057: Coordinates expressed in GeoJSON
+---
+type: Feature
+bbox:
+- -10.0
+- -10.0
+- 10.0
+- 10.0
+geometry:
+  type: Polygon
+  coordinates:
+  - - - -10.0
+      - -10.0
+    - - 10.0
+      - -10.0
+    - - 10.0
+      - 10.0
+    - - -10.0
+      - -10.0

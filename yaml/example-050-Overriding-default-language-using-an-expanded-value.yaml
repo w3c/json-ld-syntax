@@ -1,0 +1,8 @@
+Example 050: Overriding default language using an expanded value
+---
+"@context":
+  "@language": ja
+name: 花澄
+occupation:
+  "@value": Scientist
+  "@language": en

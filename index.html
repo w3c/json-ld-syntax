@@ -2549,6 +2549,27 @@
     <a>keywords</a> have been given the aliases
     <strong>url</strong> and <strong>a</strong>, respectively.</p>
 
+  <p><span class="changed">Other than for <code>@type</code>,</span> properties of
+    <a>expanded term definitions</a> where the term is a <a>keyword</a> are be ignored.</p>
+
+  <p class="changed">When <a>processing mode</a> is set to <code>json-ld-1.1</code>,
+    <code>@type</code> may be used with an <a>expanded term definition</a> with <code>@container</code> set
+    to <code>@set</code>; no other members may be set within such an <a>expanded term definition</a>.
+    This is used by the <a data-cite="JSON-LD11-API#compaction-algorithm">Compaction algorithm</a> to ensure that the values of @type (or an alias)
+    are always represented in an <a>array</a>.</p>
+
+  <pre class="example" data-transform="updateExample" title="Setting @container: @set on @type">
+  <!--
+  {
+    "@context": {
+      "@version": 1.1,
+      "@type": {"@container": "@set"}
+    },
+    "@type": ["http:/example.org/type"]
+  }
+  -->
+  </pre>
+
   <p>Since keywords cannot be redefined, they can also not be aliased to
     other keywords.</p>
 
@@ -9013,7 +9034,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>A <a>context definition</a> MUST be a <a>dictionary</a> whose
     keys MUST be either <a>terms</a>, <a>compact IRIs</a>, <a>absolute IRIs</a>,
     or one of the <a>keywords</a> <code>@language</code>, <code>@base</code>,
-    <code>@vocab</code>, or <code class="changed">@version</code>.</p>
+    <code class="changed">@type</code>, <code>@vocab</code>, or <code class="changed">@version</code>.</p>
 
   <p>If the <a>context definition</a> has an <code>@language</code> key,
     its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[!BCP47]] or be <a>null</a>.</p>
@@ -9021,6 +9042,9 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>If the <a>context definition</a> has an <code>@base</code> key,
     its value MUST be an <a>absolute IRI</a>, a <a>relative IRI</a>,
     or <a>null</a>.</p>
+
+  <p class="changed">If the <a>context definition</a> has an <code>@type</code> key,
+    its value MUST be a <a>dictionary</a> with the single member <code>@context</code> with value <code>@set</code>.</p>
 
   <p>If the <a>context definition</a> has an <code>@vocab</code> key,
     its value MUST be a <a>absolute IRI</a>, a <a>compact IRI</a>,
@@ -9854,14 +9878,18 @@ the data type to be specified explicitly with each piece of data.</p>
       a context. When this is set, vocabulary-relative IRIs, such as the
       keys of <a>node objects</a>, are expanded or compacted relative
       to the <a>base IRI</a> using string concatenation.</li>
-    <li><a>Lists</a> may now have items which are themselves <a>lists</a>.</li>
   </ul>
+  <p>Additionally, see <a href="#changes-from-cg" class="sectionRef"></a>.</p>
 </section>
 
 <section class="appendix informative" id="changes-from-cg">
   <h2>Changes since JSON-LD Community Group Final Report</h2>
   <ul>
     <li><a>Lists</a> may now have items which are themselves <a>lists</a>.</li>
+    <li>Values of <code>@type</code>, or an alais of <code>@type</code>, may now have their <code>@container</code> set to @set
+      to ensure that <code>@type</code> members are always represented as an array. This
+      also allows a term to be defined for <code>@type</code>, where the value MUST be a <a>dictionary</a>
+      with <code>@container</code> set to <code>@set</code>.</li>
   </ul>
 </section>
 

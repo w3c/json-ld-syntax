@@ -1,7 +1,0 @@
-Example 092: Sample context
----
-"@context":
-  name: http://xmlns.com/foaf/0.1/name
-  homepage:
-    "@id": http://xmlns.com/foaf/0.1/homepage
-    "@type": "@id"
