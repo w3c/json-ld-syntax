@@ -218,7 +218,7 @@ ARGV.each do |input|
           ext, content = 'table', element
         end
 
-        fn = "example-#{"%03d" % example_number}-#{title.gsub(/[^\w]+/, '-')}.#{ext}"
+        fn = "#{title.gsub(/[^\w]+/, '-')}.#{ext}"
         examples[title] = {
           title: title,
           filename: fn,
