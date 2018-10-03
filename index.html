@@ -116,6 +116,20 @@
   };
 //]]>
 </script>
+<script type="text/javascript">
+  // Add example button selection logic
+  document.addEventListener("DOMContentLoaded", () => {
+    for (const button of document.querySelectorAll(".ds-selector-tabs .selectors button")) {
+      button.onclick = () => {
+        const ex = button.closest(".ds-selector-tabs");
+        ex.querySelector("button.selected").classList.remove("selected");
+        ex.querySelector(".selected").classList.remove("selected");
+        button.classList.add('selected');
+        ex.querySelector("." + button.dataset.selects).classList.add("selected");
+      }
+    }
+  })
+</script>
 <style type="text/css">
   .hl-bold { font-weight: bold; color: #0a3; }
   .comment { color: #999; }
