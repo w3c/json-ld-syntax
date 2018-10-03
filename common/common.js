@@ -162,8 +162,8 @@ require(["core/pubsubhub"], (respecEvents) => {
           const replacement = jsonld.conversions[toReplace];
           const newHref = anchor.href.replace(toReplace, replacement);
           anchor.setAttribute('href', newHref);
-          if (anchor.textContent().indexOf(toReplace) !== -1) {
-            anchor.innerText = anchor.textContent().replace(toReplace, replacement);
+          if (anchor.textContent.indexOf(toReplace) !== -1) {
+            anchor.textContent = anchor.textContent.replace(toReplace, replacement);
           }
         }
       }
@@ -177,17 +177,6 @@ require(["core/pubsubhub"], (respecEvents) => {
 require(["core/pubsubhub"], (respecEvents) => {
   "use strict";
   respecEvents.sub('end-all', (documentElement) => {
-    // Add example button selection logic
-    for (const button of document.querySelectorAll(".ds-selector-tabs .selectors button")) {
-      button.onclick = () => {
-        const ex = button.closest(".ds-selector-tabs");
-        ex.querySelector("button.selected").classList.remove("selected");
-        ex.querySelector(".selected").classList.remove("selected");
-        button.classList.add('selected');
-        ex.querySelector("." + button.dataset.selects).classList.add("selected");
-      }
-    }
-
     // Add playground links
     for (const link of document.querySelectorAll("a.playground")) {
       let pre;
@@ -202,7 +191,7 @@ require(["core/pubsubhub"], (respecEvents) => {
         .replace(/\*\*\*\*/g, '')
         .replace(/####([^#]*)####/g, '');
       link.setAttribute('aria-label', 'playground link');
-      link.innerText = "Open in playground";
+      link.textContent = "Open in playground";
 
       // startTab defaults to "expand"
       const linkQueryParams = {
@@ -222,7 +211,7 @@ require(["core/pubsubhub"], (respecEvents) => {
 
       if (link.dataset.frame !== undefined) {
         linkQueryParams.startTab = "tab-" + "framed";
-        const frameContent = unComment(document, document.querySelector(link.dataset.frame + ' > pre').innerText)
+        const frameContent = unComment(document, document.querySelector(link.dataset.frame + ' > pre').textContent)
           .replace(/\*\*\*\*/g, '')
           .replace(/####([^#]*)####/g, '');
         linkQueryParams.frame = frameContent;
@@ -230,7 +219,7 @@ require(["core/pubsubhub"], (respecEvents) => {
 
       // Set context
       if (link.dataset.context) {
-        const contextContent = unComment(document, document.querySelector(link.dataset.context + ' > pre').innerText)
+        const contextContent = unComment(document, document.querySelector(link.dataset.context + ' > pre').textContent)
           .replace(/\*\*\*\*/g, '')
           .replace(/####([^#]*)####/g, '');
         linkQueryParams.context = contextContent;
