@@ -26,7 +26,7 @@ jobs:
       if: branch = publications
       env:
         - URL="http://w3c.github.io/json-ld-syntax/ECHIDNA"
-        - DECISION="<URL to WG decision to do continuous publishing>"
+        - DECISION="https://www.w3.org/2018/json-ld-wg/Meetings/Minutes/2018/2018-09-28-json-ld#resolution2"
         - secure: "<encryped token>"
       script:
         - echo "ok"
