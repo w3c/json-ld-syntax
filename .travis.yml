@@ -1,12 +1,33 @@
+sudo: required
+dist: trusty
+services:
+  - docker
 jobs:
   include:
     - stage: common
+      name: "Verify common files are consistent"
       script:
         - git remote add -f b https://github.com/w3c/json-ld-wg.git
         - git remote update
         - git diff --exit-code remotes/b/master -- common
     - stage: examples
+      name: "Verify examples are consistent"
       language: ruby
       rvm: 2.5
       bundler_args: --without debug
       script: "rake test"
+    - stage: links
+      name: "Check internal links"
+      script:
+        - docker pull stupchiy/checklink
+        - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://rawgit.com/w3c/json-ld-syntax/${TRAVIS_BRANCH}/index.html?specStatus=WD;shortName=json-ld11"
+    - stage: echidna
+      name: "Enchidna Publication"
+      # Only on push to "publications" branch
+      if: branch = publications AND type = push
+      env:
+        - URL="http://w3c.github.io/json-ld-syntax/ECHIDNA"
+        - DECISION="https://www.w3.org/2018/json-ld-wg/Meetings/Minutes/2018/2018-09-28-json-ld#resolution2"
+        - TOKEN: "14491955025bb82ea0c82984.42524434"
+      script:
+        - curl "https://labs.w3.org/echidna/api/request" --data 'dry-run=true' --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN"
