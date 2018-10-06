@@ -24,8 +24,7 @@ jobs:
     - stage: echidna
       name: "Enchidna Publication"
       # Only on push to "publications" branch
-      #if: branch = publications AND type = push
-      if: type = push
+      if: branch = publications AND type = push
       env:
         - URL="http://w3c.github.io/json-ld-syntax/ECHIDNA"
         - DECISION="https://www.w3.org/2018/json-ld-wg/Meetings/Minutes/2018/2018-09-28-json-ld#resolution2"
