@@ -24,11 +24,10 @@ jobs:
     - stage: echidna
       name: "Enchidna Publication"
       #if: branch = publications
+      if: $TRAVIS_PULL_REQUEST = false
       env:
         - URL="http://w3c.github.io/json-ld-syntax/ECHIDNA"
         - DECISION="https://www.w3.org/2018/json-ld-wg/Meetings/Minutes/2018/2018-09-28-json-ld#resolution2"
-        - secure: "14491955025bb82ea0c82984.42524434"
+        - TOKEN: "14491955025bb82ea0c82984.42524434"
       script:
-        - echo "ok"
-      after_success:
-        - test $TRAVIS_PULL_REQUEST = false && curl "https://labs.w3.org/echidna/api/request" --data 'dry-run=true' --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN"
+        - curl "https://labs.w3.org/echidna/api/request" --data 'dry-run=true' --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN"
