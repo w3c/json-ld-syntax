@@ -23,11 +23,11 @@ jobs:
         - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://rawgit.com/w3c/json-ld-syntax/${TRAVIS_BRANCH}/index.html?specStatus=WD;shortName=json-ld11"
     - stage: echidna
       name: "Enchidna Publication"
-      if: branch = publications
+      #if: branch = publications
       env:
         - URL="http://w3c.github.io/json-ld-syntax/ECHIDNA"
         - DECISION="https://www.w3.org/2018/json-ld-wg/Meetings/Minutes/2018/2018-09-28-json-ld#resolution2"
-        - secure: "<encryped token>"
+        - secure: "14491955025bb82ea0c82984.42524434"
       script:
         - echo "ok"
       after_success:
