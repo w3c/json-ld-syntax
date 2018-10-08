@@ -22,7 +22,7 @@ jobs:
         - docker pull stupchiy/checklink
         - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://rawgit.com/w3c/json-ld-syntax/${TRAVIS_BRANCH}/index.html?specStatus=WD;shortName=json-ld11"
     - stage: echidna
-      name: "Enchidna Publication"
+      name: "Echidna Publication"
       # Only on push to "publications" branch
       if: branch = publications AND type = push
       env:
@@ -30,4 +30,4 @@ jobs:
         - DECISION="https://www.w3.org/2018/json-ld-wg/Meetings/Minutes/2018/2018-09-28-json-ld#resolution2"
         - TOKEN: "14491955025bb82ea0c82984.42524434"
       script:
-        - curl "https://labs.w3.org/echidna/api/request" --data 'dry-run=true' --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN"
+        - curl "https://labs.w3.org/echidna/api/request" --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN"
