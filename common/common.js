@@ -229,12 +229,6 @@ require(["core/pubsubhub"], (respecEvents) => {
         'https://json-ld.org/playground-dev/#' +
         Object.keys(linkQueryParams).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(linkQueryParams[k])}`)
               .join('&'));
-
-      // Wrap in a button
-      const button = document.createElement('button');
-      button.className = 'playground';
-      link.parentNode.insertBefore(button, link);
-      button.appendChild(link);
     }
 
     // Add highlighting and remove comment from pre elements

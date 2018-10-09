@@ -116,7 +116,7 @@
   };
 //]]>
 </script>
-<script type="text/javascript">
+<script>
   // Add example button selection logic
   document.addEventListener("DOMContentLoaded", () => {
     for (const button of document.querySelectorAll(".ds-selector-tabs .selectors button")) {
@@ -130,7 +130,7 @@
     }
   })
 </script>
-<style type="text/css">
+<style>
   .hl-bold { font-weight: bold; color: #0a3; }
   .comment { color: #999; }
   table, thead, tr, td { padding: 5px; border-width: 1px; border-spacing: 0px; border-style: solid; border-collapse: collapse; }
@@ -195,15 +195,19 @@
   .ds-selector-tabs pre.selected, .ds-selector-tabs table.selected {
     display: block;
   }
-  button.playground {
-    width: 150px;
-  }
   a.playground {
-    border-bottom: none;
+    display: inline-block;
+    width: 150px;
+    border: 1px solid transparent;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    background-color: rgb(192, 192, 192);
     text-decoration: none;
     font-size: 13px;
+    margin-bottom: 10px;
   }
   a[href].playground {
+    padding: 4px 0 3px 8px;
     border-bottom: none;
     text-decoration: none;
     color: #666;
