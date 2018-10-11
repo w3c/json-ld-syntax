@@ -1,7 +1,4 @@
-sudo: required
 dist: trusty
-services:
-  - docker
 jobs:
   include:
     - stage: common
@@ -22,6 +19,9 @@ jobs:
     - stage: links
       name: "Check internal links and HTML"
       language: ruby
+      sudo: required
+      services:
+        - docker
       # Because (alas) rawgit is end of life, we'll run this only on the master branch.
       if: branch = master
       script:
