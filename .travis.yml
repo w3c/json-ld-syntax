@@ -6,6 +6,9 @@ jobs:
   include:
     - stage: common
       name: "Verify common files are consistent"
+      language: javascript
+      # Only check on pull requests to master
+      if: branch = master AND type = pull_request
       script:
         - git remote add -f b https://github.com/w3c/json-ld-wg.git
         - git remote update
@@ -17,12 +20,17 @@ jobs:
       bundler_args: --without debug
       script: "rake test"
     - stage: links
-      name: "Check internal links"
+      name: "Check internal links and HTML"
+      language: ruby
+      # Because (alas) rawgit is end of life, we'll run this only on the master branch.
+      if: branch = master
       script:
         - docker pull stupchiy/checklink
-        - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://rawgit.com/w3c/json-ld-syntax/${TRAVIS_BRANCH}/index.html?specStatus=WD;shortName=json-ld11"
+        - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://w3c.github.io/json-ld-syntax/index.html?specStatus=WD;shortName=json-ld11"
+        - bundle exec rake check_html
     - stage: echidna
       name: "Echidna Publication"
+      language: javascript
       # Only on push to "publications" branch
       if: branch = publications AND type = push
       env:
