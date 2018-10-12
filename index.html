@@ -34,6 +34,7 @@
 
       includePermalinks:      true,
       doJsonLd:               true,
+      pluralize:              true,
 
       // if you want to have extra CSS, append them to this list
       // it is recommended that the respec.css stylesheet be kept
@@ -258,7 +259,7 @@
    different sites across the Web.</p>
 
   <p>JSON-LD is a lightweight syntax to serialize Linked Data in
-    JSON [[!RFC8259]]. Its design allows existing JSON to be interpreted as
+    JSON [[RFC8259]]. Its design allows existing JSON to be interpreted as
     Linked Data with minimal changes. JSON-LD is primarily intended to be a
     way to use Linked Data in Web-based programming environments, to build
     interoperable Web services, and to store Linked Data in JSON-based storage engines. Since
@@ -320,7 +321,7 @@
       providing a standard library interface for common JSON-LD operations.</p>
 
     <p>To understand the basics in this specification you must first be familiar with
-      <a data-cite="RFC8259">JSON</a>, which is detailed in [[!RFC8259]].</p>
+      <a data-cite="RFC8259">JSON</a>, which is detailed in [[RFC8259]].</p>
 
     <p>This document almost exclusively uses the term IRI
     (<a data-cite="ld-glossary#internationalized-resource-identifier">Internationalized Resource Indicator</a>)
@@ -362,8 +363,8 @@
   <section class="normative">
     <h2>Terminology</h2>
 
-    <p>This document uses the following terms as defined in JSON [[!RFC8259]]. Refer
-      to the <a data-cite="RFC8259#section-2">JSON Grammar section</a> in [[!RFC8259]] for formal definitions.</p>
+    <p>This document uses the following terms as defined in JSON [[RFC8259]]. Refer
+      to the <a data-cite="RFC8259#section-2">JSON Grammar section</a> in [[RFC8259]] for formal definitions.</p>
 
     <div data-include="common/terms.html"
          data-oninclude="restrictReferences">
@@ -445,7 +446,7 @@
       section <a href="#relationship-to-rdf"></a>.</p>
 
     <p>At the surface level, a <a>JSON-LD document</a> is simply
-      <a data-cite="RFC8259">JSON</a>, detailed in [[!RFC8259]].
+      <a data-cite="RFC8259">JSON</a>, detailed in [[RFC8259]].
       For the purpose of describing the core data structures,
       this is limited to <a>arrays</a>, <a>dictionaries</a> (the parsed version of a <a>JSON Object</a>),
       <a>strings</a>, <a>numbers</a>, <a>booleans</a>, and <a>null</a>,
@@ -538,7 +539,7 @@
         when compacting.</dd>
       <dt class="changed"><code>@version</code></dt><dd class="changed">
         Used in a <a>context definition</a> to set the <a>processing mode</a>.
-        New features since <a data-cite="JSON-LD">JSON-LD 1.0</a> [[!JSON-LD]] described in this specification are
+        New features since <a data-cite="JSON-LD">JSON-LD 1.0</a> [[JSON-LD]] described in this specification are
         only available when <a>processing mode</a> has been explicitly set to
         <code>json-ld-1.1</code>.
       </dd>
@@ -645,7 +646,7 @@
     tokens such as "name", "homepage", etc.</p>
 
   <p>Linked Data, and the Web in general, uses <a>IRIs</a>
-    (<a data-cite="RFC3987#section-2">Internationalized Resource Identifiers</a> as described in [[!RFC3987]]) for unambiguous
+    (<a data-cite="RFC3987#section-2">Internationalized Resource Identifiers</a> as described in [[RFC3987]]) for unambiguous
     identification. The idea is to use <a>IRIs</a>
     to assign unambiguous identifiers to data that may be of use to other developers.
     It is useful for <a>terms</a>,
@@ -936,11 +937,11 @@
   <h2>IRIs</h2>
 
   <p><a>IRIs</a> (<a data-cite="RFC3987#section-2">Internationalized Resource Identifiers</a>
-    [[!RFC3987]]) are fundamental to Linked Data as that is how most
+    [[RFC3987]]) are fundamental to Linked Data as that is how most
     <a>nodes</a> and <a>properties</a>
     are identified. In JSON-LD, IRIs may be represented as an
     <a>absolute IRI</a> or a <a>relative IRI</a>. An
-    <a data-cite="RFC3987#section-1.3">absolute IRI</a> is defined in [[!RFC3987]] as containing a
+    <a data-cite="RFC3987#section-1.3">absolute IRI</a> is defined in [[RFC3987]] as containing a
     <em>scheme</em> along with <em>path</em> and optional <em>query</em> and
     <em>fragment</em> segments. A <a>relative IRI</a> is an IRI
     that is relative to some other <a>absolute IRI</a>.
@@ -2392,7 +2393,7 @@
   <p class="changed">In JSON-LD 1.0, terms may be chosen as <a>compact IRI</a> prefixes when
     compacting only if a <a>simple term definition</a> is used where the value ends with a
     URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character (e.g, <code>/</code>,
-    <code>#</code> and others, see [[!RFC3986]]).
+    <code>#</code> and others, see [[RFC3986]]).
     <span class="note">The previous specification allows any term to be chosen as
       a compact IRI prefix, which led to a poor experience.</span></p>
 
@@ -2410,7 +2411,7 @@
     when compacting only if their <a>expanded term definition</a> contains
     a <code>@prefix</code> <a>member</a> with the value <a>true</a>, or if it has a
     a <a>simple term definition</a>  where the value ends with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character
-    (e.g, <code>/</code>, <code>#</code> and others, see [[!RFC3986]]).</p>
+    (e.g, <code>/</code>, <code>#</code> and others, see [[RFC3986]]).</p>
 
   <aside class="example ds-selector-tabs changed"
          title="Using explicit @prefix declaration to create compact IRIs">
@@ -2737,8 +2738,8 @@ specified. The full <a>IRI</a> for
 <section class="informative changed"><h2>Scoped Contexts</h2>
 
   <p>An <a>expanded term definition</a> can include a <code>@context</code>
-    property, which defines a <a>context</a> (an <dfn>embedded context</dfn>) for <a data-lt="JSON-LD
-    value">values</a> of properties defined using that <a>term</a>. This allows
+    property, which defines a <a>context</a> (an <dfn>embedded context</dfn>) for
+    <a data-lt="JSON-LD value">values</a> of properties defined using that <a>term</a>. This allows
     values to use <a>term definitions</a>, <a>base IRI</a>,
     <a>vocabulary mapping</a> or <a>default language</a> which is different from the
     <a>node object</a> they are contained in, as if the
@@ -3493,7 +3494,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>The example above would associate the <code>ja</code> language
     code with the two <a>strings</a> <em>花澄</em> and <em>科学者</em>.
-    <a data-cite="BCP47#section-2">Languages codes</a> are defined in [[!BCP47]]. The <a>default language</a> applies to all
+    <a data-cite="BCP47#section-2">Languages codes</a> are defined in [[BCP47]]. The <a>default language</a> applies to all
     <a>string</a> values that are not <a href="#type-coercion">type coerced</a>.</p>
 
   <p>To clear the <a>default language</a> for a subtree, <code>@language</code> can
@@ -8262,7 +8263,7 @@ the data type to be specified explicitly with each piece of data.</p>
     change their documents and provides an upgrade path for existing infrastructure
     without breaking existing clients that rely on the <code>application/json</code>
     media type or a media type with a <code>+json</code> suffix as defined in
-    [[!RFC6839]].</p>
+    [[RFC6839]].</p>
 
   <p>In order to use an external context with an ordinary JSON document,
     when retrieving an ordinary JSON document via HTTP, processors MUST
@@ -8283,7 +8284,7 @@ the data type to be specified explicitly with each piece of data.</p>
     of the <code>@context</code> subtree in the referenced document MUST be
     discarded. Effectively this means that the <a>active context</a> is
     initialized with the referenced external <a>context</a>. A response MUST NOT
-    contain more than one <a data-cite="RFC8288#section-3">HTTP Link Header</a> [[!RFC8288]] using the
+    contain more than one <a data-cite="RFC8288#section-3">HTTP Link Header</a> [[RFC8288]] using the
     <code>http://www.w3.org/ns/json-ld#context</code> link relation.</p>
 
   <p>Other mechanisms for providing a JSON-LD Context MAY be described for other
@@ -8370,8 +8371,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>JSON-LD is a serialization format for Linked Data based on JSON.
     It is therefore important to distinguish between the syntax, which is
-    defined by JSON in [[!RFC8259]], and the <dfn>data model</dfn> which is
-    an extension of the <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a> [[!RDF11-CONCEPTS]]. The precise
+    defined by JSON in [[RFC8259]], and the <dfn>data model</dfn> which is
+    an extension of the <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a> [[RDF11-CONCEPTS]]. The precise
     details of how JSON-LD relates to the RDF data model are given in
     <a class="sectionRef" href="#relationship-to-rdf"></a>.</p>
 
@@ -8381,7 +8382,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <ul>
     <li>A <a>JSON-LD document</a> serializes a
       <a>generalized RDF Dataset</a>
-      [[!RDF11-CONCEPTS]], which is a collection of <a>graphs</a>
+      [[RDF11-CONCEPTS]], which is a collection of <a>graphs</a>
       that comprises exactly one <a>default graph</a>
       and zero or more <a>named graphs</a>.</li>
     <li>The <a>default graph</a> does not have a name and MAY be empty.</li>
@@ -8449,7 +8450,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>A <a>list</a> is a sequence of zero or more <a>IRIs</a>,
       <a>blank nodes</a>, and <a>JSON-LD values</a>.
       <a>Lists</a> are interpreted as
-      <dfn data-cite="RDF11-MT#rdf-collections">RDF list structures</dfn> [[!RDF11-MT]].</li>
+      <dfn data-cite="RDF11-MT#rdf-collections">RDF list structures</dfn> [[RDF11-MT]].</li>
   </ul>
 
   <p><a>JSON-LD documents</a> MAY contain data
@@ -8622,7 +8623,7 @@ the data type to be specified explicitly with each piece of data.</p>
     previous sections more formally.</p>
 
   <p>A <a>JSON-LD document</a> MUST be valid <a data-cite="RFC8259#section-2">JSON text</a> as described
-    in [[!RFC8259]], <span class="changed">or some format that can be represented
+    in [[RFC8259]], <span class="changed">or some format that can be represented
       in the <a>JSON-LD internal representation</a> that is equivalent to
       valid <a data-cite="RFC8259#section-2">JSON text</a></span>.</p>
 
@@ -8656,11 +8657,11 @@ the data type to be specified explicitly with each piece of data.</p>
     <p class="changed">When used as the <a>prefix</a> in a <a>Compact IRI</a>, to avoid
       the potential ambiguity of a <a>prefix</a> being confused with an IRI
       scheme, <a>terms</a> SHOULD NOT come from the list of URI schemes as defined in
-      [[!IANA-URI-SCHEMES]]. Similarly, to avoid confusion between a
+      [[IANA-URI-SCHEMES]]. Similarly, to avoid confusion between a
       <a>Compact IRI</a> and a <a>term</a>, terms SHOULD NOT include a colon (<code>:</code>)
       and SHOULD be restricted to the form of
       <code><a data-cite="RFC3987#section-2.2">isegment-nz-nc</a></code>
-      as defined in [[!RFC3987]].</p>
+      as defined in [[RFC3987]].</p>
 
     <p>To avoid forward-compatibility issues, a <a>term</a> SHOULD NOT start
       with an <code>@</code> character as future versions of JSON-LD may introduce
@@ -8858,7 +8859,7 @@ the data type to be specified explicitly with each piece of data.</p>
       into an <a>absolute IRI</a> using the <a>vocabulary mapping</a>, or <a>null</a>.</p>
 
     <p>The value associated with the <code>@language</code> key MUST have the
-      <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[!BCP47]], or be <a>null</a>.</p>
+      <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]], or be <a>null</a>.</p>
 
     <p>The value associated with the <code>@index</code> key MUST be a
       <a>string</a>.</p>
@@ -9041,7 +9042,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <code class="changed">@type</code>, <code>@vocab</code>, or <code class="changed">@version</code>.</p>
 
   <p>If the <a>context definition</a> has an <code>@language</code> key,
-    its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[!BCP47]] or be <a>null</a>.</p>
+    its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
 
   <p>If the <a>context definition</a> has an <code>@base</code> key,
     its value MUST be an <a>absolute IRI</a>, a <a>relative IRI</a>,
@@ -9103,7 +9104,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <a>keywords</a> <code>@id</code> or <code>@vocab</code>.</p>
 
   <p>If the <a>expanded term definition</a> contains the <code>@language</code> <a>keyword</a>,
-    its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[!BCP47]] or be <a>null</a>.</p>
+    its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
 
   <p>If the <a>expanded term definition</a> contains the <code>@container</code>
     <a>keyword</a>, its value MUST be either
@@ -9171,7 +9172,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>In JSON-LD <a>lists</a> use native JSON syntax, either contained in a
       list object, or described as such within a context. Consequently, developers
       using the JSON representation can access list elements directly rather than
-      using the vocabulary for collections described in [[!RDF-SCHEMA]]..</li>
+      using the vocabulary for collections described in [[RDF-SCHEMA]]..</li>
     <li>RDF values are either typed <em>literals</em>
       (<a>typed values</a>) or
       <a>language-tagged strings</a> whereas
@@ -9697,7 +9698,7 @@ the data type to be specified explicitly with each piece of data.</p>
         <dt><code>profile</code></dt>
         <dd>
           <p>A non-empty list of space-separated URIs identifying specific
-            constraints or conventions that apply to a JSON-LD document according to [[!RFC6906]].
+            constraints or conventions that apply to a JSON-LD document according to [[RFC6906]].
             A profile does not change the semantics of the resource representation
             when processed without profile knowledge, so that clients both with
             and without knowledge of a profiled resource can safely use the same
@@ -9707,7 +9708,7 @@ the data type to be specified explicitly with each piece of data.</p>
             honors the profiles in the list which are recognized by the server.
             It is RECOMMENDED that profile URIs are dereferenceable and provide
             useful documentation at that URI. For more information and background
-            please refer to [[!RFC6906]].</p>
+            please refer to [[RFC6906]].</p>
           <p>This specification defines three values for the <code>profile</code> parameter.
             To request or specify <a href="#expanded-document-form">expanded JSON-LD document form</a>,
             the URI <code>http://www.w3.org/ns/json-ld#expanded</code> SHOULD be used.
@@ -9729,7 +9730,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <dt>Encoding considerations:</dt>
     <dd>See <a data-cite="RFC6839#section-3.1">RFC&nbsp;6839, section 3.1</a>.</dd>
     <dt>Security considerations:</dt>
-    <dd>See [[!RFC8259]]
+    <dd>See [[RFC8259]]
       <p>Since JSON-LD is intended to be a pure data exchange format for
         directed graphs, the serialization SHOULD NOT be passed through a
         code execution mechanism such as JavaScript's <code>eval()</code>
@@ -9742,7 +9743,7 @@ the data type to be specified explicitly with each piece of data.</p>
         contexts are served by third parties, it may allow them to gather
         usage patterns or similar information leading to privacy concerns.
         Specific implementations, such as the API defined in the
-        JSON-LD 1.1 Processing Algorithms and API specification [[!JSON-LD11-API]],
+        JSON-LD 1.1 Processing Algorithms and API specification [[JSON-LD11-API]],
         may provide fine-grained mechanisms to control this behavior.</p>
       <p>JSON-LD contexts that are loaded from the Web over non-secure connections,
         such as HTTP, run the risk of being altered by an attacker such that
