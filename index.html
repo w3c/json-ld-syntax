@@ -77,7 +77,7 @@
           companyURL: "https://digitalbazaar.com/",
           note:       "v1.0" },
         { name:       "Dave Longley",
-          url:        "https://digitalbazaar.com/",
+          url:        "https://digitalbazaar.com/author/dlongley/",
           company:    "Digital Bazaar",
           companyURL: "https://digitalbazaar.com/",
           note:       "v1.0" },
@@ -8498,19 +8498,19 @@ the data type to be specified explicitly with each piece of data.</p>
     <pre class="original selected" data-transform="updateExample"
          data-content-type="text/html">
     <!--
-    <p>Data described using FOAF</p>
+    <p>Data describing Dave</p>
     <script type="application/ld+json">
     {
       "@context": {
-        "@vocab": "http://xmlns.com/foaf/0.1/"
+        "@vocab": "http://schema.org/"
       },
-      "@id": "http://greggkellogg.net/foaf#me",
+      "@id": "https://digitalbazaar.com/author/dlongley/",
       "@type": "Person",
-      "name": "Gregg Kellogg"
+      "name": "Dave Longley"
     }
     </script>
 
-    <p>Data described using schema.org</p>
+    <p>Data describing Gregg</p>
     <script type="application/ld+json">
     {
       "@context": {
@@ -8523,14 +8523,15 @@ the data type to be specified explicitly with each piece of data.</p>
     </script>
     -->
     </pre>
+    </pre>
     <table class="statements"
            data-result-for="Combining multiple JSON-LD script elements into a single dataset-original"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
-        <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>foaf:Person</td></tr>
+        <tr><td>https://digitalbazaar.com/author/dlongley/</td><td>rdf:type</td><td>schema:Person</td></tr>
+        <tr><td>https://digitalbazaar.com/author/dlongley/</td><td>schema:name</td><td>Dave Longley</td></tr>
         <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>schema:Person</td></tr>
-        <tr><td>http://greggkellogg.net/foaf#me</td><td>foaf:name</td><td>Gregg Kellogg</td></tr>
         <tr><td>http://greggkellogg.net/foaf#me</td><td>schema:name</td><td>Gregg Kellogg</td></tr>
       </tbody>
     </table>
@@ -8540,11 +8541,12 @@ the data type to be specified explicitly with each piece of data.</p>
          data-result-for="Combining multiple JSON-LD script elements into a single dataset-original"
          data-to-rdf>
     <!--
-    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
     @prefix schema: <http://schema.org/> .
 
-    <http://greggkellogg.net/foaf#me> a foaf:Person, schema:Person;
-       foaf:name "Gregg Kellogg";
+    <https://digitalbazaar.com/author/dlongley/> a schema:Person;
+       schema:name "Dave Longley" .
+
+    <http://greggkellogg.net/foaf#me> a schema:Person;
        schema:name "Gregg Kellogg" .
     -->
     </pre>
@@ -8567,8 +8569,8 @@ the data type to be specified explicitly with each piece of data.</p>
       a fragment identifier matching the <a data-cite="DOM#concept-id">unique identifier</a>
       of the script element within the HTML document located by a URL (see [[!DOM]]).</p>
     <p>For example, given an HTML document located at <code>http://example.com/document</code>,
-      a script element identified by "schema" can be targeted using the URL
-      <code>http://example.com/document#schema</code>.</p>
+      a script element identified by "name" can be targeted using the URL
+      <code>http://example.com/document#name</code>.</p>
 
    <aside class="example ds-selector-tabs"
            title="Targeting a specific script element by id">
@@ -8577,24 +8579,24 @@ the data type to be specified explicitly with each piece of data.</p>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
     </div>
-    <p>Targeting a script element with id "schema"</p>
+    <p>Targeting a script element with id "gregg"</p>
     <pre class="original selected nohighlight" data-transform="updateExample"
          data-content-type="text/html">
     <!--
-    <p>Data described using FOAF</p>
-    <script ****id="foaf"**** type="application/ld+json">
+    <p>Data describing Dave</p>
+    <script ****id="dave"**** type="application/ld+json">
     {
       "@context": {
-        "@vocab": "http://xmlns.com/foaf/0.1/"
+        "@vocab": "http://schema.org/"
       },
-      "@id": "http://greggkellogg.net/foaf#me",
+      "@id": "https://digitalbazaar.com/author/dlongley/",
       "@type": "Person",
-      "name": "Gregg Kellogg"
+      "name": "Dave Longley"
     }
     </script>
 
-    <p>Data described using schema.org</p>
-    <script ****id="schema"**** type="application/ld+json">
+    <p>Data describing Gregg</p>
+    <script ****id="gregg"**** type="application/ld+json">
     {
       "@context": {
         "@vocab": "http://schema.org/"
@@ -8609,7 +8611,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <table class="statements"
            data-result-for="Targeting a specific script element by id-original"
            data-to-rdf
-           data-target="#schema">
+           data-target="#gregg">
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>schema:Person</td></tr>
@@ -8621,7 +8623,7 @@ the data type to be specified explicitly with each piece of data.</p>
          data-transform="updateExample"
          data-result-for="Targeting a specific script element by id-original"
          data-to-rdf
-         data-target="#schema">
+         data-target="#gregg">
     <!--
     @prefix schema: <http://schema.org/> .
 
