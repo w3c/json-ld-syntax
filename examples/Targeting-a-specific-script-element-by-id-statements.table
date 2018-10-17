@@ -1,0 +1,19 @@
+<table class="statements" data-result-for="Targeting a specific script element by id-original" data-to-rdf data-target="#gregg">
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>http://greggkellogg.net/foaf#me</td>
+<td>rdf:type</td>
+<td>schema:Person</td>
+</tr>
+        <tr>
+<td>http://greggkellogg.net/foaf#me</td>
+<td>schema:name</td>
+<td>Gregg Kellogg</td>
+</tr>
+      </tbody>
+    </table>
