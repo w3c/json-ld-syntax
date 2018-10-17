@@ -1,0 +1,29 @@
+<table class="statements" data-result-for="Combining multiple JSON-LD script elements into a single dataset-original" data-to-rdf>
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>https://digitalbazaar.com/author/dlongley/</td>
+<td>rdf:type</td>
+<td>schema:Person</td>
+</tr>
+        <tr>
+<td>https://digitalbazaar.com/author/dlongley/</td>
+<td>schema:name</td>
+<td>Dave Longley</td>
+</tr>
+        <tr>
+<td>http://greggkellogg.net/foaf#me</td>
+<td>rdf:type</td>
+<td>schema:Person</td>
+</tr>
+        <tr>
+<td>http://greggkellogg.net/foaf#me</td>
+<td>schema:name</td>
+<td>Gregg Kellogg</td>
+</tr>
+      </tbody>
+    </table>

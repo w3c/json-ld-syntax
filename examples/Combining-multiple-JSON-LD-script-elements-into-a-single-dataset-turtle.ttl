@@ -1,0 +1,5 @@
+@prefix schema: <http://schema.org/> .
+<https://digitalbazaar.com/author/dlongley/> a schema:Person;
+   schema:name "Dave Longley" .
+<http://greggkellogg.net/foaf#me> a schema:Person;
+   schema:name "Gregg Kellogg" .
