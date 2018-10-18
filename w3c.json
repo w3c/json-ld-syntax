@@ -1,5 +1,10 @@
- {
-    "group":      ["107714"]
-,   "contacts":   ["iherman"]
-,   "shortName":  "json-ld-syntax"
+{
+  "group": [
+    "107714"
+  ],
+  "contacts": [
+    "iherman"
+  ],
+  "shortName": "json-ld-syntax",
+  "repo-type": "rec-track"
 }
