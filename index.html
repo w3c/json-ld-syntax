@@ -4956,7 +4956,6 @@ the data type to be specified explicitly with each piece of data.</p>
     href="#type-coercion">type coercion</a> of the <code>knows</code> property
     is not required, as the value is not a string.</p>
 
-
   <p>While it is considered a best practice to identify nodes in a graph,
     at times this is impractical. In the data model, nodes without an explicit
     identifier are called <a>blank nodes</a>, which can be represented in a
@@ -8381,10 +8380,11 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <ul>
     <li>A <a>JSON-LD document</a> serializes a
-      <a>generalized RDF Dataset</a>
+      <a>RDF Dataset</a>
       [[RDF11-CONCEPTS]], which is a collection of <a>graphs</a>
       that comprises exactly one <a>default graph</a>
-      and zero or more <a>named graphs</a>.</li>
+      and zero or more <a>named graphs</a>.
+    </li>
     <li>The <a>default graph</a> does not have a name and MAY be empty.</li>
     <li>Each <a>named graph</a> is a pair consisting of an <a>IRI</a> or
       <a>blank node identifier</a> (the
@@ -8396,7 +8396,10 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>Every <a>edge</a> has a direction associated with it and is labeled with
       an <a>IRI</a> or a <a>blank node identifier</a>. Within the JSON-LD syntax
       these edge labels are called <a>properties</a>.
-      Whenever practical, an <a>edge</a> SHOULD be labeled with an <a>IRI</a>.</li>
+      Whenever practical, an <a>edge</a> SHOULD be labeled with an <a>IRI</a>.
+      <div class="issue atrisk">The use of <a>blank node identifiers</a> to label properties is obsolete,
+        and may be removed in a future version of JSON-LD.</div></dd>
+    </li>
     <li>Every <a>node</a>
       is an <a>IRI</a>, a <a>blank node</a>, a <a>JSON-LD value</a>,
       or a <a>list</a>.</li>
@@ -8426,7 +8429,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <a>graph</a> SHOULD return a Linked Data document describing
       the resource denoted by that <a>IRI</a> when being dereferenced.</li>
     <li>A <a>blank node</a> is a <a>node</a> which is neither an <a>IRI</a>,
-      nor a <a>JSON-LD value</a>, nor a <a>list</a>. A blank node MAY be identified
+      nor a <a>JSON-LD value</a>, nor a <a>list</a>. A blank node is identified
       using a <a>blank node identifier</a>.</li>
     <li>A <a>blank node identifier</a>
       is a string that can be used as an identifier for a <a>blank node</a> within
@@ -9183,33 +9186,20 @@ the data type to be specified explicitly with each piece of data.</p>
       between JSON's native data types and RDF's counterparts to allow round-tripping.</li>
   </ul>
 
+  <p class="issue atrisk">The use of <a>blank node identifiers</a> to label properties is obsolete,
+    and may be removed in a future version of JSON-LD, as is the support for <a>generalized rdf datasets</a>.</p>
+
   <p>Summarized, these differences mean that JSON-LD is capable of serializing any RDF
     <a>graph</a> or <a>dataset</a> and most, but not all, JSON-LD documents can be directly
     interpreted as RDF as described in RDF 1.1 Concepts [[RDF11-CONCEPTS]].</p>
 
-  <p>For authors and developers working with <a>blank nodes</a>
-    as <a>properties</a> when deserializing to RDF,
-    three potential approaches are suggested:</p>
-
+  <p>Authors are strongly encouraged to avoid labeling properties using <a>blank node identifiers</a>,
+    instead, consider one of the following mechanisms:</p>
   <ul>
-    <li>If the author is not yet ready to commit to a stable IRI, the
-      property should be mapped to a <a>relative IRI</a>, or an IRI that is documented as unstable.</li>
-    <li>If the developer wishes to use <a>blank nodes</a>
-      as <a>properties</a> and also wishes to interpret the
-      data as a
-      <a>generalized RDF Dataset</a>,
-      there is an option, <a data-cite="JSON-LD11-API#dom-jsonldoptions-producegeneralizedrdf"><em>produce generalized RDF</em></a>, in the
-      <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF algorithm</a> [[JSON-LD11-API]] to do so. Note that a
-      <a>generalized RDF Dataset</a>
-      is an extension of RDF; it does not conform to the RDF standard.</li>
-    <li>If the author or developer wishes to use <a>blank nodes</a>
-      as <a>properties</a> and wishes to interpret the data
-      as a standard (non-generalized)
-      <a>RDF Dataset</a>,
-      it is possible to losslessly interpret JSON-LD as RDF by transforming
-      <a>blank nodes</a> used as
-      <a>properties</a> to <a>IRIs</a>,
-      by minting new "Skolem IRIs" as per
+    <li>a <a>relative IRI</a>, either relative to the document or the vocabulary
+      (see <a href="#using-the-document-base-as-the-default-vocabulary" class="sectionRef"></a> for a discussion on using the document base as the <a>vocabulary mapping</a>).</li>
+    <li>a URN such as <code>urn:example:1</code>, see [[?URN]], or</li>
+    <li>a "Skolem IRI" as per
       <a data-cite="RDF11-CONCEPTS#section-skolemization">Replacing Blank Nodes with IRIs</a>
       of [[RDF11-CONCEPTS]].</li>
   </ul>
@@ -9219,7 +9209,7 @@ the data type to be specified explicitly with each piece of data.</p>
     specification [[JSON-LD11-API]].</p>
 
   <p>Even though JSON-LD serializes
-    <a>generalized RDF Datasets</a>, it can
+    <a>RDF Datasets</a>, it can
     also be used as a <dfn data-cite="RDF11-CONCEPTS#dfn-rdf-source">RDF graph source</dfn>.
     In that case, a consumer MUST only use the <a>default graph</a> and ignore all <a>named graphs</a>.
     This allows servers to expose data in languages such as Turtle and JSON-LD
@@ -9895,6 +9885,8 @@ the data type to be specified explicitly with each piece of data.</p>
       to ensure that <code>@type</code> members are always represented as an array. This
       also allows a term to be defined for <code>@type</code>, where the value MUST be a <a>dictionary</a>
       with <code>@container</code> set to <code>@set</code>.</li>
+    <li>The use of <a>blank node identifiers</a> to label properties is obsolete,
+      and may be removed in a future version of JSON-LD, as is the support for <a>generalized rdf datasets</a>.</li>
   </ul>
 </section>
 
