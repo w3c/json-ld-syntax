@@ -319,6 +319,11 @@ ARGV.each do |input|
           $stdout.write "F".colorize(:red)
           next
         end
+
+        # Get base from document, if present
+        html_base = doc.at_xpath('/html/head/base/@href')
+        ex[:base] = html_base.to_s if html_base
+
         script_content = doc.at_xpath(xpath)
         if script_content
           # Remove (faked) XML comments and unescape sequences
@@ -439,6 +444,11 @@ ARGV.each do |input|
       args[0] = if examples[ex[:result_for]][:ext] == 'html' && method == :expand
         # If we are expanding, and the reference is HTML, find the first script element.
         doc = Nokogiri::HTML.parse(examples[ex[:result_for]][:content])
+
+        # Get base from document, if present
+        html_base = doc.at_xpath('/html/head/base/@href')
+        options[:base] = html_base.to_s if html_base
+
         script_content = doc.at_xpath(xpath)
         unless script_content
           errors << "Example #{ex[:number]} at line #{ex[:line]} references example #{ex[:result_for].inspect} with no JSON-LD script element"
