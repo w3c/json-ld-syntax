@@ -1,4 +1,4 @@
-Example 121: Same book description in JSON-LD (avoiding contexts)
+Example 122: Same book description in JSON-LD (avoiding contexts)
 ---
 - "@id": http://purl.oreilly.com/works/45U8QJGZSQKDH8N
   "@type": http://purl.org/vocab/frbr/core#Work
