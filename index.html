@@ -8560,91 +8560,9 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>When processing a JSON-LD
     <a data-cite="HTML52/semantics-scripting.html#the-script-element">script element</a>,
-    the <a data-cite="HTML52/infrastructure.html#document-base-url">Document Base URL</a>
-    of the containing HTML document,
-    as defined in [[HTML52]],
-    is used to establish the default <a>base IRI</a> of the enclosed
+    only the resolved document location of the
+    containing HTML document is used to establish the default <a>base IRI</a> of the enclosed
     JSON-LD content.</p>
-
-   <aside class="example ds-selector-tabs"
-           title="Using the document base URL to establish the default base IRI">
-    <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
-      <button data-selects="statements">Statements</button>
-      <button data-selects="turtle">Turtle</button>
-    </div>
-    <pre class="original selected" data-transform="updateExample"
-         data-content-type="text/html">
-    <!--
-    ****<html>
-      <head>
-        <base href="http://dbpedia.org/resource/"/>****
-        <script type="application/ld+json">
-        < !--
-        {
-          "@context": "https://json-ld.org/contexts/person.jsonld",
-          "@id": ****"John_Lennon"****,
-          "name": "John Lennon",
-          "born": "1940-10-09",
-          "spouse": ****"Cynthia_Lennon"****
-        }
-        -- >
-        </script>
-      ****</head>
-    </html>****
-    -->
-    </pre>
-    <pre class="expanded"
-         data-transform="updateExample"
-         data-result-for="Using the document base URL to establish the default base IRI-original">
-    <!--
-    [{
-      "@id": "http://dbpedia.org/resource/John_Lennon",
-      "http://xmlns.com/foaf/0.1/name": [{"@value": "John Lennon"}],
-      "http://schema.org/birthDate": [
-        {"@value": "1940-10-09", "@type": "http://www.w3.org/2001/XMLSchema#date"}
-      ],
-      "http://schema.org/spouse": [
-        {"@id": "http://dbpedia.org/resource/Cynthia_Lennon"}
-      ]
-    }]
-    -->
-    </pre>
-    <table class="statements"
-           data-result-for="Using the document base URL to establish the default base IRI-expanded"
-           data-to-rdf>
-      <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
-      <tbody>
-        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>foaf:name</td><td>John Lennon</td><td>&nbsp;</td></tr>
-        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:birthDate</td><td>1940-10-09</td><td>xsd:date</td></tr>
-        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:spouse</td><td>http://dbpedia.org/resource/Cynthia_Lennon</td><td>&nbsp;</td></tr>
-      </tbody>
-    </table>
-    <pre class="turtle"
-         data-content-type="text/turtle"
-         data-transform="updateExample"
-         data-result-for="Using the document base URL to establish the default base IRI-expanded"
-         data-to-rdf>
-    <!--
-    @base <http://dbpedia.org/resource/> .
-    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-    @prefix schema: <http://schema.org/> .
-    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-    <John_Lennon> foaf:name "John Lennon";
-       schema:birthDate "1940-10-09"^^xsd:date;
-       schema:spouse <Cynthia_Lennon> .
-    -->
-    </pre>
-  </aside>
-
-  <p>HTML allows for <a data-cite="HTML52/infrastructure.html#dynamic-changes-to-base-urls">Dynamic changes to base URLs</a>.
-    This specification does not require any specific behavior,
-    and to ensure that all systems process the <a>base IRI</a> equivalently, authors SHOULD
-    either use <a>absolute IRIs</a>, or explicitly as defined in <a href="#base-iri" class="sectionRef"></a>.
-    Implementations (particularly those natively operating in the [[!DOM]]) MAY take into consideration
-    <a data-cite="HTML52/infrastructure.html#dynamic-changes-to-base-urls">Dynamic changes to base URLs</a>.</p>
 
   <section><h3>Locating a Specific JSON-LD Script Element</h3>
     <p>A specific
