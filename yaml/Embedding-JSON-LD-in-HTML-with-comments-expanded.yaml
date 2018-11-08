@@ -1,4 +1,4 @@
-Example 102: Embedding JSON-LD in HTML with comments-expanded
+Example 103: Embedding JSON-LD in HTML with comments-expanded
 ---
 - "@id": http://dbpedia.org/resource/John_Lennon
   http://xmlns.com/foaf/0.1/name:
