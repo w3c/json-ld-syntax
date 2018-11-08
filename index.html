@@ -8401,80 +8401,6 @@ the data type to be specified explicitly with each piece of data.</p>
     </pre>
   </aside>
 
-  <p>Depending on how the HTML document is served, certain strings may need
-    to be escaped. See
-    <a href="https://www.w3.org/TR/html52/semantics-scripting.html#restrictions-for-contents-of-script-elements">
-      Restrictions for contents of <code>script</code> elements
-    </a> in [[!HTML52]] for details. In particular, the content MAY be enclosed
-    in the HTML comment open (<code>&lt;!--</code>) and comment close (<code>--&gt;</code>) text sequences</p>
-
-   <aside class="example ds-selector-tabs"
-           title="Embedding JSON-LD in HTML with comments">
-    <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
-      <button data-selects="statements">Statements</button>
-      <button data-selects="turtle">Turtle</button>
-    </div>
-    <pre class="original selected" data-transform="updateExample"
-         data-content-type="text/html">
-    <!--
-    <script type="application/ld+json">
-    < !--
-    {
-      "@context": "https://json-ld.org/contexts/person.jsonld",
-      "@id": "http://dbpedia.org/resource/John_Lennon",
-      "name": "John Lennon",
-      "born": "1940-10-09",
-      "spouse": "http://dbpedia.org/resource/Cynthia_Lennon"
-    }
-    -- >
-    </script>
-    -->
-    </pre>
-    <pre class="expanded"
-         data-transform="updateExample"
-         data-result-for="Embedding JSON-LD in HTML with comments-original">
-    <!--
-    [{
-      "@id": "http://dbpedia.org/resource/John_Lennon",
-      "http://xmlns.com/foaf/0.1/name": [{"@value": "John Lennon"}],
-      "http://schema.org/birthDate": [
-        {"@value": "1940-10-09", "@type": "http://www.w3.org/2001/XMLSchema#date"}
-      ],
-      "http://schema.org/spouse": [
-        {"@id": "http://dbpedia.org/resource/Cynthia_Lennon"}
-      ]
-    }]
-    -->
-    </pre>
-    <table class="statements"
-           data-result-for="Embedding JSON-LD in HTML with comments-expanded"
-           data-to-rdf>
-      <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
-      <tbody>
-        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>foaf:name</td><td>John Lennon</td><td>&nbsp;</td></tr>
-        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:birthDate</td><td>1940-10-09</td><td>xsd:date</td></tr>
-        <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:spouse</td><td>http://dbpedia.org/resource/Cynthia_Lennon</td><td>&nbsp;</td></tr>
-      </tbody>
-    </table>
-    <pre class="turtle"
-         data-content-type="text/turtle"
-         data-transform="updateExample"
-         data-result-for="Embedding JSON-LD in HTML with comments-expanded"
-         data-to-rdf>
-    <!--
-    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-    @prefix schema: <http://schema.org/> .
-    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-    <http://dbpedia.org/resource/John_Lennon> foaf:name "John Lennon";
-       schema:birthDate "1940-10-09"^^xsd:date;
-       schema:spouse <http://dbpedia.org/resource/Cynthia_Lennon> .
-    -->
-    </pre>
-  </aside>
-
   <p>Defining how such data may be used is beyond the scope of this specification.
     The embedded JSON-LD document might be extracted as is or, e.g., be
     interpreted as RDF.</p>
@@ -8563,6 +8489,109 @@ the data type to be specified explicitly with each piece of data.</p>
     only the resolved document location of the
     containing HTML document is used to establish the default <a>base IRI</a> of the enclosed
     JSON-LD content.</p>
+
+  <section><h3>Restrictions for contents of JSON-LD <code>script</code> elements</h3>
+
+    <p>Depending on how the HTML document is served, certain strings may need
+      to be escaped. In particular, the content MAY be enclosed
+      in the HTML <em>comment-open</em> (<code>&lt;!--</code>) and <em>comment-close</em> (<code>--&gt;</code>) text sequences.</p>
+    <p>As described in HTML <a data-cite="HTML52/semantics-scripting.html#restrictions-for-contents-of-script-elements">Restrictions for contents of <code>&lt;script&gt;</code> elements</a>
+      the <a data-cite="DOM#dom-node-textcontent">textContent</a> of a script element may include balanced comments
+      and other text which complicate extracting the JSON-LD content from a <a data-cite="HTML52/semantics-scripting.html#data-block">data blocks</a>.
+      JSON-LD places further restrictions on the contents of
+      <a data-cite="HTML52/semantics-scripting.html#the-script-element">script elements</a> containing JSON-LD.</p>
+    <p>A JSON-LD script element MAY begin with an optional <em>comment-open</em> surrounded by any amount of white space,
+      followed by valid JSON and ending with an optional <em>comment-close</em> surrounded by any amount of white space.
+      Any content within the JSON content which can be confused with a <em>comment-open</em>, <em>script-open</em>,
+      <em>comment-close</em>, or <em>script-close</em> MUST be escaped using a REVERSE SOLIDUS (<code>\</code>) character
+      as follows:</p>
+    <ul>
+      <li><code>&lt;!--</code>      → <code>&lt;\!--</code></li>
+      <li><code>&lt;script</code>   → <code>&lt;\script</code></li>
+      <li><code>--&gt;</code>       → <code>--\&gt;</code></li>
+      <li><code>&lt;/script</code>  → <code>&lt;\/script</code></li>
+    </ul>
+    <p>Additionally, content of a script element MAY be escaped using <a data-cite="HTML5/syntax.html#character-references">HTML Character references</a>, such as the following:</p>
+    <ul>
+      <li><code>&amp;amp;</code>  → &amp; (<a href="/wiki/Ampersand" title="Ampersand">ampersand</a>, U+0026)</li>
+      <li><code>&amp;lt;</code>   → &lt; (less-than sign, U+003C)</li>
+      <li><code>&amp;gt;</code>   → &gt; (greater-than sign, U+003E)</li>
+      <li><code>&amp;quot;</code> → " (quotation mark, U+0022)</li>
+      <li><code>&amp;apos;</code> → ' (apostrophe, U+0027)</li>
+    </ul>
+    <p>JSON-LD Processors MUST remove surrounding <em>comment-open</em> and <em>comment-close</em>
+      sequences, unescape any escaped <em>comment-open</em>, <em>comment-close</em>,
+      <em>script-open</em>, and <em>script-close</em> sequences,
+      and turn <a data-cite="HTML5/syntax.html#character-references">HTML Character references</a> into the corresponding Unicode.
+    </p>
+
+     <aside class="example ds-selector-tabs"
+             title="Embedding JSON-LD in HTML with comments">
+      <div class="selectors">
+        <button class="selected" data-selects="original">Original</button>
+        <button data-selects="expanded">Expanded</button>
+        <button data-selects="statements">Statements</button>
+        <button data-selects="turtle">Turtle</button>
+      </div>
+      <pre class="original selected" data-transform="updateExample"
+           data-content-type="text/html">
+      <!--
+      <script type="application/ld+json">
+      < !--
+      {
+        "@context": "https://json-ld.org/contexts/person.jsonld",
+        "@id": "http://dbpedia.org/resource/John_Lennon",
+        "name": "John Lennon",
+        "born": "1940-10-09",
+        "spouse": "http://dbpedia.org/resource/Cynthia_Lennon"
+      }
+      -- >
+      </script>
+      -->
+      </pre>
+      <pre class="expanded"
+           data-transform="updateExample"
+           data-result-for="Embedding JSON-LD in HTML with comments-original">
+      <!--
+      [{
+        "@id": "http://dbpedia.org/resource/John_Lennon",
+        "http://xmlns.com/foaf/0.1/name": [{"@value": "John Lennon"}],
+        "http://schema.org/birthDate": [
+          {"@value": "1940-10-09", "@type": "http://www.w3.org/2001/XMLSchema#date"}
+        ],
+        "http://schema.org/spouse": [
+          {"@id": "http://dbpedia.org/resource/Cynthia_Lennon"}
+        ]
+      }]
+      -->
+      </pre>
+      <table class="statements"
+             data-result-for="Embedding JSON-LD in HTML with comments-expanded"
+             data-to-rdf>
+        <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
+        <tbody>
+          <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>foaf:name</td><td>John Lennon</td><td>&nbsp;</td></tr>
+          <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:birthDate</td><td>1940-10-09</td><td>xsd:date</td></tr>
+          <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:spouse</td><td>http://dbpedia.org/resource/Cynthia_Lennon</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+      <pre class="turtle"
+           data-content-type="text/turtle"
+           data-transform="updateExample"
+           data-result-for="Embedding JSON-LD in HTML with comments-expanded"
+           data-to-rdf>
+      <!--
+      @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+      @prefix schema: <http://schema.org/> .
+      @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+      <http://dbpedia.org/resource/John_Lennon> foaf:name "John Lennon";
+         schema:birthDate "1940-10-09"^^xsd:date;
+         schema:spouse <http://dbpedia.org/resource/Cynthia_Lennon> .
+      -->
+      </pre>
+    </aside>
+  </section>
 
   <section><h3>Locating a Specific JSON-LD Script Element</h3>
     <p>A specific
