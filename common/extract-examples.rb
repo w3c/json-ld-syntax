@@ -329,8 +329,8 @@ ARGV.each do |input|
           # Remove (faked) XML comments and unescape sequences
           content = script_content
             .inner_html
-            .sub(/^\s*< !--/, '')
-            .sub(/-- >\s*$/, '')
+            .sub(/^\s*< !\s*-\s*-/, '')
+            .sub(/-\s*- >\s*$/, '')
             .gsub(/&lt;/, '<')
         end
           
@@ -443,7 +443,10 @@ ARGV.each do |input|
       # Set argument to referenced content to be parsed
       args[0] = if examples[ex[:result_for]][:ext] == 'html' && method == :expand
         # If we are expanding, and the reference is HTML, find the first script element.
-        doc = Nokogiri::HTML.parse(examples[ex[:result_for]][:content])
+        doc = Nokogiri::HTML.parse(
+          examples[ex[:result_for]][:content]
+          .sub(/^\s*< !\s*-\s*-/, '')
+          .sub(/-\s*- >\s*$/, ''))
 
         # Get base from document, if present
         html_base = doc.at_xpath('/html/head/base/@href')
@@ -457,12 +460,13 @@ ARGV.each do |input|
         end
         StringIO.new(script_content
           .inner_html
-          .sub(/^\s*< !--/, '')
-          .sub(/-- >\s*$/, '')
           .gsub(/&lt;/, '<'))
       elsif examples[ex[:result_for]][:ext] == 'html' && ex[:target]
         # Only use the targeted script
-        doc = Nokogiri::HTML.parse(examples[ex[:result_for]][:content])
+        doc = Nokogiri::HTML.parse(
+          examples[ex[:result_for]][:content]
+          .sub(/^\s*< !\s*-\s*-/, '')
+          .sub(/-\s*- >\s*$/, ''))
         script_content = doc.at_xpath(xpath)
         unless script_content
           errors << "Example #{ex[:number]} at line #{ex[:line]} references example #{ex[:result_for].inspect} with no JSON-LD script element"
@@ -471,8 +475,6 @@ ARGV.each do |input|
         end
         StringIO.new(script_content
           .to_html
-          .sub(/^\s*< !--/, '')
-          .sub(/-- >\s*$/, '')
           .gsub(/&lt;/, '<'))
       else
         StringIO.new(examples[ex[:result_for]][:content])
