@@ -271,6 +271,6 @@ function unComment(doc, content) {
   return content
     .replace(/<!--/, '')
     .replace(/-->/, '')
-    .replace(/< !--/g, '<!--')
-    .replace(/-- >/g, '-->');
+    .replace(/< !\s*-\s*-/g, '<!--')
+    .replace(/-\s*- >/g, '-->');
 }
