@@ -491,9 +491,18 @@
         language of a JSON-LD document. This keyword is described in
         <a class="sectionRef" href="#string-internationalization"></a>.</dd>
       <dt><code>@type</code></dt>
-      <dd>Used to set the data type of a <a>node</a> or
-        <a>typed value</a>. This keyword is described in
-        <a class="sectionRef" href="#typed-values"></a>.</dd>
+      <dd>Used to set the type of a <a>node</a> or the datatype of a <a>typed value</a>.
+        This keyword is described further in <a class="sectionRef" href="#specifying-the-type"></a>
+        and <a class="sectionRef" href="#typed-values"></a>.
+        <div class="note">The notion of type can be confusing, as both
+          nodes and literal values can have types,
+          but in the <a>data model</a>,
+          these are fundamentally different things.
+          The use of <code>@type</code> to define a type for both <a>node objects</a> and <a>value objects</a>
+          addresses the basic need to type data,
+          be it a literal value or a more complicated <a>resource</a>.
+        </div>
+      </dd>
       <dt><code>@container</code></dt>
       <dd>Used to set the default container type for a <a>term</a>.
         This keyword is described in the following sections:
@@ -1430,6 +1439,86 @@
     type. For a detailed description of the differences, please refer to
     <a class="sectionRef" href="#typed-values"></a>.</p>
 
+</section>
+
+<section class="changed">
+  <h2>Uses of JSON Objects</h2>
+  <p>As a syntax, JSON has only a limited number of syntactic elements:</p>
+  <ul>
+    <li><a>Numbers</a>, which describe literal numeric values,</li>
+    <li><a>Strings</a>, which may describe literal string values, or be used as the keys in a <a>JSON object</a>.</li>
+    <li><a>Boolean</a> <code>true</code> and <code>false</code>, which describe literal boolean values,</li>
+    <li><code>Null</code>, which describes the absense of a value,</li>
+    <li><a>Arrays</a>, which describe an ordered set of values of any type, and</li>
+    <li><a>JSON objects</a>, which provide a set of <a>dictionary members</a>, relating keys with values.</li>
+  </ul>
+
+  <p>The JSON-LD data model allows for a richer set of resources, based on the RDF data mode.
+    The data model is described more fully in <a class="sectionRef" href="#data-model"></a>.
+    JSON-LD uses JSON objects to describe various resources, along with the relationships
+    between these resources:</p>
+  <dl>
+    <dt><a>Node objects</a></dt><dd>
+      Node objects are used to define nodes in the <a>linked data graph</a>
+      which may have both incoming and outgoing edges.
+      Node objects are principle structure for defining <a>resources</a> having <a>properties</a>.
+      See <a class="sectionRef" href="#node-objects"></a> for the normative definition.
+    </dd>
+    <dt><a>Value objects</a></dt><dd>
+      Value objects are used for describing literal nodes in a <a>linked data graph</a>
+      which may have only incoming edges.
+      In JSON, some literal nodes may be described without the use of a <a>JSON object</a>
+      (e.g., <a>numbers</a>, <a>strings</a>, and <a>boolean</a> values),
+      but in the <a data-lt="expansion">expanded form</a>,
+      all literal nodes are described using <a>value objects</a>.
+      See <a class="sectionRef" href="#describing-values"></a> for more information,
+      and <a class="sectionRef" href="#value-objects"></a> for the normative definition.
+    </dd>
+    <dt><a>List Objects</a> and <a>Set objects</a></dt><dd></dd>
+    <dt>Map Objects</dt><dd>
+      JSON-LD uses various forms of <a>dictionaries</a> as ways to more easily access values of a <a>property</a>.
+      <dl>
+        <dt><a>Language Maps</a></dt><dd>
+          Allows mulitple values differing in their associated language to be
+          indexed by <a>language tag</a>.
+          See <a class="sectionRef" href="#language-indexing"></a> for more information,
+          and <a class="sectionRef" href="#language-maps"></a> for the normative definition.
+        </dd>
+        <dt><a>Index Maps</a></dt><dd>
+          Allows multiple values (<a>node objects</a> or <a>value objects</a>) to be indexed by an associated <code>@index</code>.
+          See <a class="sectionRef" href="#data-indexing"></a> for more information,
+          and <a class="sectionRef" href="#index-maps"></a> for the normative definition.
+        </dd>
+        <dt><a>Id Maps</a></dt><dd>
+          Allows multiple <a>node objects</a> to be indexed by an associated <code>@id</code>.
+          See <a class="sectionRef" href="#node-identifier-indexing"></a> for more information,
+          and <a class="sectionRef" href="#id-maps"></a> for the normative definition.
+        </dd>
+        <dt><a>Type Maps</a></dt><dd>
+          Allows multiple <a>node objects</a> to be indexed by an associated <code>@type</code>.
+          See <a class="sectionRef" href="#node-type-indexing"></a> for more information,
+          and <a class="sectionRef" href="#type-maps"></a> for the normative definition.
+        </dd>
+        <dt><a>Named Graph</a> Indexing</dt><dd>
+          Allows multiple <a>named graphs</a> to be indexed by an associated <a>graph name</a>.
+          See <a class="sectionRef" href="#named-graph-indexing"></a> for more information.
+        </dd>
+      </dl>
+    </dd>
+    <dt><a>Graph objects</a></dt><dd>
+      A Graph object is much like a <a>node object</a>, except that it defines a <a>named graph</a>.
+      See <a class="sectionRef" href="#named-graphs"></a> for more information,
+      and <a class="sectionRef" href="#graph-objects"></a> for the normative definition.
+    </dd>
+    <dt><a>Context Definitions</a></dt><dd>
+      A Context Definition uses the <a>JSON object</a> form, but is not itself data in a <a>linked data graph</a>.
+      A Context Definition also may contain expanded term definitions,
+      which are also represented using JSON objects.
+      See <a class="sectionRef" href="#the-context"></a>,
+      <a class="sectionRef" href="#advanced-context-usage"></a> for more information,
+      and <a class="sectionRef" href="#context-definitions"></a> for the normative definition.
+    </dd>
+  </dl>
 </section>
 </section>
 
