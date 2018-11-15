@@ -494,13 +494,13 @@
       <dd>Used to set the type of a <a>node</a> or the datatype of a <a>typed value</a>.
         This keyword is described further in <a class="sectionRef" href="#specifying-the-type"></a>
         and <a class="sectionRef" href="#typed-values"></a>.
-        <div class="note">The notion of type can be confusing, as both
-          nodes and literal values can have types,
-          but in the <a>data model</a>,
-          these are fundamentally different things.
-          The use of <code>@type</code> to define a type for both <a>node objects</a> and <a>value objects</a>
-          addresses the basic need to type data,
-          be it a literal value or a more complicated <a>resource</a>.
+        <div class="note">The use of <code>@type</code> to define a type for both
+          <a>node objects</a> and <a>value objects</a> addresses the basic need to type data,
+          be it a literal value or a more complicated resource.
+          Experts may find the overloaded use of the <code>@type</code> keyword for both purposes concerning,
+          but should note that Web developer usage of this feature over multiple years
+          has not resulted in its misuse due to the far less frequent use of <code>@type</code>
+          to express typed literal values.
         </div>
       </dd>
       <dt><code>@container</code></dt>
@@ -1453,7 +1453,7 @@
     <li><a>JSON objects</a>, which provide a set of <a>dictionary members</a>, relating keys with values.</li>
   </ul>
 
-  <p>The JSON-LD data model allows for a richer set of resources, based on the RDF data mode.
+  <p>The JSON-LD data model allows for a richer set of resources, based on the RDF data model.
     The data model is described more fully in <a class="sectionRef" href="#data-model"></a>.
     JSON-LD uses JSON objects to describe various resources, along with the relationships
     between these resources:</p>
@@ -3114,7 +3114,7 @@ type with a particular <a>term</a> in the <code>@context</code>:</p>
   </pre>
 </aside>
 
-<p>The <em>modified</em> key's value above is automatically type interpreted as a
+<p>The <em>modified</em> key's value above is automatically interpreted as a
   <em>dateTime</em> value because of the information specified in the
   <code>@context</code>. The example tabs show how a <a>JSON-LD processor</a> will interpret the data.</p>
 
@@ -9643,24 +9643,24 @@ the data type to be specified explicitly with each piece of data.</p>
     <dt><code>@container</code></dt><dd>
       The <code>@container</code> keyword MUST NOT be aliased, and MAY be used as a key in an <a>expanded term definition</a>.
       Its value MUST be either
-          <code>@list</code>,
-          <code>@set</code>,
-          <code>@language</code>,
-          <code>@index</code>,
-          <span><code>@id</code></span>,
-          <span><code>@graph</code></span>,
-          <span><code>@type</code></span>, or be
-          <a>null</a>,
-          or an <a>array</a> containing exactly any one of those keywords, or a
-          combination of <code>@set</code> and any of <code>@index</code>,
-          <code>@id</code>, <code>@graph</code>, <code>@type</code>,
-          <code>@language</code> in any order.
-          The value may also be an array
-          containing <code>@graph</code> along with either <code>@id</code> or
-          <code>@index</code> and also optionally including <code>@set</code>.</span>
+      <code>@list</code>,
+      <code>@set</code>,
+      <code>@language</code>,
+      <code>@index</code>,
+      <span><code>@id</code></span>,
+      <span><code>@graph</code></span>,
+      <span><code>@type</code></span>, or be
+      <a>null</a>,
+      or an <a>array</a> containing exactly any one of those keywords, or a
+      combination of <code>@set</code> and any of <code>@index</code>,
+      <code>@id</code>, <code>@graph</code>, <code>@type</code>,
+      <code>@language</code> in any order.
+      The value may also be an array
+      containing <code>@graph</code> along with either <code>@id</code> or
+      <code>@index</code> and also optionally including <code>@set</code>.
     </dd>
     <dt><code>@context</code></dt><dd>
-      The <code>@context</code> keyword MUST NOT be aliased, and MAY be used as a key in the following objects:</p>
+      The <code>@context</code> keyword MUST NOT be aliased, and MAY be used as a key in the following objects:
       <ul data-sort>
         <li><a>node objects</a> (see <a class="sectionRef" href="#node-objects"></a>),</li>
         <li><a>value objects</a> (see <a class="sectionRef" href="#value-objects"></a>),</li>
