@@ -542,7 +542,7 @@
       <dt class="changed"><code>@nest</code></dt><dd class="changed">Collects a set of <a>nested properties</a> within
         a <a>node object</a>.</dd>
       <dt class="changed"><code>@none</code></dt><dd class="changed">Used as an index value
-        in an <a>id map</a>, <a>language map</a>, <a>type map</a>, or elsewhere where a dictionary is
+        in an <a>index map</a>, <a>id map</a>, <a>language map</a>, <a>type map</a>, or elsewhere where a dictionary is
         used to index into other values.</dd>
       <dt class="changed"><code>@prefix</code></dt><dd class="changed">
         With the value <a>true</a>, allows this <a>term</a> to be used to construct a <a>compact IRI</a>
@@ -2668,7 +2668,7 @@
   <p>Since keywords cannot be redefined, they can also not be aliased to
     other keywords.</p>
 
-  <p class="note">Aliased keywords may not be used within a <a>context</a>, itself.</p>
+  <p class="note">Aliased keywords MUST NOT be used within a <a>context</a>, itself.</p>
 </section>
 
 <section class="informative"><h2>IRI Expansion within a Context</h2>
@@ -3114,7 +3114,7 @@ type with a particular <a>term</a> in the <code>@context</code>:</p>
   </pre>
 </aside>
 
-<p>The <em>modified</em> key's value above is automatically type coerced to a
+<p>The <em>modified</em> key's value above is automatically type interpreted as a
   <em>dateTime</em> value because of the information specified in the
   <code>@context</code>. The example tabs show how a <a>JSON-LD processor</a> will interpret the data.</p>
 
@@ -3191,7 +3191,8 @@ in the body of a JSON-LD document:</p>
 
 <p class="note">The <code>@type</code> <a>keyword</a> is also used to associate a type
   with a <a>node</a>. The concept of a <a>node type</a> and
-  a <a>value type</a> are different.</p>
+  a <a>value type</a> are different.
+  For more on adding types to <a>nodes</a>, see <a class="sectionRef" href="#specifying-the-type"></a>.</p>
 
 <p>A <dfn>node type</dfn> specifies the type of thing
   that is being described, like a person, place, event, or web page. A
@@ -9629,6 +9630,175 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>See <a class="sectionRef" href="#the-context"></a> for further discussion on contexts.</p>
 </section>
 
+<section class="normative changed">
+  <h2>Keywords</h2>
+  <p>JSON-LD <a>keywords</a> are described in <a class="sectionRef" href="#syntax-tokens-and-keywords"></a>,
+    this section describes where each <a>keyword</a> may appear within different JSON-LD structures.</p>
+
+  <dl data-sort>
+    <dt><code>@base</code></dt><dd>
+      The <code>@base</code> keyword MUST NOT be aliased, and MAY be used as a key in a <a>context definition</a>.
+      Its value MUST be an <a>absolute IRI</a>, a <a>relative IRI</a>, or <a>null</a>.
+    </dd>
+    <dt><code>@container</code></dt><dd>
+      The <code>@container</code> keyword MUST NOT be aliased, and MAY be used as a key in an <a>expanded term definition</a>.
+      Its value MUST be either
+          <code>@list</code>,
+          <code>@set</code>,
+          <code>@language</code>,
+          <code>@index</code>,
+          <span><code>@id</code></span>,
+          <span><code>@graph</code></span>,
+          <span><code>@type</code></span>, or be
+          <a>null</a>,
+          or an <a>array</a> containing exactly any one of those keywords, or a
+          combination of <code>@set</code> and any of <code>@index</code>,
+          <code>@id</code>, <code>@graph</code>, <code>@type</code>,
+          <code>@language</code> in any order.
+          The value may also be an array
+          containing <code>@graph</code> along with either <code>@id</code> or
+          <code>@index</code> and also optionally including <code>@set</code>.</span>
+    </dd>
+    <dt><code>@context</code></dt><dd>
+      The <code>@context</code> keyword MUST NOT be aliased, and MAY be used as a key in the following objects:</p>
+      <ul data-sort>
+        <li><a>node objects</a> (see <a class="sectionRef" href="#node-objects"></a>),</li>
+        <li><a>value objects</a> (see <a class="sectionRef" href="#value-objects"></a>),</li>
+        <li><a>graph objects</a> (see <a class="sectionRef" href="#graph-objects"></a>),</li>
+        <li><a>list objects</a> (see <a class="sectionRef" href="#lists-and-sets"></a>),</li>
+        <li><a>set objects</a> (see <a class="sectionRef" href="#lists-and-sets"></a>),</li>
+        <li><a>nested properties</a> (see <a class="sectionRef" href="#property-nesting"></a>), and</li>
+        <li><a>expanded term definitions</a> (see <a class="sectionRef" href="#context-definitions"></a>).</li>
+      </ul>
+      The value of <code>@context</code> MUST be
+      <a>null</a>,
+      an <a>absolute IRI</a>,
+      a <a>relative IRI</a>,
+      a <a>context definition</a>, or
+      an <a>array</a> composed of any of these.
+    </dd>
+    <dt><code>@id</code></dt><dd>
+      The <code>@id</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>graph object</a>.
+      The unaliased <code>@id</code> MAY be used as a key in an <a>expanded term definition</a>,
+      or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
+      The value of the <code>@id</code> key MUST  be an <a>absolute IRI</a>, a <a>relative IRI</a>,
+      or a <a>compact IRI</a> (including <a>blank node identifiers</a>).
+      See <a class="sectionRef" href="#node-identifiers"></a>,
+      <a class="sectionRef" href="#compact-iris"></a>, and
+      <a class="sectionRef" href="#identifying-blank-nodes"></a> for further discussion on
+      <code>@id</code> values.
+    </dd>
+    <dt><code>@index</code></dt><dd>
+      The <code>@index</code> keyword MAY be aliased and MAY be used as a key in a
+      <a>node object</a>, <a>value object</a>, <a>graph object</a>, <a>set object</a>, or <a>list object</a>.
+      The unaliased <code>@index</code> MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
+      Its value MUST be a <a>string</a>.
+      See <a class="sectionRef" href="#index-maps"></a> for a further discussion.
+    </dd>
+    <dt><code>@language</code></dt><dd>
+      The <code>@language</code> keyword MAY be aliased and MAY be used as a key in a <a>value object</a>.
+      The unaliased <code>@language</code> MAY be used as a key in a <a>context definition</a>,
+      or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
+      Its value MUST be a <a>string</a> with the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>..
+      See <a class="sectionRef" href="#index-maps"></a> for a further discussion.
+    </dd>
+    <dt><code>@list</code></dt><dd>
+      The <code>@list</code> keyword MAY be aliased and MUST be used as a key in a <a>list object</a>.
+      The unaliased <code>@list</code> MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
+      Its value MUST be one of the following:
+      <ul>
+        <li><a>string</a>,</li>
+        <li><a>number</a>,</li>
+        <li><a>true</a>,</li>
+        <li><a>false</a>,</li>
+        <li><a>null</a>,</li>
+        <li><a>node object</a>,</li>
+        <li><a>value object</a>, or</li>
+        <li>an <a>array</a> of zero or more of the above possibilities</li>
+      </ul>
+
+      <p>See <a class="sectionRef" href="#sets-and-lists"></a> for further discussion on sets and lists.</p>
+    </dd>
+    <dt><code>@nest</code></dt><dd>
+      The <code>@nest</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a>.
+      The unaliased <code>@nest</code> MAY be used as the value of a <a>simple term definition</a>,
+      or as a key in an <a>expanded term definition</a>.
+      When used in a <a>node object</a>, its value must be a <a>dictionary</a>.
+      When used in an <a>expanded term definition</a>, its value MUST be a term expanding to <code>@nest</code>.
+      Its value MUST be a <a>string</a>.
+      See <a class="sectionRef" href="#property-nesting"></a> for a further discussion.
+    </dd>
+    <dt><code>@none</code></dt><dd>
+      The <code>@none</code> keyword MAY be aliased and MAY beused as a key in an
+      <a>index map</a>, <a>id map</a>, <a>language map</a>, <a>type map</a>.
+      See <a class="sectionRef" href="#data-indexing"></a>,
+      <a class="sectionRef" href="#language-indexing"></a>,
+      <a class="sectionRef" href="#node-identifier-indexing"></a>,
+      <a class="sectionRef" href="#node-type-indexing"></a>,
+      <a class="sectionRef" href="#named-graph-indexing"></a>, or
+      <a class="sectionRef" href="#named-graph-data-indexing"></a>
+      for a further discussion.</dd>
+    <dt><code>@prefix</code></dt><dd>
+      The <code>@prefix</code> keyword MUST NOT be aliased, and MAY be used as a key in an <a>expanded term definition</a>.
+      Its value MUST be <code>true</code> or <code>false</code>.
+      See <a class="sectionRef" href="#compact-iris"></a>
+      and <a class="sectionRef" href="#context-definitions"></a>
+      for a further discussion.
+    </dd>
+    <dt><code>@reverse</code></dt><dd>
+      The <code>@reverse</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a>.
+      The unaliased <code>@reverse</code> MAY be used as a key in an <a>expanded term definition</a>.
+      The value of the <code>@reverse</code> key MUST  be an <a>absolute IRI</a>, a <a>relative IRI</a>,
+      or a <a>compact IRI</a> (including <a>blank node identifiers</a>).
+      See <a class="sectionRef" href="#reverse-properties"></a> and
+      <a class="sectionRef" href="#context-definitions"></a> for further discussion.
+    </dd>
+    <dt><code>@set</code></dt><dd>
+      The <code>@set</code> keyword MAY be aliased and MUST be used as a key in a <a>set object</a>.
+      The unaliased <code>@set</code> MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
+      Its value MUST be one of the following:
+      <ul>
+        <li><a>string</a>,</li>
+        <li><a>number</a>,</li>
+        <li><a>true</a>,</li>
+        <li><a>false</a>,</li>
+        <li><a>null</a>,</li>
+        <li><a>node object</a>,</li>
+        <li><a>value object</a>, or</li>
+        <li>an <a>array</a> of zero or more of the above possibilities</li>
+      </ul>
+
+      <p>See <a class="sectionRef" href="#sets-and-lists"></a> for further discussion on sets and lists.</p>
+    </dd>
+    <dt><code>@type</code></dt><dd>
+      The <code>@type</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>value object</a>.
+      The unaliased <code>@type</code> MAY be used as a key in an <a>expanded term definition</a>,
+      or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
+      The value of the <code>@type</code> key MUST  be a <a>term</a>, <a>absolute IRI</a>, a <a>relative IRI</a>,
+      or a <a>compact IRI</a> (including <a>blank node identifiers</a>).
+      Within an expanded term definition, its value may also be either <code>@id</code> or <code>@vocab</code>.
+      This keyword is described further in <a class="sectionRef" href="#specifying-the-type"></a>
+      and <a class="sectionRef" href="#typed-values"></a>.
+    </dd>
+    <dt><code>@value</code></dt><dd>
+      The <code>@value</code> keyword MAY be aliased and MUST be used as a key in a <a>value object</a>.
+      Its value key MUST be either a <a>string</a>, a <a>number</a>, <a>true</a>, <a>false</a> or <a>null</a>.
+      This keyword is described further in <a class="sectionRef" href="#value-objects"></a>.
+    </dd>
+    <dt><code>@version</code></dt><dd>
+      The <code>@version</code> keyword MUST NOT be aliased and MAY be used as a key in a <a>context definition</a>.
+      Its value MUST be a <a>number</a> with the value <code>1.1</code>.
+      This keyword is described further in <a class="sectionRef" href="#context-definitions"></a>.
+    </dd>
+    <dt><code>@vocab</code></dt><dd>
+      The <code>@vocab</code> keyword MUST NOT be aliased and MAY be used as a key in a <a>context definition</a>
+      or as the value of <code>@type</code> in an <a>expanded term definition</a>.
+      Its value MUST be a <a>absolute IRI</a>, a <a>compact IRI</a>, a <a>blank node identifier</a>, an empty <a>string</a> (""), a <a>term</a>, or <a>null</a>.
+      This keyword is described further in <a class="sectionRef" href="#context-definitions"></a>,
+      and <a class="sectionRef" href="#default-vocabulary"></a>.
+    </dd>
+  </dl>
+</section>
 </section>
 
 <section class="normative">
