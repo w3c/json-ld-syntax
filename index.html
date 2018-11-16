@@ -10098,18 +10098,12 @@ the data type to be specified explicitly with each piece of data.</p>
   <h4>Open Issues</h4>
   <p>The following is a list of issues open at the time of publication.</p>
   <p class="issue" data-number="4">Consider using <code>"@type": "@json"</code> to describe native values in the compact form.</p>
-  <p class="issue" data-number="7">Allows a term definition to include an <code>@values</code> block to describe structured values, such as for GeoJSON.</p>
   <p class="issue" data-number="8">When requesting JSON-LD from an HTTP endpoint, it would be useful to provide a reference to a context or frame which should be used by the server to put the results into the proper format.</p>
   <p class="issue" data-number="9">Provide a means for refering to a remote context without without requiring it to be downloaded.</p>
-  <p class="issue" data-number="15">Consider a container type, similar to <code>@list</code> for encoding things like <code>schema:ItemList</code> serializations, when the values are schema:ListItem and order is set through <code>schema:position</code>.</p>
-  <p class="issue" data-number="17">Consider the opposite of <code>"@container": "@set"</code>; this would be when there is exactly one entry in an <code>@list</code>, instead of compacting to an array, compact to a single item.</p>
-  <p class="issue" data-number="18">It would be useful if JSON-LD recognized  both value (<code>rdf:nil</code>) and list (<code>[]</code>).</p>
   <p class="issue" data-number="19">Consider a mechanism such as Microdata's <code>@itemref</code> for including objects within another referencing node.</p>
   <p class="issue" data-number="20">Mechinism to allow freezing terms so that additional contexts don't override them.</p>
   <p class="issue" data-number="23">Should consider <code>html>head>base@href</code> and <code>xml:base</code>, as appropriate.</p>
   <p class="issue" data-number="25">Update terminology in the spec from <a>IRI</a> to <em>URL</em>.</p>
-  <p class="issue" data-number="26">For every example, there should be an equivalent of the example in the expanded form, in a table with the triples, in [[Turtle]] (as close to the JSON-LD structure as possible) and, possibly, as graphs. Not all of them would appear on the screen at the same time but, rather, the reader could choose what to see with some tabs.</p>
-  <p class="issue" data-number="29"></p>
   <p class="issue" data-number="30">Proposal is to start from scratch, ie, deprecating <code>@graph</code> and replacing the functionality with something cleaner.</p>
   <div class="issue" data-number="33">
 <ul>
@@ -10119,16 +10113,16 @@ the data type to be specified explicitly with each piece of data.</p>
 <li>Extend the @version keyword to take an array, where you can specify experimental extensions. For example: <code>"@version": [1.1, "amazingExtensionFoo", "nicheExtensionBar"]</code> - processors throw if they don't understand every extension listed.</li>
 </ul>
 </div>
-  <p class="issue" data-number="34">Ensure that the output is consistent in shape. Thus if there can ever be multiple values, the structure is always an array.</p>
-  <p class="issue" data-number="37"></p>
-  <p class="issue" data-number="38"></p>
-  <p class="issue" data-number="46"></p>
-  <p class="issue" data-number="48"></p>
+  <p class="issue" data-number="46">Consider documentation best practices.</p>
   <p class="issue" data-number="56">Consider issues surrounding confusion of differing expansion rules for <code>@id</code>, <code>@type</code>, and <a>dictionary members</a>.</p>
-  <p class="issue" data-number="57">Require JSON-LD processors to be able to identify and extract JSON-LD from a script tag with type <code>application/ld+json</code> within an HTML document.</p>
-  <p class="issue" data-number="59">
-    Instead of normatively requiring an initial context, such as RDFa does, instead JSON-LD has the ability to import contexts. This approach means that the existing context rules are followed, and the best practice context can be updated over time as new norms emerge in the community. If the best practice context is not useful to a particular community, then they don't need to import it.
-  </p>
+  <p class="issue" data-number="59"></p>
+  <p class="issue" data-number="72"></p>
+  <p class="issue" data-number="75"></p>
+  <p class="issue" data-number="76">Node Types in <code>@context</code>.</p>
+  <p class="issue" data-number="77"></p>
+  <p class="issue" data-number="86"></p>
+  <p class="issue" data-number="87"></p>
+  <p class="issue" data-number="91"></p>
 </section>
 
 <section class="appendix informative" id="changes-from-10">
