@@ -8490,6 +8490,10 @@ the data type to be specified explicitly with each piece of data.</p>
     JSON-LD content.</p>
 
   <section><h3>Restrictions for contents of JSON-LD <code>script</code> elements</h3>
+    <p class="issue atrisk">As HTML entities and comments are not allowable in
+      JSON, the use of comments, escapes,
+      and <a data-cite="HTML5/syntax.html#character-references">HTML Character references</a>
+      is subject to further discussion in the Working Group.</p>
 
     <p>Depending on how the HTML document is served, certain strings may need
       to be escaped. In particular, the content MAY be enclosed
