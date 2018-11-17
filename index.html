@@ -721,6 +721,11 @@
     to work with for human developers. To address this issue, JSON-LD introduces the notion
     of a <a>context</a> as described in the next section.</p>
 
+  <p>This section only covers the most basic features of JSON-LD. More advanced features,
+    including <a>typed values</a>, <a href="#indexed-values">indexed values</a>, and <a>named graphs</a>,
+    can be found in <a class="sectionRef" href="#advanced-concepts"></a>.</p>
+
+
   <section class="informative">
     <h2>The Context</h2>
 
@@ -1523,18 +1528,6 @@
     from setting one or more types on a <a>node object</a>, as the former does not result in
     new data being added to the graph, while the later manages node types
     through adding additional relationships to the graph.</p>
-
-  <p class="note">This section only covers the most basic features associated with
-    types in JSON-LD. It is worth noting that the <code>@type</code>
-    <a>keyword</a> is not only used to specify the type of a
-    <a>node</a> but also to express <a>typed values</a>
-    (as described in <a class="sectionRef" href="#typed-values"></a>) and to
-    <a data-lt="coercion">type coerce</a> values (as described in
-    <a class="sectionRef" href="#type-coercion"></a>). Specifically, <code>@type</code>
-    cannot be used in a <a>context</a> to define a <a>node</a>'s
-    type. For a detailed description of the differences, please refer to
-    <a class="sectionRef" href="#typed-values"></a>.</p>
-
 </section>
 </section>
 
