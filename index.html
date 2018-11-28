@@ -3425,6 +3425,88 @@ the data type to be specified explicitly with each piece of data.</p>
   </pre>
 </aside>
 
+<p>It is important to note that <a>terms</a> are only used in expansion
+  for vocabulary-relative positions, such as for keys and values of <a>dictionary members</a>.
+  Values of <code>@id</code> are considered to be document-relative,
+  and do not use term definitions for expansion. For example, consider the following:</p>
+
+<aside class="example ds-selector-tabs changed"
+       title="Term expansion for values, not identifiers">
+  <div class="selectors">
+    <button class="selected" data-selects="original">Original</button>
+    <button data-selects="expanded">Expanded</button>
+    <button data-selects="statements">Statements</button>
+    <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
+  </div>
+  <pre class="original selected nohighlight" data-transform="updateExample">
+  <!--
+  {
+    "@context": {
+      "@base": "http://example1.com/",
+      "@vocab": "http://example2.com/",
+      "fred": {"@type": "@vocab"}
+    },
+    "fred": [
+      {"@id": "barney", "mnemonic": "the sidekick"},
+      "barney"
+    ]
+  }
+  -->
+  </pre>
+  <pre class="expanded nohighlight"
+       data-transform="updateExample"
+       data-result-for="Term expansion for values, not identifiers-original">
+  <!--
+  [{
+    "http://example2.com/fred": [
+      {
+        "@id": "http://example1.com/barney",
+        "http://example2.com/mnemonic": [{"@value": "the sidekick"}]
+      },
+      {
+        "@id": "http://example2.com/barney"
+      }
+    ]
+  }]
+  -->
+  </pre>
+  <table class="statements"
+         data-result-for="Term expansion for values, not identifiers-expanded"
+         data-to-rdf>
+    <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>http://example1.com/barney</td><td>http://example2.com/mnemonic</td><td>the sidekick</td></tr>
+      <tr><td>_:b0</td><td>http://example2.com/fred</td><td>http://example1.com/barney</td></tr>
+      <tr><td>_:b0</td><td>http://example2.com/fred</td><td>http://example2.com/barney</td></tr>
+    </tbody>
+  </table>
+  <pre class="turtle"
+       data-content-type="text/turtle"
+       data-result-for="Term expansion for values, not identifiers-expanded"
+       data-transform="updateExample"
+       data-to-rdf>
+  <!--
+  @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+  @prefix ex1: <http://example1.com/> .
+  @prefix ex2: <http://example2.com/> .
+
+  ex1:barney ex2:mnemonic "the sidekick" .
+
+  [ ex2:fred ex2:barney, ex1:barney] .
+  -->
+  </pre>
+</aside>
+
+<p>The unexpected result is that "barney" expands to both <code>http://example1.com/barney</code>
+  and <code>http://example2.com/barney</code> depending on where it is encountered.
+  String values interpreted as <a>IRIs</a> because of the associated <a>term definition</a>
+  are typically considered to be document-relative.
+  In some cases, it makes sense that there be interpreted relative to the vocabulary,
+  in which case <code>"@type": "@vocab"</code> used in a <a>term definition</a>,
+  but this can lead to such unexpected consequences.
+  For more on this see <a class="sectionRef" href="#default-vocabulary"></a></p>
+
 <p>Terms may also be defined using <a>absolute IRIs</a>
   or <a>compact IRIs</a>. This allows coercion rules
   to be applied to keys which are not represented as a simple <a>term</a>.
