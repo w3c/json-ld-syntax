@@ -8905,7 +8905,11 @@ the data type to be specified explicitly with each piece of data.</p>
       <a data-cite="HTML52/semantics-scripting.html#the-script-element">script element</a>
       within an HTML document may be located using
       a fragment identifier matching the <a data-cite="DOM#concept-id">unique identifier</a>
-      of the script element within the HTML document located by a URL (see [[!DOM]]).</p>
+      of the script element within the HTML document located by a URL (see [[!DOM]]).
+      A <a>JSON-LD processor</a> MUST extract only the specified data block's contents
+      parsing it as a standalone <a>JSON-LD document</a>
+      and MUST NOT create a <a>dataset</a>.</p>
+
     <p>For example, given an HTML document located at <code>http://example.com/document</code>,
       a script element identified by "name" can be targeted using the URL
       <code>http://example.com/document#name</code>.</p>
