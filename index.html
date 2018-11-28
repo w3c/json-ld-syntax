@@ -8756,7 +8756,6 @@ the data type to be specified explicitly with each piece of data.</p>
         <head>
           <base href="http://dbpedia.org/resource/"/>****
           <script type="application/ld+json">
-          < ! - -
           {
             "@context": "https://json-ld.org/contexts/person.jsonld",
             "@id": ****"John_Lennon"****,
@@ -8764,7 +8763,6 @@ the data type to be specified explicitly with each piece of data.</p>
             "born": "1940-10-09",
             "spouse": ****"Cynthia_Lennon"****
           }
-          - - >
           </script>
         ****</head>
       </html>****
@@ -8849,7 +8847,6 @@ the data type to be specified explicitly with each piece of data.</p>
       <div class="selectors">
         <button class="selected" data-selects="original">Original</button>
         <button data-selects="expanded">Expanded</button>
-        <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
       </div>
       <pre class="original selected" data-transform="updateExample"
@@ -8860,43 +8857,36 @@ the data type to be specified explicitly with each piece of data.</p>
         "@context": "http://schema.org/",
         "@type": "WebPageElement",
         "name": "Encoding Issues",
-        "description": "Issues list such as unescaped &lt;/script&gt; or --&gt;"
+        "description": "Issues list such as unescaped &lt;/script&gt; or - - &gt;"
       }
       </script>
       -->
       </pre>
       <pre class="expanded"
            data-transform="updateExample"
-           data-result-for="Embedding JSON-LD in HTML with comments-original">
+           data-result-for="Embedding JSON-LD containing HTML in HTML-original">
       <!--
       [{
-        "@type": "http://schema.org/WebPageElement",
+        "@type": ["http://schema.org/WebPageElement"],
         "http://schema.org/name": [{"@value": "Encoding Issues"}],
         "http://schema.org/description": [
-          {"@value": "Issues list such as unescaped &lt;/script&gt; or --&gt;"}
+          {"@value": "Issues list such as unescaped </script> or - - >"}
         ]
       }]
       -->
       </pre>
-      <table class="statements"
-             data-result-for="Embedding JSON-LD in HTML with comments-expanded"
-             data-to-rdf>
-        <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
-        <tbody>
-          <tr><td>_:b0</td><td>schema:name</td><td>Encoding Issues</td><td>&nbsp;</td></tr>
-          <tr><td>_:b0</td><td>schema:description</td><td>Issues list such as unescaped &amp;lt;/script&amp;gt; or --&amp;gt;</td><td>&nbsp;</td></tr>
-        </tbody>
-      </table>
       <pre class="turtle"
            data-content-type="text/turtle"
            data-transform="updateExample"
-           data-result-for="Embedding JSON-LD in HTML with comments-expanded"
+           data-result-for="Embedding JSON-LD containing HTML in HTML-expanded"
            data-to-rdf>
       <!--
       @prefix schema: <http://schema.org/> .
 
-      <> schema:name "Encoding Issues";
-         schema:description "Issues list such as unescaped &lt;/script&gt; or --&gt;" .
+      [ a schema:WebPageElement;
+        schema:name "Encoding Issues";
+        schema:description "Issues list such as unescaped </script> or - - >"
+      ] .
       -->
       </pre>
     </aside>
