@@ -8577,10 +8577,11 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <section class="changed"><h2>Embedding JSON-LD in HTML Documents</h2>
 
-  <p>HTML <a data-cite="HTML52/semantics-scripting.html#the-script-element">script elements</a> can be used to embed blocks of data in documents.
-    This way, JSON-LD content can be easily embedded in HTML [[HTML52]] by placing
-    it in a script element with the <code>type</code> attribute set to
-    <code>application/ld+json</code>.</p>
+  <p>
+    JSON-LD content can be easily embedded in HTML [[HTML52]] by placing
+    it in a <a data-cite="HTML52/semantics-scripting.html#the-script-element">Script element</a> with the <code>type</code> attribute set to
+    <code>application/ld+json</code>. Doing so creates a
+    <a data-cite="https://www.w3.org/TR/html52/semantics-scripting.html#data-block">data block</a>.</p>
 
    <aside class="example ds-selector-tabs"
            title="Embedding JSON-LD in HTML">
