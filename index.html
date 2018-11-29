@@ -3507,6 +3507,71 @@ the data type to be specified explicitly with each piece of data.</p>
   but this can lead to such unexpected consequences.
   For more on this see <a class="sectionRef" href="#default-vocabulary"></a></p>
 
+<p>A variation on the previous example using <code>"@type": "@id"</code> instead
+  of <code>@vocab</code> illustrates the behavior of interpreting "barney" relative to the document:</p>
+
+
+<aside class="example ds-selector-tabs changed"
+       title="Terms not expanded when document-relative">
+  <div class="selectors">
+    <button class="selected" data-selects="original">Original</button>
+    <button data-selects="expanded">Expanded</button>
+    <button data-selects="statements">Statements</button>
+    <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
+  </div>
+  <pre class="original selected nohighlight" data-transform="updateExample">
+  <!--
+  {
+    "@context": {
+      "@base": "http://example1.com/",
+      "@vocab": "http://example2.com/",
+      "fred": {"@type": "@id"}
+    },
+    "fred": [
+      {"@id": "barney", "mnemonic": "the sidekick"},
+      "barney"
+    ]
+  }
+  -->
+  </pre>
+  <pre class="expanded nohighlight"
+       data-transform="updateExample"
+       data-result-for="Terms not expanded when document-relative-original">
+  <!--
+  [{
+    "http://example2.com/fred": [
+      {
+        "@id": "http://example1.com/barney",
+        "http://example2.com/mnemonic": [{"@value": "the sidekick"}]
+      },
+      {
+        "@id": "http://example1.com/barney"
+      }
+    ]
+  }]
+  -->
+  </pre>
+  <pre class="turtle"
+       data-content-type="text/turtle"
+       data-result-for="Terms not expanded when document-relative-expanded"
+       data-transform="updateExample"
+       data-to-rdf>
+  <!--
+  @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+  @prefix ex1: <http://example1.com/> .
+  @prefix ex2: <http://example2.com/> .
+
+  ex1:barney ex2:mnemonic "the sidekick" .
+
+  [ ex2:fred ex1:barney, ex1:barney] .
+  -->
+  </pre>
+</aside>
+
+<p class="note">The triple <code>[ ex2:fred ex1:barney, ex1:barney] .</code> is emitted twice,
+  but exists only once in an output dataset, as it is a duplicate triple.</p>
+
 <p>Terms may also be defined using <a>absolute IRIs</a>
   or <a>compact IRIs</a>. This allows coercion rules
   to be applied to keys which are not represented as a simple <a>term</a>.
