@@ -15,6 +15,7 @@ require 'linkeddata'
 require 'fileutils'
 require 'colorize'
 require 'yaml'
+require 'cgi'
 
 PREFIXES = {
   dc:     "http://purl.org/dc/terms/",
@@ -49,8 +50,8 @@ num_errors = 0
 # Remove highlighting and commented out sections
 def justify(str)
   str = str.
-    sub(/^\s*<!--\s*$/, '').
-    sub(/^\s*-->\s*$/, '').
+    gsub(/^\s*<!--\s*$/, '').
+    gsub(/^\s*-->\s*$/, '').
     gsub('****', '').
     gsub(/####([^#]*)####/, '')
 
@@ -222,7 +223,7 @@ ARGV.each do |input|
         examples[title] = {
           title: title,
           filename: fn,
-          content: content,
+          content: content.to_s.gsub(/^\s*< !\s*-\s*-/, '<!--').gsub(/-\s*- >/, '-->').gsub(/-\s*-\s*&gt;/, '--&gt;'),
           content_type: element.attr('data-content-type'),
           number: example_number,
           ext: ext,
@@ -302,6 +303,7 @@ ARGV.each do |input|
     # Perform example syntactic validation based on extension
     case ex[:ext]
     when 'json', 'jsonld', 'jsonldf'
+      content = CGI.unescapeHTML(content)
       begin
         ::JSON.parse(content)
       rescue JSON::ParserError => exception
@@ -325,22 +327,16 @@ ARGV.each do |input|
         ex[:base] = html_base.to_s if html_base
 
         script_content = doc.at_xpath(xpath)
-        if script_content
-          # Remove (faked) XML comments and unescape sequences
-          content = script_content
-            .inner_html
-            .sub(/^\s*< !\s*-\s*-/, '')
-            .sub(/-\s*- >\s*$/, '')
-            .gsub(/&lt;/, '<')
-        end
-          
+        
+        # Remove (faked) XML comments and unescape sequences
+        content = CGI.unescapeHTML(script_content.inner_html) if script_content          
       rescue Nokogiri::XML::SyntaxError => exception
         errors << "Example #{ex[:number]} at line #{ex[:line]} parse error: #{exception.message}"
         $stdout.write "F".colorize(:red)
         next
       end
     when 'table'
-      # already in parsed form
+      content = Nokogiri::HTML.parse(content)
     when 'ttl', 'trig'
       begin
         reader_errors = []
@@ -443,10 +439,7 @@ ARGV.each do |input|
       # Set argument to referenced content to be parsed
       args[0] = if examples[ex[:result_for]][:ext] == 'html' && method == :expand
         # If we are expanding, and the reference is HTML, find the first script element.
-        doc = Nokogiri::HTML.parse(
-          examples[ex[:result_for]][:content]
-          .sub(/^\s*< !\s*-\s*-/, '')
-          .sub(/-\s*- >\s*$/, ''))
+        doc = Nokogiri::HTML.parse(examples[ex[:result_for]][:content])
 
         # Get base from document, if present
         html_base = doc.at_xpath('/html/head/base/@href')
@@ -458,15 +451,10 @@ ARGV.each do |input|
           $stdout.write "F".colorize(:red)
           next
         end
-        StringIO.new(script_content
-          .inner_html
-          .gsub(/&lt;/, '<'))
+        StringIO.new(CGI.unescapeHTML(script_content.inner_html))
       elsif examples[ex[:result_for]][:ext] == 'html' && ex[:target]
         # Only use the targeted script
-        doc = Nokogiri::HTML.parse(
-          examples[ex[:result_for]][:content]
-          .sub(/^\s*< !\s*-\s*-/, '')
-          .sub(/-\s*- >\s*$/, ''))
+        doc = Nokogiri::HTML.parse(examples[ex[:result_for]][:content])
         script_content = doc.at_xpath(xpath)
         unless script_content
           errors << "Example #{ex[:number]} at line #{ex[:line]} references example #{ex[:result_for].inspect} with no JSON-LD script element"
@@ -565,7 +553,7 @@ ARGV.each do |input|
           $stderr.puts "expected:\n" + expected.to_trig if verbose
         when 'table'
           expected = begin
-            table_to_dataset(content)
+            table_to_dataset(content.xpath('/html/body/table'))
           rescue
             errors << "Example #{ex[:number]} at line #{ex[:line]} raised error reading table: #{$!}"
             RDF::Dataset.new
