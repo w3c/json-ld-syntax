@@ -8820,27 +8820,24 @@ the data type to be specified explicitly with each piece of data.</p>
       <a data-cite="HTML52/infrastructure.html#dynamic-changes-to-base-urls">Dynamic changes to base URLs</a>.</p>
   </section>
 
-  <section><h3>Restrictions for contents of JSON-LD <code>script</code> elements</h3>
-    <p class="issue atrisk">This section adds additional requirements for escaping
-      certain JSON values when embedding that JSON within HTML. This approach
-      is consequently subject to further discussion in the Working Group.</p>
-
-    <p>Depending on how the HTML document is served, certain strings may need
-      to be escaped to prevent disrupting the HTML parsing algorithm.</p>
-
+  <section class="informative"><h3>Restrictions for contents of JSON-LD <code>script</code> elements</h3>    
     <p>Due to the HTML <a data-cite="HTML52/semantics-scripting.html#restrictions-for-contents-of-script-elements">Restrictions for contents of <code>&lt;script&gt;</code> elements</a>
       additional encoding restrictions are placed on JSON-LD data contained in
       <a data-cite="HTML52/semantics-scripting.html#the-script-element">script elements</a>.</p>
-    <p>A JSON-LD script element MUST contain only valid JSON.
-      Any strings within the JSON content which contains text which can be confused with a <em>comment-open</em>, <em>script-open</em>,
-      <em>comment-close</em>, or <em>script-close</em> MUST be escaped using <a data-cite="HTML5/syntax.html#character-references">HTML Character references</a>, such as the following:</p>
-    <ul>
-      <li><code>&amp;amp;</code>  → &amp; (<a href="/wiki/Ampersand" title="Ampersand">ampersand</a>, U+0026)</li>
-      <li><code>&amp;lt;</code>   → &lt; (less-than sign, U+003C)</li>
-      <li><code>&amp;gt;</code>   → &gt; (greater-than sign, U+003E)</li>
-      <li><code>&amp;quot;</code> → " (quotation mark, U+0022)</li>
-      <li><code>&amp;apos;</code> → ' (apostrophe, U+0027)</li>
-    </ul>
+    <p>Authors should avoid using character sequences in scripts embedded in HTML
+      which may be confused with a <em>comment-open</em>, <em>script-open</em>,
+      <em>comment-close</em>, or <em>script-close</em>.</p>
+    <div class="note">Such content should be escaped as indicated below, however
+      the content will remain escaped after processing through the
+      JSON-LD API [[JSON-LD11-API]].
+      <ul>
+        <li><code>&amp;amp;</code>  → &amp; (<a href="/wiki/Ampersand" title="Ampersand">ampersand</a>, U+0026)</li>
+        <li><code>&amp;lt;</code>   → &lt; (less-than sign, U+003C)</li>
+        <li><code>&amp;gt;</code>   → &gt; (greater-than sign, U+003E)</li>
+        <li><code>&amp;quot;</code> → " (quotation mark, U+0022)</li>
+        <li><code>&amp;apos;</code> → ' (apostrophe, U+0027)</li>
+      </ul>
+    </div>
 
      <aside class="example ds-selector-tabs"
              title="Embedding JSON-LD containing HTML in HTML">
@@ -8870,7 +8867,7 @@ the data type to be specified explicitly with each piece of data.</p>
         "@type": ["http://schema.org/WebPageElement"],
         "http://schema.org/name": [{"@value": "Encoding Issues"}],
         "http://schema.org/description": [
-          {"@value": "Issues list such as unescaped </script> or - - >"}
+          {"@value": "Issues list such as unescaped &lt;/script&gt; or - -&gt;"}
         ]
       }]
       -->
@@ -8885,7 +8882,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
       [ a schema:WebPageElement;
         schema:name "Encoding Issues";
-        schema:description "Issues list such as unescaped </script> or - - >"
+        schema:description "Issues list such as unescaped &lt;/script&gt; or - -&gt;"
       ] .
       -->
       </pre>

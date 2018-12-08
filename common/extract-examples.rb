@@ -303,7 +303,6 @@ ARGV.each do |input|
     # Perform example syntactic validation based on extension
     case ex[:ext]
     when 'json', 'jsonld', 'jsonldf'
-      content = CGI.unescapeHTML(content)
       begin
         ::JSON.parse(content)
       rescue JSON::ParserError => exception
@@ -327,9 +326,7 @@ ARGV.each do |input|
         ex[:base] = html_base.to_s if html_base
 
         script_content = doc.at_xpath(xpath)
-        
-        # Remove (faked) XML comments and unescape sequences
-        content = CGI.unescapeHTML(script_content.inner_html) if script_content          
+        content = script_content.inner_html if script_content          
       rescue Nokogiri::XML::SyntaxError => exception
         errors << "Example #{ex[:number]} at line #{ex[:line]} parse error: #{exception.message}"
         $stdout.write "F".colorize(:red)
@@ -451,7 +448,7 @@ ARGV.each do |input|
           $stdout.write "F".colorize(:red)
           next
         end
-        StringIO.new(CGI.unescapeHTML(script_content.inner_html))
+        StringIO.new(script_content.inner_html)
       elsif examples[ex[:result_for]][:ext] == 'html' && ex[:target]
         # Only use the targeted script
         doc = Nokogiri::HTML.parse(examples[ex[:result_for]][:content])
@@ -461,9 +458,7 @@ ARGV.each do |input|
           $stdout.write "F".colorize(:red)
           next
         end
-        StringIO.new(script_content
-          .to_html
-          .gsub(/&lt;/, '<'))
+        StringIO.new(script_content.to_html)
       else
         StringIO.new(examples[ex[:result_for]][:content])
       end
