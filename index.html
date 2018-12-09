@@ -1334,7 +1334,7 @@
     if a <a>node object</a> contains the property <em>firstName</em>, that the
     type is a <em>Person</em>; making this explicit with <code>@type</code> helps
     to clarify the association.</p>
-  
+
   <p>The type of a particular <a>node</a> can be specified using the <code>@type</code>
     <a>keyword</a>. In Linked Data, types are uniquely
     identified with an <a>IRI</a>.</p>
@@ -3499,12 +3499,12 @@ the data type to be specified explicitly with each piece of data.</p>
 </aside>
 
 <p>The unexpected result is that "barney" expands to both <code>http://example1.com/barney</code>
-  and <code>http://example2.com/barney</code> depending on where it is encountered.
+  and <code>http://example2.com/barney</code>, depending where it is encountered.
   String values interpreted as <a>IRIs</a> because of the associated <a>term definition</a>
   are typically considered to be document-relative.
-  In some cases, it makes sense that there be interpreted relative to the vocabulary,
-  in which case <code>"@type": "@vocab"</code> used in a <a>term definition</a>,
-  but this can lead to such unexpected consequences.
+  In some cases, it makes sense to interpret these relative to the vocabulary,
+  prescribed using <code>"@type": "@vocab"</code> in the <a>term definition</a>, though this can
+  lead to unexpected consequences such as these.
   For more on this see <a class="sectionRef" href="#default-vocabulary"></a></p>
 
 <p>A variation on the previous example using <code>"@type": "@id"</code> instead
