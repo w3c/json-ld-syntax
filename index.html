@@ -10469,16 +10469,30 @@ the data type to be specified explicitly with each piece of data.</p>
             It is RECOMMENDED that profile URIs are dereferenceable and provide
             useful documentation at that URI. For more information and background
             please refer to [[RFC6906]].</p>
-          <p>This specification defines three values for the <code>profile</code> parameter.
-            To request or specify <a href="#expanded-document-form">expanded JSON-LD document form</a>,
-            the URI <code>http://www.w3.org/ns/json-ld#expanded</code> SHOULD be used.
-            To request or specify <a href="#compacted-document-form">compacted JSON-LD document form</a>,
-            the URI <code>http://www.w3.org/ns/json-ld#compacted</code> SHOULD be used.
-            To request or specify <a href="#flattened-document-form">flattened JSON-LD document form</a>,
-            the URI <code>http://www.w3.org/ns/json-ld#flattened</code> SHOULD be used.
-            Please note that, according [[HTTP11]], the value of the <code>profile</code>
-            parameter has to be enclosed in quotes (<code>"</code>) because it contains
-            special characters and, if multiple profiles are combined, whitespace.</p>
+          <p>This specification defines four values for the <code>profile</code> parameter.</p>
+          <dl>
+            <dt><code>http://www.w3.org/ns/json-ld#expanded</code></dt>
+            <dd>To request or specify <a href="#expanded-document-form">expanded JSON-LD document form</a>.</dd>
+            <dt><code>http://www.w3.org/ns/json-ld#compacted</code></dt>
+            <dd>To request or specify <a href="#compacted-document-form">compacted JSON-LD document form</a>.</dd>
+            <dt><code>http://www.w3.org/ns/json-ld#flattened</code></dt>
+            <dd>To request or specify <a href="#flattened-document-form">flattened JSON-LD document form</a>.</dd>
+            <dt><code>http://www.w3.org/ns/json-ld#framed</code></dt>
+            <dd>To request or specify <a href="#framed-document-form">framed JSON-LD document form</a>.</dd>
+          </dl>
+          <p>
+            When used as a <a data-cite="RFC2048#section-2.2.3">media type paramter</a> [[RFC2048]]
+            in an <a data-cite="rfc7231#section-5.3.2">HTTP Accept header</a> [[RFC7231]],
+            the value of the <code>profile</code> parameter MUST be enclosed in quotes (<code>"</code>) if it contains
+            special characters such as whitespace, when multiple profiles are combined.</p>
+          <p>In addition to the <code>profile</code> values described above,
+            the <code>profile</code> parameter MAY include one additional URL, which is interpreted as
+            the location of either a <a>context</a> or <a>frame</a>, depending on the other profile
+            parameters included. When used without an defined profile URI, such a URL
+            is interpreted as the location of a <a>context</a>.</p>
+          <p>JSON-LD processors MAY place restrictions on supported profiles,
+            MAY provide defaults for <a>context</a> and <a>frame</a> URLs,
+            and MAY restrict client-provided URLs for <a>contexts</a> and <a>frames</a>.</p>
           <p>When processing the "profile" media type parameter, it is important to
             note that its value contains one or more URIs and not IRIs. In some cases
             it might therefore be necessary to convert between IRIs and URIs as specified in
@@ -10488,9 +10502,9 @@ the data type to be specified explicitly with each piece of data.</p>
       </dl>
     </dd>
     <dt>Encoding considerations:</dt>
-    <dd>See <a data-cite="RFC6839#section-3.1">RFC&nbsp;6839, section 3.1</a>.</dd>
+    <dd>See <a data-cite="RFC8259#section-11">RFC&nbsp;8259, section 11</a>.</dd>
     <dt>Security considerations:</dt>
-    <dd>See [[RFC8259]]
+    <dd>See <a data-cite="RFC8259#section-12">RFC&nbsp;8259, section 12</a> [[RFC8259]]
       <p>Since JSON-LD is intended to be a pure data exchange format for
         directed graphs, the serialization SHOULD NOT be passed through a
         code execution mechanism such as JavaScript's <code>eval()</code>
