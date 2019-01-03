@@ -10566,6 +10566,72 @@ the data type to be specified explicitly with each piece of data.</p>
     are treated as in RDF syntaxes, as per
     <a data-cite="RDF11-CONCEPTS#section-fragID">RDF 1.1 Concepts and Abstract Syntax</a>
     [[RDF11-CONCEPTS]].</p>
+
+  <section id="iana-examples" class="informative">
+    <h3>Examples</h3>
+    <p>The following examples illustrate different ways in which the profile parameter may be used
+      to describe different acceptable responses.</p>
+
+    <pre class="example" data-transform="updateExample"
+         data-content-type="http"
+         data-ignore
+         title="HTTP Request with profile requesting an expanded document">
+    <!--
+    GET /ordinary-json-document.json HTTP/1.1
+    Host: example.com
+    Accept: application/ld+json;****profile=http://www.w3.org/ns/json-ld#expanded****
+    -->
+    </pre>
+    <p>Requests the server to return the requested resource as JSON-LD
+      in <a href="#expanded-document-form">expanded document form</a>.</p>
+
+    <pre class="example" data-transform="updateExample"
+         data-content-type="http"
+         data-ignore
+         title="HTTP Request with profile requesting a compacted document">
+    <!--
+    GET /ordinary-json-document.json HTTP/1.1
+    Host: example.com
+    Accept: application/ld+json;****profile=http://www.w3.org/ns/json-ld#compacted****
+    -->
+    </pre>
+    <p>Requests the server to return the requested resource as JSON-LD
+      in <a href="#compacted-document-form">compacted document form</a>.
+      As no explicit context resource is specified, the server compacts
+      using an application-specific default context.</p>
+
+    <pre class="example" data-transform="updateExample"
+         data-content-type="http"
+         data-ignore
+         title="HTTP Request with profile requesting a compacted document with a reference to a compaction context">
+    <!--
+    GET /ordinary-json-document.json HTTP/1.1
+    Host: example.com
+    Accept: application/ld+json;****profile="http://www.w3.org/ns/json-ld#compacted http://example.com/context.jsonld"****
+    -->
+    </pre>
+    <p>Requests the server to return the requested resource as JSON-LD
+      in <a href="#compacted-document-form">compacted document form</a>
+      and specifies the location of a context to use for compaction.
+      Note that as whitespace is used to separate the two URIs, they
+      are enclosed in double quotes (<code>"</code>).</p>
+
+    <pre class="example" data-transform="updateExample"
+         data-content-type="http"
+         data-ignore
+         title="HTTP Request with profile requesting a framed document with a reference to the framing document">
+    <!--
+    GET /ordinary-json-document.json HTTP/1.1
+    Host: example.com
+    Accept: application/ld+json;****profile="http://www.w3.org/ns/json-ld#framed http://example.com/frame.jsonld"****
+    -->
+    </pre>
+    <p>Requests the server to return the requested resource as JSON-LD
+      in <a href="#framed-document-form">framed document form</a>
+      and specifies the location of a frame to use.
+      Note that as whitespace is used to separate the two URIs, they
+      are enclosed in double quotes (<code>"</code>).</p>
+  </section>
 </section>
 
 <section id="security" class="appendix">
