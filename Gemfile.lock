@@ -1,11 +1,13 @@
 GIT
   remote: git://github.com/ruby-rdf/json-ld.git
-  revision: a26c3205d006550f85162848a4a2bc3366b39970
+  revision: cee48fd9f71fcf51bca0512d4d8ea36d1d292459
   branch: develop
   specs:
     json-ld (3.0.2)
+      link_header (~> 0.0, >= 0.0.8)
       multi_json (~> 1.13)
-      rdf (~> 3.0, >= 3.0.4)
+      rack (>= 1.6, < 3.0)
+      rdf (~> 3.0, >= 3.0.8)
 
 GEM
   remote: https://rubygems.org/
@@ -16,7 +18,7 @@ GEM
       i18n
     builder (3.2.3)
     colorize (0.8.1)
-    concurrent-ruby (1.1.3)
+    concurrent-ruby (1.1.4)
     connection_pool (2.2.2)
     ebnf (1.1.3)
       rdf (~> 3.0)
@@ -29,7 +31,7 @@ GEM
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
     htmlentities (4.3.4)
-    i18n (1.1.1)
+    i18n (1.5.1)
       concurrent-ruby (~> 1.0)
     json-ld-preloaded (3.0.2)
       json-ld (~> 3.0)
@@ -67,17 +69,18 @@ GEM
       shex (~> 0.5, >= 0.5.2)
       sparql (~> 3.0)
       sparql-client (~> 3.0)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     multi_json (1.13.1)
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.0)
+      mini_portile2 (~> 2.4.0)
     nokogumbo (1.5.0)
       nokogiri
     public_suffix (3.0.3)
+    rack (2.0.6)
     rake (12.3.2)
-    rdf (3.0.7)
+    rdf (3.0.9)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
     rdf-aggregate-repo (2.2.1)
@@ -166,4 +169,4 @@ DEPENDENCIES
   rake
 
 BUNDLED WITH
-   1.17.1
+   1.17.3
