@@ -10480,16 +10480,13 @@ the data type to be specified explicitly with each piece of data.</p>
             <dt><code>http://www.w3.org/ns/json-ld#framed</code></dt>
             <dd>To request or specify <a href="#framed-document-form">framed JSON-LD document form</a>.</dd>
           </dl>
+          <p class="note">Other specifications may publish additional profile parameter
+            URIs with their own defined sematics.</p>
           <p>
             When used as a <a data-cite="RFC4288#section-4.3">media type paramter</a> [[RFC4288]]
             in an <a data-cite="rfc7231#section-5.3.2">HTTP Accept header</a> [[RFC7231]],
             the value of the <code>profile</code> parameter MUST be enclosed in quotes (<code>"</code>) if it contains
             special characters such as whitespace, which is required when multiple profile URIs are combined.</p>
-          <p>Relevant contextual information, such as URLs to provide contexts or frames
-            associated with the <code>http://www.w3.org/ns/json-ld#compacted</code>
-            and <code>http://www.w3.org/ns/json-ld#framed</code> profiles
-            are described in the published specification.</p>
-          <p>JSON-LD processors MAY place restrictions on supported profiles.</p>
           <p>When processing the "profile" media type parameter, it is important to
             note that its value contains one or more URIs and not IRIs. In some cases
             it might therefore be necessary to convert between IRIs and URIs as specified in
@@ -10564,48 +10561,6 @@ the data type to be specified explicitly with each piece of data.</p>
     <a data-cite="RDF11-CONCEPTS#section-fragID">RDF 1.1 Concepts and Abstract Syntax</a>
     [[RDF11-CONCEPTS]].</p>
 
-  <section id="request-link-header">
-    <h3>Link header in HTTP request</h3>
-    <p>When using the <code>http://www.w3.org/ns/json-ld#compacted</code> profile
-      in an HTTP request Accept header on the application/ld+json media type,
-      the context to use for compacting MAY be specified
-      using the <a data-cite="RFC8288#section-3">HTTP Link Header</a> as defined in [[RFC8288]].</p>
-
-    <p>When satisfying an HTTP request where the profile parameter includes
-      <code>http://www.w3.org/ns/json-ld#compacted</code>, processors MUST retrive
-      any <a>JSON-LD document</a> referenced by a <a data-cite="RFC8288#section-3">Link Header</a> with:</p>
-
-    <ul>
-      <li><code>rel="http://www.w3.org/ns/json-ld#context"</code>, and</li>
-      <li><code>type="application/ld+json"</code>.</li>
-    </ul>
-
-    <p>The referenced document MUST have a top-level <a>JSON object</a>
-      with a <code>@context</code> <a>member</a>.</p>
-
-    <p>When using the <code>http://www.w3.org/ns/json-ld#framed</code> profile
-      in an HTTP request Accept header on the application/ld+json media type,
-      the context to use for compacting MAY be specified
-      using the <a data-cite="RFC8288#section-3">HTTP Link Header</a> as defined in [[RFC8288]].</p>
-
-    <p>When satisfying an HTTP request where the profile parameter includes
-      <code>http://www.w3.org/ns/json-ld#framed</code>, processors MUST retrive
-      any <a>JSON-LD document</a> referenced by a <a data-cite="RFC8288#section-3">Link Header</a> with:</p>
-
-    <ul>
-      <li><code>rel="http://www.w3.org/ns/json-ld#frame"</code>, and</li>
-      <li><code>type="application/ld+json"</code>.</li>
-    </ul>
-
-    <p>The referenced document MUST be a valid JSON-LD frame document as described in [[JSON-LD11-FRAMING]].</p>
-
-    <p>A request MUST NOT
-      contain more than one <a data-cite="RFC8288#section-3">HTTP Link Header</a> [[RFC8288]] using the
-      <code>http://www.w3.org/ns/json-ld#context</code>
-      or <code>http://www.w3.org/ns/json-ld#frame</code>link relations.</p>
-
-    <p class="issue">Can JSON-LD processors place restrictions on client-provided context or frame URLs?</p>
-  </section>
   <section id="iana-examples" class="informative">
     <h3>Examples</h3>
     <p>The following examples illustrate different ways in which the profile parameter may be used
@@ -10654,36 +10609,6 @@ the data type to be specified explicitly with each piece of data.</p>
       and <a href="#flattened-document-form">flattened document form</a>.
       Note that as whitespace is used to separate the two URIs, they
       are enclosed in double quotes (<code>"</code>).</p>
-
-    <pre class="example" data-transform="updateExample"
-         data-content-type="http"
-         data-ignore
-         title="HTTP Request with profile requesting a compacted document">
-    <!--
-    GET /ordinary-json-document.json HTTP/1.1
-    Host: example.com
-    Accept: application/ld+json;****profile=http://www.w3.org/ns/json-ld#compacted****
-    -->
-    </pre>
-    <p>Requests the server to return the requested resource as JSON-LD
-      in <a href="#compacted-document-form">compacted document form</a>.
-      As no explicit context resource is specified, the server compacts
-      using an application-specific default context.</p>
-
-    <pre class="example" data-transform="updateExample"
-         data-content-type="http"
-         data-ignore
-         title="HTTP Request with profile requesting a framed document with a reference to the framing document">
-    <!--
-    GET /ordinary-json-document.json HTTP/1.1
-    Host: example.com
-    Accept: application/ld+json;****profile=http://www.w3.org/ns/json-ld#framed****
-    ****Link: <https://json-ld.org/frames/library.jsonld>; rel="http://www.w3.org/ns/json-ld#frame"; type="application/ld+json"****
-    -->
-    </pre>
-    <p>Requests the server to return the requested resource as JSON-LD
-      in <a href="#framed-document-form">framed document form</a>
-      and specifies the location of a frame to use.</p>
   </section>
 </section>
 
