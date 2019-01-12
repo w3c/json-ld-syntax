@@ -2046,7 +2046,7 @@
     not contain a colon).</p>
 
   <aside class="example ds-selector-tabs"
-         title="Using a common vocabulary prefix">
+         title="Using a default vocabulary">
     <div class="selectors">
       <button class="selected" data-selects="original">Original</button>
       <button data-selects="expanded">Expanded</button>
@@ -2068,7 +2068,7 @@
     -->
     </pre>
     <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Using a common vocabulary prefix-original">
+         data-result-for="Using a default vocabulary-original">
     <!--
     [{
       "@id": "http://example.org/places#BrewEats",
@@ -2078,7 +2078,7 @@
     -->
     </pre>
     <table class="statements"
-           data-result-for="Using a common vocabulary prefix-expanded"
+           data-result-for="Using a default vocabulary-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -2088,7 +2088,7 @@
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="Using a common vocabulary prefix-expanded"
+         data-result-for="Using a default vocabulary-expanded"
          data-transform="updateExample"
          data-to-rdf>
     <!--
@@ -2161,15 +2161,80 @@
       schema:name "Brew Eats" .
     -->
     </pre>
+
   </aside>
 
-  <section class="changed">
+  <p class="changed">Since <code>json-ld-1.1</code>,
+    the <a>vocabulary mapping</a> in a <a>local context</a> can be set to the a <a>relative IRI</a>,
+      which is concatentated to any <a>vocabulary mapping</a> in the <a>active context</a>
+      (see <a href="#document-relative-vocabulary-mapping" class="sectionRef"></a>
+      for how this applies if there is no <a>vocabulary mapping</a> in the <a>active context</a>).</p>
+
+  <aside class="example ds-selector-tabs"
+         title="Using a default vocabulary relative to a previous default vocabulary">
+    <div class="selectors">
+      <button class="selected" data-selects="original">Original</button>
+      <button data-selects="expanded">Expanded</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
+    </div>
+    <pre class="original selected nohighlight" data-transform="updateExample">
+    <!--
+    {
+      "@context": [{
+        "@vocab": ****"http://schema.org"****
+      }, ****{
+        "@version": 1.1,
+        "@vocab": "/"
+      }****],
+      "@id": "http://example.org/places#BrewEats",
+      "@type": "Restaurant",
+      "name": "Brew Eats"
+      ####...####
+    }
+    -->
+    </pre>
+    <pre class="expanded nohighlight" data-transform="updateExample"
+         data-result-for="Using a default vocabulary relative to a previous default vocabulary-original">
+    <!--
+    [{
+      "@id": "http://example.org/places#BrewEats",
+      "@type": ["http://schema.org/Restaurant"],
+      "http://schema.org/name": [{"@value": "Brew Eats"}]
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Using a default vocabulary relative to a previous default vocabulary-expanded"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>http://example.org/places#BrewEats</td><td>rdf:type</td><td>schema:Restaurant</td></tr>
+        <tr><td>http://example.org/places#BrewEats</td><td>schema:name</td><td>Brew Eats</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-result-for="Using a default vocabulary relative to a previous default vocabulary-expanded"
+         data-transform="updateExample"
+         data-to-rdf>
+    <!--
+    @prefix schema: <http://schema.org/> .
+
+    <http://example.org/places#BrewEats> a schema:Restaurant;
+      schema:name "Brew Eats" .
+    -->
+    </pre>
+  </aside>
+
+  <section id="document-relative-vocabulary-mapping" class="changed">
     <h3>Using the Document Base for the Default Vocabulary</h3>
     <p>In some cases, vocabulary terms are defined directly within the document
       itself, rather than in an external vocabulary.
-      Since <code>json-ld-1.1</code>, the <a>vocabulary mapping</a> in the <a>active context</a>
-      can be set to the a <a>relative IRI</a>,
-      which is, itself, resolved against the <a>base IRI</a>.
+      Since <code>json-ld-1.1</code>, the <a>vocabulary mapping</a> in a <a>local context</a>
+      can be set to a <a>relative IRI</a>,
+      which is, if there is no vocabulary mapping in scope, resolved against the <a>base IRI</a>.
       This causes terms which are expanded relative to the vocabulary,
       such as the keys of <a>node objects</a>,
       to be based on the <a>base IRI</a> to create <a>absolute IRIs</a>.</p>
@@ -9968,7 +10033,7 @@ the data type to be specified explicitly with each piece of data.</p>
     instead, consider one of the following mechanisms:</p>
   <ul>
     <li>a <a>relative IRI</a>, either relative to the document or the vocabulary
-      (see <a href="#using-the-document-base-for-the-default-vocabulary" class="sectionRef"></a> for a discussion on using the document base as part of the the <a>vocabulary mapping</a>).</li>
+      (see <a href="#document-relative-vocabulary-mapping" class="sectionRef"></a> for a discussion on using the document base as part of the the <a>vocabulary mapping</a>).</li>
     <li>a URN such as <code>urn:example:1</code>, see [[?URN]], or</li>
     <li>a "Skolem IRI" as per
       <a data-cite="RDF11-CONCEPTS#section-skolemization">Replacing Blank Nodes with IRIs</a>
