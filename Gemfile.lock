@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ruby-rdf/json-ld.git
-  revision: cee48fd9f71fcf51bca0512d4d8ea36d1d292459
+  revision: afe7b3b10547b552676d1379a2be4bc34cf83d02
   branch: develop
   specs:
     json-ld (3.0.2)
