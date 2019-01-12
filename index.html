@@ -10757,11 +10757,6 @@ the data type to be specified explicitly with each piece of data.</p>
       may include <code>"@set"</code>, which create maps from the
       graph identifier or index value similar to <a>index maps</a>
       and <a>id maps</a>.</li>
-    <li>a <a>relative IRI</a> has been added as a possible value for <code>@vocab</code> in
-      a context. When this is set, the <a>vocabulary mapping</a> is resolved against
-      the <a>base IRI</a>, so that vocabulary-relative IRIs, such as the
-      keys of <a>node objects</a>, are expanded or compacted relative
-      to the document base.</li>
   </ul>
   <p>Additionally, see <a href="#changes-from-cg" class="sectionRef"></a>.</p>
 </section>
@@ -10776,6 +10771,11 @@ the data type to be specified explicitly with each piece of data.</p>
       with <code>@container</code> set to <code>@set</code>.</li>
     <li>The use of <a>blank node identifiers</a> to label properties is obsolete,
       and may be removed in a future version of JSON-LD, as is the support for <a>generalized RDF Datasets</a>.</li>
+    <li>The <a>default vocabulary</a> can be a relative IRI, which is evaluated
+      either against an existing default vocabulary, or against the document base.
+      This allows vocabulary-relative IRIs, such as the
+      keys of <a>node objects</a>, are expanded or compacted relative
+      to the document base.</li>
   </ul>
 </section>
 
