@@ -3105,6 +3105,280 @@ specified. The full <a>IRI</a> for
   <p class="note">Scoped Contexts are a new feature in JSON-LD 1.1, requiring
     <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
 </section>
+
+<section class="informative changed"><h2>Sealed Contexts</h2>
+  <p>Many JSON-LD contexts are designed to reflect the semantics of a specification,
+    written in prose, and intended for Web developers.
+    It is expected that some implementations of such a specification will rely on JSON-LD and use the context,
+    while other implementations will solely rely on the specification prose.
+    In particular, the latter will ignore embedded and scoped contexts that may locally override the terms defined in the specification.
+    So the interpretation of JSON-LD based implementations, on the one hand,
+    and the interpretation of "prose-based" implementations, on the other hand,
+    may diverge in some situations.
+    To prevent this, JSON-LD 1.1 allows a context to be sealed.
+    </p>
+  <p>A <dfn>sealed context</dfn> is a context with a member <code>@sealed</code> set to <code>true</code>.
+    It prevents further contexts to override its term definitions.
+    </p>
+
+
+  <aside class="example ds-selector-tabs changed"
+    title="A sealed @context prevents its term definitions to be overridden">
+    <div class="selectors">
+        <button class="selected" data-selects="original">Original</button>
+        <button data-selects="expanded">Expanded</button>
+        <button data-selects="statements">Statements</button>
+        <button data-selects="turtle">Turtle</button>
+        <a class="playground" target="_blank"></a>
+    </div>
+    <pre class="original selected nohighlight" data-transform="updateExample">
+      <!--
+      {
+        "@context": [
+          {
+            ****"@version": 1.1****,
+            ****"@sealed": true****,
+            "Person": "http://schema.org/Person",
+            "name": "http://schema.org/name",
+            "knows": "http://schema.org/knows"
+          },
+          {
+            ****"Person": "this_attempt_to_override_Person_will_fail"****
+          }
+        ],
+        "@type": "Person",
+        "name": "Manu Sporny",
+        "knows": {
+          "@context": {
+            ****"name": "this_attempt_to_override_name_will_also_fail"****
+          },
+          "name": "Gregg Kellogg"
+        }
+      }
+      -->
+    </pre>
+    <pre class="expanded nohighlight"
+         data-transform="updateExample"
+         data-result-for="A sealed @context prevents its term definitions to be overridden">
+    <!--
+    [{
+      "@type": ["http://schema.org/Person"],
+      "http://schema.org/knows": [
+        {
+          "http://schema.org/name": [{"@value": "Gregg Kellogg"}],
+        }
+      ],
+      "http://schema.org/name": [{"@value": "Manu Sporny"}]
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="A sealed @context prevents its term definitions to be overridden"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>_:b0</td><td>rdf:type</td><td>schema:Person</td></tr>
+        <tr><td>_:b0</td><td>schema:name</td><td>Manu Sporny</td></tr>
+        <tr><td>_:b0</td><td>schema:knows</td><td>_:b1</td></tr>
+        <tr><td>_:b1</td><td>schema:name</td><td>Gregg Kellogg</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-result-for="A sealed @context prevents its term definitions to be overridden"
+         data-transform="updateExample"
+         data-to-rdf>
+      <!--
+      @prefix schema: <http://schema.org/> .
+
+      [
+        a schema:Person;
+        schema:name "Manu Sporny";
+        schema:knows [
+          shema:name "Gregg Kellogg"
+        ]
+      ] .
+      -->
+    </pre>
+  </aside>
+
+  <p>Terms defined by a sealed context may still be overridden by scoped contexts,
+    as long as those are defined <em>inside</em> the same sealed context as the original term definition.
+    </p>
+
+  <aside class="example ds-selector-tabs changed"
+    title="A sealed @context can override its own terms">
+    <div class="selectors">
+        <button class="selected" data-selects="original">Original</button>
+        <button data-selects="expanded">Expanded</button>
+        <button data-selects="statements">Statements</button>
+        <button data-selects="turtle">Turtle</button>
+        <a class="playground" target="_blank"></a>
+    </div>
+    <pre class="original selected nohighlight" data-transform="updateExample">
+      <!--
+      {
+        "@context": [
+          {
+            ****"@version": 1.1****,
+            ****"@sealed": true****,
+            "name": "http://schema.org/name",
+            "member": "http://schema.org/member",
+            "Person": {
+              "@id": "http://schema.org/Person",
+              "@context": {
+                "name": "http://schema.org/familyName"
+              }
+            }
+          }
+        ],
+        "name": "Digital Bazaar",
+        "member": {
+          "@type": "Person",
+          "name": "Sporny"
+        }
+      }
+      -->
+    </pre>
+    <pre class="expanded nohighlight"
+         data-transform="updateExample"
+         data-result-for="A sealed @context can override its own terms">
+    <!--
+    [{
+      "@type": ["http://schema.org/Person"],
+      "http://schema.org/name": [{"@value": "Digital Bazaar"}],
+      "http://schema.org/member": [
+        {
+          "http://schema.org/familyame": [{"@value": "Sporny"}],
+        }
+      ],
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="A sealed @context can override its own terms"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>_:b0</td><td>schema:name</td><td>Digital Bazaar</td></tr>
+        <tr><td>_:b0</td><td>schema:member</td><td>_:b1</td></tr>
+        <tr><td>_:b1</td><td>rdf:type</td><td>schema:Person</td></tr>
+        <tr><td>_:b1</td><td>schema:familyName</td><td>Sporny</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-result-for="A sealed @context can override its own terms"
+         data-transform="updateExample"
+         data-to-rdf>
+      <!--
+      @prefix schema: <http://schema.org/> .
+
+      [
+        shema:name "Digital Bazaar";
+        schema:member [
+          a schema:Person;
+          schema:familyName "Sporny"
+        ]
+      ] .
+      -->
+    </pre>
+  </aside>
+
+  <p>A sealed context is not necessarily effective in the whole document.
+    Its effect starts in the node where it is referenced or embedded,
+    and propagates to deeper nodes only when traversing terms <em>that it defines</em>.
+    Traversing other terms stops the effect of the sealed context,
+    so in the remaining subtrees of the JSON document,
+    the terms from the sealed context are no longer protected against overridding.
+    The rationale is that "prose-based" implementations would generally ignore any term
+    <em>not</em> defined by the underlying specification,
+    and so the specification does apply to the parts of the documents beyond those unspecified terms.
+    </p>
+
+  <aside class="example ds-selector-tabs changed"
+    title="Sealing does not extend beyond other terms">
+    <div class="selectors">
+        <button class="selected" data-selects="original">Original</button>
+        <button data-selects="expanded">Expanded</button>
+        <button data-selects="statements">Statements</button>
+        <button data-selects="turtle">Turtle</button>
+        <a class="playground" target="_blank"></a>
+    </div>
+    <pre class="original selected nohighlight" data-transform="updateExample">
+      <!--
+      {
+        "@context": [
+          {
+            ****"@version": 1.1****,
+            ****"@sealed": true****,
+            "name": "http://schema.org/name",
+            "Organization": "http://schema.org/Organization"
+          },
+          {
+            "member": "http://xmlns.com/foaf/0.1/member"
+          }
+        ],
+        "@type": "Organization",
+        "name": "Digital Bazzar",
+        "member": {
+          "@context": {
+            "name": "http://xmlns.com/foaf/0.1/name"
+          },
+          "name": "Manu Sporny"
+        }
+      }
+      -->
+    </pre>
+    <pre class="expanded nohighlight"
+         data-transform="updateExample"
+         data-result-for="Sealing does not extend beyond other terms">
+    <!--
+    [{
+      "@type": ["http://schema.org/Organization"],
+      "http://schema.org/name": [{"@value": "Digital Bazaar"}],
+      "http://xmlns.com/foaf/0.1/member": [
+        {
+          "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
+        }
+      ],
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Sealing does not extend beyond other terms"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>_:b0</td><td>rdf:type</td><td>schema:Organization</td></tr>
+        <tr><td>_:b0</td><td>schema:name</td><td>Digital Bazaar</td></tr>
+        <tr><td>_:b0</td><td>foaf:member</td><td>_:b1</td></tr>
+        <tr><td>_:b1</td><td>foaf:name</td><td>Manu Sporny</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-result-for="Sealing does not extend beyond other terms"
+         data-transform="updateExample"
+         data-to-rdf>
+      <!--
+      @prefix schema: <http://schema.org/> .
+      @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+      [
+        a schema:Organization;
+        schema:name "Digital Bazaar";
+        foaf:member [
+          foaf:name "Manu Sporny"
+        ]
+      ] .
+      -->
+    </pre>
+  </aside>
+
+  <p class="note">Sealed Contexts are a new feature in JSON-LD 1.1, requiring
+    <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
+</section>
 </section>
 
 <section class="informative"><h2>Describing Values</h2>
