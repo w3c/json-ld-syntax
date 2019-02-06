@@ -3314,6 +3314,7 @@ specified. The full <a>IRI</a> for
             ****"@version": 1.1****,
             ****"@sealed": true****,
             "name": "http://schema.org/name",
+            "employee": "http://schema.org/employee",
             "Organization": "http://schema.org/Organization"
           },
           {
@@ -3321,7 +3322,13 @@ specified. The full <a>IRI</a> for
           }
         ],
         "@type": "Organization",
-        "name": "Digital Bazzar",
+        "name": "Digital Bazaar",
+        "employee" : {
+          "@context": {
+            "name": "this_attempt_to_override_name_will_fail"
+          },
+          "name" : "Dave Longley"
+        },
         "member": {
           "@context": {
             "name": "http://xmlns.com/foaf/0.1/name"
@@ -3338,11 +3345,16 @@ specified. The full <a>IRI</a> for
     [{
       "@type": ["http://schema.org/Organization"],
       "http://schema.org/name": [{"@value": "Digital Bazaar"}],
-      "http://xmlns.com/foaf/0.1/member": [
+      "http://schema.org/employee": [
         {
-          "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
+          "http://schema.org/name": [{"@value": "Dave Longly"}]
         }
       ],
+      "http://xmlns.com/foaf/0.1/member": [
+        {
+          "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}]
+        }
+      ]
     }]
     -->
     </pre>
@@ -3353,7 +3365,9 @@ specified. The full <a>IRI</a> for
       <tbody>
         <tr><td>_:b0</td><td>rdf:type</td><td>schema:Organization</td></tr>
         <tr><td>_:b0</td><td>schema:name</td><td>Digital Bazaar</td></tr>
-        <tr><td>_:b0</td><td>foaf:member</td><td>_:b1</td></tr>
+        <tr><td>_:b0</td><td>schema:employee</td><td>_:b1</td></tr>
+        <tr><td>_:b0</td><td>foaf:member</td><td>_:b2</td></tr>
+        <tr><td>_:b1</td><td>schema:name</td><td>Dave Longley</td></tr>
         <tr><td>_:b1</td><td>foaf:name</td><td>Manu Sporny</td></tr>
       </tbody>
     </table>
@@ -3363,15 +3377,18 @@ specified. The full <a>IRI</a> for
          data-transform="updateExample"
          data-to-rdf>
       <!--
-      @prefix schema: <http://schema.org/> .
+      @prefix schema: <http://schema.org/>.
       @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 
       [
         a schema:Organization;
-        schema:name "Digital Bazaar";
+        shema:name "Digital Bazaar";
+        schema:employee [
+          schema:name "Dave Longley"
+        ];
         foaf:member [
           foaf:name "Manu Sporny"
-        ]
+        ];
       ] .
       -->
     </pre>
