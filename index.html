@@ -3106,15 +3106,17 @@ specified. The full <a>IRI</a> for
 </section>
 
 <section class="informative changed"><h2>Sealed Contexts</h2>
-  <p>Many JSON-LD contexts are designed to reflect the semantics of a specification,
-    written in prose, and intended for Web developers.
-    It is expected that some implementations of such a specification will rely on JSON-LD and use the context,
-    while other implementations will solely rely on the specification prose.
-    In particular, the latter will ignore embedded and scoped contexts that may locally override the terms defined in the specification.
-    So the interpretation of JSON-LD based implementations, on the one hand,
-    and the interpretation of "prose-based" implementations, on the other hand,
-    may diverge in some situations.
-    To prevent this, JSON-LD 1.1 allows a context to be sealed.
+  <p>JSON-LD is used in many specifications as the specified data format.
+    However, there is also a desire to allow some JSON-LD contents to be processed as plain JSON,
+    without using any of the JSON-LD algorithms.
+    Because JSON-LD is very flexible,
+    some terms from the original format may be locally overridden
+    through the use of embedded contexts,
+    and take a different meaning for JSON-LD based implementations.
+    On the other hand, "plain JSON" implementations may not be able to interpret these embedded contexts,
+    and hence will still interpret those terms with their original meaning.
+    To prevent this divergence of interpretation,
+    JSON-LD 1.1 allows a context to be sealed.
     </p>
   <p>A <dfn>sealed context</dfn> is a context with a member <code>@sealed</code> set to <code>true</code>.
     It prevents further contexts to override its term definitions.
