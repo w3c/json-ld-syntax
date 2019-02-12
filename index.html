@@ -3160,21 +3160,19 @@ specified. The full <a>IRI</a> for
     </pre>
     <pre class="expanded nohighlight"
          data-transform="updateExample"
-         data-result-for="A sealed @context prevents its term definitions to be overridden">
+         data-result-for="A sealed @context prevents its term definitions to be overridden-original">
     <!--
     [{
       "@type": ["http://schema.org/Person"],
-      "http://schema.org/knows": [
-        {
-          "http://schema.org/name": [{"@value": "Gregg Kellogg"}],
-        }
-      ],
-      "http://schema.org/name": [{"@value": "Manu Sporny"}]
+      "http://schema.org/name": [{"@value": "Manu Sporny"}],
+      "http://schema.org/knows": [{
+        "http://schema.org/name": [{"@value": "Gregg Kellogg"}]
+      }]
     }]
     -->
     </pre>
     <table class="statements"
-           data-result-for="A sealed @context prevents its term definitions to be overridden"
+           data-result-for="A sealed @context prevents its term definitions to be overridden-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -3186,7 +3184,7 @@ specified. The full <a>IRI</a> for
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="A sealed @context prevents its term definitions to be overridden"
+         data-result-for="A sealed @context prevents its term definitions to be overridden-expanded"
          data-transform="updateExample"
          data-to-rdf>
       <!--
@@ -3196,7 +3194,7 @@ specified. The full <a>IRI</a> for
         a schema:Person;
         schema:name "Manu Sporny";
         schema:knows [
-          shema:name "Gregg Kellogg"
+          schema:name "Gregg Kellogg"
         ]
       ] .
       -->
@@ -3227,9 +3225,10 @@ specified. The full <a>IRI</a> for
             "member": "http://schema.org/member",
             "Person": {
               "@id": "http://schema.org/Person",
-              "@context": {
+              "@context": [null, {
+                "Person": "http://schema.org/Person",
                 "name": "http://schema.org/familyName"
-              }
+              }]
             }
           }
         ],
@@ -3243,21 +3242,21 @@ specified. The full <a>IRI</a> for
     </pre>
     <pre class="expanded nohighlight"
          data-transform="updateExample"
-         data-result-for="A sealed @context can override its own terms">
+         data-result-for="A sealed @context can override its own terms-original">
     <!--
     [{
-      "@type": ["http://schema.org/Person"],
       "http://schema.org/name": [{"@value": "Digital Bazaar"}],
       "http://schema.org/member": [
         {
-          "http://schema.org/familyame": [{"@value": "Sporny"}],
+          "@type": ["http://schema.org/Person"],
+          "http://schema.org/familyName": [{"@value": "Sporny"}]
         }
-      ],
+      ]
     }]
     -->
     </pre>
     <table class="statements"
-           data-result-for="A sealed @context can override its own terms"
+           data-result-for="A sealed @context can override its own terms-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -3269,14 +3268,14 @@ specified. The full <a>IRI</a> for
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="A sealed @context can override its own terms"
+         data-result-for="A sealed @context can override its own terms-expanded"
          data-transform="updateExample"
          data-to-rdf>
       <!--
       @prefix schema: <http://schema.org/> .
 
       [
-        shema:name "Digital Bazaar";
+        schema:name "Digital Bazaar";
         schema:member [
           a schema:Person;
           schema:familyName "Sporny"
@@ -3325,14 +3324,14 @@ specified. The full <a>IRI</a> for
         "name": "Digital Bazaar",
         "employee" : {
           "@context": {
-            "name": "this_attempt_to_override_name_will_fail"
+            "name": "http://example.org/this_attempt_to_override_name_will_fail"
           },
           "name" : "Dave Longley"
         },
         "member": {
-          "@context": {
+          "@context": [null, {
             "name": "http://xmlns.com/foaf/0.1/name"
-          },
+          }],
           "name": "Manu Sporny"
         }
       }
@@ -3340,14 +3339,14 @@ specified. The full <a>IRI</a> for
     </pre>
     <pre class="expanded nohighlight"
          data-transform="updateExample"
-         data-result-for="Sealing does not extend beyond other terms">
+         data-result-for="Sealing does not extend beyond other terms-original">
     <!--
     [{
       "@type": ["http://schema.org/Organization"],
       "http://schema.org/name": [{"@value": "Digital Bazaar"}],
       "http://schema.org/employee": [
         {
-          "http://schema.org/name": [{"@value": "Dave Longly"}]
+          "http://schema.org/name": [{"@value": "Dave Longley"}]
         }
       ],
       "http://xmlns.com/foaf/0.1/member": [
@@ -3359,7 +3358,7 @@ specified. The full <a>IRI</a> for
     -->
     </pre>
     <table class="statements"
-           data-result-for="Sealing does not extend beyond other terms"
+           data-result-for="Sealing does not extend beyond other terms-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -3368,12 +3367,12 @@ specified. The full <a>IRI</a> for
         <tr><td>_:b0</td><td>schema:employee</td><td>_:b1</td></tr>
         <tr><td>_:b0</td><td>foaf:member</td><td>_:b2</td></tr>
         <tr><td>_:b1</td><td>schema:name</td><td>Dave Longley</td></tr>
-        <tr><td>_:b1</td><td>foaf:name</td><td>Manu Sporny</td></tr>
+        <tr><td>_:b2</td><td>foaf:name</td><td>Manu Sporny</td></tr>
       </tbody>
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="Sealing does not extend beyond other terms"
+         data-result-for="Sealing does not extend beyond other terms-expanded"
          data-transform="updateExample"
          data-to-rdf>
       <!--
@@ -3382,7 +3381,7 @@ specified. The full <a>IRI</a> for
 
       [
         a schema:Organization;
-        shema:name "Digital Bazaar";
+        schema:name "Digital Bazaar";
         schema:employee [
           schema:name "Dave Longley"
         ];
