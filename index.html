@@ -980,6 +980,14 @@
     In JSON-LD, with exceptions are as described below, all <a>relative IRIs</a>
     are resolved relative to the <a>base IRI</a>.</p>
 
+  <p class="note">As noted in <a href="#how-to-read-this-document" class="sectionRef"></a>,
+    IRIs can often be confused with URLs (<a data-cite="ld-glossary#uniform-resource-locator">Uniform Resource Locators</a>),
+    the primary distinction is that a URL <em>locates</em> a resource on the web,
+    an IRI <em>identifies</em> a resource. While it is a good practice for resource identifiers
+    to be dereferencable, sometimes this is not practical. In particular, note the
+    [[URN]] scheme for Uniform Resource Names, such as <a data-cite="rfc4122">UUID</a>.
+    An example UUID is <code>urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6</code>.</p>
+
   <p class="note"><a>Properties</a>, values of <code>@type</code>,
     and values of <a>properties</a> with a <a>term definition</a>
     that defines them as being relative to the <a>vocabulary mapping</a>,
@@ -987,7 +995,7 @@
     <a>vocabulary mapping</a>, and not the <a>base IRI</a>.</p>
 
   <p>A <a>string</a> is interpreted as an <a>IRI</a> when it is the
-    value of an <a>dictionary member</a> with the key<code>@id</code>:</p>
+    value of an <a>dictionary member</a> with the key <code>@id</code>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        title="Values of @id are interpreted as IRI">
