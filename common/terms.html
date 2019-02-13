@@ -112,6 +112,16 @@
     Whenever possible, an <a>edge</a> should be labeled with an <a>IRI</a>.
     <div class="issue atrisk">The use of <a>blank node identifiers</a> to label properties is obsolete,
       and may be removed in a future version of JSON-LD.</div></dd>
+  <dt><dfn>embedded context</dfn></dt><dd>
+    An embedded <a>context</a> is a <a>dictionary</a> composed of a combintation of
+    <a>term definitions</a>, a <a>vocabulary mapping</a>, a <a>base IRI</a> and <a>default language</a>.
+    An <a>embedded context</a> may appear as part of a <a>node object</a> or <a>value object</a> using the
+    <code>@context</code> <a>member</a>.
+  </dd>
+  <dt><dfn>scoped context</dfn></dt><dd>
+    A <a>scoped context</a> is part of an <a>expanded term definition</a> using the
+    <code>@context</code> <a>member</a>. It has the same form as an <a>embedded context</a>.
+  </dd>
   <dt><dfn>expanded term definition</dfn></dt><dd>
     An expanded term definition is a <a>term definition</a>
     where the value is a <a>dictionary</a>

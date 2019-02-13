@@ -776,6 +776,9 @@
       either be a simple string, mapping the <a>term</a> to an <a>IRI</a>,
       or a <a>dictionary</a>.</p>
 
+    <p>A <a>context</a> is introduced using a <a>member</a> with the key <code>@context</code> and may
+      appear within a <a>node object</a> or a <a>value object</a>.</p>
+
     <p>When a <a>member</a> with a <a>term</a> key has a <a>dictionary</a> value, the <a>dictionary</a> is called
       an <a>expanded term definition</a>. The example above specifies that
       the values of <code>image</code> and <code>homepage</code>, if they are
@@ -791,7 +794,8 @@
       <a data-lt="absolute IRI">absolute</a> or <a>compact IRI</a>.</p>
 
     <p><a>Contexts</a> can either be directly embedded
-      into the document or be referenced. Assuming the context document in the previous
+      into the document (an <a>embedded context</a>) or be referenced using a URL.
+      Assuming the context document in the previous
       example can be retrieved at <code>https://json-ld.org/contexts/person.jsonld</code>,
       it can be referenced by adding a single line and allows a JSON-LD document to
       be expressed much more concisely as shown in the example below:</p>
@@ -1847,7 +1851,7 @@
     most-recently-defined-wins mechanism.</p>
 
   <aside class="example ds-selector-tabs"
-         title="Scoped contexts within node objects">
+         title="Embedded contexts within node objects">
     <div class="selectors">
       <button class="selected" data-selects="original">Original</button>
       <button data-selects="expanded">Expanded</button>
@@ -1874,7 +1878,7 @@
     -->
     </pre>
     <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Scoped contexts within node objects-original">
+         data-result-for="Embedded contexts within node objects-original">
     <!--
     [{
       "http://example.com/person#details": [{
@@ -1887,7 +1891,7 @@
     -->
     </pre>
     <table class="statements"
-           data-result-for="Scoped contexts within node objects-expanded"
+           data-result-for="Embedded contexts within node objects-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -1898,7 +1902,7 @@
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="Scoped contexts within node objects-expanded"
+         data-result-for="Embedded contexts within node objects-expanded"
          data-transform="updateExample"
          data-to-rdf>
     <!--
@@ -1933,7 +1937,7 @@
     to an empty context, without <a>term definitions</a>, <a>default language</a>,
     or other things defined within previous contexts.
     The following example specifies an external context
-    and then layers an embedded context on top of the external context:</p>
+    and then layers an <a>embedded context</a> on top of the external context:</p>
 
   <aside class="example ds-selector-tabs"
          title="Combining external and local contexts">
@@ -2910,7 +2914,7 @@ specified. The full <a>IRI</a> for
 <section class="informative changed"><h2>Scoped Contexts</h2>
 
   <p>An <a>expanded term definition</a> can include a <code>@context</code>
-    property, which defines a <a>context</a> (an <dfn>embedded context</dfn>) for
+    property, which defines a <a>context</a> (an <a>scoped context</a>) for
     <a data-lt="JSON-LD value">values</a> of properties defined using that <a>term</a>. This allows
     values to use <a>term definitions</a>, <a>base IRI</a>,
     <a>vocabulary mapping</a> or <a>default language</a> which is different from the
@@ -2993,7 +2997,7 @@ specified. The full <a>IRI</a> for
 
   <p>In this case, the social profile is defined using the schema.org vocabulary, but interest is imported from FOAF, and is used to define a node describing one of Manu's interests where those properties now come from the FOAF vocabulary.</p>
 
-  <p>Expanding this document, uses a combination of terms defined in the outer context, and those defined specifically for that term in an <a>embedded context</a>.</p>
+  <p>Expanding this document, uses a combination of terms defined in the outer context, and those defined specifically for that term in an <a>scoped context</a>.</p>
 
   <p>Scoping can also be performed using a term used as a value of <code>@type</code>:</p>
 
@@ -3090,25 +3094,26 @@ specified. The full <a>IRI</a> for
 
   <p>When expanding, each value of <code>@type</code> is considered
     (ordering them lexographically) where that value is also a <a>term</a> in
-    the <a>active context</a> having its own <a>embedded context</a>. If so, that
-    <a>embedded context</a> is applied to the <a>active context</a>. When compacting, if
+    the <a>active context</a> having its own <a>scoped context</a>. If so, that
+    <a>scoped context</a> is applied to the <a>active context</a>. When compacting, if
     a <a>term</a> is chosen to represent an IRI used as a value of <code>@type</code> where that
-    <a>term definition</a> also has an <a>embedded context</a>, it is then applied to the
+    <a>term definition</a> also has an <a>scoped context</a>, it is then applied to the
     <a>active context</a> to affect further compaction.</p>
 
   <p class="note">The values of <code>@type</code> are unordered, so if multiple
-    types are listed, the order that scoped contexts are applied is based on
+    types are listed, the order that <a>scoped contexts</a> are applied is based on
     lexicographical ordering.</p>
 
-  <p class="note">If a <a>term</a> defines a scoped context, and then that term
-    is later re-defined, the association of the context defined in the earlier
+  <p class="note">If a <a>term</a> defines a <a>scoped context</a>,
+    and then that term is later re-defined,
+    the association of the context defined in the earlier
     <a>expanded term definition</a> is lost
     within the scope of that re-definition. This is consistent with
     <a>term definitions</a> of a term overriding previous term definitions from
     earlier less deeply nested definitions, as discussed in
     <a href="#advanced-context-usage" class="sectionRef"></a>.</p>
 
-  <p class="note">Scoped Contexts are a new feature in JSON-LD 1.1, requiring
+  <p class="note"><a>Scoped Contexts</a> are a new feature in JSON-LD 1.1, requiring
     <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
 </section>
 
@@ -11067,7 +11072,7 @@ the data type to be specified explicitly with each piece of data.</p>
       with <code>@container</code> set to <code>@set</code>.</li>
     <li>The use of <a>blank node identifiers</a> to label properties is obsolete,
       and may be removed in a future version of JSON-LD, as is the support for <a>generalized RDF Datasets</a>.</li>
-    <li>The <a>default vocabulary</a> can be a relative IRI, which is evaluated
+    <li>The <a>vocabulary mapping</a> can be a relative IRI, which is evaluated
       either against an existing default vocabulary, or against the document base.
       This allows vocabulary-relative IRIs, such as the
       keys of <a>node objects</a>, are expanded or compacted relative
