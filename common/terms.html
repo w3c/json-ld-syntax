@@ -222,7 +222,8 @@
     A <a>list</a> is an ordered sequence of <a>IRIs</a>, <a>blank nodes</a>, and <a>JSON-LD values</a>.
     See <dfn data-cite="RDF-SCHEMA#ch_collectionvocab" data-lt="collection" class="preserve">RDF collection</dfn> in [[RDF-SCHEMA]].</dd>
   <dt><dfn>list object</dfn></dt><dd>
-    A <a>list object</a> is a <a>dictionary</a> that has a <code>@list</code> key.</dd>
+    A <a>list object</a> is a <a>dictionary</a> that has a <code>@list</code> key.
+    It may also have an <a>@index</a> key, but no other members.</dd>
   <dt><dfn>literal</dfn></dt><dd>
     An <a>object</a> expressed as a value such as a string, number or in expanded form.</dd>
   <dt><dfn>local context</dfn></dt><dd>
@@ -304,7 +305,8 @@
     are resolved relative to the <a>vocabulary mapping</a>,
     not the <a>base IRI</a>.</dd>
   <dt><dfn>set object</dfn></dt><dd>
-    A <a>set object</a> is a <a>dictionary</a> that has an <code>@set</code> <a>member</a>.</dd>
+    A <a>set object</a> is a <a>dictionary</a> that has an <code>@set</code> <a>member</a>.
+    It may also have an <a>@index</a> key, but no other members.</dd>
   <dt><dfn>subject</dfn></dt><dd>
     A <a data-cite="RDF11-CONCEPTS#dfn-subject" class="externalDFN">subject</a>
     is a <a>node</a> in a <a>linked data graph</a>
