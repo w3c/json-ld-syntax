@@ -3247,7 +3247,7 @@ specified. The full <a>IRI</a> for
           "@context": {
             "Person": "http://xmlns.com/foaf/0.1/Person",
             "name": "this_attempt_to_override_name_will_fail"
-          }
+          },
           "@type": "Person",
           "name": "Manu Sporny"
         }
@@ -3322,11 +3322,12 @@ specified. The full <a>IRI</a> for
           {
             ****"@version": 1.1****,
             ****"@sealed": true****,
-            "Organization": "http://schema.org/Organization"
+            "Organization": "http://schema.org/Organization",
             "name": "http://schema.org/name",
             "employee": {
-              "@id": http://schema.org/employee",
+              "@id": "http://schema.org/employee",
               ****"@context": null****
+            }
           }
         ],
         "@type": "Organization",
