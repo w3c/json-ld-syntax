@@ -3389,6 +3389,13 @@ specified. The full <a>IRI</a> for
       -->
     </pre>
   </aside>
+  <p class="note">By preventing terms from being overridden,
+    sealing also prevents any adaptation of a term
+    (e.g., defining a more precise datatype, restricting the term's use to lists, etc.).
+    This kind of adaptation is frequent with some general purpose contexts,
+    for which sealing would therefore hinder their usability.
+    As a consequence, context publishers should use this feature with care.
+    </p>
 
   <p class="note">Sealed term definitions are a new feature in JSON-LD 1.1, requiring
     <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
