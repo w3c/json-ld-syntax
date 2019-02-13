@@ -1548,11 +1548,6 @@
   <p class="changed">Typed values can also be defined implicitly, by specifying
     <code>@type</code> in an expanded term definition.
     This is covered more fully in <a class="sectionRef" href="#type-coercion"></a>.</p>
-
-  <p class="note">The ability coerce a value using a <a>term definition</a> is distinct
-    from setting one or more types on a <a>node object</a>, as the former does not result in
-    new data being added to the graph, while the later manages node types
-    through adding additional relationships to the graph.</p>
 </section>
 </section>
 
@@ -3691,6 +3686,11 @@ the data type to be specified explicitly with each piece of data.</p>
   Values coerced to <code>@id</code> in contrast are expanded as
   <a>compact IRI</a> or <a>absolute IRI</a> if a colon is present; otherwise, they are interpreted
   as <a>relative IRI</a>.</p>
+
+<p class="note">The ability coerce a value using a <a>term definition</a> is distinct
+  from setting one or more types on a <a>node object</a>, as the former does not result in
+  new data being added to the graph, while the later manages node types
+  through adding additional relationships to the graph.</p>
 
 <p><a>Terms</a> or <a>compact IRIs</a> used as the value of a
   <code>@type</code> key may be defined within the same context. This means that one may specify a
