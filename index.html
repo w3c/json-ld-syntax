@@ -1754,8 +1754,9 @@
   <p>In general, contexts may be used any time a
     <a>dictionary</a> is defined.
     The only time that one cannot express a context is as a direct child of another context definition (other than as part of an <a>expanded term definition</a>).
-    For example, a <a>JSON-LD document</a> may use more than one context at different
-    points in a document:</p>
+    For example, a <a>JSON-LD document</a> may
+    have the form of an <a>array</a> composed of one or more <a>node objects</a>,
+    which use a context definition in each top-level <a>node object</a>:</p>
 
   <aside class="example ds-selector-tabs"
          title="Using multiple contexts">
@@ -1774,8 +1775,7 @@
         "name": "Manu Sporny",
         "homepage": "http://manu.sporny.org/",
         "depiction": "http://twitter.com/account/profile_image/manusporny"
-      },
-      {
+      }, {
         ****"@context": "https://json-ld.org/contexts/place.jsonld",****
         "name": "The Empire State Building",
         "description": "The Empire State Building is a 102-story landmark in New York City.",
@@ -1830,6 +1830,113 @@
     <pre class="turtle"
          data-content-type="text/turtle"
          data-result-for="Using multiple contexts-expanded"
+         data-transform="updateExample"
+         data-to-rdf>
+    <!--
+    @prefix dc: <http://purl.org/dc/terms/> .
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+    @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+    @prefix schema: <http://schema.org/> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+    [
+      foaf:name "Manu Sporny";
+      foaf:homepage <http://manu.sporny.org/>;
+      foaf:depiction <http://twitter.com/account/profile_image/manusporny>
+    ] .
+
+    [
+      dc:title "The Empire State Building";
+      dc:description "The Empire State Building is a 102-story landmark in New York City.";
+      schema:geo [
+        geo:lat 40.75;
+        geo:long 73.98
+      ]
+    ] .
+    -->
+    </pre>
+  </aside>
+
+  <p>The outer array is standard for a document in
+    <a href="expanded-document-form">expanded document form</a>
+    and <a href="flattened-document-form">flattened document form</a>,
+    and may be necessary when describing a disconnected graph,
+    where nodes may not reference each other. In such cases, using
+    a top-level dictionary with a @graph property can be useful for saving
+    the repetition of @graph. See <a href="#embedding" class="sectionRef"></a>
+    for more.</p>
+
+  <aside class="example ds-selector-tabs"
+         title="Describing disconnected nodes with @graph">
+    <div class="selectors">
+      <button class="selected" data-selects="original">Original</button>
+      <button data-selects="expanded">Expanded</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
+    </div>
+    <pre class="original selected nohighlight" data-transform="updateExample">
+    <!--
+    {
+      ****"@context": "https://json-ld.org/contexts/person.jsonld",****
+      ****"@graph": [****{
+        "name": "Manu Sporny",
+        "homepage": "http://manu.sporny.org/",
+        "depiction": "http://twitter.com/account/profile_image/manusporny"
+      }, {
+        "name": "The Empire State Building",
+        "description": "The Empire State Building is a 102-story landmark in New York City.",
+        "geo": {
+          "latitude": "40.75",
+          "longitude": "73.98"
+        }
+      }****]****
+    }
+    -->
+    </pre>
+    <pre class="expanded nohighlight" data-transform="updateExample"
+         data-result-for="Describing disconnected nodes with @graph-original">
+    <!--
+    [{
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
+      "http://xmlns.com/foaf/0.1/homepage": [{"@id": "http://manu.sporny.org/"}],
+      "http://xmlns.com/foaf/0.1/depiction": [{"@id": "http://twitter.com/account/profile_image/manusporny"}]
+    }, {
+      "http://purl.org/dc/terms/title": [{"@value": "The Empire State Building"}],
+      "http://purl.org/dc/terms/description": [{
+        "@value": "The Empire State Building is a 102-story landmark in New York City."
+      }],
+      "http://schema.org/geo": [{
+        "http://www.w3.org/2003/01/geo/wgs84_pos#lat": [{
+          "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+          "@value": "40.75"
+        }],
+        "http://www.w3.org/2003/01/geo/wgs84_pos#long": [{
+          "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+          "@value": "73.98"
+        }]
+      }]
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Describing disconnected nodes with @graph-expanded"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
+      <tbody>
+        <tr><td>_:b0</td><td>foaf:name</td><td>Manu Sporny</td><td></td></tr>
+        <tr><td>_:b0</td><td>foaf:homepage</td><td>http://manu.sporny.org/</td><td></td></tr>
+        <tr><td>_:b0</td><td>foaf:depiction</td><td>http://twitter.com/account/profile_image/manusporny</td><td></td></tr>
+        <tr><td>_:b1</td><td>dc:title</td><td>The Empire State Building</td><td></td></tr>
+        <tr><td>_:b1</td><td>dc:description</td><td>The Empire State Building is a 102-story landmark in New York City.</td><td></td></tr>
+        <tr><td>_:b2</td><td>geo:lat</td><td>40.75</td><td>xsd:decimal</td></tr>
+        <tr><td>_:b2</td><td>geo:long</td><td>73.98</td><td>xsd:decimal</td></tr>
+        <tr><td>_:b1</td><td>schema:geo</td><td>_:b2</td><td></td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-result-for="Describing disconnected nodes with @graph-expanded"
          data-transform="updateExample"
          data-to-rdf>
     <!--
@@ -1928,7 +2035,9 @@
   </aside>
 
   <p>In the example above, the <code>name</code> <a>term</a> is overridden
-    in the more deeply nested <code>details</code> structure. Note that this is
+    in the more deeply nested <code>details</code> structure,
+    which uses its own <a>embedded context</a>.
+    Note that this is
     rarely a good authoring practice and is typically used when working with
     legacy applications that depend on a specific structure of the
     <a>dictionary</a>. If a <a>term</a> is redefined within a
