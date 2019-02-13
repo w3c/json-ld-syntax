@@ -1,3 +1,4 @@
+require 'bundler/setup'
 task default: :test
 
 desc "Test examples in spec files"
