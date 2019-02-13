@@ -1878,13 +1878,17 @@
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
     {
-      ****"@context": "https://json-ld.org/contexts/person.jsonld",****
+      ****"@context": [
+        "https://json-ld.org/contexts/person.jsonld",
+        "https://json-ld.org/contexts/place.jsonld",
+        {"title": "http://purl.org/dc/terms/title"}
+      ],****
       ****"@graph": [****{
-        "name": "Manu Sporny",
+        "http://xmlns.com/foaf/0.1/name": "Manu Sporny",
         "homepage": "http://manu.sporny.org/",
         "depiction": "http://twitter.com/account/profile_image/manusporny"
       }, {
-        "name": "The Empire State Building",
+        "title": "The Empire State Building",
         "description": "The Empire State Building is a 102-story landmark in New York City.",
         "geo": {
           "latitude": "40.75",
