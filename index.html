@@ -4901,12 +4901,14 @@ the data type to be specified explicitly with each piece of data.</p>
   <code>rdf:nil</code>. This can be represented as statments, as the "statements"
   tab illustrates.</p>
 
-
 <p>Both JSON-LD and Turtle provide shortcuts for representing ordered lists.</p>
 
 <p class="changed">In JSON-LD 1.1, lists of lists, where the value of
   a <a>list object</a>, may itself be a <a>list object</a>, are
-  fully supported. For example, in <a data-cite="RFC7946">GeoJSON</a> (see [[RFC7946]]),
+  fully supported.</p>
+
+<p class="changed">Note that the <code>"@container": "@list"</code> definintion recursively
+  describes array values of lists as being, themselves, lists. For example, in <a data-cite="RFC7946">GeoJSON</a> (see [[RFC7946]]),
   <em>coordinates</em> are an ordered list of <em>positions</em>, which are
   represented as an array of two or more numbers:</p>
 
