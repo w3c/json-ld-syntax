@@ -995,7 +995,7 @@
     <a>vocabulary mapping</a>, and not the <a>base IRI</a>.</p>
 
   <p>A <a>string</a> is interpreted as an <a>IRI</a> when it is the
-    value of an <a>dictionary member</a> with the key <code>@id</code>:</p>
+    value of a <a>dictionary member</a> with the key <code>@id</code>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        title="Values of @id are interpreted as IRI">
@@ -1862,8 +1862,8 @@
     and <a href="flattened-document-form">flattened document form</a>,
     and may be necessary when describing a disconnected graph,
     where nodes may not reference each other. In such cases, using
-    a top-level dictionary with a @graph property can be useful for saving
-    the repetition of @graph. See <a href="#embedding" class="sectionRef"></a>
+    a top-level dictionary with a <code>@graph</code> property can be useful for saving
+    the repetition of <code>@graph</code>. See <a href="#embedding" class="sectionRef"></a>
     for more.</p>
 
   <aside class="example ds-selector-tabs"
@@ -3037,7 +3037,7 @@ specified. The full <a>IRI</a> for
 <section class="informative changed"><h2>Scoped Contexts</h2>
 
   <p>An <a>expanded term definition</a> can include a <code>@context</code>
-    property, which defines a <a>context</a> (an <a>scoped context</a>) for
+    property, which defines a <a>context</a> (a <a>scoped context</a>) for
     <a data-lt="JSON-LD value">values</a> of properties defined using that <a>term</a>. This allows
     values to use <a>term definitions</a>, <a>base IRI</a>,
     <a>vocabulary mapping</a> or <a>default language</a> which is different from the
@@ -3120,7 +3120,7 @@ specified. The full <a>IRI</a> for
 
   <p>In this case, the social profile is defined using the schema.org vocabulary, but interest is imported from FOAF, and is used to define a node describing one of Manu's interests where those properties now come from the FOAF vocabulary.</p>
 
-  <p>Expanding this document, uses a combination of terms defined in the outer context, and those defined specifically for that term in an <a>scoped context</a>.</p>
+  <p>Expanding this document, uses a combination of terms defined in the outer context, and those defined specifically for that term in a <a>scoped context</a>.</p>
 
   <p>Scoping can also be performed using a term used as a value of <code>@type</code>:</p>
 
@@ -3882,7 +3882,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <a>compact IRI</a> or <a>absolute IRI</a> if a colon is present; otherwise, they are interpreted
   as <a>relative IRI</a>.</p>
 
-<p class="note">The ability coerce a value using a <a>term definition</a> is distinct
+<p class="note">The ability to coerce a value using a <a>term definition</a> is distinct
   from setting one or more types on a <a>node object</a>, as the former does not result in
   new data being added to the graph, while the later manages node types
   through adding additional relationships to the graph.</p>
@@ -6512,7 +6512,7 @@ the data type to be specified explicitly with each piece of data.</p>
   </aside>
 
   <p>In the example above, the <strong>label</strong> <a>term</a> has
-    been marked as an <a>language map</a>. The <strong>en</strong> and
+    been marked as a <a>language map</a>. The <strong>en</strong> and
     <strong>de</strong> keys are implicitly associated with their respective
     values by the <a>JSON-LD Processor</a>.  This allows a developer to
     access the German version of the <strong>label</strong> using the
@@ -7134,7 +7134,7 @@ the data type to be specified explicitly with each piece of data.</p>
   </aside>
 
   <p>In the example above, the <code>affiliation</code> <a>term</a> has
-    been marked as an <a>type map</a>. The <code>schema:Corporation</code> and
+    been marked as a <a>type map</a>. The <code>schema:Corporation</code> and
     <code>schema:ProfessionalService</code> keys will be interpreted
     as the <code>@type</code> property of the <a>node object</a> value.</p>
 
@@ -9953,7 +9953,7 @@ the data type to be specified explicitly with each piece of data.</p>
       on <code>@index</code> values.</p>
 
     <p class="changed">If the <a>node object</a> contains the <code>@nest</code> key,
-      its value MUST be an <a>dictionary</a> or an <a>array</a> of <a>dictionaries</a>
+      its value MUST be a <a>dictionary</a> or an <a>array</a> of <a>dictionaries</a>
       which MUST NOT include a <a>value object</a>. See
       <a class="sectionRef" href="#property-nesting"></a> for further discussion
       on <code>@nest</code> values.</p>
@@ -9978,7 +9978,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <li>a <a>language map</a>,</li>
       <li>an <a>index map</a>,</li>
       <li class="changed">an <a>id map</a>, or</li>
-      <li class="changed">an <a>type map</a></li>
+      <li class="changed">a <a>type map</a></li>
     </ul>
   </section>
 
