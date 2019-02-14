@@ -4077,12 +4077,17 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <p>The unexpected result is that "barney" expands to both <code>http://example1.com/barney</code>
   and <code>http://example2.com/barney</code>, depending where it is encountered.
-  String values interpreted as <a>IRIs</a> because of the associated <a>term definition</a>
+  String values interpreted as <a>IRIs</a> because of the associated <a>term definitions</a>
   are typically considered to be document-relative.
   In some cases, it makes sense to interpret these relative to the vocabulary,
   prescribed using <code>"@type": "@vocab"</code> in the <a>term definition</a>, though this can
-  lead to unexpected consequences such as these.
-  For more on this see <a class="sectionRef" href="#default-vocabulary"></a></p>
+  lead to unexpected consequences such as these.</p>
+
+<p>In the previous example, "barney" appears twice, once as the value of <code>@id</code>,
+  which is always interpreted as a document-relative IRI, and once as the value of
+  "fred", which is defined to be vocabulary-relative, thus the different exapanded values.</p>
+
+<p>For more on this see <a class="sectionRef" href="#default-vocabulary"></a></p>
 
 <p>A variation on the previous example using <code>"@type": "@id"</code> instead
   of <code>@vocab</code> illustrates the behavior of interpreting "barney" relative to the document:</p>
