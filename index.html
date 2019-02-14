@@ -11200,31 +11200,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <h4>Open Issues</h4>
   <p>The following is a list of issues open at the time of publication.</p>
   <p class="issue" data-number="4">Consider using <code>"@type": "@json"</code> to describe native values in the compact form.</p>
-  <p class="issue" data-number="8">When requesting JSON-LD from an HTTP endpoint, it would be useful to provide a reference to a context or frame which should be used by the server to put the results into the proper format.</p>
   <p class="issue" data-number="9">Provide a means for refering to a remote context without without requiring it to be downloaded.</p>
   <p class="issue" data-number="19">Consider a mechanism such as Microdata's <code>@itemref</code> for including objects within another referencing node.</p>
   <p class="issue" data-number="20">Mechinism to allow freezing terms so that additional contexts don't override them.</p>
-  <p class="issue" data-number="23">Should consider <code>html>head>base@href</code> and <code>xml:base</code>, as appropriate.</p>
-  <p class="issue" data-number="25">Update terminology in the spec from <a>IRI</a> to <em>URL</em>.</p>
-  <p class="issue" data-number="30">Proposal is to start from scratch, ie, deprecating <code>@graph</code> and replacing the functionality with something cleaner.</p>
-  <div class="issue" data-number="33">
-<ul>
-<li>Give each JSON-LD feature a name. For example: aliasing, reverseProperties, typeCoercion, etc.</li>
-<li>Each JSON-LD version will officially support a set of these features. For example, JSON-LD 1.0 supports roughly ~20, JSON-LD 1.1 supports roughly ~30, and so on.</li>
-<li>Move some of these less-used features (based on real world data/usage) into a "Advanced JSON-LD Features" specification to keep the base specification simpler and more easily readable.</li>
-<li>Extend the @version keyword to take an array, where you can specify experimental extensions. For example: <code>"@version": [1.1, "amazingExtensionFoo", "nicheExtensionBar"]</code> - processors throw if they don't understand every extension listed.</li>
-</ul>
-</div>
   <p class="issue" data-number="46">Consider documentation best practices.</p>
-  <p class="issue" data-number="56">Consider issues surrounding confusion of differing expansion rules for <code>@id</code>, <code>@type</code>, and <a>dictionary members</a>.</p>
   <p class="issue" data-number="59">Define a recommended context to import.</p>
-  <p class="issue" data-number="72"></p>
-  <p class="issue" data-number="75"></p>
   <p class="issue" data-number="76">Node Types in <code>@context</code>.</p>
-  <p class="issue" data-number="77"></p>
   <p class="issue" data-number="86"></p>
-  <p class="issue" data-number="87"></p>
-  <p class="issue" data-number="91"></p>
 </section>
 
 <section class="appendix informative" id="changes-from-10">
