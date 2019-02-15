@@ -2847,25 +2847,9 @@
     <strong>url</strong> and <strong>a</strong>, respectively.</p>
 
   <p><span class="changed">Other than for <code>@type</code>,</span> properties of
-    <a>expanded term definitions</a> where the term is a <a>keyword</a> are ignored.</p>
-
-  <p class="changed">When <a>processing mode</a> is set to <code>json-ld-1.1</code>,
-    <code>@type</code> may be used with an <a>expanded term definition</a> with <code>@container</code> set
-    to <code>@set</code>; no other members may be set within such an <a>expanded term definition</a>.
-    This is used by the <a data-cite="JSON-LD11-API#compaction-algorithm">Compaction algorithm</a> to ensure that the values of <code>@type</code> (or an alias)
-    are always represented in an <a>array</a>.</p>
-
-  <pre class="example" data-transform="updateExample" title="Setting @container: @set on @type">
-  <!--
-  {
-    "@context": {
-      "@version": 1.1,
-      "@type": {"@container": "@set"}
-    },
-    "@type": ["http:/example.org/type"]
-  }
-  -->
-  </pre>
+    <a>expanded term definitions</a> where the term is a <a>keyword</a> are ignored.
+    When processing mode is set to <code>json-ld-1.1</code>, there is an exception for <code>@type</code>;
+    see <a href="#using-set-with-type" class="sectionRef"></a> for further details.</p>
 
   <p>Since keywords cannot be redefined, they can also not be aliased to
     other keywords.</p>
@@ -5263,6 +5247,27 @@ the data type to be specified explicitly with each piece of data.</p>
   definition to similarly cause compacted values of indexes to be consistently
   represented using arrays. See <a href="#indexed-values"
   class="sectionRef"></a> for a further discussion.</p>
+</section>
+
+<section class="informative changed"><h2>Using <code>@set</code> with <code>@type</code></h2>  
+  <p class="changed">When <a>processing mode</a> is set to <code>json-ld-1.1</code>,
+    <code>@type</code> may be used with an <a>expanded term definition</a> with <code>@container</code> set
+    to <code>@set</code>; no other members may be set within such an <a>expanded term definition</a>.
+    This is used by the <a data-cite="JSON-LD11-API#compaction-algorithm">Compaction algorithm</a> to ensure that the values of <code>@type</code> (or an alias)
+    are always represented in an <a>array</a>.</p>
+
+  <pre class="example" data-transform="updateExample" title="Setting @container: @set on @type">
+  <!--
+  {
+    "@context": {
+      "@version": 1.1,
+      "@type": {"@container": "@set"}
+    },
+    "@type": ["http:/example.org/type"]
+  }
+  -->
+  </pre>
+  
 </section>
 </section>
 
