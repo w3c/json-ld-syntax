@@ -2701,16 +2701,6 @@
     or if their <a>expanded term definition</a> contains
     a <code>@prefix</code> <a>member</a> with the value <a>true</a>.</p>
 
-  <p class="note">This represents a small change to the 1.0 algorithm to prevent IRIs
-    that are not really intended to be used as prefixes from being used for creating
-    <a>compact IRIs</a>.</p>
-
-  <p class="changed">When <a>processing mode</a> is set to <code>json-ld-1.1</code>, terms will be used as <a>compact IRI</a> prefixes
-    when compacting only if their <a>expanded term definition</a> contains
-    a <code>@prefix</code> <a>member</a> with the value <a>true</a>, or if it has a
-    a <a>simple term definition</a>  where the value ends with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character
-    (e.g, <code>/</code>, <code>#</code> and others, see [[RFC3986]]).</p>
-
   <aside class="example ds-selector-tabs changed"
          title="Using explicit @prefix declaration to create compact IRIs">
     <div class="selectors">
@@ -2780,6 +2770,10 @@
     <a data-cite="RFC3986#section-2.2">gen-delim</a> character. Adding
     <code>"@prefix": true</code> allows it to be used as the prefix portion of
     the <a>compact IRI</a> <em>compact-iris:are-considered</em>.</p>
+
+  <p class="note">This represents a small change to the 1.0 algorithm to prevent IRIs
+    that are not really intended to be used as prefixes from being used for creating
+    <a>compact IRIs</a>.</p>
 </section>
 
 <section class="informative"><h2>Aliasing Keywords</h2>
