@@ -1333,9 +1333,12 @@
       </dl>
     </dd>
     <dt><a>Graph objects</a></dt><dd>
-      A Graph object is much like a <a>node object</a>, except that it defines a <a>named graph</a>.
+      A <a>graph object</a> is much like a <a>node object</a>, except that it defines a <a>named graph</a>.
       See <a class="sectionRef" href="#named-graphs"></a> for more information,
       and <a class="sectionRef" href="#graph-objects"></a> for the normative definition.
+      A <a>node object</a> may also describe a <a>named graph</a>, in addition to other properties
+      defined on the node. The notable difference is that a <a>graph object</a> only describes
+      a <a>named graph</a>.
     </dd>
     <dt><a>Context Definitions</a></dt><dd>
       A Context Definition uses the <a>JSON object</a> form, but is not itself data in a <a>linked data graph</a>.
@@ -9982,7 +9985,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <h2>Graph Objects</h2>
 
     <p>A <a>graph object</a> represents a <a>named graph</a>, which MAY include
-      include an explicit <a>graph name</a>.
+      an explicit <a>graph name</a>.
       A <a>dictionary</a> is a <a>graph object</a> if
       it exists outside of a JSON-LD <a>context</a>,
       it is not a <a>node object</a>,
