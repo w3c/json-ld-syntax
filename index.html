@@ -5463,9 +5463,12 @@ the data type to be specified explicitly with each piece of data.</p>
     </pre>
   </aside>
 
-  <p>Similarly, node objects may contain a <code>@nest</code> property to
-    reference a term aliased to <code>@nest</code> which causes such
-    values to be nested under that aliased term.</p>
+  <p>Similarly, <a>term definitions</a> may contain a <code>@nest</code> property
+    referencing a term aliased to <code>@nest</code> which will cause such
+    properties to be nested under that aliased term when compacting.
+    In the example below, both <code>main_label</code> and <code>other_label</code> are defined
+    with <code>"@nest": "labels"</code>, which will cause them to be serialized under
+    <code>labels</code> when compacting.</p>
 
   <aside class="example ds-selector-tabs"
          title="Defining property nesting">
@@ -5489,10 +5492,10 @@ the data type to be specified explicitly with each piece of data.</p>
      },
      "@id": "http://example.org/myresource",
      "homepage": "http://example.org",
-     "labels": {
+     ****"labels": {
         "main_label": "This is the main label for my resource",
         "other_label": "This is the other label"
-     }
+     }****
    }
     -->
     </pre>
