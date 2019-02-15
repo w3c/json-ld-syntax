@@ -9164,10 +9164,10 @@ the data type to be specified explicitly with each piece of data.</p>
 <section class="changed"><h2>Embedding JSON-LD in HTML Documents</h2>
 
   <p>
-    JSON-LD content can be easily embedded in HTML [[HTML52]] by placing
-    it in a <a data-cite="HTML52/semantics-scripting.html#the-script-element">Script element</a> with the <code>type</code> attribute set to
+    JSON-LD content can be easily embedded in HTML [[HTML]] by placing
+    it in a <a data-cite="HTML/semantics-scripting.html#the-script-element">Script element</a> with the <code>type</code> attribute set to
     <code>application/ld+json</code>. Doing so creates a
-    <a data-cite="HTML52/semantics-scripting.html#data-block">data block</a>.</p>
+    <a data-cite="HTML/semantics-scripting.html#data-block">data block</a>.</p>
 
    <aside class="example ds-selector-tabs"
            title="Embedding JSON-LD in HTML">
@@ -9243,7 +9243,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
     [[JSON-LD11-API]]. Unless a specific script is targeted
     (see <a href="#locating-a-specific-json-ld-script-element" class="sectionRef"></a>),
-    all <a data-cite="HTML52/semantics-scripting.html#the-script-element">script elements</a>
+    all <a data-cite="HTML/semantics-scripting.html#the-script-element">script elements</a>
     with <code>type</code> <code>application/ld+json</code> MUST be processed and merged
     into a single <a>dataset</a> with equivalent <a>blank node identifiers</a> contained in
     separate script elements treated as if they were in a single document (i.e.,
@@ -9314,10 +9314,10 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <section><h3>Inheriting base IRI from HTML's <code>base</code> element</h3>
     <p>When processing a JSON-LD
-      <a data-cite="HTML52/semantics-scripting.html#the-script-element">script element</a>,
-      the <a data-cite="HTML52/infrastructure.html#document-base-url">Document Base URL</a>
+      <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a>,
+      the <a data-cite="HTML/infrastructure.html#document-base-url">Document Base URL</a>
       of the containing HTML document,
-      as defined in [[HTML52]],
+      as defined in [[HTML]],
       is used to establish the default <a>base IRI</a> of the enclosed
       JSON-LD content.</p>
 
@@ -9392,18 +9392,18 @@ the data type to be specified explicitly with each piece of data.</p>
       </pre>
     </aside>
 
-    <p>HTML allows for <a data-cite="HTML52/infrastructure.html#dynamic-changes-to-base-urls">Dynamic changes to base URLs</a>.
+    <p>HTML allows for <a data-cite="HTML/infrastructure.html#dynamic-changes-to-base-urls">Dynamic changes to base URLs</a>.
       This specification does not require any specific behavior,
       and to ensure that all systems process the <a>base IRI</a> equivalently, authors SHOULD
       either use <a>absolute IRIs</a>, or explicitly as defined in <a href="#base-iri" class="sectionRef"></a>.
       Implementations (particularly those natively operating in the [[!DOM]]) MAY take into consideration
-      <a data-cite="HTML52/infrastructure.html#dynamic-changes-to-base-urls">Dynamic changes to base URLs</a>.</p>
+      <a data-cite="HTML/infrastructure.html#dynamic-changes-to-base-urls">Dynamic changes to base URLs</a>.</p>
   </section>
 
   <section class="informative"><h3>Restrictions for contents of JSON-LD <code>script</code> elements</h3>    
-    <p>Due to the HTML <a data-cite="HTML52/semantics-scripting.html#restrictions-for-contents-of-script-elements">Restrictions for contents of <code>&lt;script&gt;</code> elements</a>
+    <p>Due to the HTML <a data-cite="HTML/semantics-scripting.html#restrictions-for-contents-of-script-elements">Restrictions for contents of <code>&lt;script&gt;</code> elements</a>
       additional encoding restrictions are placed on JSON-LD data contained in
-      <a data-cite="HTML52/semantics-scripting.html#the-script-element">script elements</a>.</p>
+      <a data-cite="HTML/semantics-scripting.html#the-script-element">script elements</a>.</p>
     <p>Authors should avoid using character sequences in scripts embedded in HTML
       which may be confused with a <em>comment-open</em>, <em>script-open</em>,
       <em>comment-close</em>, or <em>script-close</em>.</p>
@@ -9471,7 +9471,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <section><h3>Locating a Specific JSON-LD Script Element</h3>
     <p>A specific
-      <a data-cite="HTML52/semantics-scripting.html#the-script-element">script element</a>
+      <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a>
       within an HTML document may be located using
       a fragment identifier matching the <a data-cite="DOM#concept-id">unique identifier</a>
       of the script element within the HTML document located by a URL (see [[!DOM]]).
