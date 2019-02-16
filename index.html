@@ -3225,22 +3225,22 @@ specified. The full <a>IRI</a> for
         "Type1": {
           "@id": "http://example.com/vocab/Type1",
           "@context": {
-            "term2": "http://example.com/vocab/term2"
-            #### ↑ Scoped context for "Type1" defines term2
+            "term2": "http://example.com/vocab/term3"
+            #### ↑ Scoped context for "Type1" defines term3
           },
         },
         "Type2": {
           "@id": "http://example.com/vocab/Type2",
           "@context": {
-            "term3": "http://example.com/vocab/term3"
-            #### ↑ Scoped context for "Type2" defines term3
+            "term3": "http://example.com/vocab/term4"
+            #### ↑ Scoped context for "Type2" defines term4
           },
         },
       },
       "property": {
         "@context": {
-          "term4": "http://example.com/vocab/term4"
-            #### ↑ Embedded context defines term4
+          "term2": "http://example.com/vocab/term2"
+            #### ↑ Embedded context defines term2
         },
         "@type": ["Type2", "Type1"],
         "term1": "a",
@@ -3252,9 +3252,9 @@ specified. The full <a>IRI</a> for
     -->
     </pre>
 
-    <p>Contexts are processed depending on how their defined. A scoped context
-      for a property is processed first, followed by the scoped contexts for any
-      types, in the appropriate order, followed lastly by any embedded context.
+    <p>Contexts are processed depending on how they are defined. A scoped context
+      for a property is processed first, followed by any embedded context,
+      followed lastly by the scoped contexts for any types, in the appropriate order.
       The previous example is logically equivalent to the following:</p>
     <pre data-transform="updateExample">
     <!--
@@ -3271,13 +3271,13 @@ specified. The full <a>IRI</a> for
             #### ↑ Scoped context for "property" defines term1
           }, {
             "term2": "http://example.com/vocab/term2"
-            #### ↑ Scoped context for "Type1" defines term2
+            #### ↑ Embedded context defines term2
           }, {
             "term3": "http://example.com/vocab/term3"
-            #### ↑ Scoped context for "Type2" defines term3
+            #### ↑ Scoped context for "Type1" defines term3
           }, {
           "term4": "http://example.com/vocab/term4"
-            #### ↑ Embedded context defines term4
+            #### ↑ Scoped context for "Type2" defines term4
         }],
         "@type": ["Type2", "Type1"],
         "term1": "a",
