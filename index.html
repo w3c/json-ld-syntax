@@ -2164,7 +2164,10 @@
 
   <p>The first <code>context</code> encountered when processing a
     document which contains <code>@version</code> determines the <code>processing mode</code>,
-    unless it is defined explicitly through an API option.</p>
+    unless it is defined explicitly through an API option.
+    This means that if <code>"@version": 1.1</code> is encountered after processing a context
+    without <code>@version</code>,
+    the former will be interpreted as having had <code>"@version": 1.1</code> defined within it.</p>
 
   <p class="note">Setting the <a>processing mode</a> explicitly
     for JSON-LD 1.1 is necessary so that a JSON-LD 1.0 processor
