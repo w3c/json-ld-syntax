@@ -761,7 +761,7 @@
         "name": "http://schema.org/name",****
         ####↑ This means that 'name' is shorthand for 'http://schema.org/name'####
         ****"image": {
-          "@id": "http://schema.org/image",**** 
+          "@id": "http://schema.org/image",****
           ####↑ This means that 'image' is shorthand for 'http://schema.org/image'####
           ****"@type": "@id"****
           ####↑ This means that a string value associated with 'image'
@@ -5255,7 +5255,7 @@ the data type to be specified explicitly with each piece of data.</p>
   class="sectionRef"></a> for a further discussion.</p>
 </section>
 
-<section class="informative changed"><h2>Using <code>@set</code> with <code>@type</code></h2>  
+<section class="informative changed"><h2>Using <code>@set</code> with <code>@type</code></h2>
   <p class="changed">When <a>processing mode</a> is set to <code>json-ld-1.1</code>,
     <code>@type</code> may be used with an <a>expanded term definition</a> with <code>@container</code> set
     to <code>@set</code>; no other members may be set within such an <a>expanded term definition</a>.
@@ -5273,7 +5273,7 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  
+
 </section>
 </section>
 
@@ -8919,87 +8919,87 @@ the data type to be specified explicitly with each piece of data.</p>
       i.e., used as a <a>property</a>, or a value of <code>@type</code>,
       or as the value of a <a>term</a> described as <code>"@type": "@vocab"</code>.</p>
 
-  <aside class="example" title="Compacting using a default vocabulary">
-    <p>Given the following expanded document:</p>
-    <pre id="compacting-default-expanded" class="expanded" data-transform="updateExample">
-    <!--
-    [{
-      "@id": "http://example.org/places#BrewEats",
-      "@type": ["http://schema.org/Restaurant"],
-      "http://schema.org/name": [{"@value": "Brew Eats"}]
-    }]
-    -->
-    </pre>
-    <p>And the following context:</p>
-    <pre id="compacting-default-context" class="context nohighlight" data-transform="updateExample"
-         data-context-for="Compacting using a default vocabulary-expanded">
-    <!--
-    {
-      "@context": {
-        ****"@vocab": "http://schema.org/"****
+    <aside class="example" title="Compacting using a default vocabulary">
+      <p>Given the following expanded document:</p>
+      <pre id="compacting-default-expanded" class="expanded" data-transform="updateExample">
+      <!--
+      [{
+        "@id": "http://example.org/places#BrewEats",
+        "@type": ["http://schema.org/Restaurant"],
+        "http://schema.org/name": [{"@value": "Brew Eats"}]
+      }]
+      -->
+      </pre>
+      <p>And the following context:</p>
+      <pre id="compacting-default-context" class="context nohighlight" data-transform="updateExample"
+           data-context-for="Compacting using a default vocabulary-expanded">
+      <!--
+      {
+        "@context": {
+          ****"@vocab": "http://schema.org/"****
+        }
       }
-    }
-    -->
-    </pre>
-    <p>The compaction algorithm will shorten all vocabulary-relative IRIs that begin with <code>http://schema.org/</code>:</p>
-    <pre class="compacted nohighlight" data-transform="updateExample"
-         data-result-for="Compacting using a default vocabulary-expanded"
-         data-context="Compacting using a default vocabulary-context"
-         data-compact>
-    <!--
-    {
-      "@context": {
-        ****"@vocab": "http://schema.org/"****
-      },
-      "@id": "http://example.org/places#BrewEats",
-      "@type": ****"Restaurant"****,
-      ****"name"****: "Brew Eats"
-    }
-    -->
-    </pre>
-    <p>Note that two IRIs were shortened, unnecessary arrays are removed, and simple string
-      values are replaced with the string.</p>
-  </aside>
+      -->
+      </pre>
+      <p>The compaction algorithm will shorten all vocabulary-relative IRIs that begin with <code>http://schema.org/</code>:</p>
+      <pre class="compacted nohighlight" data-transform="updateExample"
+           data-result-for="Compacting using a default vocabulary-expanded"
+           data-context="Compacting using a default vocabulary-context"
+           data-compact>
+      <!--
+      {
+        "@context": {
+          ****"@vocab": "http://schema.org/"****
+        },
+        "@id": "http://example.org/places#BrewEats",
+        "@type": ****"Restaurant"****,
+        ****"name"****: "Brew Eats"
+      }
+      -->
+      </pre>
+      <p>Note that two IRIs were shortened, unnecessary arrays are removed, and simple string
+        values are replaced with the string.</p>
+    </aside>
 
-  <aside class="example" title="Compacting using a base IRI">
-    <p>Given the following expanded document:</p>
-    <pre class="expanded" data-transform="updateExample">
-    <!--
-    [{
-      "@id": "http://example.com/document.jsonld",
-      "http://www.w3.org/2000/01/rdf-schema#label": [{"@value": "Just a simple document"}]
-    }]
-    -->
-    </pre>
-    <p>And the following context:</p>
-    <pre class="context nohighlight" data-transform="updateExample"
-         data-context-for="Compacting using a base IRI-expanded">
-    <!--
-    {
-      "@context": {
-        ****"@base": "http://example.com/"****,
-        "label": "http://www.w3.org/2000/01/rdf-schema#label"
+    <aside class="example" title="Compacting using a base IRI">
+      <p>Given the following expanded document:</p>
+      <pre class="expanded" data-transform="updateExample">
+      <!--
+      [{
+        "@id": "http://example.com/document.jsonld",
+        "http://www.w3.org/2000/01/rdf-schema#label": [{"@value": "Just a simple document"}]
+      }]
+      -->
+      </pre>
+      <p>And the following context:</p>
+      <pre class="context nohighlight" data-transform="updateExample"
+           data-context-for="Compacting using a base IRI-expanded">
+      <!--
+      {
+        "@context": {
+          ****"@base": "http://example.com/"****,
+          "label": "http://www.w3.org/2000/01/rdf-schema#label"
+        }
       }
-    }
-    -->
-    </pre>
-    <p>The compaction algorithm will shorten all document-relative IRIs that begin with <code>http://example.com/</code>:</p>
-    <pre class="compacted nohighlight" data-transform="updateExample"
-         data-result-for="Compacting using a base IRI-expanded"
-         data-context="Compacting using a base IRI-context"
-         data-compact>
-    <!--
-    {
-      "@context": {
-        ****"@base": "http://example.com/"****,
-        "label": "http://www.w3.org/2000/01/rdf-schema#label"
-      },
-      "@id": ****"document.jsonld"****,
-      "label": "Just a simple document"
-    }
-    -->
-    </pre>
-  </aside>
+      -->
+      </pre>
+      <p>The compaction algorithm will shorten all document-relative IRIs that begin with <code>http://example.com/</code>:</p>
+      <pre class="compacted nohighlight" data-transform="updateExample"
+           data-result-for="Compacting using a base IRI-expanded"
+           data-context="Compacting using a base IRI-context"
+           data-compact>
+      <!--
+      {
+        "@context": {
+          ****"@base": "http://example.com/"****,
+          "label": "http://www.w3.org/2000/01/rdf-schema#label"
+        },
+        "@id": ****"document.jsonld"****,
+        "label": "Just a simple document"
+      }
+      -->
+      </pre>
+    </aside>
   </section>
 
   <section class="informative"><h3>Representing Values as Strings</h3>
@@ -9018,87 +9018,268 @@ the data type to be specified explicitly with each piece of data.</p>
       of the <a>term</a> used as a <a>property</a>.
       See <a href="#describing-values" class="sectionRef"></a> for more details.</p>
 
-  <aside class="example" title="Coercing Values to Strings">
-    <p>Given the following expanded document:</p>
-    <pre class="expanded" data-transform="updateExample">
-    <!--
-    [{
-      "http://example.com/plain": [
-        {"@value": "string"},
-        {"@value": true},
-        {"@value": 1}
-      ],
-      "http://example.com/date": [
-        {
-          "@value": "2018-02-16",
-          "@type": "http://www.w3.org/2001/XMLSchema#date"
+    <aside class="example" title="Coercing Values to Strings">
+      <p>Given the following expanded document:</p>
+      <pre class="expanded" data-transform="updateExample">
+      <!--
+      [{
+        "http://example.com/plain": [
+          {"@value": "string"},
+          {"@value": true},
+          {"@value": 1}
+        ],
+        "http://example.com/date": [
+          {
+            "@value": "2018-02-16",
+            "@type": "http://www.w3.org/2001/XMLSchema#date"
+          }
+        ],
+        "http://example.com/en": [
+          {"@value": "English", "@language": "en"}
+        ],
+        "http://example.com/iri": [
+          {"@id": "http://example.com/some-location"}
+        ]
+      }]
+      -->
+      </pre>
+      <p>And the following context:</p>
+      <pre class="context" data-transform="updateExample"
+           data-context-for="Coercing Values to Strings-expanded">
+      <!--
+      {
+        "@context": {
+          "@vocab": "http://example.com/",
+          "date": {"@type": "http://www.w3.org/2001/XMLSchema#date"},
+          "en":   {"@language": "en"},
+          "iri": {"@type": "@id"}
         }
-      ],
-      "http://example.com/en": [
-        {"@value": "English", "@language": "en"}
-      ],
-      "http://example.com/iri": [
-        {"@id": "http://example.com/some-location"}
-      ]
-    }]
-    -->
-    </pre>
-    <p>And the following context:</p>
-    <pre class="context" data-transform="updateExample"
-         data-context-for="Coercing Values to Strings-expanded">
-    <!--
-    {
-      "@context": {
-        "@vocab": "http://example.com/",
-        "date": {"@type": "http://www.w3.org/2001/XMLSchema#date"},
-        "en":   {"@language": "en"},
-        "iri": {"@type": "@id"}
       }
-    }
-    -->
-    </pre>
-    <p>The compacted version will use string values for the defined terms
-      when the values match the <a>term definition</a>. Note that there is
-      no term defined for "plain", that is created automatically using
-      the <a>vocabulary mapping</a>.
-      Also, the other native values,
-      <code>1</code> and <code>true</code>,
-      can be represented without defining a specific type mapping.</p>
-    <pre class="compacted" data-transform="updateExample"
-         data-result-for="Coercing Values to Strings-expanded"
-         data-context="Coercing Values to Strings-context"
-         data-compact>
-    <!--
-    {
-      "@context": {
-        "@vocab": "http://example.com/",
-        "date": {"@type": "http://www.w3.org/2001/XMLSchema#date"},
-        "en":   {"@language": "en"},
-        "iri": {"@type": "@id"}
-      },
-      "plain": ["string", true, 1],
-      "date": "2018-02-16",
-      "en": "English",
-      "iri": "http://example.com/some-location"
-    }
-    -->
-    </pre>
-  </aside>
-  </section>
-
-  <section class="informative"><h3>Term Selection</h3>
-  </section>
-
-  <section class="informative"><h3>Representing Singular Values as Arrays</h3>
+      -->
+      </pre>
+      <p>The compacted version will use string values for the defined terms
+        when the values match the <a>term definition</a>. Note that there is
+        no term defined for "plain", that is created automatically using
+        the <a>vocabulary mapping</a>.
+        Also, the other native values,
+        <code>1</code> and <code>true</code>,
+        can be represented without defining a specific type mapping.</p>
+      <pre class="compacted" data-transform="updateExample"
+           data-result-for="Coercing Values to Strings-expanded"
+           data-context="Coercing Values to Strings-context"
+           data-compact>
+      <!--
+      {
+        "@context": {
+          "@vocab": "http://example.com/",
+          "date": {"@type": "http://www.w3.org/2001/XMLSchema#date"},
+          "en":   {"@language": "en"},
+          "iri": {"@type": "@id"}
+        },
+        "plain": ["string", true, 1],
+        "date": "2018-02-16",
+        "en": "English",
+        "iri": "http://example.com/some-location"
+      }
+      -->
+      </pre>
+    </aside>
   </section>
 
   <section class="informative"><h3>Representing Lists as Arrays</h3>
+    <p>As described in <a href="#lists" class="sectionRef"></a>,
+      JSON-LD has an expanded syntax for representing ordered values,
+      using the <code>@list</code> keyword.
+      To simplify the representation in JSON-LD, a term can be defined with
+      <code>"@container": "@list"</code> which causes all values of a
+      property using such a term to be considered ordered.</p>
+
+    <aside class="example" title="Using Arrays for Lists">
+      <p>Given the following expanded document:</p>
+      <pre class="expanded" data-transform="updateExample">
+      <!--
+      [{
+        "http://xmlns.com/foaf/0.1/nick": [{
+          "@list": [
+            {"@value": "joe"},
+            {"@value": "bob"},
+            {"@value": "jaybee"}
+          ]
+        }]
+      }]
+      -->
+      </pre>
+      <p>And the following context:</p>
+      <pre class="context nohighlight" data-transform="updateExample"
+           data-context-for="Using Arrays for Lists-expanded">
+      <!--
+      {
+        "@context": {
+          "nick": {
+            "@id": "http://xmlns.com/foaf/0.1/nick",
+            ****"@container": "@list"****
+          }
+        }
+      }
+      -->
+      </pre>
+      <p>The compacted version eliminates the explicit <a>list object</a>.</p>
+      <pre class="compacted" data-transform="updateExample"
+           data-result-for="Using Arrays for Lists-expanded"
+           data-context="Using Arrays for Lists-context"
+           data-compact>
+      <!--
+      {
+        "@context": {
+          "nick": {
+            "@id": "http://xmlns.com/foaf/0.1/nick",
+            ****"@container": "@list"****
+          }
+        },
+        "nick": ****[ "joe", "bob", "jaybee" ]****
+      }
+      -->
+      </pre>
+    </aside>
   </section>
 
   <section class="informative"><h3>Reversing Node Relationships</h3>
+    <p>In some cases, the property used to relate two nodes may
+      be better expressed if the nodes have a reverse direction,
+      for example, when describing a relationship between
+      two people and a common parent.
+      See <a href="#reverse-properties" class="sectionRef"></a> for more details.</p>
+
+    <aside class="example" title="Reversing Node Relationships">
+      <p>Given the following expanded document:</p>
+      <pre class="expanded" data-transform="updateExample">
+      <!--
+      [{
+        "@id": "http://example.org/#homer",
+        "http://example.com/vocab#name": [{"@value": "Homer"}],
+        "@reverse": {
+          "http://example.com/vocab#parent": [{
+            "@id": "http://example.org/#bart",
+            "http://example.com/vocab#name": [{"@value": "Bart"}]
+          }, {
+            "@id": "http://example.org/#lisa",
+            "http://example.com/vocab#name": [{"@value": "Lisa"}]
+          }]
+        }
+      }]
+      -->
+      </pre>
+      <p>And the following context:</p>
+      <pre class="context" data-transform="updateExample"
+           data-context-for="Reversing Node Relationships-expanded">
+      <!--
+      {
+        "@context": {
+          "name": "http://example.com/vocab#name",
+          "children": { ****"@reverse": "http://example.com/vocab#parent"**** }
+        }
+      }
+      -->
+      </pre>
+      <p>The compacted version eliminates the <code>@reverse</code> property
+        by describing "children" as the reverse of "parent".</p>
+      <pre class="compacted" data-transform="updateExample"
+           data-result-for="Reversing Node Relationships-expanded"
+           data-context="Reversing Node Relationships-context"
+           data-base="http://example.org/"
+           data-compact>
+      <!--
+      {
+        "@context": {
+          "name": "http://example.com/vocab#name",
+          "children": { ****"@reverse": "http://example.com/vocab#parent"**** }
+        },
+        "@id": "#homer",
+        "name": "Homer",
+        "children": [
+          { "@id": "#bart", "name": "Bart"},
+          { "@id": "#lisa", "name": "Lisa"}
+        ]
+      }
+      -->
+      </pre>
+    </aside>
+
+    <p>Reverse properties can be even more useful when combined with
+      <a>framing</a>, which can actually make <a>node objects</a> defined
+      at the top-level of a document to become embedded nodes.
+      JSON-LD provides a means to index such values, by defining
+      an appropriate @container definition within a term definition.</p>
   </section>
 
   <section class="informative"><h3>Indexing Values</h3>
+    <p>Properties with multiple values are typically represented using
+      an unordered <a>array</a>. This means that an application working
+      on an internalized representation of that JSON would need to
+      iterrate through the values of the array to find a value matching
+      a particular pattern, such as a <a>language-tagged string</a>
+      using that language <code>en</code>.</p>
+
+    <aside class="example" title="Indexing language-tagged strings">
+      <p>Given the following expanded document:</p>
+      <pre class="expanded" data-transform="updateExample">
+      <!--
+      [{
+        "@id": "http://example.com/queen",
+        "http://example.com/vocab/label": [
+          {"@value": "The Queen", "@language": "en"},
+          {"@value": "Die Königin", "@language": "de"},
+          {"@value": "Ihre Majestät", "@language": "de"}
+        ]
+      }]
+      -->
+      </pre>
+      <p>And the following context:</p>
+      <pre class="context" data-transform="updateExample"
+           data-context-for="Indexing language-tagged strings-expanded">
+      <!--
+      {
+        "@context": {
+          "vocab": "http://example.com/vocab/",
+          "label": {
+            "@id": "vocab:label",
+            ****"@container": "@language"****
+          }
+        }
+      }
+      -->
+      </pre>
+      <p>The compacted version uses a <a>dictionary</a> value
+        for "label", with the keys representing the <a>language tag</a>
+        and the values are the <a>strings</a> associated with the relevant <a>language tag</a>.</p>
+      <pre class="compacted" data-transform="updateExample"
+           data-result-for="Indexing language-tagged strings-expanded"
+           data-context="Indexing language-tagged strings-context"
+           data-base="http://example.org/"
+           data-compact>
+      <!--
+      {
+        "@context": {
+          "vocab": "http://example.com/vocab/",
+          "label": {
+            "@id": "vocab:label",
+            ****"@container": "@language"****
+          }
+        },
+        "@id": "http://example.com/queen",
+        "label": {
+          "en": "The Queen",
+          "de": [ "Die Königin", "Ihre Majestät" ]
+        }
+      }
+      -->
+      </pre>
+    </aside>
+
+    <p>Data can be indexed on a number of different keys, including
+      @id, @type, @language, @index and more.
+      See <a href="#indexed-values" class="sectionRef"></a> and
+      <a href="#named-graphs" class="sectionRef"></a> for more details.</p>
   </section>
 
   <section class="informative"><h3>Normalizing Values as Objects</h3>
@@ -9108,71 +9289,214 @@ the data type to be specified explicitly with each piece of data.</p>
       This causes the <a data-cite="JSON-LD11-API#value-compaction">Value Compaction</a> algorithm to always use the object
       form of values, although components of that value may be compacted.</p>
 
-  <aside class="example" title="Forcing Object Values">
-    <p>Given the following expanded document:</p>
-    <pre class="expanded" data-transform="updateExample">
-    <!--
-    [{
-      "http://example.com/notype": [
-        {"@value": "string"},
-        {"@value": true},
-        {"@value": false},
-        {"@value": 1},
-        {"@value": 10.0},
-        {"@value": "plain"},
-        {"@value": false, "@type": "http://www.w3.org/2001/XMLSchema#boolean"},
-        {"@value": "english", "@language": "en"},
-        {"@value": "2018-02-17", "@type": "http://www.w3.org/2001/XMLSchema#date"},
-        {"@id": "http://example.com/iri"}
-      ]
-    }]
-    -->
-    </pre>
-    <p>And the following context:</p>
-    <pre class="context" data-transform="updateExample"
-         data-context-for="Forcing Object Values-expanded">
-    <!--
-    {
-      "@context": {
-        "@version": 1.1,
-        "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "notype": {"@id": "http://example.com/notype", "@type": "@none"}
+    <aside class="example" title="Forcing Object Values">
+      <p>Given the following expanded document:</p>
+      <pre class="expanded" data-transform="updateExample">
+      <!--
+      [{
+        "http://example.com/notype": [
+          {"@value": "string"},
+          {"@value": true},
+          {"@value": false},
+          {"@value": 1},
+          {"@value": 10.0},
+          {"@value": "plain"},
+          {"@value": "false", "@type": "http://www.w3.org/2001/XMLSchema#boolean"},
+          {"@value": "english", "@language": "en"},
+          {"@value": "2018-02-17", "@type": "http://www.w3.org/2001/XMLSchema#date"},
+          {"@id": "http://example.com/iri"}
+        ]
+      }]
+      -->
+      </pre>
+      <p>And the following context:</p>
+      <pre class="context" data-transform="updateExample"
+           data-context-for="Forcing Object Values-expanded">
+      <!--
+      {
+        "@context": {
+          "@version": 1.1,
+          "xsd": "http://www.w3.org/2001/XMLSchema#",
+          "notype": {"@id": "http://example.com/notype", "@type": "@none"}
+        }
       }
-    }
-    -->
-    </pre>
-    <p>The compacted version will use string values for the defined terms
-      when the values match the <a>term definition</a>.
-      Also, the other native values,
-      <code>1</code> and <code>true</code>,
-      can be represented without defining a specific type mapping.</p>
-    <pre class="compacted" data-transform="updateExample"
-         data-result-for="Forcing Object Values-expanded"
-         data-context="Forcing Object Values-context"
-         data-compact>
-    <!--
-    {
-      "@context": {
-        "@version": 1.1,
-        "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "notype": {"@id": "http://example.com/notype", "@type": "@none"}
-      },
-      "notype": [
-        {"@value": "string"},
-        {"@value": true},
-        {"@value": false},
-        {"@value": 1},
-        {"@value": 10.0},
-        {"@value": "plain"},
-        {"@value": false, "@type": "xsd:boolean"},
-        {"@value": "english", "@language": "en"},
-        {"@value": "2018-02-17", "@type": "xsd:date"},
-        {"@id": "http://example.com/iri"}
-      ]
-    }
-    -->
-    </pre>
-  </aside>
+      -->
+      </pre>
+      <p>The compacted version will use string values for the defined terms
+        when the values match the <a>term definition</a>.
+        Also, the other native values,
+        <code>1</code> and <code>true</code>,
+        can be represented without defining a specific type mapping.</p>
+      <pre class="compacted" data-transform="updateExample"
+           data-result-for="Forcing Object Values-expanded"
+           data-context="Forcing Object Values-context"
+           data-compact>
+      <!--
+      {
+        "@context": {
+          "@version": 1.1,
+          "xsd": "http://www.w3.org/2001/XMLSchema#",
+          "notype": {"@id": "http://example.com/notype", "@type": "@none"}
+        },
+        "notype": [
+          {"@value": "string"},
+          {"@value": true},
+          {"@value": false},
+          {"@value": 1},
+          {"@value": 10.0},
+          {"@value": "plain"},
+          {"@value": "false", "@type": "xsd:boolean"},
+          {"@value": "english", "@language": "en"},
+          {"@value": "2018-02-17", "@type": "xsd:date"},
+          {"@id": "http://example.com/iri"}
+        ]
+      }
+      -->
+      </pre>
+    </aside>
+  </section>
+
+  <section class="informative"><h3>Representing Singular Values as Arrays</h3>
+    <p>Generally, when compacting, properties having only one value are
+      represented as strings or dictionaries, while properties having
+      multiple values are represented as an array of strings or dictionaries.
+      This means that applications accessing such properties needs to be prepared
+      to accept either representation. To force all values to be represented
+      using an array, a term definition can set <code>"@container": "@set"</code>.
+      Moreover, `@set` can be used in combination with other container settings,
+      for example looking at our language-map example from <a href="#indexing-values" class="sectionRef"></a>:</p>
+
+    <aside class="example" title="Indexing language-tagged strings and @set">
+      <p>Given the following expanded document:</p>
+      <pre class="expanded" data-transform="updateExample">
+      <!--
+      [{
+        "@id": "http://example.com/queen",
+        "http://example.com/vocab/label": [
+          {"@value": "The Queen", "@language": "en"},
+          {"@value": "Die Königin", "@language": "de"},
+          {"@value": "Ihre Majestät", "@language": "de"}
+        ]
+      }]
+      -->
+      </pre>
+      <p>And the following context:</p>
+      <pre class="context" data-transform="updateExample"
+           data-context-for="Indexing language-tagged strings and @set-expanded">
+      <!--
+      {
+        "@context": {
+          "@version": 1.1,
+          "@vocab": "http://example.com/vocab/",
+          "label": {
+            "@container": ["@language", ****"@set"****]
+          }
+        }
+      }
+      -->
+      </pre>
+      <p>The compacted version uses a <a>dictionary</a> value
+        for "label" as before.
+        and the values are the relevant <a>strings</a> but always represented using an <a>array</a>.</p>
+      <pre class="compacted" data-transform="updateExample"
+           data-result-for="Indexing language-tagged strings and @set-expanded"
+           data-context="Indexing language-tagged strings and @set-context"
+           data-base="http://example.org/"
+           data-compact>
+      <!--
+      {
+        "@context": {
+          "@version": 1.1,
+          "@vocab": "http://example.com/vocab/",
+          "label": {
+            "@container": ["@language", ****"@set"****]
+          }
+        },
+        "@id": "http://example.com/queen",
+        "label": {
+          "en": ****[****"The Queen"****]****,
+          "de": [ "Die Königin", "Ihre Majestät" ]
+        }
+      }
+      -->
+      </pre>
+    </aside>
+  </section>
+
+  <section class="informative"><h3>Term Selection</h3>
+    <p>When compacting, the <a data-cite="JSON-LD11-API#compaction-algorithm">Compaction algorithm</a> will compact using a term
+      for a property only when the values of that property match the
+      <code>@container</code>, <code>@type</code>, and <code>@language</code> specifications for that <a>term definition</a>.
+      This can actually split values between different properties, all of which
+      have the same <a>IRI</a>. In case there is no matching <a>term definition</a>,
+      the compaction algorithm will compact using the absolute <a>IRI</a> of the property.</p>
+
+    <aside class="example" title="Term Selection">
+      <p>Given the following expanded document:</p>
+      <pre class="expanded" data-transform="updateExample">
+      <!--
+      [{
+        "http://example.com/vocab/property": [
+          {"@value": "string"},
+          {"@value": true},
+          {"@value": 1},
+          {"@value": "false", "@type": "http://www.w3.org/2001/XMLSchema#boolean"},
+          {"@value": "10", "@type": "http://www.w3.org/2001/XMLSchema#integer"},
+          {"@value": "english", "@language": "en"},
+          {"@value": "2018-02-17", "@type": "http://www.w3.org/2001/XMLSchema#date"},
+          {"@id": "http://example.com/some-location"}
+        ]
+      }]
+      -->
+      </pre>
+      <p>And the following context:</p>
+      <pre class="context" data-transform="updateExample"
+           data-context-for="Term Selection-expanded">
+      <!--
+      {
+        "@context": {
+          "vocab":   "http://example.com/vocab/",
+          "xsd":     "http://www.w3.org/2001/XMLSchema#",
+          "integer": {"@id": "vocab:property", "@type": "xsd:integer"},
+          "date":    {"@id": "vocab:property", "@type": "xsd:date"},
+          "english": {"@id": "vocab:property", "@language": "en"},
+          "list":    {"@id": "vocab:property", "@container": "@list"},
+          "iri":     {"@id": "vocab:property", "@type": "@id"}
+        }
+      }
+      -->
+      </pre>
+      <p>Note that the values that match the "integer", "english", "date", and "iri"
+        terms are properly matched, and that everything that does not explicitly
+        match is added to a property created using a <a>compact IRI</a>.</p>
+      <pre class="compacted" data-transform="updateExample"
+           data-result-for="Term Selection-expanded"
+           data-context="Term Selection-context"
+           data-base="http://example.org/"
+           data-compact>
+      <!--
+      {
+        "@context": {
+          "vocab":   "http://example.com/vocab/",
+          "xsd":     "http://www.w3.org/2001/XMLSchema#",
+          "integer": {"@id": "vocab:property", "@type": "xsd:integer"},
+          "date":    {"@id": "vocab:property", "@type": "xsd:date"},
+          "english": {"@id": "vocab:property", "@language": "en"},
+          "list":    {"@id": "vocab:property", "@container": "@list"},
+          "iri":     {"@id": "vocab:property", "@type": "@id"}
+        },
+        "vocab:property": [
+          "string", true, 1,
+          {"@value": "false", "@type": "xsd:boolean"}
+        ],
+        "integer": "10",
+        "english": "english",
+        "date": "2018-02-17",
+        "iri": "http://example.com/some-location"
+      }
+      -->
+      </pre>
+    </aside>
   </section>
 </section>
 
@@ -9693,7 +10017,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <a data-cite="HTML/infrastructure.html#dynamic-changes-to-base-urls">Dynamic changes to base URLs</a>.</p>
   </section>
 
-  <section class="informative"><h3>Restrictions for contents of JSON-LD <code>script</code> elements</h3>    
+  <section class="informative"><h3>Restrictions for contents of JSON-LD <code>script</code> elements</h3>
     <p>Due to the HTML <a data-cite="HTML/semantics-scripting.html#restrictions-for-contents-of-script-elements">Restrictions for contents of <code>&lt;script&gt;</code> elements</a>
       additional encoding restrictions are placed on JSON-LD data contained in
       <a data-cite="HTML/semantics-scripting.html#the-script-element">script elements</a>.</p>
@@ -10985,9 +11309,9 @@ the data type to be specified explicitly with each piece of data.</p>
         <dt>Alice</dt>
         <dd>an RDF literal with no datatype or language.</dd>
         <dt>weiblich | de</dt>
-        <dd>an language-tagged string with the value "weiblich" and language-tag "de".</dd>
+        <dd>an language-tagged string with the value "weiblich" and <a>language tag</a> "de".</dd>
         <dt>female | en</dt>
-        <dd>an language-tagged string with the value "female" and language-tag "en".</dd>
+        <dd>an language-tagged string with the value "female" and <a>language tag</a> "en".</dd>
       </dl>
 
       <p>The second and third boxes describe two <a>named graphs</a>, with the graph names
