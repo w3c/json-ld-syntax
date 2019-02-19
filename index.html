@@ -9035,7 +9035,7 @@ the data type to be specified explicitly with each piece of data.</p>
         {"@value": "English", "@language": "en"}
       ],
       "http://example.com/iri": [
-        {"@id": "http://example.org/iri"}
+        {"@id": "http://example.com/some-location"}
       ]
     }]
     -->
@@ -9076,7 +9076,7 @@ the data type to be specified explicitly with each piece of data.</p>
       "plain": ["string", true, 1],
       "date": "2018-02-16",
       "en": "English",
-      "iri": "http://example.org/iri"
+      "iri": "http://example.com/some-location"
     }
     -->
     </pre>
@@ -9117,7 +9117,7 @@ the data type to be specified explicitly with each piece of data.</p>
         {"@value": 1},
         {"@value": 10.0},
         {"@value": "plain"},
-        {"@value": true, "@type": "http://www.w3.org/2001/XMLSchema#boolean"},
+        {"@value": false, "@type": "http://www.w3.org/2001/XMLSchema#boolean"},
         {"@value": "english", "@language": "en"},
         {"@value": "2018-02-17", "@type": "http://www.w3.org/2001/XMLSchema#date"},
         {"@id": "http://example.com/iri"}
@@ -9139,9 +9139,7 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
     <p>The compacted version will use string values for the defined terms
-      when the values match the <a>term definition</a>. Note that there is
-      no term defined for "plain", that is created automatically using
-      the <a>vocabulary mapping</a>.
+      when the values match the <a>term definition</a>.
       Also, the other native values,
       <code>1</code> and <code>true</code>,
       can be represented without defining a specific type mapping.</p>
@@ -9163,7 +9161,7 @@ the data type to be specified explicitly with each piece of data.</p>
         {"@value": 1},
         {"@value": 10.0},
         {"@value": "plain"},
-        {"@value": true, "@type": "xsd:boolean"},
+        {"@value": false, "@type": "xsd:boolean"},
         {"@value": "english", "@language": "en"},
         {"@value": "2018-02-17", "@type": "xsd:date"},
         {"@id": "http://example.com/iri"}
