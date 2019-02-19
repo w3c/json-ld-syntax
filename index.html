@@ -1861,8 +1861,8 @@
   </aside>
 
   <p>The outer array is standard for a document in
-    <a href="expanded-document-form">expanded document form</a>
-    and <a href="flattened-document-form">flattened document form</a>,
+    <a>expanded document form</a>
+    and <a>flattened document form</a>,
     and may be necessary when describing a disconnected graph,
     where nodes may not reference each other. In such cases, using
     a top-level dictionary with a <code>@graph</code> property can be useful for saving
@@ -8802,8 +8802,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p><a href="#application-ld-json">JSON-LD's media type</a> defines a
     <code>profile</code> parameter which can be used to signal or request
-    expanded document form. The profile URI identifying expanded document
-    form is <code>http://www.w3.org/ns/json-ld#expanded</code>.</p>
+    <dfn>expanded document form</dfn>. The profile URI identifying
+    <a>expanded document form</a> is <code>http://www.w3.org/ns/json-ld#expanded</code>.</p>
 </section>
 
 <section class="informative"><h3>Compacted Document Form</h3>
@@ -8860,7 +8860,7 @@ the data type to be specified explicitly with each piece of data.</p>
     against the JSON-LD input document provided above would result in the following
     output:</p>
 
-  <aside class="example ds-selector-tabs changed"
+  <aside class="example ds-selector-tabs"
          title="Compact form of the sample document once sample context has been applied">
     <div class="selectors">
       <a class="playground" target="_blank"
@@ -8890,8 +8890,292 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p><a href="#application-ld-json">JSON-LD's media type</a> defines a
     <code>profile</code> parameter which can be used to signal or request
-    compacted document form. The profile URI identifying compacted document
-    form is <code>http://www.w3.org/ns/json-ld#compacted</code>.</p>
+    <dfn>compacted document form</dfn>. The profile URI identifying
+    <a>compacted document form</a> is <code>http://www.w3.org/ns/json-ld#compacted</code>.</p>
+
+  <p>The details of Compaction are described in the
+    <a data-cite="JSON-LD11-API#compaction-algorithm">Compaction algorithm</a> in [[JSON-LD11-API]].
+    This section provides a short description of how the algorithm operates as a guide
+    to authors creating <a>contexts</a> to be used for <em>compacting</em> JSON-LD documents.</p>
+  <p>The purpose of compaction is to apply the <a>term definitions</a>, <a>vocabulary mapping</a>, <a>default language</a>,
+    and <a>base IRI</a> to an existing JSON-LD document to cause it to be represented in a form
+    that is taylored to the use of the JSON-LD document directly as JSON.
+    This includes representing values as <a>strings</a>, rather than <a>value objects</a>, where possible,
+    shortening the use of <a>list objects</a> into simple <a>arrays</a>, reversing the relationship
+    between <a>nodes</a>, and using data maps to index into multiple values instead of
+    representing them as an array of values.</p>
+
+  <section class="informative"><h3>Shortening IRIs</h3>
+    <p>In an expanded JSON-LD document, <a>IRIs</a> are always represented as absolute <a>IRIs</a>.
+      In many cases, it is preferable to use a shorter version, either a <a>relative IRI</a>,
+      <a>compact IRI</a>, or <a>term</a>. Compaction uses a combination of elements
+      in a context to create a shorter form of these IRIs. See
+      <a href="#default-vocabulary" class="sectionRef"></a>,
+      <a href="#base-iri" class="sectionRef"></a>,
+      and <a href="#compact-iris" class="sectionRef"></a> for more details.</p>
+    <p>The <a>vocabulary mapping</a> can be used to shorten IRIs that may be <em>vocabulary relative</em>
+      by removing the IRI prefix that matches the <a>vocabulary mapping</a>.
+      This is done whenever an IRI is determined to be vocabulary relative,
+      i.e., used as a <a>property</a>, or a value of <code>@type</code>,
+      or as the value of a <a>term</a> described as <code>"@type": "@vocab"</code>.</p>
+
+  <aside class="example" title="Compacting using a default vocabulary">
+    <p>Given the following expanded document:</p>
+    <pre id="compacting-default-expanded" class="expanded" data-transform="updateExample">
+    <!--
+    [{
+      "@id": "http://example.org/places#BrewEats",
+      "@type": ["http://schema.org/Restaurant"],
+      "http://schema.org/name": [{"@value": "Brew Eats"}]
+    }]
+    -->
+    </pre>
+    <p>And the following context:</p>
+    <pre id="compacting-default-context" class="context nohighlight" data-transform="updateExample"
+         data-context-for="Compacting using a default vocabulary-expanded">
+    <!--
+    {
+      "@context": {
+        ****"@vocab": "http://schema.org/"****
+      }
+    }
+    -->
+    </pre>
+    <p>The compaction algorithm will shorten all vocabulary-relative IRIs that begin with <code>http://schema.org/</code>:</p>
+    <pre class="compacted nohighlight" data-transform="updateExample"
+         data-result-for="Compacting using a default vocabulary-expanded"
+         data-context="Compacting using a default vocabulary-context"
+         data-compact>
+    <!--
+    {
+      "@context": {
+        ****"@vocab": "http://schema.org/"****
+      },
+      "@id": "http://example.org/places#BrewEats",
+      "@type": ****"Restaurant"****,
+      ****"name"****: "Brew Eats"
+    }
+    -->
+    </pre>
+    <p>Note that two IRIs were shortened, unnecessary arrays are removed, and simple string
+      values are replaced with the string.</p>
+  </aside>
+
+  <aside class="example" title="Compacting using a base IRI">
+    <p>Given the following expanded document:</p>
+    <pre class="expanded" data-transform="updateExample">
+    <!--
+    [{
+      "@id": "http://example.com/document.jsonld",
+      "http://www.w3.org/2000/01/rdf-schema#label": [{"@value": "Just a simple document"}]
+    }]
+    -->
+    </pre>
+    <p>And the following context:</p>
+    <pre class="context nohighlight" data-transform="updateExample"
+         data-context-for="Compacting using a base IRI-expanded">
+    <!--
+    {
+      "@context": {
+        ****"@base": "http://example.com/"****,
+        "label": "http://www.w3.org/2000/01/rdf-schema#label"
+      }
+    }
+    -->
+    </pre>
+    <p>The compaction algorithm will shorten all document-relative IRIs that begin with <code>http://example.com/</code>:</p>
+    <pre class="compacted nohighlight" data-transform="updateExample"
+         data-result-for="Compacting using a base IRI-expanded"
+         data-context="Compacting using a base IRI-context"
+         data-compact>
+    <!--
+    {
+      "@context": {
+        ****"@base": "http://example.com/"****,
+        "label": "http://www.w3.org/2000/01/rdf-schema#label"
+      },
+      "@id": ****"document.jsonld"****,
+      "label": "Just a simple document"
+    }
+    -->
+    </pre>
+  </aside>
+  </section>
+
+  <section class="informative"><h3>Representing Values as Strings</h3>
+    <p>To be unambiguous, the <a>expanded document form</a> always represents <a>nodes</a>
+      and values using <a>node objects</a> and <a>value objects</a>.
+      Moreover, property values are always contained within an array, even when there is only
+      one value. Sometimes this is useful to maintain a uniformity of access,
+      but most JSON data uses the simplest possible representation, meaning that
+      <a>properties</a> have single values, which are represented as <a>strings</a>
+      or as structured values such as <a>node objects</a>.
+      By default, <a>compaction</a> will represent values which are simple strings as <a>strings</a>,
+      but sometimes a value is an <a>IRI</a>, a date, or some other <a>typed value</a> for which
+      a simple string representation would loose information.
+      By specifying this within a <a>term definition</a>,
+      the semantics of a string value can be inferred from the definition
+      of the <a>term</a> used as a <a>property</a>.
+      See <a href="#describing-values" class="sectionRef"></a> for more details.</p>
+
+  <aside class="example" title="Coercing Values to Strings">
+    <p>Given the following expanded document:</p>
+    <pre class="expanded" data-transform="updateExample">
+    <!--
+    [{
+      "http://example.com/plain": [
+        {"@value": "string"},
+        {"@value": true},
+        {"@value": 1}
+      ],
+      "http://example.com/date": [
+        {
+          "@value": "2018-02-16",
+          "@type": "http://www.w3.org/2001/XMLSchema#date"
+        }
+      ],
+      "http://example.com/en": [
+        {"@value": "English", "@language": "en"}
+      ],
+      "http://example.com/iri": [
+        {"@id": "http://example.org/iri"}
+      ]
+    }]
+    -->
+    </pre>
+    <p>And the following context:</p>
+    <pre class="context" data-transform="updateExample"
+         data-context-for="Coercing Values to Strings-expanded">
+    <!--
+    {
+      "@context": {
+        "@vocab": "http://example.com/",
+        "date": {"@type": "http://www.w3.org/2001/XMLSchema#date"},
+        "en":   {"@language": "en"},
+        "iri": {"@type": "@id"}
+      }
+    }
+    -->
+    </pre>
+    <p>The compacted version will use string values for the defined terms
+      when the values match the <a>term definition</a>. Note that there is
+      no term defined for "plain", that is created automatically using
+      the <a>vocabulary mapping</a>.
+      Also, the other native values,
+      <code>1</code> and <code>true</code>,
+      can be represented without defining a specific type mapping.</p>
+    <pre class="compacted" data-transform="updateExample"
+         data-result-for="Coercing Values to Strings-expanded"
+         data-context="Coercing Values to Strings-context"
+         data-compact>
+    <!--
+    {
+      "@context": {
+        "@vocab": "http://example.com/",
+        "date": {"@type": "http://www.w3.org/2001/XMLSchema#date"},
+        "en":   {"@language": "en"},
+        "iri": {"@type": "@id"}
+      },
+      "plain": ["string", true, 1],
+      "date": "2018-02-16",
+      "en": "English",
+      "iri": "http://example.org/iri"
+    }
+    -->
+    </pre>
+  </aside>
+  </section>
+
+  <section class="informative"><h3>Term Selection</h3>
+  </section>
+
+  <section class="informative"><h3>Representing Singular Values as Arrays</h3>
+  </section>
+
+  <section class="informative"><h3>Representing Lists as Arrays</h3>
+  </section>
+
+  <section class="informative"><h3>Reversing Node Relationships</h3>
+  </section>
+
+  <section class="informative"><h3>Indexing Values</h3>
+  </section>
+
+  <section class="informative"><h3>Normalizing Values as Objects</h3>
+    <p>Sometimes it's useful to compact a document, but keep the
+      node object and value object representations.
+      For this, a term definition can set <code>"@type": "@none"</code>.
+      This causes the <a data-cite="JSON-LD11-API#value-compaction">Value Compaction</a> algorithm to always use the object
+      form of values, although components of that value may be compacted.</p>
+
+  <aside class="example" title="Forcing Object Values">
+    <p>Given the following expanded document:</p>
+    <pre class="expanded" data-transform="updateExample">
+    <!--
+    [{
+      "http://example.com/notype": [
+        {"@value": "string"},
+        {"@value": true},
+        {"@value": false},
+        {"@value": 1},
+        {"@value": 10.0},
+        {"@value": "plain"},
+        {"@value": true, "@type": "http://www.w3.org/2001/XMLSchema#boolean"},
+        {"@value": "english", "@language": "en"},
+        {"@value": "2018-02-17", "@type": "http://www.w3.org/2001/XMLSchema#date"},
+        {"@id": "http://example.com/iri"}
+      ]
+    }]
+    -->
+    </pre>
+    <p>And the following context:</p>
+    <pre class="context" data-transform="updateExample"
+         data-context-for="Forcing Object Values-expanded">
+    <!--
+    {
+      "@context": {
+        "@version": 1.1,
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "notype": {"@id": "http://example.com/notype", "@type": "@none"}
+      }
+    }
+    -->
+    </pre>
+    <p>The compacted version will use string values for the defined terms
+      when the values match the <a>term definition</a>. Note that there is
+      no term defined for "plain", that is created automatically using
+      the <a>vocabulary mapping</a>.
+      Also, the other native values,
+      <code>1</code> and <code>true</code>,
+      can be represented without defining a specific type mapping.</p>
+    <pre class="compacted" data-transform="updateExample"
+         data-result-for="Forcing Object Values-expanded"
+         data-context="Forcing Object Values-context"
+         data-compact>
+    <!--
+    {
+      "@context": {
+        "@version": 1.1,
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "notype": {"@id": "http://example.com/notype", "@type": "@none"}
+      },
+      "notype": [
+        {"@value": "string"},
+        {"@value": true},
+        {"@value": false},
+        {"@value": 1},
+        {"@value": 10.0},
+        {"@value": "plain"},
+        {"@value": true, "@type": "xsd:boolean"},
+        {"@value": "english", "@language": "en"},
+        {"@value": "2018-02-17", "@type": "xsd:date"},
+        {"@id": "http://example.com/iri"}
+      ]
+    }
+    -->
+    </pre>
+  </aside>
+  </section>
 </section>
 
 <section class="informative"><h3>Flattened Document Form</h3>
@@ -8973,11 +9257,11 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p><a href="#application-ld-json">JSON-LD's media type</a> defines a
     <code>profile</code> parameter which can be used to signal or request
-    flattened document form. The profile URI identifying flattened document
-    form is <code>http://www.w3.org/ns/json-ld#flattened</code>. It can be
-    combined with the profile URI identifying
-    <a href="#expanded-document-form">expanded document form</a> or
-    <a href="#compacted-document-form">compacted document from</a>.</p>
+    <dfn>flattened document form</dfn>. The profile URI identifying
+    <a>flattened document form</a> is <code>http://www.w3.org/ns/json-ld#flattened</code>.
+    It can be combined with the profile URI identifying
+    <a>expanded document form</a> or
+    <a>compacted document form</a>.</p>
 </section>
 
 <section class="informative"><h3>Framed Document Form</h3>
@@ -9088,6 +9372,11 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
   </aside>
+
+  <p><a href="#application-ld-json">JSON-LD's media type</a> defines a
+    <code>profile</code> parameter which can be used to signal or request
+    <dfn>framed document form</dfn>. The profile URI identifying
+    <a>framed document form</a> is <code>http://www.w3.org/ns/json-ld#framed</code>.</p>
 </section>
 </section>
 
@@ -10071,7 +10360,7 @@ the data type to be specified explicitly with each piece of data.</p>
       of terms associated with an <code>@set</code> or <code>@list</code> container
       will always be represented in the form of an <a>array</a> when a document
       is processed&mdash;even if there is just a single value that would otherwise be optimized to
-      a non-array form in <a href="#compacted-document-form">compact document form</a>.
+      a non-array form in <a>compacted document form</a>.
       This simplifies post-processing of the data as the data is always in a
       deterministic form.</p>
 
@@ -10292,7 +10581,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>If the <a>expanded term definition</a> contains the <code>@type</code>
     <a>keyword</a>, its value MUST be an <a>absolute IRI</a>, a
     <a>compact IRI</a>, a <a>term</a>, <a>null</a>, or one of the
-    <a>keywords</a> <code>@id</code> or <code>@vocab</code>.</p>
+    <a>keywords</a> <code>@id</code>, <code class="changed">@none</code>, or <code>@vocab</code>.</p>
 
   <p>If the <a>expanded term definition</a> contains the <code>@language</code> <a>keyword</a>,
     its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
@@ -11059,13 +11348,13 @@ the data type to be specified explicitly with each piece of data.</p>
           <p>This specification defines four values for the <code>profile</code> parameter.</p>
           <dl>
             <dt><code>http://www.w3.org/ns/json-ld#expanded</code></dt>
-            <dd>To request or specify <a href="#expanded-document-form">expanded JSON-LD document form</a>.</dd>
+            <dd>To request or specify <a data-lt="expanded document form">expanded JSON-LD document form</a>.</dd>
             <dt><code>http://www.w3.org/ns/json-ld#compacted</code></dt>
-            <dd>To request or specify <a href="#compacted-document-form">compacted JSON-LD document form</a>.</dd>
+            <dd>To request or specify <a data-lt="compacted document form">compacted JSON-LD document form</a>.</dd>
             <dt><code>http://www.w3.org/ns/json-ld#flattened</code></dt>
-            <dd>To request or specify <a href="#flattened-document-form">flattened JSON-LD document form</a>.</dd>
+            <dd>To request or specify <a data-lt="flattened document form">flattened JSON-LD document form</a>.</dd>
             <dt><code>http://www.w3.org/ns/json-ld#framed</code></dt>
-            <dd>To request or specify <a href="#framed-document-form">framed JSON-LD document form</a>.</dd>
+            <dd>To request or specify <a data-lt="framed document form">framed JSON-LD document form</a>.</dd>
           </dl>
           <p class="note">Other specifications may publish additional profile parameter
             URIs with their own defined sematics.</p>
@@ -11164,7 +11453,7 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
     <p>Requests the server to return the requested resource as JSON-LD
-      in <a href="#expanded-document-form">expanded document form</a>.</p>
+      in <a>expanded document form</a>.</p>
 
     <pre class="example" data-transform="updateExample"
          data-content-type="http"
@@ -11177,7 +11466,7 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
     <p>Requests the server to return the requested resource as JSON-LD
-      in <a href="#compacted-document-form">compacted document form</a>.
+      in <a>compacted document form</a>.
       As no explicit context resource is specified, the server compacts
       using an application-specific default context.</p>
 
@@ -11192,8 +11481,8 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
     <p>Requests the server to return the requested resource as JSON-LD
-      in both <a href="#compacted-document-form">compacted document form</a>
-      and <a href="#flattened-document-form">flattened document form</a>.
+      in both <a>compacted document form</a>
+      and <a>flattened document form</a>.
       Note that as whitespace is used to separate the two URIs, they
       are enclosed in double quotes (<code>"</code>).</p>
   </section>
