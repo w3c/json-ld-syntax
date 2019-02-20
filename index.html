@@ -8003,8 +8003,7 @@ the data type to be specified explicitly with each piece of data.</p>
       creating an <a>implicitly named graph</a>. When expanded, these become
       <a>simple graph objects</a>.</p>
 
-   <p>An alternative to our example above could use an anonymously <a>named graph</a>
-      as follows:</p>
+   <p>A different example uses an anonymously <a>named graph</a> as follows:</p>
 
     <aside class="example ds-selector-tabs changed"
            title="Implicitly named graph">
@@ -8018,26 +8017,27 @@ the data type to be specified explicitly with each piece of data.</p>
       <pre class="original selected nohighlight" data-transform="updateExample">
       <!--
       {
-        "@context": "https://w3c.github.io/vc-data-model/vocab/credentials.jsonld",
-        "id": "http://example.edu/credentials/332",
-        "type": "VerifiableCredential",
-        "issuer": "https://example.edu/issuers/4",
-        "issuanceDate": "2017-02-24T00:00:00Z",
-        ****"verifiableCredential"****: {
-          "@context": "http://schema.org/",
-          "name": "J. Doe",
-          "address": {
-            "streetAddress": "10 Rue de Chose",
-            "postalCode": "98052",
-            "addressLocality": "Paris",
-            "addressCountry": "FR"
-          },
-          "birthDate": "1989-03-15" ####,
-          ...####
+        "@context": {
+          "@version": 1.1,
+          "dc": "http://purl.org/dc/terms/",
+          "foaf": "http://xmlns.com/foaf/0.1/",
+          "w3p": "http://www.w3.org/2001/02pd/rec54#",
+          "bibo": "http://purl.org/ontology/bibo/",
+          "said": {"@id": "http://example.com/said", ****"@container": "@graph"****}
         },
-        ****"proof"****: {
-          ####...,####
-          "verificationMethod": "did:example:ebfeb1f712ebc6f1c276e12ec21"
+        "@id": "_:manu",
+        "foaf:name": "Manu Sporny",
+        "said": {
+          "@id": "_:manu",
+          "dc:creator": {
+            "@id": "https://www.w3.org/TR/2014/REC-json-ld-20140116/",
+            "@type": ["w3p:REC", "bibo:Document"],
+            "dc:title": "JSON-LD: A JSON-based Serialization for Linked Data"
+          },
+          "dc:abstract": [
+            "I hate the Semantic Web.",
+            "I like JSON-LD because it’s based on technology that most web developers use today."
+          ]
         }
       }
       -->
@@ -8046,36 +8046,24 @@ the data type to be specified explicitly with each piece of data.</p>
            data-result-for="Implicitly named graph-original">
       <!--
       [{
-        "@id": "http://example.edu/credentials/332",
-        "@type": ["https://w3.org/2018/credentials#VerifiableCredential"],
-        "https://w3.org/2018/credentials#issuer": [
-          {"@id": "https://example.edu/issuers/4"}
-        ],
-        "https://w3.org/2018/credentials#issuanceDate": [
-          {
-            "@value": "2017-02-24T00:00:00Z",
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-          }
-        ],
-        "https://w3.org/2018/credentials#verifiableCredential": [{
-          "@graph": [{
-            "http://schema.org/name": [{"@value": "J. Doe"}],
-            "http://schema.org/address": [{
-              "http://schema.org/streetAddress": [{"@value": "10 Rue de Chose"}],
-              "http://schema.org/postalCode": [{"@value": "98052"}],
-              "http://schema.org/addressLocality": [{"@value": "Paris"}],
-              "http://schema.org/addressCountry": [{"@value": "FR"}]
+        "@id": "_:manu",
+        "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
+        "http://example.com/said": [{
+          ****"@graph"****: [{
+            "@id": "_:manu",
+            "http://purl.org/dc/terms/creator": [{
+              "@id": "https://www.w3.org/TR/2014/REC-json-ld-20140116/",
+              "@type": [
+                "http://www.w3.org/2001/02pd/rec54#REC",
+                "http://purl.org/ontology/bibo/Document"
+              ],
+              "http://purl.org/dc/terms/title": [
+                {"@value": "JSON-LD: A JSON-based Serialization for Linked Data"}
+              ]
             }],
-            "http://schema.org/birthDate": [{
-              "@value": "1989-03-15",
-              "@type": "http://schema.org/Date"
-            }]
-          }]
-        }],
-        "https://w3id.org/security#proof": [{
-          "@graph": [{
-            "https://w3id.org/security#verificationMethod": [
-              {"@id": "did:example:ebfeb1f712ebc6f1c276e12ec21"}
+            "http://purl.org/dc/terms/abstract": [
+              {"@value": "I hate the Semantic Web."},
+              {"@value": "I like JSON-LD because it’s based on technology that most web developers use today."}
             ]
           }]
         }]
@@ -8085,21 +8073,16 @@ the data type to be specified explicitly with each piece of data.</p>
       <table class="statements"
              data-result-for="Implicitly named graph-expanded"
              data-to-rdf>
-        <thead><tr><th>Graph</th><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
+        <thead><tr><th>Graph</th><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
         <tbody>
-          <tr><td>&nbsp;</td><td>http://example.edu/credentials/332</td><td>https://w3.org/2018/credentials#issuanceDate</td><td>2017-02-24T00:00:00Z</td><td>xsd:dateTime</td></tr>
-          <tr><td>&nbsp;</td><td>http://example.edu/credentials/332</td><td>https://w3.org/2018/credentials#issuer</td><td>https://example.edu/issuers/4</td><td>&nbsp;</td></tr>
-          <tr><td>&nbsp;</td><td>http://example.edu/credentials/332</td><td>rdf:type</td><td>https://w3.org/2018/credentials#VerifiableCredential</td><td>&nbsp;</td></tr>
-          <tr><td>&nbsp;</td><td>http://example.edu/credentials/332</td><td>https://w3id.org/security#proof</td><td>_:b0</td><td>&nbsp;</td></tr>
-          <tr><td>&nbsp;</td><td>http://example.edu/credentials/332</td><td>https://w3.org/2018/credentials#verifiableCredential</td><td>_:b2</td><td>&nbsp;</td></tr>
-          <tr><td>_:b0</td><td>_:b1</td><td>https://w3id.org/security#verificationMethod</td><td>did:example:ebfeb1f712ebc6f1c276e12ec21</td><td>&nbsp;</td></tr>
-          <tr><td>_:b2</td><td>_:b4</td><td>schema:addressCountry</td><td>FR</td><td>&nbsp;</td></tr>
-          <tr><td>_:b2</td><td>_:b4</td><td>schema:addressLocality</td><td>Paris</td><td>&nbsp;</td></tr>
-          <tr><td>_:b2</td><td>_:b4</td><td>schema:postalCode</td><td>98052</td><td>&nbsp;</td></tr>
-          <tr><td>_:b2</td><td>_:b4</td><td>schema:streetAddress</td><td>10 Rue de Chose</td><td>&nbsp;</td></tr>
-          <tr><td>_:b2</td><td>_:b3</td><td>schema:address</td><td>_:b4</td><td>&nbsp;</td></tr>
-          <tr><td>_:b2</td><td>_:b3</td><td>schema:birthDate</td><td>1989-03-15</td><td>schema:Date</td></tr>
-          <tr><td>_:b2</td><td>_:b3</td><td>schema:name</td><td>J. Doe</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>_:b0</td><td>foaf:name</td><td>Manu Sporny</td></tr>
+          <tr><td>&nbsp;</td><td>_:b0</td><td>http://example.com/said</td><td>_:b1</td></tr>
+          <tr><td>_:b1</td><td>_:b0</td><td>dc:creator</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td></tr>
+          <tr><td>_:b1</td><td>_:b0</td><td>dc:abstract</td><td>I hate the Semantic Web.</td></tr>
+          <tr><td>_:b1</td><td>_:b0</td><td>dc:abstract</td><td>I like JSON-LD because it’s based on technology that most web developers use today.</td></tr>
+          <tr><td>_:b1</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td><td>rdf:type</td><td>http://www.w3.org/2001/02pd/rec54#REC</td></tr>
+          <tr><td>_:b1</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td><td>rdf:type</td><td>bibo:Document</td></tr>
+          <tr><td>_:b1</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td><td>dc:title</td><td>JSON-LD: A JSON-based Serialization for Linked Data</td></tr>
         </tbody>
       </table>
       <pre class="trig nohighlight"
@@ -8108,48 +8091,39 @@ the data type to be specified explicitly with each piece of data.</p>
            data-transform="updateExample"
            data-to-rdf>
       <!--
-      @prefix credentials: <https://w3.org/2018/credentials#> .
-      @prefix security: <https://w3id.org/security#> .
-      @prefix schema: <http://schema.org/> .
-      @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+      @prefix bibo: <http://purl.org/ontology/bibo/> .
+      @prefix dc: <http://purl.org/dc/terms/> .
+      @prefix ex: <http://example.com/> .
+      @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+      @prefix w3p: <http://www.w3.org/2001/02pd/rec54#> .
 
-      <http://example.edu/credentials/332> a credentials:VerifiableCredential;
-        credentials:issuanceDate "2017-02-24T00:00:00Z"^^xsd:dateTime;
-        credentials:issuer <https://example.edu/issuers/4>;
-        credentials:verifiableCredential _:b2;
-        security:proof _:b0 .
+      _:manu foaf:name "Manu Sporny";
+        ex:said ****_:quote**** .
 
-      _:b0 {
-        [security:verificationMethod <did:example:ebfeb1f712ebc6f1c276e12ec21>] .
-      }
+      ****_:quote**** {
+        _:manu
+          dc:creator <https://www.w3.org/TR/2014/REC-json-ld-20140116/>;
+          dc:abstract
+            "I like JSON-LD because it’s based on technology that most web developers use today.",
+            "I hate the Semantic Web." .
 
-      _:b2 {
-        [
-          schema:address [
-            schema:addressCountry "FR";
-            schema:addressLocality "Paris";
-            schema:postalCode "98052";
-            schema:streetAddress "10 Rue de Chose"
-          ];
-          schema:birthDate "1989-03-15"^^schema:Date;
-          schema:name "J. Doe"
-        ] .
+        <https://www.w3.org/TR/2014/REC-json-ld-20140116/> a bibo:Document, w3p:REC;
+          dc:title "JSON-LD: A JSON-based Serialization for Linked Data" .
       }
       -->
       </pre>
     </aside>
 
-    <p>The example above expresses two <a>named graphs</a> that are identified
-      by the <a>blank node identifiers</a> <code>_:b0</code>, and  <code>_:b2</code>. That
-      graph is composed of the statements about Manu and Gregg. Metadata about
-      the graph itself is expressed via the <code>generatedAt</code> property,
-      which specifies when the graph was generated.</p>
+    <p>The example above expresses an anonymously <a>named graph</a>,
+      with a subject identified by <code>_:manu</code>
+      made some assertions. The <a>default graph</a> includes a statement
+      saying that the <a>subject</a> <code>_:manu</code> made some statements.
+      This is an example of separating statements into a <a>named graph</a>, and then
+      making assertions about the statements contained within that <a>named graph</a>.</p>
 
-    <p class="note">The <a>blank node identifier</a> <code>_:b0</code>
-      is automatically created to allow the <a>default graph</a> to reference the
-      <a>named graph</a> as the definition of the <em>claim</em>. These are
-      necessary for serialization, where nodes without explicit identifiers,
-      such as the named graph in this case, can be represented.</p>
+    <p class="note">The <a>blank node identifiers</a> <code>_:quote</code>
+      and <code>_:manu</code> are used to allow the <a>default graph</a> to reference the
+      <a>named graph</a>. The actual identifiers used by a processors will likely vary.</p>
 
     <p class="note">Strictly speaking, the value of such a <a>term</a>
       is not a <a>named graph</a>, rather it is the <a>graph name</a>
