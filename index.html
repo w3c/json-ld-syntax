@@ -8021,35 +8021,27 @@ the data type to be specified explicitly with each piece of data.</p>
       <pre class="original selected nohighlight" data-transform="updateExample">
       <!--
       {
-        "@context": {
-          "@version": 1.1,
-          "generatedAt": {
-            "@id": "http://www.w3.org/ns/prov#generatedAtTime",
-            "@type": "http://www.w3.org/2001/XMLSchema#date"
+        "@context": "https://w3c.github.io/vc-data-model/vocab/credentials.jsonld",
+        "id": "http://example.edu/credentials/332",
+        "type": "VerifiableCredential",
+        "issuer": "https://example.edu/issuers/4",
+        "issuanceDate": "2017-02-24T00:00:00Z",
+        ****"verifiableCredential"****: {
+          "@context": "http://schema.org/",
+          "name": "J. Doe",
+          "address": {
+            "streetAddress": "10 Rue de Chose",
+            "postalCode": "98052",
+            "addressLocality": "Paris",
+            "addressCountry": "FR"
           },
-          "Person": "http://xmlns.com/foaf/0.1/Person",
-          "name": "http://xmlns.com/foaf/0.1/name",
-          "knows": {"@id": "http://xmlns.com/foaf/0.1/knows", "@type": "@id"},
-          ****"claim": {
-           "@id": "https://w3id.org/credentials#claim",
-            "@container": "@graph"
-          }****
+          "birthDate": "1989-03-15" ####,
+          ...####
         },
-        "@id": "http://example.org/foaf-graph",
-        "generatedAt": "2012-04-09",
-        ****"claim": [****
-          {
-            "@id": "http://manu.sporny.org/about#manu",
-            "@type": "Person",
-            "name": "Manu Sporny",
-            "knows": "http://greggkellogg.net/foaf#me"
-          }, {
-            "@id": "http://greggkellogg.net/foaf#me",
-            "@type": "Person",
-            "name": "Gregg Kellogg",
-            "knows": "http://manu.sporny.org/about#manu"
-          }
-        ****]****
+        ****"proof"****: {
+          ####...,####
+          "verificationMethod": "did:example:ebfeb1f712ebc6f1c276e12ec21"
+        }
       }
       -->
       </pre>
@@ -8057,27 +8049,36 @@ the data type to be specified explicitly with each piece of data.</p>
            data-result-for="Implicitly named graph-original">
       <!--
       [{
-        "@id": "http://example.org/foaf-graph",
-        "http://www.w3.org/ns/prov#generatedAtTime": [{
-          "@value": "2012-04-09",
-          "@type": "http://www.w3.org/2001/XMLSchema#date"
+        "@id": "http://example.edu/credentials/332",
+        "@type": ["https://w3.org/2018/credentials#VerifiableCredential"],
+        "https://w3.org/2018/credentials#issuer": [
+          {"@id": "https://example.edu/issuers/4"}
+        ],
+        "https://w3.org/2018/credentials#issuanceDate": [
+          {
+            "@value": "2017-02-24T00:00:00Z",
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+          }
+        ],
+        "https://w3.org/2018/credentials#verifiableCredential": [{
+          "@graph": [{
+            "http://schema.org/name": [{"@value": "J. Doe"}],
+            "http://schema.org/address": [{
+              "http://schema.org/streetAddress": [{"@value": "10 Rue de Chose"}],
+              "http://schema.org/postalCode": [{"@value": "98052"}],
+              "http://schema.org/addressLocality": [{"@value": "Paris"}],
+              "http://schema.org/addressCountry": [{"@value": "FR"}]
+            }],
+            "http://schema.org/birthDate": [{
+              "@value": "1989-03-15",
+              "@type": "http://schema.org/Date"
+            }]
+          }]
         }],
-        "https://w3id.org/credentials#claim": [{
-          ****"@graph"****: [{
-            "@id": "http://manu.sporny.org/about#manu",
-            "@type": ["http://xmlns.com/foaf/0.1/Person"],
-            "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
-            "http://xmlns.com/foaf/0.1/knows": [
-              {"@id": "http://greggkellogg.net/foaf#me"}
-            ]}
-          ]
-        }, {
-          ****"@graph"****: [{
-            "@id": "http://greggkellogg.net/foaf#me",
-            "@type": ["http://xmlns.com/foaf/0.1/Person"],
-            "http://xmlns.com/foaf/0.1/name": [{"@value": "Gregg Kellogg"}],
-            "http://xmlns.com/foaf/0.1/knows": [
-              {"@id": "http://manu.sporny.org/about#manu"}
+        "https://w3id.org/security#proof": [{
+          "@graph": [{
+            "https://w3id.org/security#verificationMethod": [
+              {"@id": "did:example:ebfeb1f712ebc6f1c276e12ec21"}
             ]
           }]
         }]
@@ -8089,15 +8090,19 @@ the data type to be specified explicitly with each piece of data.</p>
              data-to-rdf>
         <thead><tr><th>Graph</th><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
         <tbody>
-          <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>prov:generatedAtTime</td><td>2012-04-09</td><td>xsd:date</td></tr>
-          <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>https://w3id.org/credentials#claim</td><td>_:b0</td><td>&nbsp;</td></tr>
-          <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>https://w3id.org/credentials#claim</td><td>_:b1</td><td>&nbsp;</td></tr>
-          <tr><td>_:b0</td><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>foaf:Person</td><td>&nbsp;</td></tr>
-          <tr><td>_:b0</td><td>http://manu.sporny.org/about#manu</td><td>foaf:name</td><td>Manu Sporny</td><td>&nbsp;</td></tr>
-          <tr><td>_:b0</td><td>http://manu.sporny.org/about#manu</td><td>foaf:knows</td><td>http://greggkellogg.net/foaf#me</td><td>&nbsp;</td></tr>
-          <tr><td>_:b1</td><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>foaf:Person</td><td>&nbsp;</td></tr>
-          <tr><td>_:b1</td><td>http://greggkellogg.net/foaf#me</td><td>foaf:name</td><td>Gregg Kellogg</td><td>&nbsp;</td></tr>
-          <tr><td>_:b1</td><td>http://greggkellogg.net/foaf#me</td><td>foaf:knows</td><td>http://manu.sporny.org/about#manu</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>http://example.edu/credentials/332</td><td>https://w3.org/2018/credentials#issuanceDate</td><td>2017-02-24T00:00:00Z</td><td>xsd:dateTime</td></tr>
+          <tr><td>&nbsp;</td><td>http://example.edu/credentials/332</td><td>https://w3.org/2018/credentials#issuer</td><td>https://example.edu/issuers/4</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>http://example.edu/credentials/332</td><td>rdf:type</td><td>https://w3.org/2018/credentials#VerifiableCredential</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>http://example.edu/credentials/332</td><td>https://w3id.org/security#proof</td><td>_:b0</td><td>&nbsp;</td></tr>
+          <tr><td>&nbsp;</td><td>http://example.edu/credentials/332</td><td>https://w3.org/2018/credentials#verifiableCredential</td><td>_:b2</td><td>&nbsp;</td></tr>
+          <tr><td>_:b0</td><td>_:b1</td><td>https://w3id.org/security#verificationMethod</td><td>did:example:ebfeb1f712ebc6f1c276e12ec21</td><td>&nbsp;</td></tr>
+          <tr><td>_:b2</td><td>_:b4</td><td>schema:addressCountry</td><td>FR</td><td>&nbsp;</td></tr>
+          <tr><td>_:b2</td><td>_:b4</td><td>schema:addressLocality</td><td>Paris</td><td>&nbsp;</td></tr>
+          <tr><td>_:b2</td><td>_:b4</td><td>schema:postalCode</td><td>98052</td><td>&nbsp;</td></tr>
+          <tr><td>_:b2</td><td>_:b4</td><td>schema:streetAddress</td><td>10 Rue de Chose</td><td>&nbsp;</td></tr>
+          <tr><td>_:b2</td><td>_:b3</td><td>schema:address</td><td>_:b4</td><td>&nbsp;</td></tr>
+          <tr><td>_:b2</td><td>_:b3</td><td>schema:birthDate</td><td>1989-03-15</td><td>schema:Date</td></tr>
+          <tr><td>_:b2</td><td>_:b3</td><td>schema:name</td><td>J. Doe</td><td>&nbsp;</td></tr>
         </tbody>
       </table>
       <pre class="trig nohighlight"
@@ -8106,31 +8111,39 @@ the data type to be specified explicitly with each piece of data.</p>
            data-transform="updateExample"
            data-to-rdf>
       <!--
-      @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-      @prefix prov: <http://www.w3.org/ns/prov#> .
-      @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+      @prefix credentials: <https://w3.org/2018/credentials#> .
+      @prefix security: <https://w3id.org/security#> .
+      @prefix schema: <http://schema.org/> .
       @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-      <http://example.org/foaf-graph> prov:generatedAtTime "2012-04-09"^^xsd:date;
-         <https://w3id.org/credentials#claim> _:b0,  _:b1 .
+      <http://example.edu/credentials/332> a credentials:VerifiableCredential;
+        credentials:issuanceDate "2017-02-24T00:00:00Z"^^xsd:dateTime;
+        credentials:issuer <https://example.edu/issuers/4>;
+        credentials:verifiableCredential _:b2;
+        security:proof _:b0 .
 
-      ****_:b0 {****
-        <http://manu.sporny.org/about#manu> a foaf:Person;
-           foaf:knows <http://greggkellogg.net/foaf#me>;
-           foaf:name "Manu Sporny" .
-      ****}****
+      _:b0 {
+        [security:verificationMethod <did:example:ebfeb1f712ebc6f1c276e12ec21>] .
+      }
 
-      ****_:b1 {****
-        <http://greggkellogg.net/foaf#me> a foaf:Person;
-           foaf:knows <http://manu.sporny.org/about#manu>;
-           foaf:name "Gregg Kellogg" .
-      ****}****
+      _:b2 {
+        [
+          schema:address [
+            schema:addressCountry "FR";
+            schema:addressLocality "Paris";
+            schema:postalCode "98052";
+            schema:streetAddress "10 Rue de Chose"
+          ];
+          schema:birthDate "1989-03-15"^^schema:Date;
+          schema:name "J. Doe"
+        ] .
+      }
       -->
       </pre>
     </aside>
 
-    <p>The example above expresses a <a>named graph</a> that is identified
-      by the <a>blank node identifier</a> <code>_:b0</code>. That
+    <p>The example above expresses two <a>named graphs</a> that are identified
+      by the <a>blank node identifiers</a> <code>_:b0</code>, and  <code>_:b2</code>. That
       graph is composed of the statements about Manu and Gregg. Metadata about
       the graph itself is expressed via the <code>generatedAt</code> property,
       which specifies when the graph was generated.</p>
