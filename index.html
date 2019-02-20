@@ -8019,13 +8019,13 @@ the data type to be specified explicitly with each piece of data.</p>
       {
         "@context": {
           "@version": 1.1,
-         "@base": "http://dbpedia.org/resource/",
+          "@base": "http://dbpedia.org/resource/",
           "id": "@id",
           "isa": "@type",
-          "said": {"@id": "http://example.com/said", "@container": "@graph"}
+          ****"said": {"@id": "http://example.com/said", "@container": "@graph"}****
         },
         "id": "Epimenides",
-        "said": {
+        ****"said"****: {
           "id": "Epimenides",
           "isa": "Liar"
         }
@@ -8037,8 +8037,8 @@ the data type to be specified explicitly with each piece of data.</p>
       <!--
       [{
         "@id": "http://dbpedia.org/resource/Epimenides",
-        "http://example.com/said": [{
-          "@graph": [{
+        ****"http://example.com/said"****: [{
+          ****"@graph"****: [{
             "@id": "http://dbpedia.org/resource/Epimenides",
             "@type": ["http://dbpedia.org/resource/Liar"]
           }]
