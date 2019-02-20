@@ -8027,10 +8027,10 @@ the data type to be specified explicitly with each piece of data.</p>
           "Document": "http://purl.org/ontology/bibo/Document",
           "said": {"@id": "http://example.com/said", ****"@container": "@graph"****}
         },
-        "@id": "_:manu",
+        "@id": "http://manu.sporny.org/about#manu",
         "name": "Manu Sporny",
         "said": {
-          "@id": "_:manu",
+          "@id": "http://manu.sporny.org/about#manu",
           "creator": {
             "@id": "https://www.w3.org/TR/2014/REC-json-ld-20140116/",
             "@type": ["REC", "Document"],
@@ -8048,11 +8048,11 @@ the data type to be specified explicitly with each piece of data.</p>
            data-result-for="Implicitly named graph-original">
       <!--
       [{
-        "@id": "_:manu",
+        "@id": "http://manu.sporny.org/about#manu",
         "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
         "http://example.com/said": [{
           ****"@graph"****: [{
-            "@id": "_:manu",
+            "@id": "http://manu.sporny.org/about#manu",
             "http://purl.org/dc/terms/creator": [{
               "@id": "https://www.w3.org/TR/2014/REC-json-ld-20140116/",
               "@type": [
@@ -8077,14 +8077,14 @@ the data type to be specified explicitly with each piece of data.</p>
              data-to-rdf>
         <thead><tr><th>Graph</th><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
         <tbody>
-          <tr><td>&nbsp;</td><td>_:b0</td><td>foaf:name</td><td>Manu Sporny</td></tr>
-          <tr><td>&nbsp;</td><td>_:b0</td><td>http://example.com/said</td><td>_:b1</td></tr>
-          <tr><td>_:b1</td><td>_:b0</td><td>dc:creator</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td></tr>
-          <tr><td>_:b1</td><td>_:b0</td><td>dc:abstract</td><td>I hate the Semantic Web.</td></tr>
-          <tr><td>_:b1</td><td>_:b0</td><td>dc:abstract</td><td>I like JSON-LD because it’s based on technology that most web developers use today.</td></tr>
-          <tr><td>_:b1</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td><td>rdf:type</td><td>http://www.w3.org/2001/02pd/rec54#REC</td></tr>
-          <tr><td>_:b1</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td><td>rdf:type</td><td>bibo:Document</td></tr>
-          <tr><td>_:b1</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td><td>dc:title</td><td>JSON-LD: A JSON-based Serialization for Linked Data</td></tr>
+          <tr><td>&nbsp;</td><td>http://manu.sporny.org/about#manu</td><td>foaf:name</td><td>Manu Sporny</td></tr>
+          <tr><td>&nbsp;</td><td>http://manu.sporny.org/about#manu</td><td>http://example.com/said</td><td>_:quote</td></tr>
+          <tr><td>_:quote</td><td>http://manu.sporny.org/about#manu</td><td>dc:creator</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td></tr>
+          <tr><td>_:quote</td><td>http://manu.sporny.org/about#manu</td><td>dc:abstract</td><td>I hate the Semantic Web.</td></tr>
+          <tr><td>_:quote</td><td>http://manu.sporny.org/about#manu</td><td>dc:abstract</td><td>I like JSON-LD because it’s based on technology that most web developers use today.</td></tr>
+          <tr><td>_:quote</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td><td>rdf:type</td><td>http://www.w3.org/2001/02pd/rec54#REC</td></tr>
+          <tr><td>_:quote</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td><td>rdf:type</td><td>bibo:Document</td></tr>
+          <tr><td>_:quote</td><td>https://www.w3.org/TR/2014/REC-json-ld-20140116/</td><td>dc:title</td><td>JSON-LD: A JSON-based Serialization for Linked Data</td></tr>
         </tbody>
       </table>
       <pre class="trig nohighlight"
@@ -8099,11 +8099,11 @@ the data type to be specified explicitly with each piece of data.</p>
       @prefix foaf: <http://xmlns.com/foaf/0.1/> .
       @prefix w3p: <http://www.w3.org/2001/02pd/rec54#> .
 
-      _:manu foaf:name "Manu Sporny";
+      <http://manu.sporny.org/about#manu> foaf:name "Manu Sporny";
         ex:said ****_:quote**** .
 
       ****_:quote**** {
-        _:manu
+        <http://manu.sporny.org/about#manu>
           dc:creator <https://www.w3.org/TR/2014/REC-json-ld-20140116/>;
           dc:abstract
             "I like JSON-LD because it’s based on technology that most web developers use today.",
@@ -8116,10 +8116,9 @@ the data type to be specified explicitly with each piece of data.</p>
       </pre>
     </aside>
 
-    <p>The example above expresses an anonymously <a>named graph</a>,
-      with a subject identified by <code>_:manu</code>
-      made some assertions. The <a>default graph</a> includes a statement
-      saying that the <a>subject</a> <code>_:manu</code> made some statements.
+    <p>The example above expresses an anonymously <a>named graph</a>
+      making some statements. The <a>default graph</a> includes a statement
+      saying that the <a>subject</a> <code>http://manu.sporny.org/about#manu</code> made those statements.
       This is an example of separating statements into a <a>named graph</a>, and then
       making assertions about the statements contained within that <a>named graph</a>.</p>
 
