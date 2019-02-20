@@ -8022,22 +8022,24 @@ the data type to be specified explicitly with each piece of data.</p>
       {
         "@context": {
           "@version": 1.1,
-          "dc": "http://purl.org/dc/terms/",
-          "foaf": "http://xmlns.com/foaf/0.1/",
-          "w3p": "http://www.w3.org/2001/02pd/rec54#",
-          "bibo": "http://purl.org/ontology/bibo/",
+          "title": "http://purl.org/dc/terms/title",
+          "abstract": "http://purl.org/dc/terms/abstract",
+          "creator": "http://purl.org/dc/terms/creator",
+          "name": "http://xmlns.com/foaf/0.1/name",
+          "REC": "http://www.w3.org/2001/02pd/rec54#REC",
+          "Document": "http://purl.org/ontology/bibo/Document",
           "said": {"@id": "http://example.com/said", ****"@container": "@graph"****}
         },
         "@id": "_:manu",
-        "foaf:name": "Manu Sporny",
+        "name": "Manu Sporny",
         "said": {
           "@id": "_:manu",
-          "dc:creator": {
+          "creator": {
             "@id": "https://www.w3.org/TR/2014/REC-json-ld-20140116/",
-            "@type": ["w3p:REC", "bibo:Document"],
-            "dc:title": "JSON-LD: A JSON-based Serialization for Linked Data"
+            "@type": ["REC", "Document"],
+            "title": "JSON-LD: A JSON-based Serialization for Linked Data"
           },
-          "dc:abstract": [
+          "abstract": [
             "I hate the Semantic Web.",
             "I like JSON-LD because it’s based on technology that most web developers use today."
           ]
