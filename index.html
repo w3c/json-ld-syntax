@@ -8022,13 +8022,15 @@ the data type to be specified explicitly with each piece of data.</p>
       {
         "@context": {
           "@version": 1.1,
-          "name": "http://xmlns.com/foaf/0.1/name",
-          "quote": "http://example.com/quote",
-          "said": {"@id": "http://example.com/said", ****"@container": "@graph"****}
+         "@base": "http://dbpedia.org/resource/",
+          "id": "@id",
+          "isa": "@type",
+          "said": {"@id": "http://example.com/said", "@container": "@graph"}
         },
-        "name": "Martin Luther King",
+        "id": "Epimenides",
         "said": {
-          "quote": "I have a Dream."
+          "id": "Epimenides",
+          "isa": "Liar"
         }
       }
       -->
@@ -8037,10 +8039,11 @@ the data type to be specified explicitly with each piece of data.</p>
            data-result-for="Implicitly named graph-original">
       <!--
       [{
-        "http://xmlns.com/foaf/0.1/name": [{"@value": "Martin Luther King"}],
+        "@id": "http://dbpedia.org/resource/Epimenides",
         "http://example.com/said": [{
-          ****"@graph"****: [{
-            "http://example.com/quote": [{"@value": "I have a Dream."}]
+          "@graph": [{
+            "@id": "http://dbpedia.org/resource/Epimenides",
+            "@type": ["http://dbpedia.org/resource/Liar"]
           }]
         }]
       }]
@@ -8051,9 +8054,8 @@ the data type to be specified explicitly with each piece of data.</p>
              data-to-rdf>
         <thead><tr><th>Graph</th><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
         <tbody>
-          <tr><td>&nbsp;</td><td>_:b0</td><td>foaf:name</td><td>Martin Luther King</td></tr>
-          <tr><td>_:b1</td><td>_:b2</td><td>http://example.com/quote</td><td>I have a Dream.</td></tr>
-          <tr><td>&nbsp;</td><td>_:b0</td><td>http://example.com/said</td><td>_:b1</td></tr>
+          <tr><td>&nbsp;</td><td>http://dbpedia.org/resource/Epimenides</td><td>http://example.com/said</td><td>_:b0</td></tr>
+          <tr><td>_:b0</td><td>http://dbpedia.org/resource/Epimenides</td><td>rdf:type</td><td>http://dbpedia.org/resource/Liar</td></tr>
         </tbody>
       </table>
       <pre class="trig nohighlight"
@@ -8062,13 +8064,14 @@ the data type to be specified explicitly with each piece of data.</p>
            data-transform="updateExample"
            data-to-rdf>
       <!--
-      @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-      @prefix ex: <http://example.com/> .
+      @prefix dbp: <http://dbpedia.org/resource/> .
+      @prefix ex:  <http://example.com/> .
+      @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-      [foaf:name "Martin Luther King"; ex:said _:b1] .
+      dbp:Epimenides ex:said _:b0 .
 
-      _:b1 {
-        [ex:quote "I have a Dream."] .
+      _:b0 {
+        dbp:Epimenides a dbp:Liar .
       }
       -->
       </pre>
