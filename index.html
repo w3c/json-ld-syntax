@@ -8023,14 +8023,13 @@ the data type to be specified explicitly with each piece of data.</p>
         "@context": {
           "@version": 1.1,
           "@base": "http://dbpedia.org/resource/",
-          "id": "@id",
-          "isa": "@type",
-          ****"said": {"@id": "http://example.com/said", "@container": "@graph"}****
+          "said": "http://example.com/said",
+          ****"wrote": {"@id": "http://example.com/wrote", "@container": "@graph"}****
         },
-        "id": "Epimenides",
-        ****"said"****: {
-          "id": "Epimenides",
-          "isa": "Liar"
+        "@id": "Skakespeare",
+        ****"wrote"****: {
+          "@id": "Richard_III_of_England",
+          "said": "My kingdom for a horse"
         }
       }
       -->
@@ -8039,11 +8038,11 @@ the data type to be specified explicitly with each piece of data.</p>
            data-result-for="Implicitly named graph-original">
       <!--
       [{
-        "@id": "http://dbpedia.org/resource/Epimenides",
-        ****"http://example.com/said"****: [{
+        "@id": "http://dbpedia.org/resource/Skakespeare",
+        ****"http://example.com/wrote"****: [{
           ****"@graph"****: [{
-            "@id": "http://dbpedia.org/resource/Epimenides",
-            "@type": ["http://dbpedia.org/resource/Liar"]
+            "@id": "http://dbpedia.org/resource/Richard_III_of_England",
+            "http://example.com/said": [{"@value": "My kingdom for a horse"}]
           }]
         }]
       }]
@@ -8054,8 +8053,8 @@ the data type to be specified explicitly with each piece of data.</p>
              data-to-rdf>
         <thead><tr><th>Graph</th><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
         <tbody>
-          <tr><td>&nbsp;</td><td>http://dbpedia.org/resource/Epimenides</td><td>http://example.com/said</td><td>_:b0</td></tr>
-          <tr><td>_:b0</td><td>http://dbpedia.org/resource/Epimenides</td><td>rdf:type</td><td>http://dbpedia.org/resource/Liar</td></tr>
+          <tr><td>_:b0</td><td>http://dbpedia.org/resource/Richard_III_of_England</td><td>http://example.com/said</td><td>My kingdom for a horse</td></tr>
+          <tr><td>&nbsp;</td><td>http://dbpedia.org/resource/Skakespeare</td><td>http://example.com/wrote</td><td>_:b0</td></tr>
         </tbody>
       </table>
       <pre class="trig nohighlight"
@@ -8066,12 +8065,11 @@ the data type to be specified explicitly with each piece of data.</p>
       <!--
       @prefix dbp: <http://dbpedia.org/resource/> .
       @prefix ex:  <http://example.com/> .
-      @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-      dbp:Epimenides ex:said _:b0 .
+      dbp:Skakespeare ex:wrote _:b0 .
 
       _:b0 {
-        dbp:Epimenides a dbp:Liar .
+        dbp:Richard_III_of_England ex:said "My kingdom for a horse" .
       }
       -->
       </pre>
@@ -8079,7 +8077,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <p>The example above expresses an anonymously <a>named graph</a>
       making a statement. The <a>default graph</a> includes a statement
-      saying that the <a>subject</a> made that statement.
+      saying that the <a>subject</a> wrote that statement.
       This is an example of separating statements into a <a>named graph</a>, and then
       making assertions about the statements contained within that <a>named graph</a>.</p>
 
