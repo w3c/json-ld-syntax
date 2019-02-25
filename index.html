@@ -10544,13 +10544,18 @@ the data type to be specified explicitly with each piece of data.</p>
         Values of <code>@default</code> MAY include the value <code>@null</code>,
         or an <a>array</a> containing only <code>@null</code>, in addition to other values
         allowed in the grammar for values of <a>member</a> keys expanding to <a>absolute IRIs</a>.</li>
-      <li>The values of <code>@id</code> and <code>@type</code> MAY additionally be an empty <a>dictionary</a>,
+      <li>The values of <code>@id</code> and <code>@type</code> MAY additionally be
+        an empty <a>dictionary</a> (<a data-cite="JSON-LD11-FRAMING#dfn-wildcard">wildcard</a>),
         an <a>array</a> containing only  an empty <a>dictionary</a>,
+        an empty <a>array</a> (<a data-cite="JSON-LD11-FRAMING#dfn-match-none">match none</a>)
         an <a>array</a> of <a>IRIs</a>.</li>
       <li>A <a>frame object</a> MAY include a <a>member</a> with the key <code>@embed</code> with
         any value from <code>@always</code>, <code>@list</code>, and <code>@never</code>.</li>
       <li>A <a>frame object</a> MAY include <a>members</a> with the boolean valued
         keys <code>@explicit</code>, <code>@omitDefault</code>, or <code>@requireAll</code></li>
+      <li>In addition to other property values, a property of a <a>frame object</a>
+        MAY include a <a data-cite="JSON-LD11-FRAMING#dfn-value-pattern">value pattern</a>
+        (See <a href="#value-patterns" class="sectionRef"></a>).</li>
     </ul>
     <p>See [[JSON-LD11-FRAMING]] for a description of how <a>frame objects</a> are used.</p>
   </section>
@@ -10628,6 +10633,21 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>See <a class="sectionRef" href="#typed-values"></a> and
       <a class="sectionRef" href="#string-internationalization"></a>
       for more information on <a>value objects</a>.</p>
+  </section>
+
+  <section class="normative">
+    <h2>Value Patterns</h2>
+    <p>When <a>framing</a>,
+      a <a data-cite="JSON-LD11-FRAMING#dfn-value-pattern">value pattern</a>
+      extends a <a>value object</a> to allow
+      members used specifically for <a>framing</a>.</p>
+    <ul>
+      <li>The values of <code>@value</code>, <code>@language</code> and <code>@type</code> MAY additionally be
+        an empty <a>dictionary</a> (<a data-cite="JSON-LD11-FRAMING#dfn-wildcard">wildcard</a>),
+        an <a>array</a> containing only  an empty <a>dictionary</a>,
+        an empty <a>array</a> (<a data-cite="JSON-LD11-FRAMING#dfn-match-none">match none</a>)
+        an <a>array</a> of <a>strings</a>.</li>
+    </ul>
   </section>
 
   <section class="normative">
