@@ -226,7 +226,7 @@ require(["core/pubsubhub"], (respecEvents) => {
       }
 
       link.setAttribute('href',
-        'https://json-ld.org/playground-dev/#' +
+        'https://json-ld.org/playground/#' +
         Object.keys(linkQueryParams).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(linkQueryParams[k])}`)
               .join('&'));
     }
