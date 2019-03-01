@@ -3306,7 +3306,7 @@ specified. The full <a>IRI</a> for
     <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
 </section>
 
-<section class="informative changed"><h2>Sealed Term Definitions</h2>
+<section class="informative changed"><h2>Protected Term Definitions</h2>
   <p>JSON-LD is used in many specifications as the specified data format.
     However, there is also a desire to allow some JSON-LD contents to be processed as plain JSON,
     without using any of the JSON-LD algorithms.
@@ -3317,15 +3317,15 @@ specified. The full <a>IRI</a> for
     On the other hand, "plain JSON" implementations may not be able to interpret these embedded contexts,
     and hence will still interpret those terms with their original meaning.
     To prevent this divergence of interpretation,
-    JSON-LD 1.1 allows term definitions to be <em>sealed</em>.
+    JSON-LD 1.1 allows term definitions to be <em>protected</em>.
     </p>
-  <p>A <dfn>sealed term definition</dfn> is a term definition with a member <code>@sealed</code> set to <code>true</code>.
+  <p>A <dfn>protected term definition</dfn> is a term definition with a member <code>@protected</code> set to <code>true</code>.
     It prevents further contexts to override this term definition.
     </p>
 
 
   <aside class="example ds-selector-tabs changed"
-    title="A sealed term definition can not be overridden">
+    title="A protected term definition can not be overridden">
     <div class="selectors">
         <button class="selected" data-selects="original">Original</button>
         <button data-selects="expanded">Expanded</button>
@@ -3343,7 +3343,7 @@ specified. The full <a>IRI</a> for
             "knows": "http://schema.org/knows",
             "name": {
               "@id": "http://schema.org/name",
-              ****"@sealed": true****
+              ****"@protected": true****
             }
           },
           {
@@ -3363,7 +3363,7 @@ specified. The full <a>IRI</a> for
     </pre>
     <pre class="expanded nohighlight"
          data-transform="updateExample"
-         data-result-for="A sealed term definition can not be overridden-original">
+         data-result-for="A protected term definition can not be overridden-original">
     <!--
     [{
       "@type": ["http://schema.org/Person"],
@@ -3375,7 +3375,7 @@ specified. The full <a>IRI</a> for
     -->
     </pre>
     <table class="statements"
-           data-result-for="A sealed term definition can not be overridden-expanded"
+           data-result-for="A protected term definition can not be overridden-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -3387,7 +3387,7 @@ specified. The full <a>IRI</a> for
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="A sealed term definition can not be overridden-expanded"
+         data-result-for="A protected term definition can not be overridden-expanded"
          data-transform="updateExample"
          data-to-rdf>
       <!--
@@ -3404,16 +3404,16 @@ specified. The full <a>IRI</a> for
     </pre>
   </aside>
 
-  <p>When all or most term definitions of a context need to be sealed,
-    it is possible to add a member <code>@sealed</code> set to <code>true</code>
+  <p>When all or most term definitions of a context need to be protected,
+    it is possible to add a member <code>@protected</code> set to <code>true</code>
     to the context itself.
-    It has the same effect as sealing each of its term definitions individually.
-    Exceptions can be made by adding a member <code>@sealed</code> set to <code>false</code>
+    It has the same effect as protecting each of its term definitions individually.
+    Exceptions can be made by adding a member <code>@protected</code> set to <code>false</code>
     in some term definitions.
     </p>
 
   <aside class="example ds-selector-tabs changed"
-    title="A sealed @context with an exception">
+    title="A protected @context with an exception">
     <div class="selectors">
         <button class="selected" data-selects="original">Original</button>
         <button data-selects="expanded">Expanded</button>
@@ -3427,12 +3427,12 @@ specified. The full <a>IRI</a> for
         "@context": [
           {
             ****"@version": 1.1****,
-            ****"@sealed": true****,
+            ****"@protected": true****,
             "name": "http://schema.org/name",
             "member": "http://schema.org/member",
             "Person": {
               "@id": "http://schema.org/Person",
-              ****"@sealed": false****
+              ****"@protected": false****
             }
           }
         ],
@@ -3450,7 +3450,7 @@ specified. The full <a>IRI</a> for
     </pre>
     <pre class="expanded nohighlight"
          data-transform="updateExample"
-         data-result-for="A sealed @context with an exception-original">
+         data-result-for="A protected @context with an exception-original">
     <!--
     [{
       "http://schema.org/name": [{"@value": "Digital Bazaar"}],
@@ -3464,7 +3464,7 @@ specified. The full <a>IRI</a> for
     -->
     </pre>
     <table class="statements"
-           data-result-for="A sealed @context with an exception-expanded"
+           data-result-for="A protected @context with an exception-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -3476,7 +3476,7 @@ specified. The full <a>IRI</a> for
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="A sealed @context with an exception-expanded"
+         data-result-for="A protected @context with an exception-expanded"
          data-transform="updateExample"
          data-to-rdf>
       <!--
@@ -3494,14 +3494,14 @@ specified. The full <a>IRI</a> for
     </pre>
   </aside>
 
-  <p>While sealed term definitions can not be directly overridden,
+  <p>While protected term definitions can not be directly overridden,
       it is worth noting that setting <code>@context</code> to <code>null</code>
       will erase everything from the active context,
-      <em>including</em> sealed term definitions.
+      <em>including</em> protected term definitions.
       </p>
 
   <aside class="example ds-selector-tabs changed"
-    title="@context null erases sealed term definitions">
+    title="@context null erases protected term definitions">
     <div class="selectors">
         <button class="selected" data-selects="original">Original</button>
         <button data-selects="expanded">Expanded</button>
@@ -3515,7 +3515,7 @@ specified. The full <a>IRI</a> for
         "@context": [
           {
             ****"@version": 1.1****,
-            ****"@sealed": true****,
+            ****"@protected": true****,
             "Organization": "http://schema.org/Organization",
             "name": "http://schema.org/name",
             "employee": {
@@ -3540,7 +3540,7 @@ specified. The full <a>IRI</a> for
     </pre>
     <pre class="expanded nohighlight"
          data-transform="updateExample"
-         data-result-for="@context null erases sealed term definitions-original">
+         data-result-for="@context null erases protected term definitions-original">
     <!--
     [{
       "@type": ["http://schema.org/Organization"],
@@ -3554,7 +3554,7 @@ specified. The full <a>IRI</a> for
     -->
     </pre>
     <table class="statements"
-           data-result-for="@context null erases sealed term definitions-expanded"
+           data-result-for="@context null erases protected term definitions-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -3566,7 +3566,7 @@ specified. The full <a>IRI</a> for
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="@context null erases sealed term definitions-expanded"
+         data-result-for="@context null erases protected term definitions-expanded"
          data-transform="updateExample"
          data-to-rdf>
       <!--
@@ -3584,14 +3584,14 @@ specified. The full <a>IRI</a> for
     </pre>
   </aside>
   <p class="note">By preventing terms from being overridden,
-    sealing also prevents any adaptation of a term
+    protection also prevents any adaptation of a term
     (e.g., defining a more precise datatype, restricting the term's use to lists, etc.).
     This kind of adaptation is frequent with some general purpose contexts,
-    for which sealing would therefore hinder their usability.
+    for which protection would therefore hinder their usability.
     As a consequence, context publishers should use this feature with care.
     </p>
 
-  <p class="note">Sealed term definitions are a new feature in JSON-LD 1.1, requiring
+  <p class="note">Protected term definitions are a new feature in JSON-LD 1.1, requiring
     <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
 </section>
 </section>
