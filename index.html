@@ -6055,8 +6055,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>Databases are typically used to make access to
     data more efficient. Developers often extend this sort of functionality into
-    their application data to deliver similar performance gains. Often this
-    data does not have any meaning from a Linked Data standpoint, but is
+    their application data to deliver similar performance gains.
+    This data may have no meaning from a Linked Data standpoint, but is
     still useful for an application.</p>
 
   <p>JSON-LD introduces the notion of <a>index maps</a>
@@ -6441,6 +6441,192 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
   </aside>
+
+  <section class="informative changed"><h3>Property-based data indexing</h3>
+    <p>In its simplest form (as in the examples above),
+      data indexing assigns no semantics to the keys of an <a>index map</a>.
+      However, in some situations,
+      the keys used to index objects are semantically linked to these objects,
+      and should be preserved not only syntactically, but also semantically.
+    </p>
+    <p>If the <a>processing mode</a> is set to <code>json-ld-1.1</code>,
+      <code>"@container": "@index"</code> in a term description can be accompanied with
+      an <code>"@index"</code> key. The value of that key must map to an <a>IRI</a>,
+      which identifies the semantic property linking each object to its key.
+    </p>
+    <aside class="example ds-selector-tabs"
+    title="Indexing data in JSON-LD">
+    <div class="selectors">
+      <button class="selected" data-selects="original">Original</button>
+      <button data-selects="expanded">Expanded</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
+    </div>
+    <pre class="original selected nohighlight" data-transform="updateExample">
+      <!--
+        {
+          "@context": {
+            "schema": "http://schema.org/",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "name": "schema:name",
+            "body": "schema:articleBody",
+            "words": "schema:wordCount",
+            "post": {
+              "@id": "schema:blogPost",
+              ****"@container": "@index",
+              "@index": "dc:language"****
+            }
+          },
+          "@id": "http://example.com/",
+          "@type": "schema:Blog",
+          "name": "World Financial News",
+          "post": {
+            "en": {
+              "@id": "http://example.com/posts/1/en",
+              "body": "World commodities were up today with heavy trading of crude oil...",
+              "words": 1539
+            },
+            "de": {
+              "@id": "http://example.com/posts/1/de",
+              "body": "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...",
+              "words": 1204
+            }
+          }
+        }
+      -->
+    </pre>
+    <pre class="expanded nohighlight"
+         data-transform="updateExample"
+         data-result-for="Indexing data in JSON-LD-original">
+      <!--
+        [{
+          "@id": "http://example.com/",
+          "@type": ["http://schema.org/Blog"],
+          "http://schema.org/name": [{"@value": "World Financial News"}],
+          "http://schema.org/blogPost": [{
+            "@id": "http://example.com/posts/1/en",
+            "http://schema.org/articleBody": [
+            {"@value": "World commodities were up today with heavy trading of crude oil..."}
+            ],
+            "http://schema.org/wordCount": [
+            {"@value": 1539}
+            ],
+            ****"http://purl.org/dc/elements/1.1/language": "en"****
+          }, {
+            "@id": "http://example.com/posts/1/de",
+            "http://schema.org/articleBody": [
+            {"@value": "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl..."}
+            ],
+            "http://schema.org/wordCount": [{"@value": 1204}],
+            ****"http://purl.org/dc/elements/1.1/language": "de"****
+          }]
+        }]
+      -->
+    </pre>
+    <table class="statements"
+           data-result-for="Indexing data in JSON-LD-expanded"
+           data-to-rdf>
+      <thead><tr>
+        <th>Subject</th>
+        <th>Property</th>
+        <th>Value</th>
+        <th>Value Type</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>http://example.com/</td>
+          <td>rdf:type</td>
+          <td>schema:Blog</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>http://example.com/</td>
+          <td>schema:name</td>
+          <td>World Financial News</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>http://example.com/</td>
+          <td>schema:blogPost</td>
+          <td>http://example.com/posts/1/de</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>http://example.com/</td>
+          <td>schema:blogPost</td>
+          <td>http://example.com/posts/1/en</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>http://example.com/posts/1/de</td>
+          <td>schema:articleBody</td>
+          <td>Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>http://example.com/posts/1/de</td>
+          <td>schema:wordCount</td>
+          <td>1204</td>
+          <td>xsd:integer</td>
+        </tr>
+        <tr>
+          <td>http://example.com/posts/1/de</td>
+          <td>dc:language</td>
+          <td>de</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>http://example.com/posts/1/en</td>
+          <td>schema:articleBody</td>
+          <td>World commodities were up today with heavy trading of crude oil...</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>http://example.com/posts/1/en</td>
+          <td>schema:wordCount</td>
+          <td>1539</td>
+          <td>xsd:integer</td>
+        </tr>
+        <tr>
+          <td>http://example.com/posts/1/en</td>
+          <td>dc:language</td>
+          <td>en</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <pre class="turtle nohighlight"
+         data-content-type="text/turtle"
+         data-result-for="Indexing data in JSON-LD-expanded"
+         data-transform="updateExample"
+         data-to-rdf>
+      <!--
+        @prefix schema: <http://schema.org/> .
+        @prefix dc: <http://purl.org/dc/elements/1.1/language> .
+        @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+        
+        <http://example.com/> a schema:Blog;
+        schema:blogPost <http://example.com/posts/1/de>,
+        <http://example.com/posts/1/en>;
+        schema:name "World Financial News" .
+        
+        <http://example.com/posts/1/de>
+        schema:articleBody
+        "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...";
+        schema:wordCount 1204;
+        ****dc:language "de"****.
+        
+        <http://example.com/posts/1/en>
+        schema:articleBody
+        "World commodities were up today with heavy trading of crude oil...";
+        schema:wordCount 1539;
+        ****dc:language "en"****.
+        -->
+    </pre>
+  </aside>
+</section>
+
 </section>
 <section class="informative"><h2>Language Indexing</h2>
 
