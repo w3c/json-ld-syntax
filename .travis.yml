@@ -14,6 +14,9 @@ jobs:
         - git remote update
         - git diff --exit-code remotes/b/master -- common
     - stage: examples
+      before_install:
+        - 'gem update --system --conservative || (gem i "rubygems-update:~>2.7" --no-document && update_rubygems)'
+        - 'gem update bundler --conservative'
       name: "Verify examples are consistent"
       language: ruby
       rvm: 2.5
@@ -36,7 +39,7 @@ jobs:
         - 'gem update bundler --conservative'
       script:
         - docker pull stupchiy/checklink
-        - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://rawgit.com/w3c/json-ld-api/${TRAVIS_BRANCH}/index.html?specStatus=WD;shortName=json-ld11-api"
+        - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://w3c.github.io/json-ld-syntax/index.html?specStatus=WD;shortName=json-ld11"
         - bundle exec rake check_html
     - stage: echidna
       name: "Echidna Publication"
