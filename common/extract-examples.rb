@@ -17,6 +17,11 @@ require 'colorize'
 require 'yaml'
 require 'cgi'
 
+# FIXME: This is here until the rdf:JSON is added in RDF.rb
+unless RDF::RDFV.properties.include?( RDF.to_uri + 'JSON')
+  RDF::RDFV.property :JSON, label: "JSON", comment: "JSON datatype"
+end
+
 PREFIXES = {
   dc:     "http://purl.org/dc/terms/",
   cred:   "https://w3id.org/credentials#",

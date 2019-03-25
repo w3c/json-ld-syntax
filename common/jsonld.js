@@ -15,6 +15,14 @@ const jsonld = {
       authors: ['Domenic Denicola'],
       status: 'unofficial',
       date: 'January 2014'
+    },
+    "JCS": {
+      title: "JSON Canonicalization Scheme (JCS)",
+      href: 'https://tools.ietf.org/html/draft-rundgren-json-canonicalization-scheme-05',
+      authors: ['A. Rundgren', 'B. Jordan', 'S. Erdtman'],
+      publisher: 'Network Working Group',
+      status: 'Internet-Draft',
+      date: 'February 16, 2019'
     }
   },
   conversions: {

@@ -559,6 +559,10 @@
         only available when <a>processing mode</a> has been explicitly set to
         <code>json-ld-1.1</code>.
       </dd>
+      <dt class="changed"><code>@json</code></dt><dd class="changed">
+        Used as the <code>@type</code> value of a <a>JSON literal</a>.
+        This keyword is described in <a href="#json-literals" class="sectionRef"></a>.
+      </dd>
       <dt><code>:</code></dt>
       <dd>The separator for JSON keys and values that use
         <a>compact IRIs</a>.</dd>
@@ -3842,6 +3846,107 @@ in the body of a JSON-LD document:</p>
 </aside>
 </section>
 
+<section class="informative changed"><h2>JSON Literals</h2>
+  <p>At times, it is useful to include JSON within JSON-LD that is not interpreted as JSON-LD.
+    Generally, a JSON-LD processor will ignore properties which don't map to <a>IRIs</a>,
+    but this causes them to be excluded when performing various algorithmic transformations.
+    But, when the data that is being described is, itself, JSON, it's important that
+    it survive algorithmic transformations.</p>
+
+  <p>By defining a term with <code>@type</code> <code>@json</code>,
+    a JSON-LD processor will treat the value as a <a>JSON literal</a>,
+    rather than interpreting it further as JSON-LD.
+    In the <a>expanded document form</a>, such JSON will become the value of <code>@value</code> within a <a>value object</a>
+    having <code>"@type": "@json"</code>.</p>
+
+  <p>When transformed into RDF, the JSON literal will have a lexical form based on
+    a specific serialization of the JSON,
+    as described in <a data-cite="JSON-LD11-API#round-tripping">Compaction algorithm</a> of [[JSON-LD11-API]].
+    and <a href="#the-rdf-json-datatype" class="sectionRef"></a>.</p>
+
+  <p>The following example shows an example of a <a>JSON Literal</a> contained as the
+    value of a property. Note that the RDF results use a canonicalized form of the JSON
+    to ensure interoperbility between different processors.
+    JSON canonicalization is described in <a data-cite="JSON-LD11-API#data-round-tripping">Data Round Tripping</a> in [[JSON-LD11-API]].</p>
+
+<aside class="example ds-selector-tabs"
+       title="JSON Literal">
+  <div class="selectors">
+    <button class="selected" data-selects="original">Original</button>
+    <button data-selects="expanded">Expanded</button>
+    <button data-selects="statements">Statements</button>
+    <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
+  </div>
+  <pre class="original selected nohighlight" data-transform="updateExample">
+  <!--
+  {
+    "@context": {
+      "@version": 1.1,
+      "e": {"@id": "http://example.org/vocab#json", ****"@type": "@json"****}
+    },
+    "e": ****[
+      56.0,
+      {
+        "d": true,
+        "10": null,
+        "1": [ ]
+      }
+    ]****
+  }
+  -->
+  </pre>
+  <pre class="expanded nohighlight"
+       data-transform="updateExample"
+       data-result-for="JSON Literal-original">
+  <!--
+  [{
+    "http://example.org/vocab#json": [{
+      "@value": [
+        56.0,
+        {
+          "d": true,
+          "10": null,
+          "1": []
+        }
+      ],
+      "@type": "@json"
+    }]
+  }]
+  -->
+  </pre>
+  <table class="statements"
+         data-result-for="JSON Literal-original"
+         data-to-rdf>
+  <thead><tr>
+    <th>Subject</th>
+    <th>Property</th>
+    <th>Value</th>
+    <th>Value Type</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+    <td>_:b0</td>
+    <td>http://example.org/vocab#json</td>
+    <td>[56,{"1":[],"10":null,"d":true}]</td>
+    <td>rdf:JSON</td>
+  </tr>
+  </tbody>
+  </table>
+  <pre class="turtle nohighlight"
+       data-content-type="text/turtle"
+       data-result-for="JSON Literal-original"
+       data-transform="updateExample"
+       data-to-rdf>
+  <!--
+  @prefix ex: <http://example.org/vocab#> .
+  @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+  [ex:json ****"""[56,{"1":[],"10":null,"d":true}]"""^^rdf:JSON****] .
+  -->
+  </pre>
+</aside>
+</section>
+
 <section class="informative"><h2>Type Coercion</h2>
 
 <p>JSON-LD supports the coercion of <a>string</a> values to particular data types.
@@ -5001,13 +5106,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <tr><td>_:b0</td><td>rdf:type</td><td>geojson:Feature</td><td></td></tr>
   <tr><td>_:b0</td><td>geojson:bbox</td><td>_:b1</td><td></td></tr>
   <tr><td>_:b0</td><td>geojson:geometry</td><td>_:b5</td><td></td></tr>
-  <tr><td>_:b1</td><td>rdf:first</td><td>-1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b1</td><td>rdf:first</td><td>-10</td><td>xsd:integer</td></tr>
   <tr><td>_:b1</td><td>rdf:rest</td><td>_:b2</td><td></td></tr>
-  <tr><td>_:b2</td><td>rdf:first</td><td>-1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b2</td><td>rdf:first</td><td>-10</td><td>xsd:integer</td></tr>
   <tr><td>_:b2</td><td>rdf:rest</td><td>_:b3</td><td></td></tr>
-  <tr><td>_:b3</td><td>rdf:first</td><td>1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b3</td><td>rdf:first</td><td>10</td><td>xsd:integer</td></tr>
   <tr><td>_:b3</td><td>rdf:rest</td><td>_:b4</td><td></td></tr>
-  <tr><td>_:b4</td><td>rdf:first</td><td>1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b4</td><td>rdf:first</td><td>10</td><td>xsd:integer</td></tr>
   <tr><td>_:b4</td><td>rdf:rest</td><td>rdf:nil</td><td></td></tr>
   <tr><td>_:b5</td><td>rdf:type</td><td>geojson:Polygon</td><td></td></tr>
   <tr><td>_:b5</td><td>geojson:coordinates</td><td>_:b6</td><td></td></tr>
@@ -5015,27 +5120,27 @@ the data type to be specified explicitly with each piece of data.</p>
   <tr><td>_:b6</td><td>rdf:rest</td><td>rdf:nil</td><td></td></tr>
   <tr><td>_:b7</td><td>rdf:first</td><td>_:b8</td><td></td></tr>
   <tr><td>_:b7</td><td>rdf:rest</td><td>_:b10</td><td></td></tr>
-  <tr><td>_:b8</td><td>rdf:first</td><td>-1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b8</td><td>rdf:first</td><td>-10</td><td>xsd:integer</td></tr>
   <tr><td>_:b8</td><td>rdf:rest</td><td>_:b9</td><td></td></tr>
-  <tr><td>_:b9</td><td>rdf:first</td><td>-1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b9</td><td>rdf:first</td><td>-10</td><td>xsd:integer</td></tr>
   <tr><td>_:b9</td><td>rdf:rest</td><td>rdf:nil</td><td></td></tr>
   <tr><td>_:b10</td><td>rdf:first</td><td>_:b11</td><td></td></tr>
   <tr><td>_:b10</td><td>rdf:rest</td><td>_:b13</td><td></td></tr>
-  <tr><td>_:b11</td><td>rdf:first</td><td>1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b11</td><td>rdf:first</td><td>10</td><td>xsd:integer</td></tr>
   <tr><td>_:b11</td><td>rdf:rest</td><td>_:b12</td><td></td></tr>
-  <tr><td>_:b12</td><td>rdf:first</td><td>-1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b12</td><td>rdf:first</td><td>-10</td><td>xsd:integer</td></tr>
   <tr><td>_:b12</td><td>rdf:rest</td><td>rdf:nil</td><td></td></tr>
   <tr><td>_:b13</td><td>rdf:first</td><td>_:b14</td><td></td></tr>
   <tr><td>_:b13</td><td>rdf:rest</td><td>_:b16</td><td></td></tr>
-  <tr><td>_:b14</td><td>rdf:first</td><td>1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b14</td><td>rdf:first</td><td>10</td><td>xsd:integer</td></tr>
   <tr><td>_:b14</td><td>rdf:rest</td><td>_:b15</td><td></td></tr>
-  <tr><td>_:b15</td><td>rdf:first</td><td>1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b15</td><td>rdf:first</td><td>10</td><td>xsd:integer</td></tr>
   <tr><td>_:b15</td><td>rdf:rest</td><td>rdf:nil</td><td></td></tr>
   <tr><td>_:b16</td><td>rdf:first</td><td>_:b17</td><td></td></tr>
   <tr><td>_:b16</td><td>rdf:rest</td><td>rdf:nil</td><td></td></tr>
-  <tr><td>_:b17</td><td>rdf:first</td><td>-1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b17</td><td>rdf:first</td><td>-10</td><td>xsd:integer</td></tr>
   <tr><td>_:b17</td><td>rdf:rest</td><td>_:b18</td><td></td></tr>
-  <tr><td>_:b18</td><td>rdf:first</td><td>-1.0E1</td><td>xsd:double</td></tr>
+  <tr><td>_:b18</td><td>rdf:first</td><td>-10</td><td>xsd:integer</td></tr>
   <tr><td>_:b18</td><td>rdf:rest</td><td>rdf:nil</td><td></td></tr>
   </tbody>
   </table>
@@ -5049,15 +5154,15 @@ the data type to be specified explicitly with each piece of data.</p>
 
   [
     a geojson:Feature ;
-    geojson:bbox (-1.0E1 -1.0E1 1.0E1 1.0E1) ;
+    geojson:bbox (-10 -10 10 10) ;
     geojson:geometry [
       a geojson:Polygon ;
       geojson:coordinates (
         (
-          (-1.0E1 -1.0E1)
-          (1.0E1 -1.0E1)
-          (1.0E1 1.0E1)
-          (-1.0E1 -1.0E1)
+          (-10 -10)
+          (10 -10)
+          (10 10)
+          (-10 -10)
         )
       )
     ]
@@ -10617,12 +10722,17 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <p>The value associated with the <code>@value</code> key MUST be either a
       <a>string</a>, a <a>number</a>, <a>true</a>,
-      <a>false</a> or <a>null</a>.</p>
+      <a>false</a> or <a>null</a>.
+      <span class="changed">If The value associated with the <code>@type</code> key</span>
+      is <code>@json</code>, the value MAY be either an <a>array</a> or an <a>object</a>.</p>
 
     <p>The value associated with the <code>@type</code> key MUST be a
-      <a>term</a>, a <a>compact IRI</a>,
-      an <a>absolute IRI</a>, a string which can be turned
-      into an <a>absolute IRI</a> using the <a>vocabulary mapping</a>, or <a>null</a>.</p>
+      <a>term</a>,
+      a <a>compact IRI</a>,
+      an <a>absolute IRI</a>,
+      a string which can be turned into an <a>absolute IRI</a> using the <a>vocabulary mapping</a>,
+      <code class="changed">@json</code>,
+      or <a>null</a>.</p>
 
     <p>The value associated with the <code>@language</code> key MUST have the
       <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]], or be <a>null</a>.</p>
@@ -10883,7 +10993,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>If the <a>expanded term definition</a> contains the <code>@type</code>
     <a>keyword</a>, its value MUST be an <a>absolute IRI</a>, a
     <a>compact IRI</a>, a <a>term</a>, <a>null</a>, or one of the
-    <a>keywords</a> <code>@id</code>, <code class="changed">@none</code>, or <code>@vocab</code>.</p>
+    <a>keywords</a> <code>@id</code>, <code class="changed">@json</code>, <code class="changed">@none</code>, or <code>@vocab</code>.</p>
 
   <p>If the <a>expanded term definition</a> contains the <code>@language</code> <a>keyword</a>,
     its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
@@ -11270,6 +11380,30 @@ the data type to be specified explicitly with each piece of data.</p>
       then be framed by using the
       <a data-cite="JSON-LD11-FRAMING#framing-algorithm">Framing Algorithm</a>
       described in [[JSON-LD11-FRAMING]] to create the desired object embedding.</p>
+  </section>
+
+  <section class="changed"><h2>The <code>rdf:JSON</code> Datatype</h2>
+    <p>RDF provides for JSON content as a possible <a data-lt="RDF literal">literal value</a>.
+      This allows markup in literal values.
+      Such content is indicated in an <a>RDF graph</a> using a <a>literal</a> whose datatype is set to <code>rdf:JSON</code>.</p>
+
+    <p>The <code>rdf:HTML</code> datatype is defined as follows:</p>
+
+    <dl>
+      <dt>The IRI denoting this datatype</dt>
+      <dd>is http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON.</dd>
+      <dt>The lexical space</dt>
+      <dd>is the set of UNICODE [[UNICODE]] strings which conform to the <a data-cite="JSON#section-2">JSON Grammar</a>
+        as described in <a data-cite="RFC8259#section-2">Section 2 JSON Grammar</a> of [[RFC8259]].</dd>
+      <dt>The value space</dt>
+      <dd>is the four primitive types (<a>strings</a>, <a>numbers</a>, <a>booleans</a>,
+        and <a>null</a>) and two structured types (<a>objects</a> and <a>arrays</a>)
+        from [[ECMASCRIPT]].</dd>
+      <dt>The lexical-to-value mapping</dt>
+      <dd>is the result of parsing the lexical representation into
+        an internal representation consistent with [[ECMASCRIPT]] representation
+        according to <a data-cite="RFC8259#section-9">Section 9 Parsers</a> of [[RFC8259]].</dd>
+    </dl>
   </section>
 </section>
 
@@ -11870,6 +12004,8 @@ the data type to be specified explicitly with each piece of data.</p>
       This allows vocabulary-relative IRIs, such as the
       keys of <a>node objects</a>, are expanded or compacted relative
       to the document base.</li>
+    <li>Added support for <code>"@type": "@none"</code> in a <a>term definition</a> to prevent value compaction.
+      Define the <code>rdf:JSON</code> datatype.</li>
   </ul>
 </section>
 
