@@ -3853,6 +3853,11 @@ in the body of a JSON-LD document:</p>
     But, when the data that is being described is, itself, JSON, it's important that
     it survive algorithmic transformations.</p>
 
+  <p class="warning">JSON-LD is intended to allow native JSON to be
+    interpreted through the use of a <a>context</a>.
+    The use of <a>JSON literals</a> creates blobs of data which are not available for interpretation.
+    It is for use only in the rare cases that JSON cannot be represented as JSON-LD.</p>
+
   <p>When a term is defined with <code>@type</code> <code>@json</code>,
     a JSON-LD processor will treat the value as a <a>JSON literal</a>,
     rather than interpreting it further as JSON-LD.
