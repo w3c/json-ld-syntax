@@ -3853,7 +3853,7 @@ in the body of a JSON-LD document:</p>
     But, when the data that is being described is, itself, JSON, it's important that
     it survive algorithmic transformations.</p>
 
-  <p>By defining a term with <code>@type</code> <code>@json</code>,
+  <p>When a term is defined with <code>@type</code> <code>@json</code>,
     a JSON-LD processor will treat the value as a <a>JSON literal</a>,
     rather than interpreting it further as JSON-LD.
     In the <a>expanded document form</a>, such JSON will become the value of <code>@value</code> within a <a>value object</a>
@@ -3861,8 +3861,8 @@ in the body of a JSON-LD document:</p>
 
   <p>When transformed into RDF, the JSON literal will have a lexical form based on
     a specific serialization of the JSON,
-    as described in <a data-cite="JSON-LD11-API#round-tripping">Compaction algorithm</a> of [[JSON-LD11-API]].
-    and <a href="#the-rdf-json-datatype" class="sectionRef"></a>.</p>
+    as described in <a data-cite="JSON-LD11-API#round-tripping">Compaction algorithm</a> of [[JSON-LD11-API]]
+    and <a href="#the-rdf-json-datatype" class="sectionRef">the JSON datatype</a>.</p>
 
   <p>The following example shows an example of a <a>JSON Literal</a> contained as the
     value of a property. Note that the RDF results use a canonicalized form of the JSON
@@ -10723,7 +10723,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>The value associated with the <code>@value</code> key MUST be either a
       <a>string</a>, a <a>number</a>, <a>true</a>,
       <a>false</a> or <a>null</a>.
-      <span class="changed">If The value associated with the <code>@type</code> key</span>
+      <span class="changed">If the value associated with the <code>@type</code> key</span>
       is <code>@json</code>, the value MAY be either an <a>array</a> or an <a>object</a>.</p>
 
     <p>The value associated with the <code>@type</code> key MUST be a
@@ -11387,7 +11387,7 @@ the data type to be specified explicitly with each piece of data.</p>
       This allows markup in literal values.
       Such content is indicated in an <a>RDF graph</a> using a <a>literal</a> whose datatype is set to <code>rdf:JSON</code>.</p>
 
-    <p>The <code>rdf:HTML</code> datatype is defined as follows:</p>
+    <p>The <code>rdf:JSON</code> datatype is defined as follows:</p>
 
     <dl>
       <dt>The IRI denoting this datatype</dt>
@@ -11396,7 +11396,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <dd>is the set of UNICODE [[UNICODE]] strings which conform to the <a data-cite="JSON#section-2">JSON Grammar</a>
         as described in <a data-cite="RFC8259#section-2">Section 2 JSON Grammar</a> of [[RFC8259]].</dd>
       <dt>The value space</dt>
-      <dd>is the four primitive types (<a>strings</a>, <a>numbers</a>, <a>booleans</a>,
+      <dd>is the union of the four primitive types (<a>strings</a>, <a>numbers</a>, <a>booleans</a>,
         and <a>null</a>) and two structured types (<a>objects</a> and <a>arrays</a>)
         from [[ECMASCRIPT]].</dd>
       <dt>The lexical-to-value mapping</dt>
