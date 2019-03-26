@@ -11396,14 +11396,32 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <dl>
       <dt>The IRI denoting this datatype</dt>
-      <dd>is http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON.</dd>
+      <dd>is <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON</code>.</dd>
       <dt>The lexical space</dt>
       <dd>is the set of UNICODE [[UNICODE]] strings which conform to the <a data-cite="JSON#section-2">JSON Grammar</a>
         as described in <a data-cite="RFC8259#section-2">Section 2 JSON Grammar</a> of [[RFC8259]].</dd>
       <dt>The value space</dt>
-      <dd>is the union of the four primitive types (<a>strings</a>, <a>numbers</a>, <a>booleans</a>,
+      <dd class="algorithm">is the union of the four primitive types (<a>strings</a>, <a>numbers</a>, <a>booleans</a>,
         and <a>null</a>) and two structured types (<a>objects</a> and <a>arrays</a>)
-        from [[ECMASCRIPT]].</dd>
+        from [[ECMASCRIPT]].
+        Two JSON values <var>A</var> and <var>B</var> are considered equal if and only if the following is true:
+        <ol>
+          <li>If <var>A</var> and <var>B</var> are both <a>objects</a>,
+            both <var>A</var> and <var>B</var> have the same number of <a>members</a>,
+            a <a>member</a> in <var>A</var> is equal to a corresponding <a>member</a> in <var>B</var>
+            where the keys are identical, and the values are considered equal through
+            applying this comparison recursively.</li>
+          <li>Otherwise, if <var>A</var> and <var>B</var> are both <a>arrays</a>,
+            both <var>A</var> and <var>B</var> have the same number of elements,
+            and each element <var>A<sub>i</sub></var> is considered
+            equal to the corresponding element <var>B<sub>i</sub></var>
+            through applying this comparison recursively.</li>
+          <li>Otherwise, if <var>A</var> and <var>B</var> satisfy the
+            <a data-cite="ECMASCRIPT#sec-strict-equality-comparison">Strict Equality Comparison</a>
+            defined in <a data-cite="ECMASCRIPT#sec-strict-equality-comparison">Section 7.2.15</a> in [[ECMASCRIPT]].</li>
+          <li>Otherwise, <var>A</var> and <var>B</var> are not equal.</li>
+        </ul>
+      </dd>
       <dt>The lexical-to-value mapping</dt>
       <dd>is the result of parsing the lexical representation into
         an internal representation consistent with [[ECMASCRIPT]] representation
