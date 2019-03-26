@@ -11420,13 +11420,43 @@ the data type to be specified explicitly with each piece of data.</p>
             <a data-cite="ECMASCRIPT#sec-strict-equality-comparison">Strict Equality Comparison</a>
             defined in <a data-cite="ECMASCRIPT#sec-strict-equality-comparison">Section 7.2.15</a> in [[ECMASCRIPT]].</li>
           <li>Otherwise, <var>A</var> and <var>B</var> are not equal.</li>
-        </ul>
+        </ol>
       </dd>
       <dt>The lexical-to-value mapping</dt>
       <dd>is the result of parsing the lexical representation into
         an internal representation consistent with [[ECMASCRIPT]] representation
         created by using the <code>JSON.parse</code> function as defined in
         <a data-cite="ECMASCRIPT#sec-json-object">Section 24.5 The JSON Object</a> of [[ECMASCRIPT]].</dd>
+      <dt>The canonical mapping</dt>
+      <dd>is non-normative, as a normative recommendation for
+        JSON canonicalization is not yet defined. Implementations
+        SHOULD use the following guidelines when creating the lexical
+        representation of a <a>JSON literal</a>:
+
+        <ul class="changed">
+          <li>Serialize JSON using no unnecessary whitespace,</li>
+          <li>Keys in objects SHOULD be ordered lexicographically,</li>
+          <li>Native Numeric values SHOULD be serialized according to
+            <a data-cite="?ECMASCRIPT#sec-tostring-applied-to-the-number-type">Section 7.1.12.1</a> of [[?ECMASCRIPT]],</li>
+          <li>Strings SHOULD be serialized with Unicode codepoints from <code>U+0000</code> through <code>U+001F</code>
+            using lowercase hexaddecimal Unicode notation (<code>\uhhhh</code>) unless in the set
+            of predefined JSON control characters <code>U+0008</code>, <code>U+0009</code>,
+            <code>U+000A</code>, <code>U+000C</code> or <code>U+000D</code>
+            which SHOULD be serialized as <code>\b</code>, <code>\t</code>, <code>\n</code>, <code>\f</code> and <code>\r</code> respectively.
+            All other Unicode characters SHOULD be serialized "as is", other than
+            <code>U+005C</code> (<code>\</code>) and <code>U+0022</code> (<code>"</code>)
+            which SHOULD be serialized as <code>\\</code> and <code>\"</code> respectively.</li>
+        </ul>
+
+        <div class="issue changed">The JSON Canonicalization Scheme [[?JCS]]
+          is an emerging standard for JSON canonicalization
+          not yet ready to be referenced.
+          When a JSON canonicalization standard becomes available,
+          this specification will likely be updated to require such a canonical representation.
+          Users are cautioned from depending on the
+          <a>JSON literal</a> lexical representation as an <a>RDF literal</a>,
+          as the specifics of serialization may change in a future revison of this document.</div>
+      </dd>
     </dl>
   </section>
 </section>
