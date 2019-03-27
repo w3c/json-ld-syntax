@@ -11409,8 +11409,12 @@ the data type to be specified explicitly with each piece of data.</p>
           <li>If <var>A</var> and <var>B</var> are both <a>objects</a>,
             both <var>A</var> and <var>B</var> have the same number of <a>members</a>,
             and each <a>member</a> in <var>A</var> is equal to a corresponding <a>member</a> in <var>B</var>
-            where the keys are identical, and the values are considered equal through
-            applying this comparison recursively.</li>
+            where <ul>
+              <li>the keys are equal (as defined in <a data-cite="ECMASCRIPT#sec-samevaluenonnumber">Section 7.2.12, step 5.a</a>
+                  in [[ECMASCRIPT]]), and</li>
+              <li>the values are considered equal through
+                applying this comparison recursively.</li>
+            </ul>
           <li>Otherwise, if <var>A</var> and <var>B</var> are both <a>arrays</a>,
             both <var>A</var> and <var>B</var> have the same number of elements,
             and each element <var>A<sub>i</sub></var> is considered
