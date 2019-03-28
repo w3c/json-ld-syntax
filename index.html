@@ -1607,7 +1607,7 @@
       <!--
       {
         "@context": {
-          "@vocab": "http://schema.org/",
+          "@vocab": "http://xmlns.com/foaf/0.1/",
           ****"knows": {"@type": "@id"}****
         },
         "@id": "http://manu.sporny.org/about#manu",
@@ -1622,9 +1622,9 @@
       <!--
       [{
         "@id": "http://manu.sporny.org/about#manu",
-        "@type": ["http://schema.org/Person"],
-        "http://schema.org/name": [{"@value": "Manu Sporny"}],
-        ****"http://schema.org/knows": [{"@id": "http://greggkellogg.net/foaf#me"}]****
+        "@type": ["http://xmlns.com/foaf/0.1/Person"],
+        "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
+        ****"http://xmlns.com/foaf/0.1/knows": [{"@id": "http://greggkellogg.net/foaf#me"}]****
       }]
       -->
       </pre>
@@ -1633,9 +1633,9 @@
              data-to-rdf>
         <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
         <tbody>
-          <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>schema:Person</td></tr>
-          <tr><td>http://manu.sporny.org/about#manu</td><td>schema:name</td><td>Manu Sporny</td></tr>
-          <tr><td>http://manu.sporny.org/about#manu</td><td>schema:knows</td><td>http://greggkellogg.net/foaf#me</td></tr>
+          <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>foaf:Person</td></tr>
+          <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:name</td><td>Manu Sporny</td></tr>
+          <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:knows</td><td>http://greggkellogg.net/foaf#me</td></tr>
         </tbody>
       </table>
       <pre class="turtle nohighlight"
@@ -1644,12 +1644,12 @@
            data-transform="updateExample"
            data-to-rdf>
       <!--
-      @prefix schema: <http://schema.org/> .
+      @prefix foaf: <http://xmlns.com/foaf/0.1/> .
       @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-      <http://manu.sporny.org/about#manu> a schema:Person;
-        schema:name "Manu Sporny";
-        ****schema:knows <http://greggkellogg.net/foaf#me>**** .
+      <http://manu.sporny.org/about#manu> a foaf:Person;
+        foaf:name "Manu Sporny";
+        ****foaf:knows <http://greggkellogg.net/foaf#me>**** .
       -->
       </pre>
     </aside>
@@ -1678,7 +1678,7 @@
       <!--
       {
         "@context": {
-          "@vocab": "http://schema.org/"
+          "@vocab": "http://xmlns.com/foaf/0.1/"
         },
         "@id": "http://manu.sporny.org/about#manu",
         "@type": "Person",
@@ -1696,12 +1696,12 @@
       <!--
       [{
         "@id": "http://manu.sporny.org/about#manu",
-        "@type": ["http://schema.org/Person"],
-        "http://schema.org/name": [{"@value": "Manu Sporny"}],
-        ****"http://schema.org/knows": [{
+        "@type": ["http://xmlns.com/foaf/0.1/Person"],
+        "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
+        ****"http://xmlns.com/foaf/0.1/knows": [{
           "@id": "http://greggkellogg.net/foaf#me",
-          "@type": ["http://schema.org/Person"],
-          "http://schema.org/name": [{"@value": "Gregg Kellogg"}]
+          "@type": ["http://xmlns.com/foaf/0.1/Person"],
+          "http://xmlns.com/foaf/0.1/name": [{"@value": "Gregg Kellogg"}]
         }]****
       }]
       -->
@@ -1711,11 +1711,11 @@
              data-to-rdf>
         <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
         <tbody>
-          <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>schema:Person</td></tr>
-          <tr><td>http://manu.sporny.org/about#manu</td><td>schema:name</td><td>Manu Sporny</td></tr>
-          <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>schema:Person</td></tr>
-          <tr><td>http://greggkellogg.net/foaf#me</td><td>schema:name</td><td>Gregg Kellogg</td></tr>
-          <tr><td>http://manu.sporny.org/about#manu</td><td>schema:knows</td><td>http://greggkellogg.net/foaf#me</td></tr>
+          <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>foaf:Person</td></tr>
+          <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:name</td><td>Manu Sporny</td></tr>
+          <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>foaf:Person</td></tr>
+          <tr><td>http://greggkellogg.net/foaf#me</td><td>foaf:name</td><td>Gregg Kellogg</td></tr>
+          <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:knows</td><td>http://greggkellogg.net/foaf#me</td></tr>
         </tbody>
       </table>
       <pre class="turtle nohighlight"
@@ -1724,14 +1724,14 @@
            data-transform="updateExample"
            data-to-rdf>
       <!--
-      @prefix schema: <http://schema.org/> .
+      @prefix foaf: <http://xmlns.com/foaf/0.1/> .
       @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-      <http://manu.sporny.org/about#manu> a schema:Person;
-        schema:name "Manu Sporny";
-        ****schema:knows <http://greggkellogg.net/foaf#me> .
-      <http://greggkellogg.net/foaf#me> a schema:Person;
-        schema:name "Gregg Kellogg"**** .
+      <http://manu.sporny.org/about#manu> a foaf:Person;
+        foaf:name "Manu Sporny";
+        ****foaf:knows <http://greggkellogg.net/foaf#me> .
+      <http://greggkellogg.net/foaf#me> a foaf:Person;
+        foaf:name "Gregg Kellogg"**** .
       -->
       </pre>
     </aside>
@@ -2201,7 +2201,7 @@
     <!--
     {
       "@context": {
-        ****"@vocab": "http://schema.org/"****
+        ****"@vocab": "http://example.com/vocab/"****
       },
       "@id": "http://example.org/places#BrewEats",
       "@type": ****"Restaurant"****,
@@ -2215,8 +2215,8 @@
     <!--
     [{
       "@id": "http://example.org/places#BrewEats",
-      "@type": ["http://schema.org/Restaurant"],
-      "http://schema.org/name": [{"@value": "Brew Eats"}]
+      "@type": ["http://example.com/vocab/Restaurant"],
+      "http://example.com/vocab/name": [{"@value": "Brew Eats"}]
     }]
     -->
     </pre>
@@ -2225,8 +2225,8 @@
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
-        <tr><td>http://example.org/places#BrewEats</td><td>rdf:type</td><td>schema:Restaurant</td></tr>
-        <tr><td>http://example.org/places#BrewEats</td><td>schema:name</td><td>Brew Eats</td></tr>
+        <tr><td>http://example.org/places#BrewEats</td><td>rdf:type</td><td>http://example.com/vocab/Restaurant</td></tr>
+        <tr><td>http://example.org/places#BrewEats</td><td>http://example.com/vocab/name</td><td>Brew Eats</td></tr>
       </tbody>
     </table>
     <pre class="turtle"
@@ -2235,10 +2235,10 @@
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix schema: <http://schema.org/> .
+    @prefix ex: <http://example.com/vocab/> .
 
-    <http://example.org/places#BrewEats> a schema:Restaurant;
-      schema:name "Brew Eats" .
+    <http://example.org/places#BrewEats> a ex:Restaurant;
+      ex:name "Brew Eats" .
     -->
     </pre>
   </aside>
@@ -2263,7 +2263,7 @@
     <!--
       {
         "@context": {
-           "@vocab": "http://schema.org/",
+           "@vocab": "http://example.com/vocab/",
            ****"databaseId": null****
         },
         "@id": "http://example.org/places#BrewEats",
@@ -2278,8 +2278,8 @@
     <!--
     [{
       "@id": "http://example.org/places#BrewEats",
-      "@type": ["http://schema.org/Restaurant"],
-      "http://schema.org/name": [{"@value": "Brew Eats"}]
+      "@type": ["http://example.com/vocab/Restaurant"],
+      "http://example.com/vocab/name": [{"@value": "Brew Eats"}]
     }]
     -->
     </pre>
@@ -2288,8 +2288,8 @@
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
-        <tr><td>http://example.org/places#BrewEats</td><td>rdf:type</td><td>schema:Restaurant</td></tr>
-        <tr><td>http://example.org/places#BrewEats</td><td>schema:name</td><td>Brew Eats</td></tr>
+        <tr><td>http://example.org/places#BrewEats</td><td>rdf:type</td><td>http://example.com/vocab/Restaurant</td></tr>
+        <tr><td>http://example.org/places#BrewEats</td><td>http://example.com/vocab/name</td><td>Brew Eats</td></tr>
       </tbody>
     </table>
     <pre class="turtle"
@@ -2298,10 +2298,10 @@
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix schema: <http://schema.org/> .
+    @prefix ex: <http://example.com/vocab/> .
 
-    <http://example.org/places#BrewEats> a schema:Restaurant;
-      schema:name "Brew Eats" .
+    <http://example.org/places#BrewEats> a ex:Restaurant;
+      ex:name "Brew Eats" .
     -->
     </pre>
 
@@ -2326,10 +2326,10 @@
     <!--
     {
       "@context": [{
-        "@vocab": ****"http://schema.org"****
+        "@vocab": ****"http://example.com/"****
       }, ****{
         "@version": 1.1,
-        "@vocab": "/"
+        "@vocab": "vocab/"
       }****],
       "@id": "http://example.org/places#BrewEats",
       "@type": "Restaurant",
@@ -2343,8 +2343,8 @@
     <!--
     [{
       "@id": "http://example.org/places#BrewEats",
-      "@type": ["http://schema.org/Restaurant"],
-      "http://schema.org/name": [{"@value": "Brew Eats"}]
+      "@type": ["http://example.com/vocab/Restaurant"],
+      "http://example.com/vocab/name": [{"@value": "Brew Eats"}]
     }]
     -->
     </pre>
@@ -2353,8 +2353,8 @@
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
-        <tr><td>http://example.org/places#BrewEats</td><td>rdf:type</td><td>schema:Restaurant</td></tr>
-        <tr><td>http://example.org/places#BrewEats</td><td>schema:name</td><td>Brew Eats</td></tr>
+        <tr><td>http://example.org/places#BrewEats</td><td>rdf:type</td><td>http://example.com/vocab/Restaurant</td></tr>
+        <tr><td>http://example.org/places#BrewEats</td><td>http://example.com/vocab/name</td><td>Brew Eats</td></tr>
       </tbody>
     </table>
     <pre class="turtle"
@@ -2363,10 +2363,10 @@
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix schema: <http://schema.org/> .
+    @prefix ex: <http://example.com/vocab/> .
 
-    <http://example.org/places#BrewEats> a schema:Restaurant;
-      schema:name "Brew Eats" .
+    <http://example.org/places#BrewEats> a ex:Restaurant;
+      ex:name "Brew Eats" .
     -->
     </pre>
   </aside>
@@ -3889,7 +3889,7 @@ in the body of a JSON-LD document:</p>
   {
     "@context": {
       "@version": 1.1,
-      "e": {"@id": "http://example.org/vocab#json", ****"@type": "@json"****}
+      "e": {"@id": "http://example.com/vocab/json", ****"@type": "@json"****}
     },
     "e": ****[
       56.0,
@@ -3907,7 +3907,7 @@ in the body of a JSON-LD document:</p>
        data-result-for="JSON Literal-original">
   <!--
   [{
-    "http://example.org/vocab#json": [{
+    "http://example.com/vocab/json": [{
       "@value": [
         56.0,
         {
@@ -3933,7 +3933,7 @@ in the body of a JSON-LD document:</p>
   <tbody>
   <tr>
     <td>_:b0</td>
-    <td>http://example.org/vocab#json</td>
+    <td>http://example.com/vocab/json</td>
     <td>[56,{"1":[],"10":null,"d":true}]</td>
     <td>rdf:JSON</td>
   </tr>
@@ -3945,7 +3945,7 @@ in the body of a JSON-LD document:</p>
        data-transform="updateExample"
        data-to-rdf>
   <!--
-  @prefix ex: <http://example.org/vocab#> .
+  @prefix ex: <http://example.com/vocab/> .
   @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
   [ex:json ****"""[56,{"1":[],"10":null,"d":true}]"""^^rdf:JSON****] .
   -->
@@ -5704,7 +5704,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     {
       "@context": {
-        "@vocab": "http://schema.org/",
+        "@vocab": "http://xmlns.com/foaf/0.1/",
         ****"knows": {"@type": "@id"}****
       },
       "@graph": [{
@@ -5724,17 +5724,17 @@ the data type to be specified explicitly with each piece of data.</p>
          data-result-for="Referencing node objects-original">
     <!--
     [{
-      "@type": ["http://schema.org/Person"],
-      "http://schema.org/knows": [
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://xmlns.com/foaf/0.1/knows": [
         {"@id": "http://greggkellogg.net/foaf#me"}
       ],
-      "http://schema.org/name": [
+      "http://xmlns.com/foaf/0.1/name": [
         {"@value": "Manu Sporny"}
       ]
     }, {
       "@id": "http://greggkellogg.net/foaf#me",
-      "@type": ["http://schema.org/Person"],
-      "http://schema.org/name": [
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://xmlns.com/foaf/0.1/name": [
         {"@value": "Gregg Kellogg"}
       ]
     }]
@@ -5752,26 +5752,26 @@ the data type to be specified explicitly with each piece of data.</p>
     <tr>
       <td>_:b0</td>
       <td>rdf:type</td>
-      <td>schema:Person</td>
+      <td>foaf:Person</td>
     </tr>
     <tr>
       <td>_:b0</td>
-      <td>schema:name</td>
+      <td>foaf:name</td>
       <td>Manu Sporny</td>
     </tr>
     <tr>
       <td>_:b0</td>
-      <td>schema:knows</td>
+      <td>foaf:knows</td>
       <td>http://greggkellogg.net/foaf#me</td>
     </tr>
     <tr>
       <td>http://greggkellogg.net/foaf#me</td>
       <td>rdf:type</td>
-      <td>schema:Person</td>
+      <td>foaf:Person</td>
     </tr>
     <tr>
       <td>http://greggkellogg.net/foaf#me</td>
-      <td>schema:name</td>
+      <td>foaf:name</td>
       <td>Gregg Kellogg</td>
     </tr>
     </tbody>
@@ -5782,16 +5782,16 @@ the data type to be specified explicitly with each piece of data.</p>
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix schema: <http://schema.org/> .
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
     [
-      a schema:Person;
-      schema:name "Manu Sporny";
-      schema:knows <http://greggkellogg.net/foaf#me>
+      a foaf:Person;
+      foaf:name "Manu Sporny";
+      foaf:knows <http://greggkellogg.net/foaf#me>
     ] .
 
-    <http://greggkellogg.net/foaf#me> a schema:Person;
-      schema:name "Gregg Kellogg" .
+    <http://greggkellogg.net/foaf#me> a foaf:Person;
+      foaf:name "Gregg Kellogg" .
     -->
     </pre>
   </aside>
@@ -5814,7 +5814,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     {
       "@context": {
-        "@vocab": "http://schema.org/"
+        "@vocab": "http://xmlns.com/foaf/0.1/"
       },
       "@type": "Person",
       "name": "Manu Sporny",
@@ -5831,15 +5831,15 @@ the data type to be specified explicitly with each piece of data.</p>
          data-result-for="Embedding a node object as property value of another node object-original">
     <!--
     [{
-      "@type": ["http://schema.org/Person"],
-      "http://schema.org/knows": [{
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://xmlns.com/foaf/0.1/knows": [{
         "@id": "http://greggkellogg.net/foaf#me",
-        "@type": ["http://schema.org/Person"],
-        "http://schema.org/name": [
+        "@type": ["http://xmlns.com/foaf/0.1/Person"],
+        "http://xmlns.com/foaf/0.1/name": [
           {"@value": "Gregg Kellogg"}
         ]
       }],
-      "http://schema.org/name": [
+      "http://xmlns.com/foaf/0.1/name": [
         {"@value": "Manu Sporny"}
       ]
     }]
@@ -5857,26 +5857,26 @@ the data type to be specified explicitly with each piece of data.</p>
     <tr>
       <td>_:b0</td>
       <td>rdf:type</td>
-      <td>schema:Person</td>
+      <td>foaf:Person</td>
     </tr>
     <tr>
       <td>_:b0</td>
-      <td>schema:name</td>
+      <td>foaf:name</td>
       <td>Manu Sporny</td>
     </tr>
     <tr>
       <td>_:b0</td>
-      <td>schema:knows</td>
+      <td>foaf:knows</td>
       <td>http://greggkellogg.net/foaf#me</td>
     </tr>
     <tr>
       <td>http://greggkellogg.net/foaf#me</td>
       <td>rdf:type</td>
-      <td>schema:Person</td>
+      <td>foaf:Person</td>
     </tr>
     <tr>
       <td>http://greggkellogg.net/foaf#me</td>
-      <td>schema:name</td>
+      <td>foaf:name</td>
       <td>Gregg Kellogg</td>
     </tr>
     </tbody>
@@ -5887,16 +5887,16 @@ the data type to be specified explicitly with each piece of data.</p>
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix schema: <http://schema.org/> .
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
     [
-      a schema:Person;
-      schema:name "Manu Sporny";
-      schema:knows <http://greggkellogg.net/foaf#me>
+      a foaf:Person;
+      foaf:name "Manu Sporny";
+      foaf:knows <http://greggkellogg.net/foaf#me>
     ] .
 
-    <http://greggkellogg.net/foaf#me> a schema:Person;
-      schema:name "Gregg Kellogg" .
+    <http://greggkellogg.net/foaf#me> a foaf:Person;
+      foaf:name "Gregg Kellogg" .
     -->
     </pre>
   </aside>
@@ -5929,7 +5929,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     {
       "@context": {
-        "@vocab": "http://schema.org/"
+        "@vocab": "http://xmlns.com/foaf/0.1/"
       },
       ****"@id": "_:b0",****
       "@type": "Person",
@@ -5949,18 +5949,18 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     [{
       ****"@id": "_:b0"****,
-      "@type": ["http://schema.org/Person"],
-      "http://schema.org/knows": [{
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://xmlns.com/foaf/0.1/knows": [{
         "@id": "http://greggkellogg.net/foaf#me",
-        "@type": ["http://schema.org/Person"],
-        "http://schema.org/name": [
+        "@type": ["http://xmlns.com/foaf/0.1/Person"],
+        "http://xmlns.com/foaf/0.1/name": [
           {"@value": "Gregg Kellogg"}
         ],
-        ****"http://schema.org/knows": [
+        ****"http://xmlns.com/foaf/0.1/knows": [
           {"@id": "_:b0"}
         ]****
       }],
-      "http://schema.org/name": [
+      "http://xmlns.com/foaf/0.1/name": [
         {"@value": "Manu Sporny"}
       ]
     }]
@@ -5978,31 +5978,31 @@ the data type to be specified explicitly with each piece of data.</p>
     <tr>
       <td>_:b0</td>
       <td>rdf:type</td>
-      <td>schema:Person</td>
+      <td>foaf:Person</td>
     </tr>
     <tr>
       <td>_:b0</td>
-      <td>schema:name</td>
+      <td>foaf:name</td>
       <td>Manu Sporny</td>
     </tr>
     <tr>
       <td>_:b0</td>
-      <td>schema:knows</td>
+      <td>foaf:knows</td>
       <td>http://greggkellogg.net/foaf#me</td>
     </tr>
     <tr>
       <td>http://greggkellogg.net/foaf#me</td>
       <td>rdf:type</td>
-      <td>schema:Person</td>
+      <td>foaf:Person</td>
     </tr>
     <tr>
       <td>http://greggkellogg.net/foaf#me</td>
-      <td>schema:name</td>
+      <td>foaf:name</td>
       <td>Gregg Kellogg</td>
     </tr>
     <tr>
       <td>http://greggkellogg.net/foaf#me</td>
-      <td>schema:knows</td>
+      <td>foaf:knows</td>
       <td>_:b0</td>
     </tr>
     </tbody>
@@ -6013,15 +6013,15 @@ the data type to be specified explicitly with each piece of data.</p>
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix schema: <http://schema.org/> .
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
-    ****_:b0**** a schema:Person;
-      schema:name "Manu Sporny";
-      schema:knows <http://greggkellogg.net/foaf#me> .
+    ****_:b0**** a foaf:Person;
+      foaf:name "Manu Sporny";
+      foaf:knows <http://greggkellogg.net/foaf#me> .
 
-    <http://greggkellogg.net/foaf#me> a schema:Person;
-      schema:name "Gregg Kellogg";
-      ****schema:knows _:b0**** .
+    <http://greggkellogg.net/foaf#me> a foaf:Person;
+      foaf:name "Gregg Kellogg";
+      ****foaf:knows _:b0**** .
     -->
     </pre>
   </aside>
@@ -6054,7 +6054,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <pre class="original selected nohighlight" data-transform="updateExample">
     <!--
     {
-      "@context": {"@vocab": "http://schema.org/"},
+      "@context": "http://schema.org/",
        ####...####
        "@id": "****_:n1****",
        "name": "Secret Agent 1",
@@ -7934,7 +7934,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     {
       "@context": {
-        "@vocab": "http://schema.org/",
+        "@vocab": "http://xmlns.com/foaf/0.1/",
         "knows": {"@type": "@id"}
       },
       "****@graph****": [
@@ -7959,17 +7959,17 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     [{
       "@id": "http://manu.sporny.org/about#manu",
-      "@type": ["http://schema.org/Person"],
-      "http://schema.org/name": [{"@value": "Manu Sporny"}],
-      "http://schema.org/knows": [
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
+      "http://xmlns.com/foaf/0.1/knows": [
         {"@id": "http://greggkellogg.net/foaf#me"}
       ]
     },
     {
       "@id": "http://greggkellogg.net/foaf#me",
-      "@type": ["http://schema.org/Person"],
-      "http://schema.org/name": [{"@value": "Gregg Kellogg"}],
-      "http://schema.org/knows": [
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "Gregg Kellogg"}],
+      "http://xmlns.com/foaf/0.1/knows": [
         {"@id": "http://manu.sporny.org/about#manu"}
       ]
     }]
@@ -7980,12 +7980,12 @@ the data type to be specified explicitly with each piece of data.</p>
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
-        <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>schema:Person</td></tr>
-        <tr><td>http://manu.sporny.org/about#manu</td><td>schema:name</td><td>Manu Sporny</td></tr>
-        <tr><td>http://manu.sporny.org/about#manu</td><td>schema:knows</td><td>http://greggkellogg.net/foaf#me</td></tr>
-        <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>schema:Person</td></tr>
-        <tr><td>http://greggkellogg.net/foaf#me</td><td>schema:name</td><td>Gregg Kellogg</td></tr>
-        <tr><td>http://greggkellogg.net/foaf#me</td><td>schema:knows</td><td>http://manu.sporny.org/about#manu</td></tr>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>foaf:Person</td></tr>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:name</td><td>Manu Sporny</td></tr>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:knows</td><td>http://greggkellogg.net/foaf#me</td></tr>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>foaf:Person</td></tr>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>foaf:name</td><td>Gregg Kellogg</td></tr>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>foaf:knows</td><td>http://manu.sporny.org/about#manu</td></tr>
       </tbody>
     </table>
     <pre class="trig nohighlight"
@@ -7994,15 +7994,15 @@ the data type to be specified explicitly with each piece of data.</p>
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix schema: <http://schema.org/> .
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
-    <http://greggkellogg.net/foaf#me> a schema:Person;
-       schema:knows <http://manu.sporny.org/about#manu>;
-       schema:name "Gregg Kellogg" .
+    <http://greggkellogg.net/foaf#me> a foaf:Person;
+       foaf:knows <http://manu.sporny.org/about#manu>;
+       foaf:name "Gregg Kellogg" .
 
-    <http://manu.sporny.org/about#manu> a schema:Person;
-       schema:knows <http://greggkellogg.net/foaf#me>;
-       schema:name "Manu Sporny" .
+    <http://manu.sporny.org/about#manu> a foaf:Person;
+       foaf:knows <http://greggkellogg.net/foaf#me>;
+       foaf:name "Manu Sporny" .
     -->
     </pre>
   </aside>
@@ -8026,7 +8026,7 @@ the data type to be specified explicitly with each piece of data.</p>
     [
       {
         ****"@context": {
-          "@vocab": "http://schema.org/",
+          "@vocab": "http://xmlns.com/foaf/0.1/",
           "knows": {"@type": "@id"}
         },****
         "@id": "http://manu.sporny.org/about#manu",
@@ -8036,7 +8036,7 @@ the data type to be specified explicitly with each piece of data.</p>
       },
       {
         ****"@context": {
-          "@vocab": "http://schema.org/",
+          "@vocab": "http://xmlns.com/foaf/0.1/",
           "knows": {"@type": "@id"}
         },****
         "@id": "http://greggkellogg.net/foaf#me",
@@ -8053,17 +8053,17 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     [{
       "@id": "http://manu.sporny.org/about#manu",
-      "@type": ["http://schema.org/Person"],
-      "http://schema.org/name": [{"@value": "Manu Sporny"}],
-      "http://schema.org/knows": [
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
+      "http://xmlns.com/foaf/0.1/knows": [
         {"@id": "http://greggkellogg.net/foaf#me"}
       ]
     },
     {
       "@id": "http://greggkellogg.net/foaf#me",
-      "@type": ["http://schema.org/Person"],
-      "http://schema.org/name": [{"@value": "Gregg Kellogg"}],
-      "http://schema.org/knows": [
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "Gregg Kellogg"}],
+      "http://xmlns.com/foaf/0.1/knows": [
         {"@id": "http://manu.sporny.org/about#manu"}
       ]
     }]
@@ -8074,12 +8074,12 @@ the data type to be specified explicitly with each piece of data.</p>
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
-        <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>schema:Person</td></tr>
-        <tr><td>http://manu.sporny.org/about#manu</td><td>schema:name</td><td>Manu Sporny</td></tr>
-        <tr><td>http://manu.sporny.org/about#manu</td><td>schema:knows</td><td>http://greggkellogg.net/foaf#me</td></tr>
-        <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>schema:Person</td></tr>
-        <tr><td>http://greggkellogg.net/foaf#me</td><td>schema:name</td><td>Gregg Kellogg</td></tr>
-        <tr><td>http://greggkellogg.net/foaf#me</td><td>schema:knows</td><td>http://manu.sporny.org/about#manu</td></tr>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>foaf:Person</td></tr>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:name</td><td>Manu Sporny</td></tr>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:knows</td><td>http://greggkellogg.net/foaf#me</td></tr>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>foaf:Person</td></tr>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>foaf:name</td><td>Gregg Kellogg</td></tr>
+        <tr><td>http://greggkellogg.net/foaf#me</td><td>foaf:knows</td><td>http://manu.sporny.org/about#manu</td></tr>
       </tbody>
     </table>
     <pre class="trig nohighlight"
@@ -8088,15 +8088,15 @@ the data type to be specified explicitly with each piece of data.</p>
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix schema: <http://schema.org/> .
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
-    <http://greggkellogg.net/foaf#me> a schema:Person;
-       schema:knows <http://manu.sporny.org/about#manu>;
-       schema:name "Gregg Kellogg" .
+    <http://greggkellogg.net/foaf#me> a foaf:Person;
+       foaf:knows <http://manu.sporny.org/about#manu>;
+       foaf:name "Gregg Kellogg" .
 
-    <http://manu.sporny.org/about#manu> a schema:Person;
-       schema:knows <http://greggkellogg.net/foaf#me>;
-       schema:name "Manu Sporny" .
+    <http://manu.sporny.org/about#manu> a foaf:Person;
+       foaf:knows <http://greggkellogg.net/foaf#me>;
+       foaf:name "Manu Sporny" .
     -->
     </pre>
   </aside>
@@ -8976,8 +8976,8 @@ the data type to be specified explicitly with each piece of data.</p>
       <!--
       [{
         "@id": "http://example.org/places#BrewEats",
-        "@type": ["http://schema.org/Restaurant"],
-        "http://schema.org/name": [{"@value": "Brew Eats"}]
+        "@type": ["http://xmlns.com/foaf/0.1/Restaurant"],
+        "http://xmlns.com/foaf/0.1/name": [{"@value": "Brew Eats"}]
       }]
       -->
       </pre>
@@ -8987,12 +8987,12 @@ the data type to be specified explicitly with each piece of data.</p>
       <!--
       {
         "@context": {
-          ****"@vocab": "http://schema.org/"****
+          ****"@vocab": "http://xmlns.com/foaf/0.1/"****
         }
       }
       -->
       </pre>
-      <p>The compaction algorithm will shorten all vocabulary-relative IRIs that begin with <code>http://schema.org/</code>:</p>
+      <p>The compaction algorithm will shorten all vocabulary-relative IRIs that begin with <code>http://xmlns.com/foaf/0.1/</code>:</p>
       <pre class="compacted nohighlight" data-transform="updateExample"
            data-result-for="Compacting using a default vocabulary-expanded"
            data-context="Compacting using a default vocabulary-context"
@@ -9000,7 +9000,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <!--
       {
         "@context": {
-          ****"@vocab": "http://schema.org/"****
+          ****"@vocab": "http://xmlns.com/foaf/0.1/"****
         },
         "@id": "http://example.org/places#BrewEats",
         "@type": ****"Restaurant"****,
@@ -9930,9 +9930,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>Data describing Dave</p>
     <script type="application/ld+json">
     {
-      "@context": {
-        "@vocab": "http://schema.org/"
-      },
+      "@context": "http://schema.org/",
       "@id": "https://digitalbazaar.com/author/dlongley/",
       "@type": "Person",
       "name": "Dave Longley"
@@ -9942,9 +9940,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>Data describing Gregg</p>
     <script type="application/ld+json">
     {
-      "@context": {
-        "@vocab": "http://schema.org/"
-      },
+      "@context": "http://schema.org/",
       "@id": "http://greggkellogg.net/foaf#me",
       "@type": "Person",
       "name": "Gregg Kellogg"
@@ -10165,9 +10161,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>Data describing Dave</p>
     <script ****id="dave"**** type="application/ld+json">
     {
-      "@context": {
-        "@vocab": "http://schema.org/"
-      },
+      "@context": "http://schema.org/",
       "@id": "https://digitalbazaar.com/author/dlongley/",
       "@type": "Person",
       "name": "Dave Longley"
@@ -10177,9 +10171,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>Data describing Gregg</p>
     <script ****id="gregg"**** type="application/ld+json">
     {
-      "@context": {
-        "@vocab": "http://schema.org/"
-      },
+      "@context": "http://schema.org/",
       "@id": "http://greggkellogg.net/foaf#me",
       "@type": "Person",
       "name": "Gregg Kellogg"
