@@ -143,12 +143,26 @@
   .comment { color: #999; }
   table, thead, tr, td { padding: 5px; border-width: 1px; border-spacing: 0px; border-style: solid; border-collapse: collapse; }
   table.example {width: 100%;}
-  .hl-bold {
-    font-weight: bold;
-    color: #0a3;
+  .example > pre.context:before {
+    content: "Context";
+    float: right;
+    font: x-large Arial, sans-serif;
+    color: gray;
+    padding-top: -20px;
   }
-  .comment {
-    color: #999;
+  .example > pre.frame:before {
+    content: "Frame";
+    float: right;
+    font: x-large Arial, sans-serif;
+    color: gray;
+    padding-top: -20px;
+  }
+  .example > pre.input:before {
+    content: "Input";
+    float: right;
+    font: x-large Arial, sans-serif;
+    color: gray;
+    padding-top: -20px;
   }
   .changed {
     background-color: rgb(215, 238, 197);
@@ -756,7 +770,7 @@
     <p>For the sample document in the previous section, a <a>context</a> would
       look something like this:</p>
 
-    <pre class="example nohighlight" data-transform="updateExample"
+    <pre class="example context nohighlight" data-transform="updateExample"
          data-context-for="Sample JSON document"
          title="Context for the sample document in the previous section">
     <!--
@@ -8782,7 +8796,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>For example, assume the following JSON-LD input document:</p>
 
   <pre id="sample-json-ld-document-to-be-expanded"
-       class="example" data-transform="updateExample"
+       class="example input" data-transform="updateExample"
        title="Sample JSON-LD document to be expanded">
   <!--
   {
@@ -8872,7 +8886,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>For example, assume the following JSON-LD input document:</p>
 
   <pre id="sample-expanded-json-ld-document"
-       class="example" data-transform="updateExample"
+       class="example input" data-transform="updateExample"
        title="Sample expanded JSON-LD document">
   <!--
   [
@@ -8891,7 +8905,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>Additionally, assume the following developer-supplied JSON-LD context:</p>
 
   <pre id="sample-context"
-       class="example" data-transform="updateExample"
+       class="example context" data-transform="updateExample"
        title="Sample context"
        data-context-for="Sample expanded JSON-LD document">
   <!--
@@ -8972,7 +8986,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <aside class="example" title="Compacting using a default vocabulary">
       <p>Given the following expanded document:</p>
-      <pre id="compacting-default-expanded" class="expanded" data-transform="updateExample">
+      <pre id="compacting-default-expanded" class="expanded input" data-transform="updateExample">
       <!--
       [{
         "@id": "http://example.org/places#BrewEats",
@@ -9014,7 +9028,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <aside class="example" title="Compacting using a base IRI">
       <p>Given the following expanded document:</p>
-      <pre class="expanded" data-transform="updateExample">
+      <pre class="expanded input" data-transform="updateExample">
       <!--
       [{
         "@id": "http://example.com/document.jsonld",
@@ -9071,7 +9085,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <aside class="example" title="Coercing Values to Strings">
       <p>Given the following expanded document:</p>
-      <pre class="expanded" data-transform="updateExample">
+      <pre class="expanded input" data-transform="updateExample">
       <!--
       [{
         "http://example.com/plain": [
@@ -9147,7 +9161,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <aside class="example" title="Using Arrays for Lists">
       <p>Given the following expanded document:</p>
-      <pre class="expanded" data-transform="updateExample">
+      <pre class="expanded input" data-transform="updateExample">
       <!--
       [{
         "http://xmlns.com/foaf/0.1/nick": [{
@@ -9203,7 +9217,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <aside class="example" title="Reversing Node Relationships">
       <p>Given the following expanded document:</p>
-      <pre class="expanded" data-transform="updateExample">
+      <pre class="expanded input" data-transform="updateExample">
       <!--
       [{
         "@id": "http://example.org/#homer",
@@ -9273,7 +9287,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <aside class="example" title="Indexing language-tagged strings">
       <p>Given the following expanded document:</p>
-      <pre class="expanded" data-transform="updateExample">
+      <pre class="expanded input" data-transform="updateExample">
       <!--
       [{
         "@id": "http://example.com/queen",
@@ -9342,7 +9356,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <aside class="example" title="Forcing Object Values">
       <p>Given the following expanded document:</p>
-      <pre class="expanded" data-transform="updateExample">
+      <pre class="expanded input" data-transform="updateExample">
       <!--
       [{
         "http://example.com/notype": [
@@ -9419,7 +9433,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <aside class="example" title="Indexing language-tagged strings and @set">
       <p>Given the following expanded document:</p>
-      <pre class="expanded" data-transform="updateExample">
+      <pre class="expanded input" data-transform="updateExample">
       <!--
       [{
         "@id": "http://example.com/queen",
@@ -9484,7 +9498,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <aside class="example" title="Term Selection">
       <p>Given the following expanded document:</p>
-      <pre class="expanded" data-transform="updateExample">
+      <pre class="expanded input" data-transform="updateExample">
       <!--
       [{
         "http://example.com/vocab/property": [
@@ -9565,7 +9579,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>For example, assume the following JSON-LD input document:</p>
 
   <pre id="sample-expanded-json-ld-document-to-be-flattened"
-       class="example" data-transform="updateExample"
+       class="example input" data-transform="updateExample"
        title="Sample JSON-LD document to be flattened">
   <!--
   {
@@ -9649,7 +9663,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>For example, assume the following JSON-LD frame:</p>
 
   <pre id="sample-library-frame"
-       class="example" data-transform="updateExample"
+       class="example frame" data-transform="updateExample"
        title="Sample library frame">
   <!--
   {
@@ -9678,7 +9692,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>When using a flattened set of objects that match the frame components:</p>
 
   <pre id="sample-flattened-library-objects"
-       class="example" data-transform="updateExample"
+       class="example input" data-transform="updateExample"
        title="Flattened library objects">
   <!--
   {
