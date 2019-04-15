@@ -192,7 +192,7 @@ ARGV.each do |input|
 
   File.open(input, "r") do |f|
     doc = Nokogiri::HTML.parse(f.read)
-    doc.css(".example, .illegal-example").each do |element|
+    doc.css(".example").each do |element|
       error = nil
       warn = nil
       example_number += 1 if %w(pre aside).include?(element.name)
