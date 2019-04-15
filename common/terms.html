@@ -86,12 +86,12 @@
     is a string that can be used as an identifier for a <a>blank node</a> within the scope of a JSON-LD document.
     Blank node identifiers begin with <code>_:</code>.</dd>
   <dt><dfn>compact IRI</dfn></dt><dd>
-    A compact IRI is has the form of <a>prefix</a>:<em>suffix</em>
+    A compact IRI has the form of <a>prefix</a>:<em>suffix</em>
     and is used as a way of expressing an <a>IRI</a> without needing to define separate <a>term</a> definitions
     for each IRI contained within a common vocabulary identified by <a>prefix</a>.</dd>
   <dt><dfn>context</dfn></dt><dd>
     A set of rules for interpreting a <a>JSON-LD document</a>
-    as specified in <a data-cite="JSON-LD11#the-context">The Context</a> of the JSON-LD Syntax specification [[JSON-LD11]].</dd>
+    as specified in the <a data-cite="JSON-LD11#the-context">The Context</a> section of the JSON-LD Syntax specification [[JSON-LD11]].</dd>
   <dt><dfn>datatype IRI</dfn></dt><dd>
     A <a data-cite="RDF11-CONCEPTS#dfn-datatype-iri" class="externalDFN">datatype IRI</a>
     as specified by [[RDF11-CONCEPTS]].</dd>
@@ -142,18 +142,18 @@
     a <a>node object</a> or a <a>value object</a>
     in the input.</dd>
   <dt><dfn>graph name</dfn></dt><dd>
-    The <a>IRI</a> identifying a <a data-cite="RDF11-CONCEPTS#dfn-graph-name" class="externalDFN">named graph</a>.</dd>
+    The <a>IRI</a> or <a>blank node</a> identifying a <a data-cite="RDF11-CONCEPTS#dfn-graph-name" class="externalDFN">named graph</a>.</dd>
   <dt class="changed"><dfn>id map</dfn></dt><dd class="changed">
     An <a>id map</a> is a <a>dictionary</a> value of a <a>term</a>
-    defined with <code>@container</code> set to <code>@id</code>,
-    whose keys are interpreted as <a>IRIs</a> representing
-    the <code>@id</code> of the associated <a>node object</a>;
-    value MUST be a <a>node object</a>.
-    If the value contains a key expanding to <code>@id</code>,
-    it's value MUST be equivalent to the referencing key.</dd>
+    defined with <code>@container</code> set to <code>@id</code>.
+    The values of the <a>id map</a> MUST be a <a>node objects</a>,
+    and its keys are interpreted as <a>IRIs</a> representing
+    the <code>@id</code> of the associated <a>node object</a>.
+    If a value in the <a>id map</a> contains a key expanding to <code>@id</code>,
+    it's value MUST be equivalent to the referencing key in the <a>id map</a>.</dd>
   <dt class="changed"><dfn>graph object</dfn></dt><dd class="changed">
     A <a>graph object</a> represents a <a>named graph</a>
-    represented as the value of a <a>dictionary member</a> within a <a>node object</a>.
+    as the value of a <a>dictionary member</a> within a <a>node object</a>.
     When expanded, a graph object MUST have an <code>@graph</code> <a>member</a>,
     and MAY also have <code>@id</code>, and <code>@index</code> <a>members</a>.
     A <dfn class="preserve">simple graph object</dfn>
@@ -240,7 +240,7 @@
   <dt><dfn>nested property</dfn></dt><dd>
     A <a>nested property</a> is a key in a <a>node object</a>
     whose value is a <a>dictionary</a> containing <a>members</a> which are treated as if they were values of the <a>node object</a>.
-    The <a>nested property</a> itself is semantically meaningless used only to create a sub-structure within a <a>node object</a>.
+    The <a>nested property</a> itself is semantically meaningless and used only to create a sub-structure within a <a>node object</a>.
   </dd>
   <dt><dfn>node</dfn></dt><dd>
     Every <a data-cite="RDF11-CONCEPTS#dfn-node" class="externalDFN">node</a> is an <a>IRI</a>,

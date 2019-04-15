@@ -394,7 +394,7 @@
    <dd>A JSON-LD document is always a valid JSON document. This ensures that
     all of the standard JSON libraries work seamlessly with JSON-LD documents.</dd>
    <dt>Expressiveness</dt>
-   <dd>The syntax serializes directed graphs. This ensures that almost
+   <dd>The syntax serializes labeled directed graphs. This ensures that almost
     every real world data model can be expressed.</dd>
    <dt>Terseness</dt>
    <dd>The JSON-LD syntax is very terse and human readable, requiring as
@@ -435,7 +435,7 @@
       such as a <a>string</a>, <a>number</a>,
       <a>typed values</a> (like dates and times)
       or an <a>IRI</a>.</p>
-    <p class="changed">Within a directed graph, nodes with may
+    <p class="changed">Within a directed graph, nodes may
       be <em>unnamed</em>, i.e., not identified by an <a>IRI</a> or representing
       data such as <a>strings</a> or <a>numbers</a>. Such nodes are called <a>blank nodes</a>,
       and may be identified using a <a>blank node identifier</a>.
@@ -966,7 +966,7 @@
       <a href="#sets-and-lists">ordered values</a>, and
       <a href="#nested-properties">nested properties</a>.
       More advanced features related to the JSON-LD Context are covered in
-      section <a href="#advanced-concepts" class="sectionRef"></a>.</p>
+      <a href="#advanced-concepts" class="sectionRef"></a>.</p>
   </section>
 
 <section class="informative">
@@ -981,7 +981,7 @@
     <em>scheme</em> along with <em>path</em> and optional <em>query</em> and
     <em>fragment</em> segments. A <a>relative IRI</a> is an IRI
     that is relative to some other <a>absolute IRI</a>.
-    In JSON-LD, with exceptions are as described below, all <a>relative IRIs</a>
+    In JSON-LD, with exceptions that are as described below, all <a>relative IRIs</a>
     are resolved relative to the <a>base IRI</a>.</p>
 
   <p class="note">As noted in <a href="#how-to-read-this-document" class="sectionRef"></a>,
@@ -1279,7 +1279,7 @@
     <li><a>Numbers</a>, which describe literal numeric values,</li>
     <li><a>Strings</a>, which may describe literal string values, or be used as the keys in a <a>JSON object</a>.</li>
     <li><a>Boolean</a> <code>true</code> and <code>false</code>, which describe literal boolean values,</li>
-    <li><code>Null</code>, which describes the absense of a value,</li>
+    <li><code>null</code>, which describes the absense of a value,</li>
     <li><a>Arrays</a>, which describe an ordered set of values of any type, and</li>
     <li><a>JSON objects</a>, which provide a set of <a>dictionary members</a>, relating keys with values.</li>
   </ul>
@@ -1363,7 +1363,7 @@
     given <a>node object</a>, or the property for which a node is a value. For
     example, in the <em>schema.org</em> vocabulary, the <em>givenName</em>
     property is associated with a <em>Person</em>. Therefore, one may reason that
-    if a <a>node object</a> contains the property <em>firstName</em>, that the
+    if a <a>node object</a> contains the property <em>givenName</em>, that the
     type is a <em>Person</em>; making this explicit with <code>@type</code> helps
     to clarify the association.</p>
 
@@ -1578,7 +1578,7 @@
     describe such value typing.</p></dd>
   <dt>Value ordering</dt>
   <dd><p>In JSON, a property with an array value implies an implicit order;
-    arrays in JSON-LD do not provide an ordering of the contained elements by
+    arrays in JSON-LD do not convey any ordering of the contained elements by
     default, unless defined using embedded structures or through a context
     definition. See <a href="#sets-and-lists" class="sectionRef"></a> for a
     further discussion.</p></dd>
@@ -2539,7 +2539,7 @@
     The <a>prefix</a> is a <a>term</a> taken from the
     <a>active context</a> and is a short string identifying a
     particular <a>IRI</a> in a JSON-LD document. For example, the
-    prefix <code>foaf</code> may be used as a short hand for the
+    prefix <code>foaf</code> may be used as a shorthand for the
     Friend-of-a-Friend vocabulary, which is identified using the <a>IRI</a>
     <code>http://xmlns.com/foaf/0.1/</code>. A developer may append
     any of the FOAF vocabulary terms to the end of the prefix to specify a short-hand
@@ -3859,7 +3859,7 @@ in the body of a JSON-LD document:</p>
     The use of <a>JSON literals</a> creates blobs of data which are not available for interpretation.
     It is for use only in the rare cases that JSON cannot be represented as JSON-LD.</p>
 
-  <p>When a term is defined with <code>@type</code> <code>@json</code>,
+  <p>When a term is defined with <code>@type</code> set to <code>@json</code>,
     a JSON-LD processor will treat the value as a <a>JSON literal</a>,
     rather than interpreting it further as JSON-LD.
     In the <a>expanded document form</a>, such JSON will become the value of <code>@value</code> within a <a>value object</a>
@@ -4241,12 +4241,12 @@ the data type to be specified explicitly with each piece of data.</p>
 
   ex1:barney ex2:mnemonic "the sidekick" .
 
-  [ ex2:fred ex1:barney, ex1:barney] .
+  [] ex2:fred ex1:barney, ex1:barney.
   -->
   </pre>
 </aside>
 
-<p class="note">The triple <code>[ ex2:fred ex1:barney, ex1:barney] .</code> is emitted twice,
+<p class="note">The triple <code>[] ex2:fred ex1:barney .</code> is emitted twice,
   but exists only once in an output dataset, as it is a duplicate triple.</p>
 
 <p>Terms may also be defined using <a>absolute IRIs</a>
@@ -4567,7 +4567,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <p>A JSON-LD author can express multiple values in a compact way by using
   <a>arrays</a>. Since graphs do not describe ordering for links
-  between nodes, arrays in JSON-LD do not provide an ordering of the
+  between nodes, arrays in JSON-LD do not convey any ordering of the
   contained elements by default. This is exactly the opposite from regular JSON
   arrays, which are ordered by default. For example, consider the following
   simple document:</p>
@@ -4993,8 +4993,9 @@ the data type to be specified explicitly with each piece of data.</p>
 <p>The implementation of <a>lists</a> in RDF depends on linking anonymous nodes
   together using the properties <code>rdf:first</code> and
   <code>rdf:rest</code>, with the end of the list defined as the resource
-  <code>rdf:nil</code>. This can be represented as statments, as the "statements"
-  tab illustrates.</p>
+  <code>rdf:nil</code>, as the "statements" tab illustrates.
+  This allows order to be represented within an unordered set of statements.
+</p>
 
 <p>Both JSON-LD and Turtle provide shortcuts for representing ordered lists.</p>
 
@@ -5276,7 +5277,7 @@ the data type to be specified explicitly with each piece of data.</p>
 </aside>
 
 <p>This describes the use of this <a>array</a> as being unordered,
-  and order is maintained when processing a document. By default,
+  and order may change when processing a document. By default,
   arrays of values are unordered, but this may be made explicit by
   setting <code>@container</code> to <code>@set</code> in the <a>context</a>:
 
