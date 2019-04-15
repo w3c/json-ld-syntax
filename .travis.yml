@@ -14,9 +14,6 @@ jobs:
         - git remote update
         - git diff --exit-code remotes/b/master -- common
     - stage: examples
-      before_install:
-        - 'gem update --system --conservative || (gem i "rubygems-update:~>2.7" --no-document && update_rubygems)'
-        - 'gem update bundler --conservative'
       name: "Verify examples are consistent"
       language: ruby
       rvm: 2.5
