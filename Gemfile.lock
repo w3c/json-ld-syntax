@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ruby-rdf/json-ld.git
-  revision: 32935901cd7390b256c6904c096645681db3668f
+  revision: 3ad421e9e0328be7225809012f0091c269e84b5c
   branch: develop
   specs:
     json-ld (3.0.2)
@@ -80,9 +80,9 @@ GEM
     nokogumbo (1.5.0)
       nokogiri
     public_suffix (3.0.3)
-    rack (2.0.6)
+    rack (2.0.7)
     rake (12.3.2)
-    rdf (3.0.10)
+    rdf (3.0.11)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
     rdf-aggregate-repo (2.2.1)
@@ -131,8 +131,8 @@ GEM
     rdf-turtle (3.0.5)
       ebnf (~> 1.1)
       rdf (~> 3.0)
-    rdf-vocab (3.0.4)
-      rdf (~> 3.0)
+    rdf-vocab (3.0.5)
+      rdf (~> 3.0, >= 3.0.11)
     rdf-xsd (3.0.1)
       rdf (~> 3.0)
     shex (0.5.2)
