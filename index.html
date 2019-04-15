@@ -3325,89 +3325,47 @@ specified. The full <a>IRI</a> for
     JSON-LD 1.1 allows term definitions to be <em>protected</em>.
     </p>
   <p>A <dfn>protected term definition</dfn> is a term definition with a member <code>@protected</code> set to <code>true</code>.
-    It prevents further contexts to override this term definition.
-    </p>
+    It generally prevents further contexts to override this term definition,
+    either through a new definition of the same term,
+    or through clearing the context with <code>"@context": null</code>.
+    Such attempts will raise an error and abort the processing
+    (except in some specific situations described
+    <a href="#overriding-protected-terms">below</a>).
+  </p>
 
 
-  <aside class="example ds-selector-tabs changed"
-    title="A protected term definition can not be overridden">
-    <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
-        <button data-selects="statements">Statements</button>
-        <button data-selects="turtle">Turtle</button>
-        <a class="playground" target="_blank"></a>
-    </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
-      <!--
+  <pre class="example" data-transform="updateExample"
+       title="A protected term definition can generally not be overridden">
+    <!--
       {
         "@context": [
           {
             ****"@version": 1.1****,
-            "Person": "http://schema.org/Person",
-            "knows": "http://schema.org/knows",
+            "Person": "http://xmlns.com/foaf/0.1/Person",
+            "knows": "http://xmlns.com/foaf/0.1/knows",
             "name": {
-              "@id": "http://schema.org/name",
+              "@id": "http://xmlns.com/foaf/0.1/name",
               ****"@protected": true****
             }
           },
           {
-            ****"name": "this_attempt_to_override_name_will_fail"****
+            ####– this attempt will fail with an error####
+            ****"name": "http://schema.org/name"****
           }
         ],
         "@type": "Person",
         "name": "Manu Sporny",
         "knows": {
-          "@context": {
-            ****"name": "this_attempt_to_override_name_will_also_fail"****
-          },
+          "@context": [
+            ####– this attempt would also fail with an error####
+            ****null,****
+            "http://schema.org/"
+          ],
           "name": "Gregg Kellogg"
         }
       }
-      -->
-    </pre>
-    <pre class="expanded nohighlight"
-         data-transform="updateExample"
-         data-result-for="A protected term definition can not be overridden-original">
-    <!--
-    [{
-      "@type": ["http://schema.org/Person"],
-      "http://schema.org/name": [{"@value": "Manu Sporny"}],
-      "http://schema.org/knows": [{
-        "http://schema.org/name": [{"@value": "Gregg Kellogg"}]
-      }]
-    }]
     -->
-    </pre>
-    <table class="statements"
-           data-result-for="A protected term definition can not be overridden-expanded"
-           data-to-rdf>
-      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
-      <tbody>
-        <tr><td>_:b0</td><td>rdf:type</td><td>schema:Person</td></tr>
-        <tr><td>_:b0</td><td>schema:name</td><td>Manu Sporny</td></tr>
-        <tr><td>_:b0</td><td>schema:knows</td><td>_:b1</td></tr>
-        <tr><td>_:b1</td><td>schema:name</td><td>Gregg Kellogg</td></tr>
-      </tbody>
-    </table>
-    <pre class="turtle"
-         data-content-type="text/turtle"
-         data-result-for="A protected term definition can not be overridden-expanded"
-         data-transform="updateExample"
-         data-to-rdf>
-      <!--
-      @prefix schema: <http://schema.org/> .
-
-      [
-        a schema:Person;
-        schema:name "Manu Sporny";
-        schema:knows [
-          schema:name "Gregg Kellogg"
-        ]
-      ] .
-      -->
-    </pre>
-  </aside>
+  </pre>
 
   <p>When all or most term definitions of a context need to be protected,
     it is possible to add a member <code>@protected</code> set to <code>true</code>
@@ -3444,8 +3402,10 @@ specified. The full <a>IRI</a> for
         "name": "Digital Bazaar",
         "member": {
           "@context": {
-            "Person": "http://xmlns.com/foaf/0.1/Person",
-            "name": "this_attempt_to_override_name_will_fail"
+            ####­– name *is* protected, so the following would fail with an error
+            –   "name": "http://xmlns.com/foaf/0.1/Person",
+            ­– Person is *not* protected, and can be overridden ####
+            "Person": "http://xmlns.com/foaf/0.1/Person"
           },
           "@type": "Person",
           "name": "Manu Sporny"
@@ -3499,14 +3459,27 @@ specified. The full <a>IRI</a> for
     </pre>
   </aside>
 
-  <p>While protected term definitions can not be directly overridden,
-      it is worth noting that setting <code>@context</code> to <code>null</code>
-      will erase everything from the active context,
-      <em>including</em> protected term definitions.
-      </p>
+  <p id="overriding-protected-terms">
+    While protected terms can in general not be overridden,
+    there is an exception to this rule:
+    a property-<a>scoped context</a> is not affected by protection,
+    and can therefore override protected terms,
+    either with a new term definition,
+    or by clearing the context with <code>"@context": null</code>.
+  </p>
+  <p>
+    The rationale is that "plain JSON" implementations,
+    relying on a given specification,
+    will only traverse properties defined by that specification.
+    <a>Scoped contexts</a> belonging to the specified properties are part of the specification,
+    so the "plain JSON" implementations are expected to be aware of the change of semantics they induce.
+    <a>Scoped contexts</a> belonging to other properties apply to parts of the document that "plain JSON" implementations will ignore.
+    In both cases, there is therefore no risk of diverging interpretations between JSON-LD-aware implementations and "plain JSON" implementations,
+    so overriding is permitted.
+  </p>
 
   <aside class="example ds-selector-tabs changed"
-    title="@context null erases protected term definitions">
+    title="overriding permitted in property scoped context">
     <div class="selectors">
         <button class="selected" data-selects="original">Original</button>
         <button data-selects="expanded">Expanded</button>
@@ -3519,59 +3492,82 @@ specified. The full <a>IRI</a> for
       {
         "@context": [
           {
+            ####– This context reflects the specification used by "plain JSON" implementations####
             ****"@version": 1.1****,
             ****"@protected": true****,
             "Organization": "http://schema.org/Organization",
             "name": "http://schema.org/name",
             "employee": {
               "@id": "http://schema.org/employee",
-              ****"@context": null****
+              ****"@context": {
+                "@protected": true,
+                "name": "http://schema.org/familyName"
+              }****
+              ####↑ overrides the definition of "name"####
+            }
+          },
+          {
+            ####– This context extends the previous one,
+            – only JSON-LD-aware implementations are expected to use it####
+            "location": {
+              "@id": "http://xmlns.com/foaf/0.1/based_near",
+              "@context": [
+                ****null,****
+                ####↑ clears the context entirely, including all protected terms####
+                { "@vocab": "http://xmlns.com/foaf/0.1/" }
+              ]
             }
           }
         ],
         "@type": "Organization",
         "name": "Digital Bazaar",
         "employee" : {
-          #### — because of "@context": null in the scoped context, ####
-          #### — the active context at this point is empty; ####
-          #### — so we can (and we must) redefine "name" below ####
-          "@context": {
-            ****"name": "http://xmlns.com/foaf/0.1/name"****
-          },
-          "name": "Manu Sporny"
+          "name": "Sporny"
+        },
+        "location": {
+          "name": "Blacksburg, Virginia"
         }
       }
       -->
     </pre>
     <pre class="expanded nohighlight"
          data-transform="updateExample"
-         data-result-for="@context null erases protected term definitions-original">
+         data-result-for="overriding permitted in property scoped context-original"
+         data-ignore
+    >
     <!--
     [{
       "@type": ["http://schema.org/Organization"],
       "http://schema.org/name": [{"@value": "Digital Bazaar"}],
       "http://schema.org/employee": [
         {
-          "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}]
+          "http://schema.org/familyName": [{"@value": "Sporny"}]
+        }
+      ],
+      "http://xmlns.com/foaf/0.1/based_near": [
+        {
+          "http://xmlns.com/foaf/0.1/name": [{"@value": "Blacksburg, Virginia"}]
         }
       ]
     }]
     -->
     </pre>
     <table class="statements"
-           data-result-for="@context null erases protected term definitions-expanded"
+           data-result-for="overriding permitted in property scoped context-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>_:b0</td><td>rdf:type</td><td>schema:Organization</td></tr>
         <tr><td>_:b0</td><td>schema:name</td><td>Digital Bazaar</td></tr>
         <tr><td>_:b0</td><td>schema:employee</td><td>_:b1</td></tr>
-        <tr><td>_:b1</td><td>foaf:name</td><td>Manu Sporny</td></tr>
+        <tr><td>_:b1</td><td>schema:familyName</td><td>Sporny</td></tr>
+        <tr><td>_:b0</td><td>foaf:based_near</td><td>_:b2</td></tr>
+        <tr><td>_:b2</td><td>foaf:name</td><td>Blacksburg, Virginia</td></tr>
       </tbody>
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="@context null erases protected term definitions-expanded"
+         data-result-for="overriding permitted in property scoped context-expanded"
          data-transform="updateExample"
          data-to-rdf>
       <!--
@@ -3582,7 +3578,10 @@ specified. The full <a>IRI</a> for
         a schema:Organization;
         schema:name "Digital Bazaar";
         schema:employee [
-          foaf:name "Manu Sporny"
+          schema:familyName "Sporny"
+        ];
+        foaf:based_near [
+          foaf:name "Blacksburg, Virginia"
         ];
       ] .
       -->
