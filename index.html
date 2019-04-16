@@ -11074,6 +11074,32 @@ the data type to be specified explicitly with each piece of data.</p>
   </section>
 
   <section class="changed">
+    <h2>Property-based Index Maps</h2>
+
+    <p>A property-based <a>index map</a> is a variant of <a>index map</a>
+      were indexes are semantically preserved in the graph as property values.
+      A property-based <a>index map</a> may be used as a term value within a <a>node object</a>
+      if the <a>term</a> is defined with <code>@container</code> set to <code>@index</code>,
+      or an array containing both <code>@index</code> and <code>@set</code>,
+      and with <code>@index</code> set to a <a>string</a>.
+      The values of a property-based <a>index map</a> MUST be <a>node objects</a>
+      or <a>strings</a> which expand to <a>node objects</a>.</p>
+
+    <p>When expanding,
+      if the <a>active context</a> contains a <a>term definition</a>
+      for the value of <code>@index</code>,
+      this <a>term definition</a> will be used to expand the keys of the <a>index map</a>.
+      Otherwise, the keys will be expanded as simple <a>value objects</a>.
+      Each <a>node object</a> in the expanded values of the <a>index map</a>
+      will be added an additional property value,
+      where the property is the expanded value of <code>@index</code>,
+      and the value is the expanded referencing key.
+    </p>
+
+    <p>See <a class="sectionRef" href="#property-based-data-indexing"></a> for further information on this topic.</p>
+  </section>
+
+  <section class="changed">
     <h2>Id Maps</h2>
 
     <p>An <a>id map</a> is used to associate an <a>IRI</a> with a value that allows easy
