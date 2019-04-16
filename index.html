@@ -6580,14 +6580,14 @@ the data type to be specified explicitly with each piece of data.</p>
           "@context": {
             "@version": 1.1,
             "schema": "http://schema.org/",
-            "dc": "http://purl.org/dc/elements/1.1/",
+            "dc11": "http://purl.org/dc/elements/1.1/",
             "name": "schema:name",
             "body": "schema:articleBody",
             "words": "schema:wordCount",
             "post": {
               "@id": "schema:blogPost",
               ****"@container": "@index",
-              "@index": "dc:language"****
+              "@index": "dc11:language"****
             }
           },
           "@id": "http://example.com/",
@@ -6595,7 +6595,7 @@ the data type to be specified explicitly with each piece of data.</p>
           "name": "World Financial News",
           "post": {
             "en": {
-            ####↑ "en" will add `"dc:language": "en"` when expanded####
+            ####↑ "en" will add `"dc11:language": "en"` when expanded####
               "@id": "http://example.com/posts/1/en",
               "body": "World commodities were up today with heavy trading of crude oil...",
               "words": 1539
@@ -6687,7 +6687,7 @@ the data type to be specified explicitly with each piece of data.</p>
         </tr>
         <tr>
           <td>http://example.com/posts/1/de</td>
-          <td>dc:language</td>
+          <td>dc11:language</td>
           <td>de</td>
           <td></td>
         </tr>
@@ -6705,7 +6705,7 @@ the data type to be specified explicitly with each piece of data.</p>
         </tr>
         <tr>
           <td>http://example.com/posts/1/en</td>
-          <td>dc:language</td>
+          <td>dc11:language</td>
           <td>en</td>
           <td></td>
         </tr>
@@ -6719,7 +6719,7 @@ the data type to be specified explicitly with each piece of data.</p>
          data-to-rdf>
       <!--
         @prefix schema: <http://schema.org/> .
-        @prefix dc: <http://purl.org/dc/elements/1.1/language> .
+        @prefix dc11: <http://purl.org/dc/elements/1.1/language> .
         @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
         
         <http://example.com/> a schema:Blog;
@@ -6731,13 +6731,13 @@ the data type to be specified explicitly with each piece of data.</p>
         schema:articleBody
         "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...";
         schema:wordCount 1204;
-        ****dc:language "de"****.
+        ****dc11:language "de"****.
         
         <http://example.com/posts/1/en>
         schema:articleBody
         "World commodities were up today with heavy trading of crude oil...";
         schema:wordCount 1539;
-        ****dc:language "en"****.
+        ****dc11:language "en"****.
         -->
     </pre>
   </aside>
