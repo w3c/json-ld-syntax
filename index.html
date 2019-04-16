@@ -9479,7 +9479,7 @@ the data type to be specified explicitly with each piece of data.</p>
       on an internalized representation of that JSON would need to
       iterrate through the values of the array to find a value matching
       a particular pattern, such as a <a>language-tagged string</a>
-      using that language <code>en</code>.</p>
+      using the language <code>en</code>.</p>
 
     <aside class="example" title="Indexing language-tagged strings">
       <p>Given the following expanded document:</p>
@@ -10786,7 +10786,7 @@ the data type to be specified explicitly with each piece of data.</p>
       key, its value MUST be
       a <a>node object</a> or
       an <a>array</a> of zero or more <a>node objects</a>.
-      If the <a>node object</a> contains an <code>@id</code> keyword,
+      If the <a>node object</a> also contains an <code>@id</code> keyword,
       its value is used as the <a>graph name</a> of a <a>named graph</a>.
       See <a class="sectionRef" href="#named-graphs"></a> for further discussion on
       <code>@graph</code> values. As a special case, if a <a>dictionary</a>
@@ -11133,9 +11133,10 @@ the data type to be specified explicitly with each piece of data.</p>
       or an array containing both <code>@type</code> and <code>@set</code>.
       The keys of a <a>type map</a> MUST be <a>IRIs</a>
       (<a>relative IRI</a>, <a>compact IRI</a> (including <a>blank node identifiers</a>), or <a>absolute IRI</a>),
-      the <a>keyword</a> <code>@none</code>,
-      or a <a>term</a> which expands to <code>@none</code>,
-      and the values MUST be <a>node objects</a>.</p>
+      <a>terms</a>,
+      or the <a>keyword</a> <code>@none</code>,
+      and the values MUST be <a>node objects</a>
+      or <a>strings</a> which expand to node obects.</p>
 
     <p>If the value contains a property expanding to <code>@type</code>, and it's value
       is contains the referencing key after suitable expansion of both the referencing key
