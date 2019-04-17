@@ -10489,7 +10489,8 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>A <a>JSON-LD value</a> is a <a>typed value</a>, a <a>string</a> (which is interpreted
       as a <a>typed value</a> with type <code>xsd:string</code>), a <a>number</a>
       (<a>numbers</a> with a non-zero fractional part, i.e., the result of a modulo&#8209;1 operation,
-      <span class="changed">or which are too large to represent as integers,</span>
+      <span class="changed">or which are too large to represent as integers
+        (see <a data-cite="JSON-LD11-API#data-gound-tripping">Data Round Tripping</a>) in [[JSON-LD11-API]]),</span>
       are interpreted as <a>typed values</a> with type <code>xsd:double</code>, all other
       <a>numbers</a> are interpreted as <a>typed values</a>
       with type <code>xsd:integer</code>), <a>true</a> or <a>false</a> (which are interpreted as
