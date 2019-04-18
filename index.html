@@ -10886,7 +10886,7 @@ the data type to be specified explicitly with each piece of data.</p>
       an explicit <a>graph name</a>.
       A <a>dictionary</a> is a <a>graph object</a> if
       it exists outside of a JSON-LD <a>context</a>,
-      it is not a <a>node object</a>,
+      it contains an <code>@graph</code> member (or an alias of that <a>keyword</a>),
       it is not the top-most <a>dictionary</a> in the JSON-LD document, and
       it consists of no <a>members</a> other than <code>@graph</code>,
       <code>@index</code>, <code>@id</code>
