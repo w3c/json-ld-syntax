@@ -24,6 +24,10 @@ end
 
 PREFIXES = {
   dc:     "http://purl.org/dc/terms/",
+  dct:    "http://purl.org/dc/terms/",
+  dcterms:"http://purl.org/dc/terms/",
+  dc11:   "http://purl.org/dc/elements/1.1/",
+  dce:    "http://purl.org/dc/elements/1.1/",
   cred:   "https://w3id.org/credentials#",
   ex:     "http://example.org/",
   foaf:   "http://xmlns.com/foaf/0.1/",
@@ -90,11 +94,11 @@ def table_to_dataset(table)
         else RDF::Vocabulary.expand_pname(cell)
         end
       when 'Property'
-        predicate = RDF::Vocabulary.expand_pname(cell)
+        predicate = RDF::Vocabulary.expand_pname(cell.sub("dcterms:", "dc:"))
       when 'Value'
         object = case cell
         when /^_:/ then RDF::Node.intern(cell[2..-1])
-        when /^\w+:/ then RDF::Vocabulary.expand_pname(cell)
+        when /^\w+:/ then RDF::Vocabulary.expand_pname(cell.sub("dcterms:", "dc:"))
         else RDF::Literal(cell)
         end
       when 'Value Type'
@@ -103,7 +107,7 @@ def table_to_dataset(table)
         else
           # We might think something was an IRI, but determine that it's not
           object = RDF::Literal(object.to_s) unless object.literal?
-          object.datatype = RDF::Vocabulary.expand_pname(cell)
+          object.datatype = RDF::Vocabulary.expand_pname(cell.sub("dcterms:", "dc:"))
         end
       when 'Language' 
         case cell
@@ -150,7 +154,7 @@ def dataset_to_table(repo)
     row << (statement.graph_name || "&nbsp;").to_s if has_graph
     row += statement.to_triple.map do |term|
       if term.uri? && RDF::Vocabulary.find_term(term)
-        RDF::Vocabulary.find_term(term).pname
+        RDF::Vocabulary.find_term(term).pname.sub("dc:", "dcterms:")
       else
         term.to_s
       end
