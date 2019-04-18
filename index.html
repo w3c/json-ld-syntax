@@ -601,7 +601,11 @@
     </tr></thead>
     <tbody>
       <tr>
-        <td>dc</td>
+        <td>dc11</td>
+        <td>http://purl.org/dc/elements/1.1/</td>
+      </tr>
+      <tr>
+        <td>dcterms</td>
         <td>http://purl.org/dc/terms/</td>
       </tr>
       <tr>
@@ -640,7 +644,7 @@
   </table>
 
   <p>These are used within this document as part of a <a>compact IRI</a>
-    as a shorthand for the resulting <a>absolute IRI</a>, such as <code>dc:title</code>
+    as a shorthand for the resulting <a>absolute IRI</a>, such as <code>dcterms:title</code>
     used to represent <code>http://purl.org/dc/terms/title</code>.</p>
 </section>
 
@@ -1841,8 +1845,8 @@
         <tr><td>_:b0</td><td>foaf:name</td><td>Manu Sporny</td><td></td></tr>
         <tr><td>_:b0</td><td>foaf:homepage</td><td>http://manu.sporny.org/</td><td></td></tr>
         <tr><td>_:b0</td><td>foaf:depiction</td><td>http://twitter.com/account/profile_image/manusporny</td><td></td></tr>
-        <tr><td>_:b1</td><td>dc:title</td><td>The Empire State Building</td><td></td></tr>
-        <tr><td>_:b1</td><td>dc:description</td><td>The Empire State Building is a 102-story landmark in New York City.</td><td></td></tr>
+        <tr><td>_:b1</td><td>dcterms:title</td><td>The Empire State Building</td><td></td></tr>
+        <tr><td>_:b1</td><td>dcterms:description</td><td>The Empire State Building is a 102-story landmark in New York City.</td><td></td></tr>
         <tr><td>_:b2</td><td>geo:lat</td><td>40.75</td><td>xsd:decimal</td></tr>
         <tr><td>_:b2</td><td>geo:long</td><td>73.98</td><td>xsd:decimal</td></tr>
         <tr><td>_:b1</td><td>schema:geo</td><td>_:b2</td><td></td></tr>
@@ -1854,7 +1858,7 @@
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix dc: <http://purl.org/dc/terms/> .
+    @prefix dcterms: <http://purl.org/dc/terms/> .
     @prefix foaf: <http://xmlns.com/foaf/0.1/> .
     @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
     @prefix schema: <http://schema.org/> .
@@ -1867,8 +1871,8 @@
     ] .
 
     [
-      dc:title "The Empire State Building";
-      dc:description "The Empire State Building is a 102-story landmark in New York City.";
+      dcterms:title "The Empire State Building";
+      dcterms:description "The Empire State Building is a 102-story landmark in New York City.";
       schema:geo [
         geo:lat 40.75;
         geo:long 73.98
@@ -1952,8 +1956,8 @@
         <tr><td>_:b0</td><td>foaf:name</td><td>Manu Sporny</td><td></td></tr>
         <tr><td>_:b0</td><td>foaf:homepage</td><td>http://manu.sporny.org/</td><td></td></tr>
         <tr><td>_:b0</td><td>foaf:depiction</td><td>http://twitter.com/account/profile_image/manusporny</td><td></td></tr>
-        <tr><td>_:b1</td><td>dc:title</td><td>The Empire State Building</td><td></td></tr>
-        <tr><td>_:b1</td><td>dc:description</td><td>The Empire State Building is a 102-story landmark in New York City.</td><td></td></tr>
+        <tr><td>_:b1</td><td>dcterms:title</td><td>The Empire State Building</td><td></td></tr>
+        <tr><td>_:b1</td><td>dcterms:description</td><td>The Empire State Building is a 102-story landmark in New York City.</td><td></td></tr>
         <tr><td>_:b2</td><td>geo:lat</td><td>40.75</td><td>xsd:decimal</td></tr>
         <tr><td>_:b2</td><td>geo:long</td><td>73.98</td><td>xsd:decimal</td></tr>
         <tr><td>_:b1</td><td>schema:geo</td><td>_:b2</td><td></td></tr>
@@ -1965,7 +1969,7 @@
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix dc: <http://purl.org/dc/terms/> .
+    @prefix dcterms: <http://purl.org/dc/terms/> .
     @prefix foaf: <http://xmlns.com/foaf/0.1/> .
     @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
     @prefix schema: <http://schema.org/> .
@@ -1978,8 +1982,8 @@
     ] .
 
     [
-      dc:title "The Empire State Building";
-      dc:description "The Empire State Building is a 102-story landmark in New York City.";
+      dcterms:title "The Empire State Building";
+      dcterms:description "The Empire State Building is a 102-story landmark in New York City.";
       schema:geo [
         geo:lat 40.75;
         geo:long 73.98
@@ -3680,7 +3684,7 @@ type with a particular <a>term</a> in the <code>@context</code>:</p>
          data-to-rdf>
     <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
     <tbody>
-      <tr><td>http://example.com/docs/1</td><td>dc:modified</td><td>2010-05-29T14:17:39+02:00</td><td>xsd:dateTime</td></tr>
+      <tr><td>http://example.com/docs/1</td><td>dcterms:modified</td><td>2010-05-29T14:17:39+02:00</td><td>xsd:dateTime</td></tr>
     </tbody>
   </table>
   <pre class="turtle"
@@ -3689,10 +3693,10 @@ type with a particular <a>term</a> in the <code>@context</code>:</p>
        data-transform="updateExample"
        data-to-rdf>
   <!--
-  @prefix dc: <http://purl.org/dc/terms/> .
+  @prefix dcterms: <http://purl.org/dc/terms/> .
   @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-  <http://example.com/docs/1> dc:modified "2010-05-29T14:17:39+02:00"^^xsd:dateTime .
+  <http://example.com/docs/1> dcterms:modified "2010-05-29T14:17:39+02:00"^^xsd:dateTime .
   -->
   </pre>
 </aside>
@@ -3749,7 +3753,7 @@ in the body of a JSON-LD document:</p>
          data-to-rdf>
     <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
     <tbody>
-      <tr><td>_:b0</td><td>dc:modified</td><td>2010-05-29T14:17:39+02:00</td><td>xsd:dateTime</td></tr>
+      <tr><td>_:b0</td><td>dcterms:modified</td><td>2010-05-29T14:17:39+02:00</td><td>xsd:dateTime</td></tr>
     </tbody>
   </table>
   <pre class="turtle"
@@ -3758,10 +3762,10 @@ in the body of a JSON-LD document:</p>
        data-transform="updateExample"
        data-to-rdf>
   <!--
-  @prefix dc: <http://purl.org/dc/terms/> .
+  @prefix dcterms: <http://purl.org/dc/terms/> .
   @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-  [ dc:modified "2010-05-29T14:17:39+02:00"^^xsd:dateTime ] .
+  [ dcterms:modified "2010-05-29T14:17:39+02:00"^^xsd:dateTime ] .
   -->
   </pre>
 </aside>
@@ -3837,7 +3841,7 @@ in the body of a JSON-LD document:</p>
   </tr>
   <tr>
     <td>http://example.org/posts#TripToWestVirginia</td>
-    <td>dc:modified</td>
+    <td>dcterms:modified</td>
     <td>2010-05-29T14:17:39+02:00</td>
     <td>xsd:dateTime</td>
   </tr>
@@ -3849,12 +3853,12 @@ in the body of a JSON-LD document:</p>
        data-transform="updateExample"
        data-to-rdf>
   <!--
-  @prefix dc: <http://purl.org/dc/terms/> .
+  @prefix dcterms: <http://purl.org/dc/terms/> .
   @prefix schema: <http://schema.org/> .
   @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
   <http://example.org/posts#TripToWestVirginia> a ****schema:BlogPosting****;
-    dc:modified "2010-05-29T14:17:39+02:00"^^****xsd:dateTime**** .
+    dcterms:modified "2010-05-29T14:17:39+02:00"^^****xsd:dateTime**** .
   -->
   </pre>
 </aside>
@@ -4098,7 +4102,7 @@ the data type to be specified explicitly with each piece of data.</p>
        data-transform="updateExample"
        data-to-rdf>
   <!--
-  @prefix dc: <http://purl.org/dc/terms/> .
+  @prefix dcterms: <http://purl.org/dc/terms/> .
   @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
   <http://example.com/people#john> foaf:name "John Smith";
@@ -4673,9 +4677,9 @@ the data type to be specified explicitly with each piece of data.</p>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
   {
-    "@context": {"dc": "http://purl.org/dc/terms/"},
+    "@context": {"dcterms": "http://purl.org/dc/terms/"},
     "@id": "http://example.org/articles/8",
-    "dc:title": ****[
+    "dcterms:title": ****[
       {
         "@value": "Das Kapital",
         "@language": "de"
@@ -4713,13 +4717,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <tbody>
   <tr>
     <td>http://example.org/articles/8</td>
-    <td>dc:title</td>
+    <td>dcterms:title</td>
     <td>Das Kapital</td>
     <td>de</td>
   </tr>
   <tr>
     <td>http://example.org/articles/8</td>
-    <td>dc:title</td>
+    <td>dcterms:title</td>
     <td>Capital</td>
     <td>en</td>
   </tr>
@@ -4731,9 +4735,9 @@ the data type to be specified explicitly with each piece of data.</p>
        data-transform="updateExample"
        data-to-rdf>
   <!--
-  @prefix dc: <http://purl.org/dc/terms/> .
+  @prefix dcterms: <http://purl.org/dc/terms/> .
 
-  <http://example.org/articles/8> dc:title
+  <http://example.org/articles/8> dcterms:title
     ****"Das Kapital"@de, "Capital"@en**** .
   -->
   </pre>
