@@ -12233,7 +12233,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <section id="privacy" class="appendix">
   <h3>Privacy Considerations</h3>
-  <p>The retrieval of external contexts can expose operation of JSON-LD processor
+  <p>The retrieval of external contexts can expose the operation of a JSON-LD processor
     and provide an opportunity for a man-in-the-middle attack.
     To protect against this, publishers should consider caching remote contexts for future use,
     or use the <a data-cite="JSON-LD11-API#dom-jsonldoptions-documentloader">documentLoader</a>
@@ -12245,7 +12245,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>As JSON-LD uses the RDF data model, it is restricted by design in its ability to
     properly record <a>JSON-LD Values</a> which are <a>strings</a> with left-to-right or right-to-left direction indicators.
     Both JSON-LD and RDF provide a mechanism for specifying the language associated with
-    a string (<a>language-tagged string</a>), but this does not provide a means of indicating
+    a string (<a>language-tagged string</a>), but do not provide a means of indicating
     the direction of the string.</p>
 
   <p>Unicode provides a mechanism for signaling direction within a string
@@ -12255,7 +12255,7 @@ the data type to be specified explicitly with each piece of data.</p>
     such as the [[HTML]] <a data-cite="HTML/dom.html#the-dir-attribute">dir attribute</a>.</p>
 
   <p>The issue of properly representing text direction in RDF is not something that
-    this Working Group can handle, as it is a function or the core RDF data model.
+    this Working Group can handle, as it is a limitation or the core RDF data model.
     This Working Group expects that a future RDF Working Group will consider the matter
     and add the ability to specify the text direction of <a>language-tagged strings</a>.</p>
 
