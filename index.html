@@ -2970,21 +2970,44 @@
 </pre>
 
 <p>
-In this example, the <a>compact IRI</a> form is used in two different
-ways.
-In the first approach, <code>foaf:age</code> declares both the
-<a>IRI</a> for the <a>term</a> (using short-form) as well as the
-<code>@type</code> associated with the <a>term</a>. In the second
-approach, only the <code>@type</code> associated with the <a>term</a> is
-specified. The full <a>IRI</a> for
-<code>foaf:homepage</code> is determined by looking up the <code>foaf</code>
-<a>prefix</a> in the
-<a>context</a>.
-</p>
+In this example, the <a>compact IRI</a> form is used in two different ways.
+  In the first approach, <code>foaf:age</code> declares both the
+  <a>IRI</a> for the <a>term</a> (using short-form) as well as the
+  <code>@type</code> associated with the <a>term</a>. In the second
+  approach, only the <code>@type</code> associated with the <a>term</a> is
+  specified. The full <a>IRI</a> for
+  <code>foaf:homepage</code> is determined by looking up the <code>foaf</code>
+  <a>prefix</a> in the
+  <a>context</a>.</p>
 
-<p>
-<a>Absolute IRIs</a> may also be used in the key position in a <a>context</a>:
-</p>
+<p class="warning changed">If a <a>compact IRI</a> is used as a <a>term</a>, it must expand to the
+  value that <a>compact IRI</a> would have on its own when expanded.
+  This represents a change to the original 1.0 algorithm to prevent terms from
+  expanding to a different <a>absolute IRI</a>, which could lead to undesired results.</p>
+
+<pre class="illegal-example nohighlight" data-transform="updateExample"
+     title="Illegal Aliasing of a compact IRI to a different absolute IRI">
+<!--
+{
+  "@context": {
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "name": "foaf:name",
+    "foaf:age": {
+      "@id": "http://xmlns.com/foaf/0.1/age",
+      "@type": "xsd:integer"
+    },
+    "foaf:homepage": {
+     ****"@id": "http://schema.org/url"****,
+     "@type": "@id"
+    }
+  }####,
+  ...####
+}
+-->
+</pre>
+
+<p><a>Absolute IRIs</a> may also be used in the key position in a <a>context</a>:</p>
 
 <pre class="example nohighlight" data-transform="updateExample"
      title="Associating context definitions with absolute IRIs">
@@ -3014,13 +3037,11 @@ specified. The full <a>IRI</a> for
   That is, <a>terms</a> are looked up in a <a>context</a> using
   direct string comparison before the <a>prefix</a> lookup mechanism is applied.</p>
 
-<p class="note">While it is possible to define a <a>compact IRI</a>, or
-  an <a>absolute IRI</a> to expand to some other unrelated <a>IRI</a>
-  (for example, <code>foaf:name</code> expanding to
-  <code>http://example.org/unrelated#species</code>), such usage is strongly
-  discouraged.</p>
+<p class="warning changed">Neither a <a>compact IRI</a> nor an <a>absolute IRI</a>
+  may expand to some other unrelated <a>IRI</a>.
+  This represents a change to the original 1.0 algorithm which allowed this behavior but discouraged it.</p>
 
-<p>The only exception for using terms in the <a>context</a> is that
+<p>The only other exception for using terms in the <a>context</a> is that
   circular definitions are not allowed. That is,
   a definition of <em>term1</em> cannot depend on the
   definition of <em>term2</em> if <em>term2</em> also depends on
@@ -11223,6 +11244,9 @@ the data type to be specified explicitly with each piece of data.</p>
     <code>@vocab</code> mapping, the <a>expanded term definition</a> MUST
     include the <code>@id</code> key.</p>
 
+  <p class="changed"><a>Term definitions</a> with keys which are of the form of a <a>compact IRI</a> or <a>absolute IRI</a> MUST NOT
+    expand to an <a>IRI</a> other than the expansion of the key itself.</p>
+
   <p>If the <a>expanded term definition</a> contains the <code>@id</code>
     <a>keyword</a>, its value MUST be <a>null</a>, an <a>absolute IRI</a>,
     a <a>blank node identifier</a>, a <a>compact IRI</a>, a <a>term</a>,
@@ -12352,6 +12376,8 @@ the data type to be specified explicitly with each piece of data.</p>
       )</li>
     <li>Added support for <code>"@type": "@none"</code> in a <a>term definition</a> to prevent value compaction.
       Define the <code>rdf:JSON</code> datatype.</li>
+    <li><a>Term definitions</a> with keys which are of the form of a <a>compact IRI</a> or <a>absolute IRI</a> MUST NOT
+      expand to an <a>IRI</a> other than the expansion of the key itself.</li>
   </ul>
 </section>
 
