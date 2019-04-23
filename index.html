@@ -12229,11 +12229,16 @@ the data type to be specified explicitly with each piece of data.</p>
 <section id="security" class="appendix">
   <h3>Security Considerations</h3>
   <p>See, <a href="#iana-security">Security Considerations</a> in <a href="#iana-considerations" class="sectionRef"></a>.</p>
+  <p>Future versions of this specification
+    may incorporate subresource integrity [[?SRI]] as a means of ensuring that cached and retrieved
+    content matches data retrieved from remote servers; see <a href="https://github.com/w3c/json-ld-syntax/issues/86">issue 86</a>.</p>
 </section>
 
 <section id="privacy" class="appendix">
   <h3>Privacy Considerations</h3>
-  <p>The retrieval of external contexts can expose the operation of a JSON-LD processor
+  <p>The retrieval of external contexts can expose the operation of a JSON-LD processor,
+    allow intermediate nodes to fingerprint the client application through introspection of retrieved resources
+    (see [[?fingerprinting-guidance]]), and
     and provide an opportunity for a man-in-the-middle attack.
     To protect against this, publishers should consider caching remote contexts for future use,
     or use the <a data-cite="JSON-LD11-API#dom-jsonldoptions-documentloader">documentLoader</a>
@@ -12246,13 +12251,14 @@ the data type to be specified explicitly with each piece of data.</p>
     properly record <a>JSON-LD Values</a> which are <a>strings</a> with left-to-right or right-to-left direction indicators.
     Both JSON-LD and RDF provide a mechanism for specifying the language associated with
     a string (<a>language-tagged string</a>), but do not provide a means of indicating
-    the direction of the string.</p>
+    the base direction of the string.</p>
 
   <p>Unicode provides a mechanism for signaling direction within a string
     (see <a data-cite="UAX9">Unicode Bidirectional Algorithm</a> [[UAX9]]),
     however, when a string has an overall base direction which cannot be determined by the
     beginning of the string, an external indicator is required,
-    such as the [[HTML]] <a data-cite="HTML/dom.html#the-dir-attribute">dir attribute</a>.</p>
+    such as the [[HTML]] <a data-cite="HTML/dom.html#the-dir-attribute">dir attribute</a>,
+    which currently has no counterpart for <a>RDF literals</a>.</p>
 
   <p>The issue of properly representing text direction in RDF is not something that
     this Working Group can handle, as it is a limitation or the core RDF data model.
@@ -12262,7 +12268,9 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>Until a more comprehensive solution can be addressed in a future version of this
     specification, publishers should consider this issue when representing strings
     where the text direction of the string cannot otherwise be correctly inferred
-    based on the content of the string.</p>
+    based on the content of the string.
+    See [[?string-meta]] for a discussion best practices for
+    identifying language and base direction for strings used on the Web.</p>
 </section>
 
 <section class="appendix informative preserve">
