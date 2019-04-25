@@ -898,7 +898,7 @@
       information located outside of the <code>@context</code> key, such as
       documentation about the <a>terms</a> declared in the
       document. Information contained outside of the <code>@context</code> value
-      is ignored when the document is used as an external JSON-LD context document.</p>
+      is ignored when the document is used as an external <dfn data-lt="context document">JSON-LD context document</dfn>.</p>
 
     <p>JSON documents can be interpreted as JSON-LD without having to be modified by
       referencing a <a>context</a> via an <a data-cite="RFC8288#section-3">HTTP Link Header</a>
@@ -9989,6 +9989,16 @@ the data type to be specified explicitly with each piece of data.</p>
     <code>profile</code> parameter which can be used to signal or request
     <dfn>framed document form</dfn>. The profile URI identifying
     <a>framed document form</a> is <code>http://www.w3.org/ns/json-ld#framed</code>.</p>
+
+  <p><a href="#application-ld-json">JSON-LD's media type</a> also defines a
+    <code>profile</code> parameter which can be used to identify a
+    <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a> in an HTML document containing a frame.
+    The first <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a>
+    of type <code>application/ld+json;profile=http://www.w3.org/ns/json-ld#frame</code>
+    will be used to find a <a>frame</a>.
+    This is similar to the mechanism described for retrieving contexts
+    from HTML documents as described in
+    <a href="#using-an-html-document-as-a-context" class="sectionRef"></a>.</p>
 </section>
 </section>
 
@@ -10072,7 +10082,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>
     JSON-LD content can be easily embedded in HTML [[HTML]] by placing
-    it in a <a data-cite="HTML/semantics-scripting.html#the-script-element">Script element</a> with the <code>type</code> attribute set to
+    it in a <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a> with the <code>type</code> attribute set to
     <code>application/ld+json</code>. Doing so creates a
     <a data-cite="HTML/semantics-scripting.html#data-block">data block</a>.</p>
 
@@ -10442,6 +10452,147 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
   </aside>
+  </section>
+
+  <section><h3>Using an HTML document as a Context</h3>
+    <p>A JSON-LD document, whether embedded in HTML or otherwise,
+      may reference a <a>context document</a> by using a string value to <code>@context</code>.
+      This string is interpreted as a URL to an external document from which
+      the context is loaded. In JSON-LD 1.1, this external document may also
+      be HTML containing a <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a>
+      with the <code>type</code> attribute set to
+      <code>application/ld+json;profile=http://www.w3.org/ns/json-ld#context</code>.</p>
+
+    <p>A processor processing a remote context which results in an HTML document
+      MUST locate the first <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a>
+      with the <code>type</code> attribute set to
+      <code>application/ld+json;profile=http://www.w3.org/ns/json-ld#context</code>,
+      or a specific script element targeted using a fragment identifier,
+      or the first script element of type <code>application/ld+json</code>
+      if no other is found.</p>
+
+    <p>Including a context definition within an HTML document provides a means
+      of documenting the context content, along with other information
+      such as the vocabulary definition.</p>
+
+    <p>For example, a context may be defined within an HTML file as follows
+      (a subset of the <em>Person</em> context published at <code><a href="https://json-ld.org/contexts/person.html">https://json-ld.org/contexts/person.html</a></code>):</p>
+
+    <pre class="example context"
+         title="Context defined in an HTML document"
+         data-content-type="text/html"
+         data-transform="updateExample">
+    <!--
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+          <title>Context definition of a person</title>
+          <script ****type="application/ld+json;profile=http://www.w3.org/ns/json-ld#context"****>
+            {
+               "@context":
+               {
+                 "foaf": "http://xmlns.com/foaf/0.1/",
+                 "schema": "http://schema.org/",
+                 "vcard": "http://www.w3.org/2006/vcard/ns#",
+                 "xsd": "http://www.w3.org/2001/XMLSchema#",
+                 "Address": "vcard:Address"####,
+                 ...####
+               }
+            }
+          </script>
+        </head>
+        <body>
+          <h1>The Person context</h1>
+          <p>The Person context is based on a combination of <a href="http://xmlns.com/foaf/0.1/">FOAF</a>,
+            <a href="http://schema.org/">schema.org </a>,
+            and <a href="http://www.w3.org/2006/vcard/ns#">vcard</a> vocabularies. It defines the following terms:</p>
+
+          <dl>
+            <dt>foaf</dt><dd><code>http://xmlns.com/foaf/0.1/</code></dd>
+            <dt>schema</dt><dd><code>http://schema.org/</code></dd>
+            <dt>vcard</dt><dd><code>http://www.w3.org/2006/vcard/ns#</code></dd>
+            <dt>xsd</dt><dd><code>http://www.w3.org/2001/XMLSchema#</code></dd>
+            <dt>Address</dt><dd><code>vcard:Address</code></dd>
+            ####...####
+          </dl>
+        </body>
+      </html>
+    -->
+    </pre>
+
+    <p>Using a previous example, we can reference <code>https://json-ld.org/contexts/person.html</code>
+      instead of <code>https://json-ld.org/contexts/person.jsonld</code>
+      and a JSON-LD processor will look for the context within the referenced HTML file.</p>
+
+    <aside class="example ds-selector-tabs"
+             title="Referencing a Context in an HTML document">
+      <div class="selectors">
+        <button class="selected" data-selects="original">Original</button>
+        <button data-selects="expanded">Expanded</button>
+        <button data-selects="statements">Statements</button>
+        <button data-selects="turtle">Turtle</button>
+        <a class="playground" target="_blank"></a>
+      </div>
+      <pre class="original selected nohighlight" data-transform="updateExample">
+      <!--
+      {
+        "@context": ****"https://json-ld.org/contexts/person.html"****,
+        "@id": "http://dbpedia.org/resource/John_Lennon",
+        "name": "John Lennon",
+        "born": "1940-10-09",
+        "spouse": "http://dbpedia.org/resource/Cynthia_Lennon"
+      }
+      -->
+      </pre>
+      <pre class="expanded"
+           data-transform="updateExample"
+           data-result-for="Referencing a Context in an HTML document-original">
+      <!--
+      [{
+        "@id": "http://dbpedia.org/resource/John_Lennon",
+        "http://xmlns.com/foaf/0.1/name": [{"@value": "John Lennon"}],
+        "http://schema.org/birthDate": [
+          {"@value": "1940-10-09", "@type": "http://www.w3.org/2001/XMLSchema#date"}
+        ],
+        "http://schema.org/spouse": [
+          {"@id": "http://dbpedia.org/resource/Cynthia_Lennon"}
+        ]
+      }]
+      -->
+      </pre>
+      <table class="statements"
+             data-result-for="Referencing a Context in an HTML document-expanded"
+             data-to-rdf>
+        <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
+        <tbody>
+          <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>foaf:name</td><td>John Lennon</td><td>&nbsp;</td></tr>
+          <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:birthDate</td><td>1940-10-09</td><td>xsd:date</td></tr>
+          <tr><td>http://dbpedia.org/resource/John_Lennon</td><td>schema:spouse</td><td>http://dbpedia.org/resource/Cynthia_Lennon</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+      <pre class="turtle"
+           data-content-type="text/turtle"
+           data-transform="updateExample"
+           data-result-for="Referencing a Context in an HTML document-expanded"
+           data-to-rdf>
+      <!--
+      @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+      @prefix schema: <http://schema.org/> .
+      @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+      <http://dbpedia.org/resource/John_Lennon> foaf:name "John Lennon";
+         schema:birthDate "1940-10-09"^^xsd:date;
+         schema:spouse <http://dbpedia.org/resource/Cynthia_Lennon> .
+      -->
+      </pre>
+    </aside>
+
+    <p>In addition to using the type profile above, a context may be referenced using
+      a fragment identifier,
+      as described in <a href="#locating-a-specific-json-ld-script-element" class="sectionRef"></a>.
+      Otherwise, the first <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a>
+      of type <code>application/ld+json</code> will be used to find a context.</p>
   </section>
 </section>
 
@@ -12151,14 +12302,18 @@ the data type to be specified explicitly with each piece of data.</p>
             It is RECOMMENDED that profile URIs are dereferenceable and provide
             useful documentation at that URI. For more information and background
             please refer to [[RFC6906]].</p>
-          <p>This specification defines four values for the <code>profile</code> parameter.</p>
+          <p>This specification defines six values for the <code>profile</code> parameter.</p>
           <dl>
             <dt><code>http://www.w3.org/ns/json-ld#expanded</code></dt>
             <dd>To request or specify <a data-lt="expanded document form">expanded JSON-LD document form</a>.</dd>
             <dt><code>http://www.w3.org/ns/json-ld#compacted</code></dt>
             <dd>To request or specify <a data-lt="compacted document form">compacted JSON-LD document form</a>.</dd>
+            <dt><code>http://www.w3.org/ns/json-ld#context</code></dt>
+            <dd>To request or specify a <a data-lt="context document">JSON-LD context document</a>.</dd>
             <dt><code>http://www.w3.org/ns/json-ld#flattened</code></dt>
             <dd>To request or specify <a data-lt="flattened document form">flattened JSON-LD document form</a>.</dd>
+            <dt><code>http://www.w3.org/ns/json-ld#frame</code></dt>
+            <dd>To request or specify a <a data-lt="frame">JSON-LD frame document</a>.</dd>
             <dt><code>http://www.w3.org/ns/json-ld#framed</code></dt>
             <dd>To request or specify <a data-lt="framed document form">framed JSON-LD document form</a>.</dd>
           </dl>
@@ -12378,6 +12533,12 @@ the data type to be specified explicitly with each piece of data.</p>
       Define the <code>rdf:JSON</code> datatype.</li>
     <li><a>Term definitions</a> with keys which are of the form of a <a>compact IRI</a> or <a>absolute IRI</a> MUST NOT
       expand to an <a>IRI</a> other than the expansion of the key itself.</li>
+    <li>If a retrieved context URL returns an HTML document, the first script element
+      of type <code>application/ld+json;profile=http://www.w3.org/ns/json-ld#context</code>,
+      or <code>application/ld+json</code> is used as the context for further processing.
+      This allows a mechanism for documenting the content of a context using HTML.</li>
+    <li>A <a>frame</a> may also be located within an HTML document, identified
+      using type <code>application/ld+json;profile=http://www.w3.org/ns/json-ld#frame</code>.</li>
   </ul>
 </section>
 
