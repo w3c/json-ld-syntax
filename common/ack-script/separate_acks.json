@@ -1,0 +1,40 @@
+[
+    {
+        "name": "Tim Cole"
+    },
+    {
+        "name": "Ivan Herman"
+    },
+    {
+        "name": "Jeff Mixter"
+    },
+    {
+        "name": "David Longley"
+    },
+    {
+        "name": "David I. Lehn"
+    },
+    {
+        "name": "David Newbury"
+    },
+    {
+        "name": "Rob Sanderson",
+        "chair": "true"
+    },
+    {
+        "name": "Harold Solbrig"
+    },
+    {
+        "name": "Simon Steyskal"
+    },
+    {
+        "name": "Adam Soroka"
+    },
+    {
+        "name": "Ruben Taelman"
+    },
+    {
+        "name": "Benjamin Young",
+        "chair": "true"
+    }
+]
