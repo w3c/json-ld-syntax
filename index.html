@@ -437,30 +437,6 @@
   </section>
 
   <section class="informative">
-    <h2>Processor Levels</h2>
-    <p>JSON-LD mostly uses the JSON syntax [[RFC8259]] along with
-      various micro-syntaxes based on XML Schema datatypes [[XMLSCHEMA11-2]].
-      However, it has become increasingly common to include JSON within
-      a <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a>
-      within an HTML document [[HTML]],
-      as described in <a href="#embedding-json-ld-in-html-documents" class="sectionRef"></a>.
-      As not all processors operate in an environment which can include HTML,
-      this specification describes various categories of JSON-LD processors.</p>
-
-    <p>A <dfn>pure JSON Processor</dfn> only requires the use of a
-      JSON processor and is restricted to processing documents retrieved
-      with a JSON content type (e.g., <code>application/ld+json</code> or other JSON type).</p>
-
-    <p>A <dfn>event-based JSON Processor</dfn> processes a stream of characters
-      expecting an event after each syntactic element is encountered.
-      Such processors are sensitive to the order of the members of <a>JSON objects</a>,
-      which can have a performance impact if the members of <a>JSON objects</a> are encountered in an unexpected order.</p>
-
-    <p>A <dfn>full Processor</dfn> is capable of JSON-LD embedded in HTML,
-      in addition to the capabilities of a <a>pure JSON Processor</a>.</p>
-  </section>
-
-  <section class="informative">
     <h2>Data Model Overview</h2>
 
     <p>Generally speaking, the data model described by a
@@ -668,6 +644,37 @@
   <p>These are used within this document as part of a <a>compact IRI</a>
     as a shorthand for the resulting <a>absolute IRI</a>, such as <code>dcterms:title</code>
     used to represent <code>http://purl.org/dc/terms/title</code>.</p>
+
+  <section>
+    <h2>Processor Levels</h2>
+    <p>JSON-LD mostly uses the JSON syntax [[RFC8259]] along with
+      various micro-syntaxes based on XML Schema datatypes [[XMLSCHEMA11-2]].
+      However, it has become increasingly common to include JSON within
+      a <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a>
+      within an HTML document [[HTML]],
+      as described in <a href="#embedding-json-ld-in-html-documents" class="sectionRef"></a>.
+      As not all processors operate in an environment which can include HTML,
+      this specification describes various categories of JSON-LD processors.</p>
+
+    <p>A <dfn>pure JSON Processor</dfn> only requires the use of a
+      JSON processor and is restricted to processing documents retrieved
+      with a JSON content type (e.g., <code>application/ld+json</code> or other JSON type).</p>
+
+    <p>A <dfn>full Processor</dfn> is capable of processing JSON-LD embedded in HTML,
+      in addition to the capabilities of a <a>pure JSON Processor</a>.</p>
+
+    <section class="informative">
+      <h3>Additional Processor Levels</h3>
+
+      <p>In addition to the normatively defined processor levels, an additional processor
+        level is defined for reference.</p>
+
+      <p>A <dfn>event-based JSON Processor</dfn> processes a stream of characters
+        expecting an event after each syntactic element is encountered.
+        Such processors are sensitive to the order of the members of <a>JSON objects</a>,
+        which can have a performance impact if the members of <a>JSON objects</a> are encountered in an unexpected order.</p>
+    </section>
+  </section>
 </section>
 
 <section class="informative">
