@@ -1,24 +1,32 @@
 [
     {
-        "name": "Tim Cole"
+        "name": "Pierre-Antoine Champin",
+        "editor" : "true"
+    },
+    {
+        "name": "Timothy Cole"
     },
     {
         "name": "Ivan Herman"
     },
     {
+        "name": "Gregg Kellogg",
+        "editor": "true"
+    },
+    {
         "name": "Jeff Mixter"
     },
     {
-        "name": "David Longley"
+        "name": "Dave Longley"
     },
     {
-        "name": "David I. Lehn"
+        "name": "David Lehn"
     },
     {
         "name": "David Newbury"
     },
     {
-        "name": "Rob Sanderson",
+        "name": "Robert Sanderson",
         "chair": "true"
     },
     {
@@ -28,7 +36,7 @@
         "name": "Simon Steyskal"
     },
     {
-        "name": "Adam Soroka"
+        "name": "A Soroka"
     },
     {
         "name": "Ruben Taelman"
