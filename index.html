@@ -301,8 +301,7 @@
       network, in a single document.</li>
   </ul>
 
-  <p>
-   JSON-LD is designed to be usable directly as JSON, with no knowledge of RDF
+  <p>JSON-LD is designed to be usable directly as JSON, with no knowledge of RDF
    [[RDF11-CONCEPTS]]. It is also designed to be usable as RDF, if desired, for
    use with other Linked Data technologies like SPARQL [[SPARQL11-OVERVIEW]]. Developers who
    require any of the facilities listed above or need to serialize an RDF <a>Graph</a>
@@ -312,8 +311,7 @@
    to RDF are in section <a href="#relationship-to-rdf"></a>.
   </p>
 
-  <p>
-    The syntax is designed to not disturb already
+  <p>The syntax is designed to not disturb already
    deployed systems running on JSON, but provide a smooth upgrade path from
    JSON to JSON-LD. Since the shape of such data varies wildly, JSON-LD
    features mechanisms to reshape documents into a deterministic structure
@@ -436,7 +434,31 @@
       Complete details of how JSON-LD relates to RDF are in section
       <a href="#relationship-to-rdf"></a>.</dd>
   </dl>
-</section>
+  </section>
+
+  <section class="informative">
+    <h2>Processor Levels</h2>
+    <p>JSON-LD mostly uses the JSON syntax [[RFC8259]] along with
+      various micro-syntaxes based on XML Schema datatypes [[XMLSCHEMA11-2]].
+      However, it has become increasingly common to include JSON within
+      a <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a>
+      within an HTML document [[HTML]],
+      as described in <a href="#embedding-json-ld-in-html-documents" class="sectionRef"></a>.
+      As not all processors operate in an environment which can include HTML,
+      this specification describes various categories of JSON-LD processors.</p>
+
+    <p>A <dfn>pure JSON Processor</dfn> only requires the use of a
+      JSON processor and is restricted to processing documents retrieved
+      with a JSON content type (e.g., <code>application/ld+json</code> or other JSON type).</p>
+
+    <p>A <dfn>event-based JSON Processor</dfn> processes a stream of characters
+      expecting an event after each syntactic element is encountered.
+      Such processors are sensitive to the order of the members of <a>JSON objects</a>,
+      which can have a performance impact if the members of <a>JSON objects</a> are encountered in an unexpected order.</p>
+
+    <p>A <dfn>full Processor</dfn> is capable of JSON-LD embedded in HTML,
+      in addition to the capabilities of a <a>pure JSON Processor</a>.</p>
+  </section>
 
   <section class="informative">
     <h2>Data Model Overview</h2>
@@ -10080,6 +10102,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <section class="changed"><h2>Embedding JSON-LD in HTML Documents</h2>
 
+  <p class="note">This section describes features available to a <a>full Processor</a>.</p>
+
   <p>
     JSON-LD content can be easily embedded in HTML [[HTML]] by placing
     it in a <a data-cite="HTML/semantics-scripting.html#the-script-element">script element</a> with the <code>type</code> attribute set to
@@ -12533,7 +12557,8 @@ the data type to be specified explicitly with each piece of data.</p>
       Define the <code>rdf:JSON</code> datatype.</li>
     <li><a>Term definitions</a> with keys which are of the form of a <a>compact IRI</a> or <a>absolute IRI</a> MUST NOT
       expand to an <a>IRI</a> other than the expansion of the key itself.</li>
-    <li>If a retrieved context URL returns an HTML document, the first script element
+    <li>Define different processor modes: <a>pure JSON Processor</a>, <a>event-based JSON processor</a>, and <a>full Processor</a>.</li>
+    <li>For a <a>full Processor</a>, if a retrieved context URL returns an HTML document, the first script element
       of type <code>application/ld+json;profile=http://www.w3.org/ns/json-ld#context</code>,
       or <code>application/ld+json</code> is used as the context for further processing.
       This allows a mechanism for documenting the content of a context using HTML.</li>
