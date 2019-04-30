@@ -1,7 +1,7 @@
 [
     {
         "name": "Pierre-Antoine Champin",
-        "editor" : "true"
+        "editor" : true
     },
     {
         "name": "Timothy Cole"
@@ -11,7 +11,7 @@
     },
     {
         "name": "Gregg Kellogg",
-        "editor": "true"
+        "editor": true
     },
     {
         "name": "Jeff Mixter"
@@ -27,7 +27,7 @@
     },
     {
         "name": "Robert Sanderson",
-        "chair": "true"
+        "chair": true
     },
     {
         "name": "Harold Solbrig"
@@ -43,6 +43,6 @@
     },
     {
         "name": "Benjamin Young",
-        "chair": "true"
+        "chair": true
     }
 ]
