@@ -672,7 +672,12 @@
       <p>A <dfn>event-based JSON Processor</dfn> processes a stream of characters
         expecting an event after each syntactic element is encountered.
         Such processors are sensitive to the order of the members of <a>JSON objects</a>,
-        which can have a performance impact if the members of <a>JSON objects</a> are encountered in an unexpected order.</p>
+        which can have a performance impact if the members of <a>JSON objects</a> are encountered in an unexpected order.
+        An <a>event-based JSON Processor</a> may process JSON-LD embedded in HTML.</p>
+
+      <p class="note">An <a>event-based JSON Processor</a>
+        may be sensitive to processing certain keywords in order, including
+        <code>@context</code>, <code>@id</code>, and <code>@type</code>.</p>
     </section>
   </section>
 </section>
