@@ -144,21 +144,18 @@
     float: right;
     font: x-large Arial, sans-serif;
     color: gray;
-    padding-top: -20px;
   }
   .example > pre.frame:before {
     content: "Frame";
     float: right;
     font: x-large Arial, sans-serif;
     color: gray;
-    padding-top: -20px;
   }
   .example > pre.input:before {
     content: "Input";
     float: right;
     font: x-large Arial, sans-serif;
     color: gray;
-    padding-top: -20px;
   }
   .changed {
     background-color: rgb(215, 238, 197);
@@ -2756,12 +2753,11 @@
     </pre>
   </aside>
 
-  <p class="changed">In JSON-LD 1.1, terms may be chosen as <a>compact IRI</a> prefixes when
+  <p class="changed">When operating with the default <a>processing mode</a>
+    for JSON-LD 1.0 compatibility, terms may be chosen as <a>compact IRI</a> prefixes when
     compacting only if a <a>simple term definition</a> is used where the value ends with a
     URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character (e.g, <code>/</code>,
-    <code>#</code> and others, see [[RFC3986]]).
-    <span class="note">The previous specification allows any term to be chosen as
-      a compact IRI prefix, which led to a poor experience.</span></p>
+    <code>#</code> and others, see [[RFC3986]]).</p>
 
   <p class="changed">In JSON-LD 1.1, terms may be chosen as <a>compact IRI</a> prefixes
     when compacting only if
@@ -2769,80 +2765,178 @@
     or if their <a>expanded term definition</a> contains
     a <code>@prefix</code> <a>member</a> with the value <a>true</a>.</p>
 
-  <aside class="example ds-selector-tabs changed"
-         title="Using explicit @prefix declaration to create compact IRIs">
-    <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
-      <button data-selects="statements">Statements</button>
-      <button data-selects="turtle">Turtle</button>
-      <a class="playground" target="_blank"></a>
-    </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+  <p class="note changed">The term selection behavior for 1.0 processors was changed
+    as a result of an errata against JSON-LD 1.0 reported <a href="https://lists.w3.org/Archives/Public/public-rdf-comments/2018Jan/0002.html">here</a>.
+    This does not affect the behavior of processing existing JSON-LD documents, but creates
+    a slight change when compacting documents using <a>Compact IRIs</a>.</p>
+
+  <p>The behavior when compacting can be illustrated by considering the following input
+    document in expanded form:</p>
+
+  <pre id="term-selection-example" class="example expanded" data-transform="updateExample"
+       title="Expanded document used to illustrate compact IRI creation">
+  <!--
+  [{
+    "http://example.com/vocab/property": [{"@value": "property"}],
+    "http://example.com/vocab/propertyOne": [{"@value": "propertyOne"}]
+  }]
+  -->
+  </pre>
+
+  <p class="changed">Using the following context in the default 1.0 <a>processing mode</a>
+    will now select the term <em>vocab</em> rather than
+    <em>property</em>, even though the IRI associated with
+    <em>property</em> captures more of the original IRI.</p>
+
+  <pre id="term-selection-context-0"
+       class="example context"
+       data-transform="updateExample"
+       title="Compact IRI generation context (1.0)">
     <!--
     {
       "@context": {
-        "@version": 1.1,
-        "compact-iris": {"@id": "http://example.com/compact-iris-", ****"@prefix": true****},
-        "property": "http://example.com/property"
-      },
-      "property": {
-        "@id": ****"compact-iris:are-considered"****,
-        "property": "@prefix does not require a gen-delim"
+        "vocab": "http://example.com/vocab/",
+        "property": "http://example.com/vocab/property"
       }
     }
     -->
-    </pre>
-    <pre class="expanded nohighlight"
+  </pre>
+
+  <aside class="example ds-selector-tabs"
+         title="Compact IRI generation term selection (1.0)">
+    <div class="selectors">
+      <button class="selected" data-selects="compacted">Compacted</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+      <a class="playground"
+         data-result-for="#term-selection-example"
+         data-context="#term-selection-context-0"
+         data-compact
+         target="_blank"></a>
+    </div>
+    <pre class="compacted selected nohighlight"
          data-transform="updateExample"
-         data-result-for="Using explicit @prefix declaration to create compact IRIs-original">
+         data-result-for="Expanded document used to illustrate compact IRI creation"
+         data-context="Compact IRI generation context (1.0)"
+         data-compact
+         title="Compact IRI generation term selection (1.0)-compacted">
     <!--
-    [{
-      "http://example.com/property": [{
-        "@id": ****"http://example.com/compact-iris-are-considered"****,
-        "http://example.com/property": [{
-          "@value": "@prefix does not require a gen-delim"
-        }]
-      }]
-    }]
+    {
+      "@context": {
+        "vocab": "http://example.com/vocab/",
+        "property": "http://example.com/vocab/property"
+      },
+      "property": "property",
+      ****"vocab:propertyOne"****: "propertyOne"
+    }
     -->
     </pre>
     <table class="statements"
-           data-result-for="Using explicit @prefix declaration to create compact IRIs-expanded"
+           data-result-for="Expanded document used to illustrate compact IRI creation"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
-        <tr><td>http://example.com/compact-iris-are-considered</td><td>http://example.com/property</td><td>@prefix does not require a gen-delim</td></tr>
-        <tr><td>_:b0</td><td>http://example.com/property</td><td>http://example.com/compact-iris-are-considered</td></tr>
+        <tr><td>_:b0</td><td>http://example.com/vocab/property</td><td>property</td></tr>
+        <tr><td>_:b0</td><td>http://example.com/vocab/propertyOne</td><td>propertyOne</td></tr>
       </tbody>
     </table>
     <pre class="turtle nohighlight"
          data-content-type="text/turtle"
-         data-result-for="Using explicit @prefix declaration to create compact IRIs-expanded"
+         data-result-for="Expanded document used to illustrate compact IRI creation"
          data-transform="updateExample"
          data-to-rdf>
     <!--
-    @prefix compact-iris: <http://example.com/compact-iris-> .
-    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+    @prefix vocab: <http://example.com/vocab/> .
 
-    [ <http://example.com/property> ****compact-iris:are-considered**** ] .
-
-    ****compact-iris:are-considered****
-      <http://example.com/property> "@prefix does not require a gen-delim" .
+    [ vocab:property "property"; vocab:propertyOne "propertyOne"] .
     -->
     </pre>
   </aside>
 
-  <p class="changed">In this case, the <em>compact-iris</em> term would not normally be usable as a prefix, both
+  <p class="changed">In the original [[JSON-LD]],
+    the term selection algorithm would have selected <em>property</em>,
+    creating the Compact IRI <em>property:One</em>.
+    If the <a>processing mode</a> is <code>json-ld-1.1</code>, the original behavior can be
+    made explicit using <code>@prefix</code>:</p>
+
+  <pre id="term-selection-context-1"
+       class="example context"
+       data-transform="updateExample"
+       title="Compact IRI generation context (1.1)">
+    <!--
+    {
+      "@context": {
+        ****"@version": 1.1,****
+        "vocab": "http://example.com/vocab/",
+        "property": {
+          "@id": "http://example.com/vocab/property",
+          ****"@prefix": true****
+        }
+      }
+    }
+    -->
+  </pre>
+
+  <aside class="example ds-selector-tabs"
+         title="Compact IRI generation term selection (1.1)">
+    <div class="selectors">
+      <button class="selected" data-selects="compacted">Compacted</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+      <a class="playground"
+         data-result-for="#term-selection-example"
+         data-context="#term-selection-context-1"
+         data-compact
+         target="_blank"></a>
+    </div>
+    <pre class="compacted selected nohighlight" data-transform="updateExample"
+         data-result-for="Expanded document used to illustrate compact IRI creation"
+         data-context="Compact IRI generation context (1.1)"
+         data-compact
+         title="Compact IRI generation term selection (1.1)-compacted">
+    <!--
+    {
+      "@context": {
+        ****"@version": 1.1,****
+        "vocab": "http://example.com/vocab/",
+        "property": {
+          "@id": "http://example.com/vocab/property",
+          ****"@prefix": true****
+        }
+      },
+      "property": "property",
+      ****"property:One"****: "propertyOne"
+    }
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Expanded document used to illustrate compact IRI creation"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>_:b0</td><td>http://example.com/vocab/property</td><td>property</td></tr>
+        <tr><td>_:b0</td><td>http://example.com/vocab/propertyOne</td><td>propertyOne</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle nohighlight"
+         data-content-type="text/turtle"
+         data-result-for="Expanded document used to illustrate compact IRI creation"
+         data-transform="updateExample"
+         data-to-rdf>
+    <!--
+    @prefix vocab: <http://example.com/vocab/> .
+
+    [ vocab:property "property"; vocab:propertyOne "propertyOne"] .
+    -->
+    </pre>
+  </aside>
+
+  <p class="changed">In this case, the <em>property</em> term would not normally be usable as a prefix, both
     because it is defined with an <a>expanded term definition</a>, and because
     it's <code>@id</code> does not end in a
     <a data-cite="RFC3986#section-2.2">gen-delim</a> character. Adding
     <code>"@prefix": true</code> allows it to be used as the prefix portion of
     the <a>compact IRI</a> <em>compact-iris:are-considered</em>.</p>
-
-  <p class="note">This represents a small change to the 1.0 algorithm to prevent IRIs
-    that are not really intended to be used as prefixes from being used for creating
-    <a>compact IRIs</a>.</p>
 </section>
 
 <section class="informative"><h2>Aliasing Keywords</h2>
@@ -9189,10 +9283,10 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Compact form of the sample document once sample context has been applied">
     <div class="selectors">
-      <a class="playground" target="_blank"
+      <!--<a class="playground" target="_blank"
          data-result-for="#sample-expanded-json-ld-document"
          data-context="#sample-context"
-         data-compact></a>
+         data-compact></a>-->
     </div>
     <pre class="selected original" data-transform="updateExample"
          data-result-for="Sample expanded JSON-LD document"
