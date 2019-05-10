@@ -5,7 +5,7 @@ const jsonld = {
     "JSON-LD11": {
       title: "JSON-LD 1.1",
       href: "https://w3c.github.io/json-ld-syntax/",
-      authors: ["Gregg Kellogg"],
+      authors: ["Gregg Kellogg", "Pierre-Antoine Champin"],
       publisher: "W3C",
       status: 'FPWD',
       date: '10 May 2019'
