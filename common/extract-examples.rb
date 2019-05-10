@@ -196,7 +196,7 @@ ARGV.each do |input|
 
   File.open(input, "r") do |f|
     doc = Nokogiri::HTML.parse(f.read)
-    doc.css(".example").each do |element|
+    doc.css(".example, .illegal-example").each do |element|
       error = nil
       warn = nil
       example_number += 1 if %w(pre aside).include?(element.name)
@@ -238,7 +238,7 @@ ARGV.each do |input|
           context_for: element.attr('data-context-for'),
           context: element.attr('data-context'),
           base: element.attr('data-base'),
-          ignore: element.attr('data-ignore'),
+          ignore: element.attr('data-ignore') || element.attr('class').include?('illegal-example'),
           flatten: element.attr('data-flatten'),
           compact: element.attr('data-compact'),
           fromRdf: element.attr('data-from-rdf'),
