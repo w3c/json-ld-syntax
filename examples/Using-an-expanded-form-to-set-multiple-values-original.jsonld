@@ -1,7 +1,7 @@
 {
-  "@context": {"dc": "http://purl.org/dc/terms/"},
+  "@context": {"dcterms": "http://purl.org/dc/terms/"},
   "@id": "http://example.org/articles/8",
-  "dc:title": [
+  "dcterms:title": [
     {
       "@value": "Das Kapital",
       "@language": "de"

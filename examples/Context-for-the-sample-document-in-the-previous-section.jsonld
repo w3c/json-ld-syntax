@@ -1,13 +1,13 @@
 {
   "@context": {
-    "name": "http://schema.org/name",   
+    "name": "http://schema.org/name",
     "image": {
-      "@id": "http://schema.org/image",   
-      "@type": "@id"   
+      "@id": "http://schema.org/image",
+      "@type": "@id"
     },
     "homepage": {
-      "@id": "http://schema.org/url",   
-      "@type": "@id"   
+      "@id": "http://schema.org/url",
+      "@type": "@id"
     }
   }
 }

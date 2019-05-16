@@ -1,4 +1,4 @@
-Example 077: Indexing data in JSON-LD by type with @set representation-expanded
+Example 092: Indexing data in JSON-LD by type with @set representation-expanded
 ---
 - http://schema.org/name:
   - "@value": Manu Sporny

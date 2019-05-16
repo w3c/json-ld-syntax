@@ -1,0 +1,12 @@
+[{
+  "http://example.com/vocab/property": [
+    {"@value": "string"},
+    {"@value": true},
+    {"@value": 1},
+    {"@value": "false", "@type": "http://www.w3.org/2001/XMLSchema#boolean"},
+    {"@value": "10", "@type": "http://www.w3.org/2001/XMLSchema#integer"},
+    {"@value": "english", "@language": "en"},
+    {"@value": "2018-02-17", "@type": "http://www.w3.org/2001/XMLSchema#date"},
+    {"@id": "http://example.com/some-location"}
+  ]
+}]

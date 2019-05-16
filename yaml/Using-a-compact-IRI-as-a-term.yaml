@@ -1,10 +1,11 @@
-Example 035: Using a compact IRI as a term
+Example 040: Using a compact IRI as a term
 ---
 "@context":
   foaf: http://xmlns.com/foaf/0.1/
   xsd: http://www.w3.org/2001/XMLSchema#
   name: foaf:name
   foaf:age:
+    "@id": http://xmlns.com/foaf/0.1/age
     "@type": xsd:integer
   foaf:homepage:
     "@type": "@id"

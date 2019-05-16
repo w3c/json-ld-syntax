@@ -1,11 +1,11 @@
 Example 017: Embedding Objects-original
 ---
 "@context":
-  "@vocab": http://schema.org/
+  "@vocab": http://xmlns.com/foaf/0.1/
 "@id": http://manu.sporny.org/about#manu
 "@type": Person
 name: Manu Sporny
 knows:
-  "@id": http://greggkellogg.net/foaf#me
+  "@id": https://greggkellogg.net/foaf#me
   "@type": Person
   name: Gregg Kellogg

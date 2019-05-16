@@ -1,4 +1,5 @@
-<table class="statements" data-result-for="Indexing languaged-tagged strings in JSON-LD with @set representation-expanded" data-to-rdf>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Indexing languaged-tagged strings in JSON-LD with @set representation-expanded" data-to-rdf>
       <thead><tr>
 <th>Subject</th>
 <th>Property</th>
@@ -25,4 +26,4 @@
 <td>de</td>
 </tr>
       </tbody>
-    </table>
+    </table></body></html>

@@ -1,0 +1,7 @@
+Example 023: Using a default vocabulary-original
+---
+"@context":
+  "@vocab": http://example.com/vocab/
+"@id": http://example.org/places#BrewEats
+"@type": Restaurant
+name: Brew Eats

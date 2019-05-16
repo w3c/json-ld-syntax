@@ -1,4 +1,5 @@
-<table class="statements" data-result-for="Defining an @context within a term definition used on @type-expanded" data-to-rdf>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Defining an @context within a term definition used on @type-expanded" data-to-rdf>
       <thead><tr>
 <th>Subject</th>
 <th>Property</th>
@@ -36,4 +37,4 @@
 <td>https://www.w3.org/TR/json-ld11/</td>
 </tr>
       </tbody>
-    </table>
+    </table></body></html>

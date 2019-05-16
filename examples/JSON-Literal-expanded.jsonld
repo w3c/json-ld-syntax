@@ -1,0 +1,13 @@
+[{
+  "http://example.com/vocab/json": [{
+    "@value": [
+      56.0,
+      {
+        "d": true,
+        "10": null,
+        "1": []
+      }
+    ],
+    "@type": "@json"
+  }]
+}]

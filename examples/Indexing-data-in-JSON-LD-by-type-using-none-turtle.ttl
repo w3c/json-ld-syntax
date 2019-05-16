@@ -5,11 +5,11 @@
    schema:name "Digital Bazaar" .
 <https://spec-ops.io> a schema:ProfessionalService;
    schema:name "Spec-Ops" .
-<http://greggkellogg.net/> schema:name "Gregg Kellogg" .
+<https://greggkellogg.net/> schema:name "Gregg Kellogg" .
 [
    schema:affiliation
       <https://digitalbazaar.com/>,
       <https://spec-ops.io>,
-      <http://greggkellogg.net/>;
+      <https://greggkellogg.net/>;
    schema:name "Manu Sporny"
 ] .

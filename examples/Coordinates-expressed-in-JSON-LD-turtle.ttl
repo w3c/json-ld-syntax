@@ -1,15 +1,15 @@
 @prefix geojson: <https://purl.org/geojson/vocab#>.
 [
   a geojson:Feature ;
-  geojson:bbox (-1.0E1 -1.0E1 1.0E1 1.0E1) ;
+  geojson:bbox (-10 -10 10 10) ;
   geojson:geometry [
     a geojson:Polygon ;
     geojson:coordinates (
       (
-        (-1.0E1 -1.0E1)
-        (1.0E1 -1.0E1)
-        (1.0E1 1.0E1)
-        (-1.0E1 -1.0E1)
+        (-10 -10)
+        (10 -10)
+        (10 10)
+        (-10 -10)
       )
     )
   ]

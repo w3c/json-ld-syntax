@@ -1,15 +1,15 @@
 [{
-  "@type": ["http://schema.org/Person"],
-  "http://schema.org/knows": [
-    {"@id": "http://greggkellogg.net/foaf#me"}
+  "@type": ["http://xmlns.com/foaf/0.1/Person"],
+  "http://xmlns.com/foaf/0.1/knows": [
+    {"@id": "https://greggkellogg.net/foaf#me"}
   ],
-  "http://schema.org/name": [
+  "http://xmlns.com/foaf/0.1/name": [
     {"@value": "Manu Sporny"}
   ]
 }, {
-  "@id": "http://greggkellogg.net/foaf#me",
-  "@type": ["http://schema.org/Person"],
-  "http://schema.org/name": [
+  "@id": "https://greggkellogg.net/foaf#me",
+  "@type": ["http://xmlns.com/foaf/0.1/Person"],
+  "http://xmlns.com/foaf/0.1/name": [
     {"@value": "Gregg Kellogg"}
   ]
 }]

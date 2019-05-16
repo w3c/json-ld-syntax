@@ -1,0 +1,7 @@
+Example 113: Using Arrays for Lists-expanded
+---
+- http://xmlns.com/foaf/0.1/nick:
+  - "@list":
+    - "@value": joe
+    - "@value": bob
+    - "@value": jaybee

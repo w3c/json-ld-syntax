@@ -1,4 +1,4 @@
-Example 103: Using the document base URL to establish the default base IRI-expanded
+Example 127: Using the document base URL to establish the default base IRI-expanded
 ---
 - "@id": http://dbpedia.org/resource/John_Lennon
   http://xmlns.com/foaf/0.1/name:

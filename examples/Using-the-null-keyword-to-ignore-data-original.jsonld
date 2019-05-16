@@ -1,6 +1,6 @@
 {
   "@context": {
-     "@vocab": "http://schema.org/",
+     "@vocab": "http://example.com/vocab/",
      "databaseId": null
   },
   "@id": "http://example.org/places#BrewEats",

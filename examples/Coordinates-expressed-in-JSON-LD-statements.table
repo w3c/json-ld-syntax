@@ -1,4 +1,5 @@
-<table class="statements" data-result-for="Coordinates expressed in JSON-LD-expanded" data-to-rdf>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Coordinates expressed in JSON-LD-expanded" data-to-rdf>
   <thead><tr>
     <th>Subject</th>
     <th>Property</th>
@@ -27,8 +28,8 @@
   <tr>
 <td>_:b1</td>
 <td>rdf:first</td>
-<td>-1.0E1</td>
-<td>xsd:double</td>
+<td>-10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b1</td>
@@ -39,8 +40,8 @@
   <tr>
 <td>_:b2</td>
 <td>rdf:first</td>
-<td>-1.0E1</td>
-<td>xsd:double</td>
+<td>-10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b2</td>
@@ -51,8 +52,8 @@
   <tr>
 <td>_:b3</td>
 <td>rdf:first</td>
-<td>1.0E1</td>
-<td>xsd:double</td>
+<td>10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b3</td>
@@ -63,8 +64,8 @@
   <tr>
 <td>_:b4</td>
 <td>rdf:first</td>
-<td>1.0E1</td>
-<td>xsd:double</td>
+<td>10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b4</td>
@@ -111,8 +112,8 @@
   <tr>
 <td>_:b8</td>
 <td>rdf:first</td>
-<td>-1.0E1</td>
-<td>xsd:double</td>
+<td>-10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b8</td>
@@ -123,8 +124,8 @@
   <tr>
 <td>_:b9</td>
 <td>rdf:first</td>
-<td>-1.0E1</td>
-<td>xsd:double</td>
+<td>-10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b9</td>
@@ -147,8 +148,8 @@
   <tr>
 <td>_:b11</td>
 <td>rdf:first</td>
-<td>1.0E1</td>
-<td>xsd:double</td>
+<td>10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b11</td>
@@ -159,8 +160,8 @@
   <tr>
 <td>_:b12</td>
 <td>rdf:first</td>
-<td>-1.0E1</td>
-<td>xsd:double</td>
+<td>-10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b12</td>
@@ -183,8 +184,8 @@
   <tr>
 <td>_:b14</td>
 <td>rdf:first</td>
-<td>1.0E1</td>
-<td>xsd:double</td>
+<td>10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b14</td>
@@ -195,8 +196,8 @@
   <tr>
 <td>_:b15</td>
 <td>rdf:first</td>
-<td>1.0E1</td>
-<td>xsd:double</td>
+<td>10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b15</td>
@@ -219,8 +220,8 @@
   <tr>
 <td>_:b17</td>
 <td>rdf:first</td>
-<td>-1.0E1</td>
-<td>xsd:double</td>
+<td>-10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b17</td>
@@ -231,8 +232,8 @@
   <tr>
 <td>_:b18</td>
 <td>rdf:first</td>
-<td>-1.0E1</td>
-<td>xsd:double</td>
+<td>-10</td>
+<td>xsd:integer</td>
 </tr>
   <tr>
 <td>_:b18</td>
@@ -241,4 +242,4 @@
 <td></td>
 </tr>
   </tbody>
-  </table>
+  </table></body></html>

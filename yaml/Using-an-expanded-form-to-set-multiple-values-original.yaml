@@ -1,9 +1,9 @@
-Example 053: Using an expanded form to set multiple values-original
+Example 066: Using an expanded form to set multiple values-original
 ---
 "@context":
-  dc: http://purl.org/dc/terms/
+  dcterms: http://purl.org/dc/terms/
 "@id": http://example.org/articles/8
-dc:title:
+dcterms:title:
 - "@value": Das Kapital
   "@language": de
 - "@value": Capital

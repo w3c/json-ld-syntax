@@ -1,0 +1,7 @@
+Example 023: Using a default vocabulary-expanded
+---
+- "@id": http://example.org/places#BrewEats
+  "@type":
+  - http://example.com/vocab/Restaurant
+  http://example.com/vocab/name:
+  - "@value": Brew Eats

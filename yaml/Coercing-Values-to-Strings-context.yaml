@@ -1,0 +1,10 @@
+Example 112: Coercing Values to Strings-context
+---
+"@context":
+  "@vocab": http://example.com/
+  date:
+    "@type": http://www.w3.org/2001/XMLSchema#date
+  en:
+    "@language": en
+  iri:
+    "@type": "@id"

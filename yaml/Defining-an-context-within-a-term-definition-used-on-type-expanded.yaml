@@ -1,4 +1,4 @@
-Example 039: Defining an @context within a term definition used on @type-expanded
+Example 045: Defining an @context within a term definition used on @type-expanded
 ---
 - "@type":
   - http://schema.org/Person

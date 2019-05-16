@@ -1,0 +1,30 @@
+Example 118: Term Selection-compacted
+---
+"@context":
+  vocab: http://example.com/vocab/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  integer:
+    "@id": vocab:property
+    "@type": xsd:integer
+  date:
+    "@id": vocab:property
+    "@type": xsd:date
+  english:
+    "@id": vocab:property
+    "@language": en
+  list:
+    "@id": vocab:property
+    "@container": "@list"
+  iri:
+    "@id": vocab:property
+    "@type": "@id"
+vocab:property:
+- string
+- true
+- 1
+- "@value": 'false'
+  "@type": xsd:boolean
+integer: '10'
+english: english
+date: '2018-02-17'
+iri: http://example.com/some-location

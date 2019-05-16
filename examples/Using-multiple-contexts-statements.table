@@ -1,4 +1,5 @@
-<table class="statements" data-result-for="Using multiple contexts-expanded" data-to-rdf>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Using multiple contexts-expanded" data-to-rdf>
       <thead><tr>
 <th>Subject</th>
 <th>Property</th>
@@ -26,13 +27,13 @@
 </tr>
         <tr>
 <td>_:b1</td>
-<td>dc:title</td>
+<td>dcterms:title</td>
 <td>The Empire State Building</td>
 <td></td>
 </tr>
         <tr>
 <td>_:b1</td>
-<td>dc:description</td>
+<td>dcterms:description</td>
 <td>The Empire State Building is a 102-story landmark in New York City.</td>
 <td></td>
 </tr>
@@ -55,4 +56,4 @@
 <td></td>
 </tr>
       </tbody>
-    </table>
+    </table></body></html>

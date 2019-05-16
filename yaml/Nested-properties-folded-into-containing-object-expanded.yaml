@@ -1,4 +1,4 @@
-Example 062: Nested properties folded into containing object-expanded
+Example 076: Nested properties folded into containing object-expanded
 ---
 - "@id": http://example.org/myresource
   http://xmlns.com/foaf/0.1/homepage:

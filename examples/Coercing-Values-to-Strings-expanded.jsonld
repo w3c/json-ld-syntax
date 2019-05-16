@@ -1,0 +1,19 @@
+[{
+  "http://example.com/plain": [
+    {"@value": "string"},
+    {"@value": true},
+    {"@value": 1}
+  ],
+  "http://example.com/date": [
+    {
+      "@value": "2018-02-16",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    }
+  ],
+  "http://example.com/en": [
+    {"@value": "English", "@language": "en"}
+  ],
+  "http://example.com/iri": [
+    {"@id": "http://example.com/some-location"}
+  ]
+}]

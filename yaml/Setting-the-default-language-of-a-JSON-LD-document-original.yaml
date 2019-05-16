@@ -1,4 +1,4 @@
-Example 046: Setting the default language of a JSON-LD document-original
+Example 059: Setting the default language of a JSON-LD document-original
 ---
 "@context":
   name: http://example.org/name

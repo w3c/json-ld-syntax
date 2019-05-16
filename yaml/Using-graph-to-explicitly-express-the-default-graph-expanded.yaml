@@ -1,16 +1,16 @@
-Example 083: Using @graph to explicitly express the default graph-expanded
+Example 098: Using @graph to explicitly express the default graph-expanded
 ---
 - "@id": http://manu.sporny.org/about#manu
   "@type":
-  - http://schema.org/Person
-  http://schema.org/name:
+  - http://xmlns.com/foaf/0.1/Person
+  http://xmlns.com/foaf/0.1/name:
   - "@value": Manu Sporny
-  http://schema.org/knows:
-  - "@id": http://greggkellogg.net/foaf#me
-- "@id": http://greggkellogg.net/foaf#me
+  http://xmlns.com/foaf/0.1/knows:
+  - "@id": https://greggkellogg.net/foaf#me
+- "@id": https://greggkellogg.net/foaf#me
   "@type":
-  - http://schema.org/Person
-  http://schema.org/name:
+  - http://xmlns.com/foaf/0.1/Person
+  http://xmlns.com/foaf/0.1/name:
   - "@value": Gregg Kellogg
-  http://schema.org/knows:
+  http://xmlns.com/foaf/0.1/knows:
   - "@id": http://manu.sporny.org/about#manu

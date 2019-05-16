@@ -12,7 +12,7 @@
       "http://schema.org/name": [{"@value": "Spec-Ops"}]
     },
     {
-      "@id": "http://greggkellogg.net/",
+      "@id": "https://greggkellogg.net/",
       "http://schema.org/name": [{"@value": "Gregg Kellogg"}]
     }
   ]

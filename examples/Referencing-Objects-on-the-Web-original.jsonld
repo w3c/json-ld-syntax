@@ -1,10 +1,10 @@
 {
   "@context": {
-    "@vocab": "http://schema.org/",
+    "@vocab": "http://xmlns.com/foaf/0.1/",
     "knows": {"@type": "@id"}
   },
   "@id": "http://manu.sporny.org/about#manu",
   "@type": "Person",
   "name": "Manu Sporny",
-  "knows": "http://greggkellogg.net/foaf#me"
+  "knows": "https://greggkellogg.net/foaf#me"
 }

@@ -7,10 +7,10 @@
 _:b0 {
   <http://manu.sporny.org/about#manu> a foaf:Person;
      foaf:name "Manu Sporny";
-     foaf:knows <http://greggkellogg.net/foaf#me> .
+     foaf:knows <https://greggkellogg.net/foaf#me> .
 }
 _:b1 {
-  <http://greggkellogg.net/foaf#me> a foaf:Person;
+  <https://greggkellogg.net/foaf#me> a foaf:Person;
      foaf:name "Gregg Kellogg";
      foaf:knows <http://manu.sporny.org/about#manu> .
 }

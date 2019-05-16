@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="overriding permitted in property scoped context-expanded" data-to-rdf>
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>_:b0</td>
+<td>rdf:type</td>
+<td>schema:Organization</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>schema:name</td>
+<td>Digital Bazaar</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>schema:employee</td>
+<td>_:b1</td>
+</tr>
+        <tr>
+<td>_:b1</td>
+<td>schema:familyName</td>
+<td>Sporny</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>foaf:based_near</td>
+<td>_:b2</td>
+</tr>
+        <tr>
+<td>_:b2</td>
+<td>foaf:name</td>
+<td>Blacksburg, Virginia</td>
+</tr>
+      </tbody>
+    </table></body></html>

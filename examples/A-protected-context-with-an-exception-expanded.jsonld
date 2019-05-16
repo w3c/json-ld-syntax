@@ -1,0 +1,9 @@
+[{
+  "http://schema.org/name": [{"@value": "Digital Bazaar"}],
+  "http://schema.org/member": [
+    {
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://schema.org/name": [{"@value": "Manu Sporny"}]
+    }
+  ]
+}]

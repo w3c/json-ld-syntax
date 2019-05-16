@@ -1,4 +1,5 @@
-<table class="statements" data-result-for="Referencing an unidentified node-expanded" data-to-rdf>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Referencing an unidentified node-expanded" data-to-rdf>
     <thead><tr>
       <th>Subject</th>
       <th>Property</th>
@@ -8,32 +9,32 @@
     <tr>
       <td>_:b0</td>
       <td>rdf:type</td>
-      <td>schema:Person</td>
+      <td>foaf:Person</td>
     </tr>
     <tr>
       <td>_:b0</td>
-      <td>schema:name</td>
+      <td>foaf:name</td>
       <td>Manu Sporny</td>
     </tr>
     <tr>
       <td>_:b0</td>
-      <td>schema:knows</td>
-      <td>http://greggkellogg.net/foaf#me</td>
+      <td>foaf:knows</td>
+      <td>https://greggkellogg.net/foaf#me</td>
     </tr>
     <tr>
-      <td>http://greggkellogg.net/foaf#me</td>
+      <td>https://greggkellogg.net/foaf#me</td>
       <td>rdf:type</td>
-      <td>schema:Person</td>
+      <td>foaf:Person</td>
     </tr>
     <tr>
-      <td>http://greggkellogg.net/foaf#me</td>
-      <td>schema:name</td>
+      <td>https://greggkellogg.net/foaf#me</td>
+      <td>foaf:name</td>
       <td>Gregg Kellogg</td>
     </tr>
     <tr>
-      <td>http://greggkellogg.net/foaf#me</td>
-      <td>schema:knows</td>
+      <td>https://greggkellogg.net/foaf#me</td>
+      <td>foaf:knows</td>
       <td>_:b0</td>
     </tr>
     </tbody>
-    </table>
+    </table></body></html>

@@ -6,8 +6,8 @@
 <http://example.org/foaf-graph> {
   <http://manu.sporny.org/about#manu> a foaf:Person;
      foaf:name "Manu Sporny";
-     foaf:knows <http://greggkellogg.net/foaf#me> .
-  <http://greggkellogg.net/foaf#me> a foaf:Person;
+     foaf:knows <https://greggkellogg.net/foaf#me> .
+  <https://greggkellogg.net/foaf#me> a foaf:Person;
      foaf:name "Gregg Kellogg";
      foaf:knows <http://manu.sporny.org/about#manu> .
 }

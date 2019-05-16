@@ -1,74 +1,23 @@
-<table class="statements" data-result-for="Implicitly named graph-expanded" data-to-rdf>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Implicitly named graph-expanded" data-to-rdf>
         <thead><tr>
 <th>Graph</th>
 <th>Subject</th>
 <th>Property</th>
 <th>Value</th>
-<th>Value Type</th>
 </tr></thead>
         <tbody>
           <tr>
-<td> </td>
-<td>http://example.org/foaf-graph</td>
-<td>prov:generatedAtTime</td>
-<td>2012-04-09</td>
-<td>xsd:date</td>
-</tr>
-          <tr>
-<td> </td>
-<td>http://example.org/foaf-graph</td>
-<td>https://w3id.org/credentials#claim</td>
 <td>_:b0</td>
-<td> </td>
+<td>http://dbpedia.org/resource/Richard_III_of_England</td>
+<td>http://example.com/said</td>
+<td>My kingdom for a horse</td>
 </tr>
           <tr>
 <td> </td>
-<td>http://example.org/foaf-graph</td>
-<td>https://w3id.org/credentials#claim</td>
-<td>_:b1</td>
-<td> </td>
-</tr>
-          <tr>
+<td>http://dbpedia.org/resource/William_Shakespeare</td>
+<td>http://example.com/wrote</td>
 <td>_:b0</td>
-<td>http://manu.sporny.org/about#manu</td>
-<td>rdf:type</td>
-<td>foaf:Person</td>
-<td> </td>
-</tr>
-          <tr>
-<td>_:b0</td>
-<td>http://manu.sporny.org/about#manu</td>
-<td>foaf:name</td>
-<td>Manu Sporny</td>
-<td> </td>
-</tr>
-          <tr>
-<td>_:b0</td>
-<td>http://manu.sporny.org/about#manu</td>
-<td>foaf:knows</td>
-<td>http://greggkellogg.net/foaf#me</td>
-<td> </td>
-</tr>
-          <tr>
-<td>_:b1</td>
-<td>http://greggkellogg.net/foaf#me</td>
-<td>rdf:type</td>
-<td>foaf:Person</td>
-<td> </td>
-</tr>
-          <tr>
-<td>_:b1</td>
-<td>http://greggkellogg.net/foaf#me</td>
-<td>foaf:name</td>
-<td>Gregg Kellogg</td>
-<td> </td>
-</tr>
-          <tr>
-<td>_:b1</td>
-<td>http://greggkellogg.net/foaf#me</td>
-<td>foaf:knows</td>
-<td>http://manu.sporny.org/about#manu</td>
-<td> </td>
 </tr>
         </tbody>
-      </table>
+      </table></body></html>

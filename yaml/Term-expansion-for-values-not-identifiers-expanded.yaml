@@ -1,0 +1,7 @@
+Example 056: Term expansion for values, not identifiers-expanded
+---
+- http://example2.com/fred:
+  - "@id": http://example1.com/barney
+    http://example2.com/mnemonic:
+    - "@value": the sidekick
+  - "@id": http://example2.com/barney

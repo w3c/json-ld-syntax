@@ -1,0 +1,6 @@
+{
+  "@context": {
+    "@base": "http://example.com/",
+    "label": "http://www.w3.org/2000/01/rdf-schema#label"
+  }
+}

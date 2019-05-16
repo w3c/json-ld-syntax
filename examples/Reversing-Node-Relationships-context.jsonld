@@ -1,0 +1,6 @@
+{
+  "@context": {
+    "name": "http://example.com/vocab#name",
+    "children": { "@reverse": "http://example.com/vocab#parent" }
+  }
+}

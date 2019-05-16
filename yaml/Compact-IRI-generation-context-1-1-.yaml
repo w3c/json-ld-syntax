@@ -1,0 +1,8 @@
+Example 035: Compact IRI generation context (1.1)
+---
+"@context":
+  "@version": 1.1
+  vocab: http://example.com/vocab/
+  property:
+    "@id": http://example.com/vocab/property
+    "@prefix": true

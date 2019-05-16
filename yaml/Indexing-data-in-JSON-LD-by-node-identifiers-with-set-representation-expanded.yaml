@@ -1,4 +1,4 @@
-Example 074: Indexing data in JSON-LD by node identifiers with @set representation-expanded
+Example 089: Indexing data in JSON-LD by node identifiers with @set representation-expanded
 ---
 - "@id": http://example.com/
   "@type":

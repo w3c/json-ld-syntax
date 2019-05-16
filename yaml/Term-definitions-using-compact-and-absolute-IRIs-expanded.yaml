@@ -1,4 +1,4 @@
-Example 045: Term definitions using compact and absolute IRIs-expanded
+Example 058: Term definitions using compact and absolute IRIs-expanded
 ---
 - http://xmlns.com/foaf/0.1/age:
   - "@type": http://www.w3.org/2001/XMLSchema#integer

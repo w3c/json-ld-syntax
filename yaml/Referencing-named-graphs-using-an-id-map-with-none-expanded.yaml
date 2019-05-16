@@ -1,4 +1,4 @@
-Example 089: Referencing named graphs using an id map with @none-expanded
+Example 104: Referencing named graphs using an id map with @none-expanded
 ---
 - "@id": http://example.org/foaf-graph
   http://www.w3.org/ns/prov#generatedAtTime:
@@ -12,9 +12,9 @@ Example 089: Referencing named graphs using an id map with @none-expanded
       http://xmlns.com/foaf/0.1/name:
       - "@value": Manu Sporny
       http://xmlns.com/foaf/0.1/knows:
-      - "@id": http://greggkellogg.net/foaf#me
+      - "@id": https://greggkellogg.net/foaf#me
   - "@graph":
-    - "@id": http://greggkellogg.net/foaf#me
+    - "@id": https://greggkellogg.net/foaf#me
       "@type":
       - http://xmlns.com/foaf/0.1/Person
       http://xmlns.com/foaf/0.1/name:

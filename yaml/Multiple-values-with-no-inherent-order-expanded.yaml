@@ -1,4 +1,4 @@
-Example 052: Multiple values with no inherent order-expanded
+Example 065: Multiple values with no inherent order-expanded
 ---
 - "@id": http://example.org/people#joebob
   http://xmlns.com/foaf/0.1/nick:

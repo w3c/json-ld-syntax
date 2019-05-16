@@ -1,0 +1,7 @@
+Example 020: Embedded contexts within node objects-expanded
+---
+- http://example.com/person#details:
+  - http://example.com/organization#name:
+    - "@value": Graz University of Technology
+  http://example.com/person#name:
+  - "@value": Markus Lanthaler

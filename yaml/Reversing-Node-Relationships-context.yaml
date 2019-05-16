@@ -1,0 +1,6 @@
+Example 114: Reversing Node Relationships-context
+---
+"@context":
+  name: http://example.com/vocab#name
+  children:
+    "@reverse": http://example.com/vocab#parent

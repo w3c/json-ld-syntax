@@ -1,4 +1,4 @@
-Example 082: Identifying and making statements about a graph-expanded
+Example 097: Identifying and making statements about a graph-expanded
 ---
 - "@id": http://example.org/foaf-graph
   http://www.w3.org/ns/prov#generatedAtTime:
@@ -11,8 +11,8 @@ Example 082: Identifying and making statements about a graph-expanded
     http://xmlns.com/foaf/0.1/name:
     - "@value": Manu Sporny
     http://xmlns.com/foaf/0.1/knows:
-    - "@id": http://greggkellogg.net/foaf#me
-  - "@id": http://greggkellogg.net/foaf#me
+    - "@id": https://greggkellogg.net/foaf#me
+  - "@id": https://greggkellogg.net/foaf#me
     "@type":
     - http://xmlns.com/foaf/0.1/Person
     http://xmlns.com/foaf/0.1/name:

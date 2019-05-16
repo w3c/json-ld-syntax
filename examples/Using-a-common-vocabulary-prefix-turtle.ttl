@@ -1,3 +1,0 @@
-@prefix schema: <http://schema.org/> .
-<http://example.org/places#BrewEats> a schema:Restaurant;
-  schema:name "Brew Eats" .

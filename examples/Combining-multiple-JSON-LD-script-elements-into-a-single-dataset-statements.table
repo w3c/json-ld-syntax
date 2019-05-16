@@ -1,4 +1,5 @@
-<table class="statements" data-result-for="Combining multiple JSON-LD script elements into a single dataset-original" data-to-rdf>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Combining multiple JSON-LD script elements into a single dataset-original" data-to-rdf>
       <thead><tr>
 <th>Subject</th>
 <th>Property</th>
@@ -16,14 +17,14 @@
 <td>Dave Longley</td>
 </tr>
         <tr>
-<td>http://greggkellogg.net/foaf#me</td>
+<td>https://greggkellogg.net/foaf#me</td>
 <td>rdf:type</td>
 <td>schema:Person</td>
 </tr>
         <tr>
-<td>http://greggkellogg.net/foaf#me</td>
+<td>https://greggkellogg.net/foaf#me</td>
 <td>schema:name</td>
 <td>Gregg Kellogg</td>
 </tr>
       </tbody>
-    </table>
+    </table></body></html>

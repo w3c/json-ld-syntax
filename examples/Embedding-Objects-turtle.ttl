@@ -1,7 +1,7 @@
-@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-<http://manu.sporny.org/about#manu> a schema:Person;
-  schema:name "Manu Sporny";
-  schema:knows <http://greggkellogg.net/foaf#me> .
-<http://greggkellogg.net/foaf#me> a schema:Person;
-  schema:name "Gregg Kellogg" .
+<http://manu.sporny.org/about#manu> a foaf:Person;
+  foaf:name "Manu Sporny";
+  foaf:knows <https://greggkellogg.net/foaf#me> .
+<https://greggkellogg.net/foaf#me> a foaf:Person;
+  foaf:name "Gregg Kellogg" .

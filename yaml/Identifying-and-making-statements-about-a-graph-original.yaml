@@ -1,4 +1,4 @@
-Example 082: Identifying and making statements about a graph-original
+Example 097: Identifying and making statements about a graph-original
 ---
 "@context":
   generatedAt:
@@ -15,8 +15,8 @@ generatedAt: '2012-04-09'
 - "@id": http://manu.sporny.org/about#manu
   "@type": Person
   name: Manu Sporny
-  knows: http://greggkellogg.net/foaf#me
-- "@id": http://greggkellogg.net/foaf#me
+  knows: https://greggkellogg.net/foaf#me
+- "@id": https://greggkellogg.net/foaf#me
   "@type": Person
   name: Gregg Kellogg
   knows: http://manu.sporny.org/about#manu

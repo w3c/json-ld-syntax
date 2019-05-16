@@ -1,0 +1,8 @@
+Example 128: Embedding JSON-LD containing HTML in HTML-expanded
+---
+- "@type":
+  - http://schema.org/WebPageElement
+  http://schema.org/name:
+  - "@value": Encoding Issues
+  http://schema.org/description:
+  - "@value": Issues list such as unescaped &lt;/script&gt; or --&gt;

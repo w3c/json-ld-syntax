@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="JSON Literal-original" data-to-rdf>
+  <thead><tr>
+    <th>Subject</th>
+    <th>Property</th>
+    <th>Value</th>
+    <th>Value Type</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+    <td>_:b0</td>
+    <td>http://example.com/vocab/json</td>
+    <td>[56,{"1":[],"10":null,"d":true}]</td>
+    <td>rdf:JSON</td>
+  </tr>
+  </tbody>
+  </table></body></html>

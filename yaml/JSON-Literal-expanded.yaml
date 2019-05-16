@@ -1,0 +1,9 @@
+Example 054: JSON Literal-expanded
+---
+- http://example.com/vocab/json:
+  - "@value":
+    - 56.0
+    - d: true
+      '10': 
+      '1': []
+    "@type": "@json"

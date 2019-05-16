@@ -1,0 +1,5 @@
+@prefix schema: <http://schema.org/> .
+[ a schema:WebPageElement;
+  schema:name "Encoding Issues";
+  schema:description "Issues list such as unescaped &lt;/script&gt; or --&gt;"
+] .

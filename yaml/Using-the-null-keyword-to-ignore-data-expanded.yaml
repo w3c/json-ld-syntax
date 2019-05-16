@@ -1,7 +1,7 @@
-Example 023: Using the null keyword to ignore data-expanded
+Example 024: Using the null keyword to ignore data-expanded
 ---
 - "@id": http://example.org/places#BrewEats
   "@type":
-  - http://schema.org/Restaurant
-  http://schema.org/name:
+  - http://example.com/vocab/Restaurant
+  http://example.com/vocab/name:
   - "@value": Brew Eats

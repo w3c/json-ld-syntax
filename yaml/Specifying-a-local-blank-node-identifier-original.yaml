@@ -1,7 +1,6 @@
-Example 067: Specifying a local blank node identifier-original
+Example 081: Specifying a local blank node identifier-original
 ---
-"@context":
-  "@vocab": http://schema.org/
+"@context": http://schema.org/
 "@id": _:n1
 name: Secret Agent 1
 knows:

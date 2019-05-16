@@ -1,0 +1,5 @@
+Example 033: Compact IRI generation context (1.0)
+---
+"@context":
+  vocab: http://example.com/vocab/
+  property: http://example.com/vocab/property

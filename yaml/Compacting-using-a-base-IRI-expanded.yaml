@@ -1,0 +1,5 @@
+Example 111: Compacting using a base IRI-expanded
+---
+- "@id": http://example.com/document.jsonld
+  http://www.w3.org/2000/01/rdf-schema#label:
+  - "@value": Just a simple document

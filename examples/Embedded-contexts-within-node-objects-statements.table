@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Embedded contexts within node objects-expanded" data-to-rdf>
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>_:b1</td>
+<td>http://example.com/organization#name</td>
+<td>Graz University of Technology</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>http://example.com/person#details</td>
+<td>_:b1</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>http://example.com/person#name</td>
+<td>Markus Lanthaler</td>
+</tr>
+      </tbody>
+    </table></body></html>

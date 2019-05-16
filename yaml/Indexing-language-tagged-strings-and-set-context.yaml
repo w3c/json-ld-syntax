@@ -1,0 +1,9 @@
+Example 117: Indexing language-tagged strings and @set-context
+---
+"@context":
+  "@version": 1.1
+  "@vocab": http://example.com/vocab/
+  label:
+    "@container":
+    - "@language"
+    - "@set"

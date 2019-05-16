@@ -1,4 +1,4 @@
-Example 081: Using @reverse to define reverse properties-flattened
+Example 096: Using @reverse to define reverse properties-flattened
 ---
 - "@id": http://example.org/#homer
   http://example.com/vocab#name:

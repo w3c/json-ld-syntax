@@ -511,7 +511,9 @@ ARGV.each do |input|
 
     # Save example
     if example_dir
-      File.open(File.join(example_dir, ex[:filename]), 'w') {|f| f.write(content)}
+      file_content = content.respond_to?(:rewind) ? (content.rewind; content.read) : content
+      File.open(File.join(example_dir, ex[:filename]), 'w') {|f| f.write(file_content)}
+      content.rewind if content.respond_to?(:rewind)
     end
 
     # Save example as YAML

@@ -1,4 +1,4 @@
-Example 080: A person and its children using a reverse property-original
+Example 095: A person and its children using a reverse property-original
 ---
 "@id": "#homer"
 http://example.com/vocab#name: Homer

@@ -1,5 +1,5 @@
 {
-  "@context": {"@vocab": "http://schema.org/"},
+  "@context": "http://schema.org/",
    "@id": "_:n1",
    "name": "Secret Agent 1",
    "knows": {

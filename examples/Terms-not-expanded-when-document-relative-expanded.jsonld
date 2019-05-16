@@ -1,0 +1,11 @@
+[{
+  "http://example2.com/fred": [
+    {
+      "@id": "http://example1.com/barney",
+      "http://example2.com/mnemonic": [{"@value": "the sidekick"}]
+    },
+    {
+      "@id": "http://example1.com/barney"
+    }
+  ]
+}]

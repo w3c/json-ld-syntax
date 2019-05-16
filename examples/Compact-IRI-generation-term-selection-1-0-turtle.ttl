@@ -1,0 +1,2 @@
+@prefix vocab: <http://example.com/vocab/> .
+[ vocab:property "property"; vocab:propertyOne "propertyOne"] .

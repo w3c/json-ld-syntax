@@ -1,4 +1,5 @@
-<table class="statements" data-result-for="Identifying and making statements about a graph-expanded" data-to-rdf>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Identifying and making statements about a graph-expanded" data-to-rdf>
       <thead><tr>
 <th>Graph</th>
 <th>Subject</th>
@@ -32,29 +33,29 @@
 <td>http://example.org/foaf-graph</td>
 <td>http://manu.sporny.org/about#manu</td>
 <td>foaf:knows</td>
-<td>http://greggkellogg.net/foaf#me</td>
+<td>https://greggkellogg.net/foaf#me</td>
 <td> </td>
 </tr>
         <tr>
 <td>http://example.org/foaf-graph</td>
-<td>http://greggkellogg.net/foaf#me</td>
+<td>https://greggkellogg.net/foaf#me</td>
 <td>rdf:type</td>
 <td>foaf:Person</td>
 <td> </td>
 </tr>
         <tr>
 <td>http://example.org/foaf-graph</td>
-<td>http://greggkellogg.net/foaf#me</td>
+<td>https://greggkellogg.net/foaf#me</td>
 <td>foaf:name</td>
 <td>Gregg Kellogg</td>
 <td> </td>
 </tr>
         <tr>
 <td>http://example.org/foaf-graph</td>
-<td>http://greggkellogg.net/foaf#me</td>
+<td>https://greggkellogg.net/foaf#me</td>
 <td>foaf:knows</td>
 <td>http://manu.sporny.org/about#manu</td>
 <td> </td>
 </tr>
       </tbody>
-    </table>
+    </table></body></html>

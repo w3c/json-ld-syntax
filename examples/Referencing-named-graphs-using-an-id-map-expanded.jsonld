@@ -9,7 +9,7 @@
       "@id": "http://manu.sporny.org/about#manu",
       "@type": ["http://xmlns.com/foaf/0.1/Person"],
       "http://xmlns.com/foaf/0.1/knows": [
-        {"@id": "http://greggkellogg.net/foaf#me"}
+        {"@id": "https://greggkellogg.net/foaf#me"}
       ],
       "http://xmlns.com/foaf/0.1/name": [
         {"@value": "Manu Sporny"}
@@ -18,7 +18,7 @@
     "@id": "http://manu.sporny.org/about#manu"
   }, {
     "@graph": [{
-      "@id": "http://greggkellogg.net/foaf#me",
+      "@id": "https://greggkellogg.net/foaf#me",
       "@type": ["http://xmlns.com/foaf/0.1/Person"],
       "http://xmlns.com/foaf/0.1/knows": [
         {"@id": "http://manu.sporny.org/about#manu"}
@@ -27,6 +27,6 @@
         {"@value": "Gregg Kellogg"}
       ]
     }],
-    "@id": "http://greggkellogg.net/foaf#me"
+    "@id": "https://greggkellogg.net/foaf#me"
   }]
 }]

@@ -1,4 +1,4 @@
-Example 075: Indexing data in JSON-LD by node identifiers using @none-expanded
+Example 090: Indexing data in JSON-LD by node identifiers using @none-expanded
 ---
 - "@id": http://example.com/
   "@type":

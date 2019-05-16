@@ -1,4 +1,4 @@
-Example 058: Coordinates expressed in JSON-LD-expanded
+Example 071: Coordinates expressed in JSON-LD-expanded
 ---
 - "@type":
   - https://purl.org/geojson/vocab#Feature
