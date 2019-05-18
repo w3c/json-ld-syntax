@@ -2139,7 +2139,10 @@
       ****"@context": [
         "https://json-ld.org/contexts/person.jsonld",
         {
-          "pic": "http://xmlns.com/foaf/0.1/depiction"
+          "pic": {
+            "@id": "http://xmlns.com/foaf/0.1/depiction",
+            "@type": "@id"
+          }
         }
       ],****
       "name": "Manu Sporny",
@@ -2155,7 +2158,7 @@
       "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
       "http://xmlns.com/foaf/0.1/homepage": [{"@id": "http://manu.sporny.org/"}],
       "http://xmlns.com/foaf/0.1/depiction": [{
-        "@value": "http://twitter.com/account/profile_image/manusporny"
+        "@id": "http://twitter.com/account/profile_image/manusporny"
       }]
     }]
     -->
@@ -2167,7 +2170,7 @@
       <tbody>
         <tr><td>_:b0</td><td>foaf:name</td><td>Manu Sporny</td><td></td></tr>
         <tr><td>_:b0</td><td>foaf:homepage</td><td>http://manu.sporny.org/</td><td><a>IRI</a></td></tr>
-        <tr><td>_:b0</td><td>foaf:depiction</td><td>http://twitter.com/account/profile_image/manusporny</td><td>xsd:string</td></tr>
+        <tr><td>_:b0</td><td>foaf:depiction</td><td>http://twitter.com/account/profile_image/manusporny</td><td>IRI</td></tr>
       </tbody>
     </table>
     <pre class="turtle"
@@ -2181,7 +2184,7 @@
     [
       foaf:name "Manu Sporny";
       foaf:homepage <http://manu.sporny.org/>;
-      foaf:depiction "http://twitter.com/account/profile_image/manusporny"
+      foaf:depiction <http://twitter.com/account/profile_image/manusporny>
     ] .
     -->
     </pre>
@@ -3339,7 +3342,8 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     </pre>
     <table class="statements"
            data-result-for="Defining an @context within a term definition used on @type-expanded"
-           data-to-rdf>
+           data-to-rdf
+           data-no-lint>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>_:b0</td><td>rdf:type</td><td>schema:Person</td></tr>
@@ -3354,7 +3358,8 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
          data-content-type="text/turtle"
          data-result-for="Defining an @context within a term definition used on @type-expanded"
          data-transform="updateExample"
-         data-to-rdf>
+         data-to-rdf
+         data-no-lint>
     <!--
     @prefix foaf: <http://xmlns.com/foaf/0.1/> .
     @prefix schema: <http://schema.org/> .
@@ -3603,7 +3608,8 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     </pre>
     <table class="statements"
            data-result-for="A protected @context with an exception-expanded"
-           data-to-rdf>
+           data-to-rdf
+           data-no-lint>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>_:b0</td><td>schema:name</td><td>Digital Bazaar</td></tr>
@@ -3616,7 +3622,8 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
          data-content-type="text/turtle"
          data-result-for="A protected @context with an exception-expanded"
          data-transform="updateExample"
-         data-to-rdf>
+         data-to-rdf
+         data-no-lint>
       <!--
       @prefix foaf: <http://xmlns.com/foaf/0.1/> .
       @prefix schema: <http://schema.org/> .
@@ -3695,10 +3702,8 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
         "@type": "Organization",
         "name": "Digital Bazaar",
         "employee" : {
-          "name": "Sporny"
-        },
-        "location": {
-          "name": "Blacksburg, Virginia"
+          "name": "Sporny",
+          "location": {"name": "Blacksburg, Virginia"}
         }
       }
       -->
@@ -3714,12 +3719,12 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
       "http://schema.org/name": [{"@value": "Digital Bazaar"}],
       "http://schema.org/employee": [
         {
-          "http://schema.org/familyName": [{"@value": "Sporny"}]
-        }
-      ],
-      "http://xmlns.com/foaf/0.1/based_near": [
-        {
-          "http://xmlns.com/foaf/0.1/name": [{"@value": "Blacksburg, Virginia"}]
+          "http://schema.org/familyName": [{"@value": "Sporny"}],
+          "http://xmlns.com/foaf/0.1/based_near": [
+            {
+              "http://xmlns.com/foaf/0.1/name": [{"@value": "Blacksburg, Virginia"}]
+            }
+          ]
         }
       ]
     }]
@@ -3734,7 +3739,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
         <tr><td>_:b0</td><td>schema:name</td><td>Digital Bazaar</td></tr>
         <tr><td>_:b0</td><td>schema:employee</td><td>_:b1</td></tr>
         <tr><td>_:b1</td><td>schema:familyName</td><td>Sporny</td></tr>
-        <tr><td>_:b0</td><td>foaf:based_near</td><td>_:b2</td></tr>
+        <tr><td>_:b1</td><td>foaf:based_near</td><td>_:b2</td></tr>
         <tr><td>_:b2</td><td>foaf:name</td><td>Blacksburg, Virginia</td></tr>
       </tbody>
     </table>
@@ -3751,10 +3756,10 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
         a schema:Organization;
         schema:name "Digital Bazaar";
         schema:employee [
-          schema:familyName "Sporny"
-        ];
-        foaf:based_near [
-          foaf:name "Blacksburg, Virginia"
+          schema:familyName "Sporny";
+          foaf:based_near [
+            foaf:name "Blacksburg, Virginia"
+          ];
         ];
       ] .
       -->
@@ -4917,9 +4922,9 @@ the data type to be specified explicitly with each piece of data.</p>
   <pre class="original selected nohighlight" data-transform="updateExample">
   <!--
   {
-    "@context": {"schema": "http://schema.org/"},
+    "@context": {"ex": "http://example.org/"},
     "@id": "http://example.org/people#michael",
-    "schema:name": [
+    "ex:name": [
       "Michael",
       {"@value": "Mike"},
       {"@value": "Miguel", "@language": "es"},
@@ -4935,7 +4940,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <!--
   [{
     "@id": "http://example.org/people#michael",
-    "http://schema.org/name": ****[
+    "http://example.org/name": ****[
       {"@value": "Michael"},
       {"@value": "Mike"},
       {"@value": "Miguel", "@language": "es"},
@@ -4958,35 +4963,35 @@ the data type to be specified explicitly with each piece of data.</p>
   <tbody>
   <tr>
     <td>http://example.org/people#michael</td>
-    <td>schema:name</td>
+    <td>http://example.org/name</td>
     <td>Michael</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td>http://example.org/people#michael</td>
-    <td>schema:name</td>
+    <td>http://example.org/name</td>
     <td>Mike</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td>http://example.org/people#michael</td>
-    <td>schema:name</td>
+    <td>http://example.org/name</td>
     <td>Miguel</td>
     <td>es</td>
     <td></td>
   </tr>
   <tr>
     <td>http://example.org/people#michael</td>
-    <td>schema:name</td>
+    <td>http://example.org/name</td>
     <td>https://www.wikidata.org/wiki/Q4927524</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td>http://example.org/people#michael</td>
-    <td>schema:name</td>
+    <td>http://example.org/name</td>
     <td>42</td>
     <td>&nbsp;</td>
     <td>xsd:integer</td>
@@ -4999,9 +5004,9 @@ the data type to be specified explicitly with each piece of data.</p>
        data-transform="updateExample"
        data-to-rdf>
   <!--
-  @prefix schema: <http://schema.org/> .
+  @prefix ex: <http://example.org/> .
 
-  <http://example.org/people#michael> schema:name
+  <http://example.org/people#michael> ex:name
     "Michael",
     "Mike",
     "Miguel"@es,
@@ -8179,14 +8184,14 @@ the data type to be specified explicitly with each piece of data.</p>
       "@context": {
         "generatedAt": {
           "@id": "http://www.w3.org/ns/prov#generatedAtTime",
-          "@type": "http://www.w3.org/2001/XMLSchema#date"
+          "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
         },
         "Person": "http://xmlns.com/foaf/0.1/Person",
         "name": "http://xmlns.com/foaf/0.1/name",
         "knows": {"@id": "http://xmlns.com/foaf/0.1/knows", "@type": "@id"}
       },
       ****"@id": "http://example.org/foaf-graph",
-      "generatedAt": "2012-04-09",
+      "generatedAt": "2012-04-09T00:00:00",
       "@graph":**** [
         {
           "@id": "http://manu.sporny.org/about#manu",
@@ -8210,8 +8215,8 @@ the data type to be specified explicitly with each piece of data.</p>
     [{
       ****"@id": "http://example.org/foaf-graph",
       "http://www.w3.org/ns/prov#generatedAtTime": [{
-        "@value": "2012-04-09",
-        "@type": "http://www.w3.org/2001/XMLSchema#date"
+        "@value": "2012-04-09T00:00:00",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
       }]****,
       "@graph": [{
         "@id": "http://manu.sporny.org/about#manu",
@@ -8236,7 +8241,7 @@ the data type to be specified explicitly with each piece of data.</p>
            data-to-rdf>
       <thead><tr><th>Graph</th><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
       <tbody>
-        <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>prov:generatedAtTime</td><td>2012-04-09</td><td>xsd:date</td></tr>
+        <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>prov:generatedAtTime</td><td>2012-04-09T00:00:00</td><td>xsd:dateTime</td></tr>
         <tr><td>http://example.org/foaf-graph</td><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>foaf:Person</td><td>&nbsp;</td></tr>
         <tr><td>http://example.org/foaf-graph</td><td>http://manu.sporny.org/about#manu</td><td>foaf:name</td><td>Manu Sporny</td><td>&nbsp;</td></tr>
         <tr><td>http://example.org/foaf-graph</td><td>http://manu.sporny.org/about#manu</td><td>foaf:knows</td><td>https://greggkellogg.net/foaf#me</td><td>&nbsp;</td></tr>
@@ -8256,7 +8261,7 @@ the data type to be specified explicitly with each piece of data.</p>
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-    <http://example.org/foaf-graph> prov:generatedAtTime "2012-04-09"^^xsd:date .
+    <http://example.org/foaf-graph> prov:generatedAtTime "2012-04-09T00:00:00"^^xsd:dateTime .
 
     <http://example.org/foaf-graph> {
       <http://manu.sporny.org/about#manu> a foaf:Person;
@@ -8855,7 +8860,7 @@ the data type to be specified explicitly with each piece of data.</p>
         ****"@version": 1.1****,
         "generatedAt": {
           "@id": "http://www.w3.org/ns/prov#generatedAtTime",
-          "@type": "http://www.w3.org/2001/XMLSchema#date"
+          "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
         },
         "Person": "http://xmlns.com/foaf/0.1/Person",
         "name": "http://xmlns.com/foaf/0.1/name",
@@ -8869,7 +8874,7 @@ the data type to be specified explicitly with each piece of data.</p>
         }****
       },
       "@id": "http://example.org/foaf-graph",
-      "generatedAt": "2012-04-09",
+      "generatedAt": "2012-04-09T00:00:00",
       ****"graphMap": {
         "http://manu.sporny.org/about#manu":**** {
           "@id": "http://manu.sporny.org/about#manu",
@@ -8894,8 +8899,8 @@ the data type to be specified explicitly with each piece of data.</p>
     [{
       "@id": "http://example.org/foaf-graph",
       "http://www.w3.org/ns/prov#generatedAtTime": [{
-        "@value": "2012-04-09",
-        "@type": "http://www.w3.org/2001/XMLSchema#date"
+        "@value": "2012-04-09T00:00:00",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
       }],
       "http://example.org/graphMap": [{
         "@graph": [{
@@ -8932,7 +8937,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <tbody>
         <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>http://example.org/graphMap</td><td>https://greggkellogg.net/foaf#me</td><td>&nbsp;</td></tr>
         <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>http://example.org/graphMap</td><td>http://manu.sporny.org/about#manu</td><td>&nbsp;</td></tr>
-        <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>prov:generatedAtTime</td><td>2012-04-09</td><td>xsd:date</td></tr>
+        <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>prov:generatedAtTime</td><td>2012-04-09T00:00:00</td><td>xsd:dateTime</td></tr>
         <tr><td>https://greggkellogg.net/foaf#me</td><td>https://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>foaf:Person</td><td>&nbsp;</td></tr>
         <tr><td>https://greggkellogg.net/foaf#me</td><td>https://greggkellogg.net/foaf#me</td><td>foaf:name</td><td>Gregg Kellogg</td><td>&nbsp;</td></tr>
         <tr><td>https://greggkellogg.net/foaf#me</td><td>https://greggkellogg.net/foaf#me</td><td>foaf:knows</td><td>http://manu.sporny.org/about#manu</td><td>&nbsp;</td></tr>
@@ -8956,7 +8961,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <http://example.org/graphMap>
         <http://manu.sporny.org/about#manu>,
         <https://greggkellogg.net/foaf#me>;
-      prov:generatedAtTime "2012-04-09"^^xsd:date .
+      prov:generatedAtTime "2012-04-09T00:00:00"^^xsd:dateTime .
 
     <https://greggkellogg.net/foaf#me> {
       <https://greggkellogg.net/foaf#me> a foaf:Person;
@@ -9001,7 +9006,7 @@ the data type to be specified explicitly with each piece of data.</p>
         "@version": 1.1,
         "generatedAt": {
           "@id": "http://www.w3.org/ns/prov#generatedAtTime",
-          "@type": "http://www.w3.org/2001/XMLSchema#date"
+          "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
         },
         "Person": "http://xmlns.com/foaf/0.1/Person",
         "name": "http://xmlns.com/foaf/0.1/name",
@@ -9012,7 +9017,7 @@ the data type to be specified explicitly with each piece of data.</p>
         }
       },
       "@id": "http://example.org/foaf-graph",
-      "generatedAt": "2012-04-09",
+      "generatedAt": "2012-04-09T00:00:00",
       "graphMap": {
         ****"@none"****: [{
           "@id": "http://manu.sporny.org/about#manu",
@@ -9036,8 +9041,8 @@ the data type to be specified explicitly with each piece of data.</p>
     [{
       "@id": "http://example.org/foaf-graph",
       "http://www.w3.org/ns/prov#generatedAtTime": [{
-        "@value": "2012-04-09",
-        "@type": "http://www.w3.org/2001/XMLSchema#date"
+        "@value": "2012-04-09T00:00:00",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
       }],
       "http://example.org/graphMap": [{
         "@graph": [{
@@ -9067,7 +9072,7 @@ the data type to be specified explicitly with each piece of data.</p>
            data-to-rdf>
       <thead><tr><th>Graph</th><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
       <tbody>
-        <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>prov:generatedAtTime</td><td>2012-04-09</td><td>xsd:date</td></tr>
+        <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>prov:generatedAtTime</td><td>2012-04-09T00:00:00</td><td>xsd:dateTime</td></tr>
         <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>http://example.org/graphMap</td><td>_:b0</td><td>&nbsp;</td></tr>
         <tr><td>&nbsp;</td><td>http://example.org/foaf-graph</td><td>http://example.org/graphMap</td><td>_:b1</td><td>&nbsp;</td></tr>
         <tr><td>_:b0</td><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>foaf:Person</td><td>&nbsp;</td></tr>
@@ -9090,7 +9095,7 @@ the data type to be specified explicitly with each piece of data.</p>
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
     <http://example.org/foaf-graph> <http://example.org/graphMap> _:b0,  _:b1;
-       prov:generatedAtTime "2012-04-09"^^xsd:date .
+       prov:generatedAtTime "2012-04-09T00:00:00"^^xsd:dateTime .
 
     _:b0 {
       <http://manu.sporny.org/about#manu> a foaf:Person;
@@ -12352,22 +12357,22 @@ the data type to be specified explicitly with each piece of data.</p>
         itemtype="http://purl.org/vocab/frbr/core#Work"
         itemid="http://purl.oreilly.com/works/45U8QJGZSQKDH8N">
      <dt>Title</dt>
-     <dd><cite itemprop="http://purl.org/dc/terms/title">Just a Geek</cite></dd>
+     <dd><cite itemprop="http://purl.org/dc/elements/1.1/title">Just a Geek</cite></dd>
      <dt>By</dt>
-     <dd><span itemprop="http://purl.org/dc/terms/creator">Wil Wheaton</span></dd>
+     <dd><span itemprop="http://purl.org/dc/elements/1.1/creator">Wil Wheaton</span></dd>
      <dt>Format</dt>
      <dd itemprop="http://purl.org/vocab/frbr/core#realization"
          itemscope
          itemtype="http://purl.org/vocab/frbr/core#Expression"
          itemid="http://purl.oreilly.com/products/9780596007683.BOOK">
-      <link itemprop="http://purl.org/dc/terms/type" href="http://purl.oreilly.com/product-types/BOOK">
+      <link itemprop="http://purl.org/dc/elements/1.1/type" href="http://purl.oreilly.com/product-types/BOOK">
       Print
      </dd>
      <dd itemprop="http://purl.org/vocab/frbr/core#realization"
          itemscope
          itemtype="http://purl.org/vocab/frbr/core#Expression"
          itemid="http://purl.oreilly.com/products/9780596802189.EBOOK">
-      <link itemprop="http://purl.org/dc/terms/type" href="http://purl.oreilly.com/product-types/EBOOK">
+      <link itemprop="http://purl.org/dc/elements/1.1/type" href="http://purl.oreilly.com/product-types/EBOOK">
       Ebook
      </dd>
     </dl>
@@ -12385,8 +12390,8 @@ the data type to be specified explicitly with each piece of data.</p>
       {
         "@id": "http://purl.oreilly.com/works/45U8QJGZSQKDH8N",
         "@type": "http://purl.org/vocab/frbr/core#Work",
-        "http://purl.org/dc/terms/title": "Just a Geek",
-        "http://purl.org/dc/terms/creator": "Wil Wheaton",
+        "http://purl.org/dc/elements/1.1/title": "Just a Geek",
+        "http://purl.org/dc/elements/1.1/creator": "Wil Wheaton",
         "http://purl.org/vocab/frbr/core#realization":
         [
           {"@id": "http://purl.oreilly.com/products/9780596007683.BOOK"},
@@ -12395,11 +12400,11 @@ the data type to be specified explicitly with each piece of data.</p>
       }, {
         "@id": "http://purl.oreilly.com/products/9780596007683.BOOK",
         "@type": "http://purl.org/vocab/frbr/core#Expression",
-        "http://purl.org/dc/terms/type": {"@id": "http://purl.oreilly.com/product-types/BOOK"}
+        "http://purl.org/dc/elements/1.1/type": {"@id": "http://purl.oreilly.com/product-types/BOOK"}
       }, {
         "@id": "http://purl.oreilly.com/products/9780596802189.EBOOK",
         "@type": "http://purl.org/vocab/frbr/core#Expression",
-        "http://purl.org/dc/terms/type": {"@id": "http://purl.oreilly.com/product-types/EBOOK"}
+        "http://purl.org/dc/elements/1.1/type": {"@id": "http://purl.oreilly.com/product-types/EBOOK"}
       }
     ]
     -->
