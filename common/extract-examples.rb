@@ -36,13 +36,14 @@ PREFIXES = {
   schema: "http://schema.org/",
   xsd:    "http://www.w3.org/2001/XMLSchema#"
 }
-example_dir = yaml_dir = verbose = number = nil
+example_dir = yaml_dir = verbose = number = line = nil
 
 opts = GetoptLong.new(
   ["--example-dir",   GetoptLong::REQUIRED_ARGUMENT],
   ["--yaml-dir",      GetoptLong::REQUIRED_ARGUMENT],
   ["--verbose", '-v', GetoptLong::NO_ARGUMENT],
   ["--number", '-n',  GetoptLong::REQUIRED_ARGUMENT],
+  ["--line", '-l',  GetoptLong::REQUIRED_ARGUMENT],
 )
 opts.each do |opt, arg|
   case opt
@@ -50,6 +51,7 @@ opts.each do |opt, arg|
   when '--yaml-dir'     then yaml_dir = arg && FileUtils::mkdir_p(arg)
   when '--verbose'      then verbose = true
   when '--number'       then number = arg.to_i
+  when '--line'         then line = arg.to_i
   end
 end
 
@@ -106,17 +108,15 @@ def table_to_dataset(table)
         when /IRI/, '-', /^\s*$/, " "
         else
           # We might think something was an IRI, but determine that it's not
-          object = RDF::Literal(object.to_s) unless object.literal?
-          object.datatype = RDF::Vocabulary.expand_pname(cell.sub("dcterms:", "dc:"))
+          dt = RDF::Vocabulary.expand_pname(cell.sub("dcterms:", "dc:"))
+          object = RDF::Literal(object.to_s, datatype: dt)
         end
       when 'Language' 
         case cell
         when '-', /^\s*$/
         else
           # We might think something was an IRI, but determine that it's not
-          object = RDF::Literal(object.to_s) unless object.literal?
-          object.datatype = RDF.langString
-          object.language = cell.to_sym
+          object = RDF::Literal(object.to_s, language: cell.to_sym)
         end
       end
     end
@@ -187,6 +187,9 @@ def dataset_to_table(repo)
   end.join("\n    ") + "\n  </tbody>\n</table>"
 end
 
+# Allow linting examples
+RDF::Reasoner.apply(:rdfs, :schema)
+
 ARGV.each do |input|
   $stderr.puts "\ninput: #{input}"
   example_number = 1 # Account for imported Example 1 in typographical conventions
@@ -244,6 +247,7 @@ ARGV.each do |input|
           fromRdf: element.attr('data-from-rdf'),
           toRdf: element.attr('data-to-rdf'),
           frame_for: element.attr('data-frame-for'),
+          no_lint: element.attr('data-no-lint'),
           frame: element.attr('data-frame'),
           result_for: element.attr('data-result-for'),
           options: element.attr('data-options'),
@@ -282,6 +286,7 @@ ARGV.each do |input|
   # Process API functions for
   examples.values.sort_by {|ex| ex[:number]}.each do |ex|
     next if number && number != ex[:number]
+    next if line && line != ex[:line]
 
     xpath = '//script[@type="application/ld+json"]'
     xpath += %([@id="#{ex[:target][1..-1]}"]) if ex[:target]
@@ -588,12 +593,25 @@ ARGV.each do |input|
         if expected.is_a?(RDF::Dataset)
           expected_norm = RDF::Normalize.new(expected).map(&:to_nquads)
           result_norm = RDF::Normalize.new(result).map(&:to_nquads)
-          unless expected_norm.sort == result_norm.sort
+          if expected_norm.sort != result_norm.sort
             if verbose
               $stderr.puts "expected_norm:\n" + expected_norm.sort.join("")
               $stderr.puts "result_norm:\n" + result_norm.sort.join("")
             end
             errors << "Example #{ex[:number]} at line #{ex[:line]} not isomorphic with #{examples[ex[:result_for]][:number]}"
+            $stdout.write "F".colorize(:red)
+            next
+          elsif !ex[:no_lint] && !(messages = expected.lint).empty?
+            # Lint problems in resulting graph.
+            if verbose
+              messages.each do |kind, term_messages|
+                term_messages.each do |term, messages|
+                  $stderr.puts "lint #{kind}  #{term}"
+                  messages.each {|m| $stderr.puts "  #{m}"}
+                end
+              end
+            end
+            errors << "Example #{ex[:number]} at line #{ex[:line]} has lint errors"
             $stdout.write "F".colorize(:red)
             next
           end
