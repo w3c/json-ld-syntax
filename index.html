@@ -144,18 +144,24 @@
     float: right;
     font: x-large Arial, sans-serif;
     color: gray;
+    border: solid thin black;
+    padding: 0.2em;
   }
   .example > pre.frame:before {
     content: "Frame";
     float: right;
     font: x-large Arial, sans-serif;
     color: gray;
+    border: solid thin black;
+    padding: 0.2em;
   }
   .example > pre.input:before {
     content: "Input";
     float: right;
     font: x-large Arial, sans-serif;
     color: gray;
+    border: solid thin black;
+    padding: 0.2em;
   }
   .changed {
     background-color: rgb(215, 238, 197);
@@ -2440,45 +2446,33 @@
       such as the keys of <a>node objects</a>,
       to be based on the <a>base IRI</a> to create <a>absolute IRIs</a>.</p>
 
-  <pre class="example nohighlight" data-transform="updateExample"
-       title="Using &quot;#&quot; as the vocabulary mapping"
-       data-base="http://example/document">
-  <!--
-    {
-      "@context": {
-        ****"@version": 1.1,****
-        ****"@base": "http://example/document",****
-        "@vocab": ****"#"****
-      },
-      "@id": "http://example.org/places#BrewEats",
-      "@type": ****"Restaurant"****,
-      ****"name"****: "Brew Eats"
-      ####...####
-    }
-  -->
-  </pre>
-
-  <p>If this document were located at <code>http://example/document</code>, it would expand as follows:</p>
-
   <aside class="example ds-selector-tabs"
-         title="Using &quot;#&quot; as the vocabulary mapping (expanded)">
+         title="Using &quot;#&quot; as the vocabulary mapping">
     <div class="selectors">
-      <button class="selected" data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="original">Original</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="expanded selected nohighlight" data-transform="updateExample">
+    <pre class="original selected nohighlight" data-transform="updateExample"
+         title="Using &quot;#&quot; as the vocabulary mapping"
+         data-base="http://example/document">
     <!--
-    [{
-      "@id": "http://example.org/places#BrewEats",
-      "@type": ["http://example/document#Restaurant"],
-      "http://example/document#name": [{"@value": "Brew Eats"}]
-    }]
+      {
+        "@context": {
+          ****"@version": 1.1,****
+          ****"@base": "http://example/document",****
+          "@vocab": ****"#"****
+        },
+        "@id": "http://example.org/places#BrewEats",
+        "@type": ****"Restaurant"****,
+        ****"name"****: "Brew Eats"
+        ####...####
+      }
     -->
     </pre>
     <table class="statements"
-           data-result-for="Using &quot;#&quot; as the vocabulary mapping (expanded)-expanded"
+           data-result-for="Using &quot;#&quot; as the vocabulary mapping-original"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -2488,7 +2482,7 @@
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="Using &quot;#&quot; as the vocabulary mapping (expanded)-expanded"
+         data-result-for="Using &quot;#&quot; as the vocabulary mapping-original"
          data-transform="updateExample"
          data-to-rdf>
     <!--
@@ -2497,6 +2491,20 @@
     -->
     </pre>
   </aside>
+
+  <p>If this document were located at <code>http://example/document</code>, it would expand as follows:</p>
+
+  <pre class="example expanded nohighlight"
+       data-transform="updateExample"
+       title="Using &quot;#&quot; as the vocabulary mapping (expanded)">
+  <!--
+  [{
+    "@id": "http://example.org/places#BrewEats",
+    "@type": ["http://example/document#Restaurant"],
+    "http://example/document#name": [{"@value": "Brew Eats"}]
+  }]
+  -->
+  </pre>
   </section>
 </section>
 
