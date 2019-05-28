@@ -163,6 +163,22 @@
     border: solid thin black;
     padding: 0.2em;
   }
+  .example > pre.result:before {
+    content: "Result";
+    float: right;
+    font: x-large Arial, sans-serif;
+    color: gray;
+    border: solid thin black;
+    padding: 0.2em;
+  }
+  .example > pre.turtle:before {
+    content: "Turtle";
+    float: right;
+    font: x-large Arial, sans-serif;
+    color: gray;
+    border: solid thin black;
+    padding: 0.2em;
+  }
   .changed {
     background-color: rgb(215, 238, 197);
   }
@@ -210,7 +226,7 @@
     color: #202020;
     cursor: pointer;
   }
-  .ds-selector-tabs pre, .ds-selector-tabs table {
+  .ds-selector-tabs pre:not(.preserve), .ds-selector-tabs table:not(.preserve) {
     display: none;
   }
   .ds-selector-tabs pre.selected, .ds-selector-tabs table.selected {
@@ -738,12 +754,12 @@
   <aside class="example ds-selector-tabs"
          title="Sample JSON-LD document using full IRIs instead of terms">
     <div class="selectors">
-      <button class="selected" data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="expanded">Expanded (Input)</button>
       <button data-selects="statements">Statements</button>
-      <button data-selects="turtle">Turtle</button>
+      <button data-selects="turtle">Turtle (Result)</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="expanded selected nohighlight" data-transform="updateExample">
+    <pre class="expanded input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "****http://schema.org/name****": "Manu Sporny",
@@ -875,13 +891,13 @@
     <aside class="example ds-selector-tabs"
            title="Referencing a JSON-LD context">
       <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
+        <button class="selected input" data-selects="compacted">Compacted (Input)</button>
+        <button data-selects="expanded">Expanded (Result)</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
         <a class="playground" target="_blank"></a>
       </div>
-      <pre class="original selected nohighlight" data-transform="updateExample">
+      <pre class="compacted input selected nohighlight" data-transform="updateExample">
       <!--
       {
         ****"@context": "https://json-ld.org/contexts/person.jsonld",****
@@ -891,9 +907,9 @@
       }
       -->
       </pre>
-      <pre class="expanded nohighlight"
+      <pre class="expanded result nohighlight"
            data-transform="updateExample"
-           data-result-for="Referencing a JSON-LD context-original">
+           data-result-for="Referencing a JSON-LD context-compacted">
       <!--
       [{
         "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
@@ -957,13 +973,13 @@
     <aside class="example ds-selector-tabs"
            title="In-line context definition">
       <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
+        <button class="selected" data-selects="compacted">Compacted (Input)</button>
+        <button data-selects="expanded">Expanded (Result)</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
         <a class="playground" target="_blank"></a>
       </div>
-      <pre class="original selected nohighlight" data-transform="updateExample">
+      <pre class="compacted input selected input nohighlight" data-transform="updateExample">
       <!--
       {
         ****"@context": {
@@ -983,8 +999,8 @@
       }
       -->
       </pre>
-      <pre class="expanded nohighlight" data-transform="updateExample"
-           data-result-for="In-line context definition-original">
+      <pre class="expanded result nohighlight" data-transform="updateExample"
+           data-result-for="In-line context definition-compacted">
       <!--
       [{
         "http://schema.org/name": [{"@value": "Manu Sporny"}],
@@ -1115,13 +1131,13 @@
   <aside class="example ds-selector-tabs"
          title="Term expansion from context definition">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "****@context****": {
@@ -1132,8 +1148,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Term expansion from context definition-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Term expansion from context definition-compacted">
     <!--
     [{
       "http://schema.org/name": [{"@value": "Manu Sporny"}]
@@ -1173,13 +1189,13 @@
   <aside class="example ds-selector-tabs"
          title="Type coercion">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {****
       "@context": {
@@ -1196,8 +1212,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Type coercion-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Type coercion-compacted">
     <!--
     [{
       "http://schema.org/url": [{"@id": "http://manu.sporny.org/"}]
@@ -1273,13 +1289,13 @@
   <aside class="example ds-selector-tabs"
          title="Identifying a node">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -1292,8 +1308,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Identifying a node-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Identifying a node-compacted">
     <!--
     [{
       ****"@id": "http://me.markus-lanthaler.com/",****
@@ -1435,13 +1451,13 @@
   <aside class="example ds-selector-tabs"
          title="Specifying the type for a node">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -1457,8 +1473,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Specifying the type for a node-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Specifying the type for a node-compacted">
     <!--
     [{
       "@id": "http://me.markus-lanthaler.com/",
@@ -1499,13 +1515,13 @@
   <aside class="example ds-selector-tabs"
          title="Specifying multiple types for a node">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       ####...####
@@ -1518,8 +1534,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Specifying multiple types for a node-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Specifying multiple types for a node-compacted">
     <!--
     [{
       "@id": "http://me.markus-lanthaler.com/",
@@ -1556,13 +1572,13 @@
   <aside class="example ds-selector-tabs"
          title="Using a term to specify the type">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -1575,8 +1591,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Using a term to specify the type-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Using a term to specify the type-compacted">
     <!--
     [{
       "@id": "http://example.org/places#BrewEats",
@@ -1658,13 +1674,13 @@
     <aside class="example ds-selector-tabs"
            title="Referencing Objects on the Web">
       <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
+        <button class="selected" data-selects="compacted">Compacted (Input)</button>
+        <button data-selects="expanded">Expanded (Result)</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
         <a class="playground" target="_blank"></a>
       </div>
-      <pre class="original selected nohighlight" data-transform="updateExample">
+      <pre class="compacted input selected nohighlight" data-transform="updateExample">
       <!--
       {
         "@context": {
@@ -1678,8 +1694,8 @@
       }
       -->
       </pre>
-      <pre class="expanded nohighlight" data-transform="updateExample"
-           data-result-for="Referencing Objects on the Web-original">
+      <pre class="expanded result nohighlight" data-transform="updateExample"
+           data-result-for="Referencing Objects on the Web-compacted">
       <!--
       [{
         "@id": "http://manu.sporny.org/about#manu",
@@ -1728,13 +1744,13 @@
     <aside class="example ds-selector-tabs"
            title="Embedding Objects">
       <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
+        <button class="selected" data-selects="compacted">Compacted (Input)</button>
+        <button data-selects="expanded">Expanded (Result)</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
         <a class="playground" target="_blank"></a>
       </div>
-      <pre class="original selected nohighlight" data-transform="updateExample"
+      <pre class="compacted input selected nohighlight" data-transform="updateExample"
            title="Embedding Objects">
       <!--
       {
@@ -1752,8 +1768,8 @@
       }
       -->
       </pre>
-      <pre class="expanded nohighlight" data-transform="updateExample"
-           data-result-for="Embedding Objects-original">
+      <pre class="expanded result nohighlight" data-transform="updateExample"
+           data-result-for="Embedding Objects-compacted">
       <!--
       [{
         "@id": "http://manu.sporny.org/about#manu",
@@ -1829,13 +1845,13 @@
   <aside class="example ds-selector-tabs"
          title="Using multiple contexts">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     [
       {
@@ -1855,8 +1871,8 @@
     ]
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Using multiple contexts-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Using multiple contexts-compacted">
     <!--
     [{
       "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
@@ -1937,13 +1953,13 @@
   <aside class="example ds-selector-tabs"
          title="Describing disconnected nodes with @graph">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       ****"@context": [
@@ -1966,8 +1982,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Describing disconnected nodes with @graph-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Describing disconnected nodes with @graph-compacted">
     <!--
     [{
       "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
@@ -2042,13 +2058,13 @@
   <aside class="example ds-selector-tabs"
          title="Embedded contexts within node objects">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       ****"@context": {
@@ -2066,8 +2082,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Embedded contexts within node objects-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Embedded contexts within node objects-compacted">
     <!--
     [{
       "http://example.com/person#details": [{
@@ -2133,13 +2149,13 @@
   <aside class="example ds-selector-tabs"
          title="Combining external and local contexts">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       ****"@context": [
@@ -2157,8 +2173,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Combining external and local contexts-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Combining external and local contexts-compacted">
     <!--
     [{
       "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
@@ -2255,13 +2271,13 @@
   <aside class="example ds-selector-tabs"
          title="Using a default vocabulary">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -2274,8 +2290,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Using a default vocabulary-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Using a default vocabulary-compacted">
     <!--
     [{
       "@id": "http://example.org/places#BrewEats",
@@ -2317,13 +2333,13 @@
   <aside class="example ds-selector-tabs"
          title="Using the null keyword to ignore data">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
       {
         "@context": {
@@ -2337,8 +2353,8 @@
       }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Using the null keyword to ignore data-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Using the null keyword to ignore data-compacted">
     <!--
     [{
       "@id": "http://example.org/places#BrewEats",
@@ -2380,13 +2396,13 @@
   <aside class="example ds-selector-tabs"
          title="Using a default vocabulary relative to a previous default vocabulary">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": [{
@@ -2402,8 +2418,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Using a default vocabulary relative to a previous default vocabulary-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Using a default vocabulary relative to a previous default vocabulary-compacted">
     <!--
     [{
       "@id": "http://example.org/places#BrewEats",
@@ -2446,33 +2462,45 @@
       such as the keys of <a>node objects</a>,
       to be based on the <a>base IRI</a> to create <a>absolute IRIs</a>.</p>
 
+  <pre class="example input nohighlight" data-transform="updateExample"
+       title="Using &quot;#&quot; as the vocabulary mapping"
+       data-base="http://example/document">
+  <!--
+    {
+      "@context": {
+        ****"@version": 1.1,****
+        ****"@base": "http://example/document",****
+        "@vocab": ****"#"****
+      },
+      "@id": "http://example.org/places#BrewEats",
+      "@type": ****"Restaurant"****,
+      ****"name"****: "Brew Eats"
+      ####...####
+    }
+  -->
+  </pre>
+
+  <p>If this document were located at <code>http://example/document</code>, it would expand as follows:</p>
+
   <aside class="example ds-selector-tabs"
-         title="Using &quot;#&quot; as the vocabulary mapping">
+         title="Using &quot;#&quot; as the vocabulary mapping (expanded)">
     <div class="selectors">
-      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button class="selected" data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="compacted selected nohighlight" data-transform="updateExample"
-         title="Using &quot;#&quot; as the vocabulary mapping"
-         data-base="http://example/document">
+    <pre class="expanded result selected nohighlight" data-transform="updateExample">
     <!--
-      {
-        "@context": {
-          ****"@version": 1.1,****
-          ****"@base": "http://example/document",****
-          "@vocab": ****"#"****
-        },
-        "@id": "http://example.org/places#BrewEats",
-        "@type": ****"Restaurant"****,
-        ****"name"****: "Brew Eats"
-        ####...####
-      }
+    [{
+      "@id": "http://example.org/places#BrewEats",
+      "@type": ["http://example/document#Restaurant"],
+      "http://example/document#name": [{"@value": "Brew Eats"}]
+    }]
     -->
     </pre>
     <table class="statements"
-           data-result-for="Using &quot;#&quot; as the vocabulary mapping-compacted"
+           data-result-for="Using &quot;#&quot; as the vocabulary mapping (expanded)-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -2482,7 +2510,7 @@
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="Using &quot;#&quot; as the vocabulary mapping-compacted"
+         data-result-for="Using &quot;#&quot; as the vocabulary mapping (expanded)-expanded"
          data-transform="updateExample"
          data-to-rdf>
     <!--
@@ -2491,21 +2519,6 @@
     -->
     </pre>
   </aside>
-
-  <p>If this document were located at <code>http://example/document</code>, it would expand as follows:</p>
-
-  <pre class="example expanded nohighlight"
-       data-transform="updateExample"
-       data-result-for="Using &quot;#&quot; as the vocabulary mapping-compacted"
-       title="Using &quot;#&quot; as the vocabulary mapping (expanded)">
-  <!--
-  [{
-    "@id": "http://example.org/places#BrewEats",
-    "@type": ["http://example/document#Restaurant"],
-    "http://example/document#name": [{"@value": "Brew Eats"}]
-  }]
-  -->
-  </pre>
   </section>
 </section>
 
@@ -2542,13 +2555,13 @@
   <aside class="example ds-selector-tabs"
          title="Setting the document base in a document">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -2560,8 +2573,8 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Setting the document base in a document-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Setting the document base in a document-compacted">
     <!--
     [{
       "@id": "http://example.com/document.jsonld",
@@ -2617,13 +2630,13 @@
   <aside class="example ds-selector-tabs"
          title="Prefix expansion">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "****@context****": {
@@ -2636,9 +2649,9 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Prefix expansion-original">
+         data-result-for="Prefix expansion-compacted">
     <!--
     [{
       "@type": ["http://xmlns.com/foaf/0.1/Person"],
@@ -2694,13 +2707,13 @@
   <aside class="example ds-selector-tabs"
          title="Using vocabularies">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -2718,9 +2731,9 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result result nohighlight"
          data-transform="updateExample"
-         data-result-for="Using vocabularies-original">
+         data-result-for="Using vocabularies-compacted">
     <!--
     [{
       "@id": "http://me.markus-lanthaler.com/",
@@ -2785,7 +2798,7 @@
   <p>The behavior when compacting can be illustrated by considering the following input
     document in expanded form:</p>
 
-  <pre id="term-selection-example" class="example expanded" data-transform="updateExample"
+  <pre id="term-selection-example" class="example expanded input" data-transform="updateExample"
        title="Expanded document used to illustrate compact IRI creation">
   <!--
   [{
@@ -2814,10 +2827,13 @@
     -->
   </pre>
 
+  <p class="changed">Compacting using the previous context with the above expanded input document
+    results in the following compacted result:</p>
+
   <aside class="example ds-selector-tabs"
          title="Compact IRI generation term selection (1.0)">
     <div class="selectors">
-      <button class="selected" data-selects="compacted">Compacted</button>
+      <button class="selected" data-selects="compacted">Compacted (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground"
@@ -2826,7 +2842,7 @@
          data-compact
          target="_blank"></a>
     </div>
-    <pre class="compacted selected nohighlight"
+    <pre class="compacted result selected nohighlight"
          data-transform="updateExample"
          data-result-for="Expanded document used to illustrate compact IRI creation"
          data-context="Compact IRI generation context (1.0)"
@@ -2892,7 +2908,7 @@
   <aside class="example ds-selector-tabs"
          title="Compact IRI generation term selection (1.1)">
     <div class="selectors">
-      <button class="selected" data-selects="compacted">Compacted</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground"
@@ -2901,7 +2917,7 @@
          data-compact
          target="_blank"></a>
     </div>
-    <pre class="compacted selected nohighlight" data-transform="updateExample"
+    <pre class="compacted input selected nohighlight" data-transform="updateExample"
          data-result-for="Expanded document used to illustrate compact IRI creation"
          data-context="Compact IRI generation context (1.1)"
          data-compact
@@ -2963,13 +2979,13 @@
   <aside class="example ds-selector-tabs changed"
          title="Aliasing keywords">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -2983,9 +2999,9 @@
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result result nohighlight"
          data-transform="updateExample"
-         data-result-for="Aliasing keywords-original">
+         data-result-for="Aliasing keywords-compacted">
     <!--
     [{
       ****"@type****": ["http://xmlns.com/foaf/0.1/Person"],
@@ -3221,13 +3237,13 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   <aside class="example ds-selector-tabs changed"
          title="Defining an @context within a term definition">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -3247,9 +3263,9 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Defining an @context within a term definition-original">
+         data-result-for="Defining an @context within a term definition-compacted">
     <!--
     [{
       "http://xmlns.com/foaf/0.1/interest": [
@@ -3301,13 +3317,13 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   <aside class="example ds-selector-tabs changed"
          title="Defining an @context within a term definition used on @type">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -3331,9 +3347,9 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result result nohighlight"
          data-transform="updateExample"
-         data-result-for="Defining an @context within a term definition used on @type-original">
+         data-result-for="Defining an @context within a term definition used on @type-compacted">
     <!--
     [{
       "@type": ["http://schema.org/Person"],
@@ -3565,13 +3581,13 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   <aside class="example ds-selector-tabs changed"
     title="A protected @context with an exception">
     <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
+        <button class="selected" data-selects="compacted">Compacted (Input)</button>
+        <button data-selects="expanded">Expanded (Result)</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
         <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
       <!--
       {
         "@context": [
@@ -3600,9 +3616,9 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
       }
       -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="A protected @context with an exception-original">
+         data-result-for="A protected @context with an exception-compacted">
     <!--
     [{
       "http://schema.org/name": [{"@value": "Digital Bazaar"}],
@@ -3670,13 +3686,13 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   <aside class="example ds-selector-tabs changed"
     title="overriding permitted in property scoped context">
     <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
+        <button class="selected" data-selects="compacted">Compacted (Input)</button>
+        <button data-selects="expanded">Expanded (Result)</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
         <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
       <!--
       {
         "@context": [
@@ -3717,9 +3733,9 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
       }
       -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="overriding permitted in property scoped context-original"
+         data-result-for="overriding permitted in property scoped context-compacted"
          data-ignore
     >
     <!--
@@ -3806,18 +3822,18 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
 </ol>
 
 <p>The first example uses the <code>@type</code> keyword to associate a
-type with a particular <a>term</a> in the <code>@context</code>:</p>
+  type with a particular <a>term</a> in the <code>@context</code>:</p>
 
 <aside class="example ds-selector-tabs changed"
        title="Expanded term definition with type coercion">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     ****"@context": {
@@ -3833,9 +3849,9 @@ type with a particular <a>term</a> in the <code>@context</code>:</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Expanded term definition with type coercion-original">
+       data-result-for="Expanded term definition with type coercion-compacted">
   <!--
   [{
     "@id": "http://example.com/docs/1",
@@ -3875,18 +3891,18 @@ type with a particular <a>term</a> in the <code>@context</code>:</p>
   <code>@context</code>. The example tabs show how a <a>JSON-LD processor</a> will interpret the data.</p>
 
 <p>The second example uses the expanded form of setting the type information
-in the body of a JSON-LD document:</p>
+  in the body of a JSON-LD document:</p>
 
 <aside class="example ds-selector-tabs changed"
        title="Expanded value with type">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {
@@ -3903,9 +3919,9 @@ in the body of a JSON-LD document:</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Expanded value with type-original">
+       data-result-for="Expanded value with type-compacted">
   <!--
   [{
     "http://purl.org/dc/terms/modified": [
@@ -3987,12 +4003,12 @@ in the body of a JSON-LD document:</p>
 <aside class="example ds-selector-tabs"
        title="Example demonstrating the context-sensitivity for @type (statements)">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"
        data-result-for="#context-sensitivity-for-type"></a>
   </div>
-  <table class="original selected"
+  <table class="compacted input selected"
        data-result-for="Example demonstrating the context-sensitivity for @type"
        data-to-rdf>
   <thead><tr>
@@ -4064,13 +4080,13 @@ in the body of a JSON-LD document:</p>
 <aside class="example ds-selector-tabs"
        title="JSON Literal">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {
@@ -4088,9 +4104,9 @@ in the body of a JSON-LD document:</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="JSON Literal-original">
+       data-result-for="JSON Literal-compacted">
   <!--
   [{
     "http://example.com/vocab/json": [{
@@ -4108,7 +4124,7 @@ in the body of a JSON-LD document:</p>
   -->
   </pre>
   <table class="statements"
-         data-result-for="JSON Literal-original"
+         data-result-for="JSON Literal-compacted"
          data-to-rdf>
   <thead><tr>
     <th>Subject</th>
@@ -4127,7 +4143,7 @@ in the body of a JSON-LD document:</p>
   </table>
   <pre class="turtle nohighlight"
        data-content-type="text/turtle"
-       data-result-for="JSON Literal-original"
+       data-result-for="JSON Literal-compacted"
        data-transform="updateExample"
        data-to-rdf>
   <!--
@@ -4179,13 +4195,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs"
        title="Expanded term definition with types">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {
@@ -4210,9 +4226,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Expanded term definition with types-original">
+       data-result-for="Expanded term definition with types-compacted">
   <!--
   [{
     "@id": "http://example.com/people#john",
@@ -4291,13 +4307,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs changed"
        title="Term expansion for values, not identifiers">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {
@@ -4312,9 +4328,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Term expansion for values, not identifiers-original">
+       data-result-for="Term expansion for values, not identifiers-compacted">
   <!--
   [{
     "http://example2.com/fred": [
@@ -4377,13 +4393,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs changed"
        title="Terms not expanded when document-relative">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {
@@ -4398,9 +4414,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Terms not expanded when document-relative-original">
+       data-result-for="Terms not expanded when document-relative-compacted">
   <!--
   [{
     "http://example2.com/fred": [
@@ -4443,13 +4459,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs changed"
        title="Term definitions using compact and absolute IRIs">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {
@@ -4472,9 +4488,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Term definitions using compact and absolute IRIs-original">
+       data-result-for="Term definitions using compact and absolute IRIs-compacted">
   <!--
   [{
     "http://xmlns.com/foaf/0.1/age": [{"@type": "http://www.w3.org/2001/XMLSchema#integer", "@value": "41"}],
@@ -4547,13 +4563,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Setting the default language of a JSON-LD document">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       ****"@context": {
@@ -4567,9 +4583,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Setting the default language of a JSON-LD document-original">
+         data-result-for="Setting the default language of a JSON-LD document-compacted">
     <!--
     [{
       "http://example.org/name": [{"@value": ****"花澄"****, "@language": "ja"}],
@@ -4761,13 +4777,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs"
        title="Multiple values with no inherent order">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {"foaf": "http://xmlns.com/foaf/0.1/"},
@@ -4778,9 +4794,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Multiple values with no inherent order-original">
+       data-result-for="Multiple values with no inherent order-compacted">
   <!--
   [{
     "@id": "http://example.org/people#joebob",
@@ -4837,13 +4853,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs"
        title="Using an expanded form to set multiple values">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {"dcterms": "http://purl.org/dc/terms/"},
@@ -4861,9 +4877,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Using an expanded form to set multiple values-original">
+       data-result-for="Using an expanded form to set multiple values-compacted">
   <!--
   [{
     "@id": "http://example.org/articles/8",
@@ -4922,13 +4938,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs"
        title="Multiple array values of different types">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {"ex": "http://example.org/"},
@@ -4943,9 +4959,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Multiple array values of different types-original">
+       data-result-for="Multiple array values of different types-compacted">
   <!--
   [{
     "@id": "http://example.org/people#michael",
@@ -5036,13 +5052,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs"
        title="An ordered collection of values in JSON-LD">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {"foaf": "http://xmlns.com/foaf/0.1/"},
@@ -5055,9 +5071,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="An ordered collection of values in JSON-LD-original">
+       data-result-for="An ordered collection of values in JSON-LD-compacted">
   <!--
   [{
     "@id": "http://example.org/people#joebob",
@@ -5110,13 +5126,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs"
        title="Specifying that a collection is ordered in the context">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     ****"@context": {
@@ -5133,9 +5149,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Specifying that a collection is ordered in the context-original">
+       data-result-for="Specifying that a collection is ordered in the context-compacted">
   <!--
   [{
     "@id": "http://example.org/people#joebob",
@@ -5224,13 +5240,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs"
        title="Coordinates expressed in JSON-LD">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected changed"
+  <pre class="compacted input selected changed"
        data-content-type="application/json"
        data-transform="updateExample">
   {
@@ -5256,9 +5272,9 @@ the data type to be specified explicitly with each piece of data.</p>
     ####//...####
   }
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Coordinates expressed in JSON-LD-original">
+       data-result-for="Coordinates expressed in JSON-LD-compacted">
   <!--
   [{
     "@type": ["https://purl.org/geojson/vocab#Feature"],
@@ -5390,13 +5406,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs"
        title="An unordered collection of values in JSON-LD">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     "@context": {"foaf": "http://xmlns.com/foaf/0.1/"},
@@ -5409,9 +5425,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="An unordered collection of values in JSON-LD-original">
+       data-result-for="An unordered collection of values in JSON-LD-compacted">
   <!--
   [{
     "@id": "http://example.org/people#joebob",
@@ -5470,13 +5486,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <aside class="example ds-selector-tabs"
        title="Specifying that a collection is unordered in the context">
   <div class="selectors">
-    <button class="selected" data-selects="original">Original</button>
-    <button data-selects="expanded">Expanded</button>
+    <button class="selected" data-selects="compacted">Compacted (Input)</button>
+    <button data-selects="expanded">Expanded (Result)</button>
     <button data-selects="statements">Statements</button>
     <button data-selects="turtle">Turtle</button>
     <a class="playground" target="_blank"></a>
   </div>
-  <pre class="original selected nohighlight" data-transform="updateExample">
+  <pre class="compacted input selected nohighlight" data-transform="updateExample">
   <!--
   {
     ****"@context": {
@@ -5493,9 +5509,9 @@ the data type to be specified explicitly with each piece of data.</p>
   }
   -->
   </pre>
-  <pre class="expanded nohighlight"
+  <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Specifying that a collection is unordered in the context-original">
+       data-result-for="Specifying that a collection is unordered in the context-compacted">
   <!--
   [{
     "@id": "http://example.org/people#joebob",
@@ -5586,13 +5602,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Nested properties">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -5612,9 +5628,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Nested properties-original">
+         data-result-for="Nested properties-compacted">
     <!--
     [{
       "@id": "http://example.org/myresource",
@@ -5684,13 +5700,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Nested properties folded into containing object">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -5706,9 +5722,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Nested properties folded into containing object-original">
+         data-result-for="Nested properties folded into containing object-compacted">
     <!--
     [{
       "@id": "http://example.org/myresource",
@@ -5774,16 +5790,57 @@ the data type to be specified explicitly with each piece of data.</p>
     with <code>"@nest": "labels"</code>, which will cause them to be serialized under
     <code>labels</code> when compacting.</p>
 
+  <pre id="defining-property-nesting-expanded"
+       class="example expanded input preserve nohighlight"
+       title="Defining property nesting - Expanded Input"
+       data-transform="updateExample"
+       data-result-for="Defining property nesting-compacted">
+  <!--
+  [{
+    "@id": "http://example.org/myresource",
+    "http://xmlns.com/foaf/0.1/homepage": [
+      {"@id": "http://example.org"}
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {"@value": "This is the main label for my resource"}
+    ],
+    "http://www.w3.org/2004/02/skos/core#altLabel": [
+      {"@value": "This is the other label"}
+    ]
+  }]
+  -->
+  </pre>
+
+  <pre id="defining-property-nesting-context"
+       title="Defining property nesting - Context"
+       class="example context preserve nohighlight" data-transform="updateExample">
+  <!--
+ {
+   "@context": {
+     ****"@version": 1.1****,
+     "skos": "http://www.w3.org/2004/02/skos/core#",
+     ****"labels": "@nest"****,
+     "main_label": {"@id": "skos:prefLabel", ****"@nest": "labels"****},
+     "other_label": {"@id": "skos:altLabel", ****"@nest": "labels"****},
+     "homepage": {"@id": "http://xmlns.com/foaf/0.1/homepage", "@type": "@id"}
+   }
+ }
+  -->
+  </pre>
+
   <aside class="example ds-selector-tabs"
          title="Defining property nesting">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
-      <a class="playground" target="_blank"></a>
+      <a class="playground"
+         data-result-for="#defining-property-nesting-expanded"
+         data-context="#defining-property-nesting-context"
+         data-compact
+         target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted result selected nohighlight" data-transform="updateExample">
     <!--
    {
      "@context": {
@@ -5803,26 +5860,8 @@ the data type to be specified explicitly with each piece of data.</p>
    }
     -->
     </pre>
-    <pre class="expanded nohighlight"
-         data-transform="updateExample"
-         data-result-for="Defining property nesting-original">
-    <!--
-    [{
-      "@id": "http://example.org/myresource",
-      "http://xmlns.com/foaf/0.1/homepage": [
-        {"@id": "http://example.org"}
-      ],
-      "http://www.w3.org/2004/02/skos/core#prefLabel": [
-        {"@value": "This is the main label for my resource"}
-      ],
-      "http://www.w3.org/2004/02/skos/core#altLabel": [
-        {"@value": "This is the other label"}
-      ]
-    }]
-    -->
-    </pre>
     <table class="statements"
-           data-result-for="Defining property nesting-expanded"
+           data-result-for="Defining property nesting - Expanded Input"
            data-to-rdf>
     <thead><tr>
       <th>Subject</th>
@@ -5849,7 +5888,7 @@ the data type to be specified explicitly with each piece of data.</p>
     </table>
     <pre class="turtle"
          data-content-type="text/turtle"
-         data-result-for="Defining property nesting-expanded"
+         data-result-for="Defining property nesting - Expanded Input"
          data-transform="updateExample"
          data-to-rdf>
     <!--
@@ -5881,13 +5920,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Referencing node objects">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -5906,9 +5945,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Referencing node objects-original">
+         data-result-for="Referencing node objects-compacted">
     <!--
     [{
       "@type": ["http://xmlns.com/foaf/0.1/Person"],
@@ -5991,13 +6030,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Embedding a node object as property value of another node object">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -6013,9 +6052,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Embedding a node object as property value of another node object-original">
+         data-result-for="Embedding a node object as property value of another node object-compacted">
     <!--
     [{
       "@type": ["http://xmlns.com/foaf/0.1/Person"],
@@ -6106,13 +6145,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Referencing an unidentified node">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -6130,9 +6169,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Referencing an unidentified node-original">
+         data-result-for="Referencing an unidentified node-compacted">
     <!--
     [{
       ****"@id": "_:b0"****,
@@ -6232,13 +6271,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Specifying a local blank node identifier">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": "http://schema.org/",
@@ -6252,9 +6291,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Specifying a local blank node identifier-original">
+         data-result-for="Specifying a local blank node identifier-compacted">
     <!--
     [{
       ****"@id": "_:n1"****,
@@ -6370,13 +6409,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Indexing data in JSON-LD">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -6407,9 +6446,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing data in JSON-LD-original">
+         data-result-for="Indexing data in JSON-LD-compacted">
     <!--
     [{
       "@id": "http://example.com/",
@@ -6548,13 +6587,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Indexing data using @none">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -6591,9 +6630,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing data using @none-original">
+         data-result-for="Indexing data using @none-compacted">
     <!--
     [{
       "@id": "http://example.com/",
@@ -6755,13 +6794,13 @@ the data type to be specified explicitly with each piece of data.</p>
     <aside class="example ds-selector-tabs"
            title="Property-based data indexing">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
       <!--
         {
           "@context": {
@@ -6796,10 +6835,10 @@ the data type to be specified explicitly with each piece of data.</p>
         }
       -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
          data-ignore
-         data-result-for="Property-based data indexing-original">
+         data-result-for="Property-based data indexing-compacted">
       <!--
         [{
           "@id": "http://example.com/",
@@ -6949,13 +6988,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Indexing languaged-tagged strings in JSON-LD">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected" data-transform="updateExample">
+    <pre class="compacted input selected" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -6973,9 +7012,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing languaged-tagged strings in JSON-LD-original">
+         data-result-for="Indexing languaged-tagged strings in JSON-LD-compacted">
     <!--
     [{
       "@id": "http://example.com/queen",
@@ -7028,13 +7067,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Indexing languaged-tagged strings in JSON-LD with @set representation">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -7053,9 +7092,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing languaged-tagged strings in JSON-LD with @set representation-original">
+         data-result-for="Indexing languaged-tagged strings in JSON-LD with @set representation-compacted">
     <!--
     [{
       "@id": "http://example.com/queen",
@@ -7101,13 +7140,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Indexing languaged-tagged strings using @none for no language">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -7126,9 +7165,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing languaged-tagged strings using @none for no language-original">
+         data-result-for="Indexing languaged-tagged strings using @none for no language-compacted">
     <!--
     [{
       "@id": "http://example.com/queen",
@@ -7183,13 +7222,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Indexing data in JSON-LD by node identifiers">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -7219,9 +7258,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing data in JSON-LD by node identifiers-original">
+         data-result-for="Indexing data in JSON-LD by node identifiers-compacted">
     <!--
     [{
       "@id": "http://example.com/",
@@ -7301,13 +7340,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Indexing data in JSON-LD by node identifiers with @set representation">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -7337,9 +7376,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing data in JSON-LD by node identifiers with @set representation-original">
+         data-result-for="Indexing data in JSON-LD by node identifiers with @set representation-compacted">
     <!--
     [{
       "@id": "http://example.com/",
@@ -7411,13 +7450,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Indexing data in JSON-LD by node identifiers using @none">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -7452,9 +7491,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing data in JSON-LD by node identifiers using @none-original">
+         data-result-for="Indexing data in JSON-LD by node identifiers using @none-compacted">
     <!--
     [{
       "@id": "http://example.com/",
@@ -7545,13 +7584,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Indexing data in JSON-LD by type">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -7577,9 +7616,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing data in JSON-LD by type-original">
+         data-result-for="Indexing data in JSON-LD by type-compacted">
     <!--
     [{
       "http://schema.org/name": [{"@value": "Manu Sporny"}],
@@ -7648,13 +7687,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Indexing data in JSON-LD by type with @set representation">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -7680,9 +7719,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing data in JSON-LD by type with @set representation-original">
+         data-result-for="Indexing data in JSON-LD by type with @set representation-compacted">
     <!--
     [{
       "http://schema.org/name": [{"@value": "Manu Sporny"}],
@@ -7747,13 +7786,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Indexing data in JSON-LD by type using @none">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -7784,9 +7823,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Indexing data in JSON-LD by type using @none-original">
+         data-result-for="Indexing data in JSON-LD by type using @none-compacted">
     <!--
     [{
       "http://schema.org/name": [{"@value": "Manu Sporny"}],
@@ -7877,13 +7916,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="A document with children linking to their parent">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight"
+    <pre class="compacted input selected nohighlight"
          data-transform="updateExample"
          data-base="http://example.org/">
     <!--
@@ -7903,10 +7942,10 @@ the data type to be specified explicitly with each piece of data.</p>
     ]
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
          data-base="http://example.org/"
-         data-result-for="A document with children linking to their parent-original">
+         data-result-for="A document with children linking to their parent-compacted">
     <!--
     [{
       "@id": "http://example.org/#homer",
@@ -7960,14 +7999,14 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="A person and its children using a reverse property">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="flattened">Flattened</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight"
+    <pre class="compacted input selected nohighlight"
          data-base="http://example.org/"
          data-transform="updateExample">
     <!--
@@ -7988,10 +8027,10 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
          data-base="http://example.org/"
-         data-result-for="A person and its children using a reverse property-original">
+         data-result-for="A person and its children using a reverse property-compacted">
     <!--
     [{
       "@id": "http://example.org/#homer",
@@ -8068,14 +8107,14 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Using @reverse to define reverse properties">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="flattened">Flattened</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample"
+    <pre class="compacted input selected nohighlight" data-transform="updateExample"
          data-base="http://example.org/">
     <!--
     {
@@ -8096,10 +8135,10 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
          data-base="http://example.org/"
-         data-result-for="Using @reverse to define reverse properties-original">
+         data-result-for="Using @reverse to define reverse properties-compacted">
     <!--
     [{
       "@id": "http://example.org/#homer",
@@ -8181,13 +8220,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Identifying and making statements about a graph">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -8217,9 +8256,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Identifying and making statements about a graph-original">
+         data-result-for="Identifying and making statements about a graph-compacted">
     <!--
     [{
       ****"@id": "http://example.org/foaf-graph",
@@ -8307,13 +8346,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Using @graph to explicitly express the default graph">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -8336,9 +8375,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Using @graph to explicitly express the default graph-original">
+         data-result-for="Using @graph to explicitly express the default graph-compacted">
     <!--
     [{
       "@id": "http://manu.sporny.org/about#manu",
@@ -8398,13 +8437,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Context needs to be duplicated if @graph is not used">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     [
       {
@@ -8430,9 +8469,9 @@ the data type to be specified explicitly with each piece of data.</p>
     ]
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Context needs to be duplicated if @graph is not used-original">
+         data-result-for="Context needs to be duplicated if @graph is not used-compacted">
     <!--
     [{
       "@id": "http://manu.sporny.org/about#manu",
@@ -8505,13 +8544,13 @@ the data type to be specified explicitly with each piece of data.</p>
     <aside class="example ds-selector-tabs changed"
            title="Implicitly named graph">
       <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
+        <button class="selected" data-selects="compacted">Compacted (Input)</button>
+        <button data-selects="expanded">Expanded (Result)</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="trig">TriG</button>
         <a class="playground" target="_blank"></a>
       </div>
-      <pre class="original selected nohighlight" data-transform="updateExample">
+      <pre class="compacted input selected nohighlight" data-transform="updateExample">
       <!--
       {
         "@context": {
@@ -8528,8 +8567,8 @@ the data type to be specified explicitly with each piece of data.</p>
       }
       -->
       </pre>
-      <pre class="expanded nohighlight" data-transform="updateExample"
-           data-result-for="Implicitly named graph-original">
+      <pre class="expanded result nohighlight" data-transform="updateExample"
+           data-result-for="Implicitly named graph-compacted">
       <!--
       [{
         "@id": "http://dbpedia.org/resource/William_Shakespeare",
@@ -8600,13 +8639,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Indexing graph data in JSON-LD">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -8638,8 +8677,8 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Indexing graph data in JSON-LD-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Indexing graph data in JSON-LD-compacted">
     <!--
     [{
       "@id": "http://example.com/",
@@ -8728,13 +8767,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Indexing graphs using @none for no index">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -8766,8 +8805,8 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight" data-transform="updateExample"
-         data-result-for="Indexing graphs using @none for no index-original">
+    <pre class="expanded result nohighlight" data-transform="updateExample"
+         data-result-for="Indexing graphs using @none for no index-compacted">
     <!--
     [{
       "@id": "http://example.com/",
@@ -8856,13 +8895,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Referencing named graphs using an id map">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -8901,9 +8940,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Referencing named graphs using an id map-original">
+         data-result-for="Referencing named graphs using an id map-compacted">
     <!--
     [{
       "@id": "http://example.org/foaf-graph",
@@ -9002,13 +9041,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Referencing named graphs using an id map with @none">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
       <a class="playground" target="_blank"></a>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample">
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
     <!--
     {
       "@context": {
@@ -9043,9 +9082,9 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded nohighlight"
+    <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Referencing named graphs using an id map with @none-original">
+         data-result-for="Referencing named graphs using an id map with @none-compacted">
     <!--
     [{
       "@id": "http://example.org/foaf-graph",
@@ -9188,13 +9227,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs changed"
          title="Expanded form for the previous example">
     <div class="selectors">
-      <button class="selected" data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"
          data-result-for="#sample-json-ld-document-to-be-expanded"></a>
     </div>
-    <pre class="expanded selected" data-transform="updateExample"
+    <pre class="expanded result selected" data-transform="updateExample"
          data-result-for="Sample JSON-LD document to be expanded">
     <!--
     [
@@ -9376,7 +9415,7 @@ the data type to be specified explicitly with each piece of data.</p>
       -->
       </pre>
       <p>The compaction algorithm will shorten all vocabulary-relative IRIs that begin with <code>http://xmlns.com/foaf/0.1/</code>:</p>
-      <pre class="compacted nohighlight" data-transform="updateExample"
+      <pre class="compacted result nohighlight" data-transform="updateExample"
            data-result-for="Compacting using a default vocabulary-expanded"
            data-context="Compacting using a default vocabulary-context"
            data-compact>
@@ -9422,7 +9461,7 @@ the data type to be specified explicitly with each piece of data.</p>
       -->
       </pre>
       <p>The compaction algorithm will shorten all document-relative IRIs that begin with <code>http://example.com/</code>:</p>
-      <pre class="compacted nohighlight" data-transform="updateExample"
+      <pre class="compacted result nohighlight" data-transform="updateExample"
            data-result-for="Compacting using a base IRI-expanded"
            data-context="Compacting using a base IRI-context"
            data-compact>
@@ -9836,7 +9875,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <p>The compacted version uses a <a>dictionary</a> value
         for "label" as before.
         and the values are the relevant <a>strings</a> but always represented using an <a>array</a>.</p>
-      <pre class="compacted" data-transform="updateExample"
+      <pre class="compacted result" data-transform="updateExample"
            data-result-for="Indexing language-tagged strings and @set-expanded"
            data-context="Indexing language-tagged strings and @set-context"
            data-base="http://example.org/"
@@ -9907,7 +9946,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <p>Note that the values that match the "integer", "english", "date", and "iri"
         terms are properly matched, and that everything that does not explicitly
         match is added to a property created using a <a>compact IRI</a>.</p>
-      <pre class="compacted" data-transform="updateExample"
+      <pre class="compacted result" data-transform="updateExample"
            data-result-for="Term Selection-expanded"
            data-context="Term Selection-context"
            data-base="http://example.org/"
@@ -10239,12 +10278,12 @@ the data type to be specified explicitly with each piece of data.</p>
    <aside class="example ds-selector-tabs"
            title="Embedding JSON-LD in HTML">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
     </div>
-    <pre class="original selected nohighlight" data-transform="updateExample"
+    <pre class="compacted input selected nohighlight" data-transform="updateExample"
          data-content-type="text/html">
     <!--
     ****<script type="application/ld+json">****
@@ -10258,9 +10297,9 @@ the data type to be specified explicitly with each piece of data.</p>
     ****</script>****
     -->
     </pre>
-    <pre class="expanded"
+    <pre class="expanded result"
          data-transform="updateExample"
-         data-result-for="Embedding JSON-LD in HTML-original">
+         data-result-for="Embedding JSON-LD in HTML-compacted">
     <!--
     [{
       "@id": "http://dbpedia.org/resource/John_Lennon",
@@ -10319,11 +10358,11 @@ the data type to be specified explicitly with each piece of data.</p>
    <aside class="example ds-selector-tabs"
            title="Combining multiple JSON-LD script elements into a single dataset">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
+      <button class="selected" data-selects="compacted">HTML Embedded (Input)</button>
       <button data-selects="statements">Statements</button>
-      <button data-selects="turtle">Turtle</button>
+      <button data-selects="turtle">Turtle (Result)</button>
     </div>
-    <pre class="original selected" data-transform="updateExample"
+    <pre class="compacted input selected" data-transform="updateExample"
          data-content-type="text/html">
     <!--
     <p>Data describing Dave</p>
@@ -10348,7 +10387,7 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
     <table class="statements"
-           data-result-for="Combining multiple JSON-LD script elements into a single dataset-original"
+           data-result-for="Combining multiple JSON-LD script elements into a single dataset-compacted"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
@@ -10361,7 +10400,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <pre class="turtle"
          data-content-type="text/turtle"
          data-transform="updateExample"
-         data-result-for="Combining multiple JSON-LD script elements into a single dataset-original"
+         data-result-for="Combining multiple JSON-LD script elements into a single dataset-compacted"
          data-to-rdf>
     <!--
     @prefix schema: <http://schema.org/> .
@@ -10387,12 +10426,12 @@ the data type to be specified explicitly with each piece of data.</p>
      <aside class="example ds-selector-tabs"
              title="Using the document base URL to establish the default base IRI">
       <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
+        <button class="selected" data-selects="compacted">Compacted (Input)</button>
+        <button data-selects="expanded">Expanded (Result)</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
       </div>
-      <pre class="original selected" data-transform="updateExample"
+      <pre class="compacted input selected" data-transform="updateExample"
            data-content-type="text/html">
       <!--
       ****<html>
@@ -10411,9 +10450,9 @@ the data type to be specified explicitly with each piece of data.</p>
       </html>****
       -->
       </pre>
-      <pre class="expanded"
+      <pre class="expanded result"
            data-transform="updateExample"
-           data-result-for="Using the document base URL to establish the default base IRI-original">
+           data-result-for="Using the document base URL to establish the default base IRI-compacted">
       <!--
       [{
         "@id": "http://dbpedia.org/resource/John_Lennon",
@@ -10485,11 +10524,11 @@ the data type to be specified explicitly with each piece of data.</p>
      <aside class="example ds-selector-tabs"
              title="Embedding JSON-LD containing HTML in HTML">
       <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
+        <button class="selected" data-selects="compacted">Compacted (Input)</button>
+        <button data-selects="expanded">Expanded (Result)</button>
         <button data-selects="turtle">Turtle</button>
       </div>
-      <pre class="original selected" data-transform="updateExample"
+      <pre class="compacted input selected" data-transform="updateExample"
            data-content-type="text/html">
       <!--
       <script type="application/ld+json">
@@ -10502,9 +10541,9 @@ the data type to be specified explicitly with each piece of data.</p>
       </script>
       -->
       </pre>
-      <pre class="expanded"
+      <pre class="expanded result"
            data-transform="updateExample"
-           data-result-for="Embedding JSON-LD containing HTML in HTML-original">
+           data-result-for="Embedding JSON-LD containing HTML in HTML-compacted">
       <!--
       [{
         "@type": ["http://schema.org/WebPageElement"],
@@ -10549,12 +10588,12 @@ the data type to be specified explicitly with each piece of data.</p>
    <aside class="example ds-selector-tabs"
            title="Targeting a specific script element by id">
     <div class="selectors">
-      <button class="selected" data-selects="original">Original</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
     </div>
     <p>Targeting a script element with id "gregg"</p>
-    <pre class="original selected nohighlight" data-transform="updateExample"
+    <pre class="compacted input selected nohighlight" data-transform="updateExample"
          data-content-type="text/html">
     <!--
     <p>Data describing Dave</p>
@@ -10579,7 +10618,7 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
     <table class="statements"
-           data-result-for="Targeting a specific script element by id-original"
+           data-result-for="Targeting a specific script element by id-compacted"
            data-to-rdf
            data-target="#gregg">
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
@@ -10591,7 +10630,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <pre class="turtle"
          data-content-type="text/turtle"
          data-transform="updateExample"
-         data-result-for="Targeting a specific script element by id-original"
+         data-result-for="Targeting a specific script element by id-compacted"
          data-to-rdf
          data-target="#gregg">
     <!--
@@ -10678,13 +10717,13 @@ the data type to be specified explicitly with each piece of data.</p>
     <aside class="example ds-selector-tabs"
              title="Referencing a Context in an HTML document">
       <div class="selectors">
-        <button class="selected" data-selects="original">Original</button>
-        <button data-selects="expanded">Expanded</button>
+        <button class="selected" data-selects="compacted">Compacted (Input)</button>
+        <button data-selects="expanded">Expanded (Result)</button>
         <button data-selects="statements">Statements</button>
         <button data-selects="turtle">Turtle</button>
         <a class="playground" target="_blank"></a>
       </div>
-      <pre class="original selected nohighlight" data-transform="updateExample">
+      <pre class="compacted input selected nohighlight" data-transform="updateExample">
       <!--
       {
         "@context": ****"https://json-ld.org/contexts/person.html"****,
@@ -10695,9 +10734,9 @@ the data type to be specified explicitly with each piece of data.</p>
       }
       -->
       </pre>
-      <pre class="expanded"
+      <pre class="expanded result"
            data-transform="updateExample"
-           data-result-for="Referencing a Context in an HTML document-original">
+           data-result-for="Referencing a Context in an HTML document-compacted">
       <!--
       [{
         "@id": "http://dbpedia.org/resource/John_Lennon",
@@ -10875,12 +10914,12 @@ the data type to be specified explicitly with each piece of data.</p>
   <aside class="example ds-selector-tabs"
          title="Linked Data Dataset">
     <div class="selectors">
-      <button class="selected" data-selects="compacted">Compacted</button>
-      <button data-selects="expanded">Expanded</button>
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="trig">TriG</button>
     </div>
-    <pre class="compacted selected"
+    <pre class="compacted input selected"
          data-transform="updateExample">
     <!--
     {
@@ -10918,7 +10957,7 @@ the data type to be specified explicitly with each piece of data.</p>
     }
     -->
     </pre>
-    <pre class="expanded" data-transform="updateExample"
+    <pre class="expanded result" data-transform="updateExample"
          data-result-for="Linked Data Dataset-compacted">
     <!--
     [{
