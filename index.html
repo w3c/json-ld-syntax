@@ -3666,14 +3666,115 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
 
   <p id="overriding-protected-terms">
     While protected terms can in general not be overridden,
-    there is an exception to this rule:
-    a property-<a>scoped context</a> is not affected by protection,
-    and can therefore override protected terms,
+    there are two exceptions to this rule.
+    The first exception is that a context is allowed to redefine a protected term
+    if the new definition is identical to the protected term definition
+    (modulo the <code>@protected</code> flag).
+    The rationale is that the new definition does not violate the protection,
+    as it does not change the semantics of the protected term.
+    This is useful for widespread term definitions,
+    such as e.g. aliasing <code>@type</code> to <code>type</code>,
+    which may occur (including in a protected form) in several contexts.
+  </p>
+
+  <aside class="example ds-selector-tabs changed"
+  title="overriding permitted if both definitions are identical">
+    <div class="selectors">
+        <button class="selected" data-selects="original">Original</button>
+        <button data-selects="expanded">Expanded</button>
+        <button data-selects="statements">Statements</button>
+        <button data-selects="turtle">Turtle</button>
+        <a class="playground" target="_blank"></a>
+    </div>
+    <pre class="original selected nohighlight" data-transform="updateExample" data-ignore>
+      <!--
+      {
+        "@context": [
+          {
+            "@version": 1.1,
+            "@protected": true,
+            ****"id": "@id",
+            "type": "@type"****,
+            "Organization": "http://example.org/orga/Organization",
+            "member": {
+              "@id": "http://example.org/orga/member",
+              "@type": "@id"
+            }
+          },
+          {
+            ****"id": "@id",
+            "type": "@type",****
+            ####­– Those "redefinition" do not raise an error.
+            ­– Note however that the terms are still protected ####
+            "Person": "http://schema.org/Person",
+            "name": "http://schema.org/name"
+          }
+        ],
+        "id": "https://digitalbazaar.com/",
+        "type": "Organization",
+        "member" : {
+          "id": "http://manu.sporny.org/about#manu",
+          "type": "Person",
+          "name": "Manu Sporny"
+        }
+      }
+      -->
+    </pre>
+    <pre class="expanded nohighlight"
+         data-transform="updateExample"
+         data-result-for="overriding permitted if both definitions are identical-original"
+         data-ignore
+    >
+    <!--
+    [{
+      "@id": "https://digitalbazaar.com/",
+      "@type": ["http://example.org/orga/Organization"],
+      "http://example.org/orga/member": [
+        {
+          "@id": "http://manu.sporny.org/about#manu",
+          "@type": ["http://schema.org/Person"],
+          "http://schema.org/name": [{"@value": "Manu Sporny"}]
+        }
+      ]
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="overriding permitted if both definitions are identical-expanded"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>https://digitalbazaar.com/</td><td>rdf:type</td><td>http://example.org/orga/Organization</td></tr>
+        <tr><td>https://digitalbazaar.com/</td><td>http://example.org/orga/member</td><td>http://manu.sporny.org/about#manu</td></tr>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>schema:Person</td></tr>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>schema:name</td><td>Manu Sporny</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-result-for="overriding permitted if both definitions are identical-expanded"
+         data-transform="updateExample"
+         data-ignore
+         data-to-rdf>
+      <!--
+      @prefix o: <http://example.org/orga/>.
+      @prefix schema: <http://schema.org/>.
+  
+      <https://digitalbazaar.com/> a o:Organization ;
+        o:membet <http://manu.sporny.org/about#manu>.
+
+      <http://manu.sporny.org/about#manu> a schema:Person ;
+        schema:name "Manu Sporny".
+      -->
+    </pre>
+  </aside>
+
+  <p>The second exception is that a property-<a>scoped context</a>
+    is not affected by protection, and can therefore override protected terms,
     either with a new term definition,
     or by clearing the context with <code>"@context": null</code>.
   </p>
-  <p>
-    The rationale is that "plain JSON" implementations,
+  <p>The rationale is that "plain JSON" implementations,
     relying on a given specification,
     will only traverse properties defined by that specification.
     <a>Scoped contexts</a> belonging to the specified properties are part of the specification,
