@@ -12448,7 +12448,8 @@ the data type to be specified explicitly with each piece of data.</p>
             representation. The <code>profile</code> parameter MAY be used by
             clients to express their preferences in the content negotiation process.
             If the profile parameter is given, a server SHOULD return a document that
-            honors the profiles in the list which are recognized by the server.
+            honors the profiles in the list which it recognizes,
+            and MUST ignore the profiles in the list which it does not recognize.
             It is RECOMMENDED that profile URIs are dereferenceable and provide
             useful documentation at that URI. For more information and background
             please refer to [[RFC6906]].</p>
@@ -12468,7 +12469,9 @@ the data type to be specified explicitly with each piece of data.</p>
             <dd>To request or specify <a data-lt="framed document form">framed JSON-LD document form</a>.</dd>
           </dl>
           <p class="note">Other specifications may publish additional profile parameter
-            URIs with their own defined sematics.</p>
+            URIs with their own defined sematics.
+            However, all URIs starting with <code>http://www.w3.org/ns/json-ld</code>
+            are reserved for future use by JSON-LD specifications.</p>
           <p>
             When used as a <a data-cite="RFC4288#section-4.3">media type parameter</a> [[RFC4288]]
             in an <a data-cite="rfc7231#section-5.3.2">HTTP Accept header</a> [[RFC7231]],
