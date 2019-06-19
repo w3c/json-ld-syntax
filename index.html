@@ -3410,6 +3410,9 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     the type is used; the previous in-scope <a>contexts</a> are placed back into
     effect when traversing into another <a>node object</a>.</p>
 
+  <p class="note">Any property-scoped or local contexts that were introduced in the <a>node object</a>
+    would still be in effect when traversing into another <a>node object</a>.</p>
+
   <p>When expanding, each value of <code>@type</code> is considered
     (ordering them lexicographically) where that value is also a <a>term</a> in
     the <a>active context</a> having its own <a>scoped context</a>. If so, that
