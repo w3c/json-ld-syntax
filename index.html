@@ -3405,7 +3405,10 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     relate things of different types, where the vocabularies in use within
     different entities calls for different context scoping. For example,
     <code>hasPart</code>/<code>partOf</code> may be common terms used in a document, but mean
-    different things depending on the context.</p>
+    different things depending on the context.
+    A <a>context</a> scoped on <code>@type</code> is only in effect for the <a>node object</a> on which
+    the type is used; the previous in-scope <a>contexts</a> are placed back into
+    effect when traversing into another <a>node object</a>.</p>
 
   <p>When expanding, each value of <code>@type</code> is considered
     (ordering them lexicographically) where that value is also a <a>term</a> in
@@ -12835,6 +12838,8 @@ the data type to be specified explicitly with each piece of data.</p>
       using type <code>application/ld+json;profile=http://www.w3.org/ns/json-ld#frame</code>.</li>
     <li>Term definitions can now be <a href="#protected-term-definitions">protected</a>,
       to limit the ability of other contexts to override them.</li>
+    <li>A <a>context</a> defined in an <a>expanded term definition</a> may also be used for values
+      of <code>@type</code>, which defines a <a>context</a> to use for <a>node objects</a> including the associated type.</li>
   </ul>
 </section>
 
