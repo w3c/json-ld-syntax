@@ -23,7 +23,7 @@ function restrictReferences(utils, content) {
   // remove any terms they reference from the termNames array too.
   const noPreserve = base.querySelectorAll("dfn:not(.preserve)");
   for (const item of noPreserve) {
-    const $t = $(item) ;
+    const $t = $(item);
     const titles = $t.getDfnTitles();
     const n = $t.makeID("dfn", titles[0]);
     if (n) {
@@ -34,6 +34,20 @@ function restrictReferences(utils, content) {
   const $container = $(".termlist", base) ;
   const containerID = $container.makeID("", "terms") ;
   termLists.push(containerID) ;
+  return (base.innerHTML);
+}
+
+// Mark definitions to be exported
+function exportReferences(utils, content) {
+  const base = document.createElement("div");
+  base.innerHTML = content;
+
+  const defns = base.querySelectorAll("dfn:not([data-cite])");
+  for (const item of defns) {
+    const de = document.createAttribute("data-export");
+    item.setAttributeNode(de);
+  }
+
   return (base.innerHTML);
 }
 

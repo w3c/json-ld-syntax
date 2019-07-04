@@ -3,11 +3,10 @@
 <head>
 <title>JSON-LD 1.1</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<script type="text/javascript" src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove" defer></script>
-<script type="text/javascript" src="common/common.js" class="remove" defer></script>
-<script type="text/javascript" src="common/jsonld.js" class="remove"></script>
-<script type="text/javascript" class="remove">
-//<![CDATA[
+<script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove" defer></script>
+<script src="common/common.js" class="remove" defer></script>
+<script src="common/jsonld.js" class="remove"></script>
+<script class="remove">
   var respecConfig = {
       // extend the bibliography entries
       localBiblio:            jsonld.localBiblio,
@@ -118,7 +117,6 @@
       maxTocLevel: 4
       ///alternateFormats: [ {uri: "diff-20140116.html", label: "diff to previous version"} ]
   };
-//]]>
 </script>
 <script>
   // Add example button selection logic
@@ -278,9 +276,9 @@
       <a href="https://www.w3.org/2018/json-ld-wg/">JSON-LD Working Group</a>:</p>
 
     <ul>
-      <li><a data-cite="JSON-LD11">JSON-LD 1.1</a></li>
-      <li><a data-cite="JSON-LD11-API">JSON-LD 1.1 Processing Algorithms and API</a></li>
-      <li><a data-cite="JSON-LD11-FRAMING">JSON-LD 1.1 Framing</a></li>
+      <li><a href="">JSON-LD 1.1</a></li>
+      <li>[[[JSON-LD11-API]]]</li>
+      <li>[[[JSON-LD11-FRAMING]]]</li>
     </ul>
   </section>
 </section>
@@ -355,7 +353,7 @@
       providing a standard library interface for common JSON-LD operations.</p>
 
     <p>To understand the basics in this specification you must first be familiar with
-      <a data-cite="RFC8259">JSON</a>, which is detailed in [[RFC8259]].</p>
+      <a data-cite="RFC8259" data-no-xref="">JSON</a>, which is detailed in [[RFC8259]].</p>
 
     <p>This document almost exclusively uses the term IRI
     (<a data-cite="ld-glossary#internationalized-resource-identifier">Internationalized Resource Indicator</a>)
@@ -480,7 +478,7 @@
       section <a href="#relationship-to-rdf"></a>.</p>
 
     <p>At the surface level, a <a>JSON-LD document</a> is simply
-      <a data-cite="RFC8259">JSON</a>, detailed in [[RFC8259]].
+      <a data-cite="RFC8259" data-no-xref="">JSON</a>, detailed in [[RFC8259]].
       For the purpose of describing the core data structures,
       this is limited to <a>arrays</a>, <a>dictionaries</a> (the parsed version of a <a>JSON Object</a>),
       <a>strings</a>, <a>numbers</a>, <a>booleans</a>, and <a>null</a>,
@@ -489,8 +487,8 @@
         to be manipulated using the same algorithms, when the syntax maps
         to equivalent core data structures</span>.</p>
       <p class="changed note">Although not discussed in this specification,
-        parallel work using <a data-cite="YAML">YAML</a> [[YAML]]
-        and binary representations such as <a data-cite="RFC7049">CBOR</a> [[RFC7049]]
+        parallel work using [[[YAML]]] [[YAML]]
+        and binary representations such as [[[RFC7049]]] [[RFC7049]]
         could be used to map into the <a>internal representation</a>, allowing
         the JSON-LD 1.1 API [[JSON-LD11-API]] to operate as if the source was a
         JSON document.</p>
@@ -582,7 +580,7 @@
         when compacting.</dd>
       <dt class="changed"><code>@version</code></dt><dd class="changed">
         Used in a <a>context definition</a> to set the <a>processing mode</a>.
-        New features since <a data-cite="JSON-LD">JSON-LD 1.0</a> [[JSON-LD]] described in this specification are
+        New features since [[[JSON-LD]]] [[JSON-LD]] described in this specification are
         only available when <a>processing mode</a> has been explicitly set to
         <code>json-ld-1.1</code>.
       </dd>
@@ -1066,7 +1064,7 @@
     the primary distinction is that a URL <em>locates</em> a resource on the web,
     an IRI <em>identifies</em> a resource. While it is a good practice for resource identifiers
     to be dereferenceable, sometimes this is not practical. In particular, note the
-    [[URN]] scheme for Uniform Resource Names, such as <a data-cite="rfc4122">UUID</a>.
+    [[URN]] scheme for Uniform Resource Names, such as <a data-cite="rfc4122" data-no-xref="">UUID</a>.
     An example UUID is <code>urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6</code>.</p>
 
   <p class="note"><a>Properties</a>, values of <code>@type</code>,
@@ -2254,7 +2252,7 @@
     the former will be interpreted as having had <code>"@version": 1.1</code> defined within it.</p>
 
   <p class="note">Setting the <a>processing mode</a> explicitly
-    for JSON-LD 1.1 is necessary so that a JSON-LD 1.0 processor
+    for JSON-LD 1.1 is necessary so that a [[[JSON-LD]]] processor
     does not attempt to process a JSON-LD 1.1 document and silently
     produce different results.</p>
 </section>
@@ -2779,7 +2777,7 @@
   </aside>
 
   <p class="changed">When operating with the default <a>processing mode</a>
-    for JSON-LD 1.0 compatibility, terms may be chosen as <a>compact IRI</a> prefixes when
+    for [[[JSON-LD]]] compatibility, terms may be chosen as <a>compact IRI</a> prefixes when
     compacting only if a <a>simple term definition</a> is used where the value ends with a
     URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character (e.g, <code>/</code>,
     <code>#</code> and others, see [[RFC3986]]).</p>
@@ -2791,7 +2789,7 @@
     a <code>@prefix</code> <a>member</a> with the value <a>true</a>.</p>
 
   <p class="note changed">The term selection behavior for 1.0 processors was changed
-    as a result of an errata against JSON-LD 1.0 reported <a href="https://lists.w3.org/Archives/Public/public-rdf-comments/2018Jan/0002.html">here</a>.
+    as a result of an errata against [[[JSON-LD]]] reported <a href="https://lists.w3.org/Archives/Public/public-rdf-comments/2018Jan/0002.html">here</a>.
     This does not affect the behavior of processing existing JSON-LD documents, but creates
     a slight change when compacting documents using <a>Compact IRIs</a>.</p>
 
@@ -5313,7 +5311,7 @@ the data type to be specified explicitly with each piece of data.</p>
   fully supported.</p>
 
 <p class="changed">Note that the <code>"@container": "@list"</code> definition recursively
-  describes array values of lists as being, themselves, lists. For example, in <a data-cite="RFC7946">GeoJSON</a> (see [[RFC7946]]),
+  describes array values of lists as being, themselves, lists. For example, in [[[RFC7946]]] (see [[RFC7946]]),
   <em>coordinates</em> are an ordered list of <em>positions</em>, which are
   represented as an array of two or more numbers:</p>
 
@@ -12237,7 +12235,7 @@ the data type to be specified explicitly with each piece of data.</p>
     the base direction of the string.</p>
 
   <p>Unicode provides a mechanism for signaling direction within a string
-    (see <a data-cite="UAX9">Unicode Bidirectional Algorithm</a> [[UAX9]]),
+    (see [[[UAX9]]] [[UAX9]]),
     however, when a string has an overall base direction which cannot be determined by the
     beginning of the string, an external indicator is required,
     such as the [[HTML]] <a data-cite="HTML/dom.html#the-dir-attribute">dir attribute</a>,
@@ -12816,7 +12814,7 @@ the data type to be specified explicitly with each piece of data.</p>
       to JSON.</li>
     <li>Added <a href="#node-identifier-indexing" class="sectionRef"></a> and <a href="#node-type-indexing" class="sectionRef"></a>.</li>
     <li>Both <a>language maps</a> and <a>index maps</a> may legitimately have an <code>@none</code> key, but
-      JSON-LD 1.0 only allowed <a>string</a> keys. This has been updated
+      [[[JSON-LD]]] only allowed <a>string</a> keys. This has been updated
       to allow <code>@none</code> keys.</li>
     <li>The value for <code>@container</code> in an <a>expanded term definition</a>
       can also be an <a>array</a> containing any appropriate container
