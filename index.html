@@ -480,7 +480,7 @@
     <p>At the surface level, a <a>JSON-LD document</a> is simply
       <a data-cite="RFC8259" data-no-xref="">JSON</a>, detailed in [[RFC8259]].
       For the purpose of describing the core data structures,
-      this is limited to <a>arrays</a>, <a>dictionaries</a> (the parsed version of a <a>JSON Object</a>),
+      this is limited to <a>arrays</a>, <a>maps</a> (the parsed version of a <a>JSON Object</a>),
       <a>strings</a>, <a>numbers</a>, <a>booleans</a>, and <a>null</a>,
       <span class="changed">called the <a>JSON-LD internal representation</a>.
         This allows surface syntaxes other than JSON
@@ -573,7 +573,7 @@
       <dt class="changed"><code>@nest</code></dt><dd class="changed">Collects a set of <a>nested properties</a> within
         a <a>node object</a>.</dd>
       <dt class="changed"><code>@none</code></dt><dd class="changed">Used as an index value
-        in an <a>index map</a>, <a>id map</a>, <a>language map</a>, <a>type map</a>, or elsewhere where a dictionary is
+        in an <a>index map</a>, <a>id map</a>, <a>language map</a>, <a>type map</a>, or elsewhere where a <a>map</a> is
         used to index into other values.</dd>
       <dt class="changed"><code>@prefix</code></dt><dd class="changed">
         With the value <code>true</code>, allows this <a>term</a> to be used to construct a <a>compact IRI</a>
@@ -860,12 +860,12 @@
 
     <p>As the <a>context</a> above shows, the value of a <a>term definition</a> can
       either be a simple string, mapping the <a>term</a> to an <a>IRI</a>,
-      or a <a>dictionary</a>.</p>
+      or a <a>map</a>.</p>
 
-    <p>A <a>context</a> is introduced using a <a>member</a> with the key <code>@context</code> and may
+    <p>A <a>context</a> is introduced using a <a>entry</a> with the key <code>@context</code> and may
       appear within a <a>node object</a> or a <a>value object</a>.</p>
 
-    <p>When a <a>member</a> with a <a>term</a> key has a <a>dictionary</a> value, the <a>dictionary</a> is called
+    <p>When a <a>entry</a> with a <a>term</a> key has a <a>map</a> value, the <a>map</a> is called
       an <a>expanded term definition</a>. The example above specifies that
       the values of <code>image</code> and <code>homepage</code>, if they are
       strings, are to be interpreted as
@@ -1074,7 +1074,7 @@
     <a>vocabulary mapping</a>, and not the <a>base IRI</a>.</p>
 
   <p>A <a>string</a> is interpreted as an <a>IRI</a> when it is the
-    value of a <a>dictionary member</a> with the key <code>@id</code>:</p>
+    value of a <a>map entry</a> with the key <code>@id</code>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        title="Values of @id are interpreted as IRI">
@@ -1252,7 +1252,7 @@
     different ways in JSON-LD:</p>
 
   <ol>
-    <li><a>Dictionary members</a> that have a key mapping to a <a>term</a> in
+    <li><a>Map entries</a> that have a key mapping to a <a>term</a> in
       the <a>active context</a> expand to an <a>IRI</a>
       (only applies outside of the <a>context definition</a>).</li>
     <li>An <a>IRI</a> is generated for the <a>string</a> value specified using
@@ -1356,7 +1356,7 @@
     <li><a>Boolean</a> <code>true</code> and <code>false</code>, which describe literal boolean values,</li>
     <li><code>null</code>, which describes the absense of a value,</li>
     <li><a>Arrays</a>, which describe an ordered set of values of any type, and</li>
-    <li><a>JSON objects</a>, which provide a set of <a>dictionary members</a>, relating keys with values.</li>
+    <li><a>JSON objects</a>, which provide a set of <a>map entries</a>, relating keys with values.</li>
   </ul>
 
   <p>The JSON-LD data model allows for a richer set of resources, based on the RDF data model.
@@ -1382,7 +1382,7 @@
     </dd>
     <dt><a>List Objects</a> and <a>Set objects</a></dt><dd></dd>
     <dt>Map Objects</dt><dd>
-      JSON-LD uses various forms of <a>dictionaries</a> as ways to more easily access values of a <a>property</a>.
+      JSON-LD uses various forms of <a>maps</a> as ways to more easily access values of a <a>property</a>.
       <dl>
         <dt><a>Language Maps</a></dt><dd>
           Allows multiple values differing in their associated language to be
@@ -1834,7 +1834,7 @@
   be achieved using JSON-LD.</p>
 
   <p>In general, contexts may be used any time a
-    <a>dictionary</a> is defined.
+    <a>map</a> is defined.
     The only time that one cannot express a context is as a direct child of another context definition (other than as part of an <a>expanded term definition</a>).
     For example, a <a>JSON-LD document</a> may
     have the form of an <a>array</a> composed of one or more <a>node objects</a>,
@@ -1944,7 +1944,7 @@
     and <a>flattened document form</a>,
     and may be necessary when describing a disconnected graph,
     where nodes may not reference each other. In such cases, using
-    a top-level dictionary with a <code>@graph</code> property can be useful for saving
+    a top-level <a>map</a> with a <code>@graph</code> property can be useful for saving
     the repetition of <code>@context</code>. See <a href="#embedding" class="sectionRef"></a>
     for more.</p>
 
@@ -2126,14 +2126,14 @@
     Note that this is
     rarely a good authoring practice and is typically used when working with
     legacy applications that depend on a specific structure of the
-    <a>dictionary</a>. If a <a>term</a> is redefined within a
+    <a>map</a>. If a <a>term</a> is redefined within a
     context, all previous rules associated with the previous definition are
     removed. If a <a>term</a> is redefined to <code>null</code>,
     the <a>term</a> is effectively removed from the list of
     <a>terms</a> defined in the <a>active context</a>.</p>
 
   <p>Multiple contexts may be combined using an <a>array</a>, which is processed
-    in order. The set of contexts defined within a specific <a>dictionary</a> are
+    in order. The set of contexts defined within a specific <a>map</a> are
     referred to as <a>local contexts</a>. The
     <a>active context</a> refers to the accumulation of
     <a>local contexts</a> that are in scope at a
@@ -2228,7 +2228,7 @@
 
   <p>New features defined in JSON-LD 1.1 are available
     when the <a>processing mode</a> is set to <code>json-ld-1.1</code>.
-    This may be set using the <code>@version</code> <a>member</a> in a <code>context</code>
+    This may be set using the <code>@version</code> <a>entry</a> in a <code>context</code>
     set to the value <code>1.1</code> as a <a>number</a>, or through an API option.</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
@@ -2322,10 +2322,10 @@
   </aside>
 
   <p>If <code>@vocab</code> is used but certain keys in an
-    <a>dictionary</a> should not be expanded using
+    <a>map</a> should not be expanded using
     the vocabulary <a>IRI</a>, a <a>term</a> can be explicitly set
     to <a>null</a> in the <a>context</a>. For instance, in the
-    example below the <code>databaseId</code> <a>member</a> would not expand to an
+    example below the <code>databaseId</code> <a>entry</a> would not expand to an
     <a>IRI</a> causing the property to be dropped when expanding.</p>
 
   <aside class="example ds-selector-tabs"
@@ -2786,7 +2786,7 @@
     when compacting only if
     a <a>simple term definition</a> is used where the value ends with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character,
     or if their <a>expanded term definition</a> contains
-    a <code>@prefix</code> <a>member</a> with the value <code>true</code>.</p>
+    a <code>@prefix</code> <a>entry</a> with the value <code>true</code>.</p>
 
   <p class="note changed">The term selection behavior for 1.0 processors was changed
     as a result of an errata against [[[JSON-LD]]] reported <a href="https://lists.w3.org/Archives/Public/public-rdf-comments/2018Jan/0002.html">here</a>.
@@ -3531,7 +3531,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     To prevent this divergence of interpretation,
     JSON-LD 1.1 allows term definitions to be <em>protected</em>.
     </p>
-  <p>A <dfn>protected term definition</dfn> is a term definition with a member <code>@protected</code> set to <code>true</code>.
+  <p>A <dfn>protected term definition</dfn> is a term definition with a <a>entry</a> <code>@protected</code> set to <code>true</code>.
     It generally prevents further contexts from overriding this term definition,
     either through a new definition of the same term,
     or through clearing the context with <code>"@context": null</code>.
@@ -3575,10 +3575,10 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   </pre>
 
   <p>When all or most term definitions of a context need to be protected,
-    it is possible to add a member <code>@protected</code> set to <code>true</code>
+    it is possible to add a <a>entry</a> <code>@protected</code> set to <code>true</code>
     to the context itself.
     It has the same effect as protecting each of its term definitions individually.
-    Exceptions can be made by adding a member <code>@protected</code> set to <code>false</code>
+    Exceptions can be made by adding a <a>entry</a> <code>@protected</code> set to <code>false</code>
     in some term definitions.
     </p>
 
@@ -4100,7 +4100,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   (<code>http://www.w3.org/2001/XMLSchema#dateTime</code>) with the
   value expressed using the <code>@value</code> <a>keyword</a>. As a
   general rule, when <code>@value</code> and <code>@type</code> are used in
-  the same <a>dictionary</a>, the <code>@type</code>
+  the same <a>map</a>, the <code>@type</code>
   <a>keyword</a> is expressing a <a>value type</a>.
   Otherwise, the <code>@type</code> <a>keyword</a> is expressing a
   <a>node type</a>. The example above expresses the following data:</p>
@@ -4405,7 +4405,7 @@ the data type to be specified explicitly with each piece of data.</p>
 </aside>
 
 <p>It is important to note that <a>terms</a> are only used in expansion
-  for vocabulary-relative positions, such as for keys and values of <a>dictionary members</a>.
+  for vocabulary-relative positions, such as for keys and values of <a>map entries</a>.
   Values of <code>@id</code> are considered to be document-relative,
   and do not use term definitions for expansion. For example, consider the following:</p>
 
@@ -5677,7 +5677,7 @@ the data type to be specified explicitly with each piece of data.</p>
 <section class="informative changed"><h2>Using <code>@set</code> with <code>@type</code></h2>
   <p class="changed">When <a>processing mode</a> is set to <code>json-ld-1.1</code>,
     <code>@type</code> may be used with an <a>expanded term definition</a> with <code>@container</code> set
-    to <code>@set</code>; no other members may be set within such an <a>expanded term definition</a>.
+    to <code>@set</code>; no other <a>entries</a> may be set within such an <a>expanded term definition</a>.
     This is used by the <a data-cite="JSON-LD11-API#compaction-algorithm">Compaction algorithm</a> to ensure that the values of <code>@type</code> (or an alias)
     are always represented in an <a>array</a>.</p>
 
@@ -6474,7 +6474,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <p>Sometimes multiple property values need to be accessed
   in a more direct fashion than iterating though multiple array values. JSON-LD
-  provides an indexing mechanism to allow the use of an intermediate dictionary
+  provides an indexing mechanism to allow the use of an intermediate <a>map</a>
   to associate specific indexes with associated values.</p>
 
 <dl>
@@ -8436,7 +8436,7 @@ the data type to be specified explicitly with each piece of data.</p>
     which specifies when the graph was generated.</p>
 
   <p>When a JSON-LD document's top-level structure is an
-    <a>dictionary</a> that contains no other
+    <a>map</a> that contains no other
     keys than <code>@graph</code> and
     optionally <code>@context</code> (properties that are not mapped to an
     <a>IRI</a> or a <a>keyword</a> are ignored),
@@ -9863,7 +9863,7 @@ the data type to be specified explicitly with each piece of data.</p>
       }
       -->
       </pre>
-      <p>The compacted version uses a <a>dictionary</a> value
+      <p>The compacted version uses a <a>map</a> value
         for "label", with the keys representing the <a>language tag</a>
         and the values are the <a>strings</a> associated with the relevant <a>language tag</a>.</p>
       <pre class="compacted" data-transform="updateExample"
@@ -9972,8 +9972,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <section class="informative"><h3>Representing Singular Values as Arrays</h3>
     <p>Generally, when compacting, properties having only one value are
-      represented as strings or dictionaries, while properties having
-      multiple values are represented as an array of strings or dictionaries.
+      represented as strings or <p>maps</p>, while properties having
+      multiple values are represented as an array of strings or <a>maps</a>.
       This means that applications accessing such properties need to be prepared
       to accept either representation. To force all values to be represented
       using an array, a term definition can set <code>"@container": "@set"</code>.
@@ -10009,7 +10009,7 @@ the data type to be specified explicitly with each piece of data.</p>
       }
       -->
       </pre>
-      <p>The compacted version uses a <a>dictionary</a> value
+      <p>The compacted version uses a <a>map</a> value
         for "label" as before.
         and the values are the relevant <a>strings</a> but always represented using an <a>array</a>.</p>
       <pre class="compacted result" data-transform="updateExample"
@@ -10119,7 +10119,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>The JSON-LD 1.1 Processing Algorithms and API specification [[JSON-LD11-API]] defines
     a method for <em>flattening</em> a JSON-LD document.
     <dfn data-cite="JSON-LD11-API#dfn-flattened" data-lt="flattened">Flattening</dfn> collects all
-    properties of a <a>node</a> in a single <a>dictionary</a> and labels
+    properties of a <a>node</a> in a single <a>map</a> and labels
     all <a>blank nodes</a> with
     <a>blank node identifiers</a>.
     This ensures a shape of the data and consequently may drastically simplify the code
@@ -10349,7 +10349,7 @@ the data type to be specified explicitly with each piece of data.</p>
   </ul>
 
   <p>The referenced document MUST have a top-level <a>JSON object</a>.
-    The <code>@context</code> <a>member</a> within that object is added to the top-level
+    The <code>@context</code> <a>entry</a> within that object is added to the top-level
     <a>JSON object</a> of the referencing document. If an <a>array</a>
     is at the top-level of the referencing document and its items are
     <a>JSON objects</a>, the <code>@context</code>
@@ -11024,7 +11024,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p class="changed">Additionally, the JSON serialization format is internally represented using
     the <a>JSON-LD internal representation</a>, which uses the generic
-    concepts of <a>arrays</a>, <a>dictionaries</a>,
+    concepts of <a>lists</a>, <a>maps</a>,
     <a>strings</a>, <a>numbers</a>, <a>booleans</a>, and <a>null</a> to describe
     the data represented by a JSON document.</p>
 
@@ -11190,8 +11190,8 @@ the data type to be specified explicitly with each piece of data.</p>
       valid <a data-cite="RFC8259#section-2">JSON text</a></span>.</p>
 
   <p>A <a>JSON-LD document</a> MUST be a single <a>node object</a>,
-    a <a>dictionary</a> consisting of only
-    the <a>members</a> <code>@context</code> and/or <code>@graph</code>,
+    a <a>map</a> consisting of only
+    the <a>entries</a> <code>@context</code> and/or <code>@graph</code>,
     or an <a>array</a> of zero or more <a>node objects</a>.</p>
 
   <p>In contrast to JSON, in JSON-LD the keys in <a data-lt="JSON object">objects</a>
@@ -11241,13 +11241,13 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <p>A <a>node object</a> represents zero or more properties of a
       <a>node</a> in the <a>graph</a> serialized by the
-      <a>JSON-LD document</a>. A <a>dictionary</a> is a
+      <a>JSON-LD document</a>. A <a>map</a> is a
       <a>node object</a> if it exists outside of a JSON-LD
       <a>context</a> and:</p>
 
     <ul>
-      <li>it is not the top-most <a>dictionary</a> in the JSON-LD document consisting
-        of no other <a>members</a> than <code>@graph</code> and <code>@context</code>,</li>
+      <li>it is not the top-most <a>map</a> in the JSON-LD document consisting
+        of no other <a>entries</a> than <code>@graph</code> and <code>@context</code>,</li>
       <li>it does not contain the <code>@value</code>, <code>@list</code>,
         or <code>@set</code> keywords, and</li>
       <li class="changed">it is not a <a>graph object</a>.</li>
@@ -11260,7 +11260,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <a>node objects</a> need to be merged to create the
       properties of the resulting <a>node</a>.</p>
 
-    <p>A <a>node object</a> MUST be a <a>dictionary</a>. All keys
+    <p>A <a>node object</a> MUST be a <a>map</a>. All keys
       which are not <a>IRIs</a>, <a>compact IRIs</a>, <a>terms</a> valid in the
       <a>active context</a>, or one of the following <a>keywords</a>
       <span class="changed">(or alias of such a keyword)</span>
@@ -11297,10 +11297,10 @@ the data type to be specified explicitly with each piece of data.</p>
       If the <a>node object</a> also contains an <code>@id</code> keyword,
       its value is used as the <a>graph name</a> of a <a>named graph</a>.
       See <a class="sectionRef" href="#named-graphs"></a> for further discussion on
-      <code>@graph</code> values. As a special case, if a <a>dictionary</a>
+      <code>@graph</code> values. As a special case, if a <a>map</a>
       contains no keys other than <code>@graph</code> and <code>@context</code>, and the
-      <a>dictionary</a> is the root of the JSON-LD document, the
-      <a>dictionary</a> is not treated as a <a>node object</a>; this
+      <a>map</a> is the root of the JSON-LD document, the
+      <a>map</a> is not treated as a <a>node object</a>; this
       is used as a way of defining <a>node objects</a>
       that may not form a connected graph. This allows a
       <a>context</a> to be defined which is shared by all of the constituent
@@ -11316,7 +11316,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <code>@type</code> values.</p>
 
     <p>If the <a>node object</a> contains the <code>@reverse</code> key,
-      its value MUST be a <a>dictionary</a> containing <a>members</a> representing reverse
+      its value MUST be a <a>map</a> containing <a>entries</a> representing reverse
       properties. Each value of such a reverse property MUST be an <a>absolute IRI</a>,
       a <a>relative IRI</a>, a <a>compact IRI</a>, a <a>blank node identifier</a>,
       a <a>node object</a> or an <a>array</a> containing a combination of these.</p>
@@ -11327,7 +11327,7 @@ the data type to be specified explicitly with each piece of data.</p>
       on <code>@index</code> values.</p>
 
     <p class="changed">If the <a>node object</a> contains the <code>@nest</code> key,
-      its value MUST be a <a>dictionary</a> or an <a>array</a> of <a>dictionaries</a>
+      its value MUST be a <a>map</a> or an <a>array</a> of <a>map</a>
       which MUST NOT include a <a>value object</a>. See
       <a class="sectionRef" href="#property-nesting"></a> for further discussion
       on <code>@nest</code> values.</p>
@@ -11358,21 +11358,21 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <section class="normative"><h2>Frame Objects</h2>
     <p>When <a>framing</a>, a <a>frame object</a> extends a <a>node object</a> to allow
-      members used specifically for <a>framing</a>.</p>
+      <a>entries</a> used specifically for <a>framing</a>.</p>
     <ul>
       <li>A <a>frame object</a> MAY include a <a>default object</a> as the value of any key
         which is not a <a>keyword</a>.
         Values of <code>@default</code> MAY include the value <code>@null</code>,
         or an <a>array</a> containing only <code>@null</code>, in addition to other values
-        allowed in the grammar for values of <a>member</a> keys expanding to <a>absolute IRIs</a>.</li>
+        allowed in the grammar for values of <a>entry</a> keys expanding to <a>absolute IRIs</a>.</li>
       <li>The values of <code>@id</code> and <code>@type</code> MAY additionally be
-        an empty <a>dictionary</a> (<a data-cite="JSON-LD11-FRAMING#dfn-wildcard">wildcard</a>),
-        an <a>array</a> containing only an empty <a>dictionary</a>,
+        an empty <a>map</a> (<a data-cite="JSON-LD11-FRAMING#dfn-wildcard">wildcard</a>),
+        an <a>array</a> containing only an empty <a>map</a>,
         an empty <a>array</a> (<a data-cite="JSON-LD11-FRAMING#dfn-match-none">match none</a>)
         an <a>array</a> of <a>IRIs</a>.</li>
-      <li>A <a>frame object</a> MAY include a <a>member</a> with the key <code>@embed</code> with
+      <li>A <a>frame object</a> MAY include a <a>entry</a> with the key <code>@embed</code> with
         any value from <code>@always</code>, <code>@list</code>, and <code>@never</code>.</li>
-      <li>A <a>frame object</a> MAY include <a>members</a> with the boolean valued
+      <li>A <a>frame object</a> MAY include <a>entries</a> with the boolean valued
         keys <code>@explicit</code>, <code>@omitDefault</code>, or <code>@requireAll</code></li>
       <li>In addition to other property values, a property of a <a>frame object</a>
         MAY include a <a data-cite="JSON-LD11-FRAMING#dfn-value-pattern">value pattern</a>
@@ -11386,11 +11386,11 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <p>A <a>graph object</a> represents a <a>named graph</a>, which MAY include
       an explicit <a>graph name</a>.
-      A <a>dictionary</a> is a <a>graph object</a> if
+      A <a>map</a> is a <a>graph object</a> if
       it exists outside of a JSON-LD <a>context</a>,
-      it contains an <code>@graph</code> member (or an alias of that <a>keyword</a>),
-      it is not the top-most <a>dictionary</a> in the JSON-LD document, and
-      it consists of no <a>members</a> other than <code>@graph</code>,
+      it contains an <code>@graph</code> <a>entry</a> (or an alias of that <a>keyword</a>),
+      it is not the top-most <a>map</a> in the JSON-LD document, and
+      it consists of no <a>entries</a> other than <code>@graph</code>,
       <code>@index</code>, <code>@id</code>
       and <code>@context</code>, or an alias of one of these <a>keywords</a>.</p>
 
@@ -11409,7 +11409,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <a class="sectionRef" href="#identifying-blank-nodes"></a> for further discussion on
       <code>@id</code> values.</p>
 
-    <p>A <a>graph object</a> without an <code>@id</code> <a>member</a> is also a
+    <p>A <a>graph object</a> without an <code>@id</code> <a>entry</a> is also a
       <a>simple graph object</a> and represents a <a>named graph</a> without an
       explicit identifier, although in the data model it still has a
       <a>graph name</a>, which is an implicitly allocated
@@ -11429,7 +11429,7 @@ the data type to be specified explicitly with each piece of data.</p>
       language with a value to create a <a>typed value</a> or a <a>language-tagged
       string</a>.</p>
 
-    <p>A <a>value object</a> MUST be a <a>dictionary</a> containing the
+    <p>A <a>value object</a> MUST be a <a>map</a> containing the
       <code>@value</code> key. It MAY also contain an <code>@type</code>,
       an <code>@language</code>, an <code>@index</code>, or an <code>@context</code> key but MUST NOT contain
       both an <code>@type</code> and an <code>@language</code> key at the same time.
@@ -11466,11 +11466,11 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>When <a>framing</a>,
       a <a data-cite="JSON-LD11-FRAMING#dfn-value-pattern">value pattern</a>
       extends a <a>value object</a> to allow
-      members used specifically for <a>framing</a>.</p>
+      <a>entries</a> used specifically for <a>framing</a>.</p>
     <ul>
       <li>The values of <code>@value</code>, <code>@language</code> and <code>@type</code> MAY additionally be
-        an empty <a>dictionary</a> (<a data-cite="JSON-LD11-FRAMING#dfn-wildcard">wildcard</a>),
-        an <a>array</a> containing only an empty <a>dictionary</a>,
+        an empty <a>map</a> (<a data-cite="JSON-LD11-FRAMING#dfn-wildcard">wildcard</a>),
+        an <a>array</a> containing only an empty <a>map</a>,
         an empty <a>array</a> (<a data-cite="JSON-LD11-FRAMING#dfn-match-none">match none</a>)
         an <a>array</a> of <a>strings</a>.</li>
     </ul>
@@ -11492,11 +11492,11 @@ the data type to be specified explicitly with each piece of data.</p>
       This simplifies post-processing of the data as the data is always in a
       deterministic form.</p>
 
-    <p>A <a>list object</a> MUST be a <a>dictionary</a> that contains no
+    <p>A <a>list object</a> MUST be a <a>map</a> that contains no
       keys that expand to an <a>absolute IRI</a> or <a>keyword</a> other
       than <code>@list</code> and <code>@index</code>.</p>
 
-    <p>A <a>set object</a> MUST be a <a>dictionary</a> that contains no
+    <p>A <a>set object</a> MUST be a <a>map</a> that contains no
       keys that expand to an <a>absolute IRI</a> or <a>keyword</a> other
       than <code>@set</code> and <code>@index</code>.
       Please note that the <code>@index</code> key will be ignored when being processed.</p>
@@ -11553,7 +11553,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <span class="changed">
         or an array containing both <code>@index</code> and <code>@set</code>
       </span>.
-      The values of the <a>members</a> of an <a>index map</a> MUST be one
+      The values of the <a>entries</a> of an <a>index map</a> MUST be one
       of the following types:</p>
 
     <ul>
@@ -11656,7 +11656,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <h2>Property Nesting</h2>
 
     <p>A <a>nested property</a> is used to gather <a>properties</a> of a <a>node object</a> in a separate
-      <a>dictionary</a>, or <a>array</a> of <a>dictionaries</a> which are not
+      <a>map</a>, or <a>array</a> of <a>maps</a> which are not
       <a>value objects</a>. It is semantically transparent and is removed
       during the process of <a>expansion</a>. Property nesting is recursive, and
       collections of nested properties may contain further nesting.</p>
@@ -11671,7 +11671,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>A <dfn>context definition</dfn> defines a <a>local context</a> in a
     <a>node object</a>.</p>
 
-  <p>A <a>context definition</a> MUST be a <a>dictionary</a> whose
+  <p>A <a>context definition</a> MUST be a <a>map</a> whose
     keys MUST be either <a>terms</a>, <a>compact IRIs</a>, <a>absolute IRIs</a>,
     or one of the <a>keywords</a> <code>@language</code>, <code>@base</code>,
     <code class="changed">@type</code>, <code>@vocab</code>, or <code class="changed">@version</code>.</p>
@@ -11684,7 +11684,7 @@ the data type to be specified explicitly with each piece of data.</p>
     or <a>null</a>.</p>
 
   <p class="changed">If the <a>context definition</a> has an <code>@type</code> key,
-    its value MUST be a <a>dictionary</a> with the single member <code>@container</code> set to <code>@set</code>.</p>
+    its value MUST be a <a>map</a> with the single <a>entry</a> <code>@container</code> set to <code>@set</code>.</p>
 
   <p>If the <a>context definition</a> has an <code>@vocab</code> key,
     its value MUST be a <a>absolute IRI</a>, a <a>compact IRI</a>,
@@ -11705,7 +11705,7 @@ the data type to be specified explicitly with each piece of data.</p>
     properties of the value associated with the <a>term</a> when it is
     used as key in a <a>node object</a>.</p>
 
-  <p>An <a>expanded term definition</a> MUST be a <a>dictionary</a>
+  <p>An <a>expanded term definition</a> MUST be a <a>map</a>
     composed of zero or more keys from
     <code>@id</code>,
     <code>@reverse</code>,
@@ -11729,11 +11729,11 @@ the data type to be specified explicitly with each piece of data.</p>
     a <a>blank node identifier</a>, a <a>compact IRI</a>, a <a>term</a>,
     or a <a>keyword</a>.</p>
 
-  <p>If an <a>expanded term definition</a> has an <code>@reverse</code> <a>member</a>,
-    it MUST NOT have <code>@id</code> or <code>@nest</code> <a>members</a> at the same time,
+  <p>If an <a>expanded term definition</a> has an <code>@reverse</code> <a>entry</a>,
+    it MUST NOT have <code>@id</code> or <code>@nest</code> <a>entries</a> at the same time,
     its value MUST be an <a>absolute IRI</a>,
     a <a>blank node identifier</a>, a <a>compact IRI</a>, or a <a>term</a>. If an
-    <code>@container</code> <a>member</a> exists, its value MUST be <a>null</a>,
+    <code>@container</code> <a>entry</a> exists, its value MUST be <a>null</a>,
     <code>@set</code>, or <code>@index</code>.</p>
 
   <p>If the <a>expanded term definition</a> contains the <code>@type</code>
@@ -11770,7 +11770,7 @@ the data type to be specified explicitly with each piece of data.</p>
     the <code>@context</code>, the associated value MUST be an
     <a>index map</a>.</p>
 
-  <p class="changed">If an <a>expanded term definition</a> has an <code>@context</code> <a>member</a>,
+  <p class="changed">If an <a>expanded term definition</a> has an <code>@context</code> <a>entry</a>,
     it MUST be a valid <code>context definition</code>.</p>
 
   <p class="changed">If the <a>expanded term definition</a> contains the <code>@nest</code>
@@ -11880,7 +11880,7 @@ the data type to be specified explicitly with each piece of data.</p>
       The <code>@nest</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a>.
       The unaliased <code>@nest</code> MAY be used as the value of a <a>simple term definition</a>,
       or as a key in an <a>expanded term definition</a>.
-      When used in a <a>node object</a>, its value must be a <a>dictionary</a>.
+      When used in a <a>node object</a>, its value must be a <a>map</a>.
       When used in an <a>expanded term definition</a>, its value MUST be a term expanding to <code>@nest</code>.
       Its value MUST be a <a>string</a>.
       See <a class="sectionRef" href="#property-nesting"></a> for a further discussion.
@@ -12148,8 +12148,8 @@ the data type to be specified explicitly with each piece of data.</p>
         Two JSON values <var>A</var> and <var>B</var> are considered equal if and only if the following is true:
         <ol>
           <li>If <var>A</var> and <var>B</var> are both <a>objects</a>,
-            both <var>A</var> and <var>B</var> have the same number of <a>members</a>,
-            and each <a>member</a> in <var>A</var> is equal to a corresponding <a>member</a> in <var>B</var>
+            both <var>A</var> and <var>B</var> have the same number of <a>entries</a>,
+            and each <a>entry</a> in <var>A</var> is equal to a corresponding <a>entry</a> in <var>B</var>
             where <ul>
               <li>the keys are equal (as defined in <a data-cite="ECMASCRIPT#sec-samevaluenonnumber">Section 7.2.12, step 5.a</a>
                   in [[ECMASCRIPT]]), and</li>
@@ -12797,7 +12797,7 @@ the data type to be specified explicitly with each piece of data.</p>
 <section class="appendix informative" id="changes-from-10">
   <h2>Changes since 1.0 Recommendation of 16 January 2014</h2>
   <ul>
-    <li>A context may contain a <code>@version</code> <a>member</a> which is used to set the <a>processing mode</a>.</li>
+    <li>A context may contain a <code>@version</code> <a>entry</a> which is used to set the <a>processing mode</a>.</li>
     <li>An <a>expanded term definition</a> can now have an
       <code>@context</code> property, which defines a <a>context</a> used for values of
       a <a>property</a> identified with such a <a>term</a>.</li>
@@ -12825,7 +12825,7 @@ the data type to be specified explicitly with each piece of data.</p>
       when compacting only if
       a <a>simple term definition</a> is used where the value ends with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character,
       or if their <a>expanded term definition</a> contains
-      a <code>@prefix</code> <a>member</a> with the value <code>true</code>. The 1.0 algorithm has
+      a <code>@prefix</code> <a>entry</a> with the value <code>true</code>. The 1.0 algorithm has
       been updated to only consider terms that map to a value that ends with a URI
       <a data-cite="RFC3986#section-2.2">gen-delim</a> character.</li>
     <li>Values of properties where the associated <a>term definition</a>
@@ -12845,8 +12845,8 @@ the data type to be specified explicitly with each piece of data.</p>
   <ul>
     <li><a>Lists</a> may now have items which are themselves <a>lists</a>.</li>
     <li>Values of <code>@type</code>, or an alais of <code>@type</code>, may now have their <code>@container</code> set to <code>@set</code>
-      to ensure that <code>@type</code> members are always represented as an array. This
-      also allows a term to be defined for <code>@type</code>, where the value MUST be a <a>dictionary</a>
+      to ensure that <code>@type</code> <a>entries</a> are always represented as an array. This
+      also allows a term to be defined for <code>@type</code>, where the value MUST be a <a>map</a>
       with <code>@container</code> set to <code>@set</code>.</li>
     <li>The use of <a>blank node identifiers</a> to label properties is obsolete,
       and may be removed in a future version of JSON-LD, as is the support for <a>generalized RDF Datasets</a>.</li>
