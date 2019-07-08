@@ -862,10 +862,10 @@
       either be a simple string, mapping the <a>term</a> to an <a>IRI</a>,
       or a <a>map</a>.</p>
 
-    <p>A <a>context</a> is introduced using a <a>entry</a> with the key <code>@context</code> and may
+    <p>A <a>context</a> is introduced using an <a>entry</a> with the key <code>@context</code> and may
       appear within a <a>node object</a> or a <a>value object</a>.</p>
 
-    <p>When a <a>entry</a> with a <a>term</a> key has a <a>map</a> value, the <a>map</a> is called
+    <p>When an <a>entry</a> with a <a>term</a> key has a <a>map</a> value, the <a>map</a> is called
       an <a>expanded term definition</a>. The example above specifies that
       the values of <code>image</code> and <code>homepage</code>, if they are
       strings, are to be interpreted as
@@ -3531,7 +3531,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     To prevent this divergence of interpretation,
     JSON-LD 1.1 allows term definitions to be <em>protected</em>.
     </p>
-  <p>A <dfn>protected term definition</dfn> is a term definition with a <a>entry</a> <code>@protected</code> set to <code>true</code>.
+  <p>A <dfn>protected term definition</dfn> is a term definition with an <a>entry</a> <code>@protected</code> set to <code>true</code>.
     It generally prevents further contexts from overriding this term definition,
     either through a new definition of the same term,
     or through clearing the context with <code>"@context": null</code>.
@@ -3575,10 +3575,10 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   </pre>
 
   <p>When all or most term definitions of a context need to be protected,
-    it is possible to add a <a>entry</a> <code>@protected</code> set to <code>true</code>
+    it is possible to add an <a>entry</a> <code>@protected</code> set to <code>true</code>
     to the context itself.
     It has the same effect as protecting each of its term definitions individually.
-    Exceptions can be made by adding a <a>entry</a> <code>@protected</code> set to <code>false</code>
+    Exceptions can be made by adding an <a>entry</a> <code>@protected</code> set to <code>false</code>
     in some term definitions.
     </p>
 
@@ -11370,7 +11370,7 @@ the data type to be specified explicitly with each piece of data.</p>
         an <a>array</a> containing only an empty <a>map</a>,
         an empty <a>array</a> (<a data-cite="JSON-LD11-FRAMING#dfn-match-none">match none</a>)
         an <a>array</a> of <a>IRIs</a>.</li>
-      <li>A <a>frame object</a> MAY include a <a>entry</a> with the key <code>@embed</code> with
+      <li>A <a>frame object</a> MAY include an <a>entry</a> with the key <code>@embed</code> with
         any value from <code>@always</code>, <code>@list</code>, and <code>@never</code>.</li>
       <li>A <a>frame object</a> MAY include <a>entries</a> with the boolean valued
         keys <code>@explicit</code>, <code>@omitDefault</code>, or <code>@requireAll</code></li>
