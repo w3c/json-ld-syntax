@@ -14,16 +14,17 @@
   <dt><dfn data-cite="RFC8259#section-4" class="preserve">JSON object</dfn></dt><dd>
     In the JSON serialization,
     an <a>object</a> structure
-    is represented as a pair of curly brackets surrounding zero or more <a>entries</a>
-    composed of name-value pairs.
+    is represented as a pair of curly brackets surrounding zero or more name/value pairs (or members).
     A name is a <a>string</a>.
     A single colon comes after each name,
     separating the name from the value.
     A single comma separates a value from a following name.
     In JSON-LD the names in an object MUST be unique.
-    In the <a>internal representation</a> a <a>JSON object</a> is described as a
-    <dfn data-cite="INFRA#ordered-map" class="preserve">map</dfn> (see [[INFRA]]),
-    composed of <dfn data-cite="INFRA#map-entry" data-lt="map entry|entry" data-ld-noDefault class="preserve">entries</dfn> with key-value pairs.</dd>
+    <p>In the <a>internal representation</a> a <a>JSON object</a> is described as a
+      <dfn data-cite="INFRA#ordered-map" class="preserve">map</dfn> (see [[INFRA]]),
+      composed of <dfn data-cite="INFRA#map-entry" data-lt="map entry|entry" data-ld-noDefault class="preserve">entries</dfn> with key/value pairs.</p>
+    <p>In the <a data-cite="JSON-LD11-API#the-application-programming-interface">Application Programming Interface</a>,
+      a <a>map</a> is described using a [[WEBIDL]] <a data-cite="WEBIDL#dfn-dictionary">dictionary</a>.</p></dd>
   <dt class="changed"><dfn data-lt="internal representation">JSON-LD internal representation</dfn></dt><dd class="changed">
     The JSON-LD internal representation
     is the result of transforming a JSON syntactic structure
@@ -266,12 +267,12 @@
     other processing modes can be accessed.
     This specification defines extensions for the <code>json-ld-1.1</code> <a>processing mode</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-property" class="preserve">property</dfn></dt><dd>
-    The name of a direct-arc in a <a>linked data graph</a>.
+    The name of a directed-arc in a <a>linked data graph</a>.
     Every <a>property</a> is directional
     and is labeled with an <a>IRI</a> or a <a>blank node identifier</a>.
     Whenever possible, a <a>property</a> should be labeled with an <a>IRI</a>.
     <div class="issue atrisk">The use of <a>blank node identifiers</a> to label properties is obsolete,
-      and may be removed in a future version of JSON-LD.</div></dd>
+      and may be removed in a future version of JSON-LD.</div>
     See <dfn data-cite="RDF11-CONCEPTS#dfn-predicate" data-lt="predicate" class="preserve">RDF predicate</dfn> in [[RDF11-CONCEPTS]].</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-rdf-dataset" data-lt="dataset" class="preserve">RDF dataset</dfn></dt><dd>
     A <a>dataset</a>
