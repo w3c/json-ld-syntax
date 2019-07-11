@@ -591,9 +591,19 @@
         Used as the <code>@type</code> value of a <a>JSON literal</a>.
         This keyword is described in <a href="#json-literals" class="sectionRef"></a>.
       </dd>
-      <dt><code>:</code></dt>
-      <dd>The separator for JSON keys and values that use
-        <a>compact IRIs</a>.</dd>
+      <dt class="changed"><code>:</code></dt><dd class="changed">
+        The separator for JSON keys and values that use <a>compact IRIs</a>.</dd>
+      <dt class="changed">`@propagate`</dt><dd class="changed">
+        Used in a <a>context definition</a> to change the sccope of that context.
+        By default, it is `true`,
+        meaning that contexts propagate across <a>node objects</a>
+        (other than for type-<a>scoped contexts</a>, which default to `false`).
+        Setting this to `false` causes term definitions created within that context
+        to be removed when entering a new <a>node object</a>.</dd>
+      <dt class="changed">`@source`</dt><dd class="changed">
+        Used in a <a>context definition</a> to load an external context
+        within which the containing <a>context definition</a> is merged.
+        This can be useful to add JSON-LD 1.1 features to JSON-LD 1.0 contexts.</dd>
     </dl>
 
     <p>All keys, <a>keywords</a>, and values in JSON-LD are case-sensitive.</p>
@@ -3409,7 +3419,9 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     different things depending on the context.
     A <a>context</a> scoped on <code>@type</code> is only in effect for the <a>node object</a> on which
     the type is used; the previous in-scope <a>contexts</a> are placed back into
-    effect when traversing into another <a>node object</a>.</p>
+    effect when traversing into another <a>node object</a>.
+    As described further in <a href="#context-propagation" class="sectionRef"></a>,
+    this may be controlled using the `@propagate` keyword.</p>
 
   <p class="note">Any property-scoped or local contexts that were introduced in the <a>node object</a>
     would still be in effect when traversing into another <a>node object</a>.</p>
@@ -3519,6 +3531,103 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
 
   <p class="note"><a>Scoped Contexts</a> are a new feature in JSON-LD 1.1, requiring
     <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
+</section>
+
+<section class="informative changed"><h2>Context Propagation</h2>
+  <p>Once introduced, <a>contexts</a> remain in effect until a subsequent
+    <a>context</a> removes it by setting `@context` to `null`,
+    or by redefining terms,
+    with the exception of type-<a>scoped contexts</a>,
+    which limits the affect of that context until the next <a>node object</a> is entered.
+    This behavior can be changed using the `@propagate` keyword.</p>
+
+  <p>The following example illustrates how terms defined in a context with `@propagate` set to `false`
+    are effectively removed when descending into new <a>node object</a>.</p>
+
+  <aside class="example ds-selector-tabs"
+         title="Marking a context to not propagate">
+    <div class="selectors">
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
+    </div>
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
+    <!--
+    {
+      "@context": {
+        "@version": 1.1,
+        "term": {
+          "@id": "http://example.org/original",
+          "@context": {
+            "@propagate": false,
+            #### ↑ Scoped context only lasts in one node-object####
+            "term": "http://example.org/non-propagated-term"
+          }
+        }
+      },
+      "term": {
+      #### ↑ This term is the original####
+        "term": {
+        #### ↑ This term is from the scoped context####
+          "term": "This term is from the first context"
+          #### ↑ This term is the original again####
+        }
+      }
+    }
+    -->
+    </pre>
+    <pre class="expanded result result nohighlight"
+         data-transform="updateExample"
+         data-result-for="Marking a context to not propagate-compacted">
+    <!--
+    [{
+      "http://example.org/original": [{
+        "http://example.org/non-propagated-term": [{
+          "http://example.org/original": [
+            {"@value": "This term is from the first context"}
+          ]
+        }]
+      }]
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Marking a context to not propagate-expanded"
+           data-to-rdf
+           data-no-lint>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>_:b2</td><td>http://example.org/original</td><td>This term is from the first context</td></tr>
+        <tr><td>_:b1</td><td>http://example.org/non-propagated-term</td><td>_:b2</td></tr>
+        <tr><td>_:b0</td><td>http://example.org/original</td><td>_:b1</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-result-for="Marking a context to not propagate-expanded"
+         data-transform="updateExample"
+         data-to-rdf
+         data-no-lint>
+    <!--
+    @prefix ex: <http://example.org/> .
+    [
+      ex:original [
+        ex:non-propagated-term [
+          ex:original "This term is from the first context"
+        ]
+      ]
+    ] .
+    -->
+    </pre>
+  </aside>
+
+  <p class="note">Contexts included within an array must all have the same value for `@propagate`
+    due to the way that rollback is defined in [[[JSON-LD11-API]]].</p>
+</section>
+
+<section class="informative changed"><h2>Sourced Contexts</h2>
 </section>
 
 <section class="informative changed"><h2>Protected Term Definitions</h2>
@@ -11714,10 +11823,12 @@ the data type to be specified explicitly with each piece of data.</p>
     <code>@reverse</code>,
     <code>@type</code>,
     <code>@language</code>,
+    <code>@container</code>,
     <code class="changed">@context</code>,
-    <code class="changed">@prefix</code>, or
-    <code>@container</code>. An
-    <a>expanded term definition</a> SHOULD NOT contain any other keys.</p>
+    <code class="changed">@prefix</code>,
+    <code class="changed">@propagate</code>, or
+    <code class="changed">@source</code>.
+    An <a>expanded term definition</a> SHOULD NOT contain any other keys.</p>
 
   <p>If the term being defined is not a <a>compact IRI</a> or
     <a>absolute IRI</a> and the <a>active context</a> does not have an
@@ -11783,6 +11894,12 @@ the data type to be specified explicitly with each piece of data.</p>
   <p class="changed">If the <a>expanded term definition</a> contains the <code>@prefix</code>
     <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
 
+  <p class="changed">If the <a>expanded term definition</a> contains the <code>@propagate</code>
+    <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
+
+  <p class="changed">If the <a>expanded term definition</a> contains the <code>@source</code>
+    <a>keyword</a>, its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.</p>
+
   <p><a>Terms</a> MUST NOT be used in a circular manner. That is,
     the definition of a term cannot depend on the definition of another term if that other
     term also depends on the first term.</p>
@@ -11790,7 +11907,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>See <a class="sectionRef" href="#the-context"></a> for further discussion on contexts.</p>
 </section>
 
-<section class="normative changed">
+<section class="normative">
   <h2>Keywords</h2>
   <p>JSON-LD <a>keywords</a> are described in <a class="sectionRef" href="#syntax-tokens-and-keywords"></a>,
     this section describes where each <a>keyword</a> may appear within different JSON-LD structures.</p>
@@ -11807,17 +11924,17 @@ the data type to be specified explicitly with each piece of data.</p>
       <code>@set</code>,
       <code>@language</code>,
       <code>@index</code>,
-      <span><code>@id</code></span>,
-      <span><code>@graph</code></span>,
-      <span><code>@type</code></span>, or be
+      <code class="changed">@id</code>,
+      <code class="changed">@graph</code>,
+      <code class="changed">@type</code>, or be
       <a>null</a>,
-      or an <a>array</a> containing exactly any one of those keywords, or a
-      combination of <code>@set</code> and any of <code>@index</code>,
-      <code>@id</code>, <code>@graph</code>, <code>@type</code>,
-      <code>@language</code> in any order.
-      The value may also be an array
-      containing <code>@graph</code> along with either <code>@id</code> or
-      <code>@index</code> and also optionally including <code>@set</code>.
+      <span class="changed">or an <a>array</a> containing exactly any one of those keywords, or a
+        combination of <code>@set</code> and any of <code>@index</code>,
+        <code>@id</code>, <code>@graph</code>, <code>@type</code>,
+        <code>@language</code> in any order.
+        The value may also be an array
+        containing <code>@graph</code> along with either <code>@id</code> or
+        <code>@index</code> and also optionally including <code>@set</code></span>.
     </dd>
     <dt><code>@context</code></dt><dd>
       The <code>@context</code> keyword MUST NOT be aliased, and MAY be used as a key in the following objects:
@@ -11836,6 +11953,12 @@ the data type to be specified explicitly with each piece of data.</p>
       a <a>relative IRI</a>,
       a <a>context definition</a>, or
       an <a>array</a> composed of any of these.
+    </dd>
+    <dt>`@graph`</dt><dd>
+      The `@graph` keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>graph object</a>.
+      The unaliased `@graph` MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
+      The value of the `@graph` key MUST be a <a>value object</a>, <a>node object</a>, or an array of either <a>value objects</a> or <a>node objects</a>.
+      See <a class="sectionRef" href="#named-graphs"></a>.
     </dd>
     <dt><code>@id</code></dt><dd>
       The <code>@id</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>graph object</a>.
@@ -11879,7 +12002,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
       <p>See <a class="sectionRef" href="#sets-and-lists"></a> for further discussion on sets and lists.</p>
     </dd>
-    <dt><code>@nest</code></dt><dd>
+    <dt class="changed"><code>@nest</code></dt><dd class="changed">
       The <code>@nest</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a>.
       The unaliased <code>@nest</code> MAY be used as the value of a <a>simple term definition</a>,
       or as a key in an <a>expanded term definition</a>.
@@ -11888,7 +12011,7 @@ the data type to be specified explicitly with each piece of data.</p>
       Its value MUST be a <a>string</a>.
       See <a class="sectionRef" href="#property-nesting"></a> for a further discussion.
     </dd>
-    <dt><code>@none</code></dt><dd>
+    <dt class="changed"><code>@none</code></dt><dd class="changed">
       The <code>@none</code> keyword MAY be aliased and MAY be used as a key in an
       <a>index map</a>, <a>id map</a>, <a>language map</a>, <a>type map</a>.
       See <a class="sectionRef" href="#data-indexing"></a>,
@@ -11898,12 +12021,17 @@ the data type to be specified explicitly with each piece of data.</p>
       <a class="sectionRef" href="#named-graph-indexing"></a>, or
       <a class="sectionRef" href="#named-graph-data-indexing"></a>
       for a further discussion.</dd>
-    <dt><code>@prefix</code></dt><dd>
+    <dt class="changed"><code>@prefix</code></dt><dd class="changed">
       The <code>@prefix</code> keyword MUST NOT be aliased, and MAY be used as a key in an <a>expanded term definition</a>.
       Its value MUST be <code>true</code> or <code>false</code>.
       See <a class="sectionRef" href="#compact-iris"></a>
       and <a class="sectionRef" href="#context-definitions"></a>
       for a further discussion.
+    </dd>
+    <dt class="changed">`@propagate`</dt><dd class="changed">
+      The `@propagate` keyword MUST NOT be aliased, and MAY be used in a <a>context definition</a>.
+      Its value MUST be <code>true</code> or <code>false</code>.
+      See <a class="sectionRef" href="#context-propagation"></a> for a further discussion.
     </dd>
     <dt><code>@reverse</code></dt><dd>
       The <code>@reverse</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a>.
@@ -11930,6 +12058,11 @@ the data type to be specified explicitly with each piece of data.</p>
 
       <p>See <a class="sectionRef" href="#sets-and-lists"></a> for further discussion on sets and lists.</p>
     </dd>
+    <dt class="changed">`@source`</dt><dd class="changed">
+      The `@source` keyword MUST NOT be aliased, and MAY be used in a <a>context definition</a>.
+      Its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.
+      See <a class="sectionRef" href="#sourced-contexts"></a> for a further discussion.
+    </dd>
     <dt><code>@type</code></dt><dd>
       The <code>@type</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>value object</a>.
       The unaliased <code>@type</code> MAY be used as a key in an <a>expanded term definition</a>,
@@ -11945,7 +12078,7 @@ the data type to be specified explicitly with each piece of data.</p>
       Its value key MUST be either a <a>string</a>, a <a>number</a>, <code>true</code>, <code>false</code> or <a>null</a>.
       This keyword is described further in <a class="sectionRef" href="#value-objects"></a>.
     </dd>
-    <dt><code>@version</code></dt><dd>
+    <dt class="changed"><code>@version</code></dt><dd class="changed">
       The <code>@version</code> keyword MUST NOT be aliased and MAY be used as a key in a <a>context definition</a>.
       Its value MUST be a <a>number</a> with the value <code>1.1</code>.
       This keyword is described further in <a class="sectionRef" href="#context-definitions"></a>.
@@ -12876,6 +13009,12 @@ the data type to be specified explicitly with each piece of data.</p>
       to limit the ability of other contexts to override them.</li>
     <li>A <a>context</a> defined in an <a>expanded term definition</a> may also be used for values
       of <code>@type</code>, which defines a <a>context</a> to use for <a>node objects</a> including the associated type.</li>
+    <li>By default, all contexts are propagated when traversing <a>node objects</a>, other than
+      type-scoped contexts. This can be controlled using the <code>@propagate</code>
+      <a>entry</a> in a <a>local context</a>.</li>
+    <li>A context may contain a <code>@source</code> <a>entry</a> used to reference a remote context
+      within a context, allowing <code>JSON-LD 1.1</code> features to be added to contexts originally
+      authored for <code>JSON-LD 1.0</code>.</li>
   </ul>
 </section>
 
