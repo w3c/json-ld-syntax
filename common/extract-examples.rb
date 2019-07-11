@@ -10,7 +10,6 @@
 # - @data-options indicates the comma-separated option/value pairs to pass to the processor
 require 'getoptlong'
 require 'json'
-require 'json/ld/preloaded'
 require 'nokogiri'
 require 'linkeddata'
 require 'fileutils'
