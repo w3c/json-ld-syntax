@@ -602,7 +602,7 @@
         Used in a <a>context definition</a> to change the sccope of that context.
         By default, it is `true`,
         meaning that contexts propagate across <a>node objects</a>
-        (other than for type-<a>scoped contexts</a>, which default to `false`).
+        (other than for <a>type-scoped contexts</a>, which default to `false`).
         Setting this to `false` causes term definitions created within that context
         to be removed when entering a new <a>node object</a>.</dd>
       <dt class="changed">`@import`</dt><dd class="changed">
@@ -3243,8 +3243,9 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
 
   <p>An <a>expanded term definition</a> can include a <code>@context</code>
     property, which defines a <a>context</a> (a <a>scoped context</a>) for
-    <a data-lt="JSON-LD value">values</a> of properties defined using that <a>term</a>. This allows
-    values to use <a>term definitions</a>, <a>base IRI</a>,
+    <a data-lt="JSON-LD value">values</a> of properties defined using that <a>term</a>.
+    When used for a <a>property</a>, this is called a <a>property-scoped context</a>.
+    This allows values to use <a>term definitions</a>, <a>base IRI</a>,
     <a>vocabulary mapping</a> or <a>default language</a> which is different from the
     <a>node object</a> they are contained in, as if the
     <a>context</a> was specified within the value itself.</p>
@@ -3323,9 +3324,13 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     </pre>
   </aside>
 
-  <p>In this case, the social profile is defined using the schema.org vocabulary, but interest is imported from FOAF, and is used to define a node describing one of Manu's interests where those properties now come from the FOAF vocabulary.</p>
+  <p>In this case, the social profile is defined using the schema.org vocabulary,
+    but interest is imported from FOAF,
+    and is used to define a node describing one of Manu's interests
+    where those <a>properties</a> now come from the FOAF vocabulary.</p>
 
-  <p>Expanding this document, uses a combination of terms defined in the outer context, and those defined specifically for that term in a <a>scoped context</a>.</p>
+  <p>Expanding this document, uses a combination of terms defined in the outer context,
+    and those defined specifically for that term in a <a>property-scoped context</a>.</p>
 
   <p>Scoping can also be performed using a term used as a value of <code>@type</code>:</p>
 
@@ -3421,22 +3426,22 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     different entities calls for different context scoping. For example,
     <code>hasPart</code>/<code>partOf</code> may be common terms used in a document, but mean
     different things depending on the context.
-    A <a>context</a> scoped on <code>@type</code> is only in effect for the <a>node object</a> on which
+    A <a>type-scoped context</a> is only in effect for the <a>node object</a> on which
     the type is used; the previous in-scope <a>contexts</a> are placed back into
     effect when traversing into another <a>node object</a>.
     As described further in <a href="#context-propagation" class="sectionRef"></a>,
     this may be controlled using the `@propagate` keyword.</p>
 
-  <p class="note">Any property-scoped or local contexts that were introduced in the <a>node object</a>
+  <p class="note">Any <a data-lt="property-scoped context">property-scoped</a> or local <a>contexts</a> that were introduced in the <a>node object</a>
     would still be in effect when traversing into another <a>node object</a>.</p>
 
   <p>When expanding, each value of <code>@type</code> is considered
     (ordering them lexicographically) where that value is also a <a>term</a> in
-    the <a>active context</a> having its own <a>scoped context</a>. If so, that
-    <a>scoped context</a> is applied to the <a>active context</a>.</p>
+    the <a>active context</a> having its own <a>type-scoped context</a>.
+    If so, that the <a>scoped context</a> is applied to the <a>active context</a>.</p>
 
   <p class="note">The values of <code>@type</code> are unordered, so if multiple
-    types are listed, the order that <a>scoped contexts</a> are applied is based on
+    types are listed, the order that <a>type-scoped contexts</a> are applied is based on
     lexicographical ordering.</p>
 
   <p>For example, consider the following semantically equivalent examples:</p>
@@ -3486,9 +3491,9 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     -->
     </pre>
 
-    <p>Contexts are processed depending on how they are defined. A scoped context
-      for a property is processed first, followed by any embedded context,
-      followed lastly by the scoped contexts for any types, in the appropriate order.
+    <p>Contexts are processed depending on how they are defined. A <a>property-scoped context</a>
+      is processed first, followed by any <a>embedded context</a>,
+      followed lastly by the <a>type-scoped contexts</a>, in the appropriate order.
       The previous example is logically equivalent to the following:</p>
     <pre data-transform="updateExample">
     <!--
@@ -3541,7 +3546,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   <p>Once introduced, <a>contexts</a> remain in effect until a subsequent
     <a>context</a> removes it by setting `@context` to `null`,
     or by redefining terms,
-    with the exception of type-<a>scoped contexts</a>,
+    with the exception of <a>type-scoped contexts</a>,
     which limits the affect of that context until the next <a>node object</a> is entered.
     This behavior can be changed using the `@propagate` keyword.</p>
 
@@ -3660,7 +3665,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     additional type coercion information.</p>
 
   <p>The following examples illustrate how `@import` can be used to express
-    a type-scoped <a>context</a> that loads an imported <a>context</a> and
+    a for <a>type-scoped context</a> that loads an imported <a>context</a> and
     sets `@propagate` to `true` and how to make similar modifications.</p>
 
   <p>Suppose there was a <a>context</a> that could be referenced remotely
@@ -3703,7 +3708,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   </pre>
 
   <p>The effect would be the same as if the entire imported <a>context</a>
-    had been copied into the type-scoped <a>context</a>:</p>
+    had been copied into the for <a>type-scoped context</a>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        title="Result of sourcing a context in a type-scoped context and setting it to propagate">
@@ -3775,8 +3780,9 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   -->
   </pre>
 
-  <p class="warning">The result of loading imported <a>contexts</a> must be
-    an object, not an array.</p>
+  <p>The result of loading imported <a>contexts</a> must be
+    <a>context definition</a>, not an <a>IRI</a> or an <a>array</a>.
+    Additionally, the imported context cannot include an `@import` <a>entry</a>.</p>
 </section>
 
 <section class="informative changed"><h2>Protected Term Definitions</h2>
@@ -3785,9 +3791,9 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     without using any of the JSON-LD algorithms.
     Because JSON-LD is very flexible,
     some terms from the original format may be locally overridden
-    through the use of embedded contexts,
+    through the use of <a>embedded contexts</a>,
     and take a different meaning for JSON-LD based implementations.
-    On the other hand, "plain JSON" implementations may not be able to interpret these embedded contexts,
+    On the other hand, "plain JSON" implementations may not be able to interpret these <a>embedded contexts</a>,
     and hence will still interpret those terms with their original meaning.
     To prevent this divergence of interpretation,
     JSON-LD 1.1 allows term definitions to be <em>protected</em>.
@@ -4034,7 +4040,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     </pre>
   </aside>
 
-  <p>The second exception is that a property-<a>scoped context</a>
+  <p>The second exception is that a <a>property-scoped context</a>
     is not affected by protection, and can therefore override protected terms,
     either with a new term definition,
     or by clearing the context with <code>"@context": null</code>.
@@ -12046,8 +12052,10 @@ the data type to be specified explicitly with each piece of data.</p>
   <p class="changed">If the <a>expanded term definition</a> contains the <code>@propagate</code>
     <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
 
-  <p class="changed">If the <a>expanded term definition</a> contains the <code>@import</code>
-    <a>keyword</a>, its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.</p>
+  <p class="changed">If a <a>context</a> contains the <code>@import</code>
+    <a>keyword</a>, its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.
+    When used as a reference from an `@import`, the referenced <a>context definition</a> MUST NOT
+    include an `@import` key, itself.</p>
 
   <p><a>Terms</a> MUST NOT be used in a circular manner. That is,
     the definition of a term cannot depend on the definition of another term if that other
@@ -13159,7 +13167,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>A <a>context</a> defined in an <a>expanded term definition</a> may also be used for values
       of <code>@type</code>, which defines a <a>context</a> to use for <a>node objects</a> including the associated type.</li>
     <li>By default, all contexts are propagated when traversing <a>node objects</a>, other than
-      type-scoped contexts. This can be controlled using the <code>@propagate</code>
+      <a>type-scoped contexts</a>. This can be controlled using the <code>@propagate</code>
       <a>entry</a> in a <a>local context</a>.</li>
     <li>A context may contain an <code>@import</code> <a>entry</a> used to reference a remote context
       within a context, allowing <code>JSON-LD 1.1</code> features to be added to contexts originally
