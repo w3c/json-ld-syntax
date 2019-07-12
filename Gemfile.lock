@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/ruby-rdf/json-ld.git
-  revision: 813e1ff914cc1a1025db14de392fd738b4cbb674
+  remote: https://github.com/ruby-rdf/json-ld.git
+  revision: 74095b73cdb722b681f34d0f165599c9cb48d844
   branch: develop
   specs:
     json-ld (3.0.2)
@@ -176,4 +176,4 @@ DEPENDENCIES
   rake
 
 BUNDLED WITH
-   1.17.3
+   2.0.2
