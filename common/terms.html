@@ -113,17 +113,11 @@
     Its value may be a <a>map</a> for a <a data-cite="JSON-LD11#dfn-context-definition">context definition</a>,
     as an <a>IRI</a>, or as an <a>array</a> combining either of the above.
   </dd>
-  <dt><dfn>context map</dfn></dt><dd>
-    An embedded <a>context</a> is a <a>map</a> composed of a combintation of
-    <a>term definitions</a>, a <a>vocabulary mapping</a>, a <a>base IRI</a> and <a>default language</a>.
-    An <a>embedded context</a> may appear as part of a <a>node object</a> or <a>value object</a> using the
-    <code>@context</code> <a>entry</a>.
-  </dd>
   <dt><dfn class="preserve">scoped context</dfn></dt><dd>
     A <a>scoped context</a> is part of an <a>expanded term definition</a> using the
     <code>@context</code> <a>entry</a>. It has the same form as an <a>embedded context</a>.
-    When the term is used as a type, it is a <dfn class="preserve">type-scoped context</dfn>,
-    when used as a property it is a <dfn class="preserve">property-scoped context</dfn>.
+    When the term is used as a type, it defines a <dfn class="preserve">type-scoped context</dfn>,
+    when used as a property it defines a <dfn class="preserve">property-scoped context</dfn>.
   </dd>
   <dt><dfn>expanded term definition</dfn></dt><dd>
     An expanded term definition is a <a>term definition</a>
