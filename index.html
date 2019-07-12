@@ -600,7 +600,7 @@
         (other than for type-<a>scoped contexts</a>, which default to `false`).
         Setting this to `false` causes term definitions created within that context
         to be removed when entering a new <a>node object</a>.</dd>
-      <dt class="changed">`@source`</dt><dd class="changed">
+      <dt class="changed">`@import`</dt><dd class="changed">
         Used in a <a>context definition</a> to load an external context
         within which the containing <a>context definition</a> is merged.
         This can be useful to add JSON-LD 1.1 features to JSON-LD 1.0 contexts.</dd>
@@ -3626,7 +3626,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     due to the way that rollback is defined in [[[JSON-LD11-API]]].</p>
 </section>
 
-<section class="informative changed"><h2>Sourced Contexts</h2>
+<section class="informative changed"><h2>Imported Contexts</h2>
   <p>JSON-LD 1.0 included mechanisms for modifying the <a>context</a> that
     is in effect. This included the capability to load and process a remote
     <a>context</a> and then apply further changes to it via new <a>contexts</a>.
@@ -3637,39 +3637,39 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     1.0 <a>context</a>, and apply JSON-LD 1.1 features to it prior to
     processing.</p>
 
-  <p>By using the `@source` keyword in a <a>context</a>, another remote
-    <a>context</a>, referred to as a sourced <a>context</a>, can be loaded and
+  <p>By using the `@import` keyword in a <a>context</a>, another remote
+    <a>context</a>, referred to as an imported <a>context</a>, can be loaded and
     modified prior to processing. The modifications are expressed in the
-    <a>context</a> that includes the `@source` keyword, referred to as the
-    wrapping <a>context</a>. Once a sourced <a>context</a> is loaded, the
+    <a>context</a> that includes the `@import` keyword, referred to as the
+    wrapping <a>context</a>. Once an imported <a>context</a> is loaded, the
     contents of the wrapping <a>context</a> are merged into it prior to
     processing. The merge operation will cause each key-value pair in the
-    wrapping <a>context</a> to be added to the loaded sourced <a>context</a>,
+    wrapping <a>context</a> to be added to the loaded imported <a>context</a>,
     with the wrapping <a>context</a> key-value pairs taking precedence.</p>
 
   <p>By enabling existing <a>contexts</a> to be reused and edited inline prior
     to processing, context-wide keywords can be applied to adjust all term
-    definitions in the sourced <a>context</a>. Similarly, term definitions can
+    definitions in the imported <a>context</a>. Similarly, term definitions can
     be replaced prior to processing, enabling adjustments that, for instance, ensure term
     definitions match previously protected terms or that they include
     additional type coercion information.</p>
 
-  <p>The following examples illustrate how `@source` can be used to express
-    a type-scoped <a>context</a> that loads a sourced <a>context</a> and
+  <p>The following examples illustrate how `@import` can be used to express
+    a type-scoped <a>context</a> that loads an imported <a>context</a> and
     sets `@propagate` to `true` and how to make similar modifications.</p>
 
   <p>Suppose there was a <a>context</a> that could be referenced remotely
-    via the URL <code>http://example.org/remote-context</code>:</p>
+    via the URL <code>https://json-ld.org/contexts/remote-context.jsonld</code>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
-       title="A remote context to be sourced in a type-scoped context">
+       title="A remote context to be imported in a type-scoped context">
   <!--
   {
     "@context": {
       "Type1": "http://example.com/vocab/Type1",
       "Type2": "http://example.com/vocab/Type2",
       "term1": "http://example.com/vocab#term1",
-      "term2": "http://example.com/vocab#term2",####,
+      "term2": "http://example.com/vocab#term2"####,
       ...####
     }
   }
@@ -3688,7 +3688,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
         "@id": "http://example.com/vocab#MyType",
         "@context": {
           "@version": 1.1,
-          "@source": "https://example.com/remote-context",
+          "@import": "https://json-ld.org/contexts/remote-context.jsonld",
           "@propagate": true
         }
       }
@@ -3697,7 +3697,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   -->
   </pre>
 
-  <p>The effect would be the same as if the entire sourced <a>context</a>
+  <p>The effect would be the same as if the entire imported <a>context</a>
     had been copied into the type-scoped <a>context</a>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
@@ -3713,7 +3713,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
           "Type1": "http://example.com/vocab/Type1",
           "Type2": "http://example.com/vocab/Type2",
           "term1": "http://example.com/vocab#term1",
-          "term2": "http://example.com/vocab#term2",####,
+          "term2": "http://example.com/vocab#term2",####
           ...####
           "@propagate": true
         }
@@ -3724,7 +3724,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   </pre>
 
   <p>Similarly, the wrapping <a>context</a> may replace term definitions or
-    set other context-wide keywords that may effect how the sourced
+    set other context-wide keywords that may effect how the imported
     <a>context</a> term definitions will be processed:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
@@ -3733,7 +3733,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   {
     "@context": {
       "@version": 1.1,
-      "@source": "https://example.org/remote-context",
+      "@import": "https://json-ld.org/contexts/remote-context.jsonld",
       "@vocab": "http://example.org/vocab#",
       #### ↑ This will replace any previous @vocab definition prior to processing it####
       "term1": {
@@ -3746,7 +3746,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   -->
   </pre>
 
-  <p>Again, the effect would be the same as if the entire sourced <a>context</a>
+  <p>Again, the effect would be the same as if the entire imported <a>context</a>
     had been copied into the <a>context</a>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
@@ -3770,7 +3770,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   -->
   </pre>
 
-  <p class="note">The result of loading a sourced <a>contexts</a> must be
+  <p class="warning">The result of loading imported <a>contexts</a> must be
     an object, not an array.</p>
 </section>
 
@@ -11964,14 +11964,14 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>An <a>expanded term definition</a> MUST be a <a>map</a>
     composed of zero or more keys from
     <code>@id</code>,
+    <code class="changed">@import</code>,
     <code>@reverse</code>,
     <code>@type</code>,
     <code>@language</code>,
     <code>@container</code>,
     <code class="changed">@context</code>,
-    <code class="changed">@prefix</code>,
-    <code class="changed">@propagate</code>, or
-    <code class="changed">@source</code>.
+    <code class="changed">@prefix</code>, or
+    <code class="changed">@propagate</code>.
     An <a>expanded term definition</a> SHOULD NOT contain any other keys.</p>
 
   <p>If the term being defined is not a <a>compact IRI</a> or
@@ -12041,7 +12041,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p class="changed">If the <a>expanded term definition</a> contains the <code>@propagate</code>
     <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
 
-  <p class="changed">If the <a>expanded term definition</a> contains the <code>@source</code>
+  <p class="changed">If the <a>expanded term definition</a> contains the <code>@import</code>
     <a>keyword</a>, its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.</p>
 
   <p><a>Terms</a> MUST NOT be used in a circular manner. That is,
@@ -12202,10 +12202,10 @@ the data type to be specified explicitly with each piece of data.</p>
 
       <p>See <a class="sectionRef" href="#sets-and-lists"></a> for further discussion on sets and lists.</p>
     </dd>
-    <dt class="changed">`@source`</dt><dd class="changed">
-      The `@source` keyword MUST NOT be aliased, and MAY be used in a <a>context definition</a>.
+    <dt class="changed">`@import`</dt><dd class="changed">
+      The `@import` keyword MUST NOT be aliased, and MAY be used in a <a>context definition</a>.
       Its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.
-      See <a class="sectionRef" href="#sourced-contexts"></a> for a further discussion.
+      See <a class="sectionRef" href="#imported-contexts"></a> for a further discussion.
     </dd>
     <dt><code>@type</code></dt><dd>
       The <code>@type</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>value object</a>.
@@ -13156,7 +13156,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>By default, all contexts are propagated when traversing <a>node objects</a>, other than
       type-scoped contexts. This can be controlled using the <code>@propagate</code>
       <a>entry</a> in a <a>local context</a>.</li>
-    <li>A context may contain a <code>@source</code> <a>entry</a> used to reference a remote context
+    <li>A context may contain an <code>@import</code> <a>entry</a> used to reference a remote context
       within a context, allowing <code>JSON-LD 1.1</code> features to be added to contexts originally
       authored for <code>JSON-LD 1.0</code>.</li>
   </ul>
