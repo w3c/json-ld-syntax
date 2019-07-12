@@ -3740,12 +3740,12 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
       "@version": 1.1,
       "@source": "https://example.org/remote-context",
       "@vocab": "http://example.org/vocab#",
-      #### ↑ This will replace any previous @vocab definition prior to processing it at all####
+      #### ↑ This will replace any previous @vocab definition prior to processing it####
       "term1": {
         "@id": "http://example.org/vocab#term1",
         "@type": "http://www.w3.org/2001/XMLSchema#integer"
       }
-      #### ↑ This will replace the old term1 definition prior to processing it at all####
+      #### ↑ This will replace the old term1 definition prior to processing it####
     }
   }
   -->
@@ -3765,10 +3765,10 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
       "term1": {
         "@id": "http://example.org/vocab#term1",
         "@type": "http://www.w3.org/2001/XMLSchema#integer"
-      }
+      },
       #### ↑ Note term1 has been replaced prior to processing####
-      "term2": "http://example.com/vocab#term2",####,
-      ...####
+      "term2": "http://example.com/vocab#term2",####
+      ...,####
       "@vocab": "http://example.org/vocab#"
     }
   }
