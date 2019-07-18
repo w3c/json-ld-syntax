@@ -1,48 +1,48 @@
 <dl class="termlist" data-sort>
-  <dt><dfn>active graph</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-API#dfn-active-graph">active graph</dfn></dt><dd>
     The name of the currently active graph that the processor should use when processing.</dd>
-  <dt><dfn>active object</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-API#dfn-active-object">active object</dfn></dt><dd>
     The currently active object that the processor should use when processing.</dd>
-  <dt><dfn>active property</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-API#dfn-active-property">active property</dfn></dt><dd>
     The currently active <a>property</a> or <a>keyword</a> that the processor should use when processing.
     The <a>active property</a> is represented in the original lexical form,
     which is used for finding coercion mappings in the <a>active context</a>.</dd>
-  <dt><dfn>active subject</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-API#dfn-active-subject">active subject</dfn></dt><dd>
     The currently active subject that the processor should use when processing.</dd>
-  <dt><dfn>explicit inclusion flag</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-expicit-inclusion-flag">explicit inclusion flag</dfn></dt><dd>
     A flag specifying that for <a>properties</a> to be included in the output,
     they MUST be explicitly declared in the matching <a>frame</a>.</dd>
-  <dt><dfn>framing state</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-framing-state">framing state</dfn></dt><dd>
     A <a>map</a> containing values for the
     <a>object embed flag</a>, the
     <a>require all flag</a>, the
     <a>explicit inclusion flag</a>, and the
     <a>omit default flag</a>.</dd>
-  <dt><dfn>input frame</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-input-frame">input frame</dfn></dt><dd>
     The initial <a>Frame</a> provided to the framing algorithm.</dd>
-  <dt><dfn>JSON-LD input</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-API#dfn-json-ld-input">JSON-LD input</dfn></dt><dd>
     The JSON-LD data structure that is provided as input to the algorithm.</dd>
-  <dt><dfn>JSON-LD output</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-API#dfn-json-ld-output">JSON-LD output</dfn></dt><dd>
     The JSON-LD data structure that is produced as output by the algorithm.</dd>
-  <dt><dfn>map of flattened subjects</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-map-of-flattened-subjects">map of flattened subjects</dfn></dt><dd>
     A map of subjects that is the result of the
     <a data-cite="JSON-LD11-API#node-map-generation">Node Map Generation algorithm</a>.</dd>
-  <dt><dfn>object embed flag</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-object-embed-flag">object embed flag</dfn></dt><dd>
     A flag specifying that <a>node objects</a> should be directly embedded in the output,
     instead of being referred to by their <a>IRI</a>.</dd>
-  <dt><dfn>omit default flag</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-omit-default-flag">omit default flag</dfn></dt><dd>
     A flag specifying that properties that are missing from the <a>JSON-LD input</a>,
     but present in the <a>input frame</a>,
     should be omitted from the output.</dd>
-  <dt class="changed"><dfn>omit graph flag</dfn></dt><dd class="changed">
+  <dt class="changed"><dfn data-cite="JSON-LD11-FRAMING#dfn-omit-graph-flag">omit graph flag</dfn></dt><dd class="changed">
     A flag that determines if framing output is always contained within a <code>@graph</code> <a>entry</a>,
     or only if required to represent multiple <a>node objects</a>.</dd>
-  <dt><dfn>processor state</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-API#dfn-processor-state">processor state</dfn></dt><dd>
     The <a>processor state</a>,
     which includes the <a>active context</a>, <a>active subject</a>, and <a>active property</a>.
     The <a>processor state</a> is managed as a stack with elements from the previous <a>processor state</a>
     copied into a new <a>processor state</a> when entering a new <a>JSON object</a>.</dd>
-  <dt><dfn>require all flag</dfn></dt><dd>
+  <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-require-all-flag">require all flag</dfn></dt><dd>
     A flag specifying that all properties present in the <a>input frame</a>
     MUST either have a default value
     or be present in the <a>JSON-LD input</a>
