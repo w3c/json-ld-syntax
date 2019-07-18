@@ -325,7 +325,7 @@
   <p>JSON-LD is designed to be usable directly as JSON, with no knowledge of RDF
    [[RDF11-CONCEPTS]]. It is also designed to be usable as RDF, if desired, for
    use with other Linked Data technologies like SPARQL [[SPARQL11-OVERVIEW]]. Developers who
-   require any of the facilities listed above or need to serialize an RDF <a>Graph</a>
+   require any of the facilities listed above or need to serialize an <a>RDF graph</a>
    or <a>Dataset</a> in a JSON-based syntax will find JSON-LD of interest. People
    intending to use JSON-LD with RDF tools will find it can be used as another
    RDF syntax, as with [[Turtle]] and [[TriG]]. Complete details of how JSON-LD relates
@@ -353,7 +353,7 @@
       <li>Software developers who want to implement processors and APIs for
         JSON-LD</li>
       <li>Software developers who want to generate or consume Linked Data,
-        an RDF <a>graph</a>, or an <a>RDF Dataset</a> in a JSON syntax</li>
+        an <a>RDF graph</a>, or an <a>RDF Dataset</a> in a JSON syntax</li>
     </ul>
 
     <p>A companion document, the JSON-LD 1.1 Processing Algorithms and API specification
@@ -403,8 +403,8 @@
   <section class="normative">
     <h2>Terminology</h2>
 
-    <p>This document uses the following terms as defined in JSON [[RFC8259]]. Refer
-      to the <a data-cite="RFC8259#section-2">JSON Grammar section</a> in [[RFC8259]] for formal definitions.</p>
+    <p>This document uses the following terms as defined in external specifications
+      and defines terms specific to JSON-LD.</p>
 
     <!-- FIXME: restrictReferences stopped working properly, so removing for now. -->
     <div data-include="common/terms.html"></div>
@@ -1290,7 +1290,7 @@
   <h2>Node Identifiers</h2>
 
   <p>To be able to externally reference <a>nodes</a>
-    in a <a>graph</a>, it is important that
+    in an <a>RDF graph</a>, it is important that
     <a>nodes</a> have an identifier. <a>IRIs</a>
     are a fundamental concept of Linked Data, for
     <a>nodes</a> to be truly linked, dereferencing the
@@ -12265,7 +12265,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <ul>
     <li>In JSON-LD <a>properties</a> can be
       <a>IRIs</a> or <a>blank nodes</a>
-      whereas in RDF properties (predicates) have to be <a>IRIs</a>. This
+      whereas in RDF properties (<a>predicates</a>) have to be <a>IRIs</a>. This
       means that JSON-LD serializes
       <a>generalized RDF Datasets</a>.</li>
     <li>In JSON-LD <a>lists</a> use native JSON syntax, either contained in a
@@ -12306,7 +12306,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>Even though JSON-LD serializes
     <a>RDF Datasets</a>, it can
-    also be used as a <dfn data-cite="RDF11-CONCEPTS#dfn-rdf-source">RDF graph source</dfn>.
+    also be used as a <dfn data-cite="RDF11-CONCEPTS#dfn-rdf-source">graph source</dfn>.
     In that case, a consumer MUST only use the <a>default graph</a> and ignore all <a>named graphs</a>.
     This allows servers to expose data in languages such as Turtle and JSON-LD
     using content negotiation.</p>
@@ -12414,7 +12414,7 @@ the data type to be specified explicitly with each piece of data.</p>
       inverse of this last step, creating an expanded JSON-LD document closely
       matching the triples from RDF, using a single <a>node object</a>
       for all triples having a common subject, and a single <a>property</a>
-      for those triples also having a common predicate. The result may
+      for those triples also having a common <a>predicate</a>. The result may
       then be framed by using the
       <a data-cite="JSON-LD11-FRAMING#framing-algorithm">Framing Algorithm</a>
       described in [[JSON-LD11-FRAMING]] to create the desired object embedding.</p>
@@ -12423,7 +12423,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <section class="changed"><h2>The <code>rdf:JSON</code> Datatype</h2>
     <p>RDF provides for JSON content as a possible <a data-lt="RDF literal">literal value</a>.
       This allows markup in literal values.
-      Such content is indicated in an <a>RDF graph</a> using a <a>literal</a> whose datatype is set to <code>rdf:JSON</code>.</p>
+      Such content is indicated in a <a>graph</a> using a <a>literal</a> whose datatype is set to <code>rdf:JSON</code>.</p>
 
     <p>The <code>rdf:JSON</code> datatype is defined as follows:</p>
 
@@ -12550,7 +12550,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <section id="fig-linked-data-graph-descr"><h3>Linked Data Dataset</h3>
       <h2>Description of the <a href="#fig-linked-data-graph">Linked Data Dataset figure</a> in <a href="#data-model" class="sectionRef"></a></h2>
       <p>The image consists of three dashed boxes, each describing a different
-        linked data graph. Each box consists of shapes linked with arrows describing
+        <a>linked data graph</a>. Each box consists of shapes linked with arrows describing
         the linked data relationships.</p>
       <p>The first box is titled "default graph: &lt;no name&gt;" describes two
         resources: <code>http://example.com/people/alice</code> and <code>http://example.com/people/bob</code>
