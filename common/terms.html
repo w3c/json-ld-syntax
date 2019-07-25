@@ -225,6 +225,12 @@
     A <a>named graph</a> created from the value of a <a>map entry</a>
     having an <a>expanded term definition</a>
     where <code>@container</code> is set to  <code>@graph</code>.</dd>
+  <dt class="changed"><dfn data-cite="JSON-LD11#dfn-included-map">included map</dfn></dt><dd class="changed">
+    An <a>included map</a> is a <a>map</a> of <a>entries</a> where the key
+    is interpreted as a vocabulary-<a>relative IRI</a>, and the value is a <a>node object</a>, <a>value object</a>,
+    <a>list object</a>, or an array of any of the above.
+    An <a>included map</a> contains values which may be referenced by terms of type `@included`,
+    for which the references are replaced with values from that map when expanding a document.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-index-map">index map</dfn></dt><dd>
     An <a>index map</a> is a <a>map</a> value of a <a>term</a>
     defined with <code>@container</code> set to <code>@index</code>,
@@ -331,7 +337,7 @@
     or an <a>expanded term definition</a>.
   </dd>
   <dt class="changed"><dfn data-cite="JSON-LD11#dfn-type-map">type map</dfn></dt><dd class="changed">
-    An <a>type map</a> is a <a>map</a> value of a <a>term</a>
+    A <a>type map</a> is a <a>map</a> value of a <a>term</a>
     defined with <code>@container</code> set to <code>@type</code>,
     whose keys are interpreted as <a>IRIs</a>
     representing the <code>@type</code> of the associated <a>node object</a>;

@@ -608,6 +608,11 @@
         Used in a <a>context definition</a> to load an external context
         within which the containing <a>context definition</a> is merged.
         This can be useful to add JSON-LD 1.1 features to JSON-LD 1.0 contexts.</dd>
+      <dt class="changed">`@included`</dt><dd class="changed">
+        Used in in a top-level <a>node object</a> to define an <a>included map</a>,
+        allowing <a>properties</a> of the `@included` to reference shared values which are
+        copied during <a>expansion</a>.
+      </dd>
     </dl>
 
     <p>All keys, <a>keywords</a>, and values in JSON-LD are case-sensitive.</p>
@@ -6755,6 +6760,11 @@ the data type to be specified explicitly with each piece of data.</p>
   <dt>Node Type Indexing</dt><dd>As described in <a href="#node-type-indexing" class="sectionRef"></a>,
     node type indexing allows an <a>IRI</a> to reference a <a>node</a>
     and be interpreted as a type of that <a>node</a>.</dd>
+  <dt>Shared Value Indexing</dt><dd>As described in <a href="#shared-value-indexing" class="sectionRef"></a>,
+    property values which may be shared among a number of different <a>node objects</a>, can be
+    collected into an <a>included map</a>, which provides for a central location for referencing such shared values.
+    When expanded, the values are extracted from the <a>included map</a> to replace the indexes in
+    the property values with the referenced values.</dd>
 </dl>
 
 <p>See <a href="#named-graphs" class="sectionRef"></a> for other uses of indexing in JSON-LD.</p>
@@ -8269,6 +8279,242 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p class="note"><a>Type maps</a> are a new feature in JSON-LD 1.1, requiring
     <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
+</section>
+
+<section class="informative changed"><h3>Shared Value Indexing</h3>
+  <p>It is sometimes the case that a nested data structure will repeat information.
+    Using a <a>node reference</a> provides some opportunities for consolodating
+    the information into a single <a>node object</a>, but this does not help
+    in all cases.</p>
+
+  <p>Specifications such as [[[MICRODATA]]] [[MICRODATA]] have an <a data-cite="MICRODATA#dfn-itemref">itemref</a>
+    mechanism which allows elements to be effectively copied within the [[DOM]].
+    The <a>included map</a> feature provides a similar capability.</p>
+
+  <p>For an example, consider a node object containing a list of different items,
+    some of which share some common elements:</p>
+
+  <pre class="example input"
+       id="included-values-to-be-expanded"
+       title="Included Values"
+       data-transform="updateExample">
+  <!--
+  {
+    "@context": {
+      "@version": 1.1,
+      "@vocab": "http://example.org/",
+      "@base": "http://example.org/base/",
+      "id": "@id", 
+      "type": "@type",
+      "included": "@included",
+      "enum": "http://example.org/enum#",
+      "classification": {"@type": "@included"},
+      "service": {"@type": "@included"},
+      "included": "@included"
+    },
+    "id": "http://example.org/base/1",
+    "type": "Thing-with-Items",
+    "items": [{
+      "id":"http://example.org/base/2",
+      "classification": "enum:c6",
+      "service": "enum:s2"
+    },####
+      3...26 go here####
+    {
+      "id": "http://example.org/base/27",
+      "classification": "enum:c6"
+    }],
+    "included": {
+      "enum:c6": {"type": "Type", "label": "Classification 6"},
+      "enum:s2": {"type": "Service", "label": "Login Service"}
+    }  
+  }
+  -->
+  </pre>
+
+  <p>When expanded, this will copy the `enum:c6` and `enum:s2` elements
+    from the included map into the item which references it.</p>
+
+  <aside class="example ds-selector-tabs"
+         title="Expanded form for included values">
+    <div class="selectors">
+      <button class="selected" data-selects="expanded">Expanded (Result)</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"
+         data-result-for="#included-values-to-be-expanded"></a>
+    </div>
+    <pre class="expanded result selected" data-transform="updateExample"
+         data-result-for="Included Values">
+    <!--
+    [{
+      "@id": "http://example.org/base/1",
+      "@type": ["http://example.org/Thing-with-Items"],
+      "http://example.org/items": [{
+        "@id": "http://example.org/base/2",
+        "http://example.org/classification": [{
+          "@type": ["http://example.org/Type"],
+          "http://example.org/label": [{"@value": "Classification 6"}]
+        }],
+        "http://example.org/service": [{
+          "@type": ["http://example.org/Service"],
+          "http://example.org/label": [{"@value": "Login Service"}]
+        }]
+      }, {
+        "@id": "http://example.org/base/27",
+        "http://example.org/classification": [{
+          "@type": ["http://example.org/Type"],
+          "http://example.org/label": [{"@value": "Classification 6"}]
+        }]
+      }]
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Expanded form for included values-expanded"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+    <tr><td>http://example.org/base/1</td><td>http://example.org/items</td><td>http://example.org/base/27</td></tr>
+    <tr><td>http://example.org/base/1</td><td>http://example.org/items</td><td>http://example.org/base/2</td></tr>
+    <tr><td>http://example.org/base/1</td><td>rdf:type</td><td>http://example.org/Thing-with-Items</td></tr>
+    <tr><td>http://example.org/base/2</td><td>http://example.org/classification</td><td>_:b0</td></tr>
+    <tr><td>_:b0</td><td>http://example.org/label</td><td>Classification 6</td></tr>
+    <tr><td>_:b0</td><td>rdf:type</td><td>http://example.org/Type</td></tr>
+    <tr><td>http://example.org/base/2</td><td>http://example.org/service</td><td>_:b1</td></tr>
+    <tr><td>_:b1</td><td>http://example.org/label</td><td>Login Service</td></tr>
+    <tr><td>_:b1</td><td>rdf:type</td><td>http://example.org/Service</td></tr>
+    <tr><td>http://example.org/base/27</td><td>http://example.org/classification</td><td>_:b2</td></tr>
+    <tr><td>_:b2</td><td>http://example.org/label</td><td>Classification 6</td></tr>
+    <tr><td>_:b2</td><td>rdf:type</td><td>http://example.org/Type</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-result-for="Expanded form for included values-expanded"
+         data-transform="updateExample"
+         data-to-rdf>
+    <!--
+    @base <http://example.org/base/> .
+    @prefix ex: <http://example.org/> .
+
+    <1> a ex:Thing-with-Items; ex:items <2>, <27> .
+
+    <2> ex:classification [ a ex:Type; ex:label "Classification 6" ];
+      ex:service [ a ex:Service; ex:label "Login Service" ] .
+
+    <27> ex:classification [ a ex:Type; ex:label "Classification 6" ] .
+    -->
+    </pre>
+  </aside>
+
+  <p>This feature becomes more powerful when combined with <a>nested properties</a>,
+    which allows the copied values to be promoted to be properties of the referencing node:</p>
+
+  <pre class="example input"
+       id="included-values-to-be-expanded-with-nesting"
+       title="Included Values with Nesting"
+       data-transform="updateExample">
+  <!--
+  {
+    "@context": {
+      "@version": 1.1,
+      "@vocab": "http://example.org/",
+      "@base": "http://example.org/base/",
+      "id": "@id", 
+      "type": "@type",
+      "included": "@included",
+      "enum": "http://example.org/enum#",
+      "classification": {"@id": "@nest", "@type": "@included"},
+      "service": {"@id": "@nest", "@type": "@included"}
+    },
+    "id": "http://example.org/base/1",
+    "type": "Thing-with-Items",
+    "items": [{
+      "id":"http://example.org/base/2",
+      "classification": "enum:c6",
+      "service": "enum:s2"
+    },####
+      3...26 go here####
+    {
+      "id": "http://example.org/base/27",
+      "classification": "enum:c6"
+    }],
+    "included": {
+      "enum:c6": {"type": "Type", "label": "Classification 6"},
+      "enum:s2": {"type": "Service", "label": "Login Service"}
+    }  
+  }
+  -->
+  </pre>
+
+  <p>When expanded, this will copy the `enum:c6` and `enum:s2` elements
+    from the included map into the item which references it.</p>
+
+  <aside class="example ds-selector-tabs"
+         title="Expanded form for included values with nesting">
+    <div class="selectors">
+      <button class="selected" data-selects="expanded">Expanded (Result)</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"
+         data-result-for="#included-values-to-be-expanded-with-nesting"></a>
+    </div>
+    <pre class="expanded result selected" data-transform="updateExample"
+         data-result-for="Included Values with Nesting">
+    <!--
+    [{
+      "@id": "http://example.org/base/1",
+      "@type": ["http://example.org/Thing-with-Items"],
+      "http://example.org/items": [{
+        "@id": "http://example.org/base/2",
+        "@type": ["http://example.org/Type", "http://example.org/Service"],
+        "http://example.org/label": [
+          {"@value": "Classification 6"},
+          {"@value": "Login Service"}
+        ]
+      }, {
+        "@id": "http://example.org/base/27",
+        "@type": ["http://example.org/Type"],
+        "http://example.org/label": [{"@value": "Classification 6"}]
+      }]
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Expanded form for included values with nesting-expanded"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+      <tr><td>http://example.org/base/1</td><td>rdf:type</td><td>http://example.org/Thing-with-Items</td></tr>
+      <tr><td>http://example.org/base/2</td><td>rdf:type</td><td>http://example.org/Type</td></tr>
+      <tr><td>http://example.org/base/2</td><td>rdf:type</td><td>http://example.org/Service</td></tr>
+      <tr><td>http://example.org/base/2</td><td>http://example.org/label</td><td>Classification 6</td></tr>
+      <tr><td>http://example.org/base/2</td><td>http://example.org/label</td><td>Login Service</td></tr>
+      <tr><td>http://example.org/base/1</td><td>http://example.org/items</td><td>http://example.org/base/2</td></tr>
+      <tr><td>http://example.org/base/27</td><td>rdf:type</td><td>http://example.org/Type</td></tr>
+      <tr><td>http://example.org/base/27</td><td>http://example.org/label</td><td>Classification 6</td></tr>
+      <tr><td>http://example.org/base/1</td><td>http://example.org/items</td><td>http://example.org/base/27</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-result-for="Expanded form for included values with nesting-expanded"
+         data-transform="updateExample"
+         data-to-rdf>
+    <!--
+    @base <http://example.org/base/> .
+    @prefix ex: <http://example.org/> .
+
+    <1> a ex:Thing-with-Items; ex:items <2>, <27> .
+
+    <2> a ex:Type, ex:Service;
+      ex:label "Classification 6", "Login Service" .
+
+    <27> a ex:Type; ex:label "Classification 6" .
+    -->
+    </pre>
+  </aside>
 </section>
 </section>
 
@@ -11535,6 +11781,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <ul>
       <li><code>@context</code>,</li>
       <li><code>@id</code>,</li>
+      <li class="changed"><code>@included</code>,</li>
       <li><code>@graph</code>,</li>
       <li class="changed"><code>@nest</code>,</li>
       <li><code>@type</code>,</li>
@@ -11587,6 +11834,12 @@ the data type to be specified explicitly with each piece of data.</p>
       a <a>relative IRI</a>, a <a>compact IRI</a>, a <a>blank node identifier</a>,
       a <a>node object</a> or an <a>array</a> containing a combination of these.</p>
 
+    <p class="changed">If the <a>node object</a> contains the <code>@included</code> key,
+      its value MUST be an <a>included map</a>, and the <a>node object</a>
+      MUST NOT be the value of any other <a>map</a>.
+      See <a class="sectionRef" href="#shared-value-indexing"></a> for further discussion
+      on <a>included maps</a>.</p>
+
     <p>If the <a>node object</a> contains the <code>@index</code> key,
       its value MUST be a <a>string</a>. See
       <a class="sectionRef" href="#data-indexing"></a> for further discussion
@@ -11617,8 +11870,9 @@ the data type to be specified explicitly with each piece of data.</p>
       <li>an <a>array</a> of zero or more of any of the possibilities above,</li>
       <li>a <a>language map</a>,</li>
       <li>an <a>index map</a>,</li>
-      <li class="changed">an <a>id map</a>, or</li>
-      <li class="changed">a <a>type map</a></li>
+      <li class="changed">an <a>id map</a></li>
+      <li class="changed">a <a>type map</a>, or</li>
+      <li class="changed">an <a>included map</a></li>
     </ul>
   </section>
 
@@ -11916,6 +12170,21 @@ the data type to be specified explicitly with each piece of data.</p>
       is contains the referencing key after suitable expansion of both the referencing key
       and the value, then the <a>node object</a> already contains the type. Otherwise, the property from the value is
       added as a <code>@type</code> of the <a>node object</a> value when expanding.</p>
+  </section>
+
+  <section class="changed">
+    <h2>Included Maps</h2>
+
+    <p>An <a>included map</a> is used to provide a set of indexed values.
+      The keys of the a <a>included map</a> MUST be <a>IRIs</a>
+      (<a>relative IRI</a>, <a>compact IRI</a> (including <a>blank node identifiers</a>), or <a>absolute IRI</a>)
+      and the values <a>node objects</a>, <a>value objects</a>, <a>list objects</a>
+      or an <a>array</a> of any of the above.
+      An <a>included map</a> MAY appear as the value of `@included`, or an alias,
+      in a top-level <a>node object</a>, and MUST NOT appear in an embedded <a>node object</a>.</p>
+
+    <p><a>Entries</a> in an <a>included map</a> are referenced from <a>properties</a> in a <a>node object</a>, where the
+      type mapping of the property term is `@included`.</p>
   </section>
 
   <section class="changed">
@@ -12225,7 +12494,7 @@ the data type to be specified explicitly with each piece of data.</p>
       or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
       The value of the <code>@type</code> key MUST  be a <a>term</a>, <a>absolute IRI</a>, a <a>relative IRI</a>,
       or a <a>compact IRI</a> (including <a>blank node identifiers</a>).
-      Within an expanded term definition, its value may also be either <code>@id</code> or <code>@vocab</code>.
+      Within an <a>expanded term definition</a>, its value may also be either <code class="changed">@included</code>, <code>@id</code>, or <code>@vocab</code>.
       This keyword is described further in <a class="sectionRef" href="#specifying-the-type"></a>
       and <a class="sectionRef" href="#typed-values"></a>.
     </dd>
@@ -12245,6 +12514,13 @@ the data type to be specified explicitly with each piece of data.</p>
       Its value MUST be a <a>absolute IRI</a>, <span class="changed">a <a>relative IRI</a></span>, a <a>compact IRI</a>, a <a>blank node identifier</a>, an empty <a>string</a> (""), a <a>term</a>, or <a>null</a>.
       This keyword is described further in <a class="sectionRef" href="#context-definitions"></a>,
       and <a class="sectionRef" href="#default-vocabulary"></a>.
+    </dd>
+    <dt><code>@included</code></dt><dd>
+      The `@included` keyword MUST NOT be aliased and MAY be used
+      as the value of <code>@type</code> in an <a>expanded term definition</a>.
+      Its value MUST be an <a>included map</a>.
+      This keyword is described further in <a class="sectionRef" href="#shared-value-indexing"></a>,
+      and <a class="sectionRef" href="#included-maps"></a>.
     </dd>
   </dl>
 </section>
@@ -13171,6 +13447,12 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>A context may contain an <code>@import</code> <a>entry</a> used to reference a remote context
       within a context, allowing <code>JSON-LD 1.1</code> features to be added to contexts originally
       authored for <code>JSON-LD 1.0</code>.</li>
+    <li>A top level <a>node object</a> may include an <a>included map</a>,
+      which is used to contain <a>entries</a> which can be substituted for property values
+      in other <a>node objects</a>, where that property has a type mapping to `@included`.
+      This allows values which are frequently repeated within a <a>JSON-LD document</a> to be consolidated
+      within an <a>included map</a>, allowing property values to be replaced with entries from
+      that <a>included map</a> upon <a>expansion</a>.</li>
   </ul>
 </section>
 
