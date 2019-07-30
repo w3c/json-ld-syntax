@@ -40,6 +40,19 @@ const jsonld = {
       status: 'unofficial',
       date: 'January 2014'
     },
+    "JSON.API": {
+      title: "JSON API",
+      href: "https://jsonapi.org/format/",
+      authors: [
+        'Steve Klabnik',
+        'Yehuda Katz',
+        'Dan Gebhardt',
+        'Tyler Kellen',
+        'Ethan Resnick'
+      ],
+      status: 'unofficial',
+      date: '29 May 2015'
+    },
     "JCS": {
       title: "JSON Canonicalization Scheme (JCS)",
       href: 'https://tools.ietf.org/html/draft-rundgren-json-canonicalization-scheme-05',
