@@ -608,6 +608,10 @@
         Used in a <a>context definition</a> to load an external context
         within which the containing <a>context definition</a> is merged.
         This can be useful to add JSON-LD 1.1 features to JSON-LD 1.0 contexts.</dd>
+      <dt class="changed">`@included`</dt><dd class="changed">
+        Used in in a top-level <a>node object</a> to define an <a>included block</a>,
+        for including secondary <a>node objects</a> within another <a>node object</a>.
+      </dd>
     </dl>
 
     <p>All keys, <a>keywords</a>, and values in JSON-LD are case-sensitive.</p>
@@ -8272,6 +8276,150 @@ the data type to be specified explicitly with each piece of data.</p>
 </section>
 </section>
 
+<section class="informative changed"><h3>Included Nodes</h3>
+  <p>Sometimes it is useful to list node objects as part of another node object.
+    For instance, to represent a set of resources which are used by some other
+    resource.
+    In JSON-LD. these resources could all be contained as members of an array,
+    but this does not conveniently allow them to share a common context.</p>
+
+  <p>Included resources are described in
+    <a data-cite="JSON.API#fetching-includes">Inclusion of Related Resources</a> of [[[JSON.API]]] [[JSON.API]]
+    as a way to include related resources associated with some primary resource.</p>
+
+  <p>In JSON-LD, <a>included blocks</a> may be used to collect such secondary <a>node objects</a>
+    which can be referenced from a primary <a>node object</a>.
+    Semantically, this is the same as if the node objects were embedded, or were contained
+    in some enclosing <a>array</a>.</p>
+
+  <p>For an example, consider a node object containing a list of different items,
+    some of which share some common elements:</p>
+
+  <pre class="example input"
+       id="included-blocks-to-be-flattened"
+       title="Included Blocks"
+       data-transform="updateExample">
+  <!--
+  {
+    "@context": {
+      "@version": 1.1,
+      "@vocab": "http://example.org/",
+      "@base": "http://example.org/base/",
+      "id": "@id", 
+      "type": "@type",
+      "included": "@included",
+      "enum": "http://example.org/enum#",
+      "classification": {"@type": "@id"},
+      "service": {"@type": "@id"},
+      "included": "@included"
+    },
+    "id": "http://example.org/base/1",
+    "type": "Thing-with-Items",
+    "items": [{
+      "id":"http://example.org/base/2",
+      "classification": "enum:c6",
+      "service": "enum:s2"
+    },####
+      3...26 go here####
+    {
+      "id": "http://example.org/base/27",
+      "classification": "enum:c6"
+    }],
+    "included": [
+      {"id": "enum:c6", "type": "Type", "label": "Classification 6"},
+      {"id": "enum:s2", "type": "Service", "label": "Login Service"}
+    ]  
+  }
+  -->
+  </pre>
+
+  <p>When <a>flattened</a>, this will move the `enum:c6` and `enum:s2` elements
+    from the <a>included block</a> into the outer <a>array</a>.</p>
+
+  <aside class="example ds-selector-tabs"
+         title="Flattened form for included blocks">
+    <div class="selectors">
+      <button class="selected" data-selects="flattened">Flattened (Result)</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"
+         data-result-for="#included-blocks-to-be-flattened"></a>
+    </div>
+    <pre class="flattened result selected" data-transform="updateExample"
+         data-flatten
+         data-result-for="Included Blocks">
+    <!--
+    [{
+      "@id": "http://example.org/base/1",
+      "@type": ["http://example.org/Thing-with-Items"],
+      "http://example.org/items": [
+        {"@id": "http://example.org/base/2"},
+        {"@id": "http://example.org/base/27"}
+      ]
+    }, {
+      "@id": "http://example.org/enum#c6",
+      "@type": ["http://example.org/Type"],
+      "http://example.org/label": [{"@value": "Classification 6"}]
+    }, {
+      "@id": "http://example.org/enum#s2",
+      "@type": ["http://example.org/Service"],
+      "http://example.org/label": [{"@value": "Login Service"}]
+    }, {
+      "@id": "http://example.org/base/2",
+      "http://example.org/classification": [{"@id": "http://example.org/enum#c6"}],
+      "http://example.org/service": [{"@id": "http://example.org/enum#s2"}]
+    }, {
+      "@id": "http://example.org/base/27",
+      "http://example.org/classification": [{"@id": "http://example.org/enum#c6"}]
+    }
+  ]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Flattened form for included blocks-flattened"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+      <tbody>
+      <tr><td>http://example.org/base/1</td><td>rdf:type</td><td>http://example.org/Thing-with-Items</td></tr>
+      <tr><td>http://example.org/base/1</td><td>http://example.org/items</td><td>http://example.org/base/2</td></tr>
+      <tr><td>http://example.org/base/1</td><td>http://example.org/items</td><td>http://example.org/base/27</td></tr>
+      <tr><td>http://example.org/base/2</td><td>http://example.org/classification</td><td>http://example.org/enum#c6</td></tr>
+      <tr><td>http://example.org/base/2</td><td>http://example.org/service</td><td>http://example.org/enum#s2</td></tr>
+      <tr><td>http://example.org/base/27</td><td>http://example.org/classification</td><td>http://example.org/enum#c6</td></tr>
+      <tr><td>http://example.org/enum#c6</td><td>rdf:type</td><td>http://example.org/Type</td></tr>
+      <tr><td>http://example.org/enum#c6</td><td>http://example.org/label</td><td>Classification 6</td></tr>
+      <tr><td>http://example.org/enum#s2</td><td>rdf:type</td><td>http://example.org/Service</td></tr>
+      <tr><td>http://example.org/enum#s2</td><td>http://example.org/label</td><td>Login Service</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle"
+         data-content-type="text/turtle"
+         data-result-for="Flattened form for included blocks-flattened"
+         data-transform="updateExample"
+         data-to-rdf>
+    <!--
+    @base <http://example.org/base/> .
+    @prefix ex: <http://example.org/> .
+    @prefix enum: <http://example.org/enum#> .
+
+    <1> a ex:Thing-with-Items;
+      ex:items <2>, <27> .
+
+    <2> ex:classification enum:c6;
+      ex:service enum:s2 .
+
+    <27> ex:classification enum:c6 .
+
+    enum:c6 a ex:Type;
+      ex:label "Classification 6" .
+
+    enum:s2 a ex:Service;
+      ex:label "Login Service" .
+    -->
+    </pre>
+  </aside>
+</section>
+
 <section class="informative"><h2>Reverse Properties</h2>
 
   <p>JSON-LD serializes directed <a>graphs</a>. That means that
@@ -11535,6 +11683,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <ul>
       <li><code>@context</code>,</li>
       <li><code>@id</code>,</li>
+      <li class="changed"><code>@included</code>,</li>
       <li><code>@graph</code>,</li>
       <li class="changed"><code>@nest</code>,</li>
       <li><code>@type</code>,</li>
@@ -11587,6 +11736,11 @@ the data type to be specified explicitly with each piece of data.</p>
       a <a>relative IRI</a>, a <a>compact IRI</a>, a <a>blank node identifier</a>,
       a <a>node object</a> or an <a>array</a> containing a combination of these.</p>
 
+    <p class="changed">If the <a>node object</a> contains the <code>@included</code> key,
+      its value MUST be an <a>included block</a>.
+      See <a class="sectionRef" href="#included-blocks"></a> for further discussion
+      on <a>included blocks</a>.</p>
+
     <p>If the <a>node object</a> contains the <code>@index</code> key,
       its value MUST be a <a>string</a>. See
       <a class="sectionRef" href="#data-indexing"></a> for further discussion
@@ -11617,6 +11771,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <li>an <a>array</a> of zero or more of any of the possibilities above,</li>
       <li>a <a>language map</a>,</li>
       <li>an <a>index map</a>,</li>
+      <li class="changed">an <a>included block</a></li>
       <li class="changed">an <a>id map</a>, or</li>
       <li class="changed">a <a>type map</a></li>
     </ul>
@@ -11916,6 +12071,16 @@ the data type to be specified explicitly with each piece of data.</p>
       is contains the referencing key after suitable expansion of both the referencing key
       and the value, then the <a>node object</a> already contains the type. Otherwise, the property from the value is
       added as a <code>@type</code> of the <a>node object</a> value when expanding.</p>
+  </section>
+
+  <section class="changed">
+    <h2>Included Blocks</h2>
+
+    <p>An <a>included block</a> is used to provide a set of <a>node objects</a>.
+      An <a>included block</a> MAY appear as the value of a member of a node object with the key of `@included`, or an alias.
+      An <a>included block</a> is either a <a>node object</a> or an array of <a>node objects</a>.</p>
+
+    <p>When <a data-lt="expansion">expanding</a>, multiple <a>included blocks</a> will be coalesced into a single <a>included block</a>.</p>
   </section>
 
   <section class="changed">
@@ -12245,6 +12410,12 @@ the data type to be specified explicitly with each piece of data.</p>
       Its value MUST be a <a>absolute IRI</a>, <span class="changed">a <a>relative IRI</a></span>, a <a>compact IRI</a>, a <a>blank node identifier</a>, an empty <a>string</a> (""), a <a>term</a>, or <a>null</a>.
       This keyword is described further in <a class="sectionRef" href="#context-definitions"></a>,
       and <a class="sectionRef" href="#default-vocabulary"></a>.
+    </dd>
+    <dt><code>@included</code></dt><dd>
+      The `@included` keyword MAY be aliased,
+      its value MUST be an <a>included block</a>.
+      This keyword is described further in <a class="sectionRef" href="#included-nodes"></a>,
+      and <a class="sectionRef" href="#included-blocks"></a>.
     </dd>
   </dl>
 </section>
@@ -13171,6 +13342,13 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>A context may contain an <code>@import</code> <a>entry</a> used to reference a remote context
       within a context, allowing <code>JSON-LD 1.1</code> features to be added to contexts originally
       authored for <code>JSON-LD 1.0</code>.</li>
+    <li>A <a>node object</a> may include an <a>included block</a>,
+      which is used to contain a set of <a>node objects</a> which are treated
+      exactly as if they were <a>node objects</a> defined in an <a>array</a> including the containing
+      <a>node object</a>.
+      This allows the use of the object form of a JSON-LD document when there is more
+      than one <a>node object</a> being defined, and where those <a>node objects</a>
+      are not embedded as values of the containing <a>node object</a>.</li>
   </ul>
 </section>
 
