@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/ruby-rdf/json-ld.git
-  revision: 74095b73cdb722b681f34d0f165599c9cb48d844
+  revision: 172e0c960c9771fa9f963eca55d28fb63bce56b0
   branch: develop
   specs:
     json-ld (3.0.2)
+      htmlentities (~> 4.3)
       json-canonicalization (~> 0.1)
       link_header (~> 0.0, >= 0.0.8)
       multi_json (~> 1.13)
@@ -36,7 +37,7 @@ GEM
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     json-canonicalization (0.1.0)
-    json-ld-preloaded (3.0.2)
+    json-ld-preloaded (3.0.3)
       json-ld (~> 3.0)
       multi_json (~> 1.12)
       rdf (~> 3.0)
@@ -74,7 +75,7 @@ GEM
       sparql-client (~> 3.0)
     mini_portile2 (2.4.0)
     multi_json (1.13.1)
-    net-http-persistent (3.0.1)
+    net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
@@ -82,7 +83,7 @@ GEM
       nokogiri
     public_suffix (3.1.1)
     rack (2.0.7)
-    rake (12.3.2)
+    rake (12.3.3)
     rdf (3.0.12)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
@@ -134,7 +135,7 @@ GEM
     rdf-turtle (3.0.6)
       ebnf (~> 1.1)
       rdf (~> 3.0)
-    rdf-vocab (3.0.7)
+    rdf-vocab (3.0.8)
       rdf (~> 3.0, >= 3.0.11)
     rdf-xsd (3.0.1)
       rdf (~> 3.0)
