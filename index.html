@@ -12077,7 +12077,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <h2>Included Blocks</h2>
 
     <p>An <a>included block</a> is used to provide a set of <a>node objects</a>.
-      An <a>included block</a> MAY appear as the value of a member of a node object with the key of `@included`, or an alias.
+      An <a>included block</a> MAY appear as the value of a member of a node object with either the key of `@included` or an alias of `@included`.
       An <a>included block</a> is either a <a>node object</a> or an array of <a>node objects</a>.</p>
 
     <p>When <a data-lt="expansion">expanding</a>, multiple <a>included blocks</a> will be coalesced into a single <a>included block</a>.</p>
@@ -12412,7 +12412,7 @@ the data type to be specified explicitly with each piece of data.</p>
       and <a class="sectionRef" href="#default-vocabulary"></a>.
     </dd>
     <dt><code>@included</code></dt><dd>
-      The `@included` keyword MAY be aliased,
+      The `@included` keyword MAY be aliased and
       its value MUST be an <a>included block</a>.
       This keyword is described further in <a class="sectionRef" href="#included-nodes"></a>,
       and <a class="sectionRef" href="#included-blocks"></a>.
