@@ -8277,22 +8277,134 @@ the data type to be specified explicitly with each piece of data.</p>
 </section>
 
 <section class="informative changed"><h3>Included Nodes</h3>
-  <p>Sometimes it is useful to list node objects as part of another node object.
+  <p>
+    Most of the examples so far were about a top level node with its properties referring to, possibly, other nodes in a tree-like fashion.
+    However, there are cases when the data should combine <em>several</em> such objects whithin one JSON-LD file.
+    In JSON-LD, these resources could all be contained as members of an array:
+  </p>
+
+  <pre class="example input" id="bush-in-array" title="Simple data with several top level nodes" data-transform="updateExample">
+  <!--
+[
+    {
+        "@id": "http://manu.sporny.org/about#manu",
+        "@type": "http://xmlns.com/foaf/0.1/Person",
+        "name": "Manu Sporny",
+        "knows": { "@id": "https://greggkellogg.net/foaf#me" }
+    }, {
+        "@id": "https://greggkellogg.net/foaf#me",
+        "@type": "http://xmlns.com/foaf/0.1/Person",
+        "name": "Gregg Kellogg",
+        "knows": { "@id": "http://manu.sporny.org/about#manu"}
+    }  
+]
+  -->    
+  </pre>
+
+  <p>
+    The problem with this approach is that we loose the ability to use common contexts.
+    To overcome this problem, <a>included blocks</a> may be used to collect such secondary <a>node objects</a>. 
+    Semantically, this is the same as if the node objects were embedded, or were contained in some enclosing <a>array</a>:
+  </p>
+
+  <aside class="example ds-selector-tabs changed"
+         title="Simple data with several top level nodes with a common context">
+    <div class="selectors">
+      <button class="selected" data-selects="compacted">Compacted (Input)</button>
+      <button data-selects="expanded">Expanded (Result)</button>
+      <button data-selects="statements">Statements</button>
+      <button data-selects="turtle">Turtle</button>
+      <a class="playground" target="_blank"></a>
+    </div>
+    <pre class="compacted input selected nohighlight" data-transform="updateExample">
+    <!--
+    {
+      "@context": {
+        "generatedAt": {
+          "@id": "http://www.w3.org/ns/prov#generatedAtTime",
+          "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+        },
+        "Person": "http://xmlns.com/foaf/0.1/Person",
+        "name": "http://xmlns.com/foaf/0.1/name",
+        "knows": {"@id": "http://xmlns.com/foaf/0.1/knows", "@type": "@id"}
+      },
+      "@included":**** [
+        {
+          "@id": "http://manu.sporny.org/about#manu",
+          "@type": "Person",
+          "name": "Manu Sporny",
+          "knows": "https://greggkellogg.net/foaf#me"
+        }, {
+          "@id": "https://greggkellogg.net/foaf#me",
+          "@type": "Person",
+          "name": "Gregg Kellogg",
+          "knows": "http://manu.sporny.org/about#manu"
+        }
+      ]
+    }
+    -->
+    </pre>
+    <pre class="expanded result nohighlight"
+         data-transform="updateExample"
+         data-result-for="Simple data with several top level nodes with a common context-compacted">
+    <!--
+    [{
+        "@id": "http://manu.sporny.org/about#manu",
+        "@type": ["http://xmlns.com/foaf/0.1/Person"],
+        "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
+        "http://xmlns.com/foaf/0.1/knows": [
+          {"@id": "https://greggkellogg.net/foaf#me"}
+        ]
+      }, {
+        "@id": "https://greggkellogg.net/foaf#me",
+        "@type": ["http://xmlns.com/foaf/0.1/Person"],
+        "http://xmlns.com/foaf/0.1/name": [{"@value": "Gregg Kellogg"}],
+        "http://xmlns.com/foaf/0.1/knows": [
+          {"@id": "http://manu.sporny.org/about#manu"}
+        ]
+    }]
+    -->
+    </pre>
+    <table class="statements"
+           data-result-for="Simple data with several top level nodes with a common context-expanded"
+           data-to-rdf>
+      <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
+      <tbody>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>foaf:Person</td><td>&nbsp;</td></tr>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:name</td><td>Manu Sporny</td><td>&nbsp;</td></tr>
+        <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:knows</td><td>https://greggkellogg.net/foaf#me</td><td>&nbsp;</td></tr>
+        <tr><td>https://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>foaf:Person</td><td>&nbsp;</td></tr>
+        <tr><td>https://greggkellogg.net/foaf#me</td><td>foaf:name</td><td>Gregg Kellogg</td><td>&nbsp;</td></tr>
+        <tr><td>https://greggkellogg.net/foaf#me</td><td>foaf:knows</td><td>http://manu.sporny.org/about#manu</td><td>&nbsp;</td></tr>
+      </tbody>
+    </table>
+    <pre class="turtle nohighlight"
+         data-content-type="text/turtle"
+         data-result-for="Simple data with several top level nodes with a common context-expanded"
+         data-transform="updateExample"
+         data-to-rdf>
+    <!--
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+    @prefix prov: <http://www.w3.org/ns/prov#> .
+    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+    <http://manu.sporny.org/about#manu> a foaf:Person;
+        foaf:name "Manu Sporny";
+        foaf:knows <https://greggkellogg.net/foaf#me> .
+
+    <https://greggkellogg.net/foaf#me> a foaf:Person;
+        foaf:name "Gregg Kellogg";
+        foaf:knows <http://manu.sporny.org/about#manu> .
+    -->
+    </pre>
+  </aside>
+
+  <p>Sometimes it is also useful to list node objects as part of another node object.
     For instance, to represent a set of resources which are used by some other
-    resource.
-    In JSON-LD, these resources could all be contained as members of an array,
-    but this does not conveniently allow them to share a common context.</p>
-
-  <p>Included resources are described in
-    <a data-cite="JSON.API#fetching-includes">Inclusion of Related Resources</a> of [[[JSON.API]]] [[JSON.API]]
-    as a way to include related resources associated with some primary resource.</p>
-
-  <p>In JSON-LD, <a>included blocks</a> may be used to collect such secondary <a>node objects</a>
+    resource. <a>Included blocks</a> may be also be used to collect such secondary <a>node objects</a>
     which can be referenced from a primary <a>node object</a>.
-    Semantically, this is the same as if the node objects were embedded, or were contained
-    in some enclosing <a>array</a>.</p>
-
-  <p>For an example, consider a node object containing a list of different items,
+    For an example, consider a node object containing a list of different items,
     some of which share some common elements:</p>
 
   <pre class="example input"
@@ -8420,6 +8532,12 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
   </aside>
+
+  <p>Included resources are described in
+      <a data-cite="JSON.API#fetching-includes">Inclusion of Related Resources</a> of [[[JSON.API]]] [[JSON.API]]
+      as a way to include related resources associated with some primary resource; <code>@included</code> provide an analogous possibility in JSON-LD.
+    </p>
+  
 </section>
 
 <section class="informative"><h2>Reverse Properties</h2>
