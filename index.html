@@ -8283,22 +8283,20 @@ the data type to be specified explicitly with each piece of data.</p>
     In JSON-LD, these resources could all be contained as members of an array:
   </p>
 
-  <pre class="example input" id="bush-in-array" title="Simple data with several top level nodes" data-transform="updateExample">
+  <pre class="example" title="Simple data with several top level nodes" data-transform="updateExample">
   <!--
-[
-    {
-        "@id": "http://manu.sporny.org/about#manu",
-        "@type": "http://xmlns.com/foaf/0.1/Person",
-        "name": "Manu Sporny",
-        "knows": { "@id": "https://greggkellogg.net/foaf#me" }
-    }, {
-        "@id": "https://greggkellogg.net/foaf#me",
-        "@type": "http://xmlns.com/foaf/0.1/Person",
-        "name": "Gregg Kellogg",
-        "knows": { "@id": "http://manu.sporny.org/about#manu"}
-    }  
-]
-  -->    
+  [{
+    "@id": "http://manu.sporny.org/about#manu",
+    "@type": "http://xmlns.com/foaf/0.1/Person",
+    "name": "Manu Sporny",
+    "knows": { "@id": "https://greggkellogg.net/foaf#me" }
+  }, {
+    "@id": "https://greggkellogg.net/foaf#me",
+    "@type": "http://xmlns.com/foaf/0.1/Person",
+    "name": "Gregg Kellogg",
+    "knows": { "@id": "http://manu.sporny.org/about#manu"}
+  }]
+  -->
   </pre>
 
   <p>
@@ -8312,6 +8310,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <div class="selectors">
       <button class="selected" data-selects="compacted">Compacted (Input)</button>
       <button data-selects="expanded">Expanded (Result)</button>
+      <button data-selects="flattened">Flattened</button>
       <button data-selects="statements">Statements</button>
       <button data-selects="turtle">Turtle</button>
       <a class="playground" target="_blank"></a>
@@ -8320,27 +8319,21 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     {
       "@context": {
-        "generatedAt": {
-          "@id": "http://www.w3.org/ns/prov#generatedAtTime",
-          "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-        },
         "Person": "http://xmlns.com/foaf/0.1/Person",
         "name": "http://xmlns.com/foaf/0.1/name",
         "knows": {"@id": "http://xmlns.com/foaf/0.1/knows", "@type": "@id"}
       },
-      "@included":**** [
-        {
-          "@id": "http://manu.sporny.org/about#manu",
-          "@type": "Person",
-          "name": "Manu Sporny",
-          "knows": "https://greggkellogg.net/foaf#me"
-        }, {
-          "@id": "https://greggkellogg.net/foaf#me",
-          "@type": "Person",
-          "name": "Gregg Kellogg",
-          "knows": "http://manu.sporny.org/about#manu"
-        }
-      ]
+      ****"@included": [{
+        "@id": "http://manu.sporny.org/about#manu",
+        "@type": "Person",
+        "name": "Manu Sporny",
+        "knows": "https://greggkellogg.net/foaf#me"
+      }, {
+        "@id": "https://greggkellogg.net/foaf#me",
+        "@type": "Person",
+        "name": "Gregg Kellogg",
+        "knows": "http://manu.sporny.org/about#manu"
+      }]****
     }
     -->
     </pre>
@@ -8349,6 +8342,7 @@ the data type to be specified explicitly with each piece of data.</p>
          data-result-for="Simple data with several top level nodes with a common context-compacted">
     <!--
     [{
+      ****"@included": [{
         "@id": "http://manu.sporny.org/about#manu",
         "@type": ["http://xmlns.com/foaf/0.1/Person"],
         "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
@@ -8362,6 +8356,29 @@ the data type to be specified explicitly with each piece of data.</p>
         "http://xmlns.com/foaf/0.1/knows": [
           {"@id": "http://manu.sporny.org/about#manu"}
         ]
+      }]****
+    }]
+    -->
+    </pre>
+    <pre class="flattened nohighlight"
+         data-transform="updateExample"
+         data-flatten
+         data-result-for="Simple data with several top level nodes with a common context-expanded">
+    <!--
+    [{
+      "@id": "http://manu.sporny.org/about#manu",
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
+      "http://xmlns.com/foaf/0.1/knows": [
+        {"@id": "https://greggkellogg.net/foaf#me"}
+      ]
+    }, {
+      "@id": "https://greggkellogg.net/foaf#me",
+      "@type": ["http://xmlns.com/foaf/0.1/Person"],
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "Gregg Kellogg"}],
+      "http://xmlns.com/foaf/0.1/knows": [
+        {"@id": "http://manu.sporny.org/about#manu"}
+      ]
     }]
     -->
     </pre>
@@ -8385,17 +8402,14 @@ the data type to be specified explicitly with each piece of data.</p>
          data-to-rdf>
     <!--
     @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-    @prefix prov: <http://www.w3.org/ns/prov#> .
-    @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
     <http://manu.sporny.org/about#manu> a foaf:Person;
-        foaf:name "Manu Sporny";
-        foaf:knows <https://greggkellogg.net/foaf#me> .
+      foaf:name "Manu Sporny";
+      foaf:knows <https://greggkellogg.net/foaf#me> .
 
     <https://greggkellogg.net/foaf#me> a foaf:Person;
-        foaf:name "Gregg Kellogg";
-        foaf:knows <http://manu.sporny.org/about#manu> .
+      foaf:name "Gregg Kellogg";
+      foaf:knows <http://manu.sporny.org/about#manu> .
     -->
     </pre>
   </aside>
