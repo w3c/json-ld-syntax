@@ -2,7 +2,6 @@ const jsonld = {
   // Add as the respecConfig localBiblio variable
   // Extend or override global respec references
   localBiblio: {
-
     // aliases to known references
     "IEEE-754-2008": {
       title: "IEEE 754-2008 Standard for Floating-Point Arithmetic",
@@ -32,7 +31,6 @@ const jsonld = {
       date: 'February 16, 2019'
     }
   },
-
   conversions: {
     "https://w3c.github.io/json-ld-syntax/": "http://www.w3.org/TR/json-ld11/",
     "https://w3c.github.io/json-ld-api/": "http://www.w3.org/TR/json-ld11-api/",
