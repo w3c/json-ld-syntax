@@ -88,11 +88,12 @@
     The <a>base IRI</a> is used to turn <a>relative IRIs</a> into <a>absolute IRIs</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-blank-node" class="preserve">blank node</dfn></dt><dd>
     A <a>node</a> in a <a>graph</a> that is neither an <a>IRI</a>,
-    nor a <a>JSON-LD value</a>, nor a <a>list</a>.
+    nor a <a>literal</a>.
     A <a>blank node</a> does not contain
     a de-referenceable identifier because it is either ephemeral in nature
     or does not contain information that needs to be linked to from outside of the <a>linked data graph</a>.
-    A blank node is assigned an identifier starting with the prefix <code>_:</code>.</dd>
+    In JSON-LD,
+    a blank node is assigned an identifier starting with the prefix <code>_:</code>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-blank-node-identifier" class="preserve">blank node identifier</dfn></dt><dd>
     A <a>blank node identifier</a>
     is a string that can be used as an identifier for a <a>blank node</a> within the scope of a JSON-LD document.
@@ -105,7 +106,7 @@
     A <a>datatype IRI</a> is an <a>IRI</a> identifying a datatype that determines how the lexical form maps to a
     <a data-cite="RDF11-CONCEPTS#dfn-literal-value">literal value</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-default-graph" class="preserve">default graph</dfn></dt><dd>
-    The <a>default graph</a> is an <a>RDF graph</a> having no <a data-lt="graph name">name</a>, which MAY be empty.</dd>
+    The <a>default graph</a> of a <a>dataset</a> is an <a>RDF graph</a> having no <a data-lt="graph name">name</a>, which MAY be empty.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-graph-name" class="preserve">graph name</dfn></dt><dd>
     The <a>IRI</a> or <a>blank node</a> identifying a <a>named graph</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-language-tagged-string" class="preserve">language-tagged string</dfn></dt><dd>
@@ -116,20 +117,23 @@
     according to <a data-cite="BCP47#section-2.2.9">section 2.2.9 Classes of Conformance</a> of [[BCP47]],
     and is normalized to lowercase.</dd>
   <dt><dfn data-cite="LINKED-DATA" data-no-xref="" class="preserve">Linked Data</dfn></dt><dd>
-    A set of documents, each containing a representation of a <a>linked data graph</a>.</dd>
+    A set of documents, each containing a representation of a <a>linked data graph</a> or <a>dataset</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-rdf-graph" data-lt="linked data graph|graph" class="preserve">RDF graph</dfn></dt><dd>
     A labeled directed <a>graph</a>,
-    i.e., a set of <a>nodes</a> connected by directed-arcs.</dd>
+    i.e., a set of <a>nodes</a> connected by directed-arcs.
+    Also called <a>linked data graph</a>.
+  </dd>
   <dt><dfn data-cite="RDF-SCHEMA#ch_collectionvocab" data-lt="collection|RDF collection" class="preserve">list</dfn></dt><dd>
     A <a>list</a> is an ordered sequence of <a>IRIs</a>, <a>blank nodes</a>, and <a>literals</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-literal" data-lt="RDF literal" class="preserve">literal</dfn></dt><dd>
     An <a>object</a> expressed as a value such as a <a>string</a> or <a>number</a>.
-    Implicitlly or explicitly includes a <a>datatype IRI</a> and, if the datatype is `xsd:string`, an optional <a>language tag</a>.</dd>
+    Implicitlly or explicitly includes a <a>datatype IRI</a> and, if the datatype is `rdf:langString`, an optional <a>language tag</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-named-graph" class="preserve">named graph</dfn></dt><dd>
     A <a>named graph</a>
     is a <a>linked data graph</a> that is identified by an <a>IRI</a> or <a>blank node</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-node" class="preserve">node</dfn></dt><dd>
-    A <a>node</a> in an <a>RDF graph</a>, made up of the set of <a>subjects</a> and <a>objects</a> of <a>triples</a> in the <a>graph</a>.</dd>
+    A <a>node</a> in an <a>RDF graph</a>, either the <a>subject</a> and <a>object</a> of at least one <a>triple</a>.
+    Note that a <a>node</a> can play both roles (<a>subject</a> and <a>object</a>) in a <a>graph</a>, even in the same <a>triple</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-object" class="preserve">object</dfn></dt><dd>
     An <a>object</a> is a <a>node</a> in a <a>linked data graph</a>
     with at least one incoming edge.</dd>
@@ -142,7 +146,7 @@
       and may be removed in a future version of JSON-LD.</div>
     Also, see <dfn data-cite="RDF11-CONCEPTS#dfn-predicate" class="preserve">predicate</dfn> in [[RDF11-CONCEPTS]].</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-resource" class="preserve">resource</dfn></dt><dd>
-    A <a>resource</a> donoted by an <a>IRI</a> or <a>literal</a> representing something in the world ( the "universe of discourse").</dd>
+    A <a>resource</a> denoted by an <a>IRI</a>, a <a>blank node</a> or <a>literal</a> representing something in the world (the "universe of discourse").</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-rdf-triple" class="preserve">triple</dfn></dt><dd>
     A component of an <a>RDF graph</a> including a <a>subject</a>, <a>predicate</a>, and <a>object</a>, which represents
     a node-arc-node segment of an <a>RDF graph</a>.</dd>
@@ -171,11 +175,11 @@
   <dt><dfn data-cite="JSON-LD11#dfn-default-object">default object</dfn></dt><dd>
     A <a>default object</a> is a <a>map</a> that has a <code>@default</code> key.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-embedded-context">embedded context</dfn></dt><dd>
-    An embedded <a>context</a> is a context which appears as part of a
-    <a>node object</a>, <a>value object</a>, <a>graph object</a>, <a>list object</a>,
-    <a>set object</a>, <span class="changed">or as part of <a>nested properties</a>,
-      or in an <a>expanded term definition</a></span>
-    using the <code>@context</code> <a>entry</a>.
+    An embedded <a>context</a> is a context which appears
+    as the <code>@context</code> <a>entry</a> of one of the following:
+    a <a>node object</a>, a <a>value object</a>, a <a>graph object</a>, a <a>list object</a>,
+    a <a>set object</a>, the value of a <a>nested properties</a>,
+    or the value of an <a>expanded term definition</a></span>.
     Its value may be a <a>map</a> for a <a data-cite="JSON-LD11#dfn-context-definition">context definition</a>,
     as an <a>IRI</a>, or as an <a>array</a> combining either of the above.
   </dd>
@@ -244,15 +248,14 @@
     an <a>array</a> of zero or more of the above possibilities.
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-json-literal">JSON literal</dfn></dt><dd>
-    A <a>JSON literal</a> is a <a>literal</a> where the associated <a>IRI</a> is <code>rdf:JSON</code>.
+    A <a>JSON literal</a> is a <a>literal</a> where the associated <a>datatype IRI</a> is <code>rdf:JSON</code>.
     In the <a>value object</a> representation, the value of <code>@type</code> is <code>@json</code>.
     JSON literals represent values which are valid JSON [[RFC8259]].
     See <dfn data-cite="JSON-LD11#dfn-json-datatype" data-cite="JSON-LD11#dfn-json-datatype" class="preserve">JSON datatype</dfn> in [[JSON-LD11]].
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-json-ld-document">JSON-LD document</dfn></dt><dd>
     A <a>JSON-LD document</a> is a serialization of
-    a collection of <a>graphs</a>
-    and comprises exactly one <a>default graph</a> and zero or more <a>named graphs</a>.</dd>
+    an <a>RDF dataset</a>.</dd>
   <dt><dfn data-cite="JSON-LD11-API#dfn-json-ld-processor" data-lt="json-ld processor|Processors">JSON-LD Processor</dfn></dt><dd>
     A <a>JSON-LD Processor</a> is a system which can perform the algorithms defined in [[JSON-LD11-API]].</dd>
   <dt class="changed"><dfn data-cite="JSON-LD11-API#dfn-internal-representation" data-lt="internal representation">JSON-LD internal representation</dfn></dt><dd class="changed">
@@ -266,6 +269,7 @@
     <code>true</code> or <code>false</code>,
     a <a>typed value</a>,
     or a <a>language-tagged string</a>.
+    It represents an <a>RDF literal</a>.
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-keyword">keyword</dfn></dt><dd>
     A <a>string</a> that is specific to JSON-LD,
@@ -311,12 +315,13 @@
     when prepended to the suffix of the <a>compact IRI</a>,
     results in an <a>absolute IRI</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-processing-mode">processing mode</dfn></dt><dd>
-    The processing mode defines how a JSON-LD document is processed.
+    The processing mode defines how a <a>JSON-LD document</a> is processed.
     By default, all documents are assumed to be conformant with <a data-cite="JSON-LD" data-no-xref="">JSON-LD 1.0</a> [[JSON-LD]].
     By defining a different version using the <code>@version</code> <a>entry</a> in a <a>context</a>,
     or via explicit API option,
     other processing modes can be accessed.
-    This specification defines extensions for the <code>json-ld-1.1</code> <a>processing mode</a>.</dd>
+    This specification extends <a data-cite="JSON-LD" data-no-xref="">JSON-LD 1.0</a>
+    via the <code>json-ld-1.1</code> <a>processing mode</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-set-object">set object</dfn></dt><dd>
     A <a>set object</a> is a <a>map</a> that has an <code>@set</code> <a>entry</a>.
     It may also have an <code>@index</code> key, but no other <a>entries</a>.</dd>
@@ -331,7 +336,7 @@
     as a key, type, or elsewhere that a string is interpreted as a vocabulary item.
     Its value is either a string (<dfn data-cite="JSON-LD11#dfn-simple-term-definition" data-lt="simple term">simple term definition</dfn>),
     expanding to an absolute IRI,
-    or an <a>expanded term definition</a>.
+    or a map (<a>expanded term definition</a>).
   </dd>
   <dt class="changed"><dfn data-cite="JSON-LD11#dfn-type-map">type map</dfn></dt><dd class="changed">
     A <a>type map</a> is a <a>map</a> value of a <a>term</a>
