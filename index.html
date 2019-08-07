@@ -2470,6 +2470,11 @@
     </pre>
   </aside>
 
+  <p class="note">The grammar for `@vocab`, as defined in <a href="#context-definitions" class="sectionRef"></a>
+    allows the value to be a <a>term</a> or <a>compact IRI</a>.
+    Note that terms used in the value of `@vocab` must be in scope at the time the context is introduced,
+    otherwise there would be a circular dependency between `@vocab` and other terms defined in the same context.</p>
+
   <section id="document-relative-vocabulary-mapping" class="changed">
     <h3>Using the Document Base for the Default Vocabulary</h3>
     <p>In some cases, vocabulary terms are defined directly within the document
