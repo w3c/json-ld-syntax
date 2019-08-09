@@ -30,10 +30,4 @@ const jsonld = {
       status: 'Internet-Draft',
       date: 'February 16, 2019'
     }
-  },
-  conversions: {
-    "https://w3c.github.io/json-ld-syntax/": "http://www.w3.org/TR/json-ld11/",
-    "https://w3c.github.io/json-ld-api/": "http://www.w3.org/TR/json-ld11-api/",
-    "https://w3c.github.io/json-ld-framing/": "http://www.w3.org/TR/json-ld11-framing/"
-  }
-};
+  };

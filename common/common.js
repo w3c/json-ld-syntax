@@ -37,20 +37,6 @@ function restrictReferences(utils, content) {
   return (base.innerHTML);
 }
 
-// Mark definitions to be exported
-function exportReferences(utils, content) {
-  const base = document.createElement("div");
-  base.innerHTML = content;
-
-  const defns = base.querySelectorAll("dfn:not([data-cite])");
-  for (const item of defns) {
-    const de = document.createAttribute("data-export");
-    item.setAttributeNode(de);
-  }
-
-  return (base.innerHTML);
-}
-
 // add a handler to come in after all the definitions are resolved
 //
 // New logic: If the reference is within a 'dl' element of
@@ -121,63 +107,6 @@ require(["core/pubsubhub"], (respecEvents) => {
             if (respecConfig.definitionMap[item]) {
               delete respecConfig.definitionMap[item];
             }
-          }
-        }
-      }
-    }
-  });
-});
-
-/*
-*
-* Replace github.io references to /TR references.
-* The issue is as follows: when several specs are developed in parallel, it is a good idea
-* to use, for mutual references, the github.io URI-s. That ensures that the editors' drafts are always
-* correct in terms of mutual references.
-*
-* However, when publishing the documents, all those references must be exchanged against the final, /TR
-* URI-s. That process, when done manually, is boring and error prone. This script solves the issue:
-*
-* * Create a separate file with the 'conversions' array. See, e.g., https://github.com/w3c/csvw/blob/gh-pages/local-biblio.js
-*   for an example.
-* * Include a reference to that file and this to the respec code, after the inclusion of respec. E.g.:
-* ```
-*  <script class="remove" src="../local-biblio.js"></script>
-*  <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
-*  <script class="remove" src="../replace-ed-uris.js"></script>
-* ```
-*
-* This function will be automatically executed when the respec source is saved in an (X)HTML file.
-* Note that
-*
-* * Links in the header part will *not* be changed. That part is usually generated automatically, and the reference to the
-*   editor's draft must stay unchanged
-* * The text content of an <a> element will also be converted (if needed). This means that the reference list may also
-*   use include the github.io address (as it should...)
-*
-*/
-require(["core/pubsubhub"], (respecEvents) => {
-  "use strict";
-  respecEvents.sub('beforesave', (documentElement) => {
-    for (const anchor of document.querySelectorAll("a[href]")) {
-      const dd = anchor.closest('dd');
-
-      // Don't replace specific anchors
-      if (dd) {
-        const dt = dd.previousElementSibling;
-        if (dt.textContent.match(/Latest editor|Test suite|Implementation report/)) return;
-      }
-      if (anchor.closest('section.preserve')) return;
-
-      if (anchor.href === undefined) return;
-
-      for (const toReplace in jsonld.conversions) {
-        if (anchor.href.indexOf(toReplace) !== -1) {
-          const replacement = jsonld.conversions[toReplace];
-          const newHref = anchor.href.replace(toReplace, replacement);
-          anchor.setAttribute('href', newHref);
-          if (anchor.textContent.indexOf(toReplace) !== -1) {
-            anchor.textContent = anchor.textContent.replace(toReplace, replacement);
           }
         }
       }
