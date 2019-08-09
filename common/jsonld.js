@@ -30,4 +30,5 @@ const jsonld = {
       status: 'Internet-Draft',
       date: 'February 16, 2019'
     }
-  };
+  }
+};

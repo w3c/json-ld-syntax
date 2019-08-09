@@ -11484,8 +11484,9 @@ the data type to be specified explicitly with each piece of data.</p>
       an <a>IRI</a> or a <a>blank node identifier</a>. Within the JSON-LD syntax
       these arc labels are called <a>properties</a>.
       Whenever practical, a directed-arc SHOULD be labeled with an <a>IRI</a>.
-      <div class="issue atrisk">The use of <a>blank node identifiers</a> to label properties is obsolete,
-        and may be removed in a future version of JSON-LD.</div>
+      <div class="note">The use of <a>blank node identifiers</a> to label properties is obsolete,
+        and may be removed in a future version of JSON-LD.
+        Consider using a document relative IRI, instead, such as `#`.</div>
     </li>
     <li>Every <a>node</a>
       is an <a>IRI</a>, a <a>blank node</a>, or a <a data-cite="RDF11-CONCEPTS#dfn-literal">literal</a>,
@@ -12569,7 +12570,7 @@ the data type to be specified explicitly with each piece of data.</p>
       between JSON's native data types and RDF's counterparts to allow round-tripping.</li>
   </ul>
 
-  <p class="issue atrisk">The use of <a>blank node identifiers</a> to label properties is obsolete,
+  <p class="note">The use of <a>blank node identifiers</a> to label properties is obsolete,
     and may be removed in a future version of JSON-LD, as is the support for <a>generalized RDF Datasets</a>.</p>
 
   <p>Summarized, these differences mean that JSON-LD is capable of serializing any RDF
