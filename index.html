@@ -10856,12 +10856,31 @@ the data type to be specified explicitly with each piece of data.</p>
 </section>
 </section>
 
-<section class="normative"><h2>Interpreting JSON as JSON-LD</h2>
+<section class="normative"><h2>Modifying Behavior with Link Relationships</h2>
+  <p>Certain aspects of JSON-LD processing can be modified using
+    <dfn data-cite="RFC8288#section-3" data-no-xref>HTTP Link Headers</dfn> [[RFC8288]].
+    These can be used when retrieving resources that are not, themselves, JSON-LD,
+    but can be interpreted as JSON-LD by using information in a
+    <a href="https://en.wikipedia.org/wiki/Link_relation" data-no-xref>Link Relation</a>.</p>
+
+  <p>When processing normal JSON documents, a link relation can be specified using
+    the <a>HTTP Link Header</a>
+    returned when fetching a remote document, as described in <a href="#interpreting-json-as-json-ld" class="sectionRef"></a>.</p>
+
+  <p class="changed">In other cases, a resource may be returned using a representation that cannot easily be interpreted
+    as JSON-LD. Normally, <a href="https://en.wikipedia.org/wiki/Content_negotiation">HTTP content negotiation</a>
+    would be used to allow a client to specify a preference for JSON-LD over another representation,
+    but in certain situations, it is not possible for a server to respond appropriately to such requests.
+    For the, an <a>HTTP Link Header</a> can be used to provide an alternate location for a document
+    to be used in place of the originally requested resource,
+    as described in <a href="#alternate-document-location" class="sectionRef"></a>.</p>
+
+<section class="normative"><h3>Interpreting JSON as JSON-LD</h2>
 
   <p>Ordinary JSON documents can be interpreted as JSON-LD
     by providing an explicit JSON-LD <a>context</a> document. One way
     to provide this is by using referencing a JSON-LD
-    <a>context</a> document in an <a data-cite="RFC8288#section-3">HTTP Link Header</a>.
+    <a>context</a> document in an <a>HTTP Link Header</a>.
     Doing so allows JSON to be unambiguously machine-readable without requiring developers to drastically
     change their documents and provides an upgrade path for existing infrastructure
     without breaking existing clients that rely on the <code>application/json</code>
@@ -10887,7 +10906,7 @@ the data type to be specified explicitly with each piece of data.</p>
     of the <code>@context</code> subtree in the referenced document MUST be
     discarded. Effectively this means that the <a>active context</a> is
     initialized with the referenced external <a>context</a>. A response MUST NOT
-    contain more than one <a data-cite="RFC8288#section-3">HTTP Link Header</a> [[RFC8288]] using the
+    contain more than one <a>HTTP Link Header</a> using the
     <code>http://www.w3.org/ns/json-ld#context</code> link relation.</p>
 
   <p>Other mechanisms for providing a JSON-LD Context MAY be described for other
@@ -10930,6 +10949,63 @@ the data type to be specified explicitly with each piece of data.</p>
     contexts, within the body of the document. Contexts linked via a
     <code>http://www.w3.org/ns/json-ld#context</code> <a data-cite="RFC8288#section-3">HTTP Link Header</a> MUST be
     ignored for such documents.</p>
+</section>
+
+<section class="normative changed"><h3>Alternate Document Location</h3>
+
+  <p>Documents which can't be directly interpreted as JSON-LD can provide an alternate location containing JSON-LD.
+    One way to provide this is by using referencing a JSON-LD document in an <a>HTTP Link Header</a>.
+    This might be useful, for example, when the URL associated with a namespace naturally
+    contains an HTML document, but the JSON-LD context associated with that URL is located elsewhere.</p>
+
+  <p>To specify an alternate location, a non-JSON resource
+    (i.e., one using a media type other than `application/json` or a derivative)
+    can return the alternate location using a <a data-cite="RFC8288#section-3">Link Header</a> with:</p>
+
+  <ul>
+    <li><code>rel="alternate"</code>, and</li>
+    <li><code>type="application/ld+json"</code>.</li>
+  </ul>
+
+  <p>A response MUST NOT contain more than one <a>HTTP Link Header</a> using the
+    <code>alternate</code> link relation with <code>type="application/ld+json"</code> .</p>
+
+  <p>Other mechanisms for providing an alternate location MAY be described for other
+    URI schemes.</p>
+
+  <p>The following example demonstrates the use of an alternate location with an
+    ordinary HTTP document over HTTP:</p>
+
+  <pre class="example nohighlight" data-transform="updateExample"
+       data-content-type="http"
+       data-ignore
+       title="Specifying an alternate location via an HTTP Link Header">
+  <!--
+  GET /index.html HTTP/1.1
+  Host: example.com
+  Accept: application/ld+json,application/json,*/*;q=0.1
+
+  ====================================
+
+  HTTP/1.1 200 OK
+  ####...####
+  Content-Type: ****text/html****
+  ****Link: <alternate.jsonld>; rel="alternate"; type="application/ld+json"****
+
+  <html>
+    <head>
+      <title>Primary Entrypoint</title>
+    </head>
+    <body>
+      <p>This is the primary entrypoint for a vocabulary</p>
+    </body>
+  </html>
+  -->
+  </pre>
+
+  <p>A processor seeing a non-JSON result will note the presense of the link header
+    and load that document instead.</p>
+</section>
 </section>
 
 <section class="changed"><h2>Embedding JSON-LD in HTML Documents</h2>
@@ -12597,7 +12673,7 @@ the data type to be specified explicitly with each piece of data.</p>
     also be used as a <dfn data-cite="RDF11-CONCEPTS#dfn-rdf-source">graph source</dfn>.
     In that case, a consumer MUST only use the <a>default graph</a> and ignore all <a>named graphs</a>.
     This allows servers to expose data in languages such as Turtle and JSON-LD
-    using content negotiation.</p>
+    using <a href="https://en.wikipedia.org/wiki/Content_negotiation">HTTP content negotiation</a>.</p>
 
   <p class="note">Publishers supporting both <a>dataset</a> and <a>graph</a> syntaxes have to ensure that
     the primary data is stored in the <a>default graph</a> to enable consumers that do not support
@@ -13466,6 +13542,8 @@ the data type to be specified explicitly with each piece of data.</p>
       This allows the use of the object form of a JSON-LD document when there is more
       than one <a>node object</a> being defined, and where those <a>node objects</a>
       are not embedded as values of the containing <a>node object</a>.</li>
+    <li>The `alternate` link relation can be used to supply an alternate location for
+      retrieving a JSON-LD document when the returned document is not JSON.</li>
   </ul>
 </section>
 
