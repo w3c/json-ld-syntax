@@ -678,52 +678,6 @@
   <p>These are used within this document as part of a <a>compact IRI</a>
     as a shorthand for the resulting <a>absolute IRI</a>, such as <code>dcterms:title</code>
     used to represent <code>http://purl.org/dc/terms/title</code>.</p>
-
-  <section>
-    <h2>Processor Levels</h2>
-
-    <!--
-      **************** IMPORTANT WARNING ****************
-      This section is duplicated (with a few adaptations)
-      in other JSON-LD specifications. Since these
-      definitions are normative, it is important to
-      reflect any change in the other documents.
-      ***************************************************
-    -->
-
-    <p>JSON-LD mostly uses the JSON syntax [[RFC8259]] along with
-      various micro-syntaxes based on XML Schema datatypes [[XMLSCHEMA11-2]].
-      However, it has become increasingly common to include JSON within
-      a <a data-cite="HTML/scripting.html#the-script-element">script element</a>
-      within an HTML document [[HTML]],
-      as described in <a href="#embedding-json-ld-in-html-documents" class="sectionRef"></a>.
-      As not all processors operate in an environment which can include HTML,
-      this specification describes various categories of JSON-LD processors.</p>
-
-    <p>A <dfn>pure JSON Processor</dfn> only requires the use of a
-      JSON processor and is restricted to processing documents retrieved
-      with a JSON content type (e.g., <code>application/ld+json</code> or other JSON type).</p>
-
-    <p>A <dfn>full Processor</dfn> is capable of processing JSON-LD embedded in HTML,
-      in addition to the capabilities of a <a>pure JSON Processor</a>.</p>
-
-    <section class="informative">
-      <h3>Additional Processor Levels</h3>
-
-      <p>In addition to the normatively defined processor levels, an additional processor
-        level is defined for reference.</p>
-
-      <p>A <dfn>event-based JSON Processor</dfn> processes a stream of characters
-        expecting an event after each syntactic element is encountered.
-        Such processors are sensitive to the order of the members of <a>JSON objects</a>,
-        which can have a performance impact if the members of <a>JSON objects</a> are encountered in an unexpected order.
-        An <a>event-based JSON Processor</a> may process JSON-LD embedded in HTML.</p>
-
-      <p class="note">An <a>event-based JSON Processor</a>
-        may be sensitive to processing certain keywords in order, including
-        <code>@context</code>, <code>@id</code>, and <code>@type</code>.</p>
-    </section>
-  </section>
 </section>
 
 <section class="informative">
@@ -9807,7 +9761,7 @@ the data type to be specified explicitly with each piece of data.</p>
     of JSON-LD (see <a href="#forms-of-json-ld" class="sectionRef"></a>).
     This includes a general mechanism for loading remote documents,
     including referenced JSON-LD documents and remote contexts,
-    and extracting embedded JSON-LD from other formats such as [[HTML]].
+    and potentially extracting embedded JSON-LD from other formats such as [[HTML]].
     This is more fully described in
     <a data-cite="JSON-LD11-API#remote-document-and-context-retrieval">Remote Document and Context Retrieval</a>
     in [[JSON-LD11-API]].</p>
@@ -11007,7 +10961,10 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <section class="changed"><h2>Embedding JSON-LD in HTML Documents</h2>
 
-  <p class="note">This section describes features available to a <a>full Processor</a>.</p>
+  <p class="note">This section describes features available
+    with a <a>documentLoader</a> supporting <a data-cite="JSON-LD11-API#html-script-extraction">HTML script extraction</a>.
+    See <a data-cite="JSON-LD11-API#remote-document-and-context-retrieval">Remote Document and Context Retrieval</a>
+    for more information.</p>
 
   <p>
     JSON-LD content can be easily embedded in HTML [[HTML]] by placing
@@ -12734,7 +12691,7 @@ the data type to be specified explicitly with each piece of data.</p>
     (see [[?fingerprinting-guidance]]), and
     and provide an opportunity for a man-in-the-middle attack.
     To protect against this, publishers should consider caching remote contexts for future use,
-    or use the <a data-cite="JSON-LD11-API#dom-jsonldoptions-documentloader">documentLoader</a>
+    or use the <a>documentLoader</a>
     to maintain a local version of such contexts.</p>
 </section>
 
@@ -13374,7 +13331,6 @@ the data type to be specified explicitly with each piece of data.</p>
       Define the <code>rdf:JSON</code> datatype.</li>
     <li><a>Term definitions</a> with keys which are of the form of a <a>compact IRI</a> or <a>absolute IRI</a> MUST NOT
       expand to an <a>IRI</a> other than the expansion of the key itself.</li>
-    <li>Define different processor modes: <a>pure JSON Processor</a>, <a>event-based JSON processor</a>, and <a>full Processor</a>.</li>
     <li>A <a>frame</a> may also be located within an HTML document, identified
       using type <code>application/ld+json;profile=http://www.w3.org/ns/json-ld#frame</code>.</li>
     <li>Term definitions can now be <a href="#protected-term-definitions">protected</a>,
