@@ -5,11 +5,8 @@
 //
 // Add class "preserve" to a definition to ensure it is not removed.
 //
-// the termlist is in a block of class "termlist", so make sure that
-// has an ID and put that ID into the termLists array so we can
-// interrogate all of the included termlists later.
+// the termlist is in a block of class "termlist".
 const termNames = [] ;
-const termLists = [] ;
 const termsReferencedByTerms = [] ;
 
 function restrictReferences(utils, content) {
@@ -33,7 +30,6 @@ function restrictReferences(utils, content) {
 
   const $container = $(".termlist", base) ;
   const containerID = $container.makeID("", "terms") ;
-  termLists.push(containerID) ;
   return (base.innerHTML);
 }
 
@@ -87,9 +83,9 @@ require(["core/pubsubhub"], (respecEvents) => {
       // now termsReferencedByTerms has ALL terms that
       // reference other terms, and a list of the
       // terms that they reference
-      const internalRefs = document.querySelectorAll("a.internalDFN");
+      const internalRefs = document.querySelectorAll("a[data-link-type='dfn']");
       for (const item of internalRefs) {
-        const idref = item.getAttribute('href').replace(/^#/,"") ;
+        const idref = item.getAttribute('href').replace(/^.*#/,"") ;
         // if the item is outside the term list
         if (!item.closest('dl.termlist')) {
           clearRefs(idref);
@@ -99,14 +95,25 @@ require(["core/pubsubhub"], (respecEvents) => {
       // delete any terms that were not referenced.
       for (const term in termNames) {
         const $p = $("#"+term);
-        if ($p.length > 0) {
-          const tList = $p.getDfnTitles();
-          $p.parent().next().remove(); // remove dd
-          $p.remove();                 // remove dt
-          for (const item of tList) {
-            if (respecConfig.definitionMap[item]) {
-              delete respecConfig.definitionMap[item];
-            }
+        // Remove term definitions inside a dt, where data-cite does not start with shortname
+        if ($p === undefined) { continue; }
+        if (!$p.parent().is("dt")) { continue; }
+        if (($p.data("cite") || "").toLowerCase().startsWith(respecConfig.shortName)) { continue; }
+
+        const $dt = $p.parent();
+        const $dd = $dt.next();
+
+        // If the associated dd contains a dfn which is _not_ in termNames, warn
+        if ($dd.children("dfn").length > 0) {
+          console.log(term + " definition contains definitions " + $dd.children("dfn").attr("id"))
+        }
+        console.log("drop term " + term);
+        const tList = $p.getDfnTitles();
+        $dd.remove(); // remove dd
+        $dt.remove(); // remove dt
+        for (const item of tList) {
+          if (respecConfig.definitionMap[item]) {
+            delete respecConfig.definitionMap[item];
           }
         }
       }
