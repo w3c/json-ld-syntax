@@ -11,8 +11,7 @@
     the collection is <em>unordered</em> by default.
     While order is preserved in regular JSON arrays,
     it is not in regular JSON-LD arrays unless specifically defined
-    (see <a data-cite="JSON-LD11#sets-and-lists">Sets and Lists</a>
-    in the JSON-LD Syntax specification [[JSON-LD11]]).</dd>
+    (see the <a data-cite="JSON-LD11#sets-and-lists">Sets and Lists</a> section of JSON-LD 1.1.</dd>
   <dt><dfn data-cite="INFRA#boolean" class="preserve">boolean</dfn></dt><dd>
     The values <code>true</code> and <code>false</code> that are used
     to express one of two possible states.</dd>
@@ -168,7 +167,7 @@
     for each IRI contained within a common vocabulary identified by <a>prefix</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-context">context</dfn></dt><dd>
     A set of rules for interpreting a <a>JSON-LD document</a>
-    as specified in the <a data-cite="JSON-LD11#the-context">The Context</a> section of the JSON-LD Syntax specification [[JSON-LD11]].</dd>
+    as specified in the <a data-cite="JSON-LD11#the-context">The Context</a> section of JSON-LD 1.1.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-default-language">default language</dfn></dt><dd>
     The default language is set in the <a>context</a> using the <code>@language</code> key
     whose value MUST be a <a>string</a> representing a [[BCP47]] language code or <code>null</code>.</dd>
@@ -251,13 +250,13 @@
     A <a>JSON literal</a> is a <a>literal</a> where the associated <a>datatype IRI</a> is <code>rdf:JSON</code>.
     In the <a>value object</a> representation, the value of <code>@type</code> is <code>@json</code>.
     JSON literals represent values which are valid JSON [[RFC8259]].
-    See <dfn data-cite="JSON-LD11#dfn-json-datatype" data-cite="JSON-LD11#dfn-json-datatype" class="preserve">JSON datatype</dfn> in [[JSON-LD11]].
+    See <dfn data-cite="JSON-LD11#dfn-json-datatype" data-cite="JSON-LD11#dfn-json-datatype" class="preserve">JSON datatype</dfn> in JSON-LD 1.1.
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-json-ld-document">JSON-LD document</dfn></dt><dd>
     A <a>JSON-LD document</a> is a serialization of
     an <a>RDF dataset</a>.</dd>
   <dt><dfn data-cite="JSON-LD11-API#dfn-json-ld-processor" data-lt="json-ld processor|Processors">JSON-LD Processor</dfn></dt><dd>
-    A <a>JSON-LD Processor</a> is a system which can perform the algorithms defined in [[JSON-LD11-API]].</dd>
+    A <a>JSON-LD Processor</a> is a system which can perform the algorithms defined in JSON-LD 1.1 Processing Algorithms and API.</dd>
   <dt class="changed"><dfn data-cite="JSON-LD11-API#dfn-internal-representation" data-lt="internal representation">JSON-LD internal representation</dfn></dt><dd class="changed">
     The JSON-LD internal representation
     is the result of transforming a JSON syntactic structure
@@ -273,7 +272,7 @@
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-keyword">keyword</dfn></dt><dd>
     A <a>string</a> that is specific to JSON-LD,
-    specified in the JSON-LD Syntax specification [[JSON-LD11]]
+    specified in JSON-LD 1.1
     in the section titled <a data-cite="JSON-LD11#syntax-tokens-and-keywords">Syntax Tokens and Keywords</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-language-map">language map</dfn></dt><dd>
     An <a>language map</a> is a <a>map</a> value of a <a>term</a>
