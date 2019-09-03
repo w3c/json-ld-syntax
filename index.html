@@ -588,7 +588,7 @@
         when compacting.</dd>
       <dt class="changed"><code>@version</code></dt><dd class="changed">
         Used in a <a>context definition</a> to set the <a>processing mode</a>.
-        New features since [[[JSON-LD]]] [[JSON-LD]] described in this specification are
+        New features since [[[JSON-LD10]]] [[JSON-LD10]] described in this specification are
         only available when <a>processing mode</a> has been explicitly set to
         <code>json-ld-1.1</code>.
       </dd>
@@ -2228,7 +2228,7 @@
     the former will be interpreted as having had <code>"@version": 1.1</code> defined within it.</p>
 
   <p class="note">Setting the <a>processing mode</a> explicitly
-    for JSON-LD 1.1 is necessary so that a [[[JSON-LD]]] processor
+    for JSON-LD 1.1 is necessary so that a [[[JSON-LD10]]] processor
     does not attempt to process a JSON-LD 1.1 document and silently
     produce different results.</p>
 </section>
@@ -2758,7 +2758,7 @@
   </aside>
 
   <p class="changed">When operating with the default <a>processing mode</a>
-    for [[[JSON-LD]]] compatibility, terms may be chosen as <a>compact IRI</a> prefixes when
+    for [[[JSON-LD10]]] compatibility, terms may be chosen as <a>compact IRI</a> prefixes when
     compacting only if a <a>simple term definition</a> is used where the value ends with a
     URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character (e.g, <code>/</code>,
     <code>#</code> and others, see [[RFC3986]]).</p>
@@ -2770,7 +2770,7 @@
     a <code>@prefix</code> <a>entry</a> with the value <code>true</code>.</p>
 
   <p class="note changed">The term selection behavior for 1.0 processors was changed
-    as a result of an errata against [[[JSON-LD]]] reported <a href="https://lists.w3.org/Archives/Public/public-rdf-comments/2018Jan/0002.html">here</a>.
+    as a result of an errata against [[[JSON-LD10]]] reported <a href="https://lists.w3.org/Archives/Public/public-rdf-comments/2018Jan/0002.html">here</a>.
     This does not affect the behavior of processing existing JSON-LD documents, but creates
     a slight change when compacting documents using <a>Compact IRIs</a>.</p>
 
@@ -2860,7 +2860,7 @@
     </pre>
   </aside>
 
-  <p class="changed">In the original [[JSON-LD]],
+  <p class="changed">In the original [[JSON-LD10]],
     the term selection algorithm would have selected <em>property</em>,
     creating the Compact IRI <em>property:One</em>.
     If the <a>processing mode</a> is <code>json-ld-1.1</code>, the original behavior can be

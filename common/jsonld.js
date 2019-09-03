@@ -3,6 +3,18 @@ const jsonld = {
   // Extend or override global respec references
   localBiblio: {
     // aliases to known references
+    "JSON-LD10": {
+      title: "JSON-LD 1.0",
+      href: "https://www.w3.org/TR/2014/REC-json-ld-20140116/",
+      publisher: "W3C",
+      date: "16 January 2014",
+      status: "W3C Recommendation",
+      authors: [
+        "Manu Sporny",
+        "Gregg Kellogg",
+        "Marcus Langhaler"
+      ]
+    },
     "IEEE-754-2008": {
       title: "IEEE 754-2008 Standard for Floating-Point Arithmetic",
       href: "http://standards.ieee.org/findstds/standard/754-2008.html",
