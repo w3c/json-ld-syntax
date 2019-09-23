@@ -467,14 +467,10 @@
   <section class="informative">
     <h2>Data Model Overview</h2>
 
-    <p>Generally speaking, the data model described by a
-      <a>JSON-LD document</a> is a labeled,
-      directed <a>graph</a>. The graph contains
-      <a>nodes</a>, which are connected by
-      directed-arcs. A <a>node</a> is typically data
-      such as a <a>string</a>, <a>number</a>,
-      <a>typed values</a> (like dates and times)
-      or an <a>IRI</a>.</p>
+    <p>Generally speaking, the data model described by a <a>JSON-LD document</a> is a labeled, directed <a>graph</a>.
+      The graph contains <a>nodes</a>, which are connected by directed-arcs.
+      A node is either a <a>resource</a> with <a>properties</a>, or the data values of those properties including
+      <a>strings</a>, <a>numbers</a>, <a>typed values</a> (like dates and times) and <a>IRIs</a>.</p>
     <p class="changed">Within a directed graph, nodes may
       be <em>unnamed</em>, i.e., not identified by an <a>IRI</a> or representing
       data such as <a>strings</a> or <a>numbers</a>. Such nodes are called <a>blank nodes</a>,
