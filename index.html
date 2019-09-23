@@ -597,6 +597,9 @@
         New features since [[[JSON-LD10]]] [[JSON-LD10]] described in this specification are
         only available when <a>processing mode</a> has been explicitly set to
         <code>json-ld-1.1</code>.
+        <div class="note">Within a <a>context definition</a> `@version` takes the specific value `1.1`, not
+        `"json-ld-1.1"`, as a JSON-LD 1.0 processor may accept a string value for `@version`,
+        but will reject a numeric value.</div>
       </dd>
       <dt class="changed"><code>@json</code></dt><dd class="changed">
         Used as the <code>@type</code> value of a <a>JSON literal</a>.
