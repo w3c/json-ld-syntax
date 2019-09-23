@@ -169,7 +169,8 @@
     A set of rules for interpreting a <a>JSON-LD document</a>
     as specified in the <a data-cite="JSON-LD11#the-context">The Context</a> section of JSON-LD 1.1.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-default-language">default language</dfn></dt><dd>
-    The default language is set in the <a>context</a> using the <code>@language</code> key
+    The <a>default language</a> is the language used when a string does not have a language associated with it directly.
+    It can be set in the <a>context</a> using the <code>@language</code> key
     whose value MUST be a <a>string</a> representing a [[BCP47]] language code or <code>null</code>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-default-object">default object</dfn></dt><dd>
     A <a>default object</a> is a <a>map</a> that has a <code>@default</code> key.</dd>
