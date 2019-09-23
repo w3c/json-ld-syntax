@@ -808,10 +808,13 @@
     terms to communicate with one another more efficiently, but without
     losing accuracy.</p>
 
-    <p>Simply speaking, a <a>context</a> is used to map <a>terms</a> to
-      <a>IRIs</a>. <a>Terms</a> are case sensitive
-      and any valid <a>string</a> that is not a reserved JSON-LD <a>keyword</a>
-      can be used as a <a>term</a>.</p>
+    <p>Simply speaking, a <a>context</a> is used to map <a>terms</a> to <a>IRIs</a>.
+      <a>Terms</a> are case sensitive and most any valid <a>string</a> that is not a reserved JSON-LD <a>keyword</a>
+      can be used as a <a>term</a>.
+      <span class="changed">The empty string `""` and strings that have the form
+        of a keyword (e.g., staring with `"@"`) must not be used as terms.
+        Strings that have the form of
+        an absolute IRI (e.g., containing a `":"`) should not be used as terms.</span></p>
 
     <p>For the sample document in the previous section, a <a>context</a> would
       look something like this:</p>
@@ -11644,8 +11647,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>A <a>term</a> is a short-hand <a>string</a> that expands
       to an <a>IRI</a> or a <a>blank node identifier</a>.</p>
 
-    <p>A <a>term</a> MUST NOT equal any of the JSON-LD
-      <a>keywords</a>.</p>
+    <p>A <a>term</a> MUST NOT equal any of the JSON-LD <a>keywords</a>.</p>
 
     <p class="changed">When used as the <a>prefix</a> in a <a>Compact IRI</a>, to avoid
       the potential ambiguity of a <a>prefix</a> being confused with an IRI
