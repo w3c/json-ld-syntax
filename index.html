@@ -3516,7 +3516,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     <a>context</a> removes it by setting `@context` to `null`,
     or by redefining terms,
     with the exception of <a>type-scoped contexts</a>,
-    which limits the affect of that context until the next <a>node object</a> is entered.
+    which limits the effect of that context until the next <a>node object</a> is entered.
     This behavior can be changed using the `@propagate` keyword.</p>
 
   <p>The following example illustrates how terms defined in a context with `@propagate` set to `false`
@@ -3677,7 +3677,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   </pre>
 
   <p>The effect would be the same as if the entire imported <a>context</a>
-    had been copied into the for <a>type-scoped context</a>:</p>
+    had been copied into the <a>type-scoped context</a>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        title="Result of sourcing a context in a type-scoped context and setting it to propagate">
@@ -4725,7 +4725,7 @@ the data type to be specified explicitly with each piece of data.</p>
   which is always interpreted as a document-relative IRI, and once as the value of
   "fred", which is defined to be vocabulary-relative, thus the different expanded values.</p>
 
-<p>For more on this see <a class="sectionRef" href="#default-vocabulary"></a></p>
+<p>For more on this see <a class="sectionRef" href="#default-vocabulary"></a>.</p>
 
 <p>A variation on the previous example using <code>"@type": "@id"</code> instead
   of <code>@vocab</code> illustrates the behavior of interpreting "barney" relative to the document:</p>
@@ -4784,7 +4784,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   ex1:barney ex2:mnemonic "the sidekick" .
 
-  [] ex2:fred ex1:barney, ex1:barney.
+  [] ex2:fred ex1:barney, ex1:barney .
   -->
   </pre>
 </aside>
@@ -7285,26 +7285,26 @@ the data type to be specified explicitly with each piece of data.</p>
          data-transform="updateExample"
          data-to-rdf>
       <!--
-        @prefix schema: <http://schema.org/> .
-        @prefix dc11: <http://purl.org/dc/elements/1.1/language> .
-        @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-        
-        <http://example.com/> a schema:Blog;
+    @prefix schema: <http://schema.org/> .
+    @prefix dc11: <http://purl.org/dc/elements/1.1/language> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+    
+    <http://example.com/> a schema:Blog;
         schema:blogPost <http://example.com/posts/1/de>,
-        <http://example.com/posts/1/en>;
+          <http://example.com/posts/1/en>;
         schema:name "World Financial News" .
         
-        <http://example.com/posts/1/de>
+    <http://example.com/posts/1/de>
         schema:articleBody
-        "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...";
+          "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...";
         schema:wordCount 1204;
-        ****dc11:language "de"****.
+        ****dc11:language "de"**** .
         
-        <http://example.com/posts/1/en>
+    <http://example.com/posts/1/en>
         schema:articleBody
-        "World commodities were up today with heavy trading of crude oil...";
+          "World commodities were up today with heavy trading of crude oil...";
         schema:wordCount 1539;
-        ****dc11:language "en"****.
+        ****dc11:language "en"**** .
         -->
     </pre>
   </aside>
@@ -8379,7 +8379,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>Included resources are described in
     <a data-cite="JSON.API#fetching-includes">Inclusion of Related Resources</a> of [[[JSON.API]]] [[JSON.API]]
     as a way to include related resources associated with some primary resource;
-    `@included` provide an analogous possibility in JSON-LD.</p>
+    `@included` provides an analogous possibility in JSON-LD.</p>
 
   <p>As a by product of the use of `@included` within <a>node objects</a>, a <a>map</a> may contain
     only `@included`, to provide a feature similar to that described in <a href="#advanced-context-usage" class="sectionRef"></a>,
@@ -9351,8 +9351,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>As with <a>index maps</a>, when used with <code>@graph</code>, a container may also
     include <code>@set</code> to ensure that key values are always contained in an array.</p>
 
-  <p class="changed">If the <a>processing mode</a> is set to <code>json-ld-1.1</code>,
-    the special index <code>@none</code> is used for indexing
+  <p class="changed">The special index <code>@none</code> is used for indexing
     graphs which does not have an <code>@index</code> key, which is useful to maintain
     a normalized representation. <span class="note">Note, however, that
       compacting a document where multiple unidentified named graphs are
@@ -9474,6 +9473,8 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
   </aside>
+    <p class="note">Named Graph Data Indexing is a new feature in JSON-LD 1.1, requiring
+    <a>processing mode</a> set to <code>json-ld-1.1</code>.</p>
 </section>
 
 <section class="informative changed"><h3>Named Graph Indexing</h3>
@@ -12455,7 +12456,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>In JSON-LD <a>lists</a> use native JSON syntax, either contained in a
       list object, or described as such within a context. Consequently, developers
       using the JSON representation can access list elements directly rather than
-      using the vocabulary for collections described in [[RDF-SCHEMA]]..</li>
+      using the vocabulary for collections described in [[RDF-SCHEMA]].</li>
     <li>RDF values are either typed <em>literals</em>
       (<a>typed values</a>) or
       <a>language-tagged strings</a> whereas
@@ -12477,7 +12478,7 @@ the data type to be specified explicitly with each piece of data.</p>
     instead, consider one of the following mechanisms:</p>
   <ul>
     <li>a <a>relative IRI</a>, either relative to the document or the vocabulary
-      (see <a href="#document-relative-vocabulary-mapping" class="sectionRef"></a> for a discussion on using the document base as part of the <a>vocabulary mapping</a>).</li>
+      (see <a href="#document-relative-vocabulary-mapping" class="sectionRef"></a> for a discussion on using the document base as part of the <a>vocabulary mapping</a>),</li>
     <li>a URN such as <code>urn:example:1</code>, see [[?URN]], or</li>
     <li>a "Skolem IRI" as per
       <a data-cite="RDF11-CONCEPTS#section-skolemization">Replacing Blank Nodes with IRIs</a>
