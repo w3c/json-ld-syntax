@@ -471,13 +471,16 @@
       The graph contains <a>nodes</a>, which are connected by directed-arcs.
       A node is either a <a>resource</a> with <a>properties</a>, or the data values of those properties including
       <a>strings</a>, <a>numbers</a>, <a>typed values</a> (like dates and times) and <a>IRIs</a>.</p>
-    <p class="changed">Within a directed graph, nodes may
-      be <em>unnamed</em>, i.e., not identified by an <a>IRI</a> or representing
-      data such as <a>strings</a> or <a>numbers</a>. Such nodes are called <a>blank nodes</a>,
+    <p class="changed">Within a directed graph, nodes are <a>resources</a>, and may
+      be <em>unnamed</em>, i.e., not identified by an <a>IRI</a>;
+      which are called <a>blank nodes</a>,
       and may be identified using a <a>blank node identifier</a>.
       These identifiers may be required to represent a fully connected graph
       using a tree structure, such as JSON, but otherwise have no
-      intrinsic meaning.</p>
+      intrinsic meaning.
+      Literal values, such as <a>strings</a> and <a>numbers</a>, are also considered <a>resources</a>,
+      and JSON-LD distinguishes between <a>node objects</a> and <a>value objects</a> to distinguish between the different
+      kinds of <a>resource</a>.</p>
     <p>This simple data model is incredibly
       flexible and powerful, capable of modeling almost any kind of
       data. For a deeper explanation of the data model, see
