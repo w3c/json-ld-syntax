@@ -17,7 +17,8 @@
         "name": "Jeff Mixter"
     },
     {
-        "name": "Dave Longley"
+        "name": "Dave Longley",
+        "editor" : true
     },
     {
         "name": "David Lehn"
