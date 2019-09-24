@@ -4332,9 +4332,15 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   express the value of a type.</p>
 
 <p class="note">The <code>@type</code> <a>keyword</a> is also used to associate a type
-  with a <a>node</a>. The concept of a <a>node type</a> and
-  a <a>value type</a> are different.
+  with a <a>node</a>.
+  The concept of a <a>node type</a> and a <a>value type</a> are distinct.
   For more on adding types to <a>nodes</a>, see <a class="sectionRef" href="#specifying-the-type"></a>.</p>
+
+<p class="note">When expanding, an `@type` defined within a <a>term definition</a>
+  can be associated with a <a>string</a> value to create an expanded <a>value object</a>,
+  which is described in <a href="#type-coercion" class="sectionRef"></a>.
+  Type coercion only takes place on string values, not for values which are <a>maps</a>,
+  such as <a>node objects</a> and <a>value objects</a> in their expanded form.</p>
 
 <p>A <dfn>node type</dfn> specifies the type of thing
   that is being described, like a person, place, event, or web page. A
