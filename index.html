@@ -2140,6 +2140,16 @@
     The following example specifies an external context
     and then layers an <a>embedded context</a> on top of the external context:</p>
 
+  <p class="changed">In JSON-LD 1.1, there are other mechanisms for introducing contexts, including
+    scoped contexts and imported contexts, and there are new ways of protecting term definitions,
+    so there are cases where the last defined inline context is not necessarily one
+    which defines the scope of terms.
+    See <a href="#scoped-contexts" class="sectionRef"></a>,
+    <a href="#context-propagation" class="sectionRef"></a>,
+    <a href="#imported-contexts" class="sectionRef"></a>, and
+    <a href="#protected-term-definitions" class="sectionRef"></a>
+    for further information.</p>
+
   <aside class="example ds-selector-tabs"
          title="Combining external and local contexts">
     <div class="selectors">
