@@ -4993,7 +4993,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <a>string</a> values that are not <a href="#type-coercion">type coerced</a>.</p>
 
   <p>To clear the <a>default language</a> for a subtree, <code>@language</code> can
-    be set to <code>null</code> in a <a>local context</a> as follows:</p>
+    be set to <code>null</code> in an intervening context, such as a <a>scoped context</a> as follows:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        title="Clearing default language">
@@ -5001,15 +5001,15 @@ the data type to be specified explicitly with each piece of data.</p>
   {
     "@context": {
       ####...####
-      "@language": "ja"
+      "@language": "ja",
+      "details": {
+        ****"@context": {
+          "@language": null
+        }****
+      }
     },
     "name": "花澄",
-    "details": {
-      ****"@context": {
-        "@language": null
-      }****,
-      "occupation": "Ninja"
-    }
+    "details": {"occupation": "Ninja"}
   }
   -->
   </pre>
