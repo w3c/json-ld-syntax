@@ -5080,7 +5080,10 @@ the data type to be specified explicitly with each piece of data.</p>
     example but consolidates all values in a single property. To access the
     value in a specific language in a programming language supporting dot-notation
     accessors for object properties, a developer may use the
-    <code>property.language</code> pattern. For example, to access the occupation
+    <code>property.language</code> pattern
+    (when languages are limited to the primary language sub-tag,
+    and do not depend on other sub-tags, such as `"en-us"`).
+    For example, to access the occupation
     in English, a developer would use the following code snippet:
     <code>obj.occupation.en</code>.</p>
 
@@ -7426,7 +7429,9 @@ the data type to be specified explicitly with each piece of data.</p>
     <strong>de</strong> keys are implicitly associated with their respective
     values by the <a>JSON-LD Processor</a>.  This allows a developer to
     access the German version of the <strong>label</strong> using the
-    following code snippet: <code>obj.label.de</code>.</p>
+    following code snippet: <code>obj.label.de</code>,
+    which, again, is only appropriate when languages are limited to the
+    primary language sub-tag and do not depend on other sub-tags, such as `"en-us"`.</p>
 
   <p>The value of <code>@container</code> can also
     be an array containing both <code>@language</code> and <code>@set</code>.
