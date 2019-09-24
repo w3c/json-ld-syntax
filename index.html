@@ -1369,7 +1369,14 @@
       See <a class="sectionRef" href="#describing-values"></a> for more information,
       and <a class="sectionRef" href="#value-objects"></a> for the normative definition.
     </dd>
-    <dt><a>List Objects</a> and <a>Set objects</a></dt><dd></dd>
+    <dt><a>List Objects</a> and <a>Set objects</a></dt><dd>
+      <a>List Objects</a> are a special kind of JSON-LD <a>maps</a>,
+      distinct from <a>node objects</a> and <a>value objects</a>,
+      used to express ordered values by wrapping an <a>array</a> in a <a>map</a> under the key `@list`.
+      <a>Set Objects</a> exist for uniformity, and are equivalent to the array value of the `@set` key.
+      See <a href="#lists" class="sectionRef"></a> and <a href="#sets" class="sectionRef"></a>
+      for more detail.
+    </dd>
     <dt>Map Objects</dt><dd>
       JSON-LD uses various forms of <a>maps</a> as ways to more easily access values of a <a>property</a>.
       <dl>
