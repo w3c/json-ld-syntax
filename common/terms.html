@@ -169,7 +169,8 @@
     A set of rules for interpreting a <a>JSON-LD document</a>
     as specified in the <a data-cite="JSON-LD11#the-context">The Context</a> section of JSON-LD 1.1.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-default-language">default language</dfn></dt><dd>
-    The default language is set in the <a>context</a> using the <code>@language</code> key
+    The <a>default language</a> is the language used when a string does not have a language associated with it directly.
+    It can be set in the <a>context</a> using the <code>@language</code> key
     whose value MUST be a <a>string</a> representing a [[BCP47]] language code or <code>null</code>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-default-object">default object</dfn></dt><dd>
     A <a>default object</a> is a <a>map</a> that has a <code>@default</code> key.</dd>
@@ -223,14 +224,14 @@
     and its keys are interpreted as <a>IRIs</a> representing
     the <code>@id</code> of the associated <a>node object</a>.
     If a value in the <a>id map</a> contains a key expanding to <code>@id</code>,
-    it's value MUST be equivalent to the referencing key in the <a>id map</a>.</dd>
+    its value MUST be equivalent to the referencing key in the <a>id map</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-implicitly-named-graph">implicitly named graph</dfn></dt><dd>
     A <a>named graph</a> created from the value of a <a>map entry</a>
     having an <a>expanded term definition</a>
     where <code>@container</code> is set to  <code>@graph</code>.</dd>
   <dt class="changed"><dfn data-cite="JSON-LD11#dfn-included-block">included block</dfn></dt><dd class="changed">
     An <a>included block</a> is an <a>entry</a> in a <a>node object</a> where the key is either `@included` or an alias of `@included`
-    and the value is one ore more <a>node objects</a>.</dd>
+    and the value is one or more <a>node objects</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-index-map">index map</dfn></dt><dd>
     An <a>index map</a> is a <a>map</a> value of a <a>term</a>
     defined with <code>@container</code> set to <code>@index</code>,
@@ -344,7 +345,7 @@
     representing the <code>@type</code> of the associated <a>node object</a>;
     the value MUST be a <a>node object</a>, or <a>array</a> of node objects.
     If the value contains a <a>term</a> expanding to <code>@type</code>,
-    it's values are merged with the map value when expanding.</dd>
+    its values are merged with the map value when expanding.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-typed-value" class="preserve">typed value</dfn></dt><dd>
     A <a>typed value</a> consists of a value,
     which is a <a>string</a>,
