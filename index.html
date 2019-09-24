@@ -2463,76 +2463,6 @@
     allows the value to be a <a>term</a> or <a>compact IRI</a>.
     Note that terms used in the value of `@vocab` must be in scope at the time the context is introduced,
     otherwise there would be a circular dependency between `@vocab` and other terms defined in the same context.</p>
-
-  <section id="document-relative-vocabulary-mapping" class="changed">
-    <h3>Using the Document Base for the Default Vocabulary</h3>
-    <p>In some cases, vocabulary terms are defined directly within the document
-      itself, rather than in an external vocabulary.
-      Since <code>json-ld-1.1</code>, the <a>vocabulary mapping</a> in a <a>local context</a>
-      can be set to a <a>relative IRI</a>,
-      which is, if there is no vocabulary mapping in scope, resolved against the <a>base IRI</a>.
-      This causes terms which are expanded relative to the vocabulary,
-      such as the keys of <a>node objects</a>,
-      to be based on the <a>base IRI</a> to create <a>absolute IRIs</a>.</p>
-
-  <pre class="example input nohighlight" data-transform="updateExample"
-       title="Using &quot;#&quot; as the vocabulary mapping"
-       data-base="http://example/document">
-  <!--
-    {
-      "@context": {
-        ****"@version": 1.1,****
-        ****"@base": "http://example/document",****
-        "@vocab": ****"#"****
-      },
-      "@id": "http://example.org/places#BrewEats",
-      "@type": ****"Restaurant"****,
-      ****"name"****: "Brew Eats"
-      ####...####
-    }
-  -->
-  </pre>
-
-  <p>If this document were located at <code>http://example/document</code>, it would expand as follows:</p>
-
-  <aside class="example ds-selector-tabs"
-         title="Using &quot;#&quot; as the vocabulary mapping (expanded)">
-    <div class="selectors">
-      <button class="selected" data-selects="expanded">Expanded (Result)</button>
-      <button data-selects="statements">Statements</button>
-      <button data-selects="turtle">Turtle</button>
-      <a class="playground" target="_blank"></a>
-    </div>
-    <pre class="expanded result selected nohighlight" data-transform="updateExample">
-    <!--
-    [{
-      "@id": "http://example.org/places#BrewEats",
-      "@type": ["http://example/document#Restaurant"],
-      "http://example/document#name": [{"@value": "Brew Eats"}]
-    }]
-    -->
-    </pre>
-    <table class="statements"
-           data-result-for="Using &quot;#&quot; as the vocabulary mapping (expanded)-expanded"
-           data-to-rdf>
-      <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
-      <tbody>
-        <tr><td>http://example.org/places#BrewEats</td><td>rdf:type</td><td>http://example/document#Restaurant</td></tr>
-        <tr><td>http://example.org/places#BrewEats</td><td>http://example/document#name</td><td>Brew Eats</td></tr>
-      </tbody>
-    </table>
-    <pre class="turtle"
-         data-content-type="text/turtle"
-         data-result-for="Using &quot;#&quot; as the vocabulary mapping (expanded)-expanded"
-         data-transform="updateExample"
-         data-to-rdf>
-    <!--
-    <http://example.org/places#BrewEats> a <http://example/document#Restaurant>;
-      <http://example/document#name> "Brew Eats" .
-    -->
-    </pre>
-  </aside>
-  </section>
 </section>
 
 <section class="informative"><h2>Base IRI</h2>
@@ -2623,6 +2553,76 @@
 
   <p>Please note that the <code>@base</code> will be ignored if used in
     external contexts.</p>
+</section>
+
+<section id="document-relative-vocabulary-mapping" class="changed">
+  <h3>Using the Document Base for the Default Vocabulary</h3>
+  <p>In some cases, vocabulary terms are defined directly within the document
+    itself, rather than in an external vocabulary.
+    Since <code>json-ld-1.1</code>, the <a>vocabulary mapping</a> in a <a>local context</a>
+    can be set to a <a>relative IRI</a>,
+    which is, if there is no vocabulary mapping in scope, resolved against the <a>base IRI</a>.
+    This causes terms which are expanded relative to the vocabulary,
+    such as the keys of <a>node objects</a>,
+    to be based on the <a>base IRI</a> to create <a>absolute IRIs</a>.</p>
+
+<pre class="example input nohighlight" data-transform="updateExample"
+     title="Using &quot;#&quot; as the vocabulary mapping"
+     data-base="http://example/document">
+<!--
+  {
+    "@context": {
+      ****"@version": 1.1,****
+      ****"@base": "http://example/document",****
+      "@vocab": ****"#"****
+    },
+    "@id": "http://example.org/places#BrewEats",
+    "@type": ****"Restaurant"****,
+    ****"name"****: "Brew Eats"
+    ####...####
+  }
+-->
+</pre>
+
+<p>If this document were located at <code>http://example/document</code>, it would expand as follows:</p>
+
+<aside class="example ds-selector-tabs"
+       title="Using &quot;#&quot; as the vocabulary mapping (expanded)">
+  <div class="selectors">
+    <button class="selected" data-selects="expanded">Expanded (Result)</button>
+    <button data-selects="statements">Statements</button>
+    <button data-selects="turtle">Turtle</button>
+    <a class="playground" target="_blank"></a>
+  </div>
+  <pre class="expanded result selected nohighlight" data-transform="updateExample">
+  <!--
+  [{
+    "@id": "http://example.org/places#BrewEats",
+    "@type": ["http://example/document#Restaurant"],
+    "http://example/document#name": [{"@value": "Brew Eats"}]
+  }]
+  -->
+  </pre>
+  <table class="statements"
+         data-result-for="Using &quot;#&quot; as the vocabulary mapping (expanded)-expanded"
+         data-to-rdf>
+    <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>http://example.org/places#BrewEats</td><td>rdf:type</td><td>http://example/document#Restaurant</td></tr>
+      <tr><td>http://example.org/places#BrewEats</td><td>http://example/document#name</td><td>Brew Eats</td></tr>
+    </tbody>
+  </table>
+  <pre class="turtle"
+       data-content-type="text/turtle"
+       data-result-for="Using &quot;#&quot; as the vocabulary mapping (expanded)-expanded"
+       data-transform="updateExample"
+       data-to-rdf>
+  <!--
+  <http://example.org/places#BrewEats> a <http://example/document#Restaurant>;
+    <http://example/document#name> "Brew Eats" .
+  -->
+  </pre>
+</aside>
 </section>
 
 <section class="informative"><h2>Compact IRIs</h2>
