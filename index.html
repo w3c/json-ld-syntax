@@ -3440,90 +3440,91 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     types are listed, the order that <a>type-scoped contexts</a> are applied is based on
     lexicographical ordering.</p>
 
-  <p>For example, consider the following semantically equivalent examples:</p>
+  <p>For example, consider the following semantically equivalent examples.
+    The first example, shows how properties and types can define their own
+    scoped contexts, which are included when expanding.</p>
 
-  <aside class="example" title="Expansion using embedded and scoped contexts">
-    <p>This example, shows how properties and types can define their own
-      scoped contexts, which are included when expanding.</p>
-    <pre data-transform="updateExample">
-    <!--
-    {
-      "@context": {
-        "@vocab": "http://example.com/vocab/"
-        "property": {
-          "@id": "http://example.com/vocab/property",
-          "@context": {
-            "term1": "http://example.com/vocab/term1"
-            #### ↑ Scoped context for "property" defines term1
-          },
-        },
-        "Type1": {
-          "@id": "http://example.com/vocab/Type1",
-          "@context": {
-            "term3": "http://example.com/vocab/term3"
-            #### ↑ Scoped context for "Type1" defines term3
-          },
-        },
-        "Type2": {
-          "@id": "http://example.com/vocab/Type2",
-          "@context": {
-            "term4": "http://example.com/vocab/term4"
-            #### ↑ Scoped context for "Type2" defines term4
-          },
-        },
-      },
+  <pre class="example" title="Expansion using embedded and scoped contexts" data-transform="updateExample">
+  <!--
+  {
+    "@context": {
+      "@version": 1.1,
+      "@vocab": "http://example.com/vocab/",
       "property": {
+        "@id": "http://example.com/vocab/property",
         "@context": {
-          "term2": "http://example.com/vocab/term2"
-            #### ↑ Embedded context defines term2
-        },
-        "@type": ["Type2", "Type1"],
-        "term1": "a",
-        "term2": "b",
-        "term3": "c",
-        "term4": "d",
-      }
-    }
-    -->
-    </pre>
-
-    <p>Contexts are processed depending on how they are defined. A <a>property-scoped context</a>
-      is processed first, followed by any <a>embedded context</a>,
-      followed lastly by the <a>type-scoped contexts</a>, in the appropriate order.
-      The previous example is logically equivalent to the following:</p>
-    <pre data-transform="updateExample">
-    <!--
-    {
-      "@context": {
-        "@vocab": "http://example.com/vocab/"
-        "property": "http://example.com/vocab/property",
-        "Type1": "http://example.com/vocab/Type1",
-        "Type2": "http://example.com/vocab/Type2",
+          "term1": "http://example.com/vocab/term1"
+          #### ↑ Scoped context for "property" defines term1####
+        }
       },
-      "property": {
-        "@context": [{
-            "term1": "http://example.com/vocab/term1"
-            #### ↑ Scoped context for "property" defines term1
-          }, {
-            "term2": "http://example.com/vocab/term2"
-            #### ↑ Embedded context defines term2
-          }, {
-            "term3": "http://example.com/vocab/term3"
-            #### ↑ Scoped context for "Type1" defines term3
-          }, {
+      "Type1": {
+        "@id": "http://example.com/vocab/Type1",
+        "@context": {
+          "term3": "http://example.com/vocab/term3"
+          #### ↑ Scoped context for "Type1" defines term3####
+        }
+      },
+      "Type2": {
+        "@id": "http://example.com/vocab/Type2",
+        "@context": {
           "term4": "http://example.com/vocab/term4"
-            #### ↑ Scoped context for "Type2" defines term4
-        }],
-        "@type": ["Type2", "Type1"],
-        "term1": "a",
-        "term2": "b",
-        "term3": "c",
-        "term4": "d",
+          #### ↑ Scoped context for "Type2" defines term4####
+        }
       }
+    },
+    "property": {
+      "@context": {
+        "term2": "http://example.com/vocab/term2"
+          #### ↑ Embedded context defines term2####
+      },
+      "@type": ["Type2", "Type1"],
+      "term1": "a",
+      "term2": "b",
+      "term3": "c",
+      "term4": "d"
     }
-    -->
-    </pre>
-  </aside>
+  }
+  -->
+  </pre>
+
+  <p>Contexts are processed depending on how they are defined.
+    A <a>property-scoped context</a> is processed first,
+    followed by any <a>embedded context</a>,
+    followed lastly by the <a>type-scoped contexts</a>,
+    in the appropriate order. The previous example is logically equivalent to the following:</p>
+
+  <pre class="example" title="Expansion using embedded and scoped contexts (embedding equivalent)" data-transform="updateExample">
+  <!--
+  {
+    "@context": {
+      "@vocab": "http://example.com/vocab/",
+      "property": "http://example.com/vocab/property",
+      "Type1": "http://example.com/vocab/Type1",
+      "Type2": "http://example.com/vocab/Type2"
+    },
+    "property": {
+      "@context": [{
+          "term1": "http://example.com/vocab/term1"
+          #### ↑ Previously scoped context for "property" defines term1####
+        }, {
+          "term2": "http://example.com/vocab/term2"
+          #### ↑ Embedded context defines term2####
+        }, {
+          "term3": "http://example.com/vocab/term3"
+          #### ↑ Previously scoped context for "Type1" defines term3####
+        }, {
+        "term4": "http://example.com/vocab/term4"
+          #### ↑ Previously scoped context for "Type2" defines term4####
+      }],
+      "@type": ["Type2", "Type1"],
+      "term1": "a",
+      "term2": "b",
+      "term3": "c",
+      "term4": "d"
+    }
+  }
+  -->
+  </pre>
 
   <p class="note">If a <a>term</a> defines a <a>scoped context</a>,
     and then that term is later re-defined,
