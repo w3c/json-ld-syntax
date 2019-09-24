@@ -4694,9 +4694,10 @@ the data type to be specified explicitly with each piece of data.</p>
     "@context": {
       "@base": "http://example1.com/",
       "@vocab": "http://example2.com/",
-      "fred": {"@type": "@vocab"}
+      "knows": {"@type": "@vocab"}
     },
-    "fred": [
+    "@id": "fred",
+    "knows": [
       {"@id": "barney", "mnemonic": "the sidekick"},
       "barney"
     ]
@@ -4708,15 +4709,13 @@ the data type to be specified explicitly with each piece of data.</p>
        data-result-for="Term expansion for values, not identifiers-compacted">
   <!--
   [{
-    "http://example2.com/fred": [
-      {
-        "@id": "http://example1.com/barney",
-        "http://example2.com/mnemonic": [{"@value": "the sidekick"}]
-      },
-      {
-        "@id": "http://example2.com/barney"
-      }
-    ]
+    "@id": "http://example1.com/fred",
+    "http://example2.com/knows": [{
+      "@id": "http://example1.com/barney",
+      "http://example2.com/mnemonic": [{"@value": "the sidekick"}]
+    }, {
+      "@id": "http://example2.com/barney"
+    }]
   }]
   -->
   </pre>
@@ -4726,8 +4725,8 @@ the data type to be specified explicitly with each piece of data.</p>
     <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
     <tbody>
       <tr><td>http://example1.com/barney</td><td>http://example2.com/mnemonic</td><td>the sidekick</td></tr>
-      <tr><td>_:b0</td><td>http://example2.com/fred</td><td>http://example1.com/barney</td></tr>
-      <tr><td>_:b0</td><td>http://example2.com/fred</td><td>http://example2.com/barney</td></tr>
+      <tr><td>http://example1.com/fred</td><td>http://example2.com/knows</td><td>http://example1.com/barney</td></tr>
+      <tr><td>http://example1.com/fred</td><td>http://example2.com/knows</td><td>http://example2.com/barney</td></tr>
     </tbody>
   </table>
   <pre class="turtle"
@@ -4742,7 +4741,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   ex1:barney ex2:mnemonic "the sidekick" .
 
-  [ ex2:fred ex2:barney, ex1:barney] .
+  ex1:fred ex2:knows ex1:barney, ex2:barney .
   -->
   </pre>
 </aside>
@@ -4765,7 +4764,7 @@ the data type to be specified explicitly with each piece of data.</p>
   of <code>@vocab</code> illustrates the behavior of interpreting "barney" relative to the document:</p>
 
 
-<aside class="example ds-selector-tabs changed"
+<aside class="example ds-selector-tabs"
        title="Terms not expanded when document-relative">
   <div class="selectors">
     <button class="selected" data-selects="compacted">Compacted (Input)</button>
@@ -4780,9 +4779,10 @@ the data type to be specified explicitly with each piece of data.</p>
     "@context": {
       "@base": "http://example1.com/",
       "@vocab": "http://example2.com/",
-      "fred": {"@type": "@id"}
+      "knows": {"@type": "@id"}
     },
-    "fred": [
+    "@id": "fred",
+    "knows": [
       {"@id": "barney", "mnemonic": "the sidekick"},
       "barney"
     ]
@@ -4794,15 +4794,13 @@ the data type to be specified explicitly with each piece of data.</p>
        data-result-for="Terms not expanded when document-relative-compacted">
   <!--
   [{
-    "http://example2.com/fred": [
-      {
-        "@id": "http://example1.com/barney",
-        "http://example2.com/mnemonic": [{"@value": "the sidekick"}]
-      },
-      {
-        "@id": "http://example1.com/barney"
-      }
-    ]
+    "@id": "http://example1.com/fred",
+    "http://example2.com/knows": [{
+      "@id": "http://example1.com/barney",
+      "http://example2.com/mnemonic": [{"@value": "the sidekick"}]
+    }, {
+      "@id": "http://example1.com/barney"
+    }]
   }]
   -->
   </pre>
@@ -4818,7 +4816,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   ex1:barney ex2:mnemonic "the sidekick" .
 
-  [] ex2:fred ex1:barney, ex1:barney .
+  ex1:fred ex2:knows, ex1:barney .
   -->
   </pre>
 </aside>
@@ -4831,7 +4829,7 @@ the data type to be specified explicitly with each piece of data.</p>
   to be applied to keys which are not represented as a simple <a>term</a>.
   For example:</p>
 
-<aside class="example ds-selector-tabs changed"
+<aside class="example ds-selector-tabs"
        title="Term definitions using compact and absolute IRIs">
   <div class="selectors">
     <button class="selected" data-selects="compacted">Compacted (Input)</button>
