@@ -4816,7 +4816,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   ex1:barney ex2:mnemonic "the sidekick" .
 
-  ex1:fred ex2:knows, ex1:barney .
+  ex1:fred ex2:knows ex1:barney, ex1:barney .
   -->
   </pre>
 </aside>
@@ -5001,6 +5001,8 @@ the data type to be specified explicitly with each piece of data.</p>
   {
     "@context": {
       ####...####
+      ****"@version": 1.1,****
+      "@vocab": "http://example.com/",
       "@language": "ja",
       "details": {
         ****"@context": {
