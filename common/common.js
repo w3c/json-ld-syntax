@@ -33,14 +33,23 @@ function restrictReferences(utils, content) {
   return (base.innerHTML);
 }
 
-// add a handler to come in after all the definitions are resolved
-//
-// New logic: If the reference is within a 'dl' element of
-// class 'termlist', and if the target of that reference is
-// also within a 'dl' element of class 'termlist', then
-// consider it an internal reference and ignore it.
 require(["core/pubsubhub"], (respecEvents) => {
   "use strict";
+
+// remote data-cite on where the citation is to ourselves.
+  respecEvents.sub('end', (message) => {
+    const selfDfns = document.querySelectorAll("dfn[data-cite^='" + respecConfig.shortName.toUpperCase() + "']");
+    for (const dfn of selfDfns) {
+      delete dfn.dataset.cite;
+    }
+  });
+
+  // add a handler to come in after all the definitions are resolved
+  //
+  // New logic: If the reference is within a 'dl' element of
+  // class 'termlist', and if the target of that reference is
+  // also within a 'dl' element of class 'termlist', then
+  // consider it an internal reference and ignore it.
   respecEvents.sub('end', (message) => {
     if (message === 'core/link-to-dfn') {
       // all definitions are linked; find any internal references
