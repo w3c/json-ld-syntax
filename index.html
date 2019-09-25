@@ -809,10 +809,10 @@
     losing accuracy.</p>
 
     <p>Simply speaking, a <a>context</a> is used to map <a>terms</a> to <a>IRIs</a>.
-      <a>Terms</a> are case sensitive and most any valid <a>string</a> that is not a reserved JSON-LD <a>keyword</a>
+      <a>Terms</a> are case sensitive and most valid <a>strings</a> that are not reserved JSON-LD <a>keywords</a>
       can be used as a <a>term</a>.
-      <span class="changed">The empty string `""` and strings that have the form
-        of a keyword (e.g., staring with `"@"`) must not be used as terms.
+      <span class="changed">Exceptions are the empty string `""` and strings that have the form
+        of a keyword (i.e., staring with `"@"`), which must not be used as terms.
         Strings that have the form of
         an absolute IRI (e.g., containing a `":"`) should not be used as terms.</span></p>
 
@@ -955,8 +955,8 @@
       This has the advantage that documents can be processed even in the
       absence of a connection to the Web. Ultimately, this is a modeling decision
       and different use cases may require different handling.
-      See See <a href="#iana-security">Security Considerations</a> in <a href="#iana-considerations" class="sectionRef"></a>
-      for a discussion other considerations for using remote contexts.</p>
+      See <a href="#iana-security">Security Considerations</a> in <a href="#iana-considerations" class="sectionRef"></a>
+      for a discussion on using remote contexts.</p>
 
     <aside class="example ds-selector-tabs"
            title="In-line context definition">
@@ -1656,7 +1656,7 @@
     further discussion.</p></dd>
   <dt>Property nesting</dt>
   <dd><p>Another JSON idiom often found in APIs is to use an
-      intermediate object to to group together related properties of an object; in JSON-LD
+      intermediate object to group together related properties of an object; in JSON-LD
       these are referred to as <a>nested properties</a> and are described in <a
       href="#nested-properties" class="sectionRef"></a>.</p></dd>
   <dt>Referencing objects</dt>
@@ -7432,7 +7432,7 @@ the data type to be specified explicitly with each piece of data.</p>
     access the German version of the <strong>label</strong> using the
     following code snippet: <code>obj.label.de</code>,
     which, again, is only appropriate when languages are limited to the
-    primary language sub-tag and do not depend on other sub-tags, such as `"en-us"`.</p>
+    primary language sub-tag and do not depend on other sub-tags, such as `"de-at"`.</p>
 
   <p>The value of <code>@container</code> can also
     be an array containing both <code>@language</code> and <code>@set</code>.
