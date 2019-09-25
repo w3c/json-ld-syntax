@@ -614,6 +614,9 @@
         (other than for <a>type-scoped contexts</a>, which default to `false`).
         Setting this to `false` causes term definitions created within that context
         to be removed when entering a new <a>node object</a>.</dd>
+      <dt class="changed">`@protected`</dt><dd class="changed">
+        Used to prevent <a>term definitions</a> of a context to be overriden by other contexts.
+        This keyword is described in <a class="sectionRef" href="#protected-term-definitions"></a>.
       <dt class="changed">`@import`</dt><dd class="changed">
         Used in a <a>context definition</a> to load an external context
         within which the containing <a>context definition</a> is merged.
@@ -12156,27 +12159,46 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>A <a>context definition</a> MUST be a <a>map</a> whose
     keys MUST be either <a>terms</a>, <a>compact IRIs</a>, <a>absolute IRIs</a>,
-    or one of the <a>keywords</a> <code>@language</code>, <code>@base</code>,
-    <code class="changed">@type</code>, <code>@vocab</code>, or <code class="changed">@version</code>.</p>
-
-  <p>If the <a>context definition</a> has an <code>@language</code> key,
-    its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
+    or one of the <a>keywords</a>
+    <code>@base</code>,
+    <code class="changed">@import</code>,
+    <code>@language</code>,
+    <code class="changed">@propagate</code>,
+    <code class="changed">@protected</code>,
+    <code class="changed">@type</code>,
+    <code class="changed">@version</code>.
+    or <code>@vocab</code>.
+  </p>
 
   <p>If the <a>context definition</a> has an <code>@base</code> key,
     its value MUST be an <a>absolute IRI</a>, a <a>relative IRI</a>,
     or <a>null</a>.</p>
 
+  <p>If the <a>context definition</a> has an <code>@language</code> key,
+    its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
+
+  <p class="changed">If a <a>context</a> contains the <code>@import</code>
+    <a>keyword</a>, its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.
+    When used as a reference from an `@import`, the referenced <a>context definition</a> MUST NOT
+    include an `@import` key, itself.</p>
+
+  <p class="changed">If the <a>context definition</a> has an <code>@propagate</code> key,
+    its value MUST be <code>true</code> or <code>false</code>.</p>
+
+  <p class="changed">If the <a>context definition</a> has an <code>@protected</code> key,
+    its value MUST be <code>true</code> or <code>false</code>.</p>
+
   <p class="changed">If the <a>context definition</a> has an <code>@type</code> key,
     its value MUST be a <a>map</a> with the single <a>entry</a> <code>@container</code> set to <code>@set</code>.</p>
+
+  <p class="changed">If the <a>context definition</a> has an <code>@version</code> key,
+    its value MUST be a <a>number</a> with the value <code>1.1</code>.</p>
 
   <p>If the <a>context definition</a> has an <code>@vocab</code> key,
     its value MUST be a <a>absolute IRI</a>, a <a>compact IRI</a>,
     a <a>blank node identifier</a>,
     <span class="changed">a <a>relative IRI</a></span>,
     a <a>term</a>, or <a>null</a>.</p>
-
-  <p class="changed">If the <a>context definition</a> has an <code>@version</code> key,
-    its value MUST be a <a>number</a> with the value <code>1.1</code>.</p>
 
   <p>The value of keys that are not <a>keywords</a> MUST be either an
     <a>absolute IRI</a>, a <a>compact IRI</a>, a <a>term</a>,
@@ -12191,14 +12213,13 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>An <a>expanded term definition</a> MUST be a <a>map</a>
     composed of zero or more keys from
     <code>@id</code>,
-    <code class="changed">@import</code>,
     <code>@reverse</code>,
     <code>@type</code>,
     <code>@language</code>,
     <code>@container</code>,
     <code class="changed">@context</code>,
-    <code class="changed">@prefix</code>, or
-    <code class="changed">@propagate</code>.
+    <code class="changed">@prefix</code>,
+    <code class="changed">@protected</code>.
     An <a>expanded term definition</a> SHOULD NOT contain any other keys.</p>
 
   <p>If the term being defined is not a <a>compact IRI</a> or
@@ -12265,13 +12286,8 @@ the data type to be specified explicitly with each piece of data.</p>
   <p class="changed">If the <a>expanded term definition</a> contains the <code>@prefix</code>
     <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
 
-  <p class="changed">If the <a>expanded term definition</a> contains the <code>@propagate</code>
+  <p class="changed">If the <a>expanded term definition</a> contains the <code>@protected</code>
     <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
-
-  <p class="changed">If a <a>context</a> contains the <code>@import</code>
-    <a>keyword</a>, its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.
-    When used as a reference from an `@import`, the referenced <a>context definition</a> MUST NOT
-    include an `@import` key, itself.</p>
 
   <p><a>Terms</a> MUST NOT be used in a circular manner. That is,
     the definition of a term cannot depend on the definition of another term if that other
@@ -12405,6 +12421,12 @@ the data type to be specified explicitly with each piece of data.</p>
       The `@propagate` keyword MUST NOT be aliased, and MAY be used in a <a>context definition</a>.
       Its value MUST be <code>true</code> or <code>false</code>.
       See <a class="sectionRef" href="#context-propagation"></a> for a further discussion.
+    </dd>
+    <dt class="changed">`@protected`</dt><dd class="changed">
+      The `@protected` keyword MUST NOT be aliased, and MAY be used in a <a>context definition</a>,
+      or an <a>expanded term definition</a>.
+      Its value MUST be <code>true</code> or <code>false</code>.
+      See <a class="sectionRef" href="#protected-term-definitions"></a> for a further discussion.
     </dd>
     <dt><code>@reverse</code></dt><dd>
       The <code>@reverse</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a>.
