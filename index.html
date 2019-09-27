@@ -6803,26 +6803,27 @@ the data type to be specified explicitly with each piece of data.</p>
         "schema": "http://schema.org/",
         "name": "schema:name",
         "body": "schema:articleBody",
-        "words": "schema:wordCount",
-        "post": {
-          "@id": "schema:blogPost",
+        "athletes": {
+          "@id": "schema:athlete",
           ****"@container": "@index"****
-        }
+        },
+        "position": "schema:jobTitle"
       },
       "@id": "http://example.com/",
-      "@type": "schema:Blog",
-      "name": "World Financial News",
-      ****"post": {
-        "en": {
-          "@id": "http://example.com/posts/1/en",
-          "body": "World commodities were up today with heavy trading of crude oil...",
-          "words": 1539
+      "@type": "schema:SportsTeam",
+      "name": "San Franciso Giants",
+      ****"athletes": {
+        "catcher": {
+          "@type": "schema:Person",
+          "name": "Buster Posey",
+          "position": "Catcher"
         },
-        "de": {
-          "@id": "http://example.com/posts/1/de",
-          "body": "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...",
-          "words": 1204
-        }****
+        "pitcher": {
+          "@type": "schema:Person",
+          "name": "Madison Bumgarner",
+          "position": "Starting Pitcher"
+        }****####,
+        ....####
       }
     }
     -->
@@ -6833,25 +6834,21 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     [{
       "@id": "http://example.com/",
-      "@type": ["http://schema.org/Blog"],
-      "http://schema.org/name": [{"@value": "World Financial News"}],
-      ****"http://schema.org/blogPost": [{
-        "@id": "http://example.com/posts/1/en",
-        "http://schema.org/articleBody": [
-          {"@value": "World commodities were up today with heavy trading of crude oil..."}
-        ],
-        "http://schema.org/wordCount": [
-          {"@value": 1539}
-        ],
-        "@index": "en"
+      "@type": ["http://schema.org/SportsTeam"],
+      "http://schema.org/name": [{"@value": "San Franciso Giants"}],
+      ****"http://schema.org/athlete": [{
+        "@type": ["http://schema.org/Person"],
+        "http://schema.org/name": [{"@value": "Buster Posey"}],
+        "http://schema.org/jobTitle": [{"@value": "Catcher"}],
+        "@index": "catcher"
       }, {
-        "@id": "http://example.com/posts/1/de",
-        "http://schema.org/articleBody": [
-          {"@value": "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl..."}
-        ],
-        "http://schema.org/wordCount": [{"@value": 1204}],
-        "@index": "de"
-      }]****
+        "@type": ["http://schema.org/Person"],
+        "http://schema.org/name": [{"@value": "Madison Bumgarner"}],
+        "http://schema.org/jobTitle": [{"@value": "Starting Pitcher"}],
+        "@index": "pitcher"
+      }####,
+      ....####
+      ]****
     }]
     -->
     </pre>
@@ -6865,54 +6862,16 @@ the data type to be specified explicitly with each piece of data.</p>
       <th>Value Type</th>
     </tr></thead>
     <tbody>
-    <tr>
-      <td>http://example.com/</td>
-      <td>rdf:type</td>
-      <td>schema:Blog</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/</td>
-      <td>schema:name</td>
-      <td>World Financial News</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/</td>
-      <td>schema:blogPost</td>
-      <td>http://example.com/posts/1/de</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/</td>
-      <td>schema:blogPost</td>
-      <td>http://example.com/posts/1/en</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/posts/1/de</td>
-      <td>schema:articleBody</td>
-      <td>Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/posts/1/de</td>
-      <td>schema:wordCount</td>
-      <td>1204</td>
-      <td>xsd:integer</td>
-    </tr>
-    <tr>
-      <td>http://example.com/posts/1/en</td>
-      <td>schema:articleBody</td>
-      <td>World commodities were up today with heavy trading of crude oil...</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/posts/1/en</td>
-      <td>schema:wordCount</td>
-      <td>1539</td>
-      <td>xsd:integer</td>
-    </tr>
+      <tr><td>http://example.com/</td><td>rdf:type</td><td>schema:SportsTeam</td></tr>
+      <tr><td>http://example.com/</td><td>schema:name</td><td>San Franciso Giants</td></tr>
+      <tr><td>_:b0</td><td>rdf:type</td><td>schema:Person</td></tr>
+      <tr><td>_:b0</td><td>schema:name</td><td>Buster Posey</td></tr>
+      <tr><td>_:b0</td><td>schema:jobTitle</td><td>Catcher</td></tr>
+      <tr><td>http://example.com/</td><td>schema:athlete</td><td>_:b0</td></tr>
+      <tr><td>_:b1</td><td>rdf:type</td><td>schema:Person</td></tr>
+      <tr><td>_:b1</td><td>schema:name</td><td>Madison Bumgarner</td></tr>
+      <tr><td>_:b1</td><td>schema:jobTitle</td><td>Starting Pitcher</td></tr>
+      <tr><td>http://example.com/</td><td>schema:athlete</td><td>_:b1</td></tr>
     </tbody>
     </table>
     <pre class="turtle nohighlight"
@@ -6922,38 +6881,40 @@ the data type to be specified explicitly with each piece of data.</p>
          data-to-rdf>
     <!--
     @prefix schema: <http://schema.org/> .
-    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-    <http://example.com/> a schema:Blog;
-       schema:blogPost ****<http://example.com/posts/1/de>,
-         <http://example.com/posts/1/en>****;
-       schema:name "World Financial News" .
-
-    ****<http://example.com/posts/1/de>
-       schema:articleBody
-          "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...";
-       schema:wordCount 1204 .
-
-    <http://example.com/posts/1/en>
-       schema:articleBody
-          "World commodities were up today with heavy trading of crude oil...";
-       schema:wordCount 1539 .****
+    <http://example.com/> a schema:SportsTeam;
+      schema:name "San Franciso Giants";
+      schema:athlete [
+        a schema:Person;
+        schema:jobTitle "Catcher";
+        schema:name "Buster Posey"
+      ], [
+        a schema:Person;
+        schema:jobTitle "Starting Pitcher";
+        schema:name "Madison Bumgarner"
+      ]####,
+      ....####
+      .
     -->
     </pre>
   </aside>
 
-  <p>In the example above, the <strong>post</strong> <a>term</a> has
-    been marked as an <a>index map</a>. The <strong>en</strong> and
-    <strong>de</strong> keys will be ignored  semantically, but preserved
-    syntactically, by the <a>JSON-LD Processor</a>. If used in JavaScript, this can allow a developer to
-    access the German version of the <strong>post</strong> using the
-    following code snippet: <code>obj.post.de</code>.</p>
+  <p>In the example above, the <strong>athletes</strong> <a>term</a> has
+    been marked as an <a>index map</a>.
+    The <strong>catcher</strong> and <strong>pitcher</strong> keys will be ignored  semantically,
+    but preserved syntactically, by the <a>JSON-LD Processor</a>.
+    If used in JavaScript, this can allow a developer to access a particular athlete using the
+    following code snippet: <code>obj.athletes.pitcher</code>.</p>
 
-  <p>The interpretation of the data is expressed in
-    the statements table. Note how the index keys do not appear in the statements,
+  <p>The interpretation of the data is expressed in the statements table.
+    <strong>Note how the index keys do not appear in the statements</strong>,
     but would continue to exist if the document were compacted or
     expanded (see <a class="sectionRef" href="#compacted-document-form"></a> and
     <a class="sectionRef" href="#expanded-document-form"></a>) using a <a>JSON-LD processor</a>.</p>
+
+  <p class="warning">As data indexes are not preserved when round-tripping to RDF;
+    this feature should be used judiciously.
+    Often, other indexing mechanisms, which are preserved, are more appropriate.</p>
 
   <p class="changed">The value of <code>@container</code> can also
     be an array containing both <code>@index</code> and <code>@set</code>.
@@ -6979,34 +6940,34 @@ the data type to be specified explicitly with each piece of data.</p>
     {
       "@context": {
          ****"@version": 1.1,****
-         "schema": "http://schema.org/",
-         "name": "schema:name",
-         "body": "schema:articleBody",
-         "words": "schema:wordCount",
-         "post": {
-           "@id": "schema:blogPost",
-           ****"@container": "@index"****
-         }
+        "schema": "http://schema.org/",
+        "name": "schema:name",
+        "body": "schema:articleBody",
+        "athletes": {
+          "@id": "schema:athlete",
+          "@container": "@index"
+        },
+        "position": "schema:jobTitle"
       },
       "@id": "http://example.com/",
-      "@type": "schema:Blog",
-      "name": "World Financial News",
-      "post": {
-        "en": {
-          "@id": "http://example.com/posts/1/en",
-          "body": "World commodities were up today with heavy trading of crude oil...",
-          "words": 1539
+      "@type": "schema:SportsTeam",
+      "name": "San Franciso Giants",
+      "athletes": {
+        "catcher": {
+          "@type": "schema:Person",
+          "name": "Buster Posey",
+          "position": "Catcher"
         },
-        "de": {
-          "@id": "http://example.com/posts/1/de",
-          "body": "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...",
-          "words": 1204
+        "pitcher": {
+          "@type": "schema:Person",
+          "name": "Madison Bumgarner",
+          "position": "Starting Pitcher"
         },
         ****"@none": {
-          "@id": "http://example.com/posts/1/no-language",
-          "body": "Unindexed description",
-          "words": 20
-        }****
+          "name": "Lou Seal",
+          "position": "Mascot"
+        }****####,
+        ....####
       }
     }
     -->
@@ -7017,34 +6978,23 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     [{
       "@id": "http://example.com/",
-      "@type": ["http://schema.org/Blog"],
-      "http://schema.org/name": [
-        {"@value": "World Financial News"}
-      ],
-      "http://schema.org/blogPost": [
-        {
-          "@id": "http://example.com/posts/1/en",
-          "http://schema.org/articleBody": [
-            {"@value": "World commodities were up today with heavy trading of crude oil..."}
-          ],
-          "http://schema.org/wordCount": [{"@value": 1539}],
-          "@index": "en"
-        },
-        {
-          "@id": "http://example.com/posts/1/de",
-          "http://schema.org/articleBody": [
-            {"@value": "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl..."}
-          ],
-          "http://schema.org/wordCount": [{"@value": 1204}],
-          "@index": "de"
-        },
-        ****{
-          "@id": "http://example.com/posts/1/no-language",
-          "http://schema.org/articleBody": [
-            {"@value": "Unindexed description"}
-          ],
-          "http://schema.org/wordCount": [{"@value": 20}]
-        }****
+      "@type": ["http://schema.org/SportsTeam"],
+      "http://schema.org/name": [{"@value": "San Franciso Giants"}],
+      "http://schema.org/athlete": [{
+        "@type": ["http://schema.org/Person"],
+        "http://schema.org/name": [{"@value": "Buster Posey"}],
+        "http://schema.org/jobTitle": [{"@value": "Catcher"}],
+        "@index": "catcher"
+      }, {
+        "@type": ["http://schema.org/Person"],
+        "http://schema.org/name": [{"@value": "Madison Bumgarner"}],
+        "http://schema.org/jobTitle": [{"@value": "Starting Pitcher"}],
+        "@index": "pitcher"
+      }****, {
+        "http://schema.org/name": [{"@value": "Lou Seal"}],
+        "http://schema.org/jobTitle": [{"@value": "Mascot"}]
+      }****####,
+      ....####
       ]
     }]
     -->
@@ -7059,72 +7009,19 @@ the data type to be specified explicitly with each piece of data.</p>
       <th>Value Type</th>
     </tr></thead>
     <tbody>
-    <tr>
-      <td>http://example.com/</td>
-      <td>rdf:type</td>
-      <td>schema:Blog</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/</td>
-      <td>schema:name</td>
-      <td>World Financial News</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/</td>
-      <td>schema:blogPost</td>
-      <td>http://example.com/posts/1/de</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/</td>
-      <td>schema:blogPost</td>
-      <td>http://example.com/posts/1/en</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/</td>
-      <td>schema:blogPost</td>
-      <td>http://example.com/posts/1/no-language</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/posts/1/de</td>
-      <td>schema:articleBody</td>
-      <td>Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/posts/1/de</td>
-      <td>schema:wordCount</td>
-      <td>1204</td>
-      <td>xsd:integer</td>
-    </tr>
-    <tr>
-      <td>http://example.com/posts/1/en</td>
-      <td>schema:articleBody</td>
-      <td>World commodities were up today with heavy trading of crude oil...</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/posts/1/en</td>
-      <td>schema:wordCount</td>
-      <td>1539</td>
-      <td>xsd:integer</td>
-    </tr>
-    <tr>
-      <td>http://example.com/posts/1/no-language</td>
-      <td>schema:articleBody</td>
-      <td>Unindexed description</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>http://example.com/posts/1/no-language</td>
-      <td>schema:wordCount</td>
-      <td>20</td>
-      <td>xsd:integer</td>
-    </tr>
+      <tr><td>http://example.com/</td><td>rdf:type</td><td>schema:SportsTeam</td></tr>
+      <tr><td>http://example.com/</td><td>schema:name</td><td>San Franciso Giants</td></tr>
+      <tr><td>_:b0</td><td>rdf:type</td><td>schema:Person</td></tr>
+      <tr><td>_:b0</td><td>schema:name</td><td>Buster Posey</td></tr>
+      <tr><td>_:b0</td><td>schema:jobTitle</td><td>Catcher</td></tr>
+      <tr><td>http://example.com/</td><td>schema:athlete</td><td>_:b0</td></tr>
+      <tr><td>_:b1</td><td>rdf:type</td><td>schema:Person</td></tr>
+      <tr><td>_:b1</td><td>schema:name</td><td>Madison Bumgarner</td></tr>
+      <tr><td>_:b1</td><td>schema:jobTitle</td><td>Starting Pitcher</td></tr>
+      <tr><td>http://example.com/</td><td>schema:athlete</td><td>_:b1</td></tr>
+      <tr><td>_:b2</td><td>schema:name</td><td>Lou Seal</td></tr>
+      <tr><td>_:b2</td><td>schema:jobTitle</td><td>Mascot</td></tr>
+      <tr><td>http://example.com/</td><td>schema:athlete</td><td>_:b2</td></tr>
     </tbody>
     </table>
     <pre class="turtle nohighlight"
@@ -7134,28 +7031,23 @@ the data type to be specified explicitly with each piece of data.</p>
          data-to-rdf>
     <!--
     @prefix schema: <http://schema.org/> .
-    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-    <http://example.com/> a schema:Blog;
-       schema:blogPost <http://example.com/posts/1/de>,
-         <http://example.com/posts/1/en>,
-         ****<http://example.com/posts/1/no-language>****;
-       schema:name "World Financial News" .
-
-    <http://example.com/posts/1/de>
-       schema:articleBody
-          "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...";
-       schema:wordCount 1204 .
-
-    <http://example.com/posts/1/en>
-       schema:articleBody
-          "World commodities were up today with heavy trading of crude oil...";
-       schema:wordCount 1539 .
-
-    <http://example.com/posts/1/no-language>
-       schema:articleBody
-          "Unindexed description";
-       schema:wordCount 20 .
+    <http://example.com/> a schema:SportsTeam;
+      schema:name "San Franciso Giants";
+      schema:athlete [
+        a schema:Person;
+        schema:jobTitle "Catcher";
+        schema:name "Buster Posey"
+      ], [
+        a schema:Person;
+        schema:jobTitle "Starting Pitcher";
+        schema:name "Madison Bumgarner"
+      ], ****[
+        schema:jobTitle "Mascot";
+        schema:name "Lou Seal"
+      ]****####,
+      ....####
+      .
     -->
     </pre>
   </aside>
@@ -7182,68 +7074,59 @@ the data type to be specified explicitly with each piece of data.</p>
       <a class="playground" target="_blank"></a>
     </div>
     <pre class="compacted input selected nohighlight" data-transform="updateExample">
-      <!--
-        {
-          "@context": {
-            "@version": 1.1,
-            "schema": "http://schema.org/",
-            "dc11": "http://purl.org/dc/elements/1.1/",
-            "name": "schema:name",
-            "body": "schema:articleBody",
-            "words": "schema:wordCount",
-            "post": {
-              "@id": "schema:blogPost",
-              ****"@container": "@index",
-              "@index": "dc11:language"****
-            }
-          },
-          "@id": "http://example.com/",
-          "@type": "schema:Blog",
-          "name": "World Financial News",
-          "post": {
-            "en": {
-            ####↑ "en" will add `"dc11:language": "en"` when expanded####
-              "@id": "http://example.com/posts/1/en",
-              "body": "World commodities were up today with heavy trading of crude oil...",
-              "words": 1539
-            },
-            "de": {
-              "@id": "http://example.com/posts/1/de",
-              "body": "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...",
-              "words": 1204
-            }
-          }
+    <!--
+    {
+      "@context": {
+        ****"@version": 1.1,****
+        "schema": "http://schema.org/",
+        "name": "schema:name",
+        "body": "schema:articleBody",
+        "athletes": {
+          "@id": "schema:athlete",
+          "@container": "@index",
+          ****"@index": "schema:jobTitle"****
         }
-      -->
+      },
+      "@id": "http://example.com/",
+      "@type": "schema:SportsTeam",
+      "name": "San Franciso Giants",
+      ****"athletes": {
+        "Catcher": {
+          ####↑ "Catcher" will add `"schema:jobTitle": "Catcher"` when expanded####
+          "@type": "schema:Person",
+          "name": "Buster Posey"
+        },
+        "Starting Pitcher": {
+          "@type": "schema:Person",
+          "name": "Madison Bumgarner"
+        }****####,
+        ....####
+      }
+    }
+    -->
     </pre>
     <pre class="expanded result nohighlight"
          data-transform="updateExample"
          data-ignore
          data-result-for="Property-based data indexing-compacted">
-      <!--
-        [{
-          "@id": "http://example.com/",
-          "@type": ["http://schema.org/Blog"],
-          "http://schema.org/name": [{"@value": "World Financial News"}],
-          "http://schema.org/blogPost": [{
-            "@id": "http://example.com/posts/1/en",
-            "http://schema.org/articleBody": [
-            {"@value": "World commodities were up today with heavy trading of crude oil..."}
-            ],
-            "http://schema.org/wordCount": [
-            {"@value": 1539}
-            ],
-            ****"http://purl.org/dc/elements/1.1/language": "en"****
-          }, {
-            "@id": "http://example.com/posts/1/de",
-            "http://schema.org/articleBody": [
-            {"@value": "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl..."}
-            ],
-            "http://schema.org/wordCount": [{"@value": 1204}],
-            ****"http://purl.org/dc/elements/1.1/language": "de"****
-          }]
-        }]
-      -->
+    <!--
+    [{
+      "@id": "http://example.com/",
+      "@type": ["http://schema.org/SportsTeam"],
+      "http://schema.org/name": [{"@value": "San Franciso Giants"}],
+      ****"http://schema.org/athlete": [{
+        "@type": ["http://schema.org/Person"],
+        "http://schema.org/name": [{"@value": "Buster Posey"}],
+        "http://schema.org/jobTitle": [{"@value": "Catcher"}]
+      }, {
+        "@type": ["http://schema.org/Person"],
+        "http://schema.org/name": [{"@value": "Madison Bumgarner"}],
+        "http://schema.org/jobTitle": [{"@value": "Starting Pitcher"}]
+      }####,
+      ....####
+      ]****
+    }]
+    -->
     </pre>
     <table class="statements"
            data-ignore
@@ -7256,66 +7139,16 @@ the data type to be specified explicitly with each piece of data.</p>
         <th>Value Type</th>
       </tr></thead>
       <tbody>
-        <tr>
-          <td>http://example.com/</td>
-          <td>rdf:type</td>
-          <td>schema:Blog</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>http://example.com/</td>
-          <td>schema:name</td>
-          <td>World Financial News</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>http://example.com/</td>
-          <td>schema:blogPost</td>
-          <td>http://example.com/posts/1/de</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>http://example.com/</td>
-          <td>schema:blogPost</td>
-          <td>http://example.com/posts/1/en</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>http://example.com/posts/1/de</td>
-          <td>schema:articleBody</td>
-          <td>Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>http://example.com/posts/1/de</td>
-          <td>schema:wordCount</td>
-          <td>1204</td>
-          <td>xsd:integer</td>
-        </tr>
-        <tr>
-          <td>http://example.com/posts/1/de</td>
-          <td>dc11:language</td>
-          <td>de</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>http://example.com/posts/1/en</td>
-          <td>schema:articleBody</td>
-          <td>World commodities were up today with heavy trading of crude oil...</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>http://example.com/posts/1/en</td>
-          <td>schema:wordCount</td>
-          <td>1539</td>
-          <td>xsd:integer</td>
-        </tr>
-        <tr>
-          <td>http://example.com/posts/1/en</td>
-          <td>dc11:language</td>
-          <td>en</td>
-          <td></td>
-        </tr>
+      <tr><td>http://example.com/</td><td>rdf:type</td><td>schema:SportsTeam</td></tr>
+      <tr><td>http://example.com/</td><td>schema:name</td><td>San Franciso Giants</td></tr>
+      <tr><td>_:b0</td><td>rdf:type</td><td>schema:Person</td></tr>
+      <tr><td>_:b0</td><td>schema:name</td><td>Buster Posey</td></tr>
+      <tr><td>_:b0</td><td>schema:jobTitle</td><td>Catcher</td></tr>
+      <tr><td>http://example.com/</td><td>schema:athlete</td><td>_:b0</td></tr>
+      <tr><td>_:b1</td><td>rdf:type</td><td>schema:Person</td></tr>
+      <tr><td>_:b1</td><td>schema:name</td><td>Madison Bumgarner</td></tr>
+      <tr><td>_:b1</td><td>schema:jobTitle</td><td>Starting Pitcher</td></tr>
+      <tr><td>http://example.com/</td><td>schema:athlete</td><td>_:b1</td></tr>
       </tbody>
     </table>
     <pre class="turtle nohighlight"
@@ -7324,28 +7157,23 @@ the data type to be specified explicitly with each piece of data.</p>
          data-result-for="Property-based data indexing-expanded"
          data-transform="updateExample"
          data-to-rdf>
-      <!--
+    <!--
     @prefix schema: <http://schema.org/> .
-    @prefix dc11: <http://purl.org/dc/elements/1.1/language> .
-    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-    
-    <http://example.com/> a schema:Blog;
-        schema:blogPost <http://example.com/posts/1/de>,
-          <http://example.com/posts/1/en>;
-        schema:name "World Financial News" .
-        
-    <http://example.com/posts/1/de>
-        schema:articleBody
-          "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...";
-        schema:wordCount 1204;
-        ****dc11:language "de"**** .
-        
-    <http://example.com/posts/1/en>
-        schema:articleBody
-          "World commodities were up today with heavy trading of crude oil...";
-        schema:wordCount 1539;
-        ****dc11:language "en"**** .
-        -->
+
+    <http://example.com/> a schema:SportsTeam;
+      schema:name "San Franciso Giants";
+      schema:athlete [
+        a schema:Person;
+        schema:jobTitle "Catcher";
+        schema:name "Buster Posey"
+      ], [
+        a schema:Person;
+        schema:jobTitle "Starting Pitcher";
+        schema:name "Madison Bumgarner"
+      ]####,
+      ....####
+      .
+    -->
     </pre>
   </aside>
 
