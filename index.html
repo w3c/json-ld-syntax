@@ -3050,9 +3050,14 @@
     <strong>url</strong> and <strong>a</strong>, respectively.</p>
 
   <p><span class="changed">Other than for <code>@type</code>,</span> properties of
-    <a>expanded term definitions</a> where the term is a <a>keyword</a> are ignored.
-    When processing mode is set to <code>json-ld-1.1</code>, there is an exception for <code>@type</code>;
-    see <a href="#using-set-with-type" class="sectionRef"></a> for further details.</p>
+    <a>expanded term definitions</a> where the term is a <a>keyword</a>
+    result in an error.
+    <span class="changed">When processing mode is set to <code>json-ld-1.1</code>,
+      a keyword may be used with an <a>expanded term definition</a> having
+      only the <a>entry</a> `@protected`;
+      see <a href="#protected-term-definitions" class="sectionRef"></a> for further details.
+      There is also an exception for <code>@type</code>;
+      see <a href="#using-set-with-type" class="sectionRef"></a> for further details.</span></p>
 
   <p>Since keywords cannot be redefined, they can also not be aliased to
     other keywords.</p>
@@ -7621,11 +7626,11 @@ the data type to be specified explicitly with each piece of data.</p>
       "@type": "schema:Blog",
       "name": "World Financial News",
       "post": {
-        ****"http://example.com/posts/1/en"****: {
+        ****"1/en"****: {
           "body": "World commodities were up today with heavy trading of crude oil...",
           "words": 1539
         },
-        ****"http://example.com/posts/1/de"****: {
+        ****"1/de"****: {
           "body": "Die Werte an Warenbörsen stiegen im Sog eines starken Handels von Rohöl...",
           "words": 1204
         }
