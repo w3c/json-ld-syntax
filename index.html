@@ -7450,7 +7450,10 @@ the data type to be specified explicitly with each piece of data.</p>
         "words": "schema:wordCount",
         "post": {
           "@id": "schema:blogPost",
-          ****"@container": "@id"****
+          ****"@container": "@id",
+          "@context": {
+            "@base": "http://content.com/posts/"
+          }****
         }
       },
       "@id": "http://example.com/",
