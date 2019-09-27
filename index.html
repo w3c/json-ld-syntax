@@ -3055,12 +3055,19 @@
   <p><span class="changed">Other than for <code>@type</code>,</span> properties of
     <a>expanded term definitions</a> where the term is a <a>keyword</a>
     result in an error.
-    <span class="changed">When processing mode is set to <code>json-ld-1.1</code>,
-      a keyword may be used with an <a>expanded term definition</a> having
-      only the <a>entry</a> `@protected`;
-      see <a href="#protected-term-definitions" class="sectionRef"></a> for further details.
-      There is also an exception for <code>@type</code>;
+    <span class="changed">When processing mode is set to <code>json-ld-1.1</code>,t
+      there is also an exception for <code>@type</code>;
       see <a href="#using-set-with-type" class="sectionRef"></a> for further details.</span></p>
+
+  <p class="changed">When processing mode is set to <code>json-ld-1.1</code>,
+    aliases of <a>keywords</a> are either <a>simple term definitions</a>,
+    where the value is a <a>keyword</a>,
+    or a <a>expanded term definitions</a> with an `@id` <a>entry</a> and optionally an `@protected` <a>entry</a>;
+    no other entries are allowed.
+    there is also an exception for aliases of <code>@type</code>,
+    as indicated above.
+    See <a href="#protected-term-definitions" class="sectionRef"></a> for further details
+    of using `@protected`.</p>
 
   <p>Since keywords cannot be redefined, they can also not be aliased to
     other keywords.</p>
@@ -11512,9 +11519,10 @@ the data type to be specified explicitly with each piece of data.</p>
     <h2>Terms</h2>
 
     <p>A <a>term</a> is a short-hand <a>string</a> that expands
-      to an <a>IRI</a> or a <a>blank node identifier</a>.</p>
+      to an <a>IRI</a>, <a>blank node identifier</a>, or <a>keyword</a>.</p>
 
-    <p>A <a>term</a> MUST NOT equal any of the JSON-LD <a>keywords</a>.</p>
+    <p>A <a>term</a> MUST NOT equal any of the JSON-LD <a>keywords</a>,
+      <span class="changed">other than `@type` in</span>.</p>
 
     <p class="changed">When used as the <a>prefix</a> in a <a>Compact IRI</a>, to avoid
       the potential ambiguity of a <a>prefix</a> being confused with an IRI
@@ -12020,7 +12028,8 @@ the data type to be specified explicitly with each piece of data.</p>
     its value MUST be <code>true</code> or <code>false</code>.</p>
 
   <p class="changed">If the <a>context definition</a> has an <code>@type</code> key,
-    its value MUST be a <a>map</a> with the single <a>entry</a> <code>@container</code> set to <code>@set</code>.</p>
+    its value MUST be a <a>map</a> with the single <a>entry</a> <code>@container</code> set to <code>@set</code>,
+    and optional entry `@protected`.</p>
 
   <p class="changed">If the <a>context definition</a> has an <code>@version</code> key,
     its value MUST be a <a>number</a> with the value <code>1.1</code>.</p>
@@ -12050,8 +12059,13 @@ the data type to be specified explicitly with each piece of data.</p>
     <code>@container</code>,
     <code class="changed">@context</code>,
     <code class="changed">@prefix</code>,
+    <code class="changed">@propagate</code>, or
     <code class="changed">@protected</code>.
     An <a>expanded term definition</a> SHOULD NOT contain any other keys.</p>
+
+  <p class="changed">When the associated term is `@type`, the <a>expanded term definition</a>
+    MUST NOT contain keys other than `@container` and `@protected`.
+    The value of `@container` is limited to the single value `@set`.</p>
 
   <p>If the term being defined is not a <a>compact IRI</a> or
     <a>absolute IRI</a> and the <a>active context</a> does not have an
@@ -12110,11 +12124,19 @@ the data type to be specified explicitly with each piece of data.</p>
   <p class="changed">If an <a>expanded term definition</a> has an <code>@context</code> <a>entry</a>,
     it MUST be a valid <code>context definition</code>.</p>
 
+  <p class="changed">If a <a>context</a> contains the <code>@import</code>
+    <a>keyword</a>, its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.
+    When used as a reference from an `@import`, the referenced <a>context definition</a> MUST NOT
+    include an `@import` key, itself.</p>
+
   <p class="changed">If the <a>expanded term definition</a> contains the <code>@nest</code>
     <a>keyword</a>, its value MUST be either <code>@nest</code>, or a term
     which expands to <code>@nest</code>.</p>
 
   <p class="changed">If the <a>expanded term definition</a> contains the <code>@prefix</code>
+    <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
+
+  <p class="changed">If the <a>expanded term definition</a> contains the <code>@propagate</code>
     <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
 
   <p class="changed">If the <a>expanded term definition</a> contains the <code>@protected</code>
