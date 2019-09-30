@@ -4544,6 +4544,11 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
   -->
   </pre>
 </aside>
+
+<p class="note">Generally, when a JSON-LD processor encounters `null`,
+  the associated <a>entry</a> or value is removed.
+  However, `null` is a valid JSON token; when used as the value
+  of a <a>JSON literal</a>, a `null` value will be preserved.</p>
 </section>
 
 <section class="informative"><h2>Type Coercion</h2>
