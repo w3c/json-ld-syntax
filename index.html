@@ -4993,8 +4993,8 @@ the data type to be specified explicitly with each piece of data.</p>
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language</th></tr></thead>
       <tbody>
-        <tr><td>_:b0</td><td>http://example.org/name</td><td>花澄</td><td>ja</td></tr>
-        <tr><td>_:b0</td><td>http://example.org/occupation</td><td>科学者</td><td>ja</td></tr>
+        <tr><td>_:b0</td><td>http://example.org/name</td><td lang="ja">花澄</td><td>ja</td></tr>
+        <tr><td>_:b0</td><td>http://example.org/occupation</td><td lang="ja">科学者</td><td>ja</td></tr>
       </tbody>
     </table>
     <pre class="turtle nohighlight"
@@ -5014,7 +5014,7 @@ the data type to be specified explicitly with each piece of data.</p>
   </aside>
 
   <p>The example above would associate the <code>ja</code> language
-    code with the two <a>strings</a> <em>花澄</em> and <em>科学者</em>
+    code with the two <a>strings</a> <em lang="ja">花澄</em> and <em lang="ja">科学者</em>
     <a data-cite="BCP47#section-2">Languages codes</a> are defined in [[BCP47]].
     The <a>default language</a> applies to all
     <a>string</a> values that are not <a href="#type-coercion">type coerced</a>.</p>
@@ -5070,7 +5070,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>The example above would associate <em>忍者</em> with the specified default
     language code <code>ja</code>, <em>Ninja</em> with the language code
-    <code>en</code>, and <em>Nindža</em> with the language code <code>cs</code>.
+    <code>en</code>, and <em lang="cs">Nindža</em> with the language code <code>cs</code>.
     The value of <code>name</code>, <em>Yagyū Muneyoshi</em> wouldn't be
     associated with any language code since <code>@language</code> was reset to
     <a>null</a> in the <a>expanded term definition</a>.</p>
@@ -5210,8 +5210,8 @@ the data type to be specified explicitly with each piece of data.</p>
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language</th><th>Direction</th></tr></thead>
       <tbody>
-        <tr><td>_:b0</td><td>http://example.org/title</td><td>HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar</td><td>rtl</td></tr>
-        <tr><td>_:b0</td><td>http://example.org/publisher</td><td>مكتبة</td><td>ar</td><td>rtl</td></tr>
+        <tr><td>_:b0</td><td>http://example.org/title</td><td lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar</td><td>rtl</td></tr>
+        <tr><td>_:b0</td><td>http://example.org/publisher</td><td lang="ar" dir="rtl">مكتبة</td><td>ar</td><td>rtl</td></tr>
       </tbody>
     </table>
     <pre class="turtle nohighlight"
@@ -5272,7 +5272,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>The example above would associate the <code>ar</code> language
     and "rtl" text direction
-    code with the two <a>strings</a> <em>HTML و CSS: تصميم و إنشاء مواقع الويب</em> and <em>مكتبة</em>.
+    code with the two <a>strings</a>
+    <em lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</em> and <em lang="ar" dir="rtl">مكتبة</em>.
     The <a>default text direction</a> applies to all
     <a>string</a> values that are not <a href="#type-coercion">type coerced</a>.</p>
 
@@ -5325,11 +5326,11 @@ the data type to be specified explicitly with each piece of data.</p>
   -->
   </pre>
 
-  <p>The example above would associate <em>مكتبة</em> with the specified default
+  <p>The example above would associate <em lang="ar" dir="rtl">مكتبة</em> with the specified default
     language code <code>ar</code> and no <a>text direction</a>,
     <em>HTML and CSS: Design and Build Websites</em> with the language code
     <code>en</code> and <a>text direction</a> `ltr`,
-    and <em>HTML و CSS: تصميم و إنشاء مواقع الويب</em> with the language code <code>ar</code>
+    and <em lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</em> with the language code <code>ar</code>
     and <a>text direction</a> `rtl`.</p>
 
   <p class="note">Text direction associations are only applied to plain
@@ -5502,7 +5503,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <tr>
     <td>http://example.org/articles/8</td>
     <td>dcterms:title</td>
-    <td>Das Kapital</td>
+    <td lang="de">Das Kapital</td>
     <td>de</td>
   </tr>
   <tr>
@@ -7539,8 +7540,8 @@ the data type to be specified explicitly with each piece of data.</p>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language</th></tr></thead>
       <tbody>
         <tr><td>http://example.com/queen</td><td>http://example.com/vocab/label</td><td>The Queen</td><td>en</td></tr>
-        <tr><td>http://example.com/queen</td><td>http://example.com/vocab/label</td><td>Die Königin</td><td>de</td></tr>
-        <tr><td>http://example.com/queen</td><td>http://example.com/vocab/label</td><td>Ihre Majestät</td><td>de</td></tr>
+        <tr><td>http://example.com/queen</td><td>http://example.com/vocab/label</td><td lang="de">Die Königin</td><td>de</td></tr>
+        <tr><td>http://example.com/queen</td><td>http://example.com/vocab/label</td><td lang="de">Ihre Majestät</td><td>de</td></tr>
       </tbody>
     </table>
     <pre class="turtle nohighlight"
