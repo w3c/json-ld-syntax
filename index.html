@@ -523,7 +523,7 @@
         <code>@context</code> keyword is described in detail in
         <a class="sectionRef" href="#the-context"></a>.</dd>
       <dt class="changed"><code>@direction</code></dt>
-      <dd class="changed">Used to set the <dfn>text direction</dfn> of a <a>JSON-LD value</a>,
+      <dd class="changed">Used to set the <dfn>base direction</dfn> of a <a>JSON-LD value</a>,
         which are not <a>typed values</a> (e.g. <a>strings</a>, or <a>language-tagged strings</a>).
         This keyword is described in
         <a class="sectionRef" href="#string-internationalization"></a>.</dd>
@@ -5162,14 +5162,14 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>See <a href="#language-maps" class="sectionRef"></a> for a description
     of using <a>language maps</a> to set the language of mapped values.</p>
 
-  <section class="changed informative"><h3>Text Direction</h3>
+  <section class="changed informative"><h3>Base Direction</h3>
     <p>It is also possible to annotate a <a>string</a>, or <a>language-tagged string</a>,
-      with its <a>text direction</a>.
-      As with language, it is possible to define a <a>default text direction</a> for a JSON-LD document
+      with its <a>base direction</a>.
+      As with language, it is possible to define a <a>default base direction</a> for a JSON-LD document
       by setting the `@direction` key in the <a>context</a>:</p>
 
   <aside class="example ds-selector-tabs changed"
-         title="Setting the default text direction of a JSON-LD document">
+         title="Setting the default base direction of a JSON-LD document">
     <div class="selectors">
       <button class="selected" data-selects="compacted">Compacted (Input)</button>
       <button data-selects="expanded">Expanded (Result)</button>
@@ -5196,7 +5196,7 @@ the data type to be specified explicitly with each piece of data.</p>
     </pre>
     <pre class="expanded result nohighlight"
          data-transform="updateExample"
-         data-result-for="Setting the default text direction of a JSON-LD document-compacted">
+         data-result-for="Setting the default base direction of a JSON-LD document-compacted">
     <!--
     [{
       "http://example.org/title": [{"@value": ****"HTML و CSS: تصميم و إنشاء مواقع الويب"****, "@language": "ar", ****"@direction": "rtl"****}],
@@ -5205,7 +5205,7 @@ the data type to be specified explicitly with each piece of data.</p>
     -->
     </pre>
     <table class="statements"
-           data-result-for="Setting the default text direction of a JSON-LD document-expanded"
+           data-result-for="Setting the default base direction of a JSON-LD document-expanded"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language</th><th>Direction</th></tr></thead>
       <tbody>
@@ -5215,13 +5215,13 @@ the data type to be specified explicitly with each piece of data.</p>
     </table>
     <pre class="turtle nohighlight"
          data-content-type="text/turtle"
-         data-result-for="Setting the default text direction of a JSON-LD document-expanded"
+         data-result-for="Setting the default base direction of a JSON-LD document-expanded"
          data-transform="updateExample"
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
 
-    # Note that this version drops the text direction.
+    # Note that this version drops the base direction.
     [
       ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"****@ar;
       ex:publisher ****"مكتبة"****@ar
@@ -5230,14 +5230,14 @@ the data type to be specified explicitly with each piece of data.</p>
     </pre>
     <pre class="turtle-dt nohighlight"
          data-content-type="text/turtle"
-         data-result-for="Setting the default text direction of a JSON-LD document-expanded"
+         data-result-for="Setting the default base direction of a JSON-LD document-expanded"
          data-transform="updateExample"
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
     @prefix i18n: <https://www.w3.org/i18n#> .
 
-    # Note that this version preserves the text direction using a datatype.
+    # Note that this version preserves the base direction using a datatype.
     [
       ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar_rtl****;
       ex:publisher ****"مكتبة"^^i18n:ar_rtl****
@@ -5246,13 +5246,13 @@ the data type to be specified explicitly with each piece of data.</p>
     </pre>
     <pre class="turtle-bn nohighlight"
          data-content-type="text/turtle"
-         data-result-for="Setting the default text direction of a JSON-LD document-expanded"
+         data-result-for="Setting the default base direction of a JSON-LD document-expanded"
          data-transform="updateExample"
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
 
-    # Note that this version preserves the text direction using a bnode structure.
+    # Note that this version preserves the base direction using a bnode structure.
     [
       ex:title ****[
         rdf:value "HTML و CSS: تصميم و إنشاء مواقع الويب",
@@ -5270,13 +5270,13 @@ the data type to be specified explicitly with each piece of data.</p>
   </aside>
 
   <p>The example above would associate the <code>ar</code> language
-    and "rtl" text direction
+    and "rtl" base direction
     code with the two <a>strings</a>
     <em lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</em> and <em lang="ar" dir="rtl">مكتبة</em>.
-    The <a>default text direction</a> applies to all
+    The <a>default base direction</a> applies to all
     <a>string</a> values that are not <a href="#type-coercion">type coerced</a>.</p>
 
-  <p>To clear the <a>default text direction</a> for a subtree, <code>@direction</code> can
+  <p>To clear the <a>default base direction</a> for a subtree, <code>@direction</code> can
     be set to <code>null</code> in an intervening context, such as a <a>scoped context</a> as follows:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
@@ -5301,7 +5301,7 @@ the data type to be specified explicitly with each piece of data.</p>
   -->
   </pre>
 
-  <p>Second, it is possible to associate a text direction with a specific <a>term</a>
+  <p>Second, it is possible to associate a base direction with a specific <a>term</a>
     using an <a>expanded term definition</a>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
@@ -5326,22 +5326,22 @@ the data type to be specified explicitly with each piece of data.</p>
   </pre>
 
   <p>The example above would associate <em lang="ar" dir="rtl">مكتبة</em> with the specified default
-    language tag <code>ar</code> and no <a>text direction</a>,
+    language tag <code>ar</code> and no <a>base direction</a>,
     <em>HTML and CSS: Design and Build Websites</em> with the language tag
-    <code>en</code> and <a>text direction</a> `ltr`,
+    <code>en</code> and <a>base direction</a> `ltr`,
     and <em lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</em> with the language tag <code>ar</code>
-    and <a>text direction</a> `rtl`.</p>
+    and <a>base direction</a> `rtl`.</p>
 
-  <p class="note">Text direction associations are only applied to plain
+  <p class="note">Base direction associations are only applied to plain
     <a>strings</a> and <a>language-tagged strings</a>.
     <a>Typed values</a> or values that are subject to <a href="#type-coercion">type coercion</a>
-    are not given a text direction.</p>
+    are not given a base direction.</p>
 
-  <p>Third, it is possible to override the <a>default text direction</a> by using a
+  <p>Third, it is possible to override the <a>default base direction</a> by using a
     <a>value object</a>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
-       title="Overriding default language using an expanded value">
+       title="Overriding default language and default base direction using an expanded value">
   <!--
   {
     "@context": {
@@ -5359,7 +5359,7 @@ the data type to be specified explicitly with each piece of data.</p>
   -->
   </pre>
 
-  <p>See [[[string-meta]]] [[string-meta]] for a deeper discussion of <a>text direction</a>.</p>
+  <p>See [[[string-meta]]] [[string-meta]] for a deeper discussion of <a>base direction</a>.</p>
   </section>
 </section>
 
@@ -11526,7 +11526,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <a data-cite="BCP47#section-2.2.9">2.2.9 Classes of Conformance</a>
       of [[BCP47]].</li>
     <li class="changed">Either <a>strings</a>, or <a>language-tagged strings</a> may include
-      a <a>text direction</a>, which represents an extension to the underlying
+      a <a>base direction</a>, which represents an extension to the underlying
       <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a>.</li>
     <li>A <a>list</a> is a sequence of zero or more <a>IRIs</a>,
       <a>blank nodes</a>, and <a>JSON-LD values</a>.
@@ -11953,7 +11953,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <p>A <a>value object</a> is used to explicitly associate a type or a
       language with a value to create a <a>typed value</a> or a <a>language-tagged string</a>
-      <span class="changed">and possibly associate a <a>text direction</a></span>.</p>
+      <span class="changed">and possibly associate a <a>base direction</a></span>.</p>
 
     <p>A <a>value object</a> MUST be a <a>map</a> containing the
       <code>@value</code> key. It MAY also contain an <code>@type</code>,
@@ -12603,11 +12603,11 @@ the data type to be specified explicitly with each piece of data.</p>
       between JSON's native data types and RDF's counterparts to allow round-tripping.</li>
     <li class="changed">As an extension to the <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a>,
       <em>typed literals</em>, where the datatype is `xsd:string`, or <a>language-tagged strings</a>
-      MAY include a <a>text direction</a>.
-      As there is currently no standardized mechanism for representing the <a>text direction</a>
+      MAY include a <a>base direction</a>.
+      As there is currently no standardized mechanism for representing the <a>base direction</a>
       of <a>RDF literals</a>, the JSON-LD to RDF transformation loses the base direction.
       The <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
-      also provides a means of representing <a>text direction</a>
+      also provides a means of representing <a>base direction</a>
       using non-standardized mechanisms which will preserve round-tripping through RDF.</li>
   </ul>
 
@@ -12862,14 +12862,14 @@ the data type to be specified explicitly with each piece of data.</p>
     such as the [[HTML]] <a data-cite="HTML/dom.html#the-dir-attribute">dir attribute</a>,
     which currently has no counterpart for <a>RDF literals</a>.</p>
 
-  <p>The issue of properly representing text direction in RDF is not something that
+  <p>The issue of properly representing <a>base direction</a> in RDF is not something that
     this Working Group can handle, as it is a limitation or the core RDF data model.
     This Working Group expects that a future RDF Working Group will consider the matter
-    and add the ability to specify the text direction of <a>language-tagged strings</a>.</p>
+    and add the ability to specify the base direction of <a>language-tagged strings</a>.</p>
 
   <p>Until a more comprehensive solution can be addressed in a future version of this
     specification, publishers should consider this issue when representing strings
-    where the text direction of the string cannot otherwise be correctly inferred
+    where the base direction of the string cannot otherwise be correctly inferred
     based on the content of the string.
     See [[?string-meta]] for a discussion best practices for
     identifying language and base direction for strings used on the Web.</p>
@@ -13499,6 +13499,8 @@ the data type to be specified explicitly with each piece of data.</p>
       are not embedded as values of the containing <a>node object</a>.</li>
     <li>The `alternate` link relation can be used to supply an alternate location for
       retrieving a JSON-LD document when the returned document is not JSON.</li>
+    <li><a>Value objects</a>, and associated <a>context</a> and <a>term definitions</a> have been updated to 
+      support `@direction` for setting the <a>base direction</a> of strings.</li>
   </ul>
 </section>
 
