@@ -5068,11 +5068,11 @@ the data type to be specified explicitly with each piece of data.</p>
   -->
   </pre>
 
-  <p>The example above would associate <em>忍者</em> with the specified default
-    language code <code>ja</code>, <em>Ninja</em> with the language code
-    <code>en</code>, and <em lang="cs">Nindža</em> with the language code <code>cs</code>.
-    The value of <code>name</code>, <em>Yagyū Muneyoshi</em> wouldn't be
-    associated with any language code since <code>@language</code> was reset to
+  <p>The example above would associate <em lang="ja">忍者</em> with the specified default
+    language tag <code>ja</code>, <em lang="en">Ninja</em> with the language tag
+    <code>en</code>, and <em lang="cs">Nindža</em> with the language tag <code>cs</code>.
+    The value of <code>name</code>, <em lang="">Yagyū Muneyoshi</em> wouldn't be
+    associated with any language tag since <code>@language</code> was reset to
     <a>null</a> in the <a>expanded term definition</a>.</p>
 
   <p class="note">Language associations are only applied to plain
@@ -5327,10 +5327,10 @@ the data type to be specified explicitly with each piece of data.</p>
   </pre>
 
   <p>The example above would associate <em lang="ar" dir="rtl">مكتبة</em> with the specified default
-    language code <code>ar</code> and no <a>text direction</a>,
-    <em>HTML and CSS: Design and Build Websites</em> with the language code
+    language tag <code>ar</code> and no <a>text direction</a>,
+    <em>HTML and CSS: Design and Build Websites</em> with the language tag
     <code>en</code> and <a>text direction</a> `ltr`,
-    and <em lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</em> with the language code <code>ar</code>
+    and <em lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</em> with the language tag <code>ar</code>
     and <a>text direction</a> `rtl`.</p>
 
   <p class="note">Text direction associations are only applied to plain
@@ -12066,7 +12066,7 @@ the data type to be specified explicitly with each piece of data.</p>
         or an array containing both <code>@language</code> and <code>@set</code>
       </span>. The keys of a
       <a>language map</a> MUST be <a>strings</a> representing
-      [[BCP47]] language codes, the <a>keyword</a> <code>@none</code>,
+      [[BCP47]] language tags, the <a>keyword</a> <code>@none</code>,
       or a <a>term</a> which expands to <code>@none</code>,
       and the values MUST be any of the following types:</p>
 
@@ -12605,7 +12605,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <em>typed literals</em>, where the datatype is `xsd:string`, or <a>language-tagged strings</a>
       MAY include a <a>text direction</a>.
       As there is currently no standardized mechanism for representing the <a>text direction</a>
-      of <a>RDF literals</a>, the JSON-LD to RDF transformation can loose this direction.
+      of <a>RDF literals</a>, the JSON-LD to RDF transformation loses the base direction.
       The <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
       also provides a means of representing <a>text direction</a>
       using non-standardized mechanisms which will preserve round-tripping through RDF.</li>
