@@ -5325,12 +5325,18 @@ the data type to be specified explicitly with each piece of data.</p>
   -->
   </pre>
 
-  <p>The example above would associate <em lang="ar" dir="rtl">مكتبة</em> with the specified default
-    language tag <code>ar</code> and no <a>base direction</a>,
-    <em>HTML and CSS: Design and Build Websites</em> with the language tag
-    <code>en</code> and <a>base direction</a> `ltr`, and
-    <em lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</em>
-    with the language tag <code>ar</code> and <a>base direction</a> `rtl`.</p>
+  <p>The example above would create three properties:</p>
+  <table class="example statements"
+         title="Statements associated with expanded term definition with language and direction"
+         data-result-for="Expanded term definition with language and direction"
+         data-to-rdf>
+    <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language Code</th><th>Base Direction</th></tr></thead>
+    <tbody>
+    <tr><td>_:b0</td><td>ex:publisher</td><td lang="ar">مكتبة</td><td>ar</td><td>`null`</td></tr>
+    <tr><td>_:b0</td><td>ex:title</td><td lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar</td><td>`rtl`</td></tr>
+    <tr><td>_:b0</td><td>ex:title</td><td lang="en" dir="ltr">HTML and CSS: Design and Build Websites</td><td>en</td><td>`ltr`</td></tr>
+    </tbody>
+  </table>
 
   <p class="note">Base direction associations are only applied to plain
     <a>strings</a> and <a>language-tagged strings</a>.
