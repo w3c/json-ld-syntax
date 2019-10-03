@@ -3055,7 +3055,7 @@
   <p><span class="changed">Other than for <code>@type</code>,</span> properties of
     <a>expanded term definitions</a> where the term is a <a>keyword</a>
     result in an error.
-    <span class="changed">When processing mode is set to <code>json-ld-1.1</code>,t
+    <span class="changed">When processing mode is set to <code>json-ld-1.1</code>,
       there is also an exception for <code>@type</code>;
       see <a href="#using-set-with-type" class="sectionRef"></a> for further details.</span></p>
 
@@ -3064,7 +3064,7 @@
     where the value is a <a>keyword</a>,
     or a <a>expanded term definitions</a> with an `@id` <a>entry</a> and optionally an `@protected` <a>entry</a>;
     no other entries are allowed.
-    there is also an exception for aliases of <code>@type</code>,
+    There is also an exception for aliases of <code>@type</code>,
     as indicated above.
     See <a href="#protected-term-definitions" class="sectionRef"></a> for further details
     of using `@protected`.</p>
@@ -11520,7 +11520,7 @@ the data type to be specified explicitly with each piece of data.</p>
       to an <a>IRI</a>, <a>blank node identifier</a>, or <a>keyword</a>.</p>
 
     <p>A <a>term</a> MUST NOT equal any of the JSON-LD <a>keywords</a>,
-      <span class="changed">other than `@type` in</span>.</p>
+      <span class="changed">other than `@type`</span>.</p>
 
     <p class="changed">When used as the <a>prefix</a> in a <a>Compact IRI</a>, to avoid
       the potential ambiguity of a <a>prefix</a> being confused with an IRI
@@ -12026,8 +12026,8 @@ the data type to be specified explicitly with each piece of data.</p>
     its value MUST be <code>true</code> or <code>false</code>.</p>
 
   <p class="changed">If the <a>context definition</a> has an <code>@type</code> key,
-    its value MUST be a <a>map</a> with the single <a>entry</a> <code>@container</code> set to <code>@set</code>,
-    and optional entry `@protected`.</p>
+    its value MUST be a <a>map</a> with only the <a>entry</a> <code>@container</code> set to <code>@set</code>,
+    and optionally an entry `@protected`.</p>
 
   <p class="changed">If the <a>context definition</a> has an <code>@version</code> key,
     its value MUST be a <a>number</a> with the value <code>1.1</code>.</p>
