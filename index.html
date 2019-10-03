@@ -675,6 +675,10 @@
         <td>http://www.w3.org/ns/prov#</td>
       </tr>
       <tr>
+        <td>i18n</td>
+        <td>https://www.w3.org/i18n#</td>
+      </tr>
+      <tr>
         <td>rdf</td>
         <td>http://www.w3.org/1999/02/22-rdf-syntax-ns#</td>
       </tr>
@@ -5232,6 +5236,7 @@ the data type to be specified explicitly with each piece of data.</p>
          data-content-type="text/turtle"
          data-result-for="Setting the default base direction of a JSON-LD document-expanded"
          data-transform="updateExample"
+         data-options="rdfDirection=datatype"
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
@@ -5248,6 +5253,7 @@ the data type to be specified explicitly with each piece of data.</p>
          data-content-type="text/turtle"
          data-result-for="Setting the default base direction of a JSON-LD document-expanded"
          data-transform="updateExample"
+         data-options="rdfDirection=bnode"
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
@@ -5330,7 +5336,7 @@ the data type to be specified explicitly with each piece of data.</p>
          title="Statements associated with expanded term definition with language and direction"
          data-result-for="Expanded term definition with language and direction"
          data-to-rdf>
-    <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language Code</th><th>Base Direction</th></tr></thead>
+    <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language</th><th>Direction</th></tr></thead>
     <tbody>
     <tr><td>_:b0</td><td>ex:publisher</td><td lang="ar">مكتبة</td><td>ar</td><td>`null`</td></tr>
     <tr><td>_:b0</td><td>ex:title</td><td lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar</td><td>`rtl`</td></tr>
@@ -12830,6 +12836,97 @@ the data type to be specified explicitly with each piece of data.</p>
           as the specifics of serialization may change in a future revision of this document.</div>
       </dd>
     </dl>
+  </section>
+
+  <section class='informative'><h2>The `i18n` Namespace</h2>
+    <p>The `i18n:` namespace is used for describing combinations of <a>language tag</a> and <a>base direction</a> in <a>RDF literals</a>.
+      It is used as an alternative mechanism for describing the [[BCP47]] <a>language tag</a> and <a>base direction</a>
+      of <a>RDF literals</a> that would otherwise be use `xsd:string` or `rdf:langString` datatypes.</p>
+    <p>Datatypes based on this namespace allow round-tripping of JSON-LD documents using base direction,
+      although the mechanism is not otherwise standardized.</p>
+    <p>The <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
+      can be used with the <dfn data-cite="JSON-LD11-API#dom-jsonldoptions-rdfDirection">rdfDirection</dfn>
+      set to `datatype` to generate <a>RDF literals</a> using the `i18n` base to create an IRI
+      encoding the <a>base direction</a> along with optional <a>language tag</a> from
+      value objects containing `@direction` by appending to `https://www.w3.org/i18n#`
+      the value of `@language`, if any, followed by an underscore (`"_"`) followed
+      by the value of `@direction`.</p>
+
+    <p>The following example shows two statements with literal values of `i18n:ar_rtl`,
+      which encodes the language tag `ar` and the base direction `rtl`.</p>
+    <pre class="turtle-dt nohighlight"
+         data-content-type="text/turtle"
+         data-transform="updateExample"
+         data-options="rdfDirection=datatype"
+         data-to-rdf>
+    <!--
+    @prefix ex: <http://example.org/> .
+    @prefix i18n: <https://www.w3.org/i18n#> .
+
+    # Note that this version preserves the base direction using a datatype.
+    [
+      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar_rtl****;
+      ex:publisher ****"مكتبة"^^i18n:ar_rtl****
+    ] .
+    -->
+    </pre>
+    <p>See <a href="#base-direction" class="sectionRef"></a> for more details
+      on using <a>base direction</a> for strings.</p>
+  </section>
+
+  <section class='informative'><h2>The `rdf:CompoundLiteral` class and the `rdf:language` and `rdf:direction` Datatypes</h2>
+    <p>This specification defines the `rdf:CompoundLiteral` datatype, which is in the domain
+      of `rdf:language` and `rdf:direction` to be used for describing RDF literal values
+      containing base direction and a possible language tag to be associated with the
+      string value of `rdf:value` on the same subject.</p>
+
+    <dl>
+      <dt>`rdf:CompoundLiteral`</dt>
+      <dd>A class representing a compound literal.</dd>
+      <dt>`rdf:language`</dt>
+      <dd>An RDF <a>property</a>.
+        The range of the property is an `rdfs:Literal`, whose value MUST be a well-formed [[BCP47]] <a>language tag</a>.
+        The domain of the property is `rdf:CompoundLiteral`.</dd>
+      <dt>`rdf:direction`</dt>
+      <dd>An RDF <a>property</a>.
+        The range of the property is an `rdfs:Literal`, whose value MUST be either `"ltr"` or `"rtl"`.
+        The domain of the property is `rdf:CompoundLiteral`.</dd>
+    </dl>
+
+    <p>The <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
+      can be used with the <a>rdfDirection</a>
+      set to `bnode` to generate <a>RDF literals</a> using these properties to
+      describe the <a>base direction</a> and optional <a>language tag</a> from
+      value objects containing `@direction` and optionally `@language`.</p>
+
+    <p>The following example shows two statements with compoud literals
+      representing strings with the <a>language tag</a> `ar` and <a>base direction</a> `rtl`.</p>
+    <pre class="turtle-dt nohighlight"
+         data-content-type="text/turtle"
+         data-transform="updateExample"
+         data-options="rdfDirection=bnode"
+         data-to-rdf>
+    <!--
+    @prefix ex: <http://example.org/> .
+
+    # Note that this version preserves the base direction using a bnode structure.
+    # Note that this version preserves the base direction using a bnode structure.
+    [
+      ex:title ****[
+        rdf:value "HTML و CSS: تصميم و إنشاء مواقع الويب",
+        rdf:language "ar",
+        rdf:direction "rtl"
+      ]****;
+      ex:publisher ****[
+        rdf:value "مكتبة",
+        rdf:language "ar",
+        rdf:direction "rtl"
+      ]****
+    ] .
+    -->
+    </pre>
+    <p>See <a href="#base-direction" class="sectionRef"></a> for more details
+      on using <a>base direction</a> for strings.</p>
   </section>
 </section>
 
