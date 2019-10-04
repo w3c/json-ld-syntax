@@ -5191,7 +5191,7 @@ the data type to be specified explicitly with each piece of data.</p>
         "title": "http://example.org/title",
         "publisher": "http://example.org/publisher",
         ####...####
-        ****"@language": "ar",
+        ****"@language": "ar-EG",
         "@direction": "rtl"****
       },
       ****"title": "HTML و CSS: تصميم و إنشاء مواقع الويب",
@@ -5204,8 +5204,8 @@ the data type to be specified explicitly with each piece of data.</p>
          data-result-for="Setting the default base direction of a JSON-LD document-compacted">
     <!--
     [{
-      "http://example.org/title": [{"@value": ****"HTML و CSS: تصميم و إنشاء مواقع الويب"****, "@language": "ar", ****"@direction": "rtl"****}],
-      "http://example.org/publisher": [{"@value": ****"مكتبة"****, "@language": "ar", ****"@direction": "rtl"****}]
+      "http://example.org/title": [{"@value": ****"HTML و CSS: تصميم و إنشاء مواقع الويب"****, "@language": "ar-EG", ****"@direction": "rtl"****}],
+      "http://example.org/publisher": [{"@value": ****"مكتبة"****, "@language": "ar-EG", ****"@direction": "rtl"****}]
     }]
     -->
     </pre>
@@ -5214,8 +5214,8 @@ the data type to be specified explicitly with each piece of data.</p>
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language</th><th>Direction</th></tr></thead>
       <tbody>
-        <tr><td>_:b0</td><td>http://example.org/title</td><td lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar</td><td>rtl</td></tr>
-        <tr><td>_:b0</td><td>http://example.org/publisher</td><td lang="ar" dir="rtl">مكتبة</td><td>ar</td><td>rtl</td></tr>
+        <tr><td>_:b0</td><td>http://example.org/title</td><td lang="ar-EG" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar-EG</td><td>rtl</td></tr>
+        <tr><td>_:b0</td><td>http://example.org/publisher</td><td lang="ar-EG" dir="rtl">مكتبة</td><td>ar-EG</td><td>rtl</td></tr>
       </tbody>
     </table>
     <pre class="turtle nohighlight"
@@ -5228,8 +5228,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
     # Note that this version drops the base direction.
     [
-      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"****@ar;
-      ex:publisher ****"مكتبة"****@ar
+      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"****@ar-EG;
+      ex:publisher ****"مكتبة"****@ar-EG
     ] .
     -->
     </pre>
@@ -5245,8 +5245,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
     # Note that this version preserves the base direction using a datatype.
     [
-      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar_rtl****;
-      ex:publisher ****"مكتبة"^^i18n:ar_rtl****
+      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar-EG_rtl****;
+      ex:publisher ****"مكتبة"^^i18n:ar-EG_rtl****
     ] .
     -->
     </pre>
@@ -5263,12 +5263,12 @@ the data type to be specified explicitly with each piece of data.</p>
     [
       ex:title ****[
         rdf:value "HTML و CSS: تصميم و إنشاء مواقع الويب",
-        rdf:language "ar",
+        rdf:language "ar-EG",
         rdf:direction "rtl"
       ]****;
       ex:publisher ****[
         rdf:value "مكتبة",
-        rdf:language "ar",
+        rdf:language "ar-EG",
         rdf:direction "rtl"
       ]****
     ] .
@@ -5276,10 +5276,10 @@ the data type to be specified explicitly with each piece of data.</p>
     </pre>
   </aside>
 
-  <p>The example above would associate the <code>ar</code> language tag
+  <p>The example above would associate the <code>ar-EG</code> language tag
     and "rtl" base direction
     with the two <a>strings</a>
-    <em lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</em> and <em lang="ar" dir="rtl">مكتبة</em>.
+    <em lang="ar-EG" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</em> and <em lang="ar-EG" dir="rtl">مكتبة</em>.
     The <a>default base direction</a> applies to all
     <a>string</a> values that are not <a href="#type-coercion">type coerced</a>.</p>
 
@@ -5294,7 +5294,7 @@ the data type to be specified explicitly with each piece of data.</p>
       ####...####
       ****"@version": 1.1,****
       "@vocab": "http://example.com/",
-      "@language": "ar",
+      "@language": "ar-EG",
       "@direction": "rtl",
       "details": {
         ****"@context": {
@@ -5318,7 +5318,7 @@ the data type to be specified explicitly with each piece of data.</p>
     "@context": {
       ####...####
       "ex": "http://example.com/vocab/",
-      "@language": "ar",
+      "@language": "ar-EG",
       "@direction": "rtl",
       "publisher": { "@id": "ex:name", ****"@direction": null**** },
       "title": { "@id": "ex:title" },
@@ -5339,8 +5339,8 @@ the data type to be specified explicitly with each piece of data.</p>
          data-to-rdf>
     <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language</th><th>Direction</th></tr></thead>
     <tbody>
-    <tr><td>_:b0</td><td>ex:publisher</td><td lang="ar">مكتبة</td><td>ar</td><td>`null`</td></tr>
-    <tr><td>_:b0</td><td>ex:title</td><td lang="ar" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar</td><td>`rtl`</td></tr>
+    <tr><td>_:b0</td><td>ex:publisher</td><td lang="ar-EG">مكتبة</td><td>ar-EG</td><td>`null`</td></tr>
+    <tr><td>_:b0</td><td>ex:title</td><td lang="ar-EG" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar-EG</td><td>`rtl`</td></tr>
     <tr><td>_:b0</td><td>ex:title</td><td lang="en" dir="ltr">HTML and CSS: Design and Build Websites</td><td>en</td><td>`ltr`</td></tr>
     </tbody>
   </table>
@@ -5359,7 +5359,7 @@ the data type to be specified explicitly with each piece of data.</p>
   {
     "@context": {
       ####...####
-      "@language": "ar",
+      "@language": "ar-EG",
       "@direction": "rtl"
     },
     "title": "HTML و CSS: تصميم و إنشاء مواقع الويب",
@@ -12853,8 +12853,8 @@ the data type to be specified explicitly with each piece of data.</p>
       the value of `@language`, if any, followed by an underscore (`"_"`) followed
       by the value of `@direction`.</p>
 
-    <p>The following example shows two statements with literal values of `i18n:ar_rtl`,
-      which encodes the language tag `ar` and the base direction `rtl`.</p>
+    <p>The following example shows two statements with literal values of `i18n:ar-EG_rtl`,
+      which encodes the language tag `ar-EG` and the base direction `rtl`.</p>
     <pre class="turtle-dt nohighlight"
          data-content-type="text/turtle"
          data-transform="updateExample"
@@ -12866,8 +12866,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
     # Note that this version preserves the base direction using a non-standard datatype.
     [
-      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar_rtl****;
-      ex:publisher ****"مكتبة"^^i18n:ar_rtl****
+      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar-EG_rtl****;
+      ex:publisher ****"مكتبة"^^i18n:ar-EG_rtl****
     ] .
     -->
     </pre>
@@ -12901,7 +12901,7 @@ the data type to be specified explicitly with each piece of data.</p>
       value objects containing `@direction` and optionally `@language`.</p>
 
     <p>The following example shows two statements with compoud literals
-      representing strings with the <a>language tag</a> `ar` and <a>base direction</a> `rtl`.</p>
+      representing strings with the <a>language tag</a> `ar-EG` and <a>base direction</a> `rtl`.</p>
     <pre class="turtle-dt nohighlight"
          data-content-type="text/turtle"
          data-transform="updateExample"
@@ -12914,12 +12914,12 @@ the data type to be specified explicitly with each piece of data.</p>
     [
       ex:title ****[
         rdf:value "HTML و CSS: تصميم و إنشاء مواقع الويب",
-        rdf:language "ar",
+        rdf:language "ar-EG",
         rdf:direction "rtl"
       ]****;
       ex:publisher ****[
         rdf:value "مكتبة",
-        rdf:language "ar",
+        rdf:language "ar-EG",
         rdf:direction "rtl"
       ]****
     ] .
