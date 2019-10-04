@@ -5194,7 +5194,7 @@ the data type to be specified explicitly with each piece of data.</p>
         ****"@language": "ar",
         "@direction": "rtl"****
       },
-      ****"title": "HTML و CSS: تصميم و إنشاء مواقع الويب"****,
+      ****"title": "HTML و CSS: تصميم و إنشاء مواقع الويب",
       "publisher": "مكتبة"****
     }
     -->
@@ -11997,7 +11997,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]], or be <a>null</a>.</p>
 
     <p>The value associated with the <code>@direction</code> key MUST be
-      one of `ltr` or `rtl`, or be <a>null</a>.</p>
+      one of <code>"ltr"</code> or <code>"rtl"</code>, or be <a>null</a>.</p>
 
     <p>The value associated with the <code>@index</code> key MUST be a
       <a>string</a>.</p>
@@ -12022,7 +12022,7 @@ the data type to be specified explicitly with each piece of data.</p>
         MAY additionally be
         an empty <a>map</a> (<a data-cite="JSON-LD11-FRAMING#dfn-wildcard">wildcard</a>),
         an <a>array</a> containing only an empty <a>map</a>,
-        an empty <a>array</a> (<a data-cite="JSON-LD11-FRAMING#dfn-match-none">match none</a>)
+        an empty <a>array</a> (<a data-cite="JSON-LD11-FRAMING#dfn-match-none">match none</a>),
         an <a>array</a> of <a>strings</a>.</li>
     </ul>
   </section>
@@ -12615,13 +12615,13 @@ the data type to be specified explicitly with each piece of data.</p>
       defines the <a data-cite="JSON-LD11-API#data-round-tripping">conversion rules</a>
       between JSON's native data types and RDF's counterparts to allow round-tripping.</li>
     <li class="changed">As an extension to the <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a>,
-      <em>typed literals</em>, where the datatype is `xsd:string`, or <a>language-tagged strings</a>
+      literals without an explicit datatype
       MAY include a <a>base direction</a>.
       As there is currently no standardized mechanism for representing the <a>base direction</a>
-      of <a>RDF literals</a>, the JSON-LD to RDF transformation loses the base direction.
-      The <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
-      also provides a means of representing <a>base direction</a>
-      using non-standardized mechanisms which will preserve round-tripping through RDF.</li>
+      of <a>RDF literals</a>, the JSON-LD to standard RDF transformation loses the base direction.
+      However, the <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
+      provides a means of representing <a>base direction</a>
+      using mechanisms which will preserve round-tripping through non-standard RDF.</li>
   </ul>
 
   <p class="note">The use of <a>blank node identifiers</a> to label properties is obsolete,
@@ -12842,7 +12842,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <section class='informative'><h2>The `i18n` Namespace</h2>
     <p>The `i18n:` namespace is used for describing combinations of <a>language tag</a> and <a>base direction</a> in <a>RDF literals</a>.
       It is used as an alternative mechanism for describing the [[BCP47]] <a>language tag</a> and <a>base direction</a>
-      of <a>RDF literals</a> that would otherwise be use `xsd:string` or `rdf:langString` datatypes.</p>
+      of <a>RDF literals</a> that would otherwise use the `xsd:string` or `rdf:langString` datatypes.</p>
     <p>Datatypes based on this namespace allow round-tripping of JSON-LD documents using base direction,
       although the mechanism is not otherwise standardized.</p>
     <p>The <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
@@ -12864,7 +12864,7 @@ the data type to be specified explicitly with each piece of data.</p>
     @prefix ex: <http://example.org/> .
     @prefix i18n: <https://www.w3.org/i18n#> .
 
-    # Note that this version preserves the base direction using a datatype.
+    # Note that this version preserves the base direction using a non-standard datatype.
     [
       ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar_rtl****;
       ex:publisher ****"مكتبة"^^i18n:ar_rtl****
@@ -12875,8 +12875,8 @@ the data type to be specified explicitly with each piece of data.</p>
       on using <a>base direction</a> for strings.</p>
   </section>
 
-  <section class='informative'><h2>The `rdf:CompoundLiteral` class and the `rdf:language` and `rdf:direction` Datatypes</h2>
-    <p>This specification defines the `rdf:CompoundLiteral` datatype, which is in the domain
+  <section class='informative'><h2>The `rdf:CompoundLiteral` class and the `rdf:language` and `rdf:direction` properties</h2>
+    <p>This specification defines the `rdf:CompoundLiteral` class, which is in the domain
       of `rdf:language` and `rdf:direction` to be used for describing RDF literal values
       containing base direction and a possible language tag to be associated with the
       string value of `rdf:value` on the same subject.</p>
@@ -12910,7 +12910,6 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     @prefix ex: <http://example.org/> .
 
-    # Note that this version preserves the base direction using a bnode structure.
     # Note that this version preserves the base direction using a bnode structure.
     [
       ex:title ****[
