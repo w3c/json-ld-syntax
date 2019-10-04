@@ -676,7 +676,7 @@
       </tr>
       <tr>
         <td>i18n</td>
-        <td>https://www.w3.org/i18n#</td>
+        <td>https://www.w3.org/ns/i18n#</td>
       </tr>
       <tr>
         <td>rdf</td>
@@ -5240,7 +5240,7 @@ the data type to be specified explicitly with each piece of data.</p>
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
-    @prefix i18n: <https://www.w3.org/i18n#> .
+    @prefix i18n: <https://www.w3.org/ns/i18n#> .
 
     # Note that this version preserves the base direction using a datatype.
     [
@@ -12839,7 +12839,7 @@ the data type to be specified explicitly with each piece of data.</p>
   </section>
 
   <section class='informative'><h2>The `i18n` Namespace</h2>
-    <p>The `i18n:` namespace is used for describing combinations of <a>language tag</a> and <a>base direction</a> in <a>RDF literals</a>.
+    <p>The `i18n` namespace is used for describing combinations of <a>language tag</a> and <a>base direction</a> in <a>RDF literals</a>.
       It is used as an alternative mechanism for describing the [[BCP47]] <a>language tag</a> and <a>base direction</a>
       of <a>RDF literals</a> that would otherwise use the `xsd:string` or `rdf:langString` datatypes.</p>
     <p>Datatypes based on this namespace allow round-tripping of JSON-LD documents using base direction,
@@ -12848,7 +12848,7 @@ the data type to be specified explicitly with each piece of data.</p>
       can be used with the <dfn data-cite="JSON-LD11-API#dom-jsonldoptions-rdfDirection">rdfDirection</dfn>
       set to `datatype` to generate <a>RDF literals</a> using the `i18n` base to create an IRI
       encoding the <a>base direction</a> along with optional <a>language tag</a> from
-      value objects containing `@direction` by appending to `https://www.w3.org/i18n#`
+      value objects containing `@direction` by appending to `https://www.w3.org/ns/i18n#`
       the value of `@language`, if any, followed by an underscore (`"_"`) followed
       by the value of `@direction`.</p>
 
@@ -12861,7 +12861,7 @@ the data type to be specified explicitly with each piece of data.</p>
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
-    @prefix i18n: <https://www.w3.org/i18n#> .
+    @prefix i18n: <https://www.w3.org/ns/i18n#> .
 
     # Note that this version preserves the base direction using a non-standard datatype.
     [
