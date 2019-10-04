@@ -615,7 +615,7 @@
         Setting this to `false` causes term definitions created within that context
         to be removed when entering a new <a>node object</a>.</dd>
       <dt class="changed">`@protected`</dt><dd class="changed">
-        Used to prevent <a>term definitions</a> of a context to be overriden by other contexts.
+        Used to prevent <a>term definitions</a> of a context to be overridden by other contexts.
         This keyword is described in <a class="sectionRef" href="#protected-term-definitions"></a>.
       <dt class="changed">`@import`</dt><dd class="changed">
         Used in a <a>context definition</a> to load an external context
@@ -1347,7 +1347,7 @@
     <li><a>Numbers</a>, which describe literal numeric values,</li>
     <li><a>Strings</a>, which may describe literal string values, or be used as the keys in a <a>JSON object</a>.</li>
     <li><a>Boolean</a> <code>true</code> and <code>false</code>, which describe literal boolean values,</li>
-    <li><code>null</code>, which describes the absense of a value,</li>
+    <li><code>null</code>, which describes the absence of a value,</li>
     <li><a>Arrays</a>, which describe an ordered set of values of any type, and</li>
     <li><a>JSON objects</a>, which provide a set of <a>map entries</a>, relating keys with values.</li>
   </ul>
@@ -3546,7 +3546,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     and then that term is later redefined,
     the association of the context defined in the earlier
     <a>expanded term definition</a> is lost
-    within the scope of that redefnition. This is consistent with
+    within the scope of that redefinition. This is consistent with
     <a>term definitions</a> of a term overriding previous term definitions from
     earlier less deeply nested definitions, as discussed in
     <a href="#advanced-context-usage" class="sectionRef"></a>.</p>
@@ -4045,7 +4045,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
       @prefix schema: <http://schema.org/>.
   
       <https://digitalbazaar.com/> a o:Organization ;
-        o:membet <http://manu.sporny.org/about#manu>.
+        o:member <http://manu.sporny.org/about#manu>.
 
       <http://manu.sporny.org/about#manu> a schema:Person ;
         schema:name "Manu Sporny".
@@ -9667,7 +9667,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>Certain well-known contexts may be statically cached within a <a>documentLoader</a> implementation.
       This might be particularly useful in embedded applications,
       where it is not feasible, or even possible, to access remote documents.</li>
-    <li>For security purposes, the act of remotely retriving a document may provide a signal of application behavior.
+    <li>For security purposes, the act of remotely retrieving a document may provide a signal of application behavior.
       The judicious use of a <a>documentLoader</a> can isolate the application and reduce its online fingerprint.</li>
   </ul>
 </section>
@@ -10200,7 +10200,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>Properties with multiple values are typically represented using
       an unordered <a>array</a>. This means that an application working
       on an internalized representation of that JSON would need to
-      iterrate through the values of the array to find a value matching
+      iterate through the values of the array to find a value matching
       a particular pattern, such as a <a>language-tagged string</a>
       using the language <code>en</code>.</p>
 
@@ -10751,7 +10751,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>The JSON-LD 1.1 Processing Algorithms and API specification [[JSON-LD11-API]]
     provides for an <a data-cite="JSON-LD11-API#dom-jsonldoptions-expandcontext">expandContext</a> option for specifying
-    a <a>context</a> to use when expanding JSON documents programatically.</p>
+    a <a>context</a> to use when expanding JSON documents programmatically.</p>
 
   <p>The following example demonstrates the use of an external context with an
     ordinary JSON document over HTTP:</p>
@@ -10840,7 +10840,7 @@ the data type to be specified explicitly with each piece of data.</p>
   -->
   </pre>
 
-  <p>A processor seeing a non-JSON result will note the presense of the link header
+  <p>A processor seeing a non-JSON result will note the presence of the link header
     and load that document instead.</p>
 </section>
 </section>
@@ -12003,7 +12003,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <code class="changed">@propagate</code>,
     <code class="changed">@protected</code>,
     <code class="changed">@type</code>,
-    <code class="changed">@version</code>.
+    <code class="changed">@version</code>,
     or <code>@vocab</code>.
   </p>
 
@@ -12607,7 +12607,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <h3>Privacy Considerations</h3>
   <p>The retrieval of external contexts can expose the operation of a JSON-LD processor,
     allow intermediate nodes to fingerprint the client application through introspection of retrieved resources
-    (see [[?fingerprinting-guidance]]), and
+    (see [[?fingerprinting-guidance]]),
     and provide an opportunity for a man-in-the-middle attack.
     To protect against this, publishers should consider caching remote contexts for future use,
     or use the <a>documentLoader</a>
@@ -12644,7 +12644,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <section class="appendix informative"><h2>Image Descriptions</h2>
   <section id="fig-linked-data-graph-descr" class="informative"><h3>Linked Data Dataset</h3>
-      <p>This secrion describes the <a href="#fig-linked-data-graph">Linked Data Dataset figure</a> in <a href="#data-model" class="sectionRef"></a>.</p>
+      <p>This section describes the <a href="#fig-linked-data-graph">Linked Data Dataset figure</a> in <a href="#data-model" class="sectionRef"></a>.</p>
       <p>The image consists of three dashed boxes, each describing a different
         <a>linked data graph</a>. Each box consists of shapes linked with arrows describing
         the linked data relationships.</p>
@@ -13035,7 +13035,7 @@ the data type to be specified explicitly with each piece of data.</p>
           <p>All other URIs starting with <code>http://www.w3.org/ns/json-ld</code>
             are reserved for future use by JSON-LD specifications.</p>
           <p class="note">Other specifications may publish additional profile parameter
-            URIs with their own defined sematics.</p>
+            URIs with their own defined semantics.</p>
           <p>
             When used as a <a data-cite="RFC4288#section-4.3">media type parameter</a> [[RFC4288]]
             in an <a data-cite="rfc7231#section-5.3.2">HTTP Accept header</a> [[RFC7231]],
@@ -13227,7 +13227,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <h2>Changes since JSON-LD Community Group Final Report</h2>
   <ul>
     <li><a>Lists</a> may now have items which are themselves <a>lists</a>.</li>
-    <li>Values of <code>@type</code>, or an alais of <code>@type</code>, may now have their <code>@container</code> set to <code>@set</code>
+    <li>Values of <code>@type</code>, or an alias of <code>@type</code>, may now have their <code>@container</code> set to <code>@set</code>
       to ensure that <code>@type</code> <a>entries</a> are always represented as an array. This
       also allows a term to be defined for <code>@type</code>, where the value MUST be a <a>map</a>
       with <code>@container</code> set to <code>@set</code>.</li>
