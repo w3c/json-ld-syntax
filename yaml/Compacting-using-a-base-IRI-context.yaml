@@ -1,4 +1,4 @@
-Example 111: Compacting using a base IRI-context
+Example 128: Compacting using a base IRI-context
 ---
 "@context":
   "@base": http://example.com/

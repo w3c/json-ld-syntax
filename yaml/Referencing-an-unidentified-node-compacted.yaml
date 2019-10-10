@@ -1,0 +1,13 @@
+Example 094: Referencing an unidentified node-compacted
+---
+"@context":
+  "@vocab": http://xmlns.com/foaf/0.1/
+"@id": _:b0
+"@type": Person
+name: Manu Sporny
+knows:
+  "@id": https://greggkellogg.net/foaf#me
+  "@type": Person
+  name: Gregg Kellogg
+  knows:
+    "@id": _:b0

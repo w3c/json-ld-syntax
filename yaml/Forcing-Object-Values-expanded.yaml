@@ -1,4 +1,4 @@
-Example 116: Forcing Object Values-expanded
+Example 133: Forcing Object Values-expanded
 ---
 - http://example.com/notype:
   - "@value": string

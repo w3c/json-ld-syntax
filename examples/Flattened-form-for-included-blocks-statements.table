@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Flattened form for included blocks-flattened" data-to-rdf>
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+      <tr>
+<td>http://example.org/base/1</td>
+<td>rdf:type</td>
+<td>http://example.org/Thing-with-Items</td>
+</tr>
+      <tr>
+<td>http://example.org/base/1</td>
+<td>http://example.org/items</td>
+<td>http://example.org/base/2</td>
+</tr>
+      <tr>
+<td>http://example.org/base/1</td>
+<td>http://example.org/items</td>
+<td>http://example.org/base/3</td>
+</tr>
+      <tr>
+<td>http://example.org/base/2</td>
+<td>http://example.org/classification</td>
+<td>http://example.org/enum#c6</td>
+</tr>
+      <tr>
+<td>http://example.org/base/2</td>
+<td>http://example.org/service</td>
+<td>http://example.org/enum#s2</td>
+</tr>
+      <tr>
+<td>http://example.org/base/3</td>
+<td>http://example.org/classification</td>
+<td>http://example.org/enum#c6</td>
+</tr>
+      <tr>
+<td>http://example.org/enum#c6</td>
+<td>rdf:type</td>
+<td>http://example.org/Type</td>
+</tr>
+      <tr>
+<td>http://example.org/enum#c6</td>
+<td>http://example.org/label</td>
+<td>Classification 6</td>
+</tr>
+      <tr>
+<td>http://example.org/enum#s2</td>
+<td>rdf:type</td>
+<td>http://example.org/Service</td>
+</tr>
+      <tr>
+<td>http://example.org/enum#s2</td>
+<td>http://example.org/label</td>
+<td>Login Service</td>
+</tr>
+      </tbody>
+    </table></body></html>

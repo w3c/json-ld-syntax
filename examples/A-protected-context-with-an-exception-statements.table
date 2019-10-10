@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html><body><table class="statements" data-result-for="A protected @context with an exception-expanded" data-to-rdf>
+<html><body><table class="statements" data-result-for="A protected @context with an exception-expanded" data-to-rdf data-no-lint>
       <thead><tr>
 <th>Subject</th>
 <th>Property</th>

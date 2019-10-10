@@ -1,0 +1,12 @@
+Example 079: Multiple array values of different types-compacted
+---
+"@context":
+  ex: http://example.org/
+"@id": http://example.org/people#michael
+ex:name:
+- Michael
+- "@value": Mike
+- "@value": Miguel
+  "@language": es
+- "@id": https://www.wikidata.org/wiki/Q4927524
+- 42

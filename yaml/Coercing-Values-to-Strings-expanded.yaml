@@ -1,4 +1,4 @@
-Example 112: Coercing Values to Strings-expanded
+Example 129: Coercing Values to Strings-expanded
 ---
 - http://example.com/plain:
   - "@value": string

@@ -1,4 +1,4 @@
-Example 091: Indexing data in JSON-LD by type-expanded
+Example 105: Indexing data in JSON-LD by type-expanded
 ---
 - http://schema.org/name:
   - "@value": Manu Sporny

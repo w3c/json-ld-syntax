@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Overriding permitted if both definitions are identical-expanded" data-to-rdf>
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>https://digitalbazaar.com/</td>
+<td>rdf:type</td>
+<td>http://example.org/orga/Organization</td>
+</tr>
+        <tr>
+<td>https://digitalbazaar.com/</td>
+<td>http://example.org/orga/member</td>
+<td>http://manu.sporny.org/about#manu</td>
+</tr>
+        <tr>
+<td>http://manu.sporny.org/about#manu</td>
+<td>rdf:type</td>
+<td>schema:Person</td>
+</tr>
+        <tr>
+<td>http://manu.sporny.org/about#manu</td>
+<td>schema:name</td>
+<td>Manu Sporny</td>
+</tr>
+      </tbody>
+    </table></body></html>

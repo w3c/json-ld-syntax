@@ -1,0 +1,8 @@
+Example 067: Setting the default language of a JSON-LD document-compacted
+---
+"@context":
+  name: http://example.org/name
+  occupation: http://example.org/occupation
+  "@language": ja
+name: 花澄
+occupation: 科学者

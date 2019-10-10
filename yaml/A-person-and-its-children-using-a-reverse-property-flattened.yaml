@@ -1,4 +1,4 @@
-Example 095: A person and its children using a reverse property-flattened
+Example 112: A person and its children using a reverse property-flattened
 ---
 - "@id": http://example.org/#homer
   http://example.com/vocab#name:

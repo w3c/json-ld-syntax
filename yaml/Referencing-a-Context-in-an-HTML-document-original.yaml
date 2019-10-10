@@ -1,7 +1,0 @@
-Example 131: Referencing a Context in an HTML document-original
----
-"@context": https://json-ld.org/contexts/person.html
-"@id": http://dbpedia.org/resource/John_Lennon
-name: John Lennon
-born: '1940-10-09'
-spouse: http://dbpedia.org/resource/Cynthia_Lennon

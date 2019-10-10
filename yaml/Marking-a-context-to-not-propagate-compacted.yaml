@@ -1,0 +1,12 @@
+Example 048: Marking a context to not propagate-compacted
+---
+"@context":
+  "@version": 1.1
+  term:
+    "@id": http://example.org/original
+    "@context":
+      "@propagate": false
+      term: http://example.org/non-propagated-term
+term:
+  term:
+    term: This term is from the first context

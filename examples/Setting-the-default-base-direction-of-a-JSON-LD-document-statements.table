@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Setting the default base direction of a JSON-LD document-expanded" data-options="rdfDirection=i18n-datatype" data-to-rdf>
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+<th>Language</th>
+<th>Direction</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>_:b0</td>
+<td>http://example.org/title</td>
+<td lang="ar-eg" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td>
+<td>ar-eg</td>
+<td>rtl</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>http://example.org/publisher</td>
+<td lang="ar-eg" dir="rtl">مكتبة</td>
+<td>ar-eg</td>
+<td>rtl</td>
+</tr>
+      </tbody>
+    </table></body></html>

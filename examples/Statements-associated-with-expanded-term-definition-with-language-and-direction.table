@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="example statements" title="Statements associated with expanded term definition with language and direction" data-result-for="Expanded term definition with language and direction" data-to-rdf>
+    <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+<th>Language</th>
+<th>Direction</th>
+</tr></thead>
+    <tbody>
+    <tr>
+<td>_:b0</td>
+<td>http://example.com/vocab/publisher</td>
+<td lang="ar-eg">مكتبة</td>
+<td>ar-eg</td>
+<td></td>
+</tr>
+    <tr>
+<td>_:b0</td>
+<td>http://example.com/vocab/title</td>
+<td lang="ar-eg" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td>
+<td>ar-eg</td>
+<td><code>rtl</code></td>
+</tr>
+    <tr>
+<td>_:b0</td>
+<td>http://example.com/vocab/title</td>
+<td lang="en" dir="ltr">HTML and CSS: Design and Build Websites</td>
+<td>en</td>
+<td><code>ltr</code></td>
+</tr>
+    </tbody>
+  </table></body></html>

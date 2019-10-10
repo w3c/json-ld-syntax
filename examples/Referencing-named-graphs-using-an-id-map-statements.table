@@ -12,60 +12,60 @@
 <td> </td>
 <td>http://example.org/foaf-graph</td>
 <td>http://example.org/graphMap</td>
-<td>https://greggkellogg.net/foaf#me</td>
+<td>https://greggkellogg.net/foaf</td>
 <td> </td>
 </tr>
         <tr>
 <td> </td>
 <td>http://example.org/foaf-graph</td>
 <td>http://example.org/graphMap</td>
-<td>http://manu.sporny.org/about#manu</td>
+<td>http://manu.sporny.org/about</td>
 <td> </td>
 </tr>
         <tr>
 <td> </td>
 <td>http://example.org/foaf-graph</td>
 <td>prov:generatedAtTime</td>
-<td>2012-04-09</td>
-<td>xsd:date</td>
+<td>2012-04-09T00:00:00</td>
+<td>xsd:dateTime</td>
 </tr>
         <tr>
-<td>https://greggkellogg.net/foaf#me</td>
+<td>https://greggkellogg.net/foaf</td>
 <td>https://greggkellogg.net/foaf#me</td>
 <td>rdf:type</td>
 <td>foaf:Person</td>
 <td> </td>
 </tr>
         <tr>
-<td>https://greggkellogg.net/foaf#me</td>
+<td>https://greggkellogg.net/foaf</td>
 <td>https://greggkellogg.net/foaf#me</td>
 <td>foaf:name</td>
 <td>Gregg Kellogg</td>
 <td> </td>
 </tr>
         <tr>
-<td>https://greggkellogg.net/foaf#me</td>
+<td>https://greggkellogg.net/foaf</td>
 <td>https://greggkellogg.net/foaf#me</td>
 <td>foaf:knows</td>
 <td>http://manu.sporny.org/about#manu</td>
 <td> </td>
 </tr>
         <tr>
-<td>http://manu.sporny.org/about#manu</td>
+<td>http://manu.sporny.org/about</td>
 <td>http://manu.sporny.org/about#manu</td>
 <td>rdf:type</td>
 <td>foaf:Person</td>
 <td> </td>
 </tr>
         <tr>
-<td>http://manu.sporny.org/about#manu</td>
+<td>http://manu.sporny.org/about</td>
 <td>http://manu.sporny.org/about#manu</td>
 <td>foaf:name</td>
 <td>Manu Sporny</td>
 <td> </td>
 </tr>
         <tr>
-<td>http://manu.sporny.org/about#manu</td>
+<td>http://manu.sporny.org/about</td>
 <td>http://manu.sporny.org/about#manu</td>
 <td>foaf:knows</td>
 <td>https://greggkellogg.net/foaf#me</td>

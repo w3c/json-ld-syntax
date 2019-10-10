@@ -12,13 +12,13 @@
 <td>the sidekick</td>
 </tr>
       <tr>
-<td>_:b0</td>
-<td>http://example2.com/fred</td>
+<td>http://example1.com/fred</td>
+<td>http://example2.com/knows</td>
 <td>http://example1.com/barney</td>
 </tr>
       <tr>
-<td>_:b0</td>
-<td>http://example2.com/fred</td>
+<td>http://example1.com/fred</td>
+<td>http://example2.com/knows</td>
 <td>http://example2.com/barney</td>
 </tr>
     </tbody>

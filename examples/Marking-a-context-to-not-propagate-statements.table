@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><table class="statements" data-result-for="Marking a context to not propagate-expanded" data-to-rdf data-no-lint>
+      <thead><tr>
+<th>Subject</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+      <tbody>
+        <tr>
+<td>_:b2</td>
+<td>http://example.org/original</td>
+<td>This term is from the first context</td>
+</tr>
+        <tr>
+<td>_:b1</td>
+<td>http://example.org/non-propagated-term</td>
+<td>_:b2</td>
+</tr>
+        <tr>
+<td>_:b0</td>
+<td>http://example.org/original</td>
+<td>_:b1</td>
+</tr>
+      </tbody>
+    </table></body></html>

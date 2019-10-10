@@ -5203,18 +5203,19 @@ the data type to be specified explicitly with each piece of data.</p>
          data-result-for="Setting the default base direction of a JSON-LD document-compacted">
     <!--
     [{
-      "http://example.org/title": [{"@value": ****"HTML و CSS: تصميم و إنشاء مواقع الويب"****, "@language": "ar-EG", ****"@direction": "rtl"****}],
-      "http://example.org/publisher": [{"@value": ****"مكتبة"****, "@language": "ar-EG", ****"@direction": "rtl"****}]
+      "http://example.org/title": [{"@value": ****"HTML و CSS: تصميم و إنشاء مواقع الويب"****, "@language": "ar-eg", ****"@direction": "rtl"****}],
+      "http://example.org/publisher": [{"@value": ****"مكتبة"****, "@language": "ar-eg", ****"@direction": "rtl"****}]
     }]
     -->
     </pre>
     <table class="statements"
            data-result-for="Setting the default base direction of a JSON-LD document-expanded"
+           data-options="rdfDirection=i18n-datatype"
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language</th><th>Direction</th></tr></thead>
       <tbody>
-        <tr><td>_:b0</td><td>http://example.org/title</td><td lang="ar-EG" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar-EG</td><td>rtl</td></tr>
-        <tr><td>_:b0</td><td>http://example.org/publisher</td><td lang="ar-EG" dir="rtl">مكتبة</td><td>ar-EG</td><td>rtl</td></tr>
+        <tr><td>_:b0</td><td>http://example.org/title</td><td lang="ar-eg" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar-eg</td><td>rtl</td></tr>
+        <tr><td>_:b0</td><td>http://example.org/publisher</td><td lang="ar-eg" dir="rtl">مكتبة</td><td>ar-eg</td><td>rtl</td></tr>
       </tbody>
     </table>
     <pre class="turtle nohighlight"
@@ -5227,8 +5228,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
     # Note that this version drops the base direction.
     [
-      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"****@ar-EG;
-      ex:publisher ****"مكتبة"****@ar-EG
+      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"****@ar-eg;
+      ex:publisher ****"مكتبة"****@ar-eg
     ] .
     -->
     </pre>
@@ -5236,7 +5237,7 @@ the data type to be specified explicitly with each piece of data.</p>
          data-content-type="text/turtle"
          data-result-for="Setting the default base direction of a JSON-LD document-expanded"
          data-transform="updateExample"
-         data-options="rdfDirection=datatype"
+         data-options="rdfDirection=i18n-datatype"
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
@@ -5244,8 +5245,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
     # Note that this version preserves the base direction using a datatype.
     [
-      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar-EG_rtl****;
-      ex:publisher ****"مكتبة"^^i18n:ar-EG_rtl****
+      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar-eg_rtl****;
+      ex:publisher ****"مكتبة"^^i18n:ar-eg_rtl****
     ] .
     -->
     </pre>
@@ -5253,7 +5254,7 @@ the data type to be specified explicitly with each piece of data.</p>
          data-content-type="text/turtle"
          data-result-for="Setting the default base direction of a JSON-LD document-expanded"
          data-transform="updateExample"
-         data-options="rdfDirection=bnode"
+         data-options="rdfDirection=compound-literal"
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
@@ -5262,12 +5263,12 @@ the data type to be specified explicitly with each piece of data.</p>
     [
       ex:title ****[
         rdf:value "HTML و CSS: تصميم و إنشاء مواقع الويب",
-        rdf:language "ar-EG",
+        rdf:language "ar-eg",
         rdf:direction "rtl"
       ]****;
       ex:publisher ****[
         rdf:value "مكتبة",
-        rdf:language "ar-EG",
+        rdf:language "ar-eg",
         rdf:direction "rtl"
       ]****
     ] .
@@ -5316,10 +5317,11 @@ the data type to be specified explicitly with each piece of data.</p>
   {
     "@context": {
       ####...####
-      "ex": "http://example.com/vocab/",
+      "@version": 1.1,
       "@language": "ar-EG",
       "@direction": "rtl",
-      "publisher": { "@id": "ex:name", ****"@direction": null**** },
+      "ex": "http://example.com/vocab/",
+      "publisher": { "@id": "ex:publisher", ****"@direction": null**** },
       "title": { "@id": "ex:title" },
       "title_en": { "@id": "ex:title", ****"@language": "en", "@direction": "ltr"**** }
     },
@@ -5338,9 +5340,9 @@ the data type to be specified explicitly with each piece of data.</p>
          data-to-rdf>
     <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Language</th><th>Direction</th></tr></thead>
     <tbody>
-    <tr><td>_:b0</td><td>ex:publisher</td><td lang="ar-EG">مكتبة</td><td>ar-EG</td><td>`null`</td></tr>
-    <tr><td>_:b0</td><td>ex:title</td><td lang="ar-EG" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar-EG</td><td>`rtl`</td></tr>
-    <tr><td>_:b0</td><td>ex:title</td><td lang="en" dir="ltr">HTML and CSS: Design and Build Websites</td><td>en</td><td>`ltr`</td></tr>
+    <tr><td>_:b0</td><td>http://example.com/vocab/publisher</td><td lang="ar-eg">مكتبة</td><td>ar-eg</td><td></td></tr>
+    <tr><td>_:b0</td><td>http://example.com/vocab/title</td><td lang="ar-eg" dir="rtl">HTML و CSS: تصميم و إنشاء مواقع الويب</td><td>ar-eg</td><td><code>rtl</code></td></tr>
+    <tr><td>_:b0</td><td>http://example.com/vocab/title</td><td lang="en" dir="ltr">HTML and CSS: Design and Build Websites</td><td>en</td><td><code>ltr</code></td></tr>
     </tbody>
   </table>
 
@@ -12863,7 +12865,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <pre class="turtle-dt nohighlight"
          data-content-type="text/turtle"
          data-transform="updateExample"
-         data-options="rdfDirection=datatype"
+         data-options="rdfDirection=i18n-datatype"
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
@@ -12916,7 +12918,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <pre class="turtle-dt nohighlight"
          data-content-type="text/turtle"
          data-transform="updateExample"
-         data-options="rdfDirection=bnode"
+         data-options="rdfDirection=compound-literal"
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .

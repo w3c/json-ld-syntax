@@ -1,4 +1,4 @@
-Example 093: Indexing data in JSON-LD by type using @none-expanded
+Example 107: Indexing data in JSON-LD by type using @none-expanded
 ---
 - http://schema.org/name:
   - "@value": Manu Sporny

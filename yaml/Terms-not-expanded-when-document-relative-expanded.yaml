@@ -1,6 +1,7 @@
-Example 057: Terms not expanded when document-relative-expanded
+Example 065: Terms not expanded when document-relative-expanded
 ---
-- http://example2.com/fred:
+- "@id": http://example1.com/fred
+  http://example2.com/knows:
   - "@id": http://example1.com/barney
     http://example2.com/mnemonic:
     - "@value": the sidekick

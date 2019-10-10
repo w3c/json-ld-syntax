@@ -1,5 +1,5 @@
-@prefix schema: <http://schema.org/> .
-<http://example.org/people#michael> schema:name
+@prefix ex: <http://example.org/> .
+<http://example.org/people#michael> ex:name
   "Michael",
   "Mike",
   "Miguel"@es,

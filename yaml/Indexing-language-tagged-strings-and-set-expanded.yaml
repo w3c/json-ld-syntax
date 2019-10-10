@@ -1,4 +1,4 @@
-Example 117: Indexing language-tagged strings and @set-expanded
+Example 134: Indexing language-tagged strings and @set-expanded
 ---
 - "@id": http://example.com/queen
   http://example.com/vocab/label:

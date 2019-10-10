@@ -1,7 +1,7 @@
-Example 067: Multiple array values of different types-expanded
+Example 079: Multiple array values of different types-expanded
 ---
 - "@id": http://example.org/people#michael
-  http://schema.org/name:
+  http://example.org/name:
   - "@value": Michael
   - "@value": Mike
   - "@value": Miguel

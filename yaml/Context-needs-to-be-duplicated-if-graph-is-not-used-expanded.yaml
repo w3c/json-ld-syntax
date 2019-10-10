@@ -1,4 +1,4 @@
-Example 099: Context needs to be duplicated if @graph is not used-expanded
+Example 116: Context needs to be duplicated if @graph is not used-expanded
 ---
 - "@id": http://manu.sporny.org/about#manu
   "@type":

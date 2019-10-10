@@ -3,7 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 <http://example.org/foaf-graph> <http://example.org/graphMap> _:b0,  _:b1;
-   prov:generatedAtTime "2012-04-09"^^xsd:date .
+   prov:generatedAtTime "2012-04-09T00:00:00"^^xsd:dateTime .
 _:b0 {
   <http://manu.sporny.org/about#manu> a foaf:Person;
      foaf:name "Manu Sporny";

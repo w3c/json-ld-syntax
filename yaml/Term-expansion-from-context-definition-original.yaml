@@ -1,6 +1,0 @@
-Example 010: Term expansion from context definition-original
----
-"@context":
-  name: http://schema.org/name
-name: Manu Sporny
-status: trollin'

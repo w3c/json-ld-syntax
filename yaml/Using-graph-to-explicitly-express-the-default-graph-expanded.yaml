@@ -1,4 +1,4 @@
-Example 098: Using @graph to explicitly express the default graph-expanded
+Example 115: Using @graph to explicitly express the default graph-expanded
 ---
 - "@id": http://manu.sporny.org/about#manu
   "@type":

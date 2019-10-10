@@ -1,0 +1,10 @@
+Example 084: An unordered collection of values in JSON-LD-compacted
+---
+"@context":
+  foaf: http://xmlns.com/foaf/0.1/
+"@id": http://example.org/people#joebob
+foaf:nick:
+  "@set":
+  - joe
+  - bob
+  - jaybee

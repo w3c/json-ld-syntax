@@ -16,13 +16,13 @@
         <tr>
 <td>http://example.com/queen</td>
 <td>http://example.com/vocab/label</td>
-<td>Die Königin</td>
+<td lang="de">Die Königin</td>
 <td>de</td>
 </tr>
         <tr>
 <td>http://example.com/queen</td>
 <td>http://example.com/vocab/label</td>
-<td>Ihre Majestät</td>
+<td lang="de">Ihre Majestät</td>
 <td>de</td>
 </tr>
       </tbody>

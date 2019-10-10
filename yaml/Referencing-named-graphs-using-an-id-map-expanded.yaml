@@ -1,9 +1,9 @@
-Example 103: Referencing named graphs using an id map-expanded
+Example 120: Referencing named graphs using an id map-expanded
 ---
 - "@id": http://example.org/foaf-graph
   http://www.w3.org/ns/prov#generatedAtTime:
-  - "@value": '2012-04-09'
-    "@type": http://www.w3.org/2001/XMLSchema#date
+  - "@value": '2012-04-09T00:00:00'
+    "@type": http://www.w3.org/2001/XMLSchema#dateTime
   http://example.org/graphMap:
   - "@graph":
     - "@id": http://manu.sporny.org/about#manu
@@ -13,7 +13,7 @@ Example 103: Referencing named graphs using an id map-expanded
       - "@id": https://greggkellogg.net/foaf#me
       http://xmlns.com/foaf/0.1/name:
       - "@value": Manu Sporny
-    "@id": http://manu.sporny.org/about#manu
+    "@id": http://manu.sporny.org/about
   - "@graph":
     - "@id": https://greggkellogg.net/foaf#me
       "@type":
@@ -22,4 +22,4 @@ Example 103: Referencing named graphs using an id map-expanded
       - "@id": http://manu.sporny.org/about#manu
       http://xmlns.com/foaf/0.1/name:
       - "@value": Gregg Kellogg
-    "@id": https://greggkellogg.net/foaf#me
+    "@id": https://greggkellogg.net/foaf

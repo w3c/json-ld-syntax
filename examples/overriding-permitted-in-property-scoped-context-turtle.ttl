@@ -4,9 +4,9 @@
   a schema:Organization;
   schema:name "Digital Bazaar";
   schema:employee [
-    schema:familyName "Sporny"
-  ];
-  foaf:based_near [
-    foaf:name "Blacksburg, Virginia"
+    schema:familyName "Sporny";
+    foaf:based_near [
+      foaf:name "Blacksburg, Virginia"
+    ];
   ];
 ] .

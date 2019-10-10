@@ -1,9 +1,9 @@
-Example 097: Identifying and making statements about a graph-expanded
+Example 114: Identifying and making statements about a graph-expanded
 ---
 - "@id": http://example.org/foaf-graph
   http://www.w3.org/ns/prov#generatedAtTime:
-  - "@value": '2012-04-09'
-    "@type": http://www.w3.org/2001/XMLSchema#date
+  - "@value": '2012-04-09T00:00:00'
+    "@type": http://www.w3.org/2001/XMLSchema#dateTime
   "@graph":
   - "@id": http://manu.sporny.org/about#manu
     "@type":

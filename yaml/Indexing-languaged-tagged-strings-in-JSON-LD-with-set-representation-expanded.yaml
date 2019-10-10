@@ -1,4 +1,4 @@
-Example 086: Indexing languaged-tagged strings in JSON-LD with @set representation-expanded
+Example 100: Indexing languaged-tagged strings in JSON-LD with @set representation-expanded
 ---
 - "@id": http://example.com/queen
   http://example.com/vocab/label:
