@@ -2,6 +2,6 @@
   "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
   "http://xmlns.com/foaf/0.1/homepage": [{"@id": "http://manu.sporny.org/"}],
   "http://xmlns.com/foaf/0.1/depiction": [{
-    "@value": "http://twitter.com/account/profile_image/manusporny"
+    "@id": "http://twitter.com/account/profile_image/manusporny"
   }]
 }]

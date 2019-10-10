@@ -2,5 +2,5 @@
 [
   foaf:name "Manu Sporny";
   foaf:homepage <http://manu.sporny.org/>;
-  foaf:depiction "http://twitter.com/account/profile_image/manusporny"
+  foaf:depiction <http://twitter.com/account/profile_image/manusporny>
 ] .

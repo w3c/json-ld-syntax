@@ -12,8 +12,8 @@
 <td> </td>
 <td>http://example.org/foaf-graph</td>
 <td>prov:generatedAtTime</td>
-<td>2012-04-09</td>
-<td>xsd:date</td>
+<td>2012-04-09T00:00:00</td>
+<td>xsd:dateTime</td>
 </tr>
         <tr>
 <td>http://example.org/foaf-graph</td>

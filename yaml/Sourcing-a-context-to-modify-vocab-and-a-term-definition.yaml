@@ -1,0 +1,9 @@
+Example 052: Sourcing a context to modify @vocab and a term definition
+---
+"@context":
+  "@version": 1.1
+  "@import": https://json-ld.org/contexts/remote-context.jsonld
+  "@vocab": http://example.org/vocab#
+  term1:
+    "@id": http://example.org/vocab#term1
+    "@type": http://www.w3.org/2001/XMLSchema#integer

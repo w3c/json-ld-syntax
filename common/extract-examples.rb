@@ -123,7 +123,7 @@ def table_to_dataset(table)
         case cell
         when '-', /^\s*$/
         else
-          object = RDF::Literal(object.to_s, datatype: RDF::URI("https://www.w3.org/i18n##{object.language}_#{cell}"))
+          object = RDF::Literal(object.to_s, datatype: RDF::URI("https://www.w3.org/ns/i18n##{object.language}_#{cell}"))
           # We might think something was an IRI, but determine that it's not
         end
       end

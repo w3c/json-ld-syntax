@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "http://example.org/",
+    "classification": {"@type": "@vocab"},
+    "service": {"@type": "@vocab"}
+  },
+  "@id": "http://example.org/base/1",
+  "@type": "Thing-with-Items",
+  "items": [{
+    "@id":"http://example.org/base/2",
+    "classification": "enum#c6",
+    "service": "enum#s2"
+  }, {
+    "@id": "http://example.org/base/3",
+    "classification": "enum#c6"
+  }],
+  "@included": [{
+    "@id": "http://example.org/enum#c6",
+    "@type": "Type",
+    "label": "Classification 6"
+  }, {
+    "@id": "http://example.org/enum#s2",
+    "@type": "Service",
+    "label": "Login Service"
+  }]
+}

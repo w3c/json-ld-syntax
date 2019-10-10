@@ -1,21 +1,22 @@
-Example 082: Indexing data in JSON-LD-expanded
+Example 096: Indexing data in JSON-LD-expanded
 ---
 - "@id": http://example.com/
   "@type":
-  - http://schema.org/Blog
+  - http://schema.org/SportsTeam
   http://schema.org/name:
-  - "@value": World Financial News
-  http://schema.org/blogPost:
-  - "@id": http://example.com/posts/1/en
-    http://schema.org/articleBody:
-    - "@value": World commodities were up today with heavy trading of crude oil...
-    http://schema.org/wordCount:
-    - "@value": 1539
-    "@index": en
-  - "@id": http://example.com/posts/1/de
-    http://schema.org/articleBody:
-    - "@value": Die Werte an Warenbörsen stiegen im Sog eines starken Handels von
-        Rohöl...
-    http://schema.org/wordCount:
-    - "@value": 1204
-    "@index": de
+  - "@value": San Franciso Giants
+  http://schema.org/athlete:
+  - "@type":
+    - http://schema.org/Person
+    http://schema.org/name:
+    - "@value": Buster Posey
+    http://schema.org/jobTitle:
+    - "@value": Catcher
+    "@index": catcher
+  - "@type":
+    - http://schema.org/Person
+    http://schema.org/name:
+    - "@value": Madison Bumgarner
+    http://schema.org/jobTitle:
+    - "@value": Starting Pitcher
+    "@index": pitcher

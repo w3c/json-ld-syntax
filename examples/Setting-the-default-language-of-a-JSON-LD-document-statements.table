@@ -10,13 +10,13 @@
         <tr>
 <td>_:b0</td>
 <td>http://example.org/name</td>
-<td>花澄</td>
+<td lang="ja">花澄</td>
 <td>ja</td>
 </tr>
         <tr>
 <td>_:b0</td>
 <td>http://example.org/occupation</td>
-<td>科学者</td>
+<td lang="ja">科学者</td>
 <td>ja</td>
 </tr>
       </tbody>

@@ -1,4 +1,4 @@
-Example 110: Compacting using a default vocabulary-context
+Example 127: Compacting using a default vocabulary-context
 ---
 "@context":
-  "@vocab": http://xmlns.com/foaf/0.1/
+  "@vocab": http://example.org/

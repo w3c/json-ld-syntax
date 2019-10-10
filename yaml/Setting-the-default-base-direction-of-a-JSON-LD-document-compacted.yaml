@@ -1,0 +1,9 @@
+Example 073: Setting the default base direction of a JSON-LD document-compacted
+---
+"@context":
+  title: http://example.org/title
+  publisher: http://example.org/publisher
+  "@language": ar-EG
+  "@direction": rtl
+title: 'HTML و CSS: تصميم و إنشاء مواقع الويب'
+publisher: مكتبة

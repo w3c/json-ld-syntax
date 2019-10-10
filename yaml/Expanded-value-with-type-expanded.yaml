@@ -1,4 +1,4 @@
-Example 051: Expanded value with type-expanded
+Example 059: Expanded value with type-expanded
 ---
 - http://purl.org/dc/terms/modified:
   - "@type": http://www.w3.org/2001/XMLSchema#dateTime

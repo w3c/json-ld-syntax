@@ -1,0 +1,11 @@
+@prefix ex: <http://example.org/> .
+@prefix enum: <http://example.org/enum#> .
+<http://example.org/base/1> a ex:Thing-with-Items;
+  ex:items <http://example.org/base/2>, <http://example.org/base/3> .
+<http://example.org/base/2> ex:classification enum:c6;
+  ex:service enum:s2 .
+<http://example.org/base/3> ex:classification enum:c6 .
+enum:c6 a ex:Type;
+  ex:label "Classification 6" .
+enum:s2 a ex:Service;
+  ex:label "Login Service" .

@@ -1,0 +1,21 @@
+Example 107: Indexing data in JSON-LD by type using @none-compacted
+---
+"@context":
+  "@version": 1.1
+  schema: http://schema.org/
+  name: schema:name
+  affiliation:
+    "@id": schema:affiliation
+    "@container": "@type"
+  none: "@none"
+name: Manu Sporny
+affiliation:
+  schema:Corporation:
+    "@id": https://digitalbazaar.com/
+    name: Digital Bazaar
+  schema:ProfessionalService:
+    "@id": https://spec-ops.io
+    name: Spec-Ops
+  none:
+    "@id": https://greggkellogg.net/
+    name: Gregg Kellogg

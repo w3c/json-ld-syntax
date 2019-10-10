@@ -1,4 +1,4 @@
-Example 081: Specifying a local blank node identifier-expanded
+Example 095: Specifying a local blank node identifier-expanded
 ---
 - "@id": _:n1
   http://schema.org/name:

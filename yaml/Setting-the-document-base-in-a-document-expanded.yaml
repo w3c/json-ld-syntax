@@ -1,4 +1,4 @@
-Example 029: Setting the document base in a document-expanded
+Example 027: Setting the document base in a document-expanded
 ---
 - "@id": http://example.com/document.jsonld
   http://www.w3.org/2000/01/rdf-schema#label:

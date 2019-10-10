@@ -1,9 +1,13 @@
-Example 060: Clearing default language
+Example 074: Clearing default language
 ---
 "@context":
-  "@language": ja
-name: 花澄
+  "@version": 1.1
+  "@vocab": http://example.com/
+  "@language": ar-EG
+  "@direction": rtl
+  details:
+    "@context":
+      "@direction": 
+title: 'HTML و CSS: تصميم و إنشاء مواقع الويب'
 details:
-  "@context":
-    "@language": 
-  occupation: Ninja
+  genre: Technical Publication

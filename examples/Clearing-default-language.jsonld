@@ -1,12 +1,15 @@
 {
   "@context": {
-    "@language": "ja"
+    "@version": 1.1,
+    "@vocab": "http://example.com/",
+    "@language": "ar-EG",
+    "@direction": "rtl",
+    "details": {
+      "@context": {
+        "@direction": null
+      }
+    }
   },
-  "name": "花澄",
-  "details": {
-    "@context": {
-      "@language": null
-    },
-    "occupation": "Ninja"
-  }
+  "title": "HTML و CSS: تصميم و إنشاء مواقع الويب",
+  "details": {"genre": "Technical Publication"}
 }

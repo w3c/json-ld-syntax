@@ -1,20 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html><body><table class="statements" data-result-for='Using "" as the vocabulary mapping (expanded)-expanded' data-to-rdf>
-      <thead><tr>
+<html><body><table class="statements" data-result-for='Using "#" as the vocabulary mapping (expanded)-expanded' data-to-rdf>
+    <thead><tr>
 <th>Subject</th>
 <th>Property</th>
 <th>Value</th>
 </tr></thead>
-      <tbody>
-        <tr>
+    <tbody>
+      <tr>
 <td>http://example.org/places#BrewEats</td>
 <td>rdf:type</td>
 <td>http://example/document#Restaurant</td>
 </tr>
-        <tr>
+      <tr>
 <td>http://example.org/places#BrewEats</td>
 <td>http://example/document#name</td>
 <td>Brew Eats</td>
 </tr>
-      </tbody>
-    </table></body></html>
+    </tbody>
+  </table></body></html>

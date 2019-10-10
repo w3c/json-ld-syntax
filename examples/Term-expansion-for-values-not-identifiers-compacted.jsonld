@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "@base": "http://example1.com/",
+    "@vocab": "http://example2.com/",
+    "knows": {"@type": "@vocab"}
+  },
+  "@id": "fred",
+  "knows": [
+    {"@id": "barney", "mnemonic": "the sidekick"},
+    "barney"
+  ]
+}

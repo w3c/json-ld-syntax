@@ -2,4 +2,4 @@
 @prefix ex1: <http://example1.com/> .
 @prefix ex2: <http://example2.com/> .
 ex1:barney ex2:mnemonic "the sidekick" .
-[] ex2:fred ex1:barney, ex1:barney.
+ex1:fred ex2:knows ex1:barney, ex1:barney .

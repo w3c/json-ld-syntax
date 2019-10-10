@@ -1,0 +1,14 @@
+Example 101: Indexing languaged-tagged strings using @none for no language-compacted
+---
+"@context":
+  vocab: http://example.com/vocab/
+  label:
+    "@id": vocab:label
+    "@container": "@language"
+"@id": http://example.com/queen
+label:
+  en: The Queen
+  de:
+  - Die Königin
+  - Ihre Majestät
+  "@none": The Queen

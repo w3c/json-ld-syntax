@@ -1,0 +1,9 @@
+[{
+  "http://example.org/original": [{
+    "http://example.org/non-propagated-term": [{
+      "http://example.org/original": [
+        {"@value": "This term is from the first context"}
+      ]
+    }]
+  }]
+}]

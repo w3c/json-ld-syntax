@@ -10,7 +10,7 @@
   <tr>
     <td>http://example.org/articles/8</td>
     <td>dcterms:title</td>
-    <td>Das Kapital</td>
+    <td lang="de">Das Kapital</td>
     <td>de</td>
   </tr>
   <tr>

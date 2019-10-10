@@ -1,0 +1,6 @@
+Example 048: Marking a context to not propagate-expanded
+---
+- http://example.org/original:
+  - http://example.org/non-propagated-term:
+    - http://example.org/original:
+      - "@value": This term is from the first context

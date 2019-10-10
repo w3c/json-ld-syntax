@@ -1,0 +1,11 @@
+Example 081: Specifying that a collection is ordered in the context-compacted
+---
+"@context":
+  nick:
+    "@id": http://xmlns.com/foaf/0.1/nick
+    "@container": "@list"
+"@id": http://example.org/people#joebob
+nick:
+- joe
+- bob
+- jaybee

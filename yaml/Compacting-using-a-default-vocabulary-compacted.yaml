@@ -1,7 +1,7 @@
-Example 110: Compacting using a default vocabulary-compacted
+Example 127: Compacting using a default vocabulary-compacted
 ---
 "@context":
-  "@vocab": http://xmlns.com/foaf/0.1/
+  "@vocab": http://example.org/
 "@id": http://example.org/places#BrewEats
 "@type": Restaurant
 name: Brew Eats

@@ -1,0 +1,10 @@
+Example 076: Overriding default language and default base direction using an expanded value
+---
+"@context":
+  "@language": ar-EG
+  "@direction": rtl
+title: 'HTML و CSS: تصميم و إنشاء مواقع الويب'
+author:
+  "@value": Jon Duckett
+  "@language": en
+  "@direction": 

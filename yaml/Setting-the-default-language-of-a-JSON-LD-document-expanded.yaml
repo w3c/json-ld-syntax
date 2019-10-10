@@ -1,4 +1,4 @@
-Example 059: Setting the default language of a JSON-LD document-expanded
+Example 067: Setting the default language of a JSON-LD document-expanded
 ---
 - http://example.org/name:
   - "@value": 花澄
