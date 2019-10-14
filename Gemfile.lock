@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/ruby-rdf/json-ld.git
-  revision: c1e72171960b31bf417c7af9ecea6ebf75fd0316
+  revision: b1a47abbdd6db71d2b9ccb42811445fee1626d60
   branch: develop
   specs:
     json-ld (3.0.2)
@@ -74,7 +74,7 @@ GEM
       sparql (~> 3.0)
       sparql-client (~> 3.0)
     mini_portile2 (2.4.0)
-    multi_json (1.13.1)
+    multi_json (1.14.0)
     net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
     nokogiri (1.10.4)
