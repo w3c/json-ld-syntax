@@ -18,6 +18,9 @@ require 'colorize'
 require 'yaml'
 require 'cgi'
 
+# Define I18N vocabulary
+class RDF::Vocab::I18N < RDF::Vocabulary("https://www.w3.org/ns/i18n#"); end unless RDF::Vocab.const_defined?(:I18N)
+
 # FIXME: This is here until the rdf:JSON is added in RDF.rb
 unless RDF::RDFV.properties.include?( RDF.to_uri + 'JSON')
   RDF::RDFV.property :JSON, label: "JSON", comment: "JSON datatype"
@@ -170,6 +173,7 @@ def dataset_to_table(repo)
 
     if has_datatype
       if statement.object.literal? && statement.object.datatype?
+        require 'byebug'; byebug unless RDF::Vocabulary.find_term(statement.object.datatype).respond_to?(:pname)
         row[positions[:datatype]] = RDF::Vocabulary.find_term(statement.object.datatype).pname
       else
         row[positions[:datatype]] = "&nbsp;"
