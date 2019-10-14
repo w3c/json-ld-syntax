@@ -173,7 +173,6 @@ def dataset_to_table(repo)
 
     if has_datatype
       if statement.object.literal? && statement.object.datatype?
-        require 'byebug'; byebug unless RDF::Vocabulary.find_term(statement.object.datatype).respond_to?(:pname)
         row[positions[:datatype]] = RDF::Vocabulary.find_term(statement.object.datatype).pname
       else
         row[positions[:datatype]] = "&nbsp;"
