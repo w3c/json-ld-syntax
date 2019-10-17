@@ -320,13 +320,16 @@
     when prepended to the suffix of the <a>compact IRI</a>,
     results in an <a>absolute IRI</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-processing-mode">processing mode</dfn></dt><dd>
-    The processing mode defines how a <a>JSON-LD document</a> is processed.
-    By default, all documents are assumed to be conformant with <a data-cite="JSON-LD10" data-no-xref="">JSON-LD 1.0</a> [[JSON-LD10]].
+    The <a>processing mode</a> defines how a <a>JSON-LD document</a> is processed.
+    By default, all documents are assumed to be conformant with this specification.
     By defining a different version using the <code>@version</code> <a>entry</a> in a <a>context</a>,
-    or via explicit API option,
-    other processing modes can be accessed.
+    publishers can ensure that processors conformant with <a data-cite="JSON-LD10" data-no-xref="">JSON-LD 1.0</a> [[JSON-LD10]]
+    will not accidently process JSON-LD 1.1 documents, possibly creating a different output.
+    The API provides an option for setting the <a>processing mode</a> to `json-ld-1.0`,
+    which will prevent JSON-LD 1.1 features from being activated,
+    or error if <code>@version</code> <a>entry</a> in a <a>context</a> is explicitly set to `1.1`.
     This specification extends <a data-cite="JSON-LD10" data-no-xref="">JSON-LD 1.0</a>
-    via the <code>json-ld-1.1</code> <a>processing mode</a>.</dd>
+    via the `json-ld-1.1` <a>processing mode</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-set-object">set object</dfn></dt><dd>
     A <a>set object</a> is a <a>map</a> that has an <code>@set</code> <a>entry</a>.
     It may also have an <code>@index</code> key, but no other <a>entries</a>.</dd>
