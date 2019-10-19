@@ -135,8 +135,8 @@
   };
 </script>
 <script>
-  // Add example button selection logic
   document.addEventListener("DOMContentLoaded", () => {
+    // Add example button selection logic
     for (const button of document.querySelectorAll(".ds-selector-tabs .selectors button")) {
       button.onclick = () => {
         const ex = button.closest(".ds-selector-tabs");
@@ -146,7 +146,26 @@
         ex.querySelector("." + button.dataset.selects).classList.add("selected");
       }
     }
-  })
+
+    // Toggle show/hide changes
+    for (const elem of document.querySelectorAll(".show-changes")) {
+      elem.onclick = () => {
+        if (elem.classList.contains("selected")) {
+          // Remove highlight class from elements having "changed" class
+          elem.classList.remove("selected");
+          for (const changed of document.querySelectorAll(".changed")) {
+            changed.classList.remove("highlight");
+          }
+        } else {
+          // Add highlight class to elements having "changed" class
+          elem.classList.add("selected");
+          for (const changed of document.querySelectorAll(".changed")) {
+            changed.classList.add("highlight");
+          }
+        }
+      }
+    }
+  });
 </script>
 <style>
   .hl-bold { font-weight: bold; color: #0a3; }
@@ -193,12 +212,14 @@
     border: solid thin black;
     padding: 0.2em;
   }
-  .changed {
+  .highlight.changed, .show-changes {
     background-color: rgb(215, 238, 197);
   }
-  .changed:hover {
-    color:  green;
-    background-color: inherit;
+  .show-changes.selected:before {
+    content: "de-highlight";
+  }
+  .show-changes:before {
+    content: "highlight";
   }
   aside.example {
     overflow-y: hidden;
@@ -373,16 +394,15 @@
       <a data-cite="RFC8259" data-no-xref="">JSON</a>, which is detailed in [[RFC8259]].</p>
 
     <p>This document almost exclusively uses the term IRI
-    (<a data-cite="ld-glossary#internationalized-resource-identifier">Internationalized Resource Indicator</a>)
-    when discussing hyperlinks. Many Web developers are more familiar with the
-    URL (<a data-cite="ld-glossary#uniform-resource-locator">Uniform Resource Locator</a>)
-    terminology. The document also uses, albeit rarely, the URI
-    (<a data-cite="ld-glossary#uniform-resource-identifier">Uniform Resource Indicator</a>)
-    terminology. While these terms are often used interchangeably among
-    technical communities, they do have important distinctions from one
-    another and the specification goes to great lengths to try and use the
-    proper terminology at all times.
-    </p>
+      (<a data-cite="ld-glossary#internationalized-resource-identifier">Internationalized Resource Indicator</a>)
+      when discussing hyperlinks. Many Web developers are more familiar with the
+      URL (<a data-cite="ld-glossary#uniform-resource-locator">Uniform Resource Locator</a>)
+      terminology. The document also uses, albeit rarely, the URI
+      (<a data-cite="ld-glossary#uniform-resource-identifier">Uniform Resource Indicator</a>)
+      terminology. While these terms are often used interchangeably among
+      technical communities, they do have important distinctions from one
+      another and the specification goes to great lengths to try and use the
+      proper terminology at all times.</p>
   </section>
 
   <section class="informative">
