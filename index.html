@@ -12430,35 +12430,35 @@ the data type to be specified explicitly with each piece of data.</p>
       an <a>array</a> composed of any of these.
     </dd>
     <dt>`@graph`</dt><dd>
-      The `@graph` keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>graph object</a>.
-      The unaliased `@graph` MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
-      The value of the `@graph` key MUST be a <a>value object</a>, <a>node object</a>, or an array of either <a>value objects</a> or <a>node objects</a>.
-      See <a class="sectionRef" href="#named-graphs"></a>.
+      The `@graph` keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>graph object</a>,
+      where its value MUST be a <a>value object</a>, <a>node object</a>, or an array of either <a>value objects</a> or <a>node objects</a>.
+      <p>The unaliased `@graph` MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>.</p>
+      <p>See <a class="sectionRef" href="#named-graphs"></a>.</p>
     </dd>
     <dt><code>@id</code></dt><dd>
       The <code>@id</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>graph object</a>.
-      The unaliased <code>@id</code> MAY be used as a key in an <a>expanded term definition</a>,
-      or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
-      The value of the <code>@id</code> key MUST  be an <a>absolute IRI</a>, a <a>relative IRI</a>,
-      or a <a>compact IRI</a> (including <a>blank node identifiers</a>).
-      See <a class="sectionRef" href="#node-identifiers"></a>,
-      <a class="sectionRef" href="#compact-iris"></a>, and
-      <a class="sectionRef" href="#identifying-blank-nodes"></a> for further discussion on
-      <code>@id</code> values.
+      <p>The unaliased <code>@id</code> MAY be used as a key in an <a>expanded term definition</a>,
+        or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.</p>
+      <p>The value of the <code>@id</code> key MUST  be an <a>absolute IRI</a>, a <a>relative IRI</a>,
+        or a <a>compact IRI</a> (including <a>blank node identifiers</a>).</p>
+      <p>See <a class="sectionRef" href="#node-identifiers"></a>,
+        <a class="sectionRef" href="#compact-iris"></a>, and
+        <a class="sectionRef" href="#identifying-blank-nodes"></a> for further discussion on
+        <code>@id</code> values.</p>
     </dd>
     <dt><code>@index</code></dt><dd>
       The <code>@index</code> keyword MAY be aliased and MAY be used as a key in a
       <a>node object</a>, <a>value object</a>, <a>graph object</a>, <a>set object</a>, or <a>list object</a>.
-      The unaliased <code>@index</code> MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
       Its value MUST be a <a>string</a>.
-      See <a class="sectionRef" href="#index-maps"></a> for a further discussion.
+      <p>The unaliased <code>@index</code> MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>.</p>
+      <p>See <a class="sectionRef" href="#index-maps"></a> for a further discussion.</p>
     </dd>
     <dt><code>@language</code></dt><dd>
       The <code>@language</code> keyword MAY be aliased and MAY be used as a key in a <a>value object</a>.
-      The unaliased <code>@language</code> MAY be used as a key in a <a>context definition</a>,
-      or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
       Its value MUST be a <a>string</a> with the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>..
-      See <a class="sectionRef" href="#index-maps"></a> for a further discussion.
+      <p>The unaliased <code>@language</code> MAY be used as a key in a <a>context definition</a>,
+        or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.</p>
+      <p>See <a class="sectionRef" href="#index-maps"></a> for a further discussion.</p>
     </dd>
     <dt><code>@list</code></dt><dd>
       The <code>@list</code> keyword MAY be aliased and MUST be used as a key in a <a>list object</a>.
@@ -12478,13 +12478,12 @@ the data type to be specified explicitly with each piece of data.</p>
       <p>See <a class="sectionRef" href="#sets-and-lists"></a> for further discussion on sets and lists.</p>
     </dd>
     <dt class="changed"><code>@nest</code></dt><dd class="changed">
-      The <code>@nest</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a>.
-      The unaliased <code>@nest</code> MAY be used as the value of a <a>simple term definition</a>,
-      or as a key in an <a>expanded term definition</a>.
-      When used in a <a>node object</a>, its value must be a <a>map</a>.
-      When used in an <a>expanded term definition</a>, its value MUST be a term expanding to <code>@nest</code>.
-      Its value MUST be a <a>string</a>.
-      See <a class="sectionRef" href="#property-nesting"></a> for a further discussion.
+      The <code>@nest</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a>,
+      where its value must be a <a>map</a>.
+      <p>The unaliased <code>@nest</code> MAY be used as the value of a <a>simple term definition</a>,
+        or as a key in an <a>expanded term definition</a>,
+        where its value MUST be a string expanding to <code>@nest</code>.</p>
+      <p>See <a class="sectionRef" href="#property-nesting"></a> for a further discussion.</p>
     </dd>
     <dt class="changed"><code>@none</code></dt><dd class="changed">
       The <code>@none</code> keyword MAY be aliased and MAY be used as a key in an
@@ -12516,16 +12515,15 @@ the data type to be specified explicitly with each piece of data.</p>
     </dd>
     <dt><code>@reverse</code></dt><dd>
       The <code>@reverse</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a>.
-      The unaliased <code>@reverse</code> MAY be used as a key in an <a>expanded term definition</a>.
-      The value of the <code>@reverse</code> key MUST  be an <a>absolute IRI</a>, a <a>relative IRI</a>,
-      or a <a>compact IRI</a> (including <a>blank node identifiers</a>).
-      See <a class="sectionRef" href="#reverse-properties"></a> and
-      <a class="sectionRef" href="#context-definitions"></a> for further discussion.
+      <p>The unaliased <code>@reverse</code> MAY be used as a key in an <a>expanded term definition</a>.</p>
+      <p>The value of the <code>@reverse</code> key MUST  be an <a>absolute IRI</a>, a <a>relative IRI</a>,
+        or a <a>compact IRI</a> (including <a>blank node identifiers</a>).</p>
+      <p>See <a class="sectionRef" href="#reverse-properties"></a> and
+        <a class="sectionRef" href="#context-definitions"></a> for further discussion.</p>
     </dd>
     <dt><code>@set</code></dt><dd>
       The <code>@set</code> keyword MAY be aliased and MUST be used as a key in a <a>set object</a>.
-      The unaliased <code>@set</code> MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
-      Its value MUST be one of the following:
+      where value MUST be one of the following:
       <ul>
         <li><a>string</a>,</li>
         <li><a>number</a>,</li>
@@ -12537,6 +12535,8 @@ the data type to be specified explicitly with each piece of data.</p>
         <li>an <a>array</a> of zero or more of the above possibilities</li>
       </ul>
 
+      <p>The unaliased <code>@set</code> MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>.</p>
+
       <p>See <a class="sectionRef" href="#sets-and-lists"></a> for further discussion on sets and lists.</p>
     </dd>
     <dt class="changed">`@import`</dt><dd class="changed">
@@ -12545,14 +12545,16 @@ the data type to be specified explicitly with each piece of data.</p>
       See <a class="sectionRef" href="#imported-contexts"></a> for a further discussion.
     </dd>
     <dt><code>@type</code></dt><dd>
-      The <code>@type</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>value object</a>.
-      The unaliased <code>@type</code> MAY be used as a key in an <a>expanded term definition</a>,
-      or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.
-      The value of the <code>@type</code> key MUST  be a <a>term</a>, <a>absolute IRI</a>, a <a>relative IRI</a>,
+      The <code>@type</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>value object</a>,
+      where its value MUST be a <a>term</a>, <a>absolute IRI</a>, a <a>relative IRI</a>,
       or a <a>compact IRI</a> (including <a>blank node identifiers</a>).
-      Within an expanded term definition, its value may also be either <code>@id</code> or <code>@vocab</code>.
-      This keyword is described further in <a class="sectionRef" href="#specifying-the-type"></a>
-      and <a class="sectionRef" href="#typed-values"></a>.
+      <p>The unaliased <code>@type</code> MAY be used as a key in an <a>expanded term definition</a>,
+        where its value may also be either <code>@id</code> or <code>@vocab</code>,
+        or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.</p>
+      <p class="changed">Within a context, `@type` may be used as the key for an <a>expanded term definition</a>,
+        whose entries are limited to `@container` and `@protected`.</p>
+      <p>This keyword is described further in <a class="sectionRef" href="#specifying-the-type"></a>
+        and <a class="sectionRef" href="#typed-values"></a>.</p>
     </dd>
     <dt><code>@value</code></dt><dd>
       The <code>@value</code> keyword MAY be aliased and MUST be used as a key in a <a>value object</a>.
@@ -12567,7 +12569,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <dt><code>@vocab</code></dt><dd>
       The <code>@vocab</code> keyword MUST NOT be aliased and MAY be used as a key in a <a>context definition</a>
       or as the value of <code>@type</code> in an <a>expanded term definition</a>.
-      Its value MUST be a <a>absolute IRI</a>, <span class="changed">a <a>relative IRI</a></span>, a <a>compact IRI</a>, a <a>blank node identifier</a>, an empty <a>string</a> (""), a <a>term</a>, or <a>null</a>.
+      Its value MUST be a <a>absolute IRI</a>, <span class="changed">a <a>relative IRI</a></span>, a <a>compact IRI</a>, a <a>blank node identifier</a>, a <a>term</a>, or <a>null</a>.
       This keyword is described further in <a class="sectionRef" href="#context-definitions"></a>,
       and <a class="sectionRef" href="#default-vocabulary"></a>.
     </dd>
