@@ -273,7 +273,7 @@ ARGV.each do |input|
 
       if element.name == 'aside'
         # If element is aside, look for sub elements with titles
-        element.css('.original, .compacted, .expanded, .flattened, .turtle, .trig, .statements, .graph, .context, .frame').each do |sub|
+        element.css('.original, .compacted, .expanded, .flattened, .turtle, .trig, .statements, .graph, .context, .frame, .framed').each do |sub|
           cls = (%w(original compacted expanded flattened turtle trig statements graph context frame) & sub.classes).first
           save_example(examples: examples,
                        element: sub,
