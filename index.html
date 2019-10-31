@@ -583,7 +583,7 @@
         that processing should continue deeper into a JSON data structure.
         This keyword is described in <a class="sectionRef" href="#data-indexing"></a>.</dd>
       <dt><code>@base</code></dt>
-      <dd>Used to set the <a>base IRI</a> against which to resolve those <a>relative IRIs</a>
+      <dd>Used to set the <a>base IRI</a> against which to resolve those <a>relative IRI references</a>
         interpreted relative to the document.
         This keyword is described in <a class="sectionRef" href="#base-iri"></a>.</dd>
       <dt><code>@vocab</code></dt>
@@ -699,7 +699,7 @@
   </table>
 
   <p>These are used within this document as part of a <a>compact IRI</a>
-    as a shorthand for the resulting <a>absolute IRI</a>, such as <code>dcterms:title</code>
+    as a shorthand for the resulting <a>IRI</a>, such as <code>dcterms:title</code>
     used to represent <code>http://purl.org/dc/terms/title</code>.</p>
 </section>
 
@@ -827,7 +827,7 @@
       <span class="changed">Exceptions are the empty string `""` and strings that have the form
         of a keyword (i.e., staring with `"@"`), which must not be used as terms.
         Strings that have the form of
-        an absolute IRI (e.g., containing a `":"`) should not be used as terms.</span></p>
+        an <a>IRI</a> (e.g., containing a `":"`) should not be used as terms.</span></p>
 
     <p>For the sample document in the previous section, a <a>context</a> would
       look something like this:</p>
@@ -875,10 +875,10 @@
       and to specify whether <a>array</a> values are to be
       interpreted as <a href="#sets">sets</a> or <a href="#lists">lists</a>.
       <a>Expanded term definitions</a> may
-      be defined using <a data-lt="absolute IRI">absolute</a> or
+      be defined using <a>IRIs</a> or
       <a>compact IRIs</a> as keys, which is
       mainly used to associate type or language information with an
-      <a data-lt="absolute IRI">absolute</a> or <a>compact IRI</a>.</p>
+      <a>IRIs</a> or <a>compact IRI</a>.</p>
 
     <p><a>Contexts</a> can either be directly embedded
       into the document (an <a>embedded context</a>) or be referenced using a URL.
@@ -1053,13 +1053,13 @@
   <p><a>IRIs</a> (<a data-cite="RFC3987#section-2">Internationalized Resource Identifiers</a>
     [[RFC3987]]) are fundamental to Linked Data as that is how most
     <a>nodes</a> and <a>properties</a>
-    are identified. In JSON-LD, IRIs may be represented as an
-    <a>absolute IRI</a> or a <a>relative IRI</a>. An
-    <a data-cite="RFC3987#section-1.3">absolute IRI</a> is defined in [[RFC3987]] as containing a
+    are identified.
+    In JSON-LD, IRIs may be represented as an <a>IRI reference</a>.
+    An <a>IRI</a> is defined in [[RFC3987]] as containing a
     <em>scheme</em> along with <em>path</em> and optional <em>query</em> and
-    <em>fragment</em> segments. A <a>relative IRI</a> is an IRI
-    that is relative to some other <a>absolute IRI</a>.
-    In JSON-LD, with exceptions that are as described below, all <a>relative IRIs</a>
+    <em>fragment</em> segments. A <a>relative IRI reference</a> is an IRI
+    that is relative to some other <a>IRI</a>.
+    In JSON-LD, with exceptions that are as described below, all <a>relative IRI references</a>
     are resolved relative to the <a>base IRI</a>.</p>
 
   <p class="note">As noted in <a href="#how-to-read-this-document" class="sectionRef"></a>,
@@ -1073,7 +1073,7 @@
   <p class="note"><a>Properties</a>, values of <code>@type</code>,
     and values of <a>properties</a> with a <a>term definition</a>
     that defines them as being relative to the <a>vocabulary mapping</a>,
-    may have the form of a <a>relative IRI</a>, but are resolved using the
+    may have the form of a <a>relative IRI reference</a>, but are resolved using the
     <a>vocabulary mapping</a>, and not the <a>base IRI</a>.</p>
 
   <p>A <a>string</a> is interpreted as an <a>IRI</a> when it is the
@@ -1091,11 +1091,11 @@
   </pre>
 
   <p>Values that are interpreted as <a>IRIs</a>, can also be
-    expressed as <a>relative IRIs</a>. For example,
+    expressed as <a>relative IRI references</a>. For example,
     assuming that the following document is located at
-    <code>http://example.com/about/</code>, the <a>relative IRI</a>
+    <code>http://example.com/about/</code>, the <a>relative IRI reference</a>
     <code>../</code> would expand to <code>http://example.com/</code> (for more
-    information on where  <a>relative IRIs</a> can be
+    information on where <a>relative IRI references</a> can be
     used, please refer to section <a href="#json-ld-grammar"></a>).</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
@@ -1109,8 +1109,7 @@
   -->
   </pre>
 
-  <p><a>Absolute IRIs</a> can be expressed directly
-    in the key position like so:</p>
+  <p><a>IRIs</a> can be expressed directly in the key position like so:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
        title="IRI as a key">
@@ -1124,7 +1123,7 @@
   </pre>
 
   <p>In the example above, the key <code>http://schema.org/name</code>
-    is interpreted as an <a>absolute IRI</a>.</p>
+    is interpreted as an <a>IRI</a>.</p>
 
   <p>Term-to-IRI expansion occurs if the key matches a <a>term</a> defined
     within the <a>active context</a>:</p>
@@ -2286,7 +2285,7 @@
     <code>@vocab</code> keyword allows an author to set a common prefix which
     is used as the <a>vocabulary mapping</a> and is used
     for all properties and types that do not match a <a>term</a> and are neither
-    a <a>compact IRI</a> nor an <a>absolute IRI</a> (i.e., they do
+    an <a>IRI</a> nor a <a>compact IRI</a> (i.e., they do
     not contain a colon).</p>
 
   <aside class="example ds-selector-tabs"
@@ -2409,13 +2408,13 @@
   </aside>
 
   <p class="changed">Since JSON-LD 1.1,
-    the <a>vocabulary mapping</a> in a <a>local context</a> can be set to the a <a>relative IRI</a>,
+    the <a>vocabulary mapping</a> in a <a>local context</a> can be set to the a <a>relative IRI reference</a>,
     which is concatenated to any <a>vocabulary mapping</a> in the <a>active context</a>
     (see <a href="#document-relative-vocabulary-mapping" class="sectionRef"></a>
     for how this applies if there is no <a>vocabulary mapping</a> in the <a>active context</a>).</p>
 
   <p class="changed">The following example illustrates the affect of expanding a property using
-    a <a>relative IRI</a>, which is shown in the Expanded (Result) tab below.</p>
+    a <a>relative IRI reference</a>, which is shown in the Expanded (Result) tab below.</p>
 
   <aside class="example ds-selector-tabs"
          title="Using a default vocabulary relative to a previous default vocabulary">
@@ -2491,10 +2490,10 @@
     using the <code>@base</code> keyword.</p>
 
   <p>For example, if a JSON-LD document was retrieved from <code>http://example.com/document.jsonld</code>,
-    relative IRIs would resolve against that IRI:</p>
+    <a>relative IRI references</a> would resolve against that <a>IRI</a>:</p>
 
   <pre class="example nohighlight" data-transform="updateExample"
-       title="Use a relative IRI as node identifier">
+       title="Use a relative IRI reference as node identifier">
     <!--
     {
       "@context": {
@@ -2508,7 +2507,7 @@
 
   <p>This document uses an empty <code>@id</code>, which resolves to the document base.
     However, if the document is moved to a different location, the <a>IRI</a> would change.
-    To prevent this without having to use an <a>absolute IRI</a>, a <a>context</a>
+    To prevent this without having to use an <a>IRI</a>, a <a>context</a>
     may define an <code>@base</code> mapping, to overwrite the <a>base IRI</a> for the document.</p>
 
   <aside class="example ds-selector-tabs"
@@ -2564,8 +2563,8 @@
   </aside>
 
   <p>Setting <code>@base</code> to <a>null</a> will prevent
-    <a>relative IRIs</a> from being expanded to
-    <a>absolute IRIs</a>.</p>
+    <a>relative IRI references</a> from being expanded to
+    <a>IRIs</a>.</p>
 
   <p>Please note that the <code>@base</code> will be ignored if used in
     external contexts.</p>
@@ -2576,11 +2575,11 @@
   <p>In some cases, vocabulary terms are defined directly within the document
     itself, rather than in an external vocabulary.
     Since JSON-LD 1.1, the <a>vocabulary mapping</a> in a <a>local context</a>
-    can be set to a <a>relative IRI</a>,
+    can be set to a <a>relative IRI reference</a>,
     which is, if there is no vocabulary mapping in scope, resolved against the <a>base IRI</a>.
     This causes terms which are expanded relative to the vocabulary,
     such as the keys of <a>node objects</a>,
-    to be based on the <a>base IRI</a> to create <a>absolute IRIs</a>.</p>
+    to be based on the <a>base IRI</a> to create <a>IRIs</a>.</p>
 
 <pre class="example input nohighlight" data-transform="updateExample"
      title="Using &quot;#&quot; as the vocabulary mapping"
@@ -2652,7 +2651,7 @@
     Friend-of-a-Friend vocabulary, which is identified using the <a>IRI</a>
     <code>http://xmlns.com/foaf/0.1/</code>. A developer may append
     any of the FOAF vocabulary terms to the end of the prefix to specify a short-hand
-    version of the <a>absolute IRI</a> for the vocabulary term. For example,
+    version of the <a>IRI</a> for the vocabulary term. For example,
     <code>foaf:name</code> would be expanded to the IRI
     <code>http://xmlns.com/foaf/0.1/name</code>.</p>
 
@@ -2726,7 +2725,7 @@
     concatenating the <a>IRI</a> mapped to the <em>prefix</em> to the (possibly empty)
     <em>suffix</em>. If the <em>prefix</em> is not defined in the <a>active context</a>,
     or the suffix begins with two slashes (such as in <code>http://example.com</code>),
-    the value is interpreted as <a>absolute IRI</a> instead. If the prefix is an
+    the value is interpreted as <a>IRI</a> instead. If the prefix is an
     underscore (<code>_</code>), the value is interpreted as <a>blank node identifier</a>
     instead.</p>
 
@@ -3184,10 +3183,10 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
 <p class="warning changed">If a <a>compact IRI</a> is used as a <a>term</a>, it must expand to the
   value that <a>compact IRI</a> would have on its own when expanded.
   This represents a change to the original 1.0 algorithm to prevent terms from
-  expanding to a different <a>absolute IRI</a>, which could lead to undesired results.</p>
+  expanding to a different <a>IRI</a>, which could lead to undesired results.</p>
 
 <pre class="illegal-example nohighlight" data-transform="updateExample"
-     title="Illegal Aliasing of a compact IRI to a different absolute IRI">
+     title="Illegal Aliasing of a compact IRI to a different IRI">
 <!--
 {
   "@context": {
@@ -3208,10 +3207,10 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
 -->
 </pre>
 
-<p><a>Absolute IRIs</a> may also be used in the key position in a <a>context</a>:</p>
+<p><a>IRIs</a> may also be used in the key position in a <a>context</a>:</p>
 
 <pre class="example nohighlight" data-transform="updateExample"
-     title="Associating context definitions with absolute IRIs">
+     title="Associating context definitions with IRIs">
 <!--
 {
   "@context": {
@@ -3231,14 +3230,14 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
 -->
 </pre>
 
-<p>In order for the <a>absolute IRI</a> to match above, the <a>absolute IRI</a>
+<p>In order for the <a>IRI</a> to match above, the <a>IRI</a>
   needs to be used in the <a>JSON-LD document</a>. Also note that <code>foaf:homepage</code>
   will not use the <code>{ "@type": "@id" }</code> declaration because
   <code>foaf:homepage</code> is not the same as <code>http://xmlns.com/foaf/0.1/homepage</code>.
   That is, <a>terms</a> are looked up in a <a>context</a> using
   direct string comparison before the <a>prefix</a> lookup mechanism is applied.</p>
 
-<p class="warning changed">Neither a <a>compact IRI</a> nor an <a>absolute IRI</a>
+<p class="warning changed">Neither an <a>IRI reference</a> nor a <a>compact IRI</a> 
   may expand to some other unrelated <a>IRI</a>.
   This represents a change to the original 1.0 algorithm which allowed this behavior but discouraged it.</p>
 
@@ -4576,14 +4575,14 @@ the data type to be specified explicitly with each piece of data.</p>
   as value to indicate that within the body of a JSON-LD document, a <a>string</a> value of a
   <a>term</a> coerced to <code>@id</code> or <code>@vocab</code> is to be interpreted as an
   <a>IRI</a>. The difference between <code>@id</code> and <code>@vocab</code> is how values are expanded
-  to <a>absolute IRIs</a>. <code>@vocab</code> first tries to expand the value
+  to <a>IRIs</a>. <code>@vocab</code> first tries to expand the value
   by interpreting it as <a>term</a>. If no matching <a>term</a> is found in the
-  <a>active context</a>, it tries to expand it as <a>compact IRI</a> or <a>absolute IRI</a>
+  <a>active context</a>, it tries to expand it as an <a>IRI</a> or a <a>compact IRI</a>
   if there's a colon in the value; otherwise, it will expand the value using the
   <a data-lt="active context">active context's</a> <a>vocabulary mapping</a>, if present.
   Values coerced to <code>@id</code> in contrast are expanded as
-  <a>compact IRI</a> or <a>absolute IRI</a> if a colon is present; otherwise, they are interpreted
-  as <a>relative IRI</a>.</p>
+  an <a>IRI</a> or a <a>compact IRI</a> if a colon is present; otherwise, they are interpreted
+  as <a>relative IRI references</a>.</p>
 
 <p class="note">The ability to coerce a value using a <a>term definition</a> is distinct
   from setting one or more types on a <a>node object</a>, as the former does not result in
@@ -4855,13 +4854,13 @@ the data type to be specified explicitly with each piece of data.</p>
 <p class="note">The triple <code>[] ex2:fred ex1:barney .</code> is emitted twice,
   but exists only once in an output dataset, as it is a duplicate triple.</p>
 
-<p>Terms may also be defined using <a>absolute IRIs</a>
+<p>Terms may also be defined using <a>IRIs</a>
   or <a>compact IRIs</a>. This allows coercion rules
   to be applied to keys which are not represented as a simple <a>term</a>.
   For example:</p>
 
 <aside class="example ds-selector-tabs"
-       title="Term definitions using compact and absolute IRIs">
+       title="Term definitions using IRIs and compact IRIs">
   <div class="selectors">
     <button class="selected" data-selects="compacted">Compacted (Input)</button>
     <button data-selects="expanded">Expanded (Result)</button>
@@ -4894,7 +4893,7 @@ the data type to be specified explicitly with each piece of data.</p>
   </pre>
   <pre class="expanded result nohighlight"
        data-transform="updateExample"
-       data-result-for="Term definitions using compact and absolute IRIs-compacted">
+       data-result-for="Term definitions using IRIs and compact IRIs-compacted">
   <!--
   [{
     "http://xmlns.com/foaf/0.1/age": [{"@type": "http://www.w3.org/2001/XMLSchema#integer", "@value": "41"}],
@@ -4908,7 +4907,7 @@ the data type to be specified explicitly with each piece of data.</p>
   -->
   </pre>
   <table class="statements"
-         data-result-for="Term definitions using compact and absolute IRIs-expanded"
+         data-result-for="Term definitions using IRIs and compact IRIs-expanded"
          data-to-rdf>
   <thead><tr><th>Subject</th><th>Property</th><th>Value</th><th>Value Type</th></tr></thead>
   <tbody>
@@ -4920,7 +4919,7 @@ the data type to be specified explicitly with each piece of data.</p>
   </table>
   <pre class="turtle"
        data-content-type="text/turtle"
-       data-result-for="Term definitions using compact and absolute IRIs-expanded"
+       data-result-for="Term definitions using IRIs and compact IRIs-expanded"
        data-transform="updateExample"
        data-to-rdf>
   <!--
@@ -4938,7 +4937,7 @@ the data type to be specified explicitly with each piece of data.</p>
 </aside>
 
 <p>In this case the <code>@id</code> definition in the term definition is optional.
-  If it does exist, the <a>compact IRI</a> or <a>IRI</a> representing
+  If it does exist, the <a>IRI</a> or <a>compact IRI</a> representing
   the term will always be expanded to <a>IRI</a> defined by the <code>@id</code>
   key&mdash;regardless of whether a prefix is defined or not.</p>
 
@@ -10107,7 +10106,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <section class="informative"><h3>Shortening IRIs</h3>
     <p>In an expanded JSON-LD document, <a>IRIs</a> are always represented as absolute <a>IRIs</a>.
-      In many cases, it is preferable to use a shorter version, either a <a>relative IRI</a>,
+      In many cases, it is preferable to use a shorter version, either a <a>relative IRI reference</a>,
       <a>compact IRI</a>, or <a>term</a>. Compaction uses a combination of elements
       in a context to create a shorter form of these IRIs. See
       <a href="#default-vocabulary" class="sectionRef"></a>,
@@ -11300,7 +11299,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>HTML allows for <a data-cite="HTML/urls-and-fetching.html#dynamic-changes-to-base-urls">Dynamic changes to base URLs</a>.
       This specification does not require any specific behavior,
       and to ensure that all systems process the <a>base IRI</a> equivalently, authors SHOULD
-      either use <a>absolute IRIs</a>, or explicitly as defined in <a href="#base-iri" class="sectionRef"></a>.
+      either use <a>IRIs</a>, or explicitly as defined in <a href="#base-iri" class="sectionRef"></a>.
       Implementations (particularly those natively operating in the [[!DOM]]) MAY take into consideration
       <a data-cite="HTML/urls-and-fetching.html#dynamic-changes-to-base-urls">Dynamic changes to base URLs</a>.</p>
   </section>
@@ -11807,12 +11806,12 @@ the data type to be specified explicitly with each piece of data.</p>
     </ul>
 
     <p>If the <a>node object</a> contains the <code>@context</code>
-      key, its value MUST be <a>null</a>, an <a>absolute IRI</a>,
-      a <a>relative IRI</a>, a <a>context definition</a>, or
+      key, its value MUST be <a>null</a>, an <a>IRI reference</a>,
+      a <a>context definition</a>, or
       an <a>array</a> composed of any of these.</p>
 
     <p>If the <a>node object</a> contains the <code>@id</code> key,
-      its value MUST be an <a>absolute IRI</a>, a <a>relative IRI</a>,
+      its value MUST be an <a>IRI reference</a>,
       or a <a>compact IRI</a> (including
       <a>blank node identifiers</a>).
       See <a class="sectionRef" href="#node-identifiers"></a>,
@@ -11837,18 +11836,17 @@ the data type to be specified explicitly with each piece of data.</p>
       <a>node objects</a>.</p>
 
     <p>If the <a>node object</a> contains the <code>@type</code>
-      key, its value MUST be either an <a>absolute IRI</a>, a
-      <a>relative IRI</a>, a <a>compact IRI</a>
+      key, its value MUST be either an <a>IRI reference</a>, a <a>compact IRI</a>
       (including <a>blank node identifiers</a>),
-      a <a>term</a> defined in the <a>active context</a> expanding into an <a>absolute IRI</a>, or
+      a <a>term</a> defined in the <a>active context</a> expanding into an <a>IRI</a>, or
       an <a>array</a> of any of these.
       See <a class="sectionRef" href="#specifying-the-type"></a> for further discussion on
       <code>@type</code> values.</p>
 
     <p>If the <a>node object</a> contains the <code>@reverse</code> key,
       its value MUST be a <a>map</a> containing <a>entries</a> representing reverse
-      properties. Each value of such a reverse property MUST be an <a>absolute IRI</a>,
-      a <a>relative IRI</a>, a <a>compact IRI</a>, a <a>blank node identifier</a>,
+      properties. Each value of such a reverse property MUST be an <a>IRI reference</a>,
+      a <a>compact IRI</a>, a <a>blank node identifier</a>,
       a <a>node object</a> or an <a>array</a> containing a combination of these.</p>
 
     <p class="changed">If the <a>node object</a> contains the `@included` key,
@@ -11868,9 +11866,9 @@ the data type to be specified explicitly with each piece of data.</p>
       on <code>@nest</code> values.</p>
 
     <p>Keys in a <a>node object</a> that are not
-      <a>keywords</a> MAY expand to an <a>absolute IRI</a>
+      <a>keywords</a> MAY expand to an <a>IRI</a>
       using the <a>active context</a>. The values associated with keys that expand
-      to an <a>absolute IRI</a> MUST be one of the following:</p>
+      to an <a>IRI</a> MUST be one of the following:</p>
 
     <ul>
       <li><a>string</a>,</li>
@@ -11900,7 +11898,7 @@ the data type to be specified explicitly with each piece of data.</p>
         which is not a <a>keyword</a>.
         Values of <code>@default</code> MAY include the value <code>@null</code>,
         or an <a>array</a> containing only <code>@null</code>, in addition to other values
-        allowed in the grammar for values of <a>entry</a> keys expanding to <a>absolute IRIs</a>.</li>
+        allowed in the grammar for values of <a>entry</a> keys expanding to <a>IRIs</a>.</li>
       <li>The values of <code>@id</code> and <code>@type</code> MAY additionally be
         an empty <a>map</a> (<a data-cite="JSON-LD11-FRAMING#dfn-wildcard">wildcard</a>),
         an <a>array</a> containing only an empty <a>map</a>,
@@ -11931,13 +11929,12 @@ the data type to be specified explicitly with each piece of data.</p>
       and <code>@context</code>, or an alias of one of these <a>keywords</a>.</p>
 
     <p>If the <a>graph object</a> contains the <code>@context</code>
-      key, its value MUST be <a>null</a>, an <a>absolute IRI</a>,
-      a <a>relative IRI</a>, a <a>context definition</a>, or
+      key, its value MUST be <a>null</a>, an <a>IRI reference</a>, a <a>context definition</a>, or
       an <a>array</a> composed of any of these.</p>
 
     <p>If the <a>graph object</a> contains the <code>@id</code> key,
       its value is used as the identifier (<a>graph name</a>) of a <a>named graph</a>, and
-      MUST be an <a>absolute IRI</a>, a <a>relative IRI</a>,
+      MUST be an <a>IRI reference</a>,
       or a <a>compact IRI</a> (including
       <a>blank node identifiers</a>).
       See <a class="sectionRef" href="#node-identifiers"></a>,
@@ -11974,7 +11971,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <span class="changed">or `@direction`</span>
       keys at the same time.
       A <a>value object</a> MUST NOT contain any other keys that expand to an
-      <a>absolute IRI</a> or <a>keyword</a>.</p>
+      <a>IRI</a> or <a>keyword</a>.</p>
 
     <p>The value associated with the <code>@value</code> key MUST be either a
       <a>string</a>, a <a>number</a>, <code>true</code>,
@@ -11984,9 +11981,9 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <p>The value associated with the <code>@type</code> key MUST be a
       <a>term</a>,
+      an <a>IRI</a>,
       a <a>compact IRI</a>,
-      an <a>absolute IRI</a>,
-      a string which can be turned into an <a>absolute IRI</a> using the <a>vocabulary mapping</a>,
+      a string which can be turned into an <a>IRI</a> using the <a>vocabulary mapping</a>,
       <code class="changed">@json</code>,
       or <a>null</a>.</p>
 
@@ -12041,11 +12038,11 @@ the data type to be specified explicitly with each piece of data.</p>
       deterministic form.</p>
 
     <p>A <a>list object</a> MUST be a <a>map</a> that contains no
-      keys that expand to an <a>absolute IRI</a> or <a>keyword</a> other
+      keys that expand to an <a>IRI</a> or <a>keyword</a> other
       than <code>@list</code> and <code>@index</code>.</p>
 
     <p>A <a>set object</a> MUST be a <a>map</a> that contains no
-      keys that expand to an <a>absolute IRI</a> or <a>keyword</a> other
+      keys that expand to an <a>IRI</a> or <a>keyword</a> other
       than <code>@set</code> and <code>@index</code>.
       Please note that the <code>@index</code> key will be ignored when being processed.</p>
 
@@ -12163,7 +12160,7 @@ the data type to be specified explicitly with each piece of data.</p>
       is defined with <code>@container</code> set to <code>@id</code>,
       or an array containing both <code>@id</code> and <code>@set</code>.
       The keys of an <a>id map</a> MUST be <a>IRIs</a>
-      (<a>relative IRI</a>, <a>compact IRI</a> (including <a>blank node identifiers</a>), or <a>absolute IRI</a>),
+      (<a>IRI references</a> or <a>compact IRIs</a> (including <a>blank node identifiers</a>)),
       the <a>keyword</a> <code>@none</code>,
       or a <a>term</a> which expands to <code>@none</code>,
       and the values MUST be <a>node objects</a>.</p>
@@ -12188,7 +12185,7 @@ the data type to be specified explicitly with each piece of data.</p>
       is defined with <code>@container</code> set to <code>@type</code>,
       or an array containing both <code>@type</code> and <code>@set</code>.
       The keys of a <a>type map</a> MUST be <a>IRIs</a>
-      (<a>relative IRI</a>, <a>compact IRI</a> (including <a>blank node identifiers</a>), or <a>absolute IRI</a>),
+      (<a>IRI references</a> or <a>compact IRI</a> (including <a>blank node identifiers</a>)),
       <a>terms</a>,
       or the <a>keyword</a> <code>@none</code>,
       and the values MUST be <a>node objects</a>
@@ -12230,7 +12227,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <a>node object</a>.</p>
 
   <p>A <a>context definition</a> MUST be a <a>map</a> whose
-    keys MUST be either <a>terms</a>, <a>compact IRIs</a>, <a>absolute IRIs</a>,
+    keys MUST be either <a>terms</a>, <a>compact IRIs</a>, <a>IRIs</a>,
     or one of the <a>keywords</a>
     <code>@base</code>,
     <code class="changed">@import</code>,
@@ -12243,14 +12240,14 @@ the data type to be specified explicitly with each piece of data.</p>
   </p>
 
   <p>If the <a>context definition</a> has an <code>@base</code> key,
-    its value MUST be an <a>absolute IRI</a>, a <a>relative IRI</a>,
+    its value MUST be an <a>IRI reference</a>,
     or <a>null</a>.</p>
 
   <p>If the <a>context definition</a> has an <code>@language</code> key,
     its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
 
   <p class="changed">If a <a>context</a> contains the <code>@import</code>
-    <a>keyword</a>, its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.
+    <a>keyword</a>, its value MUST be an <a>IRI reference</a>.
     When used as a reference from an `@import`, the referenced <a>context definition</a> MUST NOT
     include an `@import` key, itself.</p>
 
@@ -12268,13 +12265,12 @@ the data type to be specified explicitly with each piece of data.</p>
     its value MUST be a <a>number</a> with the value <code>1.1</code>.</p>
 
   <p>If the <a>context definition</a> has an <code>@vocab</code> key,
-    its value MUST be a <a>absolute IRI</a>, a <a>compact IRI</a>,
+    its value MUST be an <a class="changed">IRI reference</a>, a <a>compact IRI</a>,
     a <a>blank node identifier</a>,
-    <span class="changed">a <a>relative IRI</a></span>,
     a <a>term</a>, or <a>null</a>.</p>
 
   <p>The value of keys that are not <a>keywords</a> MUST be either an
-    <a>absolute IRI</a>, a <a>compact IRI</a>, a <a>term</a>,
+    <a>IRI</a>, a <a>compact IRI</a>, a <a>term</a>,
     a <a>blank node identifier</a>, a <a>keyword</a>, <a>null</a>,
     or an <a>expanded term definition</a>.</p>
 
@@ -12300,28 +12296,28 @@ the data type to be specified explicitly with each piece of data.</p>
     MUST NOT contain keys other than `@container` and `@protected`.
     The value of `@container` is limited to the single value `@set`.</p>
 
-  <p>If the term being defined is not a <a>compact IRI</a> or
-    <a>absolute IRI</a> and the <a>active context</a> does not have an
+  <p>If the term being defined is not an <a>IRI</a> or a <a>compact IRI</a>
+    and the <a>active context</a> does not have an
     <code>@vocab</code> mapping, the <a>expanded term definition</a> MUST
     include the <code>@id</code> key.</p>
 
-  <p class="changed"><a>Term definitions</a> with keys which are of the form of a <a>compact IRI</a> or <a>absolute IRI</a> MUST NOT
+  <p class="changed"><a>Term definitions</a> with keys which are of the form of an <a>IRI</a> or a <a>compact IRI</a> MUST NOT
     expand to an <a>IRI</a> other than the expansion of the key itself.</p>
 
   <p>If the <a>expanded term definition</a> contains the <code>@id</code>
-    <a>keyword</a>, its value MUST be <a>null</a>, an <a>absolute IRI</a>,
+    <a>keyword</a>, its value MUST be <a>null</a>, an <a>IRI</a>,
     a <a>blank node identifier</a>, a <a>compact IRI</a>, a <a>term</a>,
     or a <a>keyword</a>.</p>
 
   <p>If an <a>expanded term definition</a> has an <code>@reverse</code> <a>entry</a>,
     it MUST NOT have <code>@id</code> or <code>@nest</code> <a>entries</a> at the same time,
-    its value MUST be an <a>absolute IRI</a>,
+    its value MUST be an <a>IRI</a>,
     a <a>blank node identifier</a>, a <a>compact IRI</a>, or a <a>term</a>. If an
     <code>@container</code> <a>entry</a> exists, its value MUST be <a>null</a>,
     <code>@set</code>, or <code>@index</code>.</p>
 
   <p>If the <a>expanded term definition</a> contains the <code>@type</code>
-    <a>keyword</a>, its value MUST be an <a>absolute IRI</a>, a
+    <a>keyword</a>, its value MUST be an <a>IRI</a>, a
     <a>compact IRI</a>, a <a>term</a>, <a>null</a>, or one of the
     <a>keywords</a> <code>@id</code>, <code class="changed">@json</code>, <code class="changed">@none</code>, or <code>@vocab</code>.</p>
 
@@ -12358,7 +12354,7 @@ the data type to be specified explicitly with each piece of data.</p>
     it MUST be a valid <code>context definition</code>.</p>
 
   <p class="changed">If a <a>context</a> contains the <code>@import</code>
-    <a>keyword</a>, its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.
+    <a>keyword</a>, its value MUST be an <a>IRI reference</a>.
     When used as a reference from an `@import`, the referenced <a>context definition</a> MUST NOT
     include an `@import` key, itself.</p>
 
@@ -12390,7 +12386,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <dl data-sort>
     <dt><code>@base</code></dt><dd>
       The <code>@base</code> keyword MUST NOT be aliased, and MAY be used as a key in a <a>context definition</a>.
-      Its value MUST be an <a>absolute IRI</a>, a <a>relative IRI</a>, or <a>null</a>.
+      Its value MUST be an <a>IRI reference</a>, or <a>null</a>.
     </dd>
     <dt><code>@container</code></dt><dd>
       The <code>@container</code> keyword MUST NOT be aliased, and MAY be used as a key in an <a>expanded term definition</a>.
@@ -12424,8 +12420,7 @@ the data type to be specified explicitly with each piece of data.</p>
       </ul>
       The value of <code>@context</code> MUST be
       <a>null</a>,
-      an <a>absolute IRI</a>,
-      a <a>relative IRI</a>,
+      an <a>IRI reference</a>,
       a <a>context definition</a>, or
       an <a>array</a> composed of any of these.
     </dd>
@@ -12439,7 +12434,7 @@ the data type to be specified explicitly with each piece of data.</p>
       The <code>@id</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>graph object</a>.
       <p>The unaliased <code>@id</code> MAY be used as a key in an <a>expanded term definition</a>,
         or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.</p>
-      <p>The value of the <code>@id</code> key MUST  be an <a>absolute IRI</a>, a <a>relative IRI</a>,
+      <p>The value of the <code>@id</code> key MUST  be an <a>IRI reference</a>,
         or a <a>compact IRI</a> (including <a>blank node identifiers</a>).</p>
       <p>See <a class="sectionRef" href="#node-identifiers"></a>,
         <a class="sectionRef" href="#compact-iris"></a>, and
@@ -12516,7 +12511,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <dt><code>@reverse</code></dt><dd>
       The <code>@reverse</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a>.
       <p>The unaliased <code>@reverse</code> MAY be used as a key in an <a>expanded term definition</a>.</p>
-      <p>The value of the <code>@reverse</code> key MUST  be an <a>absolute IRI</a>, a <a>relative IRI</a>,
+      <p>The value of the <code>@reverse</code> key MUST  be an <a>IRI reference</a>,
         or a <a>compact IRI</a> (including <a>blank node identifiers</a>).</p>
       <p>See <a class="sectionRef" href="#reverse-properties"></a> and
         <a class="sectionRef" href="#context-definitions"></a> for further discussion.</p>
@@ -12541,12 +12536,12 @@ the data type to be specified explicitly with each piece of data.</p>
     </dd>
     <dt class="changed">`@import`</dt><dd class="changed">
       The `@import` keyword MUST NOT be aliased, and MAY be used in a <a>context definition</a>.
-      Its value MUST be an <a>absolute IRI</a> or <a>relative IRI</a>.
+      Its value MUST be an <a>IRI reference</a>.
       See <a class="sectionRef" href="#imported-contexts"></a> for a further discussion.
     </dd>
     <dt><code>@type</code></dt><dd>
       The <code>@type</code> keyword MAY be aliased and MAY be used as a key in a <a>node object</a> or a <a>value object</a>,
-      where its value MUST be a <a>term</a>, <a>absolute IRI</a>, a <a>relative IRI</a>,
+      where its value MUST be a <a>term</a>, <a>IRI reference</a>,
       or a <a>compact IRI</a> (including <a>blank node identifiers</a>).
       <p>The unaliased <code>@type</code> MAY be used as a key in an <a>expanded term definition</a>,
         where its value may also be either <code>@id</code> or <code>@vocab</code>,
@@ -12569,7 +12564,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <dt><code>@vocab</code></dt><dd>
       The <code>@vocab</code> keyword MUST NOT be aliased and MAY be used as a key in a <a>context definition</a>
       or as the value of <code>@type</code> in an <a>expanded term definition</a>.
-      Its value MUST be a <a>absolute IRI</a>, <span class="changed">a <a>relative IRI</a></span>, a <a>compact IRI</a>, a <a>blank node identifier</a>, a <a>term</a>, or <a>null</a>.
+      Its value MUST be an <a>IRI reference</a></span>, a <a>compact IRI</a>, a <a>blank node identifier</a>, a <a>term</a>, or <a>null</a>.
       This keyword is described further in <a class="sectionRef" href="#context-definitions"></a>,
       and <a class="sectionRef" href="#default-vocabulary"></a>.
     </dd>
@@ -12633,7 +12628,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>Authors are strongly encouraged to avoid labeling properties using <a>blank node identifiers</a>,
     instead, consider one of the following mechanisms:</p>
   <ul>
-    <li>a <a>relative IRI</a>, either relative to the document or the vocabulary
+    <li>a <a>relative IRI reference</a>, either relative to the document or the vocabulary
       (see <a href="#document-relative-vocabulary-mapping" class="sectionRef"></a> for a discussion on using the document base as part of the <a>vocabulary mapping</a>),</li>
     <li>a URN such as <code>urn:example:1</code>, see [[?URN]], or</li>
     <li>a "Skolem IRI" as per
@@ -13580,7 +13575,7 @@ the data type to be specified explicitly with each piece of data.</p>
       with <code>@container</code> set to <code>@set</code>.</li>
     <li>The use of <a>blank node identifiers</a> to label properties is obsolete,
       and may be removed in a future version of JSON-LD, as is the support for <a>generalized RDF Datasets</a>.</li>
-    <li>The <a>vocabulary mapping</a> can be a relative IRI, which is evaluated
+    <li>The <a>vocabulary mapping</a> can be a <a>relative IRI reference</a>, which is evaluated
       either against an existing default vocabulary, or against the document base.
       This allows vocabulary-relative IRIs, such as the
       keys of <a>node objects</a>, are expanded or compacted relative
@@ -13590,7 +13585,7 @@ the data type to be specified explicitly with each piece of data.</p>
       )</li>
     <li>Added support for <code>"@type": "@none"</code> in a <a>term definition</a> to prevent value compaction.
       Define the <code>rdf:JSON</code> datatype.</li>
-    <li><a>Term definitions</a> with keys which are of the form of a <a>compact IRI</a> or <a>absolute IRI</a> MUST NOT
+    <li><a>Term definitions</a> with keys which are of the form of an <a>IRI reference</a> or a <a>compact IRI</a> MUST NOT
       expand to an <a>IRI</a> other than the expansion of the key itself.</li>
     <li>A <a>frame</a> may also be located within an HTML document, identified
       using type <code>application/ld+json;profile=http://www.w3.org/ns/json-ld#frame</code>.</li>
@@ -13617,6 +13612,7 @@ the data type to be specified explicitly with each piece of data.</p>
       support `@direction` for setting the <a>base direction</a> of strings.</li>
     <li>The <a>processing mode</a> is now implicitly `json-ld-1.1`, unless set
       explicitly to `json-ld-1.0`.</li>
+    <li>Improve notation using <a>IRI</a>, <a>IRI reference</a>, and <a>relative IRI reference</a>.</li>
   </ul>
 </section>
 
