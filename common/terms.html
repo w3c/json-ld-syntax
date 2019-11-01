@@ -81,9 +81,9 @@
 <p>Terms imported from [[[RDF11-CONCEPTS]]] [[RDF11-CONCEPTS]], [[[RDF-SCHEMA]]] [[RDF-SCHEMA]], and [[[LINKED-DATA]]] [[LINKED-DATA]]</p>
 <dl class="termlist" data-sort>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-base-iri" class="preserve">base IRI</dfn></dt><dd>
-    The <a>base IRI</a> is an <a>absolute IRI</a> established in the <a>context</a>,
+    The <a>base IRI</a> is an <a>IRI</a> established in the <a>context</a>,
     or is based on the <a>JSON-LD document</a> location.
-    The <a>base IRI</a> is used to turn <a>relative IRIs</a> into <a>absolute IRIs</a>.</dd>
+    The <a>base IRI</a> is used to turn <a>relative IRI references</a> into <a>IRIs</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-blank-node" class="preserve">blank node</dfn></dt><dd>
     A <a>node</a> in a <a>graph</a> that is neither an <a>IRI</a>,
     nor a <a>literal</a>.
@@ -196,7 +196,7 @@
   <dt><dfn data-cite="JSON-LD11#dfn-expanded-term-definition">expanded term definition</dfn></dt><dd>
     An expanded term definition is a <a>term definition</a>
     where the value is a <a>map</a>
-    containing one or more <a>keyword</a> keys to define the associated <a>absolute IRI</a>,
+    containing one or more <a>keyword</a> keys to define the associated <a>IRI</a>,
     if this is a reverse property,
     the type associated with string values, and a container mapping.</dd>
   <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-frame" data-lt="frame|JSON-LD frame">frame</dfn></dt><dd>
@@ -317,7 +317,7 @@
     A <a>prefix</a> is the first component of a <a>compact IRI</a>
     which comes from a <a>term</a> that maps to a string that,
     when prepended to the suffix of the <a>compact IRI</a>,
-    results in an <a>absolute IRI</a>.</dd>
+    results in an <a>IRI</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-processing-mode">processing mode</dfn></dt><dd>
     The <a>processing mode</a> defines how a <a>JSON-LD document</a> is processed.
     By default, all documents are assumed to be conformant with this specification.
@@ -342,7 +342,7 @@
     which may be used within a <a>map</a>
     as a key, type, or elsewhere that a string is interpreted as a vocabulary item.
     Its value is either a string (<dfn data-cite="JSON-LD11#dfn-simple-term-definition" data-lt="simple term">simple term definition</dfn>),
-    expanding to an absolute IRI,
+    expanding to an <a>IRI</a>,
     or a map (<a>expanded term definition</a>).
   </dd>
   <dt class="changed"><dfn data-cite="JSON-LD11#dfn-type-map">type map</dfn></dt><dd class="changed">
