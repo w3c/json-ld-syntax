@@ -959,7 +959,7 @@
       is ignored when the document is used as an external <dfn data-lt="context document">JSON-LD context document</dfn>.</p>
 
     <p>JSON documents can be interpreted as JSON-LD without having to be modified by
-      referencing a <a>context</a> via an <a data-cite="RFC8288#section-3">HTTP Link Header</a>
+      referencing a <a>context</a> via an <a data-cite="RFC8288#header">HTTP Link Header</a>
       as described in <a class="sectionRef" href="#interpreting-json-as-json-ld"></a>. It is also
       possible to apply a custom context using the JSON-LD 1.1 API [[JSON-LD11-API]].</p>
 
@@ -10914,7 +10914,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <section class="normative"><h2>Modifying Behavior with Link Relationships</h2>
   <p>Certain aspects of JSON-LD processing can be modified using
-    <dfn data-cite="RFC8288#section-3" data-no-xref>HTTP Link Headers</dfn> [[RFC8288]].
+    <dfn data-cite="RFC8288#header" data-no-xref>HTTP Link Headers</dfn> [[RFC8288]].
     These can be used when retrieving resources that are not, themselves, JSON-LD,
     but can be interpreted as JSON-LD by using information in a
     <a href="https://en.wikipedia.org/wiki/Link_relation" data-no-xref>Link Relation</a>.</p>
@@ -10946,7 +10946,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>In order to use an external context with an ordinary JSON document,
     when retrieving an ordinary JSON document via HTTP, processors MUST
     attempt to retrieve any <a>JSON-LD document</a> referenced by a
-    <a data-cite="RFC8288#section-3">Link Header</a> with:</p>
+    <a data-cite="RFC8288#header">Link Header</a> with:</p>
 
   <ul>
     <li><code>rel="http://www.w3.org/ns/json-ld#context"</code>, and</li>
@@ -11003,7 +11003,7 @@ the data type to be specified explicitly with each piece of data.</p>
     served with the <code>application/ld+json</code>
     media type MUST have all context information, including references to external
     contexts, within the body of the document. Contexts linked via a
-    <code>http://www.w3.org/ns/json-ld#context</code> <a data-cite="RFC8288#section-3">HTTP Link Header</a> MUST be
+    <code>http://www.w3.org/ns/json-ld#context</code> <a data-cite="RFC8288#header">HTTP Link Header</a> MUST be
     ignored for such documents.</p>
 </section>
 
@@ -11016,7 +11016,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>To specify an alternate location, a non-JSON resource
     (i.e., one using a media type other than `application/json` or a derivative)
-    can return the alternate location using a <a data-cite="RFC8288#section-3">Link Header</a> with:</p>
+    can return the alternate location using a <a data-cite="RFC8288#header">Link Header</a> with:</p>
 
   <ul>
     <li><code>rel="alternate"</code>, and</li>
@@ -11067,7 +11067,7 @@ the data type to be specified explicitly with each piece of data.</p>
 <section class="changed"><h2>Embedding JSON-LD in HTML Documents</h2>
 
   <p class="note">This section describes features available
-    with a <a>documentLoader</a> supporting <a data-cite="JSON-LD11-API#html-script-extraction">HTML script extraction</a>.
+    with a <a>documentLoader</a> supporting <a data-cite="JSON-LD11-API#extract-script-content">HTML script extraction</a>.
     See <a data-cite="JSON-LD11-API#remote-document-and-context-retrieval">Remote Document and Context Retrieval</a>
     for more information.</p>
 
@@ -11315,7 +11315,7 @@ the data type to be specified explicitly with each piece of data.</p>
       the content will remain escaped after processing through the
       JSON-LD API [[JSON-LD11-API]].
       <ul>
-        <li><code>&amp;amp;</code>  → &amp; (<a href="/wiki/Ampersand" title="Ampersand">ampersand</a>, U+0026)</li>
+        <li><code>&amp;amp;</code>  → &amp; (<a href="https://en.wikipedia.org/wiki/Ampersand" title="Ampersand">ampersand</a>, U+0026)</li>
         <li><code>&amp;lt;</code>   → &lt; (less-than sign, U+003C)</li>
         <li><code>&amp;gt;</code>   → &gt; (greater-than sign, U+003E)</li>
         <li><code>&amp;quot;</code> → " (quotation mark, U+0022)</li>
@@ -11521,7 +11521,7 @@ the data type to be specified explicitly with each piece of data.</p>
       as a <a>typed value</a> with type <code>xsd:string</code>), a <a>number</a>
       (<a>numbers</a> with a non-zero fractional part, i.e., the result of a modulo&#8209;1 operation,
       <span class="changed">or which are too large to represent as integers
-        (see <a data-cite="JSON-LD11-API#data-gound-tripping">Data Round Tripping</a>) in [[JSON-LD11-API]]),</span>
+        (see <a data-cite="JSON-LD11-API#data-round-tripping">Data Round Tripping</a>) in [[JSON-LD11-API]]),</span>
       are interpreted as <a>typed values</a> with type <code>xsd:double</code>, all other
       <a>numbers</a> are interpreted as <a>typed values</a>
       with type <code>xsd:integer</code>), <code>true</code> or <code>false</code> (which are interpreted as
@@ -13380,7 +13380,7 @@ the data type to be specified explicitly with each piece of data.</p>
             URIs with their own defined semantics.</p>
           <p>
             When used as a <a data-cite="RFC4288#section-4.3">media type parameter</a> [[RFC4288]]
-            in an <a data-cite="rfc7231#section-5.3.2">HTTP Accept header</a> [[RFC7231]],
+            in an <a data-cite="rfc7231#rfc.section.5.3.2">HTTP Accept header</a> [[RFC7231]],
             the value of the <code>profile</code> parameter MUST be enclosed in quotes (<code>"</code>) if it contains
             special characters such as whitespace, which is required when multiple profile URIs are combined.</p>
           <p>When processing the "profile" media type parameter, it is important to
