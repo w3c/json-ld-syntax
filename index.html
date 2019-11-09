@@ -848,7 +848,7 @@
       <a>Terms</a> are case sensitive and most valid <a>strings</a> that are not reserved JSON-LD <a>keywords</a>
       can be used as a <a>term</a>.
       <span class="changed">Exceptions are the empty string `""` and strings that have the form
-        of a keyword (i.e., staring with `"@"`), which must not be used as terms.
+        of a keyword (i.e., staring with `"@"` followed by one or more <em>ALPHA</em> characters (see [[RFC5234]])), which must not be used as terms.
         Strings that have the form of
         an <a>IRI</a> (e.g., containing a `":"`) should not be used as terms.</span></p>
 
@@ -2258,7 +2258,9 @@
     <a>context</a> at the top are still conformant JSON-LD.</p>
 
   <p class="note">To avoid forward-compatibility issues, <a>terms</a>
-    starting with an&nbsp;<code>@</code> character are to be avoided as they
+    starting with an&nbsp;<code>@</code> character
+    <span class="changed">followed by one or more <em>ALPHA</em> characters (see [[RFC5234]])</span>
+    are to be avoided as they
     might be used as <a>keyword</a> in future versions
     of JSON-LD. Terms starting with an&nbsp;<code>@</code> character that are not
     <a data-lt="keyword">JSON-LD 1.1 keywords</a> are treated as any other term, i.e.,
@@ -11777,7 +11779,9 @@ the data type to be specified explicitly with each piece of data.</p>
       as defined in [[RFC3987]].</p>
 
     <p>To avoid forward-compatibility issues, a <a>term</a> SHOULD NOT start
-      with an <code>@</code> character as future versions of JSON-LD may introduce
+      with an <code>@</code> character
+      <span class="changed">followed by one or more <em>ALPHA</em> characters (see [[RFC5234]])</span>
+      as future versions of JSON-LD may introduce
       additional <a>keywords</a>. Furthermore, the term MUST NOT
       be an empty <a>string</a> (<code>""</code>) as not all programming languages
       are able to handle empty JSON keys.</p>
@@ -13644,6 +13648,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>Improve notation using <a>IRI</a>, <a>IRI reference</a>, and <a>relative IRI reference</a>.</li>
     <li>Allow further structured subtypes of `application/ld+json` by using
       `+ld+json` as a suffix for a new base type.</li>
+    <li>Warn about forward-compatibility issues for terms of the form (`"@"1*ALPHA`).</li>
   </ul>
 </section>
 
