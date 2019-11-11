@@ -432,7 +432,7 @@
     <div data-include="common/typographical-conventions.html"></div>
   </section>
 
-  <section class="normative">
+  <section class="informative">
     <h2>Terminology</h2>
 
     <p>This document uses the following terms as defined in external specifications
@@ -11560,7 +11560,9 @@ the data type to be specified explicitly with each piece of data.</p>
       consists of a string and a non-empty <a>language tag</a> as defined by [[BCP47]].
       The language tag MUST be well-formed according to section
       <a data-cite="BCP47#section-2.2.9">2.2.9 Classes of Conformance</a>
-      of [[BCP47]].</li>
+      of [[BCP47]].
+      <span class="changed note">Processors MAY normalize <a>language tags</a> to lowercase.</span>
+      </li>
     <li class="changed">Either <a>strings</a>, or <a>language-tagged strings</a> may include
       a <a>base direction</a>, which represents an extension to the underlying
       <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a>.</li>
@@ -11765,7 +11767,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <section id="terms" class="normative">
     <h2>Terms</h2>
 
-    <p>A <a>term</a> is a short-hand <a>string</a> that expands
+    <p>A <a>term</a> is a short-hand <a>string</a> that MAY expand
       to an <a>IRI</a>, <a>blank node identifier</a>, or <a>keyword</a>.</p>
 
     <p>A <a>term</a> MUST NOT equal any of the JSON-LD <a>keywords</a>,

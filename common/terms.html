@@ -23,7 +23,7 @@
     A single colon comes after each name,
     separating the name from the value.
     A single comma separates a value from a following name.
-    In JSON-LD the names in an object MUST be unique.
+    In JSON-LD the names in an object must be unique.
     <p>In the <a>internal representation</a> a <a>JSON object</a> is described as a
       <dfn data-cite="INFRA#ordered-map" class="preserve">map</dfn> (see [[INFRA]]),
       composed of <dfn data-cite="INFRA#map-entry" data-lt="map entry|entry" data-ld-noDefault class="preserve">entries</dfn> with key/value pairs.</p>
@@ -104,16 +104,16 @@
     A <a>datatype IRI</a> is an <a>IRI</a> identifying a datatype that determines how the lexical form maps to a
     <a data-cite="RDF11-CONCEPTS#dfn-literal-value">literal value</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-default-graph" class="preserve">default graph</dfn></dt><dd>
-    The <a>default graph</a> of a <a>dataset</a> is an <a>RDF graph</a> having no <a data-lt="graph name">name</a>, which MAY be empty.</dd>
+    The <a>default graph</a> of a <a>dataset</a> is an <a>RDF graph</a> having no <a data-lt="graph name">name</a>, which may be empty.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-graph-name" class="preserve">graph name</dfn></dt><dd>
     The <a>IRI</a> or <a>blank node</a> identifying a <a>named graph</a>.</dd>
   <dt><dfn data-cite="RDF11-CONCEPTS#dfn-language-tagged-string" class="preserve">language-tagged string</dfn></dt><dd>
     A <a>language-tagged string</a>
     consists of a string and a non-empty language tag
     as defined by [[BCP47]].
-    The <dfn data-cite="RDF11-CONCEPTS#dfn-language-tag">language tag</dfn> MUST be well-formed
+    The <dfn data-cite="RDF11-CONCEPTS#dfn-language-tag">language tag</dfn> must be well-formed
     according to <a data-cite="BCP47#section-2.2.9">section 2.2.9 Classes of Conformance</a> of [[BCP47]].
-    <span class="changed note">Processors MAY normalize <a>language tags</a> to lowercase.</span>
+    <span class="changed note">Processors may normalize <a>language tags</a> to lowercase.</span>
   </dd>
   <dt><dfn data-cite="LINKED-DATA" data-no-xref="" class="preserve">Linked Data</dfn></dt><dd>
     A set of documents, each containing a representation of a <a>linked data graph</a> or <a>dataset</a>.</dd>
@@ -171,13 +171,13 @@
   <dt><dfn data-cite="JSON-LD11#dfn-default-language">default language</dfn></dt><dd>
     The <a>default language</a> is the language used when a string does not have a language associated with it directly.
     It can be set in the <a>context</a> using the <code>@language</code> key
-    whose value MUST be a <a>string</a> representing a [[BCP47]] language code or <code>null</code>.</dd>
+    whose value must be a <a>string</a> representing a [[BCP47]] language code or <code>null</code>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-default-object">default object</dfn></dt><dd>
     A <a>default object</a> is a <a>map</a> that has a <code>@default</code> key.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-base-direction" data-lt="base direction|default base direction" data-lt-noDefault>base direction</dfn></dt><dd>
     The <a>base direction</a> is the direction used when a string does not have a direction associated with it directly.
     It can be set in the <a>context</a> using the <code>@direction</code> key
-    whose value MUST be one of the strings `"ltr"`, `"rtl"`, or <code>null</code>.</dd>
+    whose value must be one of the strings `"ltr"`, `"rtl"`, or <code>null</code>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-embedded-context">embedded context</dfn></dt><dd>
     An embedded <a>context</a> is a context which appears
     as the <code>@context</code> <a>entry</a> of one of the following:
@@ -213,8 +213,8 @@
   <dt class="changed"><dfn data-cite="JSON-LD11#dfn-graph-object">graph object</dfn></dt><dd class="changed">
     A <a>graph object</a> represents a <a>named graph</a>
     as the value of a <a>map entry</a> within a <a>node object</a>.
-    When expanded, a graph object MUST have an <code>@graph</code> <a>entry</a>,
-    and MAY also have <code>@id</code>, and <code>@index</code> <a>entries</a>.
+    When expanded, a graph object must have an <code>@graph</code> <a>entry</a>,
+    and may also have <code>@id</code>, and <code>@index</code> <a>entries</a>.
     A <dfn data-cite="JSON-LD11#dfn-simple-graph-object" class="preserve">simple graph object</dfn>
     is a <a>graph object</a> which does not have an <code>@id</code> <a>entry</a>.
     Note that <a>node objects</a> may have a <code>@graph</code> <a>entry</a>,
@@ -224,11 +224,11 @@
   <dt class="changed"><dfn data-cite="JSON-LD11#dfn-id-map">id map</dfn></dt><dd class="changed">
     An <a>id map</a> is a <a>map</a> value of a <a>term</a>
     defined with <code>@container</code> set to <code>@id</code>.
-    The values of the <a>id map</a> MUST be <a>node objects</a>,
+    The values of the <a>id map</a> must be <a>node objects</a>,
     and its keys are interpreted as <a>IRIs</a> representing
     the <code>@id</code> of the associated <a>node object</a>.
     If a value in the <a>id map</a> contains a key expanding to <code>@id</code>,
-    its value MUST be equivalent to the referencing key in the <a>id map</a>.</dd>
+    its value must be equivalent to the referencing key in the <a>id map</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-implicitly-named-graph">implicitly named graph</dfn></dt><dd>
     A <a>named graph</a> created from the value of a <a>map entry</a>
     having an <a>expanded term definition</a>
@@ -239,7 +239,7 @@
   <dt><dfn data-cite="JSON-LD11#dfn-index-map">index map</dfn></dt><dd>
     An <a>index map</a> is a <a>map</a> value of a <a>term</a>
     defined with <code>@container</code> set to <code>@index</code>,
-    whose values MUST be any of the following types:
+    whose values must be any of the following types:
     <a>string</a>,
     <a>number</a>,
     <code>true</code>,
@@ -282,8 +282,8 @@
   <dt><dfn data-cite="JSON-LD11#dfn-language-map">language map</dfn></dt><dd>
     An <a>language map</a> is a <a>map</a> value of a <a>term</a>
     defined with <code>@container</code> set to <code>@language</code>,
-    whose keys MUST be <a>strings</a> representing [[BCP47]] language codes
-    and the values MUST be any of the following types:
+    whose keys must be <a>strings</a> representing [[BCP47]] language codes
+    and the values must be any of the following types:
     <a>null</a>,
     <a>string</a>, or
     an <a>array</a> of zero or more of the above possibilities.
@@ -334,7 +334,7 @@
     It may also have an <code>@index</code> key, but no other <a>entries</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-term">term</dfn></dt><dd>
     A <a>term</a> is a short word defined in a <a>context</a>
-    that MAY be expanded to an <a>IRI</a>.
+    that may be expanded to an <a>IRI</a>.
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-term-definition">term definition</dfn></dt><dd>
     A term definition is an entry in a <a>context</a>,
@@ -350,7 +350,7 @@
     defined with <code>@container</code> set to <code>@type</code>,
     whose keys are interpreted as <a>IRIs</a>
     representing the <code>@type</code> of the associated <a>node object</a>;
-    the value MUST be a <a>node object</a>, or <a>array</a> of node objects.
+    the value must be a <a>node object</a>, or <a>array</a> of node objects.
     If the value contains a <a>term</a> expanding to <code>@type</code>,
     its values are merged with the map value when expanding.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-typed-value" class="preserve">typed value</dfn></dt><dd>
@@ -362,6 +362,6 @@
     A <a>value object</a> is a <a>map</a> that has an <code>@value</code> <a>entry</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-vocabulary-mapping" class="preserve">vocabulary mapping</dfn></dt><dd>
     The vocabulary mapping is set in the <a>context</a> using the <code>@vocab</code> key
-    whose value MUST be an <a>IRI</a>, a <a>compact IRI</a>, a <a>term</a>, or <code>null</code>.</dd>
+    whose value must be an <a>IRI</a>, a <a>compact IRI</a>, a <a>term</a>, or <code>null</code>.</dd>
 </dl>
 </section>
