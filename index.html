@@ -848,7 +848,7 @@
       <a>Terms</a> are case sensitive and most valid <a>strings</a> that are not reserved JSON-LD <a>keywords</a>
       can be used as a <a>term</a>.
       <span class="changed">Exceptions are the empty string `""` and strings that have the form
-        of a keyword (i.e., starting with `"@"` followed by one or more <em>ALPHA</em> characters (see [[RFC5234]])), which must not be used as terms.
+        of a keyword (i.e., starting with `"@"` followed exclusively by one or more <em>ALPHA</em> characters (see [[RFC5234]])), which must not be used as terms.
         Strings that have the form of
         an <a>IRI</a> (e.g., containing a `":"`) should not be used as terms.</span></p>
 
@@ -2259,7 +2259,7 @@
 
   <p class="note">To avoid forward-compatibility issues, <a>terms</a>
     starting with an&nbsp;<code>@</code> character
-    <span class="changed">followed by one or more <em>ALPHA</em> characters (see [[RFC5234]])</span>
+    <span class="changed">followed exclusively by one or more <em>ALPHA</em> characters (see [[RFC5234]])</span>
     are to be avoided as they
     might be used as <a>keyword</a> in future versions
     of JSON-LD. Terms starting with an&nbsp;<code>@</code> character that are not
@@ -11780,7 +11780,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <p>To avoid forward-compatibility issues, a <a>term</a> SHOULD NOT start
       with an <code>@</code> character
-      <span class="changed">followed by one or more <em>ALPHA</em> characters (see [[RFC5234]])</span>
+      <span class="changed">followed exclusively by one or more <em>ALPHA</em> characters (see [[RFC5234]])</span>
       as future versions of JSON-LD may introduce
       additional <a>keywords</a>. Furthermore, the term MUST NOT
       be an empty <a>string</a> (<code>""</code>) as not all programming languages
