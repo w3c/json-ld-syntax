@@ -167,17 +167,23 @@
     for each IRI contained within a common vocabulary identified by <a>prefix</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-context">context</dfn></dt><dd>
     A set of rules for interpreting a <a>JSON-LD document</a>
-    as specified in the <a data-cite="JSON-LD11#the-context">The Context</a> section of JSON-LD 1.1.</dd>
+    as described in the <a data-cite="JSON-LD11#the-context">The Context</a> section of JSON-LD 1.1,
+    and normatively specified in the <a data-cite="JSON-LD11#context-definitions">Context Definitions</a> section of JSON-LD 1.1.
+  </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-default-language">default language</dfn></dt><dd>
     The <a>default language</a> is the language used when a string does not have a language associated with it directly.
     It can be set in the <a>context</a> using the <code>@language</code> key
-    whose value must be a <a>string</a> representing a [[BCP47]] language code or <code>null</code>.</dd>
+    whose value must be a <a>string</a> representing a [[BCP47]] language code or <code>null</code>.
+    See the <a data-cite="JSON-LD11#context-definitions">Context Definitions</a> section of JSON-LD 1.1 for a normative description.
+  </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-default-object">default object</dfn></dt><dd>
     A <a>default object</a> is a <a>map</a> that has a <code>@default</code> key.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-base-direction" data-lt="base direction|default base direction" data-lt-noDefault>base direction</dfn></dt><dd>
     The <a>base direction</a> is the direction used when a string does not have a direction associated with it directly.
     It can be set in the <a>context</a> using the <code>@direction</code> key
-    whose value must be one of the strings `"ltr"`, `"rtl"`, or <code>null</code>.</dd>
+    whose value must be one of the strings `"ltr"`, `"rtl"`, or <code>null</code>.
+    See the <a data-cite="JSON-LD11#context-definitions">Context Definitions</a> section of JSON-LD 1.1 for a normative description.
+    </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-embedded-context">embedded context</dfn></dt><dd>
     An embedded <a>context</a> is a context which appears
     as the <code>@context</code> <a>entry</a> of one of the following:
@@ -198,7 +204,9 @@
     where the value is a <a>map</a>
     containing one or more <a>keyword</a> keys to define the associated <a>IRI</a>,
     if this is a reverse property,
-    the type associated with string values, and a container mapping.</dd>
+    the type associated with string values, and a container mapping.
+    See the <a data-cite="JSON-LD11#expanded-term-definition">Expanded Term Definition</a> section of JSON-LD 1.1 for a normative description.
+  </dd>
   <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-frame" data-lt="frame|JSON-LD frame">frame</dfn></dt><dd>
     A <a>JSON-LD document</a>,
     which describes the form for transforming another <a>JSON-LD document</a>
@@ -209,7 +217,9 @@
     A frame object is a <a>map</a> element within a <a>frame</a>
     which represents a specific portion of the <a>frame</a> matching either
     a <a>node object</a> or a <a>value object</a>
-    in the input.</dd>
+    in the input.
+    See the <a data-cite="JSON-LD11#frame-objects">Frame Objects</a> section of JSON-LD 1.1 for a normative description.
+  </dd>
   <dt class="changed"><dfn data-cite="JSON-LD11#dfn-graph-object">graph object</dfn></dt><dd class="changed">
     A <a>graph object</a> represents a <a>named graph</a>
     as the value of a <a>map entry</a> within a <a>node object</a>.
@@ -220,7 +230,9 @@
     Note that <a>node objects</a> may have a <code>@graph</code> <a>entry</a>,
     but are not considered <a>graph objects</a> if they include any other <a>entries</a>.
     A top-level object consisting of <code>@graph</code> is also not a <a>graph object</a>.
-    Note that a <a>node object</a> may also represent a <a>named graph</a> it it includes other properties.</dd>
+    Note that a <a>node object</a> may also represent a <a>named graph</a> it it includes other properties.
+    See the <a data-cite="JSON-LD11#graph-objects">Graph Objects</a> section of JSON-LD 1.1 for a normative description.
+  </dd>
   <dt class="changed"><dfn data-cite="JSON-LD11#dfn-id-map">id map</dfn></dt><dd class="changed">
     An <a>id map</a> is a <a>map</a> value of a <a>term</a>
     defined with <code>@container</code> set to <code>@id</code>.
@@ -228,14 +240,18 @@
     and its keys are interpreted as <a>IRIs</a> representing
     the <code>@id</code> of the associated <a>node object</a>.
     If a value in the <a>id map</a> contains a key expanding to <code>@id</code>,
-    its value must be equivalent to the referencing key in the <a>id map</a>.</dd>
+    its value must be equivalent to the referencing key in the <a>id map</a>.
+    See the <a data-cite="JSON-LD11#id-maps">Id Maps</a> section of JSON-LD 1.1 for a normative description.
+  </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-implicitly-named-graph">implicitly named graph</dfn></dt><dd>
     A <a>named graph</a> created from the value of a <a>map entry</a>
     having an <a>expanded term definition</a>
     where <code>@container</code> is set to  <code>@graph</code>.</dd>
   <dt class="changed"><dfn data-cite="JSON-LD11#dfn-included-block">included block</dfn></dt><dd class="changed">
     An <a>included block</a> is an <a>entry</a> in a <a>node object</a> where the key is either `@included` or an alias of `@included`
-    and the value is one or more <a>node objects</a>.</dd>
+    and the value is one or more <a>node objects</a>.
+    See the <a data-cite="JSON-LD11#included-blocks">Included Blocks</a> section of JSON-LD 1.1 for a normative description.
+  </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-index-map">index map</dfn></dt><dd>
     An <a>index map</a> is a <a>map</a> value of a <a>term</a>
     defined with <code>@container</code> set to <code>@index</code>,
@@ -250,18 +266,23 @@
     <a>list object</a>,
     <a>set object</a>, or
     an <a>array</a> of zero or more of the above possibilities.
+    See the <a data-cite="JSON-LD11#index-maps">Index Maps</a> section in JSON-LD 1.1 for a formal description.
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-json-literal">JSON literal</dfn></dt><dd>
     A <a>JSON literal</a> is a <a>literal</a> where the associated <a>datatype IRI</a> is <code>rdf:JSON</code>.
     In the <a>value object</a> representation, the value of <code>@type</code> is <code>@json</code>.
     JSON literals represent values which are valid JSON [[RFC8259]].
-    See <dfn data-cite="JSON-LD11#dfn-json-datatype" data-cite="JSON-LD11#dfn-json-datatype" class="preserve">JSON datatype</dfn> in JSON-LD 1.1.
+    See the <a data-cite="JSON-LD11#the-rdf-json-datatype">The `rdf:JSON` Datatype</a> section in JSON-LD 1.1 for a normative description.
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-json-ld-document">JSON-LD document</dfn></dt><dd>
     A <a>JSON-LD document</a> is a serialization of
-    an <a>RDF dataset</a>.</dd>
+    an <a>RDF dataset</a>.
+    See the <a data-cite="JSON-LD11#json-ld-grammar">JSON-LD Grammar</a> section in JSON-LD 1.1 for a formal description.
+  </dd>
   <dt><dfn data-cite="JSON-LD11-API#dfn-json-ld-processor" data-lt="json-ld processor|Processors">JSON-LD Processor</dfn></dt><dd>
-    A <a>JSON-LD Processor</a> is a system which can perform the algorithms defined in JSON-LD 1.1 Processing Algorithms and API.</dd>
+    A <a>JSON-LD Processor</a> is a system which can perform the algorithms defined in JSON-LD 1.1 Processing Algorithms and API.
+    See the <a data-cite="JSON-LD11-API#conformance">Conformance</a> section in JSON-LD 1.1 API for a formal description.
+  </dd>
   <dt class="changed"><dfn data-cite="JSON-LD11-API#dfn-internal-representation" data-lt="internal representation">JSON-LD internal representation</dfn></dt><dd class="changed">
     The JSON-LD internal representation
     is the result of transforming a JSON syntactic structure
@@ -277,8 +298,9 @@
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-keyword">keyword</dfn></dt><dd>
     A <a>string</a> that is specific to JSON-LD,
-    specified in JSON-LD 1.1
-    in the section titled <a data-cite="JSON-LD11#syntax-tokens-and-keywords">Syntax Tokens and Keywords</a>.</dd>
+    described in the <a data-cite="JSON-LD11#syntax-tokens-and-keywords">Syntax Tokens and Keywords</a> section of JSON-LD 1.1,
+    and normatively specified in the <a data-cite="JSON-LD11#keywords">Keywords</a> section of JSON-LD 1.1,
+  </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-language-map">language map</dfn></dt><dd>
     An <a>language map</a> is a <a>map</a> value of a <a>term</a>
     defined with <code>@container</code> set to <code>@language</code>,
@@ -287,10 +309,13 @@
     <a>null</a>,
     <a>string</a>, or
     an <a>array</a> of zero or more of the above possibilities.
+    See the <a data-cite="JSON-LD11#language-maps">Language Maps</a> section of JSON-LD 1.1 for a normative description.
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-list-object">list object</dfn></dt><dd>
     A <a>list object</a> is a <a>map</a> that has a <code>@list</code> key.
-    It may also have an <code>@index</code> key, but no other <a>entries</a>.</dd>
+    It may also have an <code>@index</code> key, but no other <a>entries</a>.
+    See the <a data-cite="JSON-LD11#lists-and-sets">Lists and Sets</a> section of JSON-LD 1.1 for a normative description.
+  </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-local-context">local context</dfn></dt><dd>
     A <a>context</a> that is specified with a <a>map</a>,
     specified via the <code>@context</code> <a>keyword</a>.</dd>
@@ -298,6 +323,7 @@
     A <a>nested property</a> is a key in a <a>node object</a>
     whose value is a <a>map</a> containing <a>entries</a> which are treated as if they were values of the <a>node object</a>.
     The <a>nested property</a> itself is semantically meaningless and used only to create a sub-structure within a <a>node object</a>.
+    See the <a data-cite="JSON-LD11#property-nesting">Property Nesting</a> section of JSON-LD 1.1 for a normative description.
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-node-object">node object</dfn></dt><dd>
     A <a>node object</a> represents zero or more <a>properties</a> of a <a>node</a> in the <a>graph</a>
@@ -310,6 +336,7 @@
         consisting of no other <a>entries</a> than <code>@graph</code> and <code>@context</code>.</li>
     </ul>
     The <a>entries</a> of a <a>node object</a> whose keys are not keywords are also called <a>properties</a> of the <a>node object</a>.
+    See the <a data-cite="JSON-LD11#node-objects">Node Objects</a> section of JSON-LD 1.1 for a normative description.
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-node-reference">node reference</dfn></dt><dd>
     A <a>node object</a> used to reference a node having only the <code>@id</code> key.</dd>
@@ -331,10 +358,13 @@
     via the `json-ld-1.1` <a>processing mode</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-set-object">set object</dfn></dt><dd>
     A <a>set object</a> is a <a>map</a> that has an <code>@set</code> <a>entry</a>.
-    It may also have an <code>@index</code> key, but no other <a>entries</a>.</dd>
+    It may also have an <code>@index</code> key, but no other <a>entries</a>.
+    See the <a data-cite="JSON-LD11#lists-and-sets">Lists and Sets</a> section of JSON-LD 1.1 for a normative description.
+  </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-term">term</dfn></dt><dd>
     A <a>term</a> is a short word defined in a <a>context</a>
     that may be expanded to an <a>IRI</a>.
+    See the <a data-cite="JSON-LD11#terms">Terms</a> section of JSON-LD 1.1 for a normative description.
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-term-definition">term definition</dfn></dt><dd>
     A term definition is an entry in a <a>context</a>,
@@ -352,7 +382,9 @@
     representing the <code>@type</code> of the associated <a>node object</a>;
     the value must be a <a>node object</a>, or <a>array</a> of node objects.
     If the value contains a <a>term</a> expanding to <code>@type</code>,
-    its values are merged with the map value when expanding.</dd>
+    its values are merged with the map value when expanding.
+    See the <a data-cite="JSON-LD11#type-maps">Type Maps</a> section of JSON-LD 1.1 for a normative description.
+  </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-typed-value" class="preserve">typed value</dfn></dt><dd>
     A <a>typed value</a> consists of a value,
     which is a <a>string</a>,
@@ -362,6 +394,8 @@
     A <a>value object</a> is a <a>map</a> that has an <code>@value</code> <a>entry</a>.</dd>
   <dt><dfn data-cite="JSON-LD11#dfn-vocabulary-mapping" class="preserve">vocabulary mapping</dfn></dt><dd>
     The vocabulary mapping is set in the <a>context</a> using the <code>@vocab</code> key
-    whose value must be an <a>IRI</a>, a <a>compact IRI</a>, a <a>term</a>, or <code>null</code>.</dd>
+    whose value must be an <a>IRI</a>, a <a>compact IRI</a>, a <a>term</a>, or <code>null</code>.
+    See the <a data-cite="JSON-LD11#value-objects">Value Objects</a> section of JSON-LD 1.1 for a normative description.
+  </dd>
 </dl>
 </section>

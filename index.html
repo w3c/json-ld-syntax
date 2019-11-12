@@ -12270,13 +12270,16 @@ the data type to be specified explicitly with each piece of data.</p>
     its value MUST be an <a>IRI reference</a>,
     or <a>null</a>.</p>
 
+  <p>If the <a>context definition</a> has an <code>@direction</code> key,
+    its value MUST be one of <code>"ltr"</code> or <code>"rtl"</code>, or be <a>null</a>.</p>
+
+  <p class="changed">If the <a>context definition</a> contains the <code>@import</code>
+  <a>keyword</a>, its value MUST be an <a>IRI reference</a>.
+  When used as a reference from an `@import`, the referenced <a>context definition</a> MUST NOT
+  include an `@import` key, itself.</p>
+
   <p>If the <a>context definition</a> has an <code>@language</code> key,
     its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
-
-  <p class="changed">If a <a>context</a> contains the <code>@import</code>
-    <a>keyword</a>, its value MUST be an <a>IRI reference</a>.
-    When used as a reference from an `@import`, the referenced <a>context definition</a> MUST NOT
-    include an `@import` key, itself.</p>
 
   <p class="changed">If the <a>context definition</a> has an <code>@propagate</code> key,
     its value MUST be <code>true</code> or <code>false</code>.</p>
@@ -12301,108 +12304,107 @@ the data type to be specified explicitly with each piece of data.</p>
     a <a>blank node identifier</a>, a <a>keyword</a>, <a>null</a>,
     or an <a>expanded term definition</a>.</p>
 
-  <p>An <a>expanded term definition</a> is used to describe the mapping
+
+  <section><h3>Expanded term definition</h3>
+    <p>An <a>expanded term definition</a> is used to describe the mapping
     between a <a>term</a> and its expanded identifier, as well as other
     properties of the value associated with the <a>term</a> when it is
     used as key in a <a>node object</a>.</p>
 
-  <p>An <a>expanded term definition</a> MUST be a <a>map</a>
-    composed of zero or more keys from
-    <code>@id</code>,
-    <code>@reverse</code>,
-    <code>@type</code>,
-    <code>@language</code>,
-    <code>@container</code>,
-    <code class="changed">@context</code>,
-    <code class="changed">@prefix</code>,
-    <code class="changed">@propagate</code>, or
-    <code class="changed">@protected</code>.
-    An <a>expanded term definition</a> SHOULD NOT contain any other keys.</p>
+    <p>An <a>expanded term definition</a> MUST be a <a>map</a>
+      composed of zero or more keys from
+      <code>@id</code>,
+      <code>@reverse</code>,
+      <code>@type</code>,
+      <code>@language</code>,
+      <code>@container</code>,
+      <code class="changed">@context</code>,
+      <code class="changed">@prefix</code>,
+      <code class="changed">@propagate</code>, or
+      <code class="changed">@protected</code>.
+      An <a>expanded term definition</a> SHOULD NOT contain any other keys.</p>
 
-  <p class="changed">When the associated term is `@type`, the <a>expanded term definition</a>
-    MUST NOT contain keys other than `@container` and `@protected`.
-    The value of `@container` is limited to the single value `@set`.</p>
+    <p class="changed">When the associated term is `@type`, the <a>expanded term definition</a>
+      MUST NOT contain keys other than `@container` and `@protected`.
+      The value of `@container` is limited to the single value `@set`.</p>
 
-  <p>If the term being defined is not an <a>IRI</a> or a <a>compact IRI</a>
-    and the <a>active context</a> does not have an
-    <code>@vocab</code> mapping, the <a>expanded term definition</a> MUST
-    include the <code>@id</code> key.</p>
+    <p>If the term being defined is not an <a>IRI</a> or a <a>compact IRI</a>
+      and the <a>active context</a> does not have an
+      <code>@vocab</code> mapping, the <a>expanded term definition</a> MUST
+      include the <code>@id</code> key.</p>
 
-  <p class="changed"><a>Term definitions</a> with keys which are of the form of an <a>IRI</a> or a <a>compact IRI</a> MUST NOT
-    expand to an <a>IRI</a> other than the expansion of the key itself.</p>
+    <p class="changed"><a>Term definitions</a> with keys which are of the form of an <a>IRI</a> or a <a>compact IRI</a> MUST NOT
+      expand to an <a>IRI</a> other than the expansion of the key itself.</p>
 
-  <p>If the <a>expanded term definition</a> contains the <code>@id</code>
-    <a>keyword</a>, its value MUST be <a>null</a>, an <a>IRI</a>,
-    a <a>blank node identifier</a>, a <a>compact IRI</a>, a <a>term</a>,
-    or a <a>keyword</a>.</p>
+    <p>If the <a>expanded term definition</a> contains the <code>@id</code>
+      <a>keyword</a>, its value MUST be <a>null</a>, an <a>IRI</a>,
+      a <a>blank node identifier</a>, a <a>compact IRI</a>, a <a>term</a>,
+      or a <a>keyword</a>.</p>
 
-  <p>If an <a>expanded term definition</a> has an <code>@reverse</code> <a>entry</a>,
-    it MUST NOT have <code>@id</code> or <code>@nest</code> <a>entries</a> at the same time,
-    its value MUST be an <a>IRI</a>,
-    a <a>blank node identifier</a>, a <a>compact IRI</a>, or a <a>term</a>. If an
-    <code>@container</code> <a>entry</a> exists, its value MUST be <a>null</a>,
-    <code>@set</code>, or <code>@index</code>.</p>
+    <p>If an <a>expanded term definition</a> has an <code>@reverse</code> <a>entry</a>,
+      it MUST NOT have <code>@id</code> or <code>@nest</code> <a>entries</a> at the same time,
+      its value MUST be an <a>IRI</a>,
+      a <a>blank node identifier</a>, a <a>compact IRI</a>, or a <a>term</a>. If an
+      <code>@container</code> <a>entry</a> exists, its value MUST be <a>null</a>,
+      <code>@set</code>, or <code>@index</code>.</p>
 
-  <p>If the <a>expanded term definition</a> contains the <code>@type</code>
-    <a>keyword</a>, its value MUST be an <a>IRI</a>, a
-    <a>compact IRI</a>, a <a>term</a>, <a>null</a>, or one of the
-    <a>keywords</a> <code>@id</code>, <code class="changed">@json</code>, <code class="changed">@none</code>, or <code>@vocab</code>.</p>
+    <p>If the <a>expanded term definition</a> contains the <code>@type</code>
+      <a>keyword</a>, its value MUST be an <a>IRI</a>, a
+      <a>compact IRI</a>, a <a>term</a>, <a>null</a>, or one of the
+      <a>keywords</a> <code>@id</code>, <code class="changed">@json</code>, <code class="changed">@none</code>, or <code>@vocab</code>.</p>
 
-  <p>If the <a>expanded term definition</a> contains the <code>@language</code> <a>keyword</a>,
-    its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
+    <p>If the <a>expanded term definition</a> contains the <code>@language</code> <a>keyword</a>,
+      its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
 
-  <p>If the <a>expanded term definition</a> contains the <code>@container</code>
-    <a>keyword</a>, its value MUST be either
-    <code>@list</code>,
-    <code>@set</code>,
-    <code>@language</code>,
-    <code>@index</code>,
-    <span class="changed"><code>@id</code></span>,
-    <span class="changed"><code>@graph</code></span>,
-    <span class="changed"><code>@type</code></span>, or be
-    <a>null</a>
-    <span class="changed">
-      or an <a>array</a> containing exactly any one of those keywords, or a
-      combination of <code>@set</code> and any of <code>@index</code>,
-      <code>@id</code>, <code>@graph</code>, <code>@type</code>,
-      <code>@language</code> in any order
-    </span>.
-    <span class="changed"><code>@container</code> may also be an array
-      containing <code>@graph</code> along with either <code>@id</code> or
-      <code>@index</code> and also optionally including <code>@set</code>.</span>
-    If the value
-    is <code>@language</code>, when the <a>term</a> is used outside of the
-    <code>@context</code>, the associated value MUST be a <a>language map</a>.
-    If the value is <code>@index</code>, when the <a>term</a> is used outside of
-    the <code>@context</code>, the associated value MUST be an
-    <a>index map</a>.</p>
+    <p>If the <a>expanded term definition</a> contains the <code>@container</code>
+      <a>keyword</a>, its value MUST be either
+      <code>@list</code>,
+      <code>@set</code>,
+      <code>@language</code>,
+      <code>@index</code>,
+      <span class="changed"><code>@id</code></span>,
+      <span class="changed"><code>@graph</code></span>,
+      <span class="changed"><code>@type</code></span>, or be
+      <a>null</a>
+      <span class="changed">
+        or an <a>array</a> containing exactly any one of those keywords, or a
+        combination of <code>@set</code> and any of <code>@index</code>,
+        <code>@id</code>, <code>@graph</code>, <code>@type</code>,
+        <code>@language</code> in any order
+      </span>.
+      <span class="changed"><code>@container</code> may also be an array
+        containing <code>@graph</code> along with either <code>@id</code> or
+        <code>@index</code> and also optionally including <code>@set</code>.</span>
+      If the value
+      is <code>@language</code>, when the <a>term</a> is used outside of the
+      <code>@context</code>, the associated value MUST be a <a>language map</a>.
+      If the value is <code>@index</code>, when the <a>term</a> is used outside of
+      the <code>@context</code>, the associated value MUST be an
+      <a>index map</a>.</p>
 
-  <p class="changed">If an <a>expanded term definition</a> has an <code>@context</code> <a>entry</a>,
-    it MUST be a valid <code>context definition</code>.</p>
+    <p class="changed">If an <a>expanded term definition</a> has an <code>@context</code> <a>entry</a>,
+      it MUST be a valid <code>context definition</code>.</p>
 
-  <p class="changed">If a <a>context</a> contains the <code>@import</code>
-    <a>keyword</a>, its value MUST be an <a>IRI reference</a>.
-    When used as a reference from an `@import`, the referenced <a>context definition</a> MUST NOT
-    include an `@import` key, itself.</p>
+    <p class="changed">If the <a>expanded term definition</a> contains the <code>@nest</code>
+      <a>keyword</a>, its value MUST be either <code>@nest</code>, or a term
+      which expands to <code>@nest</code>.</p>
 
-  <p class="changed">If the <a>expanded term definition</a> contains the <code>@nest</code>
-    <a>keyword</a>, its value MUST be either <code>@nest</code>, or a term
-    which expands to <code>@nest</code>.</p>
+    <p class="changed">If the <a>expanded term definition</a> contains the <code>@prefix</code>
+      <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
 
-  <p class="changed">If the <a>expanded term definition</a> contains the <code>@prefix</code>
-    <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
+    <p class="changed">If the <a>expanded term definition</a> contains the <code>@propagate</code>
+      <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
 
-  <p class="changed">If the <a>expanded term definition</a> contains the <code>@propagate</code>
-    <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
+    <p class="changed">If the <a>expanded term definition</a> contains the <code>@protected</code>
+      <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
 
-  <p class="changed">If the <a>expanded term definition</a> contains the <code>@protected</code>
-    <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
+    <p><a>Terms</a> MUST NOT be used in a circular manner. That is,
+      the definition of a term cannot depend on the definition of another term if that other
+      term also depends on the first term.</p>
 
-  <p><a>Terms</a> MUST NOT be used in a circular manner. That is,
-    the definition of a term cannot depend on the definition of another term if that other
-    term also depends on the first term.</p>
+  </section>
 
-  <p>See <a class="sectionRef" href="#the-context"></a> for further discussion on contexts.</p>
+  <p>See <a class="sectionRef" href="#the-context"></a> for further discussion on <a>contexts</a>.</p>
 </section>
 
 <section class="normative">
