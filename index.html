@@ -12477,10 +12477,16 @@ the data type to be specified explicitly with each piece of data.</p>
     </dd>
     <dt><code>@language</code></dt><dd>
       The <code>@language</code> keyword MAY be aliased and MAY be used as a key in a <a>value object</a>.
-      Its value MUST be a <a>string</a> with the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>..
+      Its value MUST be a <a>string</a> with the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.
       <p>The unaliased <code>@language</code> MAY be used as a key in a <a>context definition</a>,
         or as the value of the <code>@container</code> key within an <a>expanded term definition</a>.</p>
-      <p>See <a class="sectionRef" href="#index-maps"></a> for a further discussion.</p>
+      <p>See <a class="sectionRef" href="#string-internationalization"></a>, <a class="sectionRef" href="#language-maps"></a>.</p>
+    </dd>
+    <dt>`@direction`</dt><dd>
+      The <code>@direction</code> keyword MAY be aliased and MAY be used as a key in a <a>value object</a>.
+      Its value MUST be one of <code>"ltr"</code> or <code>"rtl"</code>, or be <a>null</a>.
+      <p>The unaliased <code>@direction</code> MAY be used as a key in a <a>context definition</a>.</p>
+      <p>See <a class="sectionRef" href="#base-direction"></a> for a further discussion.</p>
     </dd>
     <dt><code>@list</code></dt><dd>
       The <code>@list</code> keyword MAY be aliased and MUST be used as a key in a <a>list object</a>.
@@ -12600,6 +12606,12 @@ the data type to be specified explicitly with each piece of data.</p>
       its value MUST be an <a>included block</a>.
       This keyword is described further in <a class="sectionRef" href="#included-nodes"></a>,
       and <a class="sectionRef" href="#included-blocks"></a>.
+    </dd>
+    <dt>`@json`</dt><dd>
+      The <code>@json</code> keyword MAY be aliased
+      and MAY be used as the value of the `@type` key within a <a>value object</a>
+      or an <a>expanded term definition</a>.
+      <p>See <a class="sectionRef" href="#json-literals"></a>.</p>
     </dd>
   </dl>
 </section>
