@@ -633,6 +633,10 @@
         <div class="note">Within a <a>context definition</a> `@version` takes the specific value `1.1`, not
         `"json-ld-1.1"`, as a JSON-LD 1.0 processor may accept a string value for `@version`,
         but will reject a numeric value.</div>
+        <div class="note">The use of `1.1` for the value of `@version` is used to
+          create a value that would cause a JSON-LD 1.0 processor to stop processing.
+          Although it is clearly meant to be related to JSON-LD 1.1, it does not
+          otherwise adhere to the requirements for <a href="https://semver.org/">Semantic Versioning</a>.</div>
       </dd>
       <dt class="changed"><code>@json</code></dt><dd class="changed">
         Used as the <code>@type</code> value of a <a>JSON literal</a>.
