@@ -9088,13 +9088,11 @@ the data type to be specified explicitly with each piece of data.</p>
         {
           "@id": "http://manu.sporny.org/about#manu",
           "@type": "Person",
-          "name": "Manu Sporny",
-          "knows": "https://greggkellogg.net/foaf#me"
+          "name": "Manu Sporny"
         }, {
           "@id": "https://greggkellogg.net/foaf#me",
           "@type": "Person",
-          "name": "Gregg Kellogg",
-          "knows": "http://manu.sporny.org/about#manu"
+          "name": "Gregg Kellogg"
         }
       ]
     }
@@ -9107,18 +9105,12 @@ the data type to be specified explicitly with each piece of data.</p>
     [{
       "@id": "http://manu.sporny.org/about#manu",
       "@type": ["http://xmlns.com/foaf/0.1/Person"],
-      "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}],
-      "http://xmlns.com/foaf/0.1/knows": [
-        {"@id": "https://greggkellogg.net/foaf#me"}
-      ]
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "Manu Sporny"}]
     },
     {
       "@id": "https://greggkellogg.net/foaf#me",
       "@type": ["http://xmlns.com/foaf/0.1/Person"],
-      "http://xmlns.com/foaf/0.1/name": [{"@value": "Gregg Kellogg"}],
-      "http://xmlns.com/foaf/0.1/knows": [
-        {"@id": "http://manu.sporny.org/about#manu"}
-      ]
+      "http://xmlns.com/foaf/0.1/name": [{"@value": "Gregg Kellogg"}]
     }]
     -->
     </pre>
@@ -9129,10 +9121,8 @@ the data type to be specified explicitly with each piece of data.</p>
       <tbody>
         <tr><td>http://manu.sporny.org/about#manu</td><td>rdf:type</td><td>foaf:Person</td></tr>
         <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:name</td><td>Manu Sporny</td></tr>
-        <tr><td>http://manu.sporny.org/about#manu</td><td>foaf:knows</td><td>https://greggkellogg.net/foaf#me</td></tr>
         <tr><td>https://greggkellogg.net/foaf#me</td><td>rdf:type</td><td>foaf:Person</td></tr>
         <tr><td>https://greggkellogg.net/foaf#me</td><td>foaf:name</td><td>Gregg Kellogg</td></tr>
-        <tr><td>https://greggkellogg.net/foaf#me</td><td>foaf:knows</td><td>http://manu.sporny.org/about#manu</td></tr>
       </tbody>
     </table>
     <pre class="trig nohighlight"
@@ -9144,11 +9134,9 @@ the data type to be specified explicitly with each piece of data.</p>
     @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
     <https://greggkellogg.net/foaf#me> a foaf:Person;
-       foaf:knows <http://manu.sporny.org/about#manu>;
        foaf:name "Gregg Kellogg" .
 
     <http://manu.sporny.org/about#manu> a foaf:Person;
-       foaf:knows <https://greggkellogg.net/foaf#me>;
        foaf:name "Manu Sporny" .
     -->
     </pre>
