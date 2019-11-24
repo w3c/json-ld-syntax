@@ -3116,7 +3116,10 @@
   <p>Since keywords cannot be redefined, they can also not be aliased to
     other keywords.</p>
 
-  <p class="note">Aliased keywords MUST NOT be used within a <a>context</a>, itself.</p>
+  <p class="note">Aliased keywords may not be used within a <a>context</a>, itself.</p>
+
+  <p>See <a href="#keywords" class="sectionRef"></a> for a normative
+    definition of all keywords.</p>
 </section>
 
 <section class="informative"><h2>IRI Expansion within a Context</h2>
@@ -12410,13 +12413,25 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>JSON-LD <a>keywords</a> are described in <a class="sectionRef" href="#syntax-tokens-and-keywords"></a>,
     this section describes where each <a>keyword</a> may appear within different JSON-LD structures.</p>
 
+  <p>Within
+    <a>node objects</a>,
+    <a>value objects</a>,
+    <a>graph objects</a>,
+    <a>list objects</a>,
+    <a>set objects</a>, and
+    <a>nested properties</a>
+    all <a>keywords</a> other than `@context` MAY be aliased.
+    The `@context` MUST NOT bee aliased.
+    Within <a>local contexts</a> and <a>expanded term definitions</a>,
+    <a>keywords</a> MAY NOT be aliased, other than to create a <a>keyword</a> alias.</p>
+
   <dl data-sort>
     <dt><code>@base</code></dt><dd>
-      The <code>@base</code> keyword MUST NOT be aliased, and MAY be used as a key in a <a>context definition</a>.
+      The unaliased <code>@base</code> keyword MAY be used as a key in a <a>context definition</a>.
       Its value MUST be an <a>IRI reference</a>, or <a>null</a>.
     </dd>
     <dt><code>@container</code></dt><dd>
-      The <code>@container</code> keyword MUST NOT be aliased, and MAY be used as a key in an <a>expanded term definition</a>.
+      The unaliased <code>@container</code> keyword MAY be used as a key in an <a>expanded term definition</a>.
       Its value MUST be either
       <code>@list</code>,
       <code>@set</code>,
@@ -12524,19 +12539,19 @@ the data type to be specified explicitly with each piece of data.</p>
       <a class="sectionRef" href="#named-graph-data-indexing"></a>
       for a further discussion.</dd>
     <dt class="changed"><code>@prefix</code></dt><dd class="changed">
-      The <code>@prefix</code> keyword MUST NOT be aliased, and MAY be used as a key in an <a>expanded term definition</a>.
+      The unaliased <code>@prefix</code> keyword MAY be used as a key in an <a>expanded term definition</a>.
       Its value MUST be <code>true</code> or <code>false</code>.
       See <a class="sectionRef" href="#compact-iris"></a>
       and <a class="sectionRef" href="#context-definitions"></a>
       for a further discussion.
     </dd>
     <dt class="changed">`@propagate`</dt><dd class="changed">
-      The `@propagate` keyword MUST NOT be aliased, and MAY be used in a <a>context definition</a>.
+      The unaliased `@propagate` keyword MAY be used in a <a>context definition</a>.
       Its value MUST be <code>true</code> or <code>false</code>.
       See <a class="sectionRef" href="#context-propagation"></a> for a further discussion.
     </dd>
     <dt class="changed">`@protected`</dt><dd class="changed">
-      The `@protected` keyword MUST NOT be aliased, and MAY be used in a <a>context definition</a>,
+      The unaliased `@protected` keyword MAY be used in a <a>context definition</a>,
       or an <a>expanded term definition</a>.
       Its value MUST be <code>true</code> or <code>false</code>.
       See <a class="sectionRef" href="#protected-term-definitions"></a> for a further discussion.
@@ -12568,7 +12583,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <p>See <a class="sectionRef" href="#sets-and-lists"></a> for further discussion on sets and lists.</p>
     </dd>
     <dt class="changed">`@import`</dt><dd class="changed">
-      The `@import` keyword MUST NOT be aliased, and MAY be used in a <a>context definition</a>.
+      The unaliased `@import` keyword MAY be used in a <a>context definition</a>.
       Its value MUST be an <a>IRI reference</a>.
       See <a class="sectionRef" href="#imported-contexts"></a> for a further discussion.
     </dd>
@@ -12590,12 +12605,12 @@ the data type to be specified explicitly with each piece of data.</p>
       This keyword is described further in <a class="sectionRef" href="#value-objects"></a>.
     </dd>
     <dt class="changed"><code>@version</code></dt><dd class="changed">
-      The <code>@version</code> keyword MUST NOT be aliased and MAY be used as a key in a <a>context definition</a>.
+      The unaliased <code>@version</code> keyword MAY be used as a key in a <a>context definition</a>.
       Its value MUST be a <a>number</a> with the value <code>1.1</code>.
       This keyword is described further in <a class="sectionRef" href="#context-definitions"></a>.
     </dd>
     <dt><code>@vocab</code></dt><dd>
-      The <code>@vocab</code> keyword MUST NOT be aliased and MAY be used as a key in a <a>context definition</a>
+      The unaliased <code>@vocab</code> keyword MAY be used as a key in a <a>context definition</a>
       or as the value of <code>@type</code> in an <a>expanded term definition</a>.
       Its value MUST be an <a>IRI reference</a>, a <a>compact IRI</a>, a <a>blank node identifier</a>, a <a>term</a>, or <a>null</a>.
       This keyword is described further in <a class="sectionRef" href="#context-definitions"></a>,
