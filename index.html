@@ -997,6 +997,28 @@
       document. Information contained outside of the <code>@context</code> value
       is ignored when the document is used as an external <dfn data-lt="context document">JSON-LD context document</dfn>.</p>
 
+    <p class="changed">A remote context may also be referenced using a relative URL,
+      which is resolved relative to the location of the document containing the reference.
+      For example, if a document were located at <code>http://example.org/document.jsonld</code>
+      and contained a relative reference to <code>context.jsonld</code>,
+      the referenced context document would be found relative at <code>http://example.org/context.jsonld</code>.</p>
+
+    <pre class="example nohighlight changed"
+         title="Loading a relative context"
+      data-transform="updateExample">
+    <!--
+    {
+      ****"@context": "context.jsonld"****
+      "name": "Manu Sporny",
+      "homepage": "http://manu.sporny.org/",
+      "image": "http://manu.sporny.org/images/manu.png"
+    }
+    -->
+    </pre>
+
+    <p class="note changed">Relative resolution of context URLs extends to remote
+      context documents containing their own relative contexts.</p>
+
     <p>JSON documents can be interpreted as JSON-LD without having to be modified by
       referencing a <a>context</a> via an <a data-cite="RFC8288#header">HTTP Link Header</a>
       as described in <a class="sectionRef" href="#interpreting-json-as-json-ld"></a>. It is also
