@@ -15,6 +15,31 @@ const jsonld = {
         "Marcus Langhaler"
       ]
     },
+    "JSON-LD10-API": {
+      title: "JSON-LD 1.0 Processing Algorithms And API",
+      href: "https://www.w3.org/TR/2014/REC-json-ld-api-20140116/",
+      publisher: "W3C",
+      date: "16 January 2014",
+      status: "W3C Recommendation",
+      authors: [
+        "Marcus Langhaler",
+        "Gregg Kellogg",
+        "Manu Sporny"
+      ]
+    },
+    "JSON-LD10-FRAMING": {
+      title: "JSON-LD Framing 1.0",
+      href: "https://json-ld.org/spec/ED/json-ld-framing/20120830/",
+      publisher: "W3C",
+      date: "30 August 2012",
+      status: "Unofficial Draft",
+      authors: [
+        "Manu Sporny",
+        "Gregg Kellogg",
+        "David Longley",
+        "Marcus Langhaler"
+      ]
+    },
     "IEEE-754-2008": {
       title: "IEEE 754-2008 Standard for Floating-Point Arithmetic",
       href: "http://standards.ieee.org/findstds/standard/754-2008.html",
