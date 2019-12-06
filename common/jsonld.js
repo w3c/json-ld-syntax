@@ -41,6 +41,23 @@ const jsonld = {
       publisher: 'Network Working Group',
       status: 'Internet-Draft',
       date: 'February 16, 2019'
-    }
+    },
+    // These necessary as specref uses the wrong URLs
+    "RFC7231": {
+      title: 'Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content',
+      href: 'https://tools.ietf.org/html/rfc7231',
+      authors: ['R. Fielding, Ed.', 'J. Reschke, Ed'],
+      pubisher: 'IETF',
+      status: 'Proposed Standard',
+      date: 'June 2014'
+    },
+    "RFC8288": {
+      title: 'Web Linking',
+      href: 'https://tools.ietf.org/html/rfc8288',
+      authors: ['M. Nottingham'],
+      pubisher: 'IETF',
+      status: 'Proposed Standard',
+      date: 'October 2017'
+    },
   }
 };
