@@ -2427,7 +2427,8 @@ var[data-type]:hover::before {
     The <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-entry">entries</a> of a <a href="#dfn-node-object" class="internalDFN" data-link-type="dfn">node object</a> whose keys are not keywords are also called <a data-link-type="dfn" href="https://www.w3.org/TR/rdf11-concepts/#dfn-property">properties</a> of the <a href="#dfn-node-object" class="internalDFN" data-link-type="dfn">node object</a>.
     See the <a href="#node-objects">Node Objects</a> section of JSON-LD 1.1 for a normative description.
   </dd>
-  
+  <dt><dfn id="dfn-node-reference" data-dfn-type="dfn">node reference</dfn></dt><dd>
+    A <a href="#dfn-node-object" class="internalDFN" data-link-type="dfn">node object</a> used to reference a node having only the <code>@id</code> key.</dd>
   <dt><dfn id="dfn-prefix" data-dfn-type="dfn" data-plurals="prefixes">prefix</dfn></dt><dd>
     A <a href="#dfn-prefix" class="internalDFN" data-link-type="dfn">prefix</a> is the first component of a <a href="#dfn-compact-iri" class="internalDFN" data-link-type="dfn">compact <abbr title="Internationalized Resource Identifier">IRI</abbr></a>
     which comes from a <a href="#dfn-term" class="internalDFN" data-link-type="dfn">term</a> that maps to a string that,
@@ -2629,7 +2630,9 @@ var[data-type]:hover::before {
       <dd>Used to uniquely identify <a href="#dfn-node-object" class="internalDFN" data-link-type="dfn">node objects</a> that are being described in the document
         with <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc3987#section-2">IRIs</a> or
         <a data-link-type="dfn" href="https://www.w3.org/TR/rdf11-concepts/#dfn-blank-node-identifier">blank node identifiers</a>. This keyword
-        is described in <a class="sectionRef sec-ref" href="#node-identifiers">§&nbsp;<bdi class="secno">3.3 </bdi>Node Identifiers</a>.</dd>
+        is described in <a class="sectionRef sec-ref" href="#node-identifiers">§&nbsp;<bdi class="secno">3.3 </bdi>Node Identifiers</a>.
+        A <a href="#dfn-node-reference" class="internalDFN" data-link-type="dfn">node reference</a> is a <a href="#dfn-node-object" class="internalDFN" data-link-type="dfn">node object</a> containing only the <code>@id</code> property,
+        which may represent a reference to a <a href="#dfn-node-object" class="internalDFN" data-link-type="dfn">node object</a> found elsewhere in the document.</dd>
       <dt class="changed"><code>@import</code></dt><dd class="changed">
         Used in a <a href="#dfn-context-definition" class="internalDFN" data-link-type="dfn">context definition</a> to load an external context
         within which the containing <a href="#dfn-context-definition" class="internalDFN" data-link-type="dfn">context definition</a> is merged.
