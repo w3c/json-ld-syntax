@@ -1023,7 +1023,7 @@
       context documents, as they may themselves contain references to other contexts.</p>
 
     <p>JSON documents can be interpreted as JSON-LD without having to be modified by
-      referencing a <a>context</a> via an <a data-cite="RFC8288#header">HTTP Link Header</a>
+      referencing a <a>context</a> via an <a data-cite="RFC8288#section-3">HTTP Link Header</a>
       as described in <a class="sectionRef" href="#interpreting-json-as-json-ld"></a>. It is also
       possible to apply a custom context using the JSON-LD 1.1 API [[JSON-LD11-API]].</p>
 
@@ -10972,7 +10972,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <section class="normative"><h2>Modifying Behavior with Link Relationships</h2>
   <p>Certain aspects of JSON-LD processing can be modified using
-    <dfn data-cite="RFC8288#header" data-no-xref>HTTP Link Headers</dfn> [[RFC8288]].
+    <dfn data-cite="RFC8288#section-3" data-no-xref>HTTP Link Headers</dfn> [[RFC8288]].
     These can be used when retrieving resources that are not, themselves, JSON-LD,
     but can be interpreted as JSON-LD by using information in a
     <a href="https://en.wikipedia.org/wiki/Link_relation" data-no-xref>Link Relation</a>.</p>
@@ -11004,7 +11004,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>In order to use an external context with an ordinary JSON document,
     when retrieving an ordinary JSON document via HTTP, processors MUST
     attempt to retrieve any <a>JSON-LD document</a> referenced by a
-    <a data-cite="RFC8288#header">Link Header</a> with:</p>
+    <a data-cite="RFC8288#section-3">Link Header</a> with:</p>
 
   <ul>
     <li><code>rel="http://www.w3.org/ns/json-ld#context"</code>, and</li>
@@ -11061,7 +11061,7 @@ the data type to be specified explicitly with each piece of data.</p>
     served with the <code>application/ld+json</code>
     media type MUST have all context information, including references to external
     contexts, within the body of the document. Contexts linked via a
-    <code>http://www.w3.org/ns/json-ld#context</code> <a data-cite="RFC8288#header">HTTP Link Header</a> MUST be
+    <code>http://www.w3.org/ns/json-ld#context</code> <a data-cite="RFC8288#section-3">HTTP Link Header</a> MUST be
     ignored for such documents.</p>
 </section>
 
@@ -11074,7 +11074,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>To specify an alternate location, a non-JSON resource
     (i.e., one using a media type other than `application/json` or a derivative)
-    can return the alternate location using a <a data-cite="RFC8288#header">Link Header</a> with:</p>
+    can return the alternate location using a <a data-cite="RFC8288#section-3">Link Header</a> with:</p>
 
   <ul>
     <li><code>rel="alternate"</code>, and</li>

@@ -3037,7 +3037,7 @@ var[data-type]:hover::before {
       context documents, as they may themselves contain references to other contexts.</p></div>
 
     <p>JSON documents can be interpreted as JSON-LD without having to be modified by
-      referencing a <a href="#dfn-context" class="internalDFN" data-link-type="dfn">context</a> via an <a href="https://tools.ietf.org/html/rfc8288#header">HTTP Link Header</a>
+      referencing a <a href="#dfn-context" class="internalDFN" data-link-type="dfn">context</a> via an <a href="https://tools.ietf.org/html/rfc8288#section-3">HTTP Link Header</a>
       as described in <a class="sectionRef sec-ref" href="#interpreting-json-as-json-ld">§&nbsp;<bdi class="secno">6.1 </bdi>Interpreting JSON as JSON-LD</a>. It is also
       possible to apply a custom context using the JSON-LD 1.1 API [<cite><a class="bibref" href="#bib-json-ld11-api" title="JSON-LD 1.1 Processing Algorithms and API" data-link-type="biblio">JSON-LD11-API</a></cite>].</p>
 
@@ -11217,20 +11217,20 @@ _:b1 {
 
 <section class="normative" id="modifying-behavior-with-link-relationships"><h2 id="x6-modifying-behavior-with-link-relationships"><bdi class="secno">6. </bdi>Modifying Behavior with Link Relationships<a class="self-link" aria-label="§" href="#modifying-behavior-with-link-relationships"></a></h2>
   <p>Certain aspects of JSON-LD processing can be modified using
-    <dfn data-no-xref="" data-dfn-type="dfn" data-plurals="http link header" id="dfn-http-link-headers" data-no-export=""><a href="https://tools.ietf.org/html/rfc8288#header">HTTP Link Headers</a></dfn> [<cite><a class="bibref" href="#bib-rfc8288" title="Web Linking" data-link-type="biblio">RFC8288</a></cite>].
+    <dfn data-no-xref="" data-dfn-type="dfn" data-plurals="http link header" id="dfn-http-link-headers" data-no-export=""><a href="https://tools.ietf.org/html/rfc8288#section-3">HTTP Link Headers</a></dfn> [<cite><a class="bibref" href="#bib-rfc8288" title="Web Linking" data-link-type="biblio">RFC8288</a></cite>].
     These can be used when retrieving resources that are not, themselves, JSON-LD,
     but can be interpreted as JSON-LD by using information in a
     <a href="https://en.wikipedia.org/wiki/Link_relation" data-no-xref="">Link Relation</a>.</p>
 
   <p>When processing normal JSON documents, a link relation can be specified using
-    the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#header">HTTP Link Header</a>
+    the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#section-3">HTTP Link Header</a>
     returned when fetching a remote document, as described in <a href="#interpreting-json-as-json-ld" class="sectionRef sec-ref">§&nbsp;<bdi class="secno">6.1 </bdi>Interpreting JSON as JSON-LD</a>.</p>
 
   <p class="changed">In other cases, a resource may be returned using a representation that cannot easily be interpreted
     as JSON-LD. Normally, <a href="https://en.wikipedia.org/wiki/Content_negotiation">HTTP content negotiation</a>
     would be used to allow a client to specify a preference for JSON-LD over another representation,
     but in certain situations, it is not possible or practical for a server to respond appropriately to such requests.
-    For this, an <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#header">HTTP Link Header</a> can be used to provide an alternate location for a document
+    For this, an <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#section-3">HTTP Link Header</a> can be used to provide an alternate location for a document
     to be used in place of the originally requested resource,
     as described in <a href="#alternate-document-location" class="sectionRef sec-ref">§&nbsp;<bdi class="secno">6.2 </bdi>Alternate Document Location</a>.</p>
 
@@ -11239,7 +11239,7 @@ _:b1 {
   <p>Ordinary JSON documents can be interpreted as JSON-LD
     by providing an explicit JSON-LD <a href="#dfn-context" class="internalDFN" data-link-type="dfn">context</a> document. One way
     to provide this is by using referencing a JSON-LD
-    <a href="#dfn-context" class="internalDFN" data-link-type="dfn">context</a> document in an <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#header">HTTP Link Header</a>.
+    <a href="#dfn-context" class="internalDFN" data-link-type="dfn">context</a> document in an <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#section-3">HTTP Link Header</a>.
     Doing so allows JSON to be unambiguously machine-readable without requiring developers to drastically
     change their documents and provides an upgrade path for existing infrastructure
     without breaking existing clients that rely on the <code>application/json</code>
@@ -11249,7 +11249,7 @@ _:b1 {
   <p>In order to use an external context with an ordinary JSON document,
     when retrieving an ordinary JSON document via HTTP, processors <em class="rfc2119" title="MUST">MUST</em>
     attempt to retrieve any <a href="#dfn-json-ld-document" class="internalDFN" data-link-type="dfn">JSON-LD document</a> referenced by a
-    <a href="https://tools.ietf.org/html/rfc8288#header">Link Header</a> with:</p>
+    <a href="https://tools.ietf.org/html/rfc8288#section-3">Link Header</a> with:</p>
 
   <ul>
     <li><code>rel="http://www.w3.org/ns/json-ld#context"</code>, and</li>
@@ -11265,7 +11265,7 @@ _:b1 {
     of the <code>@context</code> subtree in the referenced document <em class="rfc2119" title="MUST">MUST</em> be
     discarded. Effectively this means that the <a href="#dfn-active-context" class="internalDFN" data-link-type="dfn">active context</a> is
     initialized with the referenced external <a href="#dfn-context" class="internalDFN" data-link-type="dfn">context</a>. A response <em class="rfc2119" title="MUST NOT">MUST NOT</em>
-    contain more than one <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#header">HTTP Link Header</a> using the
+    contain more than one <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#section-3">HTTP Link Header</a> using the
     <code>http://www.w3.org/ns/json-ld#context</code> link relation.</p>
 
   <p>Other mechanisms for providing a JSON-LD Context <em class="rfc2119" title="MAY">MAY</em> be described for other
@@ -11303,27 +11303,27 @@ Content-Type: <span class="hl-bold">application/json</span>
     served with the <code>application/ld+json</code>
     media type <em class="rfc2119" title="MUST">MUST</em> have all context information, including references to external
     contexts, within the body of the document. Contexts linked via a
-    <code>http://www.w3.org/ns/json-ld#context</code> <a href="https://tools.ietf.org/html/rfc8288#header">HTTP Link Header</a> <em class="rfc2119" title="MUST">MUST</em> be
+    <code>http://www.w3.org/ns/json-ld#context</code> <a href="https://tools.ietf.org/html/rfc8288#section-3">HTTP Link Header</a> <em class="rfc2119" title="MUST">MUST</em> be
     ignored for such documents.</p>
 </section>
 
 <section class="normative changed" id="alternate-document-location"><h3 id="x6-2-alternate-document-location"><bdi class="secno">6.2 </bdi>Alternate Document Location<a class="self-link" aria-label="§" href="#alternate-document-location"></a></h3>
 
   <p>Documents which can't be directly interpreted as JSON-LD can provide an alternate location containing JSON-LD.
-    One way to provide this is by referencing a JSON-LD document in an <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#header">HTTP Link Header</a>.
+    One way to provide this is by referencing a JSON-LD document in an <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#section-3">HTTP Link Header</a>.
     This might be useful, for example, when the URL associated with a namespace naturally
     contains an HTML document, but the JSON-LD context associated with that URL is located elsewhere.</p>
 
   <p>To specify an alternate location, a non-JSON resource
     (i.e., one using a media type other than <code>application/json</code> or a derivative)
-    can return the alternate location using a <a href="https://tools.ietf.org/html/rfc8288#header">Link Header</a> with:</p>
+    can return the alternate location using a <a href="https://tools.ietf.org/html/rfc8288#section-3">Link Header</a> with:</p>
 
   <ul>
     <li><code>rel="alternate"</code>, and</li>
     <li><code>type="application/ld+json"</code>.</li>
   </ul>
 
-  <p>A response <em class="rfc2119" title="MUST NOT">MUST NOT</em> contain more than one <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#header">HTTP Link Header</a> using the
+  <p>A response <em class="rfc2119" title="MUST NOT">MUST NOT</em> contain more than one <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc8288#section-3">HTTP Link Header</a> using the
     <code>alternate</code> link relation with <code>type="application/ld+json"</code> .</p>
 
   <p>Other mechanisms for providing an alternate location <em class="rfc2119" title="MAY">MAY</em> be described for other
