@@ -13240,6 +13240,13 @@ the data type to be specified explicitly with each piece of data.</p>
       -->
       </pre>
 
+      <div class="note">Note that this interpretation differs from [[Turtle]],
+        in which the literal `2.78` translates to an `xsd:decimal`.
+        The rationale is that most JSON tools parse numbers with fractions as
+        <em>floating point numbers</em>,
+        so `xsd:double` is the most appropriate datatype to render them back in RDF.
+      </div>
+
     </section>
 
     <section>
