@@ -13240,7 +13240,7 @@ the data type to be specified explicitly with each piece of data.</p>
       -->
       </pre>
 
-      <div class="note changed">Note that this interpretation differs from [[Turtle]],
+      <div id="issue318" class="note changed">Note that this interpretation differs from [[Turtle]],
         in which the literal `2.78` translates to an `xsd:decimal`.
         The rationale is that most JSON tools parse numbers with fractions as
         <em>floating point numbers</em>,
@@ -13718,6 +13718,14 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>Allow further structured subtypes of `application/ld+json` by using
       `+ld+json` as a suffix for a new base type.</li>
     <li>Warn about forward-compatibility issues for terms of the form (`"@"1*ALPHA`).</li>
+  </ul>
+</section>
+<section class="appendix informative" id="changes-from-cg">
+  <h2>Changes since Candidate Release of 12 November 2019</h2>
+  <ul>
+    <li>Added a <a href="#issue318">Note</a> motivating the lack of native support
+      for `xsd:decimal` literals.
+      This is in response to <a href="https://github.com/w3c/json-ld-syntax/issues/318">Issue 318</a>.</li>
   </ul>
 </section>
 
