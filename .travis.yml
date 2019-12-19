@@ -21,7 +21,7 @@ jobs:
         - 'gem update --system --conservative || (gem i "rubygems-update:~>2.7" --no-document && update_rubygems)'
         - 'gem update bundler --conservative'
       bundler_args: --without debug
-      script: "rake test"
+      script: "bundle exec rake test"
     - stage: links
       name: "Check internal links and HTML"
       sudo: required
