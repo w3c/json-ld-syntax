@@ -16,11 +16,7 @@ jobs:
     - stage: examples
       name: "Verify examples are consistent"
       language: ruby
-      rvm: 2.5
-      before_install:
-        - 'gem update --system --conservative || (gem i "rubygems-update:~>2.7" --no-document && update_rubygems)'
-        - 'gem update bundler --conservative'
-      bundler_args: --without debug
+      rvm: 2.6
       script: "bundle exec rake test"
     - stage: links
       name: "Check internal links and HTML"
@@ -30,10 +26,7 @@ jobs:
       # Because (alas) rawgit is end of life, we'll run this only on the master branch.
       if: branch = master
       language: ruby
-      rvm: 2.5
-      before_install:
-        - 'gem update --system --conservative || (gem i "rubygems-update:~>2.7" --no-document && update_rubygems)'
-        - 'gem update bundler --conservative'
+      rvm: 2.6
       script:
         - docker pull stupchiy/checklink
         - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://w3c.github.io/json-ld-syntax/index.html?specStatus=WD&shortName=json-ld11"
