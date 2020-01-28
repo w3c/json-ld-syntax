@@ -12913,10 +12913,13 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>The <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
       can be used with the <dfn data-cite="JSON-LD11-API#dom-jsonldoptions-rdfdirection">rdfDirection</dfn> option
       set to `i18n-datatype` to generate <a>RDF literals</a> using the `i18n` base to create an IRI
-      encoding the <a>base direction</a> along with optional <a>language tag</a> from
-      value objects containing `@direction` by appending to `https://www.w3.org/ns/i18n#`
+      encoding the <a>base direction</a> along with optional <a>language tag</a> (normalized to lower case)
+      from value objects containing `@direction` by appending to `https://www.w3.org/ns/i18n#`
       the value of `@language`, if any, followed by an underscore (`"_"`) followed
       by the value of `@direction`.</p>
+
+    <p>For improved interoperability, the <a>language tag</a> is normalized to
+      lower case when creating the datatype IRI.</p>
 
     <p class="issue atrisk">This feature is experimental, as RDF does not have a
       standard way to represent base direction in <a>RDF literals</a>.
@@ -12937,8 +12940,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
     # Note that this version preserves the base direction using a non-standard datatype.
     [
-      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar-EG_rtl****;
-      ex:publisher ****"مكتبة"^^i18n:ar-EG_rtl****
+      ex:title ****"HTML و CSS: تصميم و إنشاء مواقع الويب"^^i18n:ar-eg_rtl****;
+      ex:publisher ****"مكتبة"^^i18n:ar-eg_rtl****
     ] .
     -->
     </pre>
@@ -12968,8 +12971,11 @@ the data type to be specified explicitly with each piece of data.</p>
     <p>The <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
       can be used with the <a>rdfDirection</a> option
       set to `compound-literal` to generate <a>RDF literals</a> using these properties to
-      describe the <a>base direction</a> and optional <a>language tag</a> from
-      value objects containing `@direction` and optionally `@language`.</p>
+      describe the <a>base direction</a> and optional <a>language tag</a> (normalized to lower case)
+      from value objects containing `@direction` and optionally `@language`.</p>
+
+    <p>For improved interoperability, the <a>language tag</a> is normalized to
+      lower case when creating the datatype IRI.</p>
 
     <p class="issue atrisk">This feature is experimental, as RDF does not have a
       standard way to represent base direction in <a>RDF literals</a>.
@@ -12991,12 +12997,12 @@ the data type to be specified explicitly with each piece of data.</p>
     [
       ex:title ****[
         rdf:value "HTML و CSS: تصميم و إنشاء مواقع الويب",
-        rdf:language "ar-EG",
+        rdf:language "ar-eg",
         rdf:direction "rtl"
       ]****;
       ex:publisher ****[
         rdf:value "مكتبة",
-        rdf:language "ar-EG",
+        rdf:language "ar-eg",
         rdf:direction "rtl"
       ]****
     ] .
@@ -13701,6 +13707,8 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>Allow further structured subtypes of `application/ld+json` by using
       `+ld+json` as a suffix for a new base type.</li>
     <li>Warn about forward-compatibility issues for terms of the form (`"@"1*ALPHA`).</li>
+    <li>When creating an `i18n` datatype or `rdf:CompoundLiteral`, <a>language tags</a> are
+      normalized to lower case to improve interoperability between implementations.</li>
   </ul>
 </section>
 <section class="appendix informative" id="changes-from-cr">
