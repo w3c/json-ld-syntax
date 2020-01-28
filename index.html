@@ -12392,7 +12392,8 @@ the data type to be specified explicitly with each piece of data.</p>
       its value MUST have the <a data-cite="BCP47#section-2.1.1">lexical form</a> described in [[BCP47]] or be <a>null</a>.</p>
 
     <p class="changed">If the <a>expanded term definition</a> contains the `@index`
-      <a>keyword</a>, its value MUST be <code>true</code> or <code>false</code>.</p>
+      <a>keyword</a>, its value MUST be an <a>IRI</a>,
+      a <a>compact IRI</a>, or a <a>term</a>.</p>
 
     <p>If the <a>expanded term definition</a> contains the <code>@container</code>
       <a>keyword</a>, its value MUST be either
@@ -12525,7 +12526,8 @@ the data type to be specified explicitly with each piece of data.</p>
       <a>node object</a>, <a>value object</a>, <a>graph object</a>, <a>set object</a>, or <a>list object</a>.
       Its value MUST be a <a>string</a>.
       <p>The unaliased <code>@index</code> MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>
-        and as an entry in a <a>expanded term definition</a>, where the value is `true` or `false`.</p>
+        and as an entry in a <a>expanded term definition</a>, where the value an <a>IRI</a>,
+        a <a>compact IRI</a>, or a <a>term</a>.</p>
       <p>See <a class="sectionRef" href="#index-maps"></a>, and
         <a class="sectionRef" href="#property-based-data-indexing"></a> for a further discussion.</p>
     </dd>
