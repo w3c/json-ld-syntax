@@ -1,11 +1,11 @@
 GIT
   remote: git://github.com/ruby-rdf/json-ld.git
-  revision: d0bfdefb6cddac6a22683ff9733a94936c4e5dbe
+  revision: 241ef57e096cefdff55ef6d39a917049eec04529
   branch: develop
   specs:
     json-ld (3.1.0)
       htmlentities (~> 4.3)
-      json-canonicalization (~> 0.1)
+      json-canonicalization (~> 0.2)
       link_header (~> 0.0, >= 0.0.8)
       multi_json (~> 1.14)
       rack (~> 2.0)
@@ -19,7 +19,7 @@ GEM
     bcp47 (0.3.3)
       i18n
     builder (3.2.4)
-    byebug (11.0.1)
+    byebug (11.1.1)
     colorize (0.8.1)
     concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
@@ -34,9 +34,9 @@ GEM
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
     htmlentities (4.3.4)
-    i18n (1.7.0)
+    i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    json-canonicalization (0.1.0)
+    json-canonicalization (0.2.0)
     json-ld-preloaded (3.1.0)
       json-ld (~> 3.1)
       rdf (~> 3.1)
@@ -80,10 +80,10 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
-    public_suffix (4.0.1)
-    rack (2.0.8)
+    public_suffix (4.0.3)
+    rack (2.1.2)
     rake (13.0.1)
-    rdf (3.1.0)
+    rdf (3.1.1)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
     rdf-aggregate-repo (3.1.0)
@@ -134,7 +134,7 @@ GEM
     rdf-turtle (3.1.0)
       ebnf (~> 1.2)
       rdf (~> 3.1)
-    rdf-vocab (3.1.0)
+    rdf-vocab (3.1.1)
       rdf (~> 3.1)
     rdf-xsd (3.1.0)
       rdf (~> 3.1)
