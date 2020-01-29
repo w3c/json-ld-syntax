@@ -9,6 +9,27 @@
     which is used for finding coercion mappings in the <a>active context</a>.</dd>
   <dt><dfn data-cite="JSON-LD11-API#dfn-active-subject">active subject</dfn></dt><dd>
     The currently active subject that the processor should use when processing.</dd>
+  <dt class="changed"><dfn data-cite="JSON-LD11-API#add-value">add value</dfn></dt>
+  <dd class="algorithm changed">
+    Used as a macro within various algorithms as a way to add a <var>value</var>
+    to an <a>entry</a> in a <a>map</a> (<var>object</var>) using a specified <var>key</var>.
+    The invocation may include an <var>as array</var> flag defaulting to <code>false</code>.
+    <ol>
+      <li>If <var>as array</var> is <code>true</code>,
+        and <var>value</var> is not an <a>array</a>,
+        set it to an <a>array</a> containing <var>value</var>.</li>
+      <li>If <var>key</var> is not an entry in <var>object</var>,
+        add <var>value</var> as the value of <var>key</var> in <var>object</var>.</li>
+      <li>Otherwise
+        <ol>
+          <li>If the value of <var>key</var> <a>entry</a> in <var>object</var> is not an <a>array</a>,
+            set it to a new <a>array</a> containing the original value.</li>
+          <li>If <var>value</var> is an <a>array</a>, concatenate <var>value</var>
+            to that <a>entry</a>.</li>
+          <li>Otherwise, append <var>value</var> to that <a>entry</a>.</li>
+        </ol>
+    </ol>
+  </dd>
   <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-expicit-inclusion-flag">explicit inclusion flag</dfn></dt><dd>
     A flag specifying that for <a>properties</a> to be included in the output,
     they must be explicitly declared in the matching <a>frame</a>.</dd>
@@ -20,6 +41,46 @@
     used internally to help determine if object embedding is appropriate,</span>
     the <a>explicit inclusion flag</a>,
     and the <a>omit default flag</a>.</dd>
+  <dt class="changed"><dfn data-cite="JSON-LD11-API#dfn-iri-compacting">IRI compacting</dfn></dt>
+  <dd class="algorithm changed">
+    Used as a macro within various algorithms as to reduce the language used to describe
+    the process of compacting a <a>string</a> <var>var</var> representing an <a>IRI</a> or <a>keyword</a>
+    using an <var>active context</var> either specified directly, or coming from the scope of
+    the algorithm step using this term and <var>inverse context</var> also taken
+    from the scope of the algorithm step using this term.
+    An optional <var>value</var> is used, if explicitly provided.
+    Unless specified,
+    the <var>vocab</var> flag defaults to `true`,
+    and the <var>reverse</var> flag defaults to `false`.
+    <ol>
+      <li>Return the result of using the <a href="#iri-compaction">IRI Compaction algorithm</a>,
+        passing <var>active context</var>, <var>inverse context</var>,
+        <var>var</var>,
+        <var>value</var> (if supplied),
+        <var>vocab</var>,
+        and <var>result</var>.</li>
+    </ol>
+  </dd>
+  <dt class="changed"><dfn data-cite="JSON-LD11-API#dfn-iri-expanding">IRI expanding</dfn></dt>
+  <dd class="algorithm changed">
+    Used as a macro within various algorithms as to reduce the language used to describe
+    the process of expanding a <a>string</a> <var>value</var> representing an <a>IRI</a> or <a>keyword</a>
+    using an <var>active context</var> either specified directly, or coming from the scope of
+    the algorithm step using this term.
+    Optional <var>defined</var> and <var>local context</var> arguments are used, if explicitly provided.
+    Unless specified,
+    the <var>document relative</var> flag defaults to `false`,
+    and the <var>vocab</var> flag defaults to `true`.
+    <ol>
+      <li>Return the result of using the <a href="#iri-expansion">IRI Expansion algorithm</a>,
+        passing <var>active context</var>,
+        <var>value</var>,
+        <var>local context</var> (if supplied),
+        <var>defined</var> (if supplied),
+        <var>document relative</var>,
+        and <var>vocab</var>.</li>
+    </ol>
+  </dd>
   <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-input-frame">input frame</dfn></dt><dd>
     The initial <a>Frame</a> provided to the framing algorithm.</dd>
   <dt><dfn data-cite="JSON-LD11-API#dfn-json-ld-input">JSON-LD input</dfn></dt><dd>
