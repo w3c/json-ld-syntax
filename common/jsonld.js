@@ -61,11 +61,11 @@ const jsonld = {
     },
     "JCS": {
       title: "JSON Canonicalization Scheme (JCS)",
-      href: 'https://tools.ietf.org/html/draft-rundgren-json-canonicalization-scheme-05',
+      href: 'https://tools.ietf.org/html/draft-rundgren-json-canonicalization-scheme-17',
       authors: ['A. Rundgren', 'B. Jordan', 'S. Erdtman'],
       publisher: 'Network Working Group',
       status: 'Internet-Draft',
-      date: 'February 16, 2019'
+      date: '20 January 2020'
     },
     // These necessary as specref uses the wrong URLs
     "RFC7231": {
