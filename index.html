@@ -13467,11 +13467,11 @@ the data type to be specified explicitly with each piece of data.</p>
           </dl>
           <p>All other URIs starting with <code>http://www.w3.org/ns/json-ld</code>
             are reserved for future use by JSON-LD specifications.</p>
-          <p>Other specifications MAY create further structured subtypes
+          <!--p>Other specifications MAY create further structured subtypes
             by using `+ld+json` as a suffix for a new base subtype, as in
             `application/example+ld+json`.
             Unless defined otherwise, such subtypes use the same
-            fragment identifier behavior as `application/ld+json`.</p>
+            fragment identifier behavior as `application/ld+json`.</p-->
           <p>Other specifications may publish additional `profile` parameter
             URIs with their own defined semantics.
             This includes the ability to associate a file extension with a `profile` parameter.</p>
@@ -13711,8 +13711,8 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>The <a>processing mode</a> is now implicitly `json-ld-1.1`, unless set
       explicitly to `json-ld-1.0`.</li>
     <li>Improve notation using <a>IRI</a>, <a>IRI reference</a>, and <a>relative IRI reference</a>.</li>
-    <li>Allow further structured subtypes of `application/ld+json` by using
-      `+ld+json` as a suffix for a new base type.</li>
+    <!--li>Allow further structured subtypes of `application/ld+json` by using
+      `+ld+json` as a suffix for a new base type.</li-->
     <li>Warn about forward-compatibility issues for terms of the form (`"@"1*ALPHA`).</li>
     <li>When creating an `i18n` datatype or `rdf:CompoundLiteral`, <a>language tags</a> are
       normalized to lower case to improve interoperability between implementations.</li>
