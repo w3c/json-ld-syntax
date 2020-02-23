@@ -127,11 +127,12 @@ require(["core/pubsubhub"], (respecEvents) => {
         const tList = $p.getDfnTitles();
         $dd.remove(); // remove dd
         $dt.remove(); // remove dt
-        for (const item of tList) {
-          if (respecConfig.definitionMap[item]) {
-            delete respecConfig.definitionMap[item];
-          }
-        }
+        // FIXME: this depended on an undocumented internal structure
+        //for (const item of tList) {
+        //  if (respecConfig.definitionMap[item]) {
+        //    delete respecConfig.definitionMap[item];
+        //  }
+        //}
       }
     }
   });
