@@ -38,7 +38,7 @@ jobs:
       if: branch = publications AND type = push
       env:
         - URL="https://w3c.github.io/json-ld-syntax/ECHIDNA"
-        - DECISION="https://www.w3.org/2018/json-ld-wg/Meetings/Minutes/2018/2018-09-28-json-ld#resolution2"
+        - DECISION="https://www.w3.org/2018/json-ld-wg/Meetings/Minutes/2020/2020-01-17-json-ld#resolution3"
         - secure: "v40VZe94UpzFC833PbtviAyei4kNGI02HjZWfjmG1Q65b/CVBbFuMpdkZybXqXoWBy+3Ptbq04bG7erChKBuc1hddimD8UVuz+zMT5vlL6QFXOR0fEZJxUuhtNIH0l4Q++pSHQah7OEJgDpcYsEEONe5U4shUYji5aiEFNCXc0Flc4/Qba+PoRdKSSlbAazjGJTXy27dHy4gSa5dErjwmBPggtvzrlFn5E9w74cxYouZBdfv4I3APnk2u05mXDS9La+jL43tQyPbG9WhKrXVYpyYgCyhNfxjAIIC7emArdVnFvi7LX4VNTydQDdaA69SIqGMCChm7vLkc1STyIt/fVoTDEZ+Ty4hFd3bhpc/NksBYQGT9ruEu2J8cf2VHK2pOo6F+zW2ErxfCya52bF+GaXe/2GypkLOyHkNnAxx5jMCKreq6k98LaTl1XwmUKLh2G5JlCf1UZvNmOi5Gcln44Pi40G1qAumtlg5lLpEKii/n4k/o4yaa1my/Qv6F3sVeZGMC1W04hyoDZnjcqUNy6wjpZUq9yebY0cvZ6mhuTnxpuyG1xnYwY40i5egwToUcHL0Jh5iQa8fN8zLlYGJrOoQrCoziAZGfW1t2RTF5RgTNVOirNn9fGKoBh3qb5vlNQs2Iok08foucKf5xtCQpjwg3+uUFDRb/0ibKinZaNA="
       script:
-        - curl "https://labs.w3.org/echidna/api/request" --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN"
+        - curl "https://labs.w3.org/echidna/api/request" --data "url=$URL" --data "decision=$DECISION" --data "token=$TOKEN" --data "editorial=true"
