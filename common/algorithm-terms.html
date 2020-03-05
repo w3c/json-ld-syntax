@@ -46,15 +46,13 @@
     Used as a macro within various algorithms as to reduce the language used to describe
     the process of compacting a <a>string</a> <var>var</var> representing an <a>IRI</a> or <a>keyword</a>
     using an <var>active context</var> either specified directly, or coming from the scope of
-    the algorithm step using this term and <var>inverse context</var> also taken
-    from the scope of the algorithm step using this term.
+    the algorithm step using this term.
     An optional <var>value</var> is used, if explicitly provided.
-    Unless specified,
-    the <var>vocab</var> flag defaults to `true`,
+    Unless specified, the <var>vocab</var> flag defaults to `true`,
     and the <var>reverse</var> flag defaults to `false`.
     <ol>
       <li>Return the result of using the <a data-cite="JSON-LD11-API#iri-compaction">IRI Compaction algorithm</a>,
-        passing <var>active context</var>, <var>inverse context</var>,
+        passing <var>active context</var>,
         <var>var</var>,
         <var>value</var> (if supplied),
         <var>vocab</var>,
