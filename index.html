@@ -2474,7 +2474,7 @@
   </aside>
 
   <p class="changed">Since JSON-LD 1.1,
-    the <a>vocabulary mapping</a> in a <a>local context</a> can be set to the a <a>relative IRI reference</a>,
+    the <a>vocabulary mapping</a> in a <a>local context</a> can be set to a <a>relative IRI reference</a>,
     which is concatenated to any <a>vocabulary mapping</a> in the <a>active context</a>
     (see <a href="#document-relative-vocabulary-mapping" class="sectionRef"></a>
     for how this applies if there is no <a>vocabulary mapping</a> in the <a>active context</a>).</p>
@@ -7110,7 +7110,7 @@ the data type to be specified explicitly with each piece of data.</p>
       },
       "@id": "http://example.com/",
       "@type": "schema:SportsTeam",
-      "name": "San Franciso Giants",
+      "name": "San Francisco Giants",
       ****"athletes": {
         "catcher": {
           "@type": "schema:Person",
@@ -7134,7 +7134,7 @@ the data type to be specified explicitly with each piece of data.</p>
     [{
       "@id": "http://example.com/",
       "@type": ["http://schema.org/SportsTeam"],
-      "http://schema.org/name": [{"@value": "San Franciso Giants"}],
+      "http://schema.org/name": [{"@value": "San Francisco Giants"}],
       ****"http://schema.org/athlete": [{
         "@type": ["http://schema.org/Person"],
         "http://schema.org/name": [{"@value": "Buster Posey"}],
@@ -7162,7 +7162,7 @@ the data type to be specified explicitly with each piece of data.</p>
     </tr></thead>
     <tbody>
       <tr><td>http://example.com/</td><td>rdf:type</td><td>schema:SportsTeam</td></tr>
-      <tr><td>http://example.com/</td><td>schema:name</td><td>San Franciso Giants</td></tr>
+      <tr><td>http://example.com/</td><td>schema:name</td><td>San Francisco Giants</td></tr>
       <tr><td>_:b0</td><td>rdf:type</td><td>schema:Person</td></tr>
       <tr><td>_:b0</td><td>schema:name</td><td>Buster Posey</td></tr>
       <tr><td>_:b0</td><td>schema:jobTitle</td><td>Catcher</td></tr>
@@ -7182,7 +7182,7 @@ the data type to be specified explicitly with each piece of data.</p>
     @prefix schema: <http://schema.org/> .
 
     <http://example.com/> a schema:SportsTeam;
-      schema:name "San Franciso Giants";
+      schema:name "San Francisco Giants";
       schema:athlete [
         a schema:Person;
         schema:jobTitle "Catcher";
@@ -7250,7 +7250,7 @@ the data type to be specified explicitly with each piece of data.</p>
       },
       "@id": "http://example.com/",
       "@type": "schema:SportsTeam",
-      "name": "San Franciso Giants",
+      "name": "San Francisco Giants",
       "athletes": {
         "catcher": {
           "@type": "schema:Person",
@@ -7278,7 +7278,7 @@ the data type to be specified explicitly with each piece of data.</p>
     [{
       "@id": "http://example.com/",
       "@type": ["http://schema.org/SportsTeam"],
-      "http://schema.org/name": [{"@value": "San Franciso Giants"}],
+      "http://schema.org/name": [{"@value": "San Francisco Giants"}],
       "http://schema.org/athlete": [{
         "@type": ["http://schema.org/Person"],
         "http://schema.org/name": [{"@value": "Buster Posey"}],
@@ -7309,7 +7309,7 @@ the data type to be specified explicitly with each piece of data.</p>
     </tr></thead>
     <tbody>
       <tr><td>http://example.com/</td><td>rdf:type</td><td>schema:SportsTeam</td></tr>
-      <tr><td>http://example.com/</td><td>schema:name</td><td>San Franciso Giants</td></tr>
+      <tr><td>http://example.com/</td><td>schema:name</td><td>San Francisco Giants</td></tr>
       <tr><td>_:b0</td><td>rdf:type</td><td>schema:Person</td></tr>
       <tr><td>_:b0</td><td>schema:name</td><td>Buster Posey</td></tr>
       <tr><td>_:b0</td><td>schema:jobTitle</td><td>Catcher</td></tr>
@@ -7332,7 +7332,7 @@ the data type to be specified explicitly with each piece of data.</p>
     @prefix schema: <http://schema.org/> .
 
     <http://example.com/> a schema:SportsTeam;
-      schema:name "San Franciso Giants";
+      schema:name "San Francisco Giants";
       schema:athlete [
         a schema:Person;
         schema:jobTitle "Catcher";
@@ -7388,7 +7388,7 @@ the data type to be specified explicitly with each piece of data.</p>
       },
       "@id": "http://example.com/",
       "@type": "schema:SportsTeam",
-      "name": "San Franciso Giants",
+      "name": "San Francisco Giants",
       ****"athletes": {
         "Catcher": {
           ####↑ "Catcher" will add `"schema:jobTitle": "Catcher"` when expanded####
@@ -7412,7 +7412,7 @@ the data type to be specified explicitly with each piece of data.</p>
     [{
       "@id": "http://example.com/",
       "@type": ["http://schema.org/SportsTeam"],
-      "http://schema.org/name": [{"@value": "San Franciso Giants"}],
+      "http://schema.org/name": [{"@value": "San Francisco Giants"}],
       ****"http://schema.org/athlete": [{
         "@type": ["http://schema.org/Person"],
         "http://schema.org/name": [{"@value": "Buster Posey"}],
@@ -7439,7 +7439,7 @@ the data type to be specified explicitly with each piece of data.</p>
       </tr></thead>
       <tbody>
       <tr><td>http://example.com/</td><td>rdf:type</td><td>schema:SportsTeam</td></tr>
-      <tr><td>http://example.com/</td><td>schema:name</td><td>San Franciso Giants</td></tr>
+      <tr><td>http://example.com/</td><td>schema:name</td><td>San Francisco Giants</td></tr>
       <tr><td>_:b0</td><td>rdf:type</td><td>schema:Person</td></tr>
       <tr><td>_:b0</td><td>schema:name</td><td>Buster Posey</td></tr>
       <tr><td>_:b0</td><td>schema:jobTitle</td><td>Catcher</td></tr>
@@ -7460,7 +7460,7 @@ the data type to be specified explicitly with each piece of data.</p>
     @prefix schema: <http://schema.org/> .
 
     <http://example.com/> a schema:SportsTeam;
-      schema:name "San Franciso Giants";
+      schema:name "San Francisco Giants";
       schema:athlete [
         a schema:Person;
         schema:jobTitle "Catcher";
@@ -10657,7 +10657,7 @@ the data type to be specified explicitly with each piece of data.</p>
       -->
       </pre>
       <p>The compacted version uses a <a>map</a> value
-        for "label" as before.
+        for "label" as before,
         and the values are the relevant <a>strings</a> but always represented using an <a>array</a>.</p>
       <pre class="compacted result" data-transform="updateExample"
            data-result-for="Indexing language-tagged strings and @set-expanded"
@@ -12990,7 +12990,7 @@ the data type to be specified explicitly with each piece of data.</p>
       The JSON-LD Working Group solicits feedback from the community on the
       usefulness of these transformations.</p>
 
-    <p>The following example shows two statements with compoud literals
+    <p>The following example shows two statements with compound literals
       representing strings with the <a>language tag</a> `ar-EG` and <a>base direction</a> `rtl`.</p>
     <pre class="turtle-dt nohighlight"
          data-content-type="text/turtle"
