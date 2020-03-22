@@ -634,7 +634,9 @@
         used to index into other values, when the indexed node does not have the feature being indexed.</dd>
       <dt class="changed"><code>@prefix</code></dt><dd class="changed">
         With the value <code>true</code>, allows this <a>term</a> to be used to construct a <a>compact IRI</a>
-        when compacting.</dd>
+        when compacting.
+        With the value `false` prevents the term from being used to construct a <a>compact IRI</a>.
+        Also determines if the term will be considered when expanding <a>compact IRIs</a>.</dd>
       <dt class="changed"><code>@version</code></dt><dd class="changed">
         Used in a <a>context definition</a> to set the <a>processing mode</a>.
         New features since [[[JSON-LD10]]] [[JSON-LD10]] described in this specification are
@@ -2879,10 +2881,14 @@
     <code>#</code> and others, see [[RFC3986]]).</p>
 
   <p class="changed">In JSON-LD 1.1, terms may be chosen as <a>compact IRI</a> prefixes
-    when compacting only if
+    when expanding or compacting only if
     a <a>simple term definition</a> is used where the value ends with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character,
     or if their <a>expanded term definition</a> contains
-    a <code>@prefix</code> <a>entry</a> with the value <code>true</code>.</p>
+    a <code>@prefix</code> <a>entry</a> with the value <code>true</code>.
+    If a <a>simple term definition</a> does not end with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character,
+    or a <a>expanded term definition</a> contains
+    a <code>@prefix</code> <a>entry</a> with the value <code>false</code>,
+    the term will not be used for either expanding <a>compact IRIs</a> or compacting <a>IRIs</a> to <a>compact IRIs</a>.</p>
 
   <p class="note changed">The term selection behavior for 1.0 processors was changed
     as a result of an errata against [[[JSON-LD10]]] reported <a href="https://lists.w3.org/Archives/Public/public-rdf-comments/2018Jan/0002.html">here</a>.
@@ -13725,11 +13731,14 @@ the data type to be specified explicitly with each piece of data.</p>
 <section class="appendix informative" id="changes-from-cr">
   <h2>Changes since Candidate Release of 12 December 2019</h2>
   <ul>
+    <li>Expand <a href="#compact-iris" class="sectionRef"></a> to describe the behavior
+      of `"@prefix": false` for <a>compact IRIs</a>, and to note that this affects both expansion
+      of <a>compact IRIs</a> and compaction of <a>IRIs</a> to <a>compact IRIs</a>.</li>
+    <li>Adding a missing normative definition of the `@index` keyword used within
+      an <a>expanded term definition</a> to <a href="#expanded-term-definition" class="sectionRef"></a>.</li>
     <li>Changed normative definition of the `rdf:JSON` datatype in <a href="#the-rdf-json-datatype" class="sectionRef"></a>
       to describe a normative canonicalization.
       This is in response to <a href="https://github.com/w3c/json-ld-syntax/issues/323">Issue 323</a>.</li>
-    <li>Adding a missing normative definition of the `@index` keyword used within
-      an <a>expanded term definition</a> to <a href="#expanded-term-definition" class="sectionRef"></a>.</li>
     <li>Updated the non-normative definitions of the `i18n` based datatype in <a href="#the-i18n-namespace" class="sectionRef"></a>
       and `rdf:CompoundLiteral` class in <a href="#the-rdf-compoundliteral-class-and-the-rdf-language-and-rdf-direction-properties" class="sectionRef"></a>
       to normalize language tags to lowercase when generating RDF.</li>
