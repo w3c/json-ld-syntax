@@ -15,19 +15,27 @@
     to an <a>entry</a> in a <a>map</a> (<var>object</var>) using a specified <var>key</var>.
     The invocation may include an <var>as array</var> flag defaulting to <code>false</code>.
     <ol>
-      <li>If <var>as array</var> is <code>true</code>,
-        and <var>value</var> is not an <a>array</a>,
-        set it to an <a>array</a> containing <var>value</var>.</li>
-      <li>If <var>key</var> is not an entry in <var>object</var>,
-        add <var>value</var> as the value of <var>key</var> in <var>object</var>.</li>
-      <li>Otherwise
+      <li>If <var>as array</var> is <code>true</code>
+        and the value of <var>key</var> in <var>object</var> does not exist
+        or is not an <a>array</a>, set it to a new <a>array</a>
+        containing any original value.</li>
+      <li>If <var>value</var> is an <a>array</a>,
+        then for each element <var>v</var> in <var>value</var>,
+        use <a>add value</a> recursively to add <var>v</var> to <var>key</var> in <var>entry</var>.</li>
+      <li>Otherwise:
         <ol>
-          <li>If the value of <var>key</var> <a>entry</a> in <var>object</var> is not an <a>array</a>,
-            set it to a new <a>array</a> containing the original value.</li>
-          <li>If <var>value</var> is an <a>array</a>, concatenate <var>value</var>
-            to that <a>entry</a>.</li>
-          <li>Otherwise, append <var>value</var> to that <a>entry</a>.</li>
+          <li>If <var>key</var> is not an entry in <var>object</var>,
+            add <var>value</var> as the value of <var>key</var> in <var>object</var>.</li>
+          <li>Otherwise
+            <ol>
+              <li>If the value of the <var>key</var> <a>entry</a> in <var>object</var> is not an <a>array</a>,
+                set it to a new <a>array</a> containing the original value.</li>
+              <li>Append <var>value</var>
+                to the value of the <var>key</var> <a>entry</a> in <var>object</var>.</li>
+            </ol>
+          </li>
         </ol>
+      </li>
     </ol>
   </dd>
   <dt><dfn data-cite="JSON-LD11-FRAMING#dfn-expicit-inclusion-flag">explicit inclusion flag</dfn></dt><dd>
