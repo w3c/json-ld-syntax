@@ -8435,41 +8435,34 @@ the data type to be specified explicitly with each piece of data.</p>
     "@context": {
       "@version": 1.1,
       "@vocab": "http://example.org/",
-      "schema": "http://schema.org/",
-      "classification": {"@type": "@vocab"},
-      "team": {"@type": "@vocab"}
+      "classification": {"@type": "@vocab"}
     },
     "@id": "http://example.org/org-1",
-    "@type": "schema:Corporation",
     "members": [{
       "@id":"http://example.org/person-1",
       "name": "Manu Sporny",
-      "classification": "employee",
-      "team": "leadership"
+      "classification": "employee"
     }, {
-      "@id": "http://example.org/person-2",
+      "@id":"http://example.org/person-2",
+      "name": "Dave Longley",
+      "classification": "employee"
+    }, {
+      "@id": "http://example.org/person-3",
       "name": "Gregg Kellogg",
       "classification": "contractor"
     }],
     ****"@included": [{
       "@id": "http://example.org/employee",
-      "@type": "Role",
       "label": "An Employee"
     }, {
       "@id": "http://example.org/contractor",
-      "@type": "Role",
       "label": "A Contractor"
-    },
-      {
-      "@id": "http://example.org/leadership",
-      "@type": "Team",
-      "label": "Leadership Team"
     }]****
   }
   -->
   </pre>
 
-  <p>When <a>flattened</a>, this will move the `employee`, `contractor` and `leadership` elements
+  <p>When <a>flattened</a>, this will move the `employee` and `contractor` elements
     from the <a>included block</a> into the outer <a>array</a>.</p>
 
   <aside class="example ds-selector-tabs"
@@ -8487,33 +8480,32 @@ the data type to be specified explicitly with each piece of data.</p>
     <!--
     [{
       "@id": "http://example.org/org-1",
-      "@type": ["http://schema.org/Corporation"],
       "http://example.org/members": [
         {"@id": "http://example.org/person-1"},
-        {"@id": "http://example.org/person-2"}
+        {"@id": "http://example.org/person-2"},
+        {"@id": "http://example.org/person-3"}
       ]
     }, {
       "@id": "http://example.org/employee",
-      "@type": ["http://example.org/Role],
       "http://example.org/label": [{"@value": "An Employee"}]
     }, {
       "@id": "http://example.org/contractor",
-      "@type": ["http://example.org/Role"],
       "http://example.org/label": [{"@value": "A Contractor"}]
     }, {
-      "@id": "http://example.org/leadership",
-      "@type": ["http://example.org/Team"],
-      "http://example.org/label": [{"@value": "Leadership Team"}]
-    }, {
       "@id": "http://example.org/person-1",
+      "http://example.org/name": [{"@value": "Manu Sporny}]
       "http://example.org/classification": [
         {"@id": "http://example.org/employee"}
-      ],
-      "http://example.org/team": [
-        {"@id": "http://example.org/leadership"}
       ]
     }, {
       "@id": "http://example.org/person-2",
+      "http://example.org/name": [{"@value": "Dave Longley}]
+      "http://example.org/classification": [
+        {"@id": "http://example.org/employee"}
+      ]
+    }, {
+      "@id": "http://example.org/person-3",
+      "http://example.org/name": [{"@value": "Gregg Kellogg}]
       "http://example.org/classification": [
         {"@id": "http://example.org/contractor"}
       ]
@@ -8526,20 +8518,19 @@ the data type to be specified explicitly with each piece of data.</p>
            data-to-rdf>
       <thead><tr><th>Subject</th><th>Property</th><th>Value</th></tr></thead>
       <tbody>
-      <tr><td>http://example.org/org-1</td><td>rdf:type</td><td>http://schema.org/Corporation</td></tr>
       <tr><td>http://example.org/org-1</td><td>http://example.org/members</td><td>http://example.org/person-1</td></tr>
       <tr><td>http://example.org/org-1</td><td>http://example.org/members</td><td>http://example.org/person-2</td></tr>
+      <tr><td>http://example.org/org-1</td><td>http://example.org/members</td><td>http://example.org/person-3</td></tr>
       <tr><td>http://example.org/person-1</td><td>http://example.org/classification</td><td>http://example.org/employee</td></tr>
-      <tr><td>http://example.org/person-1</td><td>http://example.org/team</td><td>http://example.org/leadership</td></tr>
       <tr><td>http://example.org/person-1</td><td>http://example.org/name</td><td>"Manu Sporny"</td></tr>
-      <tr><td>http://example.org/person-2</td><td>http://example.org/classification</td><td>http://example.org/contractor</td></tr>
-      <tr><td>http://example.org/person-2</td><td>http://example.org/name</td><td>"Gregg Kellogg"</td></tr>
+      <tr><td>http://example.org/person-2</td><td>http://example.org/classification</td><td>http://example.org/employee</td></tr>
+      <tr><td>http://example.org/person-2</td><td>http://example.org/name</td><td>"Dave Longley"</td></tr>
+      <tr><td>http://example.org/person-3</td><td>http://example.org/classification</td><td>http://example.org/contractor</td></tr>
+      <tr><td>http://example.org/person-3</td><td>http://example.org/name</td><td>"Gregg Kellogg"</td></tr>
       <tr><td>http://example.org/employee</td><td>rdf:type</td><td>http://example.org/Role</td></tr>
       <tr><td>http://example.org/employee</td><td>http://example.org/label</td><td>An Employee</td></tr>
       <tr><td>http://example.org/contractor</td><td>rdf:type</td><td>http://example.org/Role</td></tr>
       <tr><td>http://example.org/contractor</td><td>http://example.org/label</td><td>A Contractor</td></tr>
-      <tr><td>http://example.org/leadership</td><td>rdf:type</td><td>http://example.org/Team</td></tr>
-      <tr><td>http://example.org/leadership</td><td>http://example.org/label</td><td>Leadership Team</td></tr>
       </tbody>
     </table>
     <pre class="turtle"
@@ -8549,24 +8540,23 @@ the data type to be specified explicitly with each piece of data.</p>
          data-to-rdf>
     <!--
     @prefix ex: <http://example.org/> .
-    @prefix schema: <http://schema.org/> .
 
-    ex:org-1 a schema:Corporation;
-      ex:members ex:person-1, ex:person-2 .
+    ex:org-1 ex:members ex:person-1, ex:person-2, ex:person-3 .
 
-    ex:person-1 ex:classification ex:employee;
-      ex:team ex:leadership .
+    ex:person-1 ex:classification ex:employee ;
+      ex:name "Manu Sporny" .
 
-    ex:person-2 ex:classification ex:contractor .
+    ex:person-2 ex:classification ex:employee .
+      ex:name "Dave Longley" .
+
+    ex:person-3 ex:classification ex:contractor .
+      ex:name "Gregg Kellogg" .
 
     ex:employee a ex:Role;
       ex:label "An Employee" .
 
     ex:contractor a ex:Service;
       ex:label "A Contractor" .
-
-    ex:leadership a ex:Team;
-      ex:label "Leadership Team" .
     -->
     </pre>
   </aside>
