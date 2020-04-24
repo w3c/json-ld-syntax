@@ -23,13 +23,12 @@ jobs:
       sudo: required
       services:
         - docker
-      # Because (alas) rawgit is end of life, we'll run this only on the master branch.
       if: branch = master
       language: ruby
       rvm: 2.6
       script:
         - docker pull stupchiy/checklink
-        - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://w3c.github.io/json-ld-syntax/index.html?specStatus=WD&shortName=json-ld11"
+        - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://raw.githack.com/w3c/json-ld-syntax/${TRAVIS_BRANCH}/index.html?specStatus=WD&shortName=json-ld11"
         - bundle exec rake check_html
     - stage: echidna
       name: "Echidna Publication"
