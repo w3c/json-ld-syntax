@@ -4533,7 +4533,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     Generally, a JSON-LD processor will ignore properties which don't map to <a>IRIs</a>,
     but this causes them to be excluded when performing various algorithmic transformations.
     But, when the data that is being described is, itself, JSON, it's important that
-    it survive algorithmic transformations.</p>
+    it survives algorithmic transformations.</p>
 
   <p class="warning">JSON-LD is intended to allow native JSON to be
     interpreted through the use of a <a>context</a>.
@@ -4665,7 +4665,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
 <p class="note">The ability to coerce a value using a <a>term definition</a> is distinct
   from setting one or more types on a <a>node object</a>, as the former does not result in
-  new data being added to the graph, while the later manages node types
+  new data being added to the graph, while the latter manages node types
   through adding additional relationships to the graph.</p>
 
 <p><a>Terms</a> or <a>compact IRIs</a> used as the value of a
@@ -12471,7 +12471,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <a>set objects</a>, and
     <a>nested properties</a>
     <a>keyword</a> aliases MAY be used instead of the corresponding <a>keyword</a>, except for `@context`.
-    The `@context` <a>keyword</a> MUST NOT bee aliased.
+    The `@context` <a>keyword</a> MUST NOT be aliased.
     Within <a>local contexts</a> and <a>expanded term definitions</a>,
     <a>keyword</a> aliases MAY NOT used.</p>
 
