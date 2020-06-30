@@ -63,9 +63,9 @@ const jsonld = {
       title: "JSON Canonicalization Scheme (JCS)",
       href: 'https://www.rfc-editor.org/rfc/rfc8785',
       authors: ['A. Rundgren', 'B. Jordan', 'S. Erdtman'],
-      publisher: 'Informational',
-      status: 'Internet-Draft',
-      date: '20 January 2020'
+      publisher: 'Network Working Group',
+      status: 'Informational',
+      date: 'June 2020'
     },
     // These necessary as specref uses the wrong URLs
     "RFC7231": {
