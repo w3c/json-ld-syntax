@@ -59,11 +59,11 @@ const jsonld = {
       status: 'unofficial',
       date: '29 May 2015'
     },
-    "JCS": {
+    "RFC8785": {
       title: "JSON Canonicalization Scheme (JCS)",
-      href: 'https://tools.ietf.org/html/draft-rundgren-json-canonicalization-scheme-17',
+      href: 'https://www.rfc-editor.org/rfc/rfc8785',
       authors: ['A. Rundgren', 'B. Jordan', 'S. Erdtman'],
-      publisher: 'Network Working Group',
+      publisher: 'Informational',
       status: 'Internet-Draft',
       date: '20 January 2020'
     },
