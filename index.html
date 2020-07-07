@@ -11980,7 +11980,7 @@ the data type to be specified explicitly with each piece of data.</p>
         an empty <a>array</a> (<a data-cite="JSON-LD11-FRAMING#dfn-match-none">match none</a>)
         an <a>array</a> of <a>IRIs</a>.</li>
       <li>A <a>frame object</a> MAY include an <a>entry</a> with the key <code>@embed</code> with
-        any value from <code>@always</code>, <code>@list</code>, and <code>@never</code>.</li>
+        any value from <code>@always</code>, <code>@once</code>, and <code>@never</code>.</li>
       <li>A <a>frame object</a> MAY include <a>entries</a> with the boolean valued
         keys <code>@explicit</code>, <code>@omitDefault</code>, or <code>@requireAll</code></li>
       <li>In addition to other property values, a property of a <a>frame object</a>
@@ -13739,6 +13739,10 @@ the data type to be specified explicitly with each piece of data.</p>
       and `rdf:CompoundLiteral` class in <a href="#the-rdf-compoundliteral-class-and-the-rdf-language-and-rdf-direction-properties" class="sectionRef"></a>
       to normalize language tags to lowercase when generating RDF.</li>
     <li>Update bibliographic reference for JCS to [[RFC8785]].</li>
+    <li>Fixed typo in <a href="#frame-objects" class="sectionRef"></a>,
+        which was unintentionally diverging from the normative description of the `@embed` keyword in [[[JSON-LD11-FRAMING]]].
+        This is in response to <a href="https://github.com/w3c/json-ld-syntax/issues/358">Issue 358</a>.</li>
+      </li>
   </ul>
 </section>
 
