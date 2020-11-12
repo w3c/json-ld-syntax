@@ -1,149 +1,32 @@
-/* globals omitTerms, respecConfig, $, require */
+/* globals require */
 /* JSON-LD Working Group common spec JavaScript */
-// We should be able to remove terms that are not actually
-// referenced from the common definitions
-//
-// Add class "preserve" to a definition to ensure it is not removed.
-//
-// the termlist is in a block of class "termlist".
-const termNames = [] ;
-const termsReferencedByTerms = [] ;
-
-function restrictReferences(utils, content) {
-  const base = document.createElement("div");
-  base.innerHTML = content;
-
-  // New new logic:
-  //
-  // 1. build a list of all term-internal references
-  // 2. When ready to process, for each reference INTO the terms,
-  // remove any terms they reference from the termNames array too.
-  const noPreserve = base.querySelectorAll("dfn:not(.preserve)");
-  for (const item of noPreserve) {
-    const $t = $(item);
-    const titles = $t.getDfnTitles();
-    const n = $t.makeID("dfn", titles[0]);
-    if (n) {
-      termNames[n] = $t.parent();
-    }
-  }
-
-  const $container = $(".termlist", base) ;
-  const containerID = $container.makeID("", "terms") ;
-  return (base.innerHTML);
-}
-
-require(["core/pubsubhub"], (respecEvents) => {
-  "use strict";
-
-  respecEvents.sub('end', (message) => {
-    // remove data-cite on where the citation is to ourselves.
-    const selfDfns = document.querySelectorAll("dfn[data-cite^='" + respecConfig.shortName.toUpperCase() + "#']");
-    for (const dfn of selfDfns) {
-      delete dfn.dataset.cite;
-    }
-
-    // Update data-cite references to ourselves.
-    const selfRefs = document.querySelectorAll("a[data-cite^='" + respecConfig.shortName.toUpperCase() + "#']");
-    for (const anchor of selfRefs) {
-      anchor.href= anchor.dataset.cite.replace(/^.*#/,"#");
-      delete anchor.dataset.cite;
-    }
-  });
-
-  // add a handler to come in after all the definitions are resolved
-  //
-  // New logic: If the reference is within a 'dl' element of
-  // class 'termlist', and if the target of that reference is
-  // also within a 'dl' element of class 'termlist', then
-  // consider it an internal reference and ignore it.
-  respecEvents.sub('end', (message) => {
-    if (message === 'core/link-to-dfn') {
-      // all definitions are linked; find any internal references
-      const internalTerms = document.querySelectorAll(".termlist a.internalDFN");
-      for (const item of internalTerms) {
-        const idref = item.getAttribute('href').replace(/^#/,"") ;
-        if (termNames[idref]) {
-          // this is a reference to another term
-          // what is the idref of THIS term?
-          const def = item.closest('dd');
-          if (def) {
-            const tid = def.previousElementSibling
-              .querySelector('dfn')
-              .getAttribute('id');
-            if (tid) {
-              if (termsReferencedByTerms[tid] === undefined) termsReferencedByTerms[tid] = [];
-              termsReferencedByTerms[tid].push(idref);
-            }
-          }
-        }
-      }
-
-      // clearRefs is recursive.  Walk down the tree of
-      // references to ensure that all references are resolved.
-      const clearRefs = (theTerm) => {
-        if (termsReferencedByTerms[theTerm] ) {
-          for (const item of termsReferencedByTerms[theTerm]) {
-            if (termNames[item]) {
-                delete termNames[item];
-                clearRefs(item);
-            }
-          }
-        };
-        // make sure this term doesn't get removed
-        if (termNames[theTerm]) {
-          delete termNames[theTerm];
-        }
-      };
-
-      // now termsReferencedByTerms has ALL terms that
-      // reference other terms, and a list of the
-      // terms that they reference
-      const internalRefs = document.querySelectorAll("a[data-link-type='dfn']");
-      for (const item of internalRefs) {
-        const idref = item.getAttribute('href').replace(/^.*#/,"") ;
-        // if the item is outside the term list
-        if (!item.closest('dl.termlist')) {
-          clearRefs(idref);
-        }
-      }
-
-      // delete any terms that were not referenced.
-      for (const term in termNames) {
-        const $p = $("#"+term);
-        // Remove term definitions inside a dt, where data-cite does not start with shortname
-        if ($p === undefined) { continue; }
-        if (!$p.parent().is("dt")) { continue; }
-        if (($p.data("cite") || "").toLowerCase().startsWith(respecConfig.shortName)) { continue; }
-
-        const $dt = $p.parent();
-        const $dd = $dt.next();
-
-        // If the associated dd contains a dfn which is _not_ in termNames, warn
-        if ($dd.children("dfn").length > 0) {
-          console.log(term + " definition contains definitions " + $dd.children("dfn").attr("id"))
-        }
-        console.log("drop term " + term);
-        const tList = $p.getDfnTitles();
-        $dd.remove(); // remove dd
-        $dt.remove(); // remove dt
-        // FIXME: this depended on an undocumented internal structure
-        //for (const item of tList) {
-        //  if (respecConfig.definitionMap[item]) {
-        //    delete respecConfig.definitionMap[item];
-        //  }
-        //}
-      }
-    }
-  });
-});
 
 /*
 * Implement tabbed examples.
 */
 require(["core/pubsubhub"], (respecEvents) => {
   "use strict";
+
   respecEvents.sub('end-all', (documentElement) => {
+    // remove data-cite on where the citation is to ourselves.
+    const selfDfns = document.querySelectorAll("dfn[data-cite^='__SPEC__#']");
+    for (const dfn of selfDfns) {
+      const anchor = dfn.querySelector('a');
+      if (anchor) {
+        const anchorContent = anchor.textContent;
+        dfn.removeChild(anchor);
+        dfn.textContent = anchorContent;
+      }
+      delete dfn.dataset.cite;
+    }
+
+    // Update data-cite references to ourselves.
+    const selfRefs = document.querySelectorAll("a[data-cite^='__SPEC__#']");
+    for (const anchor of selfRefs) {
+      anchor.href= anchor.dataset.cite.replace(/^.*#/,"#");
+      delete anchor.dataset.cite;
+    }
+
     // Add playground links
     for (const link of document.querySelectorAll("a.playground")) {
       let pre;
