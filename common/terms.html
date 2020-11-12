@@ -188,7 +188,7 @@
     An embedded <a>context</a> is a context which appears
     as the <code>@context</code> <a>entry</a> of one of the following:
     a <a>node object</a>, a <a>value object</a>, a <a>graph object</a>, a <a>list object</a>,
-    a <a>set object</a>, the value of a <a>nested properties</a>,
+    a <a>set object</a>, the value of a <a>nested property</a>,
     or the value of an <a>expanded term definition</a>.
     Its value may be a <a>map</a> for a <a data-cite="JSON-LD11#dfn-context-definition">context definition</a>,
     as an <a>IRI</a>, or as an <a>array</a> combining either of the above.
@@ -230,7 +230,7 @@
     Note that <a>node objects</a> may have a <code>@graph</code> <a>entry</a>,
     but are not considered <a>graph objects</a> if they include any other <a>entries</a>.
     A top-level object consisting of <code>@graph</code> is also not a <a>graph object</a>.
-    Note that a <a>node object</a> may also represent a <a>named graph</a> it it includes other properties.
+    Note that a <a>node object</a> may also represent a <a>named graph</a> if it includes other properties.
     See the <a data-cite="JSON-LD11#graph-objects">Graph Objects</a> section of JSON-LD 1.1 for a normative description.
   </dd>
   <dt class="changed"><dfn data-cite="JSON-LD11#dfn-id-map">id map</dfn></dt><dd class="changed">
@@ -302,7 +302,7 @@
     and normatively specified in the <a data-cite="JSON-LD11#keywords">Keywords</a> section of JSON-LD 1.1,
   </dd>
   <dt><dfn data-cite="JSON-LD11#dfn-language-map">language map</dfn></dt><dd>
-    An <a>language map</a> is a <a>map</a> value of a <a>term</a>
+    A <a>language map</a> is a <a>map</a> value of a <a>term</a>
     defined with <code>@container</code> set to <code>@language</code>,
     whose keys must be <a>strings</a> representing [[BCP47]] language codes
     and the values must be any of the following types:
