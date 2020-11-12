@@ -503,7 +503,7 @@
       intrinsic meaning.
       Literal values, such as <a>strings</a> and <a>numbers</a>, are also considered <a>resources</a>,
       and JSON-LD distinguishes between <a>node objects</a> and <a>value objects</a> to distinguish between the different
-      kinds of <a>resource</a>.</p>
+      kinds of <a>resources</a>.</p>
     <p>This simple data model is incredibly
       flexible and powerful, capable of modeling almost any kind of
       data. For a deeper explanation of the data model, see
@@ -2399,7 +2399,7 @@
     </pre>
   </aside>
 
-  <p>If <code>@vocab</code> is used but certain keys in an
+  <p>If <code>@vocab</code> is used but certain keys in a
     <a>map</a> should not be expanded using
     the vocabulary <a>IRI</a>, a <a>term</a> can be explicitly set
     to <a>null</a> in the <a>context</a>. For instance, in the
@@ -2874,7 +2874,7 @@
     or if their <a>expanded term definition</a> contains
     a <code>@prefix</code> <a>entry</a> with the value <code>true</code>.
     If a <a>simple term definition</a> does not end with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character,
-    or a <a>expanded term definition</a> contains
+    or an <a>expanded term definition</a> contains
     a <code>@prefix</code> <a>entry</a> with the value <code>false</code>,
     the term will not be used for either expanding <a>compact IRIs</a> or compacting <a>IRIs</a> to <a>compact IRIs</a>.</p>
 
@@ -3136,7 +3136,7 @@
   <p class="changed">Unless the <a>processing mode</a> is set to `json-ld-1.0`,
     aliases of <a>keywords</a> are either <a data-lt="simple term definition">simple term definitions</a>,
     where the value is a <a>keyword</a>,
-    or a <a>expanded term definitions</a> with an `@id` <a>entry</a> and optionally an `@protected` <a>entry</a>;
+    or an <a>expanded term definitions</a> with an `@id` <a>entry</a> and optionally an `@protected` <a>entry</a>;
     no other entries are allowed.
     There is also an exception for aliases of <code>@type</code>,
     as indicated above.
@@ -3512,7 +3512,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
 
   <p>Scoping on <code>@type</code> is useful when common properties are used to
     relate things of different types, where the vocabularies in use within
-    different entities calls for different context scoping. For example,
+    different entities call for different context scoping. For example,
     <code>hasPart</code>/<code>partOf</code> may be common terms used in a document, but mean
     different things depending on the context.
     A <a>type-scoped context</a> is only in effect for the <a>node object</a> on which
@@ -5084,7 +5084,7 @@ the data type to be specified explicitly with each piece of data.</p>
   </aside>
 
   <p>The example above would associate the <code>ja</code> language
-    tag with the two <a>strings</a> <em lang="ja">花澄</em> and <em lang="ja">科学者</em>
+    tag with the two <a>strings</a> <em lang="ja">花澄</em> and <em lang="ja">科学者</em>.
     <a data-cite="BCP47#section-2">Languages tags</a> are defined in [[BCP47]].
     The <a>default language</a> applies to all
     <a>string</a> values that are not <a href="#type-coercion">type coerced</a>.</p>
@@ -5608,7 +5608,7 @@ the data type to be specified explicitly with each piece of data.</p>
   </pre>
 </aside>
 
-<p class="note">The example shown above would generates statement, again with
+<p class="note">The example shown above would generate multiple statements, again with
   no inherent order.</p>
 
 <p>Although multiple values of a property are typically of the same type,
@@ -7046,7 +7046,7 @@ the data type to be specified explicitly with each piece of data.</p>
 <section class="informative"><h2>Indexed Values</h2>
 
 <p>Sometimes multiple property values need to be accessed
-  in a more direct fashion than iterating though multiple array values. JSON-LD
+  in a more direct fashion than iterating through multiple array values. JSON-LD
   provides an indexing mechanism to allow the use of an intermediate <a>map</a>
   to associate specific indexes with associated values.</p>
 
@@ -11552,7 +11552,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>A <a>node</a> having an outgoing edge MUST be an <a>IRI</a> or a
       <a>blank node</a>.</li>
     <li>A <a>graph</a> MUST NOT contain unconnected <a>nodes</a>,
-      i.e., nodes which are not connected by an <a>property</a> to any other <a>node</a>.
+      i.e., nodes which are not connected by a <a>property</a> to any other <a>node</a>.
       <pre class="illegal-example"
           data-transform="updateExample"
           data-ignore
@@ -11585,7 +11585,7 @@ the data type to be specified explicitly with each piece of data.</p>
       as a <a>typed value</a> with type <code>xsd:string</code>), a <a>number</a>
       (<a>numbers</a> with a non-zero fractional part, i.e., the result of a modulo&#8209;1 operation,
       <span class="changed">or which are too large to represent as integers
-        (see <a data-cite="JSON-LD11-API#data-round-tripping">Data Round Tripping</a>) in [[JSON-LD11-API]]),</span>
+        (see <a data-cite="JSON-LD11-API#data-round-tripping">Data Round Tripping</a> in [[JSON-LD11-API]]),</span>
       are interpreted as <a>typed values</a> with type <code>xsd:double</code>, all other
       <a>numbers</a> are interpreted as <a>typed values</a>
       with type <code>xsd:integer</code>), <code>true</code> or <code>false</code> (which are interpreted as
@@ -12198,7 +12198,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <h2>Property-based Index Maps</h2>
 
     <p>A property-based <a>index map</a> is a variant of <a>index map</a>
-      were indexes are semantically preserved in the graph as property values.
+      where indexes are semantically preserved in the graph as property values.
       A property-based <a>index map</a> may be used as a term value within a <a>node object</a>
       if the <a>term</a> is defined with <code>@container</code> set to <code>@index</code>,
       or an array containing both <code>@index</code> and <code>@set</code>,
@@ -12260,7 +12260,7 @@ the data type to be specified explicitly with each piece of data.</p>
       or <a>strings</a> which expand to <a>node objects</a>.</p>
 
     <p>If the value contains a property expanding to <code>@type</code>, and its value
-      is contains the referencing key after suitable expansion of both the referencing key
+      contains the referencing key after suitable expansion of both the referencing key
       and the value, then the <a>node object</a> already contains the type. Otherwise, the property from the value is
       added as a <code>@type</code> of the <a>node object</a> value when expanding.</p>
   </section>
@@ -12467,7 +12467,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <a>keyword</a> aliases MAY be used instead of the corresponding <a>keyword</a>, except for `@context`.
     The `@context` <a>keyword</a> MUST NOT be aliased.
     Within <a>local contexts</a> and <a>expanded term definitions</a>,
-    <a>keyword</a> aliases MAY NOT used.</p>
+    <a>keyword</a> aliases MAY NOT be used.</p>
 
   <dl data-sort>
     <dt><code>@base</code></dt><dd>
@@ -12532,7 +12532,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <a>node object</a>, <a>value object</a>, <a>graph object</a>, <a>set object</a>, or <a>list object</a>.
       Its value MUST be a <a>string</a>.
       <p>The unaliased <code>@index</code> MAY be used as the value of the <code>@container</code> key within an <a>expanded term definition</a>
-        and as an entry in a <a>expanded term definition</a>, where the value an <a>IRI</a>,
+        and as an entry in an <a>expanded term definition</a>, where the value an <a>IRI</a>,
         a <a>compact IRI</a>, or a <a>term</a>.</p>
       <p>See <a class="sectionRef" href="#index-maps"></a>, and
         <a class="sectionRef" href="#property-based-data-indexing"></a> for a further discussion.</p>
@@ -13076,13 +13076,13 @@ the data type to be specified explicitly with each piece of data.</p>
         <dt>Alice</dt>
         <dd>an RDF literal with no datatype or language.</dd>
         <dt>weiblich | de</dt>
-        <dd>an language-tagged string with the value "weiblich" and <a>language tag</a> "de".</dd>
+        <dd>a <a>language-tagged string</a> with the value "weiblich" and <a>language tag</a> "de".</dd>
         <dt>female | en</dt>
-        <dd>an language-tagged string with the value "female" and <a>language tag</a> "en".</dd>
+        <dd>a <a>language-tagged string</a> with the value "female" and <a>language tag</a> "en".</dd>
       </dl>
 
       <p>The second and third boxes describe two <a>named graphs</a>, with the graph names
-        "http://example.com/graphs/1" and "http://example.com/graphs/1", respectively.</p>
+        "http://example.com/graphs/1" and "http://example.com/graphs/2", respectively.</p>
       <p>The second box consists of two resources:
         <code>http://example.com/people/alice</code> and <code>http://example.com/people/bob</code>
         related by the <code>schema:parent</code> relationship, and names the
@@ -13741,6 +13741,13 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>Fixed typo in <a href="#frame-objects" class="sectionRef"></a>,
       which was unintentionally diverging from the normative description of the `@embed` keyword in [[[JSON-LD11-FRAMING]]].
       This is in response to <a href="https://github.com/w3c/json-ld-syntax/issues/358">Issue 358</a>.</li>
+  </ul>
+</section>
+<section class="appendix informative" id="changes-from-rec1">
+  <h2>Changes since Recommendation of 16 July 2020</h2>
+  <ul>
+    <li>Misclaneous spelling and grammar fixes.</li>
+    <li>Regenerated definition list, which does not attempt to filter out unused definitions.</li>
   </ul>
 </section>
 
