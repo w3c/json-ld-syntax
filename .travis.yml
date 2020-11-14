@@ -16,7 +16,10 @@ jobs:
     - stage: examples
       name: "Verify examples are consistent"
       language: ruby
-      rvm: 2.6
+      rvm: 2.7
+      before_install:
+        - 'gem update --system --conservative'
+        - 'gem update bundler --conservative'
       script: "bundle exec rake test"
     - stage: links
       name: "Check internal links and HTML"
@@ -25,7 +28,10 @@ jobs:
         - docker
       if: branch = master
       language: ruby
-      rvm: 2.6
+      rvm: 2.7
+      before_install:
+        - 'gem update --system --conservative'
+        - 'gem update bundler --conservative'
       script:
         - docker pull stupchiy/checklink
         - docker run -it stupchiy/checklink -b -X '(http|https|mailto):' "https://labs.w3.org/spec-generator/?type=respec&url=https://raw.githack.com/w3c/json-ld-syntax/${TRAVIS_BRANCH}/index.html?specStatus=WD&shortName=json-ld11"
