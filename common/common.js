@@ -9,7 +9,7 @@ require(["core/pubsubhub"], (respecEvents) => {
 
   respecEvents.sub('end-all', (documentElement) => {
     // remove data-cite on where the citation is to ourselves.
-    const selfDfns = document.querySelectorAll("dfn[data-cite^='__SPEC__#']");
+    const selfDfns = Array.from(document.querySelectorAll("dfn[data-cite^='__SPEC__#']"));
     for (const dfn of selfDfns) {
       const anchor = dfn.querySelector('a');
       if (anchor) {
@@ -26,6 +26,51 @@ require(["core/pubsubhub"], (respecEvents) => {
       anchor.href= anchor.dataset.cite.replace(/^.*#/,"#");
       delete anchor.dataset.cite;
     }
+
+    //
+    // Remove/hide definitions which are  unused
+    // 1. Find all definitions in a termlist which are not preserved, indexed by data-cite
+    // 2. Find all references to definitions not in termlist
+    // 4. Hide definitions which are unreferenced
+    //
+    const remoteDfns = [];
+    document.querySelectorAll(".termlist dfn:not(.preserve)")
+      .forEach((item, index) => {
+        if (!selfDfns.includes(item)) {
+          remoteDfns[item.dataset["cite"]] = item;
+        }
+      });
+
+    // termlist internal references to definitions
+    const internalRefs = Array.from(document.querySelectorAll(".termlist a[data-cite]"));
+
+    // all references to definitions which are not internal refs
+    const allRefs = Array.from(document.querySelectorAll("a[data-cite]"))
+      .filter(e => !internalRefs.includes(e));
+
+    // Remove terms which are referenced
+    for (const item of allRefs) {
+      const cite = item.dataset["cite"];
+      // Delete this from remoteDfns, as it is referenced
+      delete remoteDfns[cite];
+    }
+
+    // Now remoteDfns only contains unreferenced terms
+    for (const item of Object.values(remoteDfns)) {
+      const dt = item.closest("dt");
+      if(dt) {
+        const dd = dt.nextElementSibling;
+        // Note, removing messes up some ReSpec references, so hiding instead
+        // dt.parentNode.removeChild(dt);
+        // dd.parentNode.removeChild(dd);
+        dt.hidden = true;
+        dd.hidden = true;
+      }
+    }
+    
+    //
+    // Playground
+    //
 
     // Add playground links
     for (const link of document.querySelectorAll("a.playground")) {

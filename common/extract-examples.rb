@@ -11,6 +11,8 @@
 require 'getoptlong'
 require 'json'
 require 'json/ld/preloaded'
+require 'rdf/isomorphic'
+require 'rdf/vocab'
 require 'nokogiri'
 require 'linkeddata'
 require 'fileutils'
@@ -304,6 +306,17 @@ ARGV.each do |input|
     args = []
     content = ex[:content]
 
+    options = ex[:options].to_s.split(',').inject({}) do |memo, pair|
+      k, v = pair.split('=')
+      v = case v
+      when 'true' then true
+      when 'false' then false
+      else v
+      end
+      memo.merge(k.to_sym => v)
+    end
+    options[:validate] = true unless options.key?(:validate)
+
     $stderr.puts "example #{ex[:number]}: #{ex.select{|k,v| k != :content}.to_json(JSON::LD::JSON_STATE)}" if verbose
     $stderr.puts "content: #{ex[:content]}" if verbose
 
@@ -332,6 +345,7 @@ ARGV.each do |input|
       rescue JSON::ParserError => exception
         errors << "Example #{ex[:number]} at line #{ex[:line]} parse error: #{exception.message}"
         $stdout.write "F".colorize(:red)
+        $stderr.puts exception.backtrace.join("\n") if verbose
         next
       end
     when 'html'
@@ -355,6 +369,7 @@ ARGV.each do |input|
       rescue Nokogiri::XML::SyntaxError => exception
         errors << "Example #{ex[:number]} at line #{ex[:line]} parse error: #{exception.message}"
         $stdout.write "F".colorize(:red)
+        $stderr.puts exception.backtrace.join("\n") if verbose
         next
       end
     when 'table'
@@ -362,23 +377,25 @@ ARGV.each do |input|
     when 'ttl', 'trig'
       begin
         reader_errors = []
-        RDF::Repository.new << RDF::TriG::Reader.new(content, validate: true, logger: reader_errors)
+        RDF::Repository.new << RDF::TriG::Reader.new(content, logger: reader_errors, **options)
       rescue
         reader_errors.each do |er|
           errors << "Example #{ex[:number]} at line #{ex[:line]} parse error: #{er}"
         end
         $stdout.write "F".colorize(:red)
+        $stderr.puts $!.backtrace.join("\n") if verbose
         next
       end
     when 'nq'
       begin
         reader_errors = []
-        RDF::Repository.new << RDF::NQuads::Reader.new(content, validate: true, logger: reader_errors)
+        RDF::Repository.new << RDF::NQuads::Reader.new(content, logger: reader_errors, **options)
       rescue
         reader_errors.each do |er|
           errors << "Example #{ex[:number]} at line #{ex[:line]} parse error: #{er}"
         end
         $stdout.write "F".colorize(:red)
+        $stderr.puts $!.backtrace.join("\n") if verbose
         next
       end
     end
@@ -388,17 +405,6 @@ ARGV.each do |input|
       # Set content_type so it can be parsed properly
       content.define_singleton_method(:content_type) {ex[:content_type]} if ex[:content_type]
     end
-
-    options = ex[:options].to_s.split(',').inject({}) do |memo, pair|
-      k, v = pair.split('=')
-      v = case v
-      when 'true' then true
-      when 'false' then false
-      else v
-      end
-      memo.merge(k.to_sym => v)
-    end
-    options[:validate] = true
 
     # Set API to use
     method = case
@@ -549,22 +555,26 @@ ARGV.each do |input|
       result = case method
       when nil then nil
       when :fromRdf
-        args[0] = RDF::Reader.for(file_extension: ext).new(args[0])
-        JSON::LD::API.fromRdf(*args)
+        args[0] = RDF::Reader.for(file_extension: ext).new(args[0], **options)
+        opts = args.last.is_a?(Hash) ? args.pop : {}
+        JSON::LD::API.fromRdf(*args, **opts)
       when :toRdf
-        RDF::Dataset.new statements: JSON::LD::API.toRdf(*args)
+        opts = args.last.is_a?(Hash) ? args.pop : {}
+        RDF::Repository.new << JSON::LD::API.toRdf(*args, **opts)
       else
-        JSON::LD::API.method(method).call(*args)
+        opts = args.last.is_a?(Hash) ? args.pop : {}
+        JSON::LD::API.method(method).call(*args, **opts)
       end
     rescue
       errors << "Example #{ex[:number]} at line #{ex[:line]} parse error generating result: #{$!}"
       $stdout.write "F".colorize(:red)
+      $stderr.puts $!.backtrace.join("\n") if verbose
       next
     end
 
     if verbose
-      if result.is_a?(RDF::Dataset)
-        $stderr.puts "result:\n" + result.to_trig
+      if result.is_a?(RDF::Enumerable)
+        $stderr.puts "result:\n" + result.to_nquads
       else
         $stderr.puts "result:\n" + result.to_json(JSON::LD::JSON_STATE)
       end
@@ -575,24 +585,26 @@ ARGV.each do |input|
         # Compare to expected to result
         case ex[:ext]
         when 'ttl', 'trig', 'nq', 'html'
-          reader = RDF::Reader.for(file_extension: ex[:ext]).new(content)
-          expected = RDF::Dataset.new(statements: reader)
-          $stderr.puts "expected:\n" + expected.to_trig if verbose
+          reader = RDF::Reader.for(file_extension: ex[:ext]).new(content, **options)
+          expected = RDF::Repository.new << reader
+          $stderr.puts "expected:\n" + expected.to_nquads if verbose
         when 'table'
           expected = begin
             table_to_dataset(content.xpath('/html/body/table'))
           rescue
             errors << "Example #{ex[:number]} at line #{ex[:line]} raised error reading table: #{$!}"
-            RDF::Dataset.new
+            $stderr.puts $!.backtrace.join("\n") if verbose
+            RDF::Repository.new
           end
             
           if verbose
-            $stderr.puts "expected:\n" + expected.to_trig
+            $stderr.puts "expected:\n" + expected.to_nquads
             $stderr.puts "result table:\n" + begin
               dataset_to_table(result)
             rescue
               errors << "Example #{ex[:number]} at line #{ex[:line]} raised error turning into table: #{$!}"
               ""
+              $stderr.puts $!.backtrace.join("\n") if verbose
             end
           end
         else
@@ -601,14 +613,8 @@ ARGV.each do |input|
         end
 
         # Perform appropriate comparsion
-        if expected.is_a?(RDF::Dataset)
-          expected_norm = RDF::Normalize.new(expected).map(&:to_nquads)
-          result_norm = RDF::Normalize.new(result).map(&:to_nquads)
-          if expected_norm.sort != result_norm.sort
-            if verbose
-              $stderr.puts "expected_norm:\n" + expected_norm.sort.join("")
-              $stderr.puts "result_norm:\n" + result_norm.sort.join("")
-            end
+        if expected.is_a?(RDF::Enumerable)
+          if !expected.isomorphic_with?(result)
             errors << "Example #{ex[:number]} at line #{ex[:line]} not isomorphic with #{examples[ex[:result_for]][:number]}"
             $stdout.write "F".colorize(:red)
             next
@@ -637,6 +643,7 @@ ARGV.each do |input|
     rescue
       errors << "Example #{ex[:number]} at line #{ex[:line]} parse error comparing result: #{$!}"
       $stdout.write "F".colorize(:red)
+      $stderr.puts $!.backtrace.join("\n") if verbose
       next
     end
 
