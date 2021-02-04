@@ -1,0 +1,40 @@
+# This workflow validates the document for markup and examples.
+name: CI
+
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  tests:
+    name: Build and Validate
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+    - name: Install dependencies
+      run: bundle install
+
+    - name: "Verify common files are consistent"
+      run: |
+        git remote add -f b https://github.com/w3c/json-ld-wg.git
+        git remote update
+        git diff --exit-code remotes/b/main -- common
+
+    - name: Verify examples are consistent
+      run: bundle exec rake test
+
+    - name: Checks HTML5
+      run: bundle exec rake check_html
+
+    # See https://github.com/w3c/spec-prod/blob/main/docs/examples.md
+    #- name: ReSpec Checker
+    #  uses: w3c/spec-prod@v1
+    #  with:
+    #    VALIDATE_LINKS: true
+    #    VALIDATE_MARKUP: true
