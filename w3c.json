@@ -1,9 +1,9 @@
 {
   "group": [
-    "107714"
+    "wg/json-ld"
   ],
   "contacts": [
-    "iherman"
+    "plehegar"
   ],
   "shortName": "json-ld-syntax",
   "repo-type": "rec-track"
