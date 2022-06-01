@@ -13192,7 +13192,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <p>In JSON-LD numbers and boolean values are native data types. While [[Turtle]]
         has a shorthand syntax to express such values, RDF's abstract syntax requires
         that numbers and boolean values are represented as typed literals. Thus,
-        to allow full round-tripping, the JSON-LD 1.1 Processing Algorithms and API specification [[JSON-LD11-API]]
+        to allow round-tripping, <a data-cite="JSON-LD11-API#data-round-tripping">Section 8.6</a> of the the JSON-LD 1.1 Processing Algorithms and API specification [[JSON-LD11-API]]
         defines conversion rules between JSON-LD's native data types and RDF's
         counterparts. <a>Numbers</a> without fractions are
         converted to <code>xsd:integer</code>-typed literals, numbers with fractions
@@ -13234,6 +13234,12 @@ the data type to be specified explicitly with each piece of data.</p>
         The rationale is that most JSON tools parse numbers with fractions as
         <em>floating point numbers</em>,
         so `xsd:double` is the most appropriate datatype to render them back in RDF.
+      </div>
+
+      <div id="issue387" class="note changed">Native JSON numbers are sometimes converted to `xsd:double`
+      (numbers with a fractional part, or very big integers)
+      and this conversion can be lossy.
+      Therefore, the use of native JSON numbers is discouraged when the exact value of the numbers must be preserved. It is advised to use instead <a>value objects</a> with the appropriate datatype.
       </div>
 
     </section>
