@@ -13614,7 +13614,7 @@ the data type to be specified explicitly with each piece of data.</p>
         are enclosed in double quotes (<code>"</code>).</p>
     </section>
   </section>
-  <section>
+  <section id="structured-extension-ld-json">
     <h3>+ld+json</h3>
 
     <p>This section will be submitted to the Internet Engineering Steering
@@ -13672,7 +13672,7 @@ the data type to be specified explicitly with each piece of data.</p>
       <dt>Fragment identifier considerations</dt>
       <dd>
         <p>
-          Fragment identifiers used with <a href="#ld-json">+ld+json</a>
+          Fragment identifiers used with <a href="#structured-extension-ld-json">+ld+json</a>
           are treated as in RDF syntaxes, as per
           <a data-cite="RDF11-CONCEPTS#section-fragID">RDF 1.1 Concepts and Abstract Syntax</a>
           [[RDF11-CONCEPTS]].
@@ -13872,8 +13872,6 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>The <a>processing mode</a> is now implicitly `json-ld-1.1`, unless set
       explicitly to `json-ld-1.0`.</li>
     <li>Improve notation using <a>IRI</a>, <a>IRI reference</a>, and <a>relative IRI reference</a>.</li>
-    <!--li>Allow further structured subtypes of `application/ld+json` by using
-      `+ld+json` as a suffix for a new base type.</li-->
     <li>Warn about forward-compatibility issues for terms of the form (`"@"1*ALPHA`).</li>
     <li>When creating an `i18n` datatype or `rdf:CompoundLiteral`, <a>language tags</a> are
       normalized to lower case to improve interoperability between implementations.</li>
@@ -13911,6 +13909,8 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>Misclaneous spelling and grammar fixes.</li>
     <li>Regenerated definition list, which does not attempt to filter out unused definitions.</li>
     <li>Fixed typo in <a href="#alternate-document-location" class="sectionRef"></a> where "HTTP document" was intended to be "HTML document".</li>
+    <li>Allow further structured extensions of `application/ld+json` by using
+      `+ld+json` as a structured media extension. See <a href="#structured-extension-ld-json"></a>.</li>
   </ul>
 </section>
 
