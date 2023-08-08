@@ -3526,13 +3526,13 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
     would still be in effect when traversing into another <a>node object</a>.</p>
 
   <p>When expanding, each value of <code>@type</code> is considered
-    (ordering them lexicographically) where that value is also a <a>term</a> in
+    (in <a>code point order</a>) where that value is also a <a>term</a> in
     the <a>active context</a> having its own <a>type-scoped context</a>.
     If so, that the <a>scoped context</a> is applied to the <a>active context</a>.</p>
 
   <p class="note">The values of <code>@type</code> are unordered, so if multiple
     types are listed, the order that <a>type-scoped contexts</a> are applied is based on
-    lexicographical ordering.</p>
+    a>code point ordering</a>.</p>
 
   <p>For example, consider the following semantically equivalent examples.
     The first example, shows how properties and types can define their own
@@ -12877,7 +12877,7 @@ the data type to be specified explicitly with each piece of data.</p>
         and furthermore comply with the following constraints:
         <ul>
           <li>It MUST NOT contain any unnecessary whitespace,</li>
-          <li>Keys in objects MUST be ordered lexicographically,</li>
+          <li>Keys in objects MUST be in <a>code point order</a>,</li>
           <li>Native Numeric values MUST be serialized according to
             <a data-cite="?ECMASCRIPT#sec-tostring-applied-to-the-number-type">Section 7.1.12.1</a> of [[?ECMASCRIPT]],</li>
           <li>Strings MUST be serialized with Unicode codepoints from <code>U+0000</code> through <code>U+001F</code>
@@ -13877,6 +13877,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>Fixed typo in <a href="#alternate-document-location" class="sectionRef"></a> where "HTTP document" was intended to be "HTML document".</li>
     <li>Allow further structured extensions of `application/ld+json` by using
       `+ld+json` as a structured media extension. See <a href="#structured-extension-ld-json"></a>.</li>
+    <li>Use <a>code point order</a> as a better definition for the more vague "lexicographical order".</li>
   </ul>
 </section>
 
