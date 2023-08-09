@@ -353,8 +353,8 @@
   </ul>
 
   <p>JSON-LD is designed to be usable directly as JSON, with no knowledge of RDF
-   [[RDF11-CONCEPTS]]. It is also designed to be usable as RDF
-   in conjunction with other Linked Data technologies like SPARQL [[SPARQL11-OVERVIEW]].
+   [[RDF12-CONCEPTS]]. It is also designed to be usable as RDF
+   in conjunction with other Linked Data technologies like SPARQL [[SPARQL12-CONCEPTS]].
    Developers who
    require any of the facilities listed above or need to serialize an <a>RDF graph</a>
    or <a>Dataset</a> in a JSON-based syntax will find JSON-LD of interest. People
@@ -480,7 +480,7 @@
      possible.</dd>
     <dt>Usable as RDF</dt>
     <dd>JSON-LD is usable by developers as
-      idiomatic JSON, with no need to understand RDF [[RDF11-CONCEPTS]].
+      idiomatic JSON, with no need to understand RDF [[RDF12-CONCEPTS]].
       JSON-LD is also usable as RDF, so people intending to use JSON-LD
       with RDF tools will find it can be used like any other RDF syntax.
       Complete details of how JSON-LD relates to RDF are in section
@@ -766,7 +766,7 @@
     tokens such as "name", "homepage", etc.</p>
 
   <p>Linked Data, and the Web in general, uses <a>IRIs</a>
-    (<a data-cite="RFC3987#section-2">Internationalized Resource Identifiers</a> as described in [[RFC3987]]) for unambiguous
+    (<a data-cite="RDF12-CONCEPTS#dfn-iri">Internationalized Resource Identifiers</a> as described in [[RDF12-CONCEPTS]]) for unambiguous
     identification. The idea is to use <a>IRIs</a>
     to assign unambiguous identifiers to data that may be of use to other developers.
     It is useful for <a>terms</a>,
@@ -1105,12 +1105,12 @@
 <section class="informative">
   <h2>IRIs</h2>
 
-  <p><a>IRIs</a> (<a data-cite="RFC3987#section-2">Internationalized Resource Identifiers</a>
-    [[RFC3987]]) are fundamental to Linked Data as that is how most
+  <p><a>IRIs</a> (<a data-cite="RDF12-CONCEPTS#dfn-iri">Internationalized Resource Identifiers</a>
+    [[RDF12-CONCEPTS]]) are fundamental to Linked Data as that is how most
     <a>nodes</a> and <a>properties</a>
     are identified.
     In JSON-LD, IRIs may be represented as an <a>IRI reference</a>.
-    An <a>IRI</a> is defined in [[RFC3987]] as containing a
+    An <a>IRI</a> is defined in [[RDF12-CONCEPTS]] as containing a
     <em>scheme</em> along with <em>path</em> and optional <em>query</em> and
     <em>fragment</em> segments. A <a>relative IRI reference</a> is an IRI
     that is relative to some other <a>IRI</a>.
@@ -1122,7 +1122,7 @@
     the primary distinction is that a URL <em>locates</em> a resource on the web,
     an IRI <em>identifies</em> a resource. While it is a good practice for resource identifiers
     to be dereferenceable, sometimes this is not practical. In particular, note the
-    [[URN]] scheme for Uniform Resource Names, such as <a data-cite="rfc4122" data-no-xref="">UUID</a>.
+    [[URN]] scheme for Uniform Resource Names, such as <a data-cite="RFC4122" data-no-xref="">UUID</a>.
     An example UUID is <code>urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6</code>.</p>
 
   <p class="note"><a>Properties</a>, values of <code>@type</code>,
@@ -3532,7 +3532,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
 
   <p class="note">The values of <code>@type</code> are unordered, so if multiple
     types are listed, the order that <a>type-scoped contexts</a> are applied is based on
-    <a>code point ordering</a>.</p>
+    <a>code point order</a>.</p>
 
   <p>For example, consider the following semantically equivalent examples.
     The first example, shows how properties and types can define their own
@@ -11211,7 +11211,7 @@ the data type to be specified explicitly with each piece of data.</p>
     The embedded JSON-LD document might be extracted as is or, e.g., be
     interpreted as RDF.</p>
 
-  <p>If JSON-LD content is extracted as RDF [[RDF11-CONCEPTS]], it MUST be expanded into an
+  <p>If JSON-LD content is extracted as RDF [[RDF12-CONCEPTS]], it MUST be expanded into an
     <a>RDF Dataset</a> using the
     <a data-cite="JSON-LD11-API#deserialize-json-ld-to-rdf-algorithm">Deserialize JSON-LD to RDF Algorithm</a>
     [[JSON-LD11-API]]. Unless a specific script is targeted
@@ -11517,7 +11517,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <p>JSON-LD is a serialization format for Linked Data based on JSON.
     It is therefore important to distinguish between the syntax, which is
     defined by JSON in [[RFC8259]], and the <dfn>data model</dfn> which is
-    an extension of the <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a> [[RDF11-CONCEPTS]].
+    an extension of the <a data-cite="RDF12-CONCEPTS#data-model">RDF data model</a> [[RDF12-CONCEPTS]].
     The precise details of how JSON-LD relates to the RDF data model are given in
     <a class="sectionRef" href="#relationship-to-rdf"></a>.</p>
 
@@ -11527,7 +11527,7 @@ the data type to be specified explicitly with each piece of data.</p>
   <ul>
     <li>A <a>JSON-LD document</a> serializes a
       <a>RDF Dataset</a>
-      [[RDF11-CONCEPTS]], which is a collection of <a>graphs</a>
+      [[RDF12-CONCEPTS]], which is a collection of <a>graphs</a>
       that comprises exactly one <a>default graph</a>
       and zero or more <a>named graphs</a>.
     </li>
@@ -11548,7 +11548,7 @@ the data type to be specified explicitly with each piece of data.</p>
         Consider using a document-relative IRI, instead, such as `#`.</div>
     </li>
     <li>Every <a>node</a>
-      is an <a>IRI</a>, a <a>blank node</a>, or a <a data-cite="RDF11-CONCEPTS#dfn-literal">literal</a>,
+      is an <a>IRI</a>, a <a>blank node</a>, or a <a data-cite="RDF12-CONCEPTS#dfn-literal">literal</a>,
       although syntactically <a>lists</a> and native JSON values may be represented directly.</li>
     <li>A <a>node</a> having an outgoing edge MUST be an <a>IRI</a> or a
       <a>blank node</a>.</li>
@@ -11572,7 +11572,7 @@ the data type to be specified explicitly with each piece of data.</p>
       </div>
     </li>
     <li>An <a>IRI</a> (Internationalized Resource Identifier) is a string that conforms to the syntax
-      defined in [[RFC3987]]. <a>IRIs</a> used within a
+      defined in [[RDF12-CONCEPTS]]. <a>IRIs</a> used within a
       <a>graph</a> SHOULD return a Linked Data document describing
       the resource denoted by that <a>IRI</a> when being dereferenced.</li>
     <li>A <a>blank node</a> is a <a>node</a> which is neither an <a>IRI</a>,
@@ -11603,11 +11603,11 @@ the data type to be specified explicitly with each piece of data.</p>
       </li>
     <li class="changed">Either <a>strings</a>, or <a>language-tagged strings</a> may include
       a <a>base direction</a>, which represents an extension to the underlying
-      <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a>.</li>
+      <a data-cite="RDF12-CONCEPTS#data-model">RDF data model</a>.</li>
     <li>A <a>list</a> is a sequence of zero or more <a>IRIs</a>,
       <a>blank nodes</a>, and <a>JSON-LD values</a>.
       <a>Lists</a> are interpreted as
-      <dfn data-cite="RDF11-MT#rdf-collections">RDF list structures</dfn> [[RDF11-MT]].</li>
+      <dfn data-cite="RDF12-SEMANTICS#rdf-collections">RDF list structures</dfn> [[RDF12-SEMANTICS]].</li>
   </ul>
 
   <p><a>JSON-LD documents</a> MAY contain data
@@ -11817,8 +11817,8 @@ the data type to be specified explicitly with each piece of data.</p>
       [[IANA-URI-SCHEMES]]. Similarly, to avoid confusion between a
       <a>Compact IRI</a> and a <a>term</a>, terms SHOULD NOT include a colon (<code>:</code>)
       and SHOULD be restricted to the form of
-      <code><a data-cite="RFC3987#section-2.2">isegment-nz-nc</a></code>
-      as defined in [[RFC3987]].</p>
+      <code><a data-cite="RDF12-CONCEPTS#iri-abnf">isegment-nz-nc</a></code>
+      as defined in [[RDF12-CONCEPTS]].</p>
 
     <p>To avoid forward-compatibility issues, a <a>term</a> SHOULD NOT start
       with an <code>@</code> character
@@ -12684,12 +12684,12 @@ the data type to be specified explicitly with each piece of data.</p>
   <h2>Relationship to RDF</h2>
 
   <p>JSON-LD is a
-    <dfn data-cite="RDF11-CONCEPTS#dfn-concrete-rdf-syntax">concrete RDF syntax</dfn>
-    as described in [[RDF11-CONCEPTS]]. Hence, a JSON-LD document is both an
+    <dfn data-cite="RDF12-CONCEPTS#dfn-concrete-rdf-syntax">concrete RDF syntax</dfn>
+    as described in [[RDF12-CONCEPTS]]. Hence, a JSON-LD document is both an
     RDF document <em>and</em> a JSON document and correspondingly represents an
-    instance of an <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a>. However, JSON-LD also extends the RDF data
+    instance of an <a data-cite="RDF12-CONCEPTS#data-model">RDF data model</a>. However, JSON-LD also extends the RDF data
     model to optionally allow JSON-LD to serialize
-    <dfn data-cite="RDF11-CONCEPTS#dfn-generalized-rdf-dataset" data-lt="generalized rdf dataset">generalized RDF Datasets</dfn>.
+    <dfn data-cite="RDF12-CONCEPTS#dfn-generalized-rdf-dataset" data-lt="generalized rdf dataset">generalized RDF Datasets</dfn>.
     The JSON-LD extensions to the RDF data model are:</p>
 
   <ul>
@@ -12701,7 +12701,7 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>In JSON-LD <a>lists</a> use native JSON syntax, either contained in a
       list object, or described as such within a context. Consequently, developers
       using the JSON representation can access list elements directly rather than
-      using the vocabulary for collections described in [[RDF-SCHEMA]].</li>
+      using the vocabulary for collections described in [[RDF12-SCHEMA]].</li>
     <li>RDF values are either typed <em>literals</em>
       (<a>typed values</a>) or
       <a>language-tagged strings</a> whereas
@@ -12710,7 +12710,7 @@ the data type to be specified explicitly with each piece of data.</p>
       and <code>false</code>. The JSON-LD 1.1 Processing Algorithms and API specification [[JSON-LD11-API]]
       defines the <a data-cite="JSON-LD11-API#data-round-tripping">conversion rules</a>
       between JSON's native data types and RDF's counterparts to allow round-tripping.</li>
-    <li class="changed">As an extension to the <a data-cite="RDF11-CONCEPTS#data-model">RDF data model</a>,
+    <li class="changed">As an extension to the <a data-cite="RDF12-CONCEPTS#data-model">RDF data model</a>,
       literals without an explicit datatype
       MAY include a <a>base direction</a>.
       As there is currently no standardized mechanism for representing the <a>base direction</a>
@@ -12725,7 +12725,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>Summarized, these differences mean that JSON-LD is capable of serializing any RDF
     <a>graph</a> or <a>dataset</a> and most, but not all, JSON-LD documents can be directly
-    interpreted as RDF as described in RDF 1.1 Concepts [[RDF11-CONCEPTS]].</p>
+    interpreted as RDF as described in RDF 1.1 Concepts [[RDF12-CONCEPTS]].</p>
 
   <p>Authors are strongly encouraged to avoid labeling properties using <a>blank node identifiers</a>,
     instead, consider one of the following mechanisms:</p>
@@ -12734,8 +12734,8 @@ the data type to be specified explicitly with each piece of data.</p>
       (see <a href="#document-relative-vocabulary-mapping" class="sectionRef"></a> for a discussion on using the document base as part of the <a>vocabulary mapping</a>),</li>
     <li>a URN such as <code>urn:example:1</code>, see [[?URN]], or</li>
     <li>a "Skolem IRI" as per
-      <a data-cite="RDF11-CONCEPTS#section-skolemization">Replacing Blank Nodes with IRIs</a>
-      of [[RDF11-CONCEPTS]].</li>
+      <a data-cite="RDF12-CONCEPTS#section-skolemization">Replacing Blank Nodes with IRIs</a>
+      of [[RDF12-CONCEPTS]].</li>
   </ul>
 
   <p>The normative algorithms for interpreting JSON-LD as RDF and serializing
@@ -12744,7 +12744,7 @@ the data type to be specified explicitly with each piece of data.</p>
 
   <p>Even though JSON-LD serializes
     <a>RDF Datasets</a>, it can
-    also be used as a <dfn data-cite="RDF11-CONCEPTS#dfn-rdf-source">graph source</dfn>.
+    also be used as a <dfn data-cite="RDF12-CONCEPTS#dfn-rdf-source">graph source</dfn>.
     In that case, a consumer MUST only use the <a>default graph</a> and ignore all <a>named graphs</a>.
     This allows servers to expose data in languages such as Turtle and JSON-LD
     using <a href="https://en.wikipedia.org/wiki/Content_negotiation">HTTP content negotiation</a>.</p>
@@ -13508,8 +13508,8 @@ the data type to be specified explicitly with each piece of data.</p>
             <p>When processing the "profile" media type parameter, it is important to
               note that its value contains one or more URIs and not IRIs. In some cases
               it might therefore be necessary to convert between IRIs and URIs as specified in
-              <a data-cite="RFC3986#section-5.1">section 3 Relationship between IRIs and URIs</a>
-              of [[RFC3987]].</p>
+              <a data-cite="RDF12-CONCEPTS#note-iris">URIs and IRIs</a>
+              of [[RDF12-CONCEPTS]].</p>
           </dd>
         </dl>
       </dd>
@@ -13553,8 +13553,8 @@ the data type to be specified explicitly with each piece of data.</p>
 
     <p>Fragment identifiers used with <a href="#application-ld-json">application/ld+json</a>
       are treated as in RDF syntaxes, as per
-      <a data-cite="RDF11-CONCEPTS#section-fragID">RDF 1.1 Concepts and Abstract Syntax</a>
-      [[RDF11-CONCEPTS]].</p>
+      <a data-cite="RDF12-CONCEPTS#section-fragID">RDF 1.1 Concepts and Abstract Syntax</a>
+      [[RDF12-CONCEPTS]].</p>
 
     <p>This registration is an update to the original definition
       for <a data-cite="JSON-LD10#application-ld-json">application/ld+json</a>
@@ -13617,7 +13617,7 @@ the data type to be specified explicitly with each piece of data.</p>
     Group (IESG) for review, approval, and registration with IANA.</p>
 
     <p>The following section is based on the requirements defined in 
-      <a data-cite="rfc6838#section-6.2"></a>.</p>
+      <a data-cite="RFC6838#section-6.2"></a>.</p>
 
     <dl>
       <!-- Full name of the well-defined structured syntax. -->
@@ -13670,8 +13670,7 @@ the data type to be specified explicitly with each piece of data.</p>
         <p>
           Fragment identifiers used with <a href="#structured-extension-ld-json">+ld+json</a>
           are treated as in RDF syntaxes, as per
-          <a data-cite="RDF11-CONCEPTS#section-fragID">RDF 1.1 Concepts and Abstract Syntax</a>
-          [[RDF11-CONCEPTS]].
+          [[[RDF12-CONCEPTS]]] [[RDF12-CONCEPTS]].
         </p>
       </dd>
 
@@ -13773,11 +13772,11 @@ the data type to be specified explicitly with each piece of data.</p>
       be expressed in <a>array</a> form.</li>
     <li>In JSON-LD 1.1, terms will be chosen as <a>compact IRI</a> prefixes
       when compacting only if
-      a <a>simple term definition</a> is used where the value ends with a URI <a data-cite="RFC3986#section-2.2">gen-delim</a> character,
+      a <a>simple term definition</a> is used where the value ends with a URI <a data-cite="RDF12-CONCEPTS#iri-abnf">gen-delim</a> character,
       or if their <a>expanded term definition</a> contains
       a <code>@prefix</code> <a>entry</a> with the value <code>true</code>. The 1.0 algorithm has
       been updated to only consider terms that map to a value that ends with a URI
-      <a data-cite="RFC3986#section-2.2">gen-delim</a> character.</li>
+      <a data-cite="RDF12-CONCEPTS#iri-abnf">gen-delim</a> character.</li>
     <li>Values of properties where the associated <a>term definition</a>
       has <code>@container</code> set to <code>@graph</code> are interpreted as
       <a>implicitly named graphs</a>, where the associated graph name is
