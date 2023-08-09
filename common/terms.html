@@ -66,34 +66,13 @@
   </dd>
 </dl>
 
-<p>Terms imported from [[[RFC3987]]] [[RFC3987]]</p>
+<p>Terms imported from [[[RDF12-CONCEPTS]]] [[RDF12-CONCEPTS]], [[[RDF12-SCHEMA]]] [[RDF12-SCHEMA]], and [[[LINKED-DATA]]] [[LINKED-DATA]]</p>
 <dl class="termlist" data-sort>
-  <dt><dfn data-cite="RFC3987#section-2" data-lt="Internationalized Resource Identifier" class="preserve"><abbr title="Internationalized Resource Identifier">IRI</abbr></dfn></dt><dd>
-    The absolute form of an <a>IRI</a> containing a <em>scheme</em> along with a <em>path</em>
-    and optional <em>query</em> and <em>fragment</em> segments.</dd>
-  <dt><dfn data-cite="RFC3987#section-1.3" class="preserve">IRI reference</dfn></dt><dd>
-    Denotes the common usage of an <a>Internationalized Resource Identifier</a>.
-    An <a>IRI reference</a> may be absolute or
-    <a data-lt="relative IRI reference">relative</a>.
-    However, the "IRI" that results from such a reference only includes absolute <a>IRIs</a>;
-    any <a>relative IRI references</a> are resolved to their absolute form.</dd>
-  <dt><dfn data-cite="RFC3987#section-6.5" class="preserve">relative IRI reference</dfn></dt><dd>
-    A relative IRI reference is an <a>IRI reference</a> that is relative to some other <a>IRI</a>,
-    typically the <a>base IRI</a> of the document.
-    Note that <a>properties</a>,
-    values of <code>@type</code>,
-    and values of <a>terms</a> defined to be <em>vocabulary relative</em>
-    are resolved relative to the <a>vocabulary mapping</a>,
-    not the <a>base IRI</a>.</dd>
-</dl>
-
-<p>Terms imported from [[[RDF11-CONCEPTS]]] [[RDF11-CONCEPTS]], [[[RDF-SCHEMA]]] [[RDF-SCHEMA]], and [[[LINKED-DATA]]] [[LINKED-DATA]]</p>
-<dl class="termlist" data-sort>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-base-iri" class="preserve">base IRI</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-base-iri" class="preserve">base IRI</dfn></dt><dd>
     The <a>base IRI</a> is an <a>IRI</a> established in the <a>context</a>,
     or is based on the <a>JSON-LD document</a> location.
     The <a>base IRI</a> is used to turn <a>relative IRI references</a> into <a>IRIs</a>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-blank-node" class="preserve">blank node</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-blank-node" class="preserve">blank node</dfn></dt><dd>
     A <a>node</a> in a <a>graph</a> that is neither an <a>IRI</a>,
     nor a <a>literal</a>.
     A <a>blank node</a> does not contain
@@ -101,67 +80,84 @@
     or does not contain information that needs to be linked to from outside of the <a>linked data graph</a>.
     In JSON-LD,
     a blank node is assigned an identifier starting with the prefix <code>_:</code>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-blank-node-identifier" class="preserve">blank node identifier</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-blank-node-identifier" class="preserve">blank node identifier</dfn></dt><dd>
     A <a>blank node identifier</a>
     is a string that can be used as an identifier for a <a>blank node</a> within the scope of a JSON-LD document.
     Blank node identifiers begin with <code>_:</code>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-rdf-dataset" data-lt="RDF dataset" class="preserve">dataset</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-rdf-dataset" data-lt="RDF dataset" class="preserve">dataset</dfn></dt><dd>
     A <a>dataset</a>
-    representing a collection of <a data-cite="RDF11-CONCEPTS#dfn-rdf-graph">RDF graphs</a>
+    representing a collection of <a data-cite="RDF12-CONCEPTS#dfn-rdf-graph">RDF graphs</a>
     including exactly one <a>default graph</a> and zero or more <a>named graphs</a>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-datatype-iri" class="preserve">datatype IRI</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-datatype-iri" class="preserve">datatype IRI</dfn></dt><dd>
     A <a>datatype IRI</a> is an <a>IRI</a> identifying a datatype that determines how the lexical form maps to a
-    <a data-cite="RDF11-CONCEPTS#dfn-literal-value">literal value</a>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-default-graph" class="preserve">default graph</dfn></dt><dd>
+    <a data-cite="RDF12-CONCEPTS#dfn-literal-value">literal value</a>.</dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-default-graph" class="preserve">default graph</dfn></dt><dd>
     The <a>default graph</a> of a <a>dataset</a> is an <a>RDF graph</a> having no <a data-lt="graph name">name</a>, which may be empty.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-graph-name" class="preserve">graph name</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-graph-name" class="preserve">graph name</dfn></dt><dd>
     The <a>IRI</a> or <a>blank node</a> identifying a <a>named graph</a>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-language-tagged-string" class="preserve">language-tagged string</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-language-tagged-string" class="preserve">language-tagged string</dfn></dt><dd>
     A <a>language-tagged string</a>
     consists of a string and a non-empty language tag
     as defined by [[BCP47]].
-    The <dfn data-cite="RDF11-CONCEPTS#dfn-language-tag">language tag</dfn> must be well-formed
+    The <dfn data-cite="RDF12-CONCEPTS#dfn-language-tag">language tag</dfn> must be well-formed
     according to <a data-cite="BCP47#section-2.2.9">section 2.2.9 Classes of Conformance</a> of [[BCP47]].
     <span class="changed note">Processors may normalize <a>language tags</a> to lowercase.</span>
   </dd>
   <dt><dfn data-cite="LINKED-DATA" data-no-xref="" class="preserve">Linked Data</dfn></dt><dd>
     A set of documents, each containing a representation of a <a>linked data graph</a> or <a>dataset</a>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-rdf-graph" data-lt="linked data graph|graph" class="preserve">RDF graph</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-rdf-graph" data-lt="linked data graph|graph" class="preserve">RDF graph</dfn></dt><dd>
     A labeled directed <a>graph</a>,
     i.e., a set of <a>nodes</a> connected by directed-arcs.
     Also called <a>linked data graph</a>.
   </dd>
-  <dt><dfn data-cite="RDF-SCHEMA#ch_collectionvocab" data-lt="collection|RDF collection" class="preserve">list</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-SCHEMA#ch_collectionvocab" data-lt="collection|RDF collection" class="preserve">list</dfn></dt><dd>
     A <a>list</a> is an ordered sequence of <a>IRIs</a>, <a>blank nodes</a>, and <a>literals</a>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-literal" data-lt="RDF literal" class="preserve">literal</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-literal" data-lt="RDF literal" class="preserve">literal</dfn></dt><dd>
     An <a>object</a> expressed as a value such as a <a>string</a> or <a>number</a>.
     Implicitly or explicitly includes a <a>datatype IRI</a> and, if the datatype is `rdf:langString`, an optional <a>language tag</a>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-named-graph" class="preserve">named graph</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-named-graph" class="preserve">named graph</dfn></dt><dd>
     A <a>named graph</a>
     is a <a>linked data graph</a> that is identified by an <a>IRI</a> or <a>blank node</a>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-node" class="preserve">node</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-node" class="preserve">node</dfn></dt><dd>
     A <a>node</a> in an <a>RDF graph</a>, either the <a>subject</a> and <a>object</a> of at least one <a>triple</a>.
     Note that a <a>node</a> can play both roles (<a>subject</a> and <a>object</a>) in a <a>graph</a>, even in the same <a>triple</a>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-object" class="preserve">object</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-object" class="preserve">object</dfn></dt><dd>
     An <a>object</a> is a <a>node</a> in a <a>linked data graph</a>
     with at least one incoming edge.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-property" class="preserve">property</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-property" class="preserve">property</dfn></dt><dd>
     The name of a directed-arc in a <a>linked data graph</a>.
     Every <a>property</a> is directional
     and is labeled with an <a>IRI</a> or a <a>blank node identifier</a>.
     Whenever possible, a <a>property</a> should be labeled with an <a>IRI</a>.
     <div class="note">The use of <a>blank node identifiers</a> to label properties is obsolete,
       and may be removed in a future version of JSON-LD.</div>
-    Also, see <dfn data-cite="RDF11-CONCEPTS#dfn-predicate" class="preserve">predicate</dfn> in [[RDF11-CONCEPTS]].</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-resource" class="preserve">resource</dfn></dt><dd>
+    Also, see <dfn data-cite="RDF12-CONCEPTS#dfn-predicate" class="preserve">predicate</dfn> in [[RDF12-CONCEPTS]].</dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-resource" class="preserve">resource</dfn></dt><dd>
     A <a>resource</a> denoted by an <a>IRI</a>, a <a>blank node</a> or <a>literal</a> representing something in the world (the "universe of discourse").</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-rdf-triple" class="preserve">triple</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-rdf-triple" class="preserve">triple</dfn></dt><dd>
     A component of an <a>RDF graph</a> including a <a>subject</a>, <a>predicate</a>, and <a>object</a>, which represents
     a node-arc-node segment of an <a>RDF graph</a>.</dd>
-  <dt><dfn data-cite="RDF11-CONCEPTS#dfn-subject" class="preserve">subject</dfn></dt><dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-subject" class="preserve">subject</dfn></dt><dd>
     A <a>subject</a> is a <a>node</a> in a <a>linked data graph</a>
     with at least one outgoing edge,
     related to an <a>object</a> node through a <a>property</a>.</dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-iri" data-lt="Internationalized Resource Identifier" class="preserve"><abbr title="Internationalized Resource Identifier">IRI</abbr></dfn></dt><dd>
+    The absolute form of an <a>IRI</a> containing a <em>scheme</em> along with a <em>path</em>
+    and optional <em>query</em> and <em>fragment</em> segments.</dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-iri-reference" class="preserve">IRI reference</dfn></dt><dd>
+    Denotes the common usage of an <a>Internationalized Resource Identifier</a>.
+    An <a>IRI reference</a> may be absolute or
+    <a data-lt="relative IRI reference">relative</a>.
+    However, the "IRI" that results from such a reference only includes absolute <a>IRIs</a>;
+    any <a>relative IRI references</a> are resolved to their absolute form.</dd>
+  <dt><dfn data-cite="RDF12-CONCEPTS#dfn-relative-iri" class="preserve">relative IRI reference</dfn></dt><dd>
+    A relative IRI reference is an <a>IRI reference</a> that is relative to some other <a>IRI</a>,
+    typically the <a>base IRI</a> of the document.
+    Note that <a>properties</a>,
+    values of <code>@type</code>,
+    and values of <a>terms</a> defined to be <em>vocabulary relative</em>
+    are resolved relative to the <a>vocabulary mapping</a>,
+    not the <a>base IRI</a>.</dd>
 </dl>
 </section>
 
