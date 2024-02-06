@@ -14,7 +14,7 @@ end
 
 desc "Check HTML"
 task :check_html do
-  require 'nokogumbo'
+  require 'nokogiri'
   doc = ::Nokogiri::HTML5(File.open("index.html"), max_parse_errors: 1000)
   unless doc.errors.empty?
     STDERR.puts "Errors found parsing index.html:"
