@@ -15,5 +15,5 @@ jobs:
     steps:
       - uses: actions/add-to-project@v0.4.1
         with:
-          project-url: https://github.com/orgs/w3c/projects/4
+          project-url: https://github.com/orgs/w3c/projects/82
           github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
