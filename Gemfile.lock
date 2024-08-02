@@ -161,8 +161,8 @@ GEM
     rdf-xsd (3.3.0)
       rdf (~> 3.3)
       rexml (~> 3.2)
-    rexml (3.2.8)
-      strscan (>= 3.0.9)
+    rexml (3.3.3)
+      strscan
     scanf (1.0.0)
     shacl (0.4.1)
       json-ld (~> 3.3)
