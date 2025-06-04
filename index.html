@@ -298,7 +298,7 @@
     documents created using the 1.0 version of this specification remain compatible with JSON-LD 1.1.</p>
 </section>
 
-<section id="sotd">
+<section id="sotd" class="updateable-rec">
   <p>This document has been developed by the
     <a href="https://www.w3.org/2018/json-ld-wg/">JSON-LD Working Group</a> and was derived from the <a href="https://www.w3.org/community/json-ld/">JSON-LD Community Group's</a> <a href="https://www.w3.org/2018/jsonld-cg-reports/json-ld/">Final Report</a>.</p>
 
@@ -438,6 +438,15 @@
 
     <p>This document uses the following terms as defined in external specifications
       and defines terms specific to JSON-LD.</p>
+
+
+    <div id="change_api_638" class="candidate correction">
+      <span class="marker">Candidate Correction 1</span>
+      <p>Change the type of <a>term definition</a> from <a>array</a> to <a>map</a> in <a>active context</a>,
+        to be consistent with the way it is used in the algorithms.
+        For more information, refer to <a href="https://github.com/w3c/json-ld-api/issues/630">issue 630</a>.
+      </p>
+    </div>
 
     <div data-include="common/terms.html"></div>
   </section>
@@ -3532,7 +3541,7 @@ In this example, the <a>compact IRI</a> form is used in two different ways.
 
   <p class="note">The values of <code>@type</code> are unordered, so if multiple
     types are listed, the order that <a>type-scoped contexts</a> are applied is based on
-    <a>code point ordering</a>.</p>
+    <a data-lt="code point order">code point ordering</a>.</p>
 
   <p>For example, consider the following semantically equivalent examples.
     The first example, shows how properties and types can define their own
@@ -13879,6 +13888,8 @@ the data type to be specified explicitly with each piece of data.</p>
     <li>Allow further structured extensions of `application/ld+json` by using
       `+ld+json` as a structured media extension. See <a href="#structured-extension-ld-json"></a>.</li>
     <li>Use <a>code point order</a> as a better definition for the more vague "lexicographical order".</li>
+    <li>2025-06-04: Clarifiy language about <a>term definitions</a>,
+      as described in <a href="#change_api_638">Candidate Correction 1</a></li>
   </ul>
 </section>
 
