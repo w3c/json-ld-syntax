@@ -11785,10 +11785,30 @@ the data type to be specified explicitly with each piece of data.</p>
       in the <a>JSON-LD internal representation</a> that is equivalent to
       valid <a data-cite="RFC8259#section-2">JSON text</a></span>.</p>
 
-  <p>A <a>JSON-LD document</a> MUST be a single <a>node object</a>,
+  <p>A <a>JSON-LD document</a> MUST be <a>null</a>, a single <a>node object</a>,
     a <a>map</a> consisting of only
     the <a>entries</a> <code>@context</code> and/or <code>@graph</code>,
     or an <a>array</a> of zero or more <a>node objects</a>.</p>
+
+  <aside class="example informative" title="A null JSON-LD document">
+    <p>Input:</p>
+    <pre class="compacted input" data-transform="updateExample">
+    <!--
+    null
+    -->
+    </pre>
+    <p>The <a data-cite="JSON-LD11-API#expansion-algorithm">Expansion Algorithm</a>
+      returns <a>null</a> for this document. The
+      <a data-cite="JSON-LD11-API#dom-jsonldprocessor-expand">public expansion procedure</a>
+      converts this result to an empty <a>array</a>.</p>
+    <p>Expansion result:</p>
+    <pre class="expanded result" data-transform="updateExample"
+         data-result-for="A null JSON-LD document-compacted">
+    <!--
+    []
+    -->
+    </pre>
+  </aside>
 
   <p>In contrast to JSON, in JSON-LD the keys in <a data-lt="JSON object">objects</a>
     MUST be unique.</p>
